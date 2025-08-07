@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1089165314678",
+    "project_id": "brainbites-analytics",
+    "storage_bucket": "brainbites-analytics.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089165314678:android:bb38e368be58e1e488ad57",
+        "android_client_info": {
+          "package_name": "com.brainbites"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK2CrQ4YwKZZeXgFIh3WTEJBD_Jc4tJIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

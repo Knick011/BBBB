@@ -85,6 +85,10 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    
+    project.ext.vectoricons = [
+        iconFontNames: [ 'AntDesign.ttf', 'Entypo.ttf', 'EvilIcons.ttf', 'Feather.ttf', 'FontAwesome.ttf', 'Foundation.ttf', 'Ionicons.ttf', 'MaterialIcons.ttf', 'MaterialCommunityIcons.ttf', 'SimpleLineIcons.ttf', 'Octicons.ttf', 'Zocial.ttf', 'FontAwesome5_Solid.ttf', 'FontAwesome5_Regular.ttf', 'FontAwesome5_Brands.ttf' ]
+    ]
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
@@ -107,9 +111,15 @@ android {
     }
 }
 
+// Copy vector icon fonts to Android assets
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
+
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
+    
+    // Add AndroidX core for ChoreographerCompat
+    implementation("androidx.core:core:1.13.1")
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")

@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx react-native run-android:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(diff:*)",
+      "Bash(npm run lint)",
+      "Bash(npm install:*)",
+      "Bash(gradlew.bat clean:*)",
+      "Bash(./gradlew.bat clean:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(rm:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": []
+  }
+}

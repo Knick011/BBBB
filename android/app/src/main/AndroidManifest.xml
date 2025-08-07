@@ -1,6 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
       android:name=".MainApplication"
@@ -22,5 +27,31 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+
+      <!-- Timer Service -->
+      <service
+        android:name="com.brainbites.timer.ScreenTimeService"
+        android:enabled="true"
+        android:exported="false"
+        android:foregroundServiceType="dataSync" />
+
+      <!-- Daily Score Carryover Service -->  
+      <service
+        android:name="com.brainbites.timer.DailyScoreCarryoverService"
+        android:enabled="true"
+        android:exported="false" />
+
+      <!-- Screen Receiver -->
+      <receiver
+        android:name="com.brainbites.timer.ScreenTimeReceiver"
+        android:enabled="true"
+        android:exported="false">
+        <intent-filter android:priority="1000">
+          <action android:name="android.intent.action.SCREEN_ON" />
+          <action android:name="android.intent.action.SCREEN_OFF" />
+          <action android:name="android.intent.action.USER_PRESENT" />
+        </intent-filter>
+      </receiver>
+
     </application>
 </manifest>
