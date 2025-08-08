@@ -1,9 +1,15 @@
 // src/services/AudioManager.ts
-// Simple, reliable audio management using React Native built-in capabilities
-// No external dependencies, graceful degradation, production-ready
+// Professional audio management using react-native-sound
+// Real audio playback with sound effects and music support
 
 import { Platform, Vibration } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Sound from 'react-native-sound';
+
+// Enable playback in silence mode (iOS only)
+if (Platform.OS === 'ios') {
+  Sound.setCategory('Playback');
+}
 
 // =============================
 // TYPES & INTERFACES
@@ -56,7 +62,7 @@ class AudioManager {
   private soundEffects: Map<string, SoundEffect> = new Map([
     ['buttonPress', { 
       id: 'buttonPress', 
-      filename: 'buttonpress',
+      filename: 'button_press',
       priority: 1,
       hapticPattern: [50] // Light haptic
     }],
@@ -80,8 +86,23 @@ class AudioManager {
     }],
   ]);
 
-  // Music tracks
-  private musicTracks = new Set(['menuMusic', 'gameMusic']);
+  // Sound instances map
+  private soundInstances = new Map<string, any>();
+  
+  // Music tracks configuration
+  private musicTracks = new Map([
+    ['menuMusic', 'menu_music.mp3'], // Add these files to android/app/src/main/res/raw/
+    ['gameMusic', 'game_music.mp3']
+  ]);
+
+  private soundEffectFiles = new Map([
+    ['buttonPress', 'button_press.mp3'],
+    ['correct', 'correct.mp3'], 
+    ['incorrect', 'incorrect.mp3'],
+    ['streak', 'streak.mp3']
+  ]);
+
+  private currentMusicInstance: any = null;
 
   private constructor() {
     console.log('🎵 [AudioManager] Initializing simple audio system...');
@@ -102,16 +123,19 @@ class AudioManager {
     if (this.isInitialized) return true;
 
     try {
-      console.log('🎵 [AudioManager] Setting up simple audio system...');
+      console.log('🎵 [AudioManager] Setting up professional audio system...');
       
       // Load user settings
       await this.loadSettings();
+      
+      // Preload sound files
+      await this.preloadSounds();
       
       // Test system capabilities
       await this.testSystemCapabilities();
 
       this.isInitialized = true;
-      console.log('✅ [AudioManager] Simple audio system ready');
+      console.log('✅ [AudioManager] Sound-based audio system ready');
       return true;
 
     } catch (error) {
@@ -119,6 +143,42 @@ class AudioManager {
       // Even if initialization fails, mark as initialized for graceful degradation
       this.isInitialized = true;
       return false;
+    }
+  }
+
+  private async preloadSounds(): Promise<void> {
+    try {
+      console.log('🎵 [AudioManager] Preloading sound effects...');
+      
+      // Check if Sound library is available
+      if (!Sound) {
+        console.warn('⚠️ [AudioManager] react-native-sound not available, skipping preload');
+        return;
+      }
+      
+      // Preload sound effects
+      for (const [effectId, filename] of this.soundEffectFiles) {
+        try {
+          const sound = new Sound(filename, Sound.MAIN_BUNDLE, (error: any) => {
+            if (error) {
+              console.warn(`⚠️ [AudioManager] Failed to load ${filename}:`, error);
+              // Don't crash the app, just log the error
+            } else {
+              console.log(`✅ [AudioManager] Loaded sound: ${filename}`);
+            }
+          });
+          this.soundInstances.set(effectId, sound);
+        } catch (error) {
+          console.warn(`⚠️ [AudioManager] Error creating sound ${filename}:`, error);
+          // Continue with other sounds even if one fails
+        }
+      }
+
+      console.log('✅ [AudioManager] Sound effects preloading completed');
+
+    } catch (error) {
+      console.warn('⚠️ [AudioManager] Sound preloading failed:', error);
+      // Don't throw error, allow app to continue without audio
     }
   }
 
@@ -211,10 +271,27 @@ class AudioManager {
         }
       }
 
-      // Log the audio action (placeholder for actual audio)
-      console.log(`🎵 [AudioManager] Would play: ${effect.filename}.mp3`);
+      // Play actual sound effect
+      const soundInstance = this.soundInstances.get(effectId);
+      if (soundInstance) {
+        try {
+          const volume = this.settings.effectsVolume * this.settings.masterVolume;
+          soundInstance.setVolume(volume);
+          soundInstance.play((success: boolean) => {
+            if (success) {
+              console.log(`✅ [AudioManager] Played sound: ${effectId}`);
+            } else {
+              console.warn(`⚠️ [AudioManager] Failed to play sound: ${effectId}`);
+            }
+          });
+        } catch (error) {
+          console.warn(`⚠️ [AudioManager] Error playing sound ${effectId}:`, error);
+        }
+      } else {
+        console.warn(`⚠️ [AudioManager] Sound instance not found: ${effectId}`);
+      }
       
-      // Simulate audio feedback with console logs for debugging
+      // Log the audio action for debugging
       this.logAudioAction(effectId, effect);
 
     } catch (error) {
@@ -265,7 +342,7 @@ class AudioManager {
     }
 
     // Don't restart if same track is playing
-    if (this.currentMusicId === musicId) {
+    if (this.currentMusicId === musicId && this.currentMusicInstance) {
       return;
     }
 
@@ -273,21 +350,46 @@ class AudioManager {
       console.log(`🎵 [AudioManager] Starting music: ${musicId}`);
       
       // Stop current music
-      if (this.currentMusicId) {
-        await this.stopMusic();
+      if (this.currentMusicInstance) {
+        this.currentMusicInstance.stop();
+        this.currentMusicInstance.release();
       }
 
-      // Start new music (placeholder)
-      this.currentMusicId = musicId;
+      // Get music filename
+      const filename = this.musicTracks.get(musicId)!;
       const volume = this.settings.musicVolume * this.settings.masterVolume;
       
-      console.log(`🎵 [AudioManager] Music Event: {
-        track: "${musicId}",
-        file: "${musicId}.mp3",
-        volume: ${volume.toFixed(2)},
-        looping: true,
-        status: "started"
-      }`);
+      // Check if Sound library is available
+      if (!Sound) {
+        console.warn('⚠️ [AudioManager] react-native-sound not available, cannot play music');
+        return;
+      }
+
+      // Create and play music
+      this.currentMusicInstance = new Sound(filename, Sound.MAIN_BUNDLE, (error: any) => {
+        if (error) {
+          console.warn(`⚠️ [AudioManager] Failed to load music ${filename}:`, error);
+          this.currentMusicInstance = null;
+          this.currentMusicId = null;
+          return;
+        }
+
+        try {
+          this.currentMusicInstance.setVolume(volume);
+          this.currentMusicInstance.setNumberOfLoops(-1); // Loop indefinitely
+          this.currentMusicInstance.play((success: boolean) => {
+            if (success) {
+              console.log(`✅ [AudioManager] Music started: ${musicId}`);
+            } else {
+              console.warn(`⚠️ [AudioManager] Failed to play music: ${musicId}`);
+            }
+          });
+        } catch (playError) {
+          console.warn(`⚠️ [AudioManager] Error setting up music playback:`, playError);
+        }
+      });
+
+      this.currentMusicId = musicId;
 
     } catch (error) {
       console.warn(`⚠️ [AudioManager] Failed to play music ${musicId}:`, error);
@@ -296,31 +398,37 @@ class AudioManager {
   }
 
   async stopMusic(): Promise<void> {
-    if (!this.currentMusicId) return;
+    if (!this.currentMusicInstance) return;
 
     try {
       console.log(`🎵 [AudioManager] Stopping music: ${this.currentMusicId}`);
-      this.currentMusicId = null;
+      this.currentMusicInstance.stop(() => {
+        this.currentMusicInstance?.release();
+        this.currentMusicInstance = null;
+        this.currentMusicId = null;
+      });
     } catch (error) {
       console.warn('⚠️ [AudioManager] Failed to stop music:', error);
     }
   }
 
   async pauseMusic(): Promise<void> {
-    if (!this.currentMusicId) return;
+    if (!this.currentMusicInstance) return;
 
     try {
-      console.log('🎵 [AudioManager] Music paused (placeholder)');
+      this.currentMusicInstance.pause();
+      console.log('🎵 [AudioManager] Music paused');
     } catch (error) {
       console.warn('⚠️ [AudioManager] Failed to pause music:', error);
     }
   }
 
   async resumeMusic(): Promise<void> {
-    if (!this.currentMusicId) return;
+    if (!this.currentMusicInstance) return;
 
     try {
-      console.log('🎵 [AudioManager] Music resumed (placeholder)');
+      this.currentMusicInstance.play();
+      console.log('🎵 [AudioManager] Music resumed');
     } catch (error) {
       console.warn('⚠️ [AudioManager] Failed to resume music:', error);
     }
@@ -381,6 +489,7 @@ class AudioManager {
   async setMasterVolume(volume: number): Promise<void> {
     this.settings.masterVolume = Math.max(0, Math.min(1, volume));
     await this.saveSettings();
+    this.updateAllVolumes();
     console.log(`🔊 [AudioManager] Master volume: ${(this.settings.masterVolume * 100).toFixed(0)}%`);
   }
 
@@ -393,6 +502,7 @@ class AudioManager {
   async setMusicVolume(volume: number): Promise<void> {
     this.settings.musicVolume = Math.max(0, Math.min(1, volume));
     await this.saveSettings();
+    this.updateAllVolumes();
     console.log(`🔊 [AudioManager] Music volume: ${(this.settings.musicVolume * 100).toFixed(0)}%`);
   }
 
@@ -435,6 +545,21 @@ class AudioManager {
     await this.playGameMusic();
   }
 
+  // Volume control methods
+  private updateAllVolumes(): void {
+    try {
+      // Update music volume
+      if (this.currentMusicInstance) {
+        const musicVolume = this.settings.musicVolume * this.settings.masterVolume;
+        this.currentMusicInstance.setVolume(musicVolume);
+      }
+
+      // Update sound effect volumes (they will be set when played)
+    } catch (error) {
+      console.warn('⚠️ [AudioManager] Failed to update volumes:', error);
+    }
+  }
+
   async playButtonClick(): Promise<void> {
     await this.playButtonPress();
   }
@@ -457,7 +582,16 @@ class AudioManager {
   }
 
   async isMusicPlaying(): Promise<boolean> {
-    return this.currentMusicId !== null;
+    if (!this.currentMusicInstance) {
+      return false;
+    }
+
+    try {
+      return this.currentMusicInstance.isPlaying();
+    } catch (error) {
+      console.warn('⚠️ [AudioManager] Failed to get playback state:', error);
+      return false;
+    }
   }
 
   // =============================
@@ -471,13 +605,19 @@ class AudioManager {
       queueLength: this.soundQueue.length,
       settings: this.settings,
       platform: Platform.OS,
-      library: 'react-native-builtin',
+      library: 'react-native-sound',
+      soundInstancesLoaded: this.soundInstances.size,
       features: [
+        'Real Audio Playback',
+        'Sound Effects Support',
+        'Background Music Support', 
+        'Volume Control',
+        'Music Looping',
         'Haptic Feedback Integration',
         'Priority Sound Queue',
         'Settings Persistence',
         'Graceful Degradation',
-        'Zero External Dependencies',
+        'Professional Audio Management',
         'Full Backward Compatibility',
         'Production Ready'
       ]
@@ -510,12 +650,33 @@ class AudioManager {
     try {
       console.log('🎵 [AudioManager] Cleaning up audio system...');
 
-      // Clear sound queue
+      // Stop and cleanup music
+      if (this.currentMusicInstance) {
+        try {
+          this.currentMusicInstance.stop();
+          this.currentMusicInstance.release();
+        } catch (error) {
+          console.warn('⚠️ [AudioManager] Music cleanup error:', error);
+        }
+      }
+
+      // Release all sound instances
+      for (const [key, sound] of this.soundInstances) {
+        try {
+          sound.release();
+        } catch (error) {
+          console.warn(`⚠️ [AudioManager] Error releasing sound ${key}:`, error);
+        }
+      }
+
+      // Clear sound queue and instances
       this.soundQueue = [];
       this.isProcessingQueue = false;
+      this.soundInstances.clear();
 
-      // Stop music
+      // Reset state
       this.currentMusicId = null;
+      this.currentMusicInstance = null;
       this.isInitialized = false;
 
       console.log('✅ [AudioManager] Audio system cleaned up');

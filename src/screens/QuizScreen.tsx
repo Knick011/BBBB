@@ -25,7 +25,6 @@ import QuestionService from '../services/QuestionService';
 import SoundService from '../services/SoundService';
 import EnhancedScoreService from '../services/EnhancedScoreService';
 import TimerIntegrationService from '../services/TimerIntegrationService';
-import InterstitialAdManager from '../services/InterstitialAdManager';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
 import BannerAdComponent from '../components/common/BannerAdComponent';
 import { useQuizStore } from '../store/useQuizStore';
@@ -495,11 +494,7 @@ const QuizScreen = ({ navigation, route }: any) => {
             // Play button sound
             SoundService.playButtonPress();
             
-            // Check if we should show an interstitial ad (only if user answered questions)
-            if (questionsAnswered > 0) {
-              console.log(`🎯 [QuizScreen] Quiz session ended with ${questionsAnswered} questions answered`);
-              await InterstitialAdManager.onQuizCompleted();
-            }
+            console.log(`🎯 [QuizScreen] Quiz session ended with ${questionsAnswered} questions answered`);
             
             // Reset streak in both stores
             useQuizStore.getState().resetStreak();
@@ -1023,7 +1018,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.15,
     shadowRadius: 6,
-    elevation: 6,
+    elevation: 4,
     marginBottom: 24,
   },
   questionText: {
@@ -1116,7 +1111,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 8,
-    elevation: 8,
+    elevation: 4,
   },
   pointsIcon: {
     marginRight: 6,
@@ -1139,7 +1134,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.15,
     shadowRadius: 6,
-    elevation: 6,
+    elevation: 4,
   },
   speedFeedbackContent: {
     flexDirection: 'row',

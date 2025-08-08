@@ -1,15 +1,16 @@
-// App.tsx - BrainBites Quiz App with Firebase Analytics and AdMob integration
+// App.tsx - BrainBites Quiz App with Firebase Analytics, AdMob and TrackPlayer integration
 import React, { useEffect, useState, useCallback } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar, Platform, AppState, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { enableScreens } from 'react-native-screens';
+import analytics from '@react-native-firebase/analytics';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import SoundService from './src/services/SoundService';
 import QuestionService from './src/services/QuestionService';
 import AdMobService from './src/services/AdMobService';
 import FirebaseAnalyticsService from './src/services/FirebaseAnalyticsService';
-import InterstitialAdManager from './src/services/InterstitialAdManager';
 import ErrorBoundary from './src/components/common/ErrorBoundary';
 import LoadingScreen from './src/components/common/LoadingScreen';
 import ErrorScreen from './src/components/common/ErrorScreen';
@@ -32,6 +33,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 interface AppInitializationState {
   isInitializing: boolean;
   initializationComplete: boolean;
+  isFirstLaunch: boolean | null; // null = checking, true = first time, false = returning user
   services: {
     sound: 'success' | 'failed' | 'pending';
     questions: 'success' | 'failed' | 'pending';
@@ -45,6 +47,7 @@ const App: React.FC = () => {
   const [appState, setAppState] = useState<AppInitializationState>({
     isInitializing: true,
     initializationComplete: false,
+    isFirstLaunch: null,
     services: {
       sound: 'pending',
       questions: 'pending',
@@ -69,11 +72,28 @@ const App: React.FC = () => {
     } else if (nextAppState === 'active') {
       console.log('📱 [BrainBites] App became active');
       
-      // Reset interstitial ad session
-      InterstitialAdManager.resetSession();
       
       // Log analytics event
       FirebaseAnalyticsService.logSessionStart();
+    }
+  }, []);
+
+  // Check if this is the first launch
+  const checkFirstLaunch = useCallback(async () => {
+    try {
+      const hasLaunchedBefore = await AsyncStorage.getItem('@BrainBites:hasLaunchedBefore');
+      const isFirst = !hasLaunchedBefore;
+      
+      if (isFirst) {
+        console.log('👋 [BrainBites] First launch detected');
+      } else {
+        console.log('🔄 [BrainBites] Returning user detected');
+      }
+      
+      return isFirst;
+    } catch (error) {
+      console.error('❌ [BrainBites] Error checking first launch:', error);
+      return false; // Default to not first launch if error
     }
   }, []);
 
@@ -83,6 +103,10 @@ const App: React.FC = () => {
     
     try {
       setAppState(prev => ({ ...prev, isInitializing: true }));
+
+      // Check if this is first launch
+      const isFirstLaunch = await checkFirstLaunch();
+      setAppState(prev => ({ ...prev, isFirstLaunch }));
 
       // Initialize Firebase Analytics
       console.log('📊 [BrainBites] Initializing Firebase Analytics...');
@@ -95,6 +119,11 @@ const App: React.FC = () => {
         const firebaseReady = await FirebaseAnalyticsService.initialize();
         if (firebaseReady) {
           console.log('✅ [BrainBites] Firebase Analytics initialized successfully');
+          
+          // Log app open event automatically as per research recommendations
+          await analytics().logAppOpen();
+          console.log('📊 [BrainBites] App open event logged to Firebase');
+          
           setAppState(prev => ({ 
             ...prev, 
             services: { ...prev.services, firebase: 'success' } 
@@ -120,14 +149,11 @@ const App: React.FC = () => {
       try {
         const admobReady = await AdMobService.initialize();
         if (admobReady) {
-          console.log('✅ [BrainBites] Google AdMob initialized successfully');
+          console.log('✅ [BrainBites] Google AdMob initialized successfully (banner ads only)');
           setAppState(prev => ({ 
             ...prev, 
             services: { ...prev.services, admob: 'success' } 
           }));
-          
-          // Initialize interstitial ad manager after AdMob is ready
-          await InterstitialAdManager.initialize();
         } else {
           throw new Error('AdMob initialization failed');
         }
@@ -234,7 +260,7 @@ const App: React.FC = () => {
         criticalError: `App initialization failed: ${error?.message || 'Unknown error'}`
       }));
     }
-  }, []);
+  }, [checkFirstLaunch]);
 
   // Set up app state listener
   useEffect(() => {
@@ -247,8 +273,8 @@ const App: React.FC = () => {
     initializeApp();
   }, [initializeApp]);
 
-  // Show loading screen during initialization
-  if (appState.isInitializing) {
+  // Show loading screen during initialization or while checking first launch
+  if (appState.isInitializing || appState.isFirstLaunch === null) {
     return (
       <ErrorBoundary>
         <LoadingScreen 
@@ -283,7 +309,7 @@ const App: React.FC = () => {
           />
           <NavigationContainer>
             <Stack.Navigator
-              initialRouteName="Welcome"
+              initialRouteName={appState.isFirstLaunch ? "Welcome" : "Home"}
               screenOptions={{
                 headerShown: false,
                 cardStyle: { 

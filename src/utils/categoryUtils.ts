@@ -180,6 +180,24 @@ const getCategoryDisplayInfo = (categoryId: string) => {
       icon: 'translate',
       color: '#00BCD4',
       gradient: ['#80DEEA', '#26C6DA', '#00ACC1']
+    },
+    'math': {
+      displayName: 'Math Magic',
+      icon: 'calculator-variant',
+      color: '#3F51B5',
+      gradient: ['#9FA8DA', '#5C6BC0', '#3949AB']
+    },
+    'art': {
+      displayName: 'Art Gallery',
+      icon: 'image-outline',
+      color: '#E91E63',
+      gradient: ['#F48FB1', '#EC407A', '#D81B60']
+    },
+    'animals': {
+      displayName: 'Animal Kingdom',
+      icon: 'paw',
+      color: '#8BC34A',
+      gradient: ['#C5E1A5', '#9CCC65', '#7CB342']
     }
   };
 

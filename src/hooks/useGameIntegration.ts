@@ -347,6 +347,10 @@ export const useLeaderboardIntegration = () => {
   const isInitialized = useLiveGameStore(state => state.isInitialized);
   const initialize = useLiveGameStore(state => state.initialize);
   
+  // Import useUserStore to get the maxStreak
+  const { useUserStore } = require('../store/useUserStore');
+  const maxStreak = useUserStore(state => state.maxStreak);
+  
   // Auto-initialize on first use
   useEffect(() => {
     if (!isInitialized) {
@@ -365,7 +369,7 @@ export const useLeaderboardIntegration = () => {
     ...integration,
     scoreData,
     userScore: scoreData.dailyScore,
-    userStreak: scoreData.currentStreak,
+    userStreak: maxStreak, // Use maxStreak instead of currentStreak for leaderboard display
     userAccuracy: scoreData.accuracy,
     refreshData: refreshFromStorage
   };

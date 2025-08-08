@@ -22,7 +22,6 @@ import theme from '../styles/theme';
 import SoundService from '../services/SoundService';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
 import DailyGoalsService, { DailyGoal } from '../services/DailyGoalsService';
-import RewardedAdButton from '../components/ads/RewardedAdButton';
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'DailyGoals'>;
 type MascotType = 'happy' | 'sad' | 'excited' | 'depressed' | 'gamemode' | 'below';
@@ -503,20 +502,6 @@ const DailyGoalsScreen: React.FC = () => {
          </View>
       </Animated.View>
       
-      {/* Rewarded Ad Section */}
-      <View style={styles.rewardedAdSection}>
-        <RewardedAdButton 
-          onRewardEarned={(minutes) => {
-            setMascotType('excited');
-            setMascotMessage(`Amazing! You earned ${minutes} minutes from the ad! 🎁`);
-            setShowMascot(true);
-            // Refresh goals to reflect any changes
-            setTimeout(() => {
-              loadGoals();
-            }, 1000);
-          }}
-        />
-      </View>
       
       {/* Goals List */}
       <ScrollView

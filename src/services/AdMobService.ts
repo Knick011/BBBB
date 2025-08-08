@@ -78,9 +78,7 @@ class AdMobService {
         this.state.consentStatus = formResult.status;
       }
 
-      // Initialize ads
-      await this.loadInterstitialAd();
-      await this.loadRewardedAd();
+      // Only initialize banner ads - interstitial and rewarded ads disabled
 
       this.state.initialized = true;
       console.log('✅ [AdMob] AdMob service initialized successfully');

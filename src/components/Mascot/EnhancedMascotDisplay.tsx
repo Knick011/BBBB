@@ -514,11 +514,11 @@ const styles = StyleSheet.create({
       ios: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.25,
+        shadowOpacity: 0.12,
         shadowRadius: 16,
       },
       android: {
-        elevation: 8,
+        elevation: 4,
       },
     }),
   },

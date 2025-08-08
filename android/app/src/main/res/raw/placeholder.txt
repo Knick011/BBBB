@@ -1,0 +1,13 @@
+# Audio Files Directory
+
+Add your audio files here with the following names:
+- button_press.mp3
+- correct.mp3
+- incorrect.mp3  
+- streak.mp3
+- menu_music.mp3
+- game_music.mp3
+
+These files should be in MP3 format and will be used by the AudioManager.
+
+Note: This is a placeholder file to ensure the directory exists.

@@ -116,9 +116,9 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.1,
     shadowRadius: 5,
-    elevation: 8,
+    elevation: 4,
   },
   gradient: {
     flexDirection: 'row',

@@ -244,7 +244,7 @@ const WelcomeScreen: React.FC = () => {
         }).start();
       });
     } else {
-      await AsyncStorage.setItem('brainbites_onboarding_complete', 'true');
+      await AsyncStorage.setItem('@BrainBites:hasLaunchedBefore', 'true');
       SoundService.playStreak();
       navigation.replace('Home');
     }
@@ -470,9 +470,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.1,
     shadowRadius: 8,
-    elevation: 6,
+    elevation: 4,
     minWidth: 200,
   },
   nextText: {

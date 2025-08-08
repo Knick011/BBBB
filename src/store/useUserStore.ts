@@ -191,10 +191,14 @@ export const useUserStore = create<UserState>((set, get) => ({
       
       return { streak: newStreak, maxStreak: newMaxStreak };
     });
+    // Save immediately when maxStreak might have changed
+    get().saveUserData();
   },
 
   resetStreak: () => {
     set({ streak: 0 });
+    // Explicitly save after resetting streak
+    get().saveUserData();
   },
 
   updateDailyGoal: (correct) => {

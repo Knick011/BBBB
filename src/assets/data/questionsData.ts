@@ -1728,5 +1728,5 @@ export default questions;
 
 // Debug info
 console.log(`📚 Questions loaded: ${questions.length} questions`);
-console.log(`📋 Categories: ${[...new Set(questions.map(q => q.category))].join(', ')}`);
-console.log(`📊 Difficulties: ${[...new Set(questions.map(q => q.difficulty))].join(', ')}`);
+console.log(`📋 Categories: ${Array.from(new Set(questions.map(q => q.category))).join(', ')}`);
+console.log(`📊 Difficulties: ${Array.from(new Set(questions.map(q => q.difficulty))).join(', ')}`);

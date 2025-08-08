@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
-import AdMobService from '../../services/AdMobService';
 
 interface BannerAdComponentProps {
   placement: string; // For analytics tracking
@@ -13,20 +12,16 @@ const BannerAdComponent: React.FC<BannerAdComponentProps> = ({ placement, style 
   const [shouldShow, setShouldShow] = useState(false);
 
   useEffect(() => {
-    // Only show ads after AdMob is initialized
-    const checkAdMobStatus = () => {
-      if (AdMobService.isInitialized()) {
-        setShouldShow(true);
-      } else {
-        // Check again in 2 seconds
-        setTimeout(checkAdMobStatus, 2000);
-      }
-    };
+    // Force show banner ads immediately with short delay for better UX
+    const showTimer = setTimeout(() => {
+      console.log(`📱 [BannerAd] Showing test banner ad for ${placement}`);
+      setShouldShow(true);
+    }, 1000); // 1 second delay
     
-    checkAdMobStatus();
-  }, []);
+    return () => clearTimeout(showTimer);
+  }, [placement]);
 
-  // Always use test IDs to prevent AdMob account issues
+  // Always use test IDs for safety
   const adUnitId = TestIds.BANNER;
 
   if (!shouldShow) {

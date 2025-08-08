@@ -14,6 +14,7 @@ import SoundService from '../../services/SoundService';
 import { TimerService } from '../../services/TimerService';
 import { useUserStore } from '../../store/useUserStore';
 import Mascot from '../Mascot/Mascot';
+import DailyGoalsService from '../../services/DailyGoalsService';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -46,6 +47,8 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
   const [streak, setStreak] = useState(0);
   const [showMascot, setShowMascot] = useState(false);
   const [mascotType, setMascotType] = useState<'happy' | 'sad' | 'excited'>('happy');
+  const [showGoalNotification, setShowGoalNotification] = useState(false);
+  const [completedGoal, setCompletedGoal] = useState<{title: string, reward: number} | null>(null);
   
   const progressAnim = useRef(new Animated.Value(0)).current;
   const questionAnim = useRef(new Animated.Value(0)).current;
@@ -67,6 +70,9 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
   };
 
   useEffect(() => {
+    // Reset streak to 0 when starting quiz
+    resetStreak();
+    
     // Start game music
     SoundService.playGameMusic();
     
@@ -76,7 +82,7 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
     return () => {
       SoundService.stopMusic();
     };
-  }, []);
+  }, [resetStreak]);
 
   useEffect(() => {
     // Update progress bar
