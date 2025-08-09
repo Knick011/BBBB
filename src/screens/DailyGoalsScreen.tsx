@@ -37,7 +37,8 @@ const DailyGoalsScreen: React.FC = () => {
     handleClaimReward, 
     showGoalModal,
     completedGoalData,
-    setShowGoalModal
+    setShowGoalModal,
+    refreshProgress
   } = useDailyGoalsIntegration();
   
   // Local state
@@ -70,16 +71,28 @@ const DailyGoalsScreen: React.FC = () => {
   // Load goals when screen focuses
   useFocusEffect(
     React.useCallback(() => {
-      loadGoals();
-      
-      // Listen for goal updates
-      const unsubscribe = DailyGoalsService.addListener((updatedGoals) => {
-        console.log('🎯 [DailyGoalsScreen] Goals updated:', updatedGoals.length);
-        setDailyGoals(updatedGoals);
-      });
+      const loadGoals = async () => {
+        try {
+          setIsLoading(true);
+          console.log('🎯 [DailyGoalsScreen] Refreshing goals...');
+          
+          // Use the integration hook's refresh method
+          await refreshProgress();
+          
+        } catch (error) {
+          console.error('❌ [DailyGoalsScreen] Failed to load goals:', error);
+          Alert.alert(
+            'Error',
+            'Failed to load daily goals. Please try again.',
+            [{ text: 'OK', onPress: () => navigation.goBack() }]
+          );
+        } finally {
+          setIsLoading(false);
+        }
+      };
 
-      return unsubscribe;
-    }, [])
+      loadGoals();
+    }, [refreshProgress, navigation])
   );
 
   // Entrance animation
@@ -106,56 +119,16 @@ const DailyGoalsScreen: React.FC = () => {
     }
   }, [dailyGoals]);
 
-    const loadGoals = async () => {
-    try {
-      setIsLoading(true);
-      console.log('🎯 [DailyGoalsScreen] Loading goals...');
-      
-      await DailyGoalsService.initialize();
-      const goals = DailyGoalsService.getGoals();
-      
-      console.log('🎯 [DailyGoalsScreen] Loaded goals:', goals.length, goals.map(g => g.title));
-      
-      // Debug current goals
-      DailyGoalsService.debugGoals();
-      
-      // Check if we have honor goals - if not, force regenerate
-      const honorGoals = goals.filter(g => g.honorBased);
-      if (honorGoals.length === 0) {
-        console.log('🔄 [DailyGoalsScreen] No honor goals found, forcing regeneration...');
-        await DailyGoalsService.forceRegenerateGoals();
-        const newGoals = DailyGoalsService.getGoals();
-        console.log('🔄 [DailyGoalsScreen] Regenerated goals:', newGoals.length, newGoals.map(g => g.title));
-        DailyGoalsService.debugGoals();
-        setDailyGoals(newGoals);
-      } else {
-        setDailyGoals(goals);
-      }
-      
-      if (goals.length === 0) {
-        console.warn('⚠️ [DailyGoalsScreen] No goals loaded - this should not happen');
-        Alert.alert(
-          'No Goals Found',
-          'Unable to load daily goals. Please try again.',
-          [{ text: 'OK', onPress: () => navigation.goBack() }]
-        );
-      }
-    } catch (error) {
-      console.error('❌ [DailyGoalsScreen] Failed to load goals:', error);
-      Alert.alert(
-        'Error',
-        'Failed to load daily goals. Please try again.',
-        [{ text: 'OK', onPress: () => navigation.goBack() }]
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const handleRefresh = async () => {
     setIsRefreshing(true);
-    await loadGoals();
-    setIsRefreshing(false);
+    try {
+      console.log('🔄 [DailyGoalsScreen] Refreshing goals...');
+      await refreshProgress();
+    } catch (error) {
+      console.error('❌ [DailyGoalsScreen] Failed to refresh goals:', error);
+    } finally {
+      setIsRefreshing(false);
+    }
   };
 
   const handleCompleteHonorGoal = async (goalId: string, goalIndex: number) => {
@@ -457,7 +430,7 @@ const DailyGoalsScreen: React.FC = () => {
            onPress={async () => {
              console.log('🔄 [DailyGoalsScreen] Manual refresh triggered');
              await DailyGoalsService.forceRegenerateGoals();
-             await loadGoals();
+             await refreshProgress();
            }}
            style={styles.debugButton}
          >
