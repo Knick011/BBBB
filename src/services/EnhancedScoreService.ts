@@ -1,5 +1,6 @@
 // src/services/EnhancedScoreService.ts - TypeScript version with daily goals tracking
 import { NativeModules } from 'react-native';
+import { getTorontoDateString } from '../utils/timeUtils';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DailyGoalsService from './DailyGoalsService';
 import { UserStats } from '../types';
@@ -112,7 +113,7 @@ class EnhancedScoreService {
   }
 
   private async checkDailyReset(): Promise<void> {
-    const today = new Date().toDateString();
+    const today = getTorontoDateString();
     const lastReset = await AsyncStorage.getItem(this.STORAGE_KEYS.LAST_RESET);
     
     if (lastReset !== today) {
@@ -138,7 +139,7 @@ class EnhancedScoreService {
 
   private async checkAndApplyCarryover(): Promise<void> {
     try {
-      const today = new Date().toDateString();
+      const today = getTorontoDateString();
       const carryoverApplied = await AsyncStorage.getItem(this.STORAGE_KEYS.CARRYOVER_APPLIED);
       
       if (carryoverApplied === 'true') {

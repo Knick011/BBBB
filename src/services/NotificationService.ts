@@ -231,6 +231,38 @@ class NotificationServiceClass {
     }
   }
 
+  // Enhanced timer notification formatting
+  private formatTime = (seconds: number): string => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    
+    if (hours > 0) {
+      return `${hours.toString().padStart(2, '0')}:${minutes
+        .toString()
+        .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    return `${minutes.toString().padStart(2, '0')}:${secs
+      .toString()
+      .padStart(2, '0')}`;
+  };
+
+  updateNotification = (timeLeft: number, screenTime: number) => {
+    const notification = {
+      title: `Time left: ${this.formatTime(timeLeft)}`,
+      body: `Screen time: ${this.formatTime(screenTime)}`,
+      // Don't show overtime in minimized view
+      android: {
+        smallIcon: 'ic_notification',
+        ongoing: true,
+        onlyAlertOnce: true,
+        showWhen: false,
+      },
+    };
+    
+    // Update notification - in real implementation would use PushNotification
+    console.log('Updating timer notification:', notification);
+  };
 
 
   private async cancelAllNotifications() {

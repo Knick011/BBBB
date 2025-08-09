@@ -1,0 +1,202 @@
+# BrainBites Implementation Guide
+
+## 🚀 Quick Implementation Steps
+
+### Step 1: Install Required Dependencies
+```bash
+npm install react-native-linear-gradient @react-native-community/blur react-native-system-navigation-bar
+cd ios && pod install
+```
+
+### Step 2: Add the MascotModal Component
+1. Create `src/components/Mascot/MascotModal.tsx` with the provided code
+2. Export it from `src/components/Mascot/index.ts`
+3. Import and use in QuizScreen and Daily Goals
+
+### Step 3: Update Audio Manager
+1. Update volume defaults in `src/services/AudioManager.ts`
+2. Add ducking functionality
+3. Ensure music loops with `setNumberOfLoops(-1)`
+
+### Step 4: Update Settings Screen
+1. Add music toggle switch
+2. Connect to AudioManager methods
+3. Test with button press sounds
+
+### Step 5: Fix Streak Logic
+1. Update `useQuizStore` to always start at 0
+2. Track daily highest separately
+3. Update leaderboard to show daily highest
+
+### Step 6: Fix Timer Logic
+1. Update overtime handling to pause, not reset
+2. Implement proper end-of-day settlement
+3. Update notification display format
+
+## ✅ Testing Checklist
+
+### Mascot Modal Tests
+- [ ] **Daily Goal Completion**
+  - Complete a goal and verify mascot appears
+  - Check animation smoothness (entrance/exit)
+  - Verify 2-second delay before "tap to continue"
+  - Confirm auto-hide after 4 seconds
+  - Test particle effects for excited mascot
+
+- [ ] **Quiz Quit Confirmation**
+  - Try to quit with streak > 0
+  - Verify depressed mascot appears
+  - Test both buttons (Continue/Quit)
+  - Confirm streak resets on quit
+  - Check animation transitions
+
+### Streak System Tests
+- [ ] **Current Streak**
+  - Enter quiz → verify starts at 0
+  - Get 3 correct → verify shows 3
+  - Quit and re-enter → verify starts at 0 (not 3)
+  - Wrong answer → verify resets to 0
+
+- [ ] **Daily Highest**
+  - Get streak of 5 → verify daily highest = 5
+  - Start new quiz → verify daily highest still 5
+  - Check Home screen mascot shows correct value
+  - Check Leaderboard shows same value
+  - Test midnight reset (change device time)
+
+### Timer/Overtime Tests
+- [ ] **Overtime Behavior**
+  - Accumulate 15:00 overtime
+  - Earn 10:00 time → verify overtime stays 15:00
+  - Verify overtime paused while time left > 0
+  - Use up time left → verify overtime resumes
+
+- [ ] **End of Day**
+  - Test with positive net (more time left)
+  - Test with negative net (more overtime)
+  - Verify score delta calculation
+  - Check next day starts with correct balance
+
+### Audio Tests
+- [ ] **Music Toggle**
+  - Toggle off → music stops immediately
+  - Toggle on → menu music starts
+  - Verify setting persists after app restart
+
+- [ ] **Volume Levels**
+  - Menu music plays at reduced volume
+  - Game music plays at reduced volume
+  - Sound effects audible over music
+
+- [ ] **Ducking**
+  - Play sound effect → music volume dips
+  - Effect ends → music returns to normal
+  - Multiple effects → proper handling
+
+### UI/UX Tests
+- [ ] **Welcome Screen**
+  - Full-bleed background (no white edges)
+  - Works on different screen sizes
+  - Proper safe area handling
+
+- [ ] **Notification**
+  - Shows only 2 lines when minimized
+  - Format changes at 1 hour (MM:SS → HH:MM:SS)
+  - No overtime shown in minimized view
+
+- [ ] **Full-Screen Mode**
+  - Status bar hidden
+  - Navigation bar hidden (Android)
+  - Gestures still work properly
+  - Safe areas respected
+
+### Animation Timing Tests
+- [ ] **Mascot Animations**
+  - Smooth entrance (no jank)
+  - 2-second delay for interaction prompt
+  - Proper exit sequencing
+  - No overlapping animations
+
+- [ ] **Button Responses**
+  - Immediate haptic feedback
+  - Visual feedback within 100ms
+  - No delayed responses
+
+## 🐛 Common Issues & Solutions
+
+### Issue: Mascot doesn't appear
+**Solution:** Check zIndex is high (9999), ensure visible prop is true
+
+### Issue: Music doesn't loop
+**Solution:** Verify `setNumberOfLoops(-1)` is called on Sound instance
+
+### Issue: Streak not resetting
+**Solution:** Call `initializeStreak()` in Quiz screen's useEffect
+
+### Issue: Full-screen not working
+**Solution:** Check AndroidManifest.xml has correct theme, iOS needs StatusBar.setHidden(true)
+
+### Issue: Animations janky
+**Solution:** Use `useNativeDriver: true` where possible, reduce simultaneous animations
+
+## 📱 Device-Specific Testing
+
+### Android
+- [ ] Full-screen immersive mode works
+- [ ] Haptic feedback functions
+- [ ] Navigation bar properly hidden
+- [ ] Blur effect fallback (if not supported)
+
+### iOS
+- [ ] Safe area insets respected
+- [ ] Blur effects render correctly
+- [ ] Haptic feedback via Taptic Engine
+- [ ] Status bar properly hidden
+
+## 🎯 Performance Metrics
+
+Target performance for smooth experience:
+- Mascot animation: 60 FPS
+- Screen transitions: < 300ms
+- Audio response: < 50ms
+- Button feedback: < 100ms
+
+## 📋 Pre-Release Checklist
+
+1. [ ] All tests pass
+2. [ ] No console errors in production build
+3. [ ] Memory usage stable (no leaks)
+4. [ ] Battery usage acceptable
+5. [ ] Works offline (except leaderboard)
+6. [ ] Smooth on low-end devices
+7. [ ] Accessibility features work
+8. [ ] All animations respect reduce motion settings
+
+## 🎉 Success Criteria
+
+The update is successful when:
+1. Users report mascot interactions feel "professional and polished"
+2. Streak system behaves intuitively
+3. Timer/overtime logic is clear and fair
+4. Music enhances without annoying
+5. Overall experience feels premium
+
+## 📝 Notes
+
+- Keep mascot size, position, and direction unchanged (as requested)
+- Music volume is intentionally low for pleasant background ambiance
+- Ducking ensures sound effects are always audible
+- Animation timings are optimized for perceived performance
+- Full-screen mode can be toggled in settings if users prefer
+
+## 🚢 Deployment
+
+1. Test on multiple devices
+2. Create release build: `cd android && ./gradlew assembleRelease`
+3. Test release APK thoroughly
+4. Sign APK for distribution
+5. Upload to Play Store/TestFlight
+
+---
+
+**Remember:** The goal is a professional, sleek, and cool experience that delights users while maintaining all existing functionality!

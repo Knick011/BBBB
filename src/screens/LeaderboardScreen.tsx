@@ -171,6 +171,7 @@ const LeaderboardScreen = () => {
     refreshData,
     isInitialized 
   } = useLeaderboardIntegration();
+  const [userStreakOverride, setUserStreakOverride] = useState<number | null>(null);
   
   const [activeTab, setActiveTab] = useState('global'); // 'global', 'friends'
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>([]);
@@ -219,6 +220,13 @@ const LeaderboardScreen = () => {
   
   useEffect(() => {
     if (isInitialized) {
+      (async () => {
+        try {
+          const savedHighestStreak = await (await import('@react-native-async-storage/async-storage')).default.getItem('@BrainBites:highestStreakToday');
+          const highestStreakValue = savedHighestStreak ? parseInt(savedHighestStreak, 10) : 0;
+          setUserStreakOverride(highestStreakValue);
+        } catch {}
+      })();
       loadLeaderboardData();
       setIsLoading(false);
     }
@@ -249,7 +257,7 @@ const LeaderboardScreen = () => {
           rank: userRank,
           displayName: 'CaBBybara',
           score: userScore,
-          highestStreak: userStreak,
+          highestStreak: userStreakOverride ?? userStreak,
           isCurrentUser: true,
           lastActive: 'Online now',
         };
@@ -423,7 +431,7 @@ const LeaderboardScreen = () => {
           <View style={styles.streakContainer}>
             <Icon name="fire" size={16} color={theme.colors.primary} />
             <Text style={styles.streakText}>
-              {item.highestStreak}
+              {item.dailyHighestStreak || item.highestStreak || 0}
             </Text>
           </View>
         </View>

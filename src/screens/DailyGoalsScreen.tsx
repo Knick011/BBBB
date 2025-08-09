@@ -21,7 +21,9 @@ import { RootStackParamList } from '../types';
 import theme from '../styles/theme';
 import SoundService from '../services/SoundService';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
+import MascotModal from '../components/Mascot/MascotModal';
 import DailyGoalsService, { DailyGoal } from '../services/DailyGoalsService';
+import { useDailyGoalsIntegration } from '../hooks/useGameIntegration';
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'DailyGoals'>;
 type MascotType = 'happy' | 'sad' | 'excited' | 'depressed' | 'gamemode' | 'below';
@@ -29,8 +31,16 @@ type MascotType = 'happy' | 'sad' | 'excited' | 'depressed' | 'gamemode' | 'belo
 const DailyGoalsScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp>();
   
-  // State
-  const [dailyGoals, setDailyGoals] = useState<DailyGoal[]>([]);
+  // Integration hook with MascotModal support
+  const { 
+    dailyGoals, 
+    handleClaimReward, 
+    showGoalModal,
+    completedGoalData,
+    setShowGoalModal
+  } = useDailyGoalsIntegration();
+  
+  // Local state
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [animatingGoals, setAnimatingGoals] = useState<string[]>([]);
@@ -187,7 +197,7 @@ const DailyGoalsScreen: React.FC = () => {
     }
   };
 
-  const handleClaimReward = async (goalId: string, goalIndex: number) => {
+  const handleLocalClaimReward = async (goalId: string, goalIndex: number) => {
     const goal = dailyGoals.find(g => g.id === goalId);
     if (!goal || !goal.completed || goal.claimed) {
       return;
@@ -208,39 +218,17 @@ const DailyGoalsScreen: React.FC = () => {
         })
       ]).start();
 
-      console.log(`🎯 [DailyGoalsScreen] Claiming reward for: ${goal.title}`);
+      // Use integration hook's handleClaimReward (includes MascotModal)
+      await handleClaimReward(goalId);
       
-      // Claim the reward
-      const success = await DailyGoalsService.claimReward(goalId);
+      // Add goal to animating list for local UI feedback
+      setAnimatingGoals(prev => [...prev, goalId]);
       
-      if (success) {
-        // Success animation and sound
-        SoundService.playCorrect();
+      // Remove from animating after delay
+      setTimeout(() => {
+        setAnimatingGoals(prev => prev.filter(id => id !== goalId));
+      }, 2000);
         
-        // Show mascot celebration
-        setMascotType('excited');
-        setMascotMessage(`Awesome! You earned ${Math.floor(goal.reward / 60)} minutes! 🎉`);
-        setShowMascot(true);
-        
-        // Add goal to animating list
-        setAnimatingGoals(prev => [...prev, goalId]);
-        
-        // Remove from animating after delay
-        setTimeout(() => {
-          setAnimatingGoals(prev => prev.filter(id => id !== goalId));
-        }, 2000);
-        
-        console.log(`✅ [DailyGoalsScreen] Successfully claimed reward for ${goal.title}`);
-      } else {
-        // Error feedback
-        SoundService.playIncorrect();
-        Alert.alert(
-          'Claim Failed',
-          'Unable to claim reward. Please try again.',
-          [{ text: 'OK' }]
-        );
-        console.error(`❌ [DailyGoalsScreen] Failed to claim reward for ${goal.title}`);
-      }
     } catch (error) {
       console.error('❌ [DailyGoalsScreen] Error claiming reward:', error);
       SoundService.playIncorrect();
@@ -364,7 +352,7 @@ const DailyGoalsScreen: React.FC = () => {
                 goal.claimed && styles.claimedButton,
                 isAnimating && styles.animatingButton
               ]}
-              onPress={() => handleClaimReward(goal.id, index)}
+              onPress={() => handleLocalClaimReward(goal.id, index)}
               disabled={goal.claimed || isAnimating}
             >
               <Icon 
@@ -401,7 +389,7 @@ const DailyGoalsScreen: React.FC = () => {
                   `Did you complete "${goal.description}"?`,
                   [
                     { text: 'No', style: 'cancel' },
-                    { text: 'Yes', onPress: () => handleClaimReward(goal.id, index) }
+                    { text: 'Yes', onPress: () => handleLocalClaimReward(goal.id, index) }
                   ]
                 );
               }}
@@ -546,6 +534,20 @@ const DailyGoalsScreen: React.FC = () => {
         autoHideDuration={3000}
         fullScreen={true}
       />
+
+      {/* Professional MascotModal for goal completion */}
+      {completedGoalData && (
+        <MascotModal
+          visible={showGoalModal}
+          type="excited"
+          title="🎉 Goal Complete!"
+          message={`Amazing! You completed "${completedGoalData.title}"!`}
+          reward={completedGoalData.reward}
+          onDismiss={() => setShowGoalModal(false)}
+          autoHide={true}
+          autoHideDelay={4000}
+        />
+      )}
     </SafeAreaView>
   );
 };

@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar, Platform, AppState, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import SystemNavigationBar from 'react-native-system-navigation-bar';
 import { enableScreens } from 'react-native-screens';
 import analytics from '@react-native-firebase/analytics';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -67,11 +68,22 @@ const App: React.FC = () => {
         console.log('⚠️ [BrainBites] Failed to pause music on background:', error);
       });
       
+      // Show status bar and navigation bar when app goes to background
+      StatusBar.setHidden(false);
+      if (Platform.OS === 'android') {
+        SystemNavigationBar.navigationShow();
+      }
+      
       // Log analytics event
       FirebaseAnalyticsService.logSessionEnd();
     } else if (nextAppState === 'active') {
       console.log('📱 [BrainBites] App became active');
       
+      // Hide status bar and navigation bar when app becomes active
+      StatusBar.setHidden(true);
+      if (Platform.OS === 'android') {
+        SystemNavigationBar.navigationHide();
+      }
       
       // Log analytics event
       FirebaseAnalyticsService.logSessionStart();
@@ -268,6 +280,27 @@ const App: React.FC = () => {
     return () => subscription?.remove();
   }, [handleAppStateChange]);
 
+  // Initialize full-screen mode
+  useEffect(() => {
+    // Hide status bar
+    StatusBar.setHidden(true);
+    
+    // Hide navigation bar on Android
+    if (Platform.OS === 'android') {
+      try {
+        SystemNavigationBar.navigationHide();
+        
+        // Enable immersive mode
+        if (SystemNavigationBar.setNavigationBarColor) {
+          SystemNavigationBar.setNavigationBarColor('transparent');
+        }
+        SystemNavigationBar.stickyImmersive();
+      } catch (error) {
+        console.warn('SystemNavigationBar error:', error);
+      }
+    }
+  }, []);
+
   // Initialize app on mount
   useEffect(() => {
     initializeApp();
@@ -305,7 +338,7 @@ const App: React.FC = () => {
             barStyle="dark-content"
             backgroundColor="#FFF8E7"
             translucent={true}
-            hidden={false}
+            hidden={true}
           />
           <NavigationContainer>
             <Stack.Navigator

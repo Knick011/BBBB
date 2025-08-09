@@ -8,7 +8,8 @@ import {
   SafeAreaView,
   Switch,
   Platform,
-  Alert
+  Alert,
+  Vibration
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
@@ -16,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import theme from '../styles/theme';
 import SoundService from '../services/SoundService';
+import AudioManager from '../services/AudioManager';
 import { NotificationService } from '../services/NotificationService';
 
 interface NotificationSettings {
@@ -31,8 +33,8 @@ const SettingsScreen: React.FC = () => {
   
   // Sound settings
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const [musicVolume, setMusicVolume] = useState(0.5);
-  const [effectsVolume, setEffectsVolume] = useState(0.7);
+  const [musicEnabled, setMusicEnabled] = useState(true);
+  const [hapticEnabled, setHapticEnabled] = useState(true);
   
   // Notification settings
   const [notificationSettings, setNotificationSettings] = useState<NotificationSettings>({
@@ -55,14 +57,10 @@ const SettingsScreen: React.FC = () => {
   
   const loadSettings = async () => {
     try {
-      // Load sound settings
-      const savedSoundEnabled = await AsyncStorage.getItem('@BrainBites:soundEnabled');
-      const savedMusicVolume = await AsyncStorage.getItem('@BrainBites:musicVolume');
-      const savedEffectsVolume = await AsyncStorage.getItem('@BrainBites:effectsVolume');
-      
-      if (savedSoundEnabled !== null) setSoundEnabled(savedSoundEnabled === 'true');
-      if (savedMusicVolume !== null) setMusicVolume(parseFloat(savedMusicVolume));
-      if (savedEffectsVolume !== null) setEffectsVolume(parseFloat(savedEffectsVolume));
+      const settings = AudioManager.getInstance().getSettings();
+      setSoundEnabled(settings.soundEffectsEnabled);
+      setMusicEnabled(settings.musicEnabled);
+      setHapticEnabled(settings.hapticFeedbackEnabled);
       
       // Load notification settings
       const savedNotifications = await AsyncStorage.getItem('@BrainBites:notificationSettings');
@@ -88,13 +86,28 @@ const SettingsScreen: React.FC = () => {
   
   const handleSoundToggle = async (value: boolean) => {
     setSoundEnabled(value);
-    await AsyncStorage.setItem('@BrainBites:soundEnabled', value.toString());
-    
+    await AudioManager.getInstance().setSoundEffectsEnabled(value);
     if (value) {
-      SoundService.initialize();
-    } else {
-      SoundService.setMusicEnabled(false);
-      SoundService.setSoundEffectsEnabled(false);
+      // Play a test sound
+      AudioManager.getInstance().playButtonPress();
+    }
+  };
+
+  const handleMusicToggle = async (value: boolean) => {
+    setMusicEnabled(value);
+    await AudioManager.getInstance().setMusicEnabled(value);
+    if (value) {
+      // Resume menu music
+      AudioManager.getInstance().playMenuMusic();
+    }
+  };
+
+  const handleHapticToggle = async (value: boolean) => {
+    setHapticEnabled(value);
+    await AudioManager.getInstance().setHapticFeedbackEnabled(value);
+    if (value) {
+      // Test haptic
+      Vibration.vibrate(50);
     }
   };
   
@@ -150,19 +163,46 @@ const SettingsScreen: React.FC = () => {
       </View>
       
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Sound Settings */}
+        {/* Audio Settings */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Sound & Music</Text>
+          <Text style={styles.sectionTitle}>Audio Settings</Text>
           
+          {/* Sound Effects Toggle */}
           {renderSettingItem(
             'volume-high',
             'Sound Effects',
-            soundEnabled ? 'Enabled' : 'Disabled',
+            undefined,
             <Switch
               value={soundEnabled}
               onValueChange={handleSoundToggle}
-              trackColor={{ false: '#E0E0E0', true: theme.colors.primary + '60' }}
-              thumbColor={soundEnabled ? theme.colors.primary : '#f4f3f4'}
+              trackColor={{ false: '#767577', true: '#FF9F1C' }}
+              thumbColor={soundEnabled ? '#FFFFFF' : '#f4f3f4'}
+            />
+          )}
+
+          {/* Music Toggle */}
+          {renderSettingItem(
+            'music',
+            'Background Music',
+            undefined,
+            <Switch
+              value={musicEnabled}
+              onValueChange={handleMusicToggle}
+              trackColor={{ false: '#767577', true: '#FF9F1C' }}
+              thumbColor={musicEnabled ? '#FFFFFF' : '#f4f3f4'}
+            />
+          )}
+
+          {/* Haptic Feedback Toggle */}
+          {renderSettingItem(
+            'vibrate',
+            'Haptic Feedback',
+            undefined,
+            <Switch
+              value={hapticEnabled}
+              onValueChange={handleHapticToggle}
+              trackColor={{ false: '#767577', true: '#FF9F1C' }}
+              thumbColor={hapticEnabled ? '#FFFFFF' : '#f4f3f4'}
             />
           )}
         </View>
@@ -243,21 +283,6 @@ const SettingsScreen: React.FC = () => {
               }}
               trackColor={{ false: '#E0E0E0', true: theme.colors.primary + '60' }}
               thumbColor={autoStartTimer ? theme.colors.primary : '#f4f3f4'}
-            />
-          )}
-          
-          {renderSettingItem(
-            'vibrate',
-            'Haptic Feedback',
-            'Vibration feedback for actions',
-            <Switch
-              value={hapticFeedback}
-              onValueChange={async (value) => {
-                setHapticFeedback(value);
-                await AsyncStorage.setItem('@BrainBites:hapticFeedback', value.toString());
-              }}
-              trackColor={{ false: '#E0E0E0', true: theme.colors.primary + '60' }}
-              thumbColor={hapticFeedback ? theme.colors.primary : '#f4f3f4'}
             />
           )}
         </View>

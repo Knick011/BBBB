@@ -23,6 +23,7 @@ import theme from '../styles/theme';
 import SoundService from '../services/SoundService';
 import EnhancedScoreService from '../services/EnhancedScoreService';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
+import MascotModal from '../components/Mascot/MascotModal';
 import ScoreDisplay from '../components/common/ScoreDisplay';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TimerWidget } from '../components/Timer/TimerWidget';
@@ -99,7 +100,7 @@ const HomeScreen: React.FC = () => {
   const { 
     dailyScore, 
     currentStreak, 
-    highestStreak, 
+    highestStreak: highestStreakLive, 
     accuracy, 
     questionsToday,
     animatingScore, 
@@ -110,10 +111,27 @@ const HomeScreen: React.FC = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [dailyStreak, setDailyStreak] = useState(0);
   const [lastPlayedDate, setLastPlayedDate] = useState<string | null>(null);
+  const [highestStreak, setHighestStreak] = useState(0);
+  // In the HomeScreen component, update the useEffect that loads stats
+  useEffect(() => {
+    const loadStats = async () => {
+      try {
+        // Get highest streak from the same source as peeking mascot
+        const savedHighestStreak = await AsyncStorage.getItem('@BrainBites:highestStreakToday');
+        const highestStreakValue = savedHighestStreak ? parseInt(savedHighestStreak, 10) : 0;
+        setHighestStreak(highestStreakValue);
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
+    };
+    
+    loadStats();
+  }, []);
   
   const [mascotType, setMascotType] = useState<MascotType>('happy');
   const [mascotMessage, setMascotMessage] = useState('');
   const [showMascot, setShowMascot] = useState(false);
+  const [showMascotModal, setShowMascotModal] = useState(false);
   
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
@@ -412,8 +430,9 @@ const HomeScreen: React.FC = () => {
       setMascotType('happy');
     }
     
+    // Show the mascot modal instead of EnhancedMascotDisplay
+    setShowMascotModal(true);
     setMascotMessage(message);
-    setShowMascot(true);
   };
   
   const renderStreakFlow = () => {
@@ -493,7 +512,7 @@ const HomeScreen: React.FC = () => {
   
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar backgroundColor="#FFF8E7" barStyle="dark-content" />
+      <StatusBar backgroundColor="#FFF8E7" barStyle="dark-content" hidden={false} translucent={false} />
       <ScrollView 
         style={styles.container}
         contentContainerStyle={styles.scrollContent}
@@ -647,9 +666,9 @@ const HomeScreen: React.FC = () => {
               <Text style={styles.statLabel}>Accuracy</Text>
             </View>
             <View style={styles.statItem}>
-              <Icon name="star" size={24} color="#FF9F1C" />
-              <Text style={styles.statValue}>{dailyScore || 0}</Text>
-              <Text style={styles.statLabel}>Points</Text>
+              <Icon name="fire" size={24} color="#FF9F1C" />
+              <Text style={styles.statValue}>{highestStreak || 0}</Text>
+              <Text style={styles.statLabel}>Best Streak</Text>
             </View>
           </View>
         </Animated.View>
@@ -667,6 +686,14 @@ const HomeScreen: React.FC = () => {
         autoHide={true}
         fullScreen={true}
         onPeekingPress={handlePeekingMascotPress}
+      />
+      
+      <MascotModal
+        visible={showMascotModal}
+        type={mascotType as 'happy' | 'excited' | 'gamemode'}
+        message={mascotMessage}
+        onDismiss={() => setShowMascotModal(false)}
+        autoHide={false}
       />
     </SafeAreaView>
   );
@@ -810,11 +837,6 @@ const styles = StyleSheet.create({
     padding: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
   },
   difficultyTitle: {
     color: 'white',
@@ -847,11 +869,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 20,
     borderRadius: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
   },
   categoriesText: {
     color: 'white',
@@ -871,11 +888,8 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 12,
     marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.05)',
   },
   actionIconContainer: {
     width: 40,

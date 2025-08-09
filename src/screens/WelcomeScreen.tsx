@@ -12,6 +12,7 @@ import {
   Platform,
   StatusBar,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -252,95 +253,94 @@ const WelcomeScreen: React.FC = () => {
 
   const page = pages[currentPage];
 
-  const Gradient = ({ colors }: { colors: string[] }) => (
-    <View style={[styles.gradient, { backgroundColor: colors[0] }]}>
-      <View style={[styles.gradientInner, { backgroundColor: colors[1] }]} />
-    </View>
-  );
-
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <StatusBar backgroundColor={page.gradient[0]} barStyle="light-content" />
-      <Gradient colors={page.gradient} />
-      
-      <Animated.View style={[styles.container, { 
-        opacity: fadeAnim,
-        transform: [{ 
-          translateY: slideAnim.interpolate({
-            inputRange: [0, 1],
-            outputRange: [50, 0]
-          })
-        }]
-      }]}>
-        <View style={styles.content}>
-          <Animated.View style={[styles.logoContainer, {
-            transform: [{ translateY: logoAnim }]
+    <View style={styles.container}>
+      <StatusBar backgroundColor={page.gradient[0]} barStyle="light-content" hidden={false} translucent={false} />
+      <LinearGradient
+        colors={['#FF9F1C', '#FFB84D']}
+        style={[styles.gradient, styles.absoluteFill]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+      >
+        <SafeAreaView style={styles.safeArea}>
+          <Animated.View style={[styles.content, { 
+            opacity: fadeAnim,
+            transform: [{ 
+              translateY: slideAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [50, 0]
+              })
+            }]
           }]}>
-            <Icon name={page.icon} size={80} color="white" />
-          </Animated.View>
-          
-          <Text style={styles.title}>{page.title}</Text>
-          
-          {page.subtitle && (
-            <Text style={styles.subtitle}>{page.subtitle}</Text>
-          )}
-          
-          <View style={styles.bulletsContainer}>
-            {page.bullets.map((bullet, index) => (
-              <View key={index} style={styles.bulletItem}>
-                <View style={styles.bulletIcon}>
-                  <Icon 
-                    name={page.bulletIcons[index]} 
-                    size={20} 
-                    color="white" 
-                  />
-                </View>
-                <Text style={styles.bulletText}>{bullet}</Text>
+              <Animated.View style={[styles.logoContainer, {
+                transform: [{ translateY: logoAnim }]
+              }]}>
+                <Icon name={page.icon} size={80} color="white" />
+              </Animated.View>
+              
+              <Text style={styles.title}>{page.title}</Text>
+              
+              {page.subtitle && (
+                <Text style={styles.subtitle}>{page.subtitle}</Text>
+              )}
+              
+              <View style={styles.bulletsContainer}>
+                {page.bullets.map((bullet, index) => (
+                  <View key={index} style={styles.bulletItem}>
+                    <View style={styles.bulletIcon}>
+                      <Icon 
+                        name={page.bulletIcons[index]} 
+                        size={20} 
+                        color="white" 
+                      />
+                    </View>
+                    <Text style={styles.bulletText}>{bullet}</Text>
+                  </View>
+                ))}
               </View>
-            ))}
-          </View>
-        </View>
-        
-        <View style={styles.progressContainer}>
-          <View style={styles.dotContainer}>
-            {pages.map((_, index) => (
-              <TouchableOpacity
-                key={index}
-                style={[styles.dot, currentPage === index && styles.activeDot]}
-                onPress={() => {
-                  if (index <= currentPage) {
-                    setShowMascot(false);
-                    setCurrentPage(index);
-                  }
-                }}
-              />
-            ))}
-          </View>
-          
-          <Text style={styles.progressText}>
-            {currentPage + 1} of {pages.length}
-          </Text>
-        </View>
-        
-        <Animated.View style={{
-          transform: [{ scale: buttonAnim }],
-          opacity: fadeAnim
-        }}>
-          <TouchableOpacity 
-            style={[styles.nextButton, { backgroundColor: page.gradient[1] }]}
-            onPress={handleNext}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.nextText}>
-              {page.isLast ? "Let's Begin!" : "Next"}
-            </Text>
-            {page.isLast ? 
-              <Icon name="rocket-launch" size={20} color="white" /> :
-              <Icon name="arrow-right" size={20} color="white" />
-            }
-          </TouchableOpacity>
-        </Animated.View>
-      </Animated.View>
+            
+            <View style={styles.progressContainer}>
+              <View style={styles.dotContainer}>
+                {pages.map((_, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    style={[styles.dot, currentPage === index && styles.activeDot]}
+                    onPress={() => {
+                      if (index <= currentPage) {
+                        setShowMascot(false);
+                        setCurrentPage(index);
+                      }
+                    }}
+                  />
+                ))}
+              </View>
+              
+              <Text style={styles.progressText}>
+                {currentPage + 1} of {pages.length}
+              </Text>
+            </View>
+            
+            <Animated.View style={{
+              transform: [{ scale: buttonAnim }],
+              opacity: fadeAnim
+            }}>
+              <TouchableOpacity 
+                style={[styles.nextButton, { backgroundColor: page.gradient[1] }]}
+                onPress={handleNext}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.nextText}>
+                  {page.isLast ? "Let's Begin!" : "Next"}
+                </Text>
+                {page.isLast ? 
+                  <Icon name="rocket-launch" size={20} color="white" /> :
+                  <Icon name="arrow-right" size={20} color="white" />
+                }
+              </TouchableOpacity>
+            </Animated.View>
+          </Animated.View>
+        </SafeAreaView>
+      </LinearGradient>
       
       <EnhancedMascotDisplay
         type={mascotType}
@@ -351,33 +351,37 @@ const WelcomeScreen: React.FC = () => {
         autoHide={false}
         fullScreen={true}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
+  container: {
     flex: 1,
   },
   gradient: {
-    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 0, // Remove padding for full-bleed
   },
-  gradientInner: {
+  // Ensure background covers entire screen including safe areas
+  absoluteFill: {
     position: 'absolute',
+    top: 0,
+    left: 0,
     right: 0,
-    top: '15%',
-    width: '120%',
-    height: '60%',
-    borderTopLeftRadius: 500,
-    borderBottomLeftRadius: 500,
-    opacity: 0.4,
+    bottom: 0,
   },
-  container: {
+  safeArea: {
+    flex: 1,
+  },
+  content: {
     flex: 1,
     padding: 24,
     justifyContent: 'space-between',
   },
-  content: {
+  innerContent: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

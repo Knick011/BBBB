@@ -1,6 +1,6 @@
 // src/hooks/useGameIntegration.ts
 // ✅ FIXED INTEGRATION HOOKS - Working with existing screens
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { useLiveGameStore, useGameEvents, GameEvent } from '../store/useLiveGameStore';
 import EnhancedScoreService from '../services/EnhancedScoreService';
 import TimerIntegrationService from '../services/TimerIntegrationService';
@@ -274,6 +274,10 @@ export const useDailyGoalsIntegration = () => {
   const isInitialized = useLiveGameStore(state => state.isInitialized);
   const initialize = useLiveGameStore(state => state.initialize);
   
+  // Add state for goal completion modal
+  const [showGoalModal, setShowGoalModal] = useState(false);
+  const [completedGoalData, setCompletedGoalData] = useState<{title: string; reward: number} | null>(null);
+  
   // Auto-initialize on first use
   useEffect(() => {
     if (!isInitialized) {
@@ -298,29 +302,31 @@ export const useDailyGoalsIntegration = () => {
 
       console.log(`🎯 [DailyGoals] Claiming reward for goal: ${goal.title}`);
       
-      // Existing goal completion logic...
       await claimGoalReward(goalId);
       
-      // ✅ ADD TIMER INTEGRATION - Add time for goal completion
-      // Convert reward from seconds to minutes
-      const timeToAdd = Math.floor(goal.reward / 60);
+      // Show professional mascot modal
+      setCompletedGoalData({
+        title: goal.title,
+        reward: Math.floor(goal.reward / 60), // Convert to minutes
+      });
+      setShowGoalModal(true);
       
+      // Add time for goal completion
+      const timeToAdd = Math.floor(goal.reward / 60);
       if (timeToAdd > 0) {
-        console.log(`🎯 [DailyGoals] Adding ${timeToAdd} minutes for goal completion`);
-        const timerResult = await TimerIntegrationService.addTimeFromGoal(timeToAdd);
-        
-        if (timerResult) {
-          console.log(`✅ [DailyGoals] Successfully added ${timeToAdd}m to timer`);
-        } else {
-          console.error(`❌ [DailyGoals] Failed to add time to timer`);
-        }
+        await TimerIntegrationService.addTimeFromGoal(timeToAdd);
       }
       
-      SoundService.playStreak();
+      // Hide modal after delay
+      setTimeout(() => {
+        setShowGoalModal(false);
+        setCompletedGoalData(null);
+      }, 4000);
+      
     } catch (error) {
-      console.error('❌ [DailyGoals] Error claiming goal reward:', error);
+      console.error('❌ [DailyGoals] Failed to claim reward:', error);
     }
-  }, [claimGoalReward, dailyGoals]);
+  }, [dailyGoals, claimGoalReward]);
   
   const refreshProgress = useCallback(async () => {
     await updateDailyGoalProgress();
@@ -334,7 +340,10 @@ export const useDailyGoalsIntegration = () => {
     refreshProgress,
     completedCount: dailyGoals.filter(g => g.completed).length,
     claimedCount: dailyGoals.filter(g => g.claimed).length,
-    totalRewards: dailyGoals.filter(g => g.claimed).reduce((sum, g) => sum + g.reward, 0)
+    totalRewards: dailyGoals.filter(g => g.claimed).reduce((sum, g) => sum + g.reward, 0),
+    showGoalModal,
+    completedGoalData,
+    setShowGoalModal
   };
 };
 

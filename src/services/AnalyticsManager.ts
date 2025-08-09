@@ -77,28 +77,33 @@ class AnalyticsManager {
     if (this.initialized) return true;
 
     try {
-      console.log('📊 [Analytics] Setting up Firebase Analytics system...');
+      console.log('📊 [Analytics] Initializing Firebase Analytics...');
+      console.log('📊 [Analytics] Environment:', __DEV__ ? 'Development' : 'Production');
       
-      // Load saved configuration
       await this.loadConfig();
-      
-      // Initialize Firebase Analytics
       await this.initializeFirebase();
       
-      // Start session tracking
+      if (!__DEV__) {
+        try {
+          await analytics().logEvent('app_open', {
+            timestamp: new Date().toISOString(),
+            platform: Platform.OS,
+            version: '1.0.0'
+          });
+        } catch (e) {
+          console.warn('⚠️ [Analytics] app_open log failed:', e);
+        }
+      }
+      
       this.startSession();
-
-      // Set up periodic event flushing (for fallback local storage)
       this.setupEventFlushing();
-
       this.initialized = true;
-      console.log('✅ [Analytics] Firebase Analytics system ready');
+      
+      console.log('✅ [Analytics] Firebase Analytics ready');
       return true;
-
     } catch (error) {
       console.error('❌ [Analytics] Initialization failed:', error);
-      // Graceful degradation - app continues without analytics
-      this.initialized = true;
+      this.initialized = true; // Continue without analytics
       return false;
     }
   }

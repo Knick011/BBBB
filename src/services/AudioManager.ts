@@ -53,10 +53,14 @@ class AudioManager {
     soundEffectsEnabled: true,
     musicEnabled: true,
     masterVolume: 1.0,
-    effectsVolume: 0.8,
-    musicVolume: 0.6,
+    effectsVolume: 0.6,  // Reduced from 0.8
+    musicVolume: 0.3,     // Reduced from 0.6
     hapticFeedbackEnabled: true,
   };
+
+  private isDucking = false;
+  private originalMusicVolume = 0.3;
+  private duckingTimeout: NodeJS.Timeout | null = null;
 
   // Sound effects configuration with haptic feedback
   private soundEffects: Map<string, SoundEffect> = new Map([
@@ -201,33 +205,86 @@ class AudioManager {
   // SOUND EFFECTS WITH HAPTIC FEEDBACK
   // =============================
 
+  // Enhanced play sound effect with ducking
   async playSoundEffect(effectId: string): Promise<void> {
     if (!this.settings.soundEffectsEnabled || !this.isInitialized) {
+      console.log(`🔇 [AudioManager] Sound effects disabled or not initialized`);
       return;
     }
 
-    const effect = this.soundEffects.get(effectId);
-    if (!effect) {
-      console.warn(`⚠️ [AudioManager] Unknown sound effect: ${effectId}`);
-      return;
-    }
+    try {
+      // Duck music when playing sound effects
+      await this.duckMusic();
 
-    // Add to priority queue
-    this.soundQueue.push({
-      id: effectId,
-      priority: effect.priority,
-      timestamp: Date.now(),
-    });
-
-    // Sort by priority (higher first), then by timestamp (older first)
-    this.soundQueue.sort((a, b) => {
-      if (a.priority !== b.priority) {
-        return b.priority - a.priority;
+      const soundFile = this.soundEffectFiles.get(effectId);
+      if (!soundFile) {
+        console.warn(`⚠️ [AudioManager] Sound effect not found: ${effectId}`);
+        return;
       }
-      return a.timestamp - b.timestamp;
-    });
 
-    await this.processQueue();
+      const sound = new Sound(soundFile, Sound.MAIN_BUNDLE, (error) => {
+        if (error) {
+          console.warn(`⚠️ [AudioManager] Failed to load sound: ${effectId}`, error);
+          return;
+        }
+
+        const effectVolume = this.settings.effectsVolume * this.settings.masterVolume;
+        sound.setVolume(effectVolume);
+        
+        sound.play((success) => {
+          if (success) {
+            console.log(`✅ [AudioManager] Played sound: ${effectId}`);
+          } else {
+            console.warn(`⚠️ [AudioManager] Failed to play sound: ${effectId}`);
+          }
+          sound.release();
+          
+          // Restore music volume after effect
+          this.restoreMusicVolume();
+        });
+      });
+
+      // Trigger haptic feedback if enabled
+      const effect = this.soundEffects.get(effectId);
+      if (effect?.hapticPattern && this.settings.hapticFeedbackEnabled) {
+        effect.hapticPattern.forEach((duration, index) => {
+          setTimeout(() => Vibration.vibrate(duration), index * 100);
+        });
+      }
+    } catch (error) {
+      console.warn(`⚠️ [AudioManager] Error playing sound effect:`, error);
+    }
+  }
+
+  // Duck music volume when sound effects play
+  private async duckMusic(): Promise<void> {
+    if (!this.currentMusicInstance || this.isDucking) return;
+
+    this.isDucking = true;
+    const duckedVolume = this.settings.musicVolume * 0.2; // Duck to 20% of normal volume
+    
+    if (this.currentMusicInstance) {
+      this.currentMusicInstance.setVolume(duckedVolume);
+    }
+
+    // Clear existing timeout
+    if (this.duckingTimeout) {
+      clearTimeout(this.duckingTimeout);
+    }
+  }
+
+  // Restore music volume after ducking
+  private restoreMusicVolume(): void {
+    if (!this.isDucking) return;
+
+    // Delay restoration slightly
+    this.duckingTimeout = setTimeout(() => {
+      if (this.currentMusicInstance) {
+        const normalVolume = this.settings.musicVolume * this.settings.masterVolume;
+        this.currentMusicInstance.setVolume(normalVolume);
+      }
+      this.isDucking = false;
+    }, 200);
   }
 
   private async processQueue(): Promise<void> {
@@ -336,64 +393,50 @@ class AudioManager {
   // MUSIC MANAGEMENT (PLACEHOLDER)
   // =============================
 
+  // Enhanced play music with loop
   async playMusic(musicId: string): Promise<void> {
-    if (!this.settings.musicEnabled || !this.musicTracks.has(musicId)) {
-      return;
-    }
-
-    // Don't restart if same track is playing
-    if (this.currentMusicId === musicId && this.currentMusicInstance) {
+    if (!this.settings.musicEnabled || !this.isInitialized) {
+      console.log(`🔇 [AudioManager] Music disabled or not initialized`);
       return;
     }
 
     try {
-      console.log(`🎵 [AudioManager] Starting music: ${musicId}`);
-      
-      // Stop current music
+      // Stop current music if playing
       if (this.currentMusicInstance) {
         this.currentMusicInstance.stop();
         this.currentMusicInstance.release();
+        this.currentMusicInstance = null;
       }
 
-      // Get music filename
-      const filename = this.musicTracks.get(musicId)!;
-      const volume = this.settings.musicVolume * this.settings.masterVolume;
-      
-      // Check if Sound library is available
-      if (!Sound) {
-        console.warn('⚠️ [AudioManager] react-native-sound not available, cannot play music');
+      const musicFile = this.musicTracks.get(musicId);
+      if (!musicFile) {
+        console.warn(`⚠️ [AudioManager] Music track not found: ${musicId}`);
         return;
       }
 
-      // Create and play music
-      this.currentMusicInstance = new Sound(filename, Sound.MAIN_BUNDLE, (error: any) => {
+      this.currentMusicInstance = new Sound(musicFile, Sound.MAIN_BUNDLE, (error) => {
         if (error) {
-          console.warn(`⚠️ [AudioManager] Failed to load music ${filename}:`, error);
-          this.currentMusicInstance = null;
-          this.currentMusicId = null;
+          console.warn(`⚠️ [AudioManager] Failed to load music: ${musicId}`, error);
           return;
         }
 
-        try {
-          this.currentMusicInstance.setVolume(volume);
-          this.currentMusicInstance.setNumberOfLoops(-1); // Loop indefinitely
-          this.currentMusicInstance.play((success: boolean) => {
-            if (success) {
-              console.log(`✅ [AudioManager] Music started: ${musicId}`);
-            } else {
-              console.warn(`⚠️ [AudioManager] Failed to play music: ${musicId}`);
-            }
-          });
-        } catch (playError) {
-          console.warn(`⚠️ [AudioManager] Error setting up music playback:`, playError);
-        }
+        const musicVolume = this.settings.musicVolume * this.settings.masterVolume;
+        this.currentMusicInstance.setVolume(musicVolume);
+        this.currentMusicInstance.setNumberOfLoops(-1); // Loop infinitely
+        
+        this.currentMusicInstance.play((success) => {
+          if (success) {
+            console.log(`✅ [AudioManager] Music completed: ${musicId}`);
+          } else {
+            console.warn(`⚠️ [AudioManager] Music playback failed: ${musicId}`);
+          }
+        });
+
+        this.currentMusicId = musicId;
+        console.log(`🎵 [AudioManager] Started playing music: ${musicId} (looping)`);
       });
-
-      this.currentMusicId = musicId;
-
     } catch (error) {
-      console.warn(`⚠️ [AudioManager] Failed to play music ${musicId}:`, error);
-      this.currentMusicId = null;
+      console.warn(`⚠️ [AudioManager] Error playing music:`, error);
     }
   }
 

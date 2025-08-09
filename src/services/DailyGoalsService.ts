@@ -21,6 +21,7 @@ export interface DailyGoal {
   claimed: boolean;
   questionsAnswered?: number;
   honorBased?: boolean;
+  notified?: boolean;
 }
 
 const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | 'claimed'>[] = [
@@ -338,6 +339,7 @@ class DailyGoalsService {
       if (goal.honorBased) continue;
 
       const oldProgress = goal.progress;
+      const wasCompleted = goal.completed;
 
       switch (goal.type) {
         case 'questions':
@@ -375,6 +377,16 @@ class DailyGoalsService {
       if (!goal.completed && goal.progress >= 100) {
         goal.completed = true;
         console.log(`🎉 [DailyGoals] Goal completed: ${goal.title}`);
+
+        // Prefer excited mascot instead of system alert
+        try {
+          const eventEmitter = new (require('react-native').NativeEventEmitter)();
+          eventEmitter.emit('showGoalCompletedMascot', {
+            goalTitle: goal.title,
+            reward: goal.reward,
+          });
+          goal.notified = true;
+        } catch {}
       }
 
       if (goal.progress !== oldProgress) {
@@ -549,6 +561,15 @@ class DailyGoalsService {
         console.error('❌ [DailyGoals] Error in listener:', error);
       }
     });
+  }
+
+  // Helper to persist current goals state
+  async saveGoals(): Promise<void> {
+    try {
+      await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(this.goals));
+    } catch (error) {
+      console.error('❌ [DailyGoals] Failed to save goals:', error);
+    }
   }
 
   async resetForTesting(): Promise<void> {

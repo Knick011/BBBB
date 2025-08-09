@@ -150,11 +150,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 16,
     minHeight: 140,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.12,
-    shadowRadius: 12,
-    elevation: 4,
+    // Remove heavy shadows for cleaner look
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.2)',
   },

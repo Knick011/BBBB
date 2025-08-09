@@ -1,12 +1,16 @@
 // src/services/HybridTimerService.ts
 // ✅ HYBRID TIMER SERVICE - Combines persistent notifications with widget support
 import { NativeEventEmitter, NativeModules } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface TimerData {
   remainingTime: number;
   todayScreenTime: number;
+  overtime: number;
   isAppForeground: boolean;
   isTracking: boolean;
+  notificationTitle?: string;
+  notificationText?: string;
 }
 
 class HybridTimerService {
@@ -15,6 +19,11 @@ class HybridTimerService {
   private currentData: TimerData | null = null;
   private eventEmitter: any = null;
   private subscriptions: any[] = [];
+  private timeLeft: number = 0;
+  private screenTime: number = 0;
+  private overtime: number = 0;
+  private overtimePaused: boolean = false;
+  private isPaused: boolean = false;
 
   static getInstance(): HybridTimerService {
     if (!HybridTimerService.instance) {
@@ -56,7 +65,9 @@ class HybridTimerService {
             remainingTime: data.remainingTime || 0,
             todayScreenTime: existingScreenTime, // Preserve existing screen time data
             isAppForeground: data.isAppForeground || false,
-            isTracking: data.isTracking || false
+            isTracking: data.isTracking || false,
+            notificationTitle: data.notificationTitle,
+            notificationText: data.notificationText
           };
           
           this.notifyListeners();
@@ -84,7 +95,9 @@ class HybridTimerService {
         if (this.currentData) {
           this.currentData = {
             ...this.currentData,
-            todayScreenTime: data.todayScreenTime || 0
+            todayScreenTime: data.todayScreenTime || 0,
+            notificationTitle: data.notificationTitle,
+            notificationText: data.notificationText
           };
         } else {
           this.currentData = data;
@@ -199,51 +212,34 @@ class HybridTimerService {
   }
 
   /**
-   * Add time from goal completion - uses both systems for reliability
+   * Add time from goal completion - updated with overtime handling
    */
   async addTimeFromGoal(minutes: number): Promise<boolean> {
-    console.log(`🎯 [HybridTimer] Adding ${minutes} minutes from goal`);
-    
-    let brainBitesSuccess = false;
-    let screenTimeSuccess = false;
-
-    // Add to BrainBitesTimer (persistent notifications)
     try {
-      const { BrainBitesTimer } = NativeModules;
-      if (BrainBitesTimer && BrainBitesTimer.addTime) {
-        await BrainBitesTimer.addTime(minutes * 60); // Convert to seconds
-        brainBitesSuccess = true;
-        console.log('✅ [HybridTimer] Added goal time to BrainBitesTimer');
+      const secondsToAdd = minutes * 60;
+      
+      // If we have overtime, pause it but don't zero it
+      if (this.overtime > 0) {
+        console.log(`⏸️ [Timer] Pausing overtime at ${this.overtime}s`);
+        this.overtimePaused = true;
       }
+      
+      // Add to time left
+      this.timeLeft += secondsToAdd;
+      
+      // Save state
+      await this.saveTimerState();
+      
+      console.log(`✅ [Timer] Added ${minutes}m. TimeLeft: ${this.timeLeft}s, Overtime: ${this.overtime}s (paused: ${this.overtimePaused})`);
+      
+      // Update current data and notify listeners
+      this.updateCurrentData();
+      
+      return true;
     } catch (error) {
-      console.error('❌ [HybridTimer] Failed to add goal time to BrainBitesTimer:', error);
+      console.error('❌ [Timer] Failed to add time:', error);
+      return false;
     }
-
-    // Add to ScreenTimeModule (widget support)
-    try {
-      if (NativeModules.ScreenTimeModule.addTimeFromGoal) {
-        screenTimeSuccess = await NativeModules.ScreenTimeModule.addTimeFromGoal(minutes);
-        console.log('✅ [HybridTimer] Added goal time to ScreenTimeModule');
-      }
-    } catch (error) {
-      console.error('❌ [HybridTimer] Failed to add goal time to ScreenTimeModule:', error);
-    }
-
-    const success = brainBitesSuccess || screenTimeSuccess;
-    console.log(`${success ? '✅' : '❌'} [HybridTimer] Goal time addition result: ${success}`);
-    
-    // Update local state and notify listeners
-    if (success && this.currentData) {
-      const oldRemainingTime = this.currentData.remainingTime;
-      this.currentData = {
-        ...this.currentData,
-        remainingTime: oldRemainingTime + (minutes * 60) // Add minutes in seconds
-      };
-      console.log(`🔄 [HybridTimer] Updated remaining time: ${oldRemainingTime}s -> ${this.currentData.remainingTime}s (+${minutes * 60}s)`);
-      this.notifyListeners();
-    }
-    
-    return success;
   }
 
   /**
@@ -356,6 +352,116 @@ class HybridTimerService {
           console.error('❌ [HybridTimer] Error in listener:', error);
         }
       });
+    }
+  }
+
+  /**
+   * Update timer tick logic
+   */
+  private tick = () => {
+    if (this.isPaused) return;
+    
+    // Always increment screen time when device is used
+    this.screenTime++;
+    
+    if (this.timeLeft > 0) {
+      // Count down time left
+      this.timeLeft--;
+      
+      // Overtime remains paused if we have time left
+      this.overtimePaused = true;
+    } else {
+      // No time left - check overtime status
+      if (!this.overtimePaused) {
+        // Only increment overtime if not paused
+        this.overtime++;
+      }
+    }
+    
+    // Resume overtime counting when time left reaches 0
+    if (this.timeLeft === 0 && this.overtimePaused) {
+      console.log('📊 [Timer] Time left exhausted, resuming overtime counting');
+      this.overtimePaused = false;
+    }
+    
+    this.updateNotification();
+    this.updateCurrentData();
+  };
+
+  /**
+   * End of day settlement
+   */
+  async processEndOfDay(): Promise<number> {
+    const net = this.timeLeft - this.overtime;
+    
+    console.log(`🌙 [Timer] End of day settlement:`);
+    console.log(`  TimeLeft: ${this.timeLeft}s`);
+    console.log(`  Overtime: ${this.overtime}s`);
+    console.log(`  Net: ${net}s (${net > 0 ? 'positive' : 'negative'})`);
+    
+    // Save score delta
+    await AsyncStorage.setItem('@BrainBites:scoreDelta', net.toString());
+    
+    // Reset for next day but keep the net balance
+    this.timeLeft = Math.max(0, net); // Start next day with positive balance or 0
+    this.overtime = Math.max(0, -net); // Start with debt if negative
+    this.screenTime = 0;
+    this.overtimePaused = false;
+    
+    await this.saveTimerState();
+    
+    return net;
+  }
+
+  /**
+   * Save timer state to AsyncStorage
+   */
+  private async saveTimerState(): Promise<void> {
+    try {
+      await AsyncStorage.multiSet([
+        ['@BrainBites:timeLeft', this.timeLeft.toString()],
+        ['@BrainBites:screenTime', this.screenTime.toString()],
+        ['@BrainBites:overtime', this.overtime.toString()],
+        ['@BrainBites:overtimePaused', this.overtimePaused.toString()],
+      ]);
+    } catch (error) {
+      console.error('❌ [Timer] Failed to save timer state:', error);
+    }
+  }
+
+  /**
+   * Update current data object
+   */
+  private updateCurrentData(): void {
+    this.currentData = {
+      remainingTime: this.timeLeft,
+      todayScreenTime: this.screenTime,
+      overtime: this.overtime,
+      isAppForeground: this.currentData?.isAppForeground || false,
+      isTracking: this.currentData?.isTracking || false,
+      notificationTitle: this.currentData?.notificationTitle,
+      notificationText: this.currentData?.notificationText
+    };
+    this.notifyListeners();
+  }
+
+  /**
+   * Update notification display
+   */
+  private updateNotification(): void {
+    // This would typically update the persistent notification
+    // Implementation depends on your notification system
+    if (this.currentData) {
+      const hours = Math.floor(this.timeLeft / 3600);
+      const minutes = Math.floor((this.timeLeft % 3600) / 60);
+      const overtimeHours = Math.floor(this.overtime / 3600);
+      const overtimeMinutes = Math.floor((this.overtime % 3600) / 60);
+      
+      this.currentData.notificationTitle = this.timeLeft > 0 ? 
+        `${hours}h ${minutes}m remaining` : 
+        `${overtimeHours}h ${overtimeMinutes}m overtime`;
+      
+      this.currentData.notificationText = `Screen time: ${Math.floor(this.screenTime / 3600)}h ${Math.floor((this.screenTime % 3600) / 60)}m`;
     }
   }
 

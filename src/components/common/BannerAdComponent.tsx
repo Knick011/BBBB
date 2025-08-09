@@ -3,7 +3,7 @@ import { View, StyleSheet, Platform } from 'react-native';
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 interface BannerAdComponentProps {
-  placement: string; // For analytics tracking
+  placement: string;
   style?: any;
 }
 
@@ -12,17 +12,20 @@ const BannerAdComponent: React.FC<BannerAdComponentProps> = ({ placement, style 
   const [shouldShow, setShouldShow] = useState(false);
 
   useEffect(() => {
-    // Force show banner ads immediately with short delay for better UX
-    const showTimer = setTimeout(() => {
-      console.log(`📱 [BannerAd] Showing test banner ad for ${placement}`);
-      setShouldShow(true);
-    }, 1000); // 1 second delay
+    // Show banner ads immediately without delay for production
+    console.log(`📱 [BannerAd] Initializing banner ad for ${placement}`);
+    setShouldShow(true);
     
-    return () => clearTimeout(showTimer);
+    return () => {};
   }, [placement]);
 
-  // Always use test IDs for safety
-  const adUnitId = TestIds.BANNER;
+  // Use production Ad Unit IDs based on environment
+  // IMPORTANT: Replace these with your actual AdMob Ad Unit IDs
+  const adUnitId = __DEV__ 
+    ? TestIds.BANNER 
+    : Platform.OS === 'ios'
+      ? 'ca-app-pub-YOUR_IOS_BANNER_ID' // Replace with your iOS banner ID
+      : 'ca-app-pub-YOUR_ANDROID_BANNER_ID'; // Replace with your Android banner ID
 
   if (!shouldShow) {
     return null;
@@ -43,12 +46,6 @@ const BannerAdComponent: React.FC<BannerAdComponentProps> = ({ placement, style 
         onAdFailedToLoad={(error) => {
           console.log(`❌ [BannerAd] Banner ad failed to load for ${placement}:`, error);
           setAdLoaded(false);
-        }}
-        onAdOpened={() => {
-          console.log(`📱 [BannerAd] Banner ad opened for ${placement}`);
-        }}
-        onAdClosed={() => {
-          console.log(`📱 [BannerAd] Banner ad closed for ${placement}`);
         }}
       />
     </View>

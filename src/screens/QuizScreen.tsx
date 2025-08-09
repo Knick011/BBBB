@@ -16,7 +16,6 @@ import {
   ScrollView,
   StatusBar,
   Platform,
-  Alert,
   BackHandler
 } from 'react-native';
 import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/native';
@@ -26,9 +25,11 @@ import SoundService from '../services/SoundService';
 import EnhancedScoreService from '../services/EnhancedScoreService';
 import TimerIntegrationService from '../services/TimerIntegrationService';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
+import MascotModal from '../components/Mascot/MascotModal';
 import BannerAdComponent from '../components/common/BannerAdComponent';
 import { useQuizStore } from '../store/useQuizStore';
 import { useUserStore } from '../store/useUserStore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const QuizScreen = ({ navigation, route }: any) => {
   const [currentQuestion, setCurrentQuestion] = useState<any>(null);
@@ -48,7 +49,9 @@ const QuizScreen = ({ navigation, route }: any) => {
   const [isStreakMilestone, setIsStreakMilestone] = useState(false);
   const [speedCategory, setSpeedCategory] = useState('');
   const [speedMultiplier, setSpeedMultiplier] = useState(1.0);
+  const [showConfirmQuit, setShowConfirmQuit] = useState(false);
   const [showSpeedFeedback, setShowSpeedFeedback] = useState(false);
+  const [showQuitModal, setShowQuitModal] = useState(false);
   
   // Mascot state - simplified for quiz functionality
   const [mascotType, setMascotType] = useState<'happy' | 'sad' | 'excited' | 'depressed' | 'gamemode' | 'below'>('happy');
@@ -75,6 +78,13 @@ const QuizScreen = ({ navigation, route }: any) => {
   useEffect(() => {
     console.log('🎮 [Modern QuizScreen] Component mounted');
     
+    // Always start fresh when entering quiz
+    setStreak(0);
+    setQuestionsAnswered(0);
+    setCorrectAnswers(0);
+    setScore(0);
+    useQuizStore.getState().resetStreak();
+
     // Initialize services
     const initializeServices = async () => {
       try {
@@ -312,6 +322,17 @@ const QuizScreen = ({ navigation, route }: any) => {
           setShowPointsAnimation(true);
           setShowSpeedFeedback(true);
           
+          // Save current quiz streak and update highest streak for the day
+          try {
+            const newStreak = scoreResult.newStreak;
+            await AsyncStorage.setItem('@BrainBites:currentQuizStreak', String(newStreak));
+            const savedHighest = await AsyncStorage.getItem('@BrainBites:highestStreakToday');
+            const currentHighest = savedHighest ? parseInt(savedHighest, 10) : 0;
+            if (newStreak > currentHighest) {
+              await AsyncStorage.setItem('@BrainBites:highestStreakToday', String(newStreak));
+            }
+          } catch {}
+
           // ✅ ADD TIMER INTEGRATION - Add time for correct answers
           let timeToAdd = 1; // Base 1 minute for easy
           if (difficulty === 'medium') timeToAdd = 2;
@@ -368,6 +389,8 @@ const QuizScreen = ({ navigation, route }: any) => {
         } else {
           // Wrong answer
           SoundService.playIncorrect();
+          setStreak(0);
+          try { await AsyncStorage.setItem('@BrainBites:currentQuizStreak', '0'); } catch {}
           
           // Show mascot for wrong answer
           setTimeout(() => {
@@ -467,59 +490,39 @@ const QuizScreen = ({ navigation, route }: any) => {
   );
 
   const handleGoBack = () => {
-    // Show mascot with sad expression but no message
-    setMascotType('sad');
-    setShowMascot(true);
-    
-    // Create a custom styled alert with themed buttons
-    Alert.alert(
-      '🥺 Leaving so soon?',
-      `You're on a ${streak} question streak!\nQuitting will reset your progress.`,
-      [
-        { 
-          text: "Let's Continue!", 
-          style: 'default',
-          onPress: () => {
-            // Animate mascot back to happy
-            setMascotType('happy');
-            setTimeout(() => {
-              setShowMascot(false);
-            }, 1000);
-          }
-        },
-        {
-          text: 'Quit Quiz',
-          style: 'destructive',
-          onPress: async () => {
-            // Play button sound
-            SoundService.playButtonPress();
-            
-            console.log(`🎯 [QuizScreen] Quiz session ended with ${questionsAnswered} questions answered`);
-            
-            // Reset streak in both stores
-            useQuizStore.getState().resetStreak();
-            useUserStore.getState().resetStreak();
-            // Hide mascot if showing
-            setShowMascot(false);
-            if (navigation.canGoBack()) {
-              navigation.goBack();
-            } else {
-              navigation.navigate('Home');
-            }
-          }
-        },
-      ],
-      {
-        cancelable: true,
-        onDismiss: () => {
-          // Animate mascot back to happy
-          setMascotType('happy');
-          setTimeout(() => {
-            setShowMascot(false);
-          }, 1000);
-        }
+    if (streak > 0) {
+      // Show professional mascot modal instead of Alert
+      setShowQuitModal(true);
+    } else {
+      // No streak, just go back
+      SoundService.playButtonPress();
+      if (navigation.canGoBack()) {
+        navigation.goBack();
+      } else {
+        navigation.navigate('Home');
       }
-    );
+    }
+  };
+
+  const handleQuitConfirm = () => {
+    SoundService.playButtonPress();
+    
+    // Reset streak
+    useQuizStore.getState().resetStreak();
+    useUserStore.getState().resetStreak();
+    
+    setShowQuitModal(false);
+    
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      navigation.navigate('Home');
+    }
+  };
+
+  const handleQuitCancel = () => {
+    SoundService.playButtonPress();
+    setShowQuitModal(false);
   };
   
   // Get streak progress (0-1)
@@ -542,7 +545,7 @@ const QuizScreen = ({ navigation, route }: any) => {
   
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar backgroundColor="#FFF8E7" barStyle="dark-content" />
+      <StatusBar backgroundColor="#FFF8E7" barStyle="dark-content" hidden={false} translucent={false} />
       <ScrollView 
         contentContainerStyle={styles.container}
         showsVerticalScrollIndicator={false}
@@ -849,6 +852,40 @@ const QuizScreen = ({ navigation, route }: any) => {
       {/* Banner Ad - Subtle placement at bottom */}
       <BannerAdComponent placement="quiz_screen" style={styles.bannerAd} />
       
+      {/* Quit confirmation overlay using mascot instead of system alert */}
+      {showConfirmQuit && (
+        <View style={styles.quitOverlay}>
+          <TouchableOpacity
+            style={[styles.quitButton, { backgroundColor: '#FF3B30' }]}
+            onPress={async () => {
+              SoundService.playButtonPress();
+              try { await AsyncStorage.setItem('@BrainBites:currentQuizStreak', '0'); } catch {}
+              useQuizStore.getState().resetQuiz();
+              useUserStore.getState().resetStreak();
+              setShowMascot(false);
+              setShowConfirmQuit(false);
+              if (navigation.canGoBack()) navigation.goBack();
+              else navigation.navigate('Home');
+            }}
+          >
+            <Icon name="exit-run" size={18} color="white" />
+            <Text style={styles.quitButtonText}>Quit Quiz</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.quitButton, { backgroundColor: '#34C759' }]}
+            onPress={() => {
+              SoundService.playButtonPress();
+              setMascotType('happy');
+              setShowConfirmQuit(false);
+              setTimeout(() => setShowMascot(false), 800);
+            }}
+          >
+            <Icon name="arrow-right-bold-circle" size={18} color="white" />
+            <Text style={styles.quitButtonText}>Continue</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
       {/* Enhanced Mascot - Quiz Screen with original functionality */}
       <EnhancedMascotDisplay
         type={mascotType}
@@ -866,6 +903,27 @@ const QuizScreen = ({ navigation, route }: any) => {
         selectedAnswer={selectedAnswer}
         showExplanation={showExplanation}
         isCorrect={isCorrect}
+      />
+
+      <MascotModal
+        visible={showQuitModal}
+        type="depressed"
+        title="Leaving Already?"
+        message={`You're on a ${streak} question streak!\n\nYou'll lose your progress if you quit now. Are you sure?`}
+        streak={streak}
+        onDismiss={() => setShowQuitModal(false)}
+        buttons={[
+          {
+            text: "Keep Playing!",
+            onPress: handleQuitCancel,
+            style: 'primary'
+          },
+          {
+            text: 'Quit Quiz',
+            onPress: handleQuitConfirm,
+            style: 'danger'
+          }
+        ]}
       />
     </SafeAreaView>
   );
@@ -1210,6 +1268,34 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderTopWidth: 1,
     borderTopColor: 'rgba(0, 0, 0, 0.1)',
+  },
+  quitOverlay: {
+    position: 'absolute',
+    bottom: 90,
+    left: 16,
+    right: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  quitButton: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 14,
+    borderRadius: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  quitButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginLeft: 8,
   },
 });
 

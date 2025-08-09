@@ -61,6 +61,12 @@ const getCategoryDisplayInfo = (categoryId: string) => {
   }
 
   const categoryMappings: Record<string, { displayName: string; icon: string; color: string; gradient: string[] }> = {
+    'gaming': {
+      displayName: 'Gaming World',
+      icon: 'gamepad-variant-outline',
+      color: '#9C27B0',
+      gradient: ['#CE93D8', '#AB47BC', '#8E24AA']
+    },
     'science': {
       displayName: 'Science & Discovery',
       icon: 'flask-outline',

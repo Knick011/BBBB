@@ -64,6 +64,7 @@ export interface LiveGameState {
   initialize: () => Promise<void>;
   updateScoreData: (scoreData: LiveScoreData) => void;
   processQuizCompletion: (result: any) => Promise<void>;
+  getHighestStreakToday: () => number;
   updateDailyGoalProgress: () => Promise<void>;
   completeGoal: (goalId: string) => Promise<number>;
   claimGoalReward: (goalId: string) => Promise<number>;
@@ -310,11 +311,12 @@ export const useLiveGameStore = create<LiveGameState>()(
       
       // Update score data immediately
       const currentData = get().scoreData;
+      const newHighestStreak = Math.max(currentData.highestStreak, newStreak);
       const newScoreData: LiveScoreData = {
         ...currentData,
         dailyScore: newScore,
         currentStreak: newStreak,
-        highestStreak: Math.max(currentData.highestStreak, newStreak),
+        highestStreak: newHighestStreak,
         totalQuestions: currentData.totalQuestions + 1,
         correctAnswers: currentData.correctAnswers + (isCorrect ? 1 : 0),
         questionsToday: currentData.questionsToday + 1,
@@ -371,6 +373,19 @@ export const useLiveGameStore = create<LiveGameState>()(
       
       // Save to storage
       await get().saveToStorage();
+
+      // Persist highest streak separately for cross-screen access
+      try {
+        await AsyncStorage.setItem('@BrainBites:highestStreakToday', String(newHighestStreak));
+      } catch (e) {
+        console.warn('Failed to persist highest streak today:', e);
+      }
+    },
+
+    // ==================== UTILITIES ====================
+    getHighestStreakToday: () => {
+      const state = get();
+      return state.scoreData.highestStreak;
     },
 
     // ==================== DAILY GOALS MANAGEMENT ====================

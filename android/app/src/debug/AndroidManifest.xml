@@ -5,5 +5,11 @@
     <application
         android:usesCleartextTraffic="true"
         tools:targetApi="28"
-        tools:ignore="GoogleAppIndexingWarning"/>
+        tools:ignore="GoogleAppIndexingWarning">
+        <!-- Use AdMob TEST App ID in debug to prevent startup crash -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"
+            tools:node="replace" />
+    </application>
 </manifest>
