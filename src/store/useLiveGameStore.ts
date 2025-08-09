@@ -4,6 +4,7 @@ import { create } from 'zustand';
 import { subscribeWithSelector } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import EnhancedScoreService from '../services/EnhancedScoreService';
+import DailyGoalsService from '../services/DailyGoalsService';
 import { NativeModules } from 'react-native';
 
 // ==================== INTERFACES ====================
@@ -65,6 +66,7 @@ export interface LiveGameState {
   updateScoreData: (scoreData: LiveScoreData) => void;
   processQuizCompletion: (result: any) => Promise<void>;
   getHighestStreakToday: () => number;
+  loadDailyGoals: () => Promise<void>;
   updateDailyGoalProgress: () => Promise<void>;
   completeGoal: (goalId: string) => Promise<number>;
   claimGoalReward: (goalId: string) => Promise<number>;
@@ -389,6 +391,46 @@ export const useLiveGameStore = create<LiveGameState>()(
     },
 
     // ==================== DAILY GOALS MANAGEMENT ====================
+    
+    loadDailyGoals: async () => {
+      try {
+        console.log('📥 [LiveGameStore] Loading daily goals from service...');
+        
+        // Initialize DailyGoalsService if needed
+        await DailyGoalsService.initialize();
+        
+        // Get goals from service
+        const goals = DailyGoalsService.getGoals();
+        console.log(`📥 [LiveGameStore] Loaded ${goals.length} goals from service`);
+        
+        // Convert to store format (DailyGoalProgress)
+        const storeGoals: DailyGoalProgress[] = goals.map(goal => ({
+          id: goal.id,
+          type: goal.type as any, // Type mapping may need adjustment
+          title: goal.title,
+          description: goal.description,
+          target: goal.target,
+          current: 0, // Will be updated by updateDailyGoalProgress
+          progress: 0,
+          completed: goal.completed,
+          claimed: goal.claimed,
+          reward: goal.reward,
+          icon: goal.icon,
+          color: goal.color,
+          questionsRequired: goal.questionsRequired,
+        }));
+        
+        // Update store
+        set({ dailyGoals: storeGoals });
+        console.log(`✅ [LiveGameStore] Set ${storeGoals.length} goals in store`);
+        
+        // Update progress for the loaded goals
+        await get().updateDailyGoalProgress();
+        
+      } catch (error) {
+        console.error('❌ [LiveGameStore] Failed to load daily goals:', error);
+      }
+    },
     
     updateDailyGoalProgress: async () => {
       const { scoreData, dailyGoals } = get();

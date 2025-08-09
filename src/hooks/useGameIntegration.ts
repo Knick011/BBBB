@@ -329,8 +329,9 @@ export const useDailyGoalsIntegration = () => {
   }, [dailyGoals, claimGoalReward]);
   
   const refreshProgress = useCallback(async () => {
-    await updateDailyGoalProgress();
-  }, [updateDailyGoalProgress]);
+    const store = useLiveGameStore.getState();
+    await store.loadDailyGoals();
+  }, []);
   
   return {
     ...integration,
