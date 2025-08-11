@@ -21,9 +21,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import theme from '../styles/theme';
 import SoundService from '../services/SoundService';
+import AudioManager from '../services/AudioManager';
 import EnhancedScoreService from '../services/EnhancedScoreService';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
-import MascotModal from '../components/Mascot/MascotModal';
 import ScoreDisplay from '../components/common/ScoreDisplay';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TimerWidget } from '../components/Timer/TimerWidget';
@@ -131,7 +131,6 @@ const HomeScreen: React.FC = () => {
   const [mascotType, setMascotType] = useState<MascotType>('happy');
   const [mascotMessage, setMascotMessage] = useState('');
   const [showMascot, setShowMascot] = useState(false);
-  const [showMascotModal, setShowMascotModal] = useState(false);
   
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
@@ -140,7 +139,24 @@ const HomeScreen: React.FC = () => {
   // Refresh data when screen comes into focus
   useFocusEffect(
     React.useCallback(() => {
+      // Initialize and start menu music when returning to home
+      const resumeMusic = async () => {
+        try {
+          console.log('🏠 [HomeScreen] Initializing AudioManager and starting menu music');
+          await AudioManager.initialize();
+          await AudioManager.playMenuMusic();
+        } catch (error) {
+          console.warn('⚠️ [HomeScreen] Failed to start menu music:', error);
+        }
+      };
+      
+      resumeMusic();
       handleRefresh();
+      
+      return () => {
+        // Don't stop music when leaving (let next screen handle it)
+        console.log('🏠 [HomeScreen] Leaving home screen');
+      };
     }, [])
   );
 
@@ -430,9 +446,9 @@ const HomeScreen: React.FC = () => {
       setMascotType('happy');
     }
     
-    // Show the mascot modal instead of EnhancedMascotDisplay
-    setShowMascotModal(true);
+    // Use EnhancedMascotDisplay for peeking mascot interactions
     setMascotMessage(message);
+    setShowMascot(true);
   };
   
   const renderStreakFlow = () => {
@@ -677,6 +693,7 @@ const HomeScreen: React.FC = () => {
       {/* Banner Ad - Subtle placement at bottom */}
       <BannerAdComponent placement="home_screen" style={styles.bannerAd} />
       
+      {/* EnhancedMascotDisplay handles both peeking mascot and goal completion celebrations */}
       <EnhancedMascotDisplay
         type={mascotType}
         position="left"
@@ -686,14 +703,6 @@ const HomeScreen: React.FC = () => {
         autoHide={true}
         fullScreen={true}
         onPeekingPress={handlePeekingMascotPress}
-      />
-      
-      <MascotModal
-        visible={showMascotModal}
-        type={mascotType as 'happy' | 'excited' | 'gamemode'}
-        message={mascotMessage}
-        onDismiss={() => setShowMascotModal(false)}
-        autoHide={false}
       />
     </SafeAreaView>
   );

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   FlatList,
+  ScrollView,
   Animated,
   Platform,
   ActivityIndicator,
@@ -15,6 +16,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../types';
 import theme from '../styles/theme';
 import SoundService from '../services/SoundService';
@@ -27,6 +29,7 @@ type NavigationProp = StackNavigationProp<RootStackParamList, 'Categories'>;
 
 const CategoriesScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp>();
+  const insets = useSafeAreaInsets();
   const [categories, setCategories] = useState<CategoryInfo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [totalQuestions, setTotalQuestions] = useState(0);
@@ -117,12 +120,12 @@ const CategoriesScreen: React.FC = () => {
 
   if (isLoading) {
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={theme.colors.primary} />
           <Text style={styles.loadingText}>Loading your brain food...</Text>
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 
@@ -137,35 +140,30 @@ const CategoriesScreen: React.FC = () => {
   });
 
   return (
-    <SafeAreaView style={styles.container}>
-      <LinearGradient
-        colors={['#FFE5D9', '#FFF', '#FFF']}
-        style={styles.gradient}
-      >
-        <Animated.View 
-          style={[
-            styles.header,
-            { 
-              opacity: headerAnim,
-              transform: [{ translateY: headerTranslateY }]
-            }
-          ]}
-        >
-          <TouchableOpacity onPress={handleBack} style={styles.backButton}>
-            <Icon name="arrow-left" size={24} color={theme.colors.textPrimary} />
+    <View style={styles.container}>
+      {/* Custom header that extends to top */}
+      <View style={[styles.header, { paddingTop: insets.top }]}>
+        <LinearGradient
+          colors={['#FFB84D', '#FF9F1C']}
+          style={StyleSheet.absoluteFillObject}
+        />
+        <View style={styles.headerContent}>
+          <TouchableOpacity 
+            onPress={handleBack}
+            style={styles.backButton}
+          >
+            <Icon name="arrow-left" size={24} color="#FFF" />
           </TouchableOpacity>
-          <View style={styles.headerTitleContainer}>
-            <Text style={styles.headerTitle}>Choose Your Challenge!</Text>
-            <View style={styles.statsContainer}>
-              <Icon name="brain" size={16} color={theme.colors.primary} />
-              <Text style={styles.headerSubtitle}>
-                {totalQuestions} brain-tickling questions
-              </Text>
-            </View>
+          <Text style={styles.headerTitle}>Choose Your Challenge!</Text>
+          <View style={styles.questionCount}>
+            <Icon name="brain" size={20} color="#FFF" />
+            <Text style={styles.questionCountText}>{totalQuestions} brain-tickling questions</Text>
           </View>
-          <View style={{ width: 40 }} />
-        </Animated.View>
-
+        </View>
+      </View>
+      
+      {/* Categories content */}
+      <View style={styles.content}>
         <Animated.View 
           style={[
             styles.mascotContainer,
@@ -194,60 +192,46 @@ const CategoriesScreen: React.FC = () => {
             <Text style={styles.emptySubtext}>Time to feed your brain!</Text>
           </View>
         )}
-      </LinearGradient>
-    </SafeAreaView>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
-  },
-  gradient: {
-    flex: 1,
+    backgroundColor: '#FFF8E7',
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-    backgroundColor: 'transparent',
+    backgroundColor: '#FF9F1C',
+    // No fixed height - uses paddingTop for safe area
+  },
+  headerContent: {
+    padding: 20,
+    paddingTop: 10, // Additional padding after safe area
   },
   backButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.05)'
-  },
-  headerTitleContainer: {
-    alignItems: 'center',
+    padding: 8,
+    marginBottom: 16,
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    color: theme.colors.textPrimary,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
-    marginBottom: 4,
+    color: '#FFF',
+    marginBottom: 8,
   },
-  statsContainer: {
+  questionCount: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 159, 28, 0.1)',
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 12,
   },
-  headerSubtitle: {
+  questionCountText: {
     fontSize: 14,
-    color: theme.colors.primary,
+    color: 'rgba(255, 255, 255, 0.9)',
     marginLeft: 6,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir' : 'sans-serif',
+  },
+  content: {
+    flex: 1,
+    backgroundColor: '#FFF8E7',
   },
   mascotContainer: {
     position: 'absolute',

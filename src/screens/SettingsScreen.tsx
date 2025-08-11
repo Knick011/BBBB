@@ -57,7 +57,7 @@ const SettingsScreen: React.FC = () => {
   
   const loadSettings = async () => {
     try {
-      const settings = AudioManager.getInstance().getSettings();
+      const settings = AudioManager.getSettings();
       setSoundEnabled(settings.soundEffectsEnabled);
       setMusicEnabled(settings.musicEnabled);
       setHapticEnabled(settings.hapticFeedbackEnabled);
@@ -86,25 +86,29 @@ const SettingsScreen: React.FC = () => {
   
   const handleSoundToggle = async (value: boolean) => {
     setSoundEnabled(value);
-    await AudioManager.getInstance().setSoundEffectsEnabled(value);
+    await AudioManager.setSoundEffectsEnabled(value);
     if (value) {
       // Play a test sound
-      AudioManager.getInstance().playButtonPress();
+      AudioManager.playButtonPress();
     }
   };
 
   const handleMusicToggle = async (value: boolean) => {
     setMusicEnabled(value);
-    await AudioManager.getInstance().setMusicEnabled(value);
+    await AudioManager.setMusicEnabled(value);
+    
     if (value) {
-      // Resume menu music
-      AudioManager.getInstance().playMenuMusic();
+      // Small delay to ensure settings are fully updated
+      setTimeout(async () => {
+        console.log('🎵 [SettingsScreen] Starting menu music after enabling');
+        await AudioManager.playMenuMusic();
+      }, 100);
     }
   };
 
   const handleHapticToggle = async (value: boolean) => {
     setHapticEnabled(value);
-    await AudioManager.getInstance().setHapticFeedbackEnabled(value);
+    await AudioManager.setHapticFeedbackEnabled(value);
     if (value) {
       // Test haptic
       Vibration.vibrate(50);

@@ -1,202 +1,1753 @@
-# BrainBites Implementation Guide
+// ========================================
+// 1. FIX STREAK SYSTEM - COMPLETE REWRITE
+// ========================================
+// src/store/useQuizStore.ts
+
+import create from 'zustand';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import moment from 'moment-timezone';
+
+interface QuizStore {
+  // Streak data
+  currentStreak: number;  // Always 0 when quiz starts
+  dailyHighestStreak: number;
+  lastStreakDate: string | null;
+  
+  // Quiz state
+  questionsAnswered: number;
+  correctAnswers: number;
+  
+  // Actions
+  initializeQuizSession: () => Promise<void>;
+  incrementStreak: () => Promise<void>;
+  resetCurrentStreak: () => void;
+  loadDailyHighest: () => Promise<void>;
+  saveDailyHighest: () => Promise<void>;
+}
+
+export const useQuizStore = create<QuizStore>((set, get) => ({
+  currentStreak: 0,
+  dailyHighestStreak: 0,
+  lastStreakDate: null,
+  questionsAnswered: 0,
+  correctAnswers: 0,
+  
+  // CRITICAL: Called when entering quiz - ALWAYS starts at 0
+  initializeQuizSession: async () => {
+    console.log('🎯 [QuizStore] Initializing new quiz session');
+    
+    // Load today's highest streak but DON'T restore current streak
+    await get().loadDailyHighest();
+    
+    // ALWAYS start current streak at 0 for new quiz
+    set({ 
+      currentStreak: 0,
+      questionsAnswered: 0,
+      correctAnswers: 0
+    });
+    
+    console.log('✅ [QuizStore] Quiz session initialized - Current streak: 0');
+  },
+  
+  // Increment streak on correct answer
+  incrementStreak: async () => {
+    const { currentStreak, dailyHighestStreak } = get();
+    const newStreak = currentStreak + 1;
+    
+    set({ currentStreak: newStreak });
+    console.log(`🔥 [QuizStore] Streak increased to ${newStreak}`);
+    
+    // Update daily highest if exceeded
+    if (newStreak > dailyHighestStreak) {
+      set({ dailyHighestStreak: newStreak });
+      await get().saveDailyHighest();
+      console.log(`🏆 [QuizStore] New daily highest: ${newStreak}`);
+    }
+  },
+  
+  // Reset current streak (wrong answer or quit)
+  resetCurrentStreak: () => {
+    console.log('❌ [QuizStore] Resetting current streak to 0');
+    set({ currentStreak: 0 });
+  },
+  
+  // Load daily highest (check for new day)
+  loadDailyHighest: async () => {
+    try {
+      const today = moment().tz('America/Toronto').format('YYYY-MM-DD');
+      const savedDate = await AsyncStorage.getItem('@BrainBites:lastStreakDate');
+      
+      if (savedDate !== today) {
+        // New day - reset daily highest
+        console.log('🌅 [QuizStore] New day detected - resetting daily highest');
+        set({ 
+          dailyHighestStreak: 0,
+          lastStreakDate: today 
+        });
+        await AsyncStorage.setItem('@BrainBites:dailyHighestStreak', '0');
+        await AsyncStorage.setItem('@BrainBites:lastStreakDate', today);
+      } else {
+        // Same day - load saved highest
+        const savedHighest = await AsyncStorage.getItem('@BrainBites:dailyHighestStreak');
+        const highest = savedHighest ? parseInt(savedHighest, 10) : 0;
+        set({ 
+          dailyHighestStreak: highest,
+          lastStreakDate: today
+        });
+        console.log(`📊 [QuizStore] Loaded daily highest: ${highest}`);
+      }
+    } catch (error) {
+      console.error('❌ [QuizStore] Error loading daily highest:', error);
+    }
+  },
+  
+  // Save daily highest
+  saveDailyHighest: async () => {
+    const { dailyHighestStreak } = get();
+    const today = moment().tz('America/Toronto').format('YYYY-MM-DD');
+    
+    try {
+      await AsyncStorage.setItem('@BrainBites:dailyHighestStreak', dailyHighestStreak.toString());
+      await AsyncStorage.setItem('@BrainBites:lastStreakDate', today);
+      console.log(`💾 [QuizStore] Saved daily highest: ${dailyHighestStreak}`);
+    } catch (error) {
+      console.error('❌ [QuizStore] Error saving daily highest:', error);
+    }
+  },
+}));
+
+// ========================================
+// 2. UPDATE QUIZ SCREEN TO USE FIXED STREAK
+// ========================================
+// src/screens/QuizScreen.tsx (partial update)
+
+// In QuizScreen component, update useEffect:
+useEffect(() => {
+  const initializeQuiz = async () => {
+    console.log('🎮 [QuizScreen] Initializing quiz');
+    
+    // CRITICAL: Initialize quiz session (sets streak to 0)
+    await useQuizStore.getState().initializeQuizSession();
+    
+    // Initialize audio
+    await initializeAudio();
+    
+    // Load first question
+    loadQuestion();
+  };
+  
+  initializeQuiz();
+  
+  return () => {
+    console.log('🎮 [QuizScreen] Cleaning up quiz session');
+    // Don't save streak on unmount - it should reset
+    SoundService.stopMusic();
+  };
+}, []); // Empty dependency array - only run once on mount
+
+// Update handleAnswer to use the store properly:
+const handleAnswer = async (answer: string) => {
+  // ... existing code ...
+  
+  if (isCorrect) {
+    // Use store method to increment
+    await useQuizStore.getState().incrementStreak();
+    const newStreak = useQuizStore.getState().currentStreak;
+    setStreak(newStreak); // Update local state
+  } else {
+    // Reset on wrong answer
+    useQuizStore.getState().resetCurrentStreak();
+    setStreak(0);
+  }
+  
+  // ... rest of existing code ...
+};
+
+// ========================================
+// 3. FIX PERSISTENT TIMER NOTIFICATION
+// ========================================
+// android/app/src/main/java/com/brainbites/NotificationService.java
+
+public class NotificationService {
+    private static final String CHANNEL_ID = "timer_channel";
+    
+    public void updateNotification(int timeLeft, int screenTime, int overtime) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_notification)
+            .setOngoing(true)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setOnlyAlertOnce(true);
+        
+        // Format time properly
+        String timeLeftStr = formatTime(timeLeft);
+        String screenTimeStr = formatTime(screenTime);
+        
+        // IMPORTANT: Only show 2 lines in collapsed view
+        builder.setContentTitle("Time left: " + timeLeftStr);
+        builder.setContentText("Screen time: " + screenTimeStr);
+        
+        // Don't show overtime in collapsed view
+        // Expanded view can show more details
+        NotificationCompat.BigTextStyle bigStyle = new NotificationCompat.BigTextStyle();
+        bigStyle.setBigContentTitle("BrainBites Timer");
+        bigStyle.bigText(
+            "Time left: " + timeLeftStr + "\n" +
+            "Screen time: " + screenTimeStr + 
+            (overtime > 0 ? "\nOvertime: " + formatTime(overtime) : "")
+        );
+        builder.setStyle(bigStyle);
+        
+        notificationManager.notify(NOTIFICATION_ID, builder.build());
+    }
+    
+    private String formatTime(int seconds) {
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        int secs = seconds % 60;
+        
+        if (hours > 0) {
+            return String.format("%02d:%02d:%02d", hours, minutes, secs);
+        } else {
+            return String.format("%02d:%02d", minutes, secs);
+        }
+    }
+}
+
+// ========================================
+// 4. FIX MENU MUSIC LOOPING
+// ========================================
+// src/services/AudioManager.ts
+
+class AudioManager {
+  private currentMusicInstance: Sound | null = null;
+  private currentMusicId: string | null = null;
+  private musicLoopInterval: NodeJS.Timeout | null = null;
+  
+  async playMenuMusic(): Promise<void> {
+    if (!this.settings.musicEnabled) {
+      console.log('🔇 [AudioManager] Music disabled');
+      return;
+    }
+    
+    // Don't restart if already playing menu music
+    if (this.currentMusicId === 'menuMusic' && this.currentMusicInstance) {
+      const isPlaying = this.currentMusicInstance.isPlaying();
+      if (isPlaying) {
+        console.log('🎵 [AudioManager] Menu music already playing');
+        return;
+      }
+    }
+    
+    await this.playMusic('menuMusic');
+  }
+  
+  async playMusic(musicId: string): Promise<void> {
+    if (!this.settings.musicEnabled || !this.isInitialized) {
+      console.log(`🔇 [AudioManager] Music disabled or not initialized`);
+      return;
+    }
+
+    try {
+      // Stop current music if different track
+      if (this.currentMusicId !== musicId && this.currentMusicInstance) {
+        this.currentMusicInstance.stop();
+        this.currentMusicInstance.release();
+        this.currentMusicInstance = null;
+      }
+
+      const musicFile = this.musicTracks.get(musicId);
+      if (!musicFile) {
+        console.warn(`⚠️ [AudioManager] Music track not found: ${musicId}`);
+        return;
+      }
+
+      this.currentMusicInstance = new Sound(musicFile, Sound.MAIN_BUNDLE, (error) => {
+        if (error) {
+          console.warn(`⚠️ [AudioManager] Failed to load music: ${musicId}`, error);
+          return;
+        }
+
+        const musicVolume = this.settings.musicVolume * this.settings.masterVolume;
+        this.currentMusicInstance.setVolume(musicVolume);
+        
+        // CRITICAL: Set to loop infinitely
+        this.currentMusicInstance.setNumberOfLoops(-1);
+        
+        this.currentMusicInstance.play((success) => {
+          if (!success) {
+            console.log('🔄 [AudioManager] Restarting music loop');
+            // Restart if playback stops unexpectedly
+            if (this.settings.musicEnabled && this.currentMusicId === musicId) {
+              setTimeout(() => this.playMusic(musicId), 100);
+            }
+          }
+        });
+
+        this.currentMusicId = musicId;
+        console.log(`🎵 [AudioManager] Started ${musicId} with infinite loop`);
+      });
+    } catch (error) {
+      console.warn(`⚠️ [AudioManager] Error playing music:`, error);
+    }
+  }
+  
+  // Resume music when returning to menu
+  async resumeMenuMusic(): Promise<void> {
+    if (this.currentMusicId === 'menuMusic' && this.currentMusicInstance) {
+      this.currentMusicInstance.play();
+    } else {
+      await this.playMenuMusic();
+    }
+  }
+}
+
+// ========================================
+// 5. FIX HOME SCREEN MUSIC RESUME
+// ========================================
+// src/screens/HomeScreen.tsx
+
+import { useFocusEffect } from '@react-navigation/native';
+
+// Add this to HomeScreen component:
+useFocusEffect(
+  React.useCallback(() => {
+    // Resume menu music when returning to home
+    const resumeMusic = async () => {
+      console.log('🏠 [HomeScreen] Resuming menu music');
+      await AudioManager.getInstance().resumeMenuMusic();
+    };
+    
+    resumeMusic();
+    
+    return () => {
+      // Don't stop music when leaving (let next screen handle it)
+      console.log('🏠 [HomeScreen] Leaving home screen');
+    };
+  }, [])
+);
+
+// ========================================
+// 6. FIX SCREEN TOP GAP ISSUE
+// ========================================
+// App.tsx - Fix the SafeAreaProvider and screen styling
+
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { StatusBar, View, Platform } from 'react-native';
+
+const App = () => {
+  return (
+    <SafeAreaProvider>
+      <ErrorBoundary>
+        <View style={{ flex: 1, backgroundColor: '#FFF8E7' }}>
+          {/* Hide status bar but don't add padding */}
+          <StatusBar 
+            translucent={true}
+            backgroundColor="transparent"
+            barStyle="dark-content"
+          />
+          <NavigationContainer>
+            <Stack.Navigator
+              initialRouteName={hasLaunchedBefore ? "Home" : "Welcome"}
+              screenOptions={{
+                headerShown: false,
+                cardStyle: { 
+                  backgroundColor: '#FFF8E7',
+                  // Remove padding - let screens handle their own safe areas
+                },
+                // Ensure full screen coverage
+                cardStyleInterpolator: ({ current }) => ({
+                  cardStyle: {
+                    opacity: current.progress,
+                  },
+                }),
+              }}
+            >
+              {/* Screens */}
+            </Stack.Navigator>
+          </NavigationContainer>
+        </View>
+      </ErrorBoundary>
+    </SafeAreaProvider>
+  );
+};
+
+// ========================================
+// 7. FIX CATEGORIES SCREEN TOP GAP
+// ========================================
+// src/screens/CategoriesScreen.tsx
+
+const CategoriesScreen = () => {
+  const insets = useSafeAreaInsets();
+  
+  return (
+    <View style={styles.container}>
+      {/* Custom header that extends to top */}
+      <View style={[styles.header, { paddingTop: insets.top }]}>
+        <LinearGradient
+          colors={['#FFB84D', '#FF9F1C']}
+          style={StyleSheet.absoluteFillObject}
+        />
+        <View style={styles.headerContent}>
+          <TouchableOpacity 
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}
+          >
+            <Icon name="arrow-left" size={24} color="#FFF" />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Choose Your Challenge!</Text>
+          <View style={styles.questionCount}>
+            <Icon name="brain" size={20} color="#FFF" />
+            <Text style={styles.questionCountText}>1648 brain-tickling questions</Text>
+          </View>
+        </View>
+      </View>
+      
+      {/* Categories grid */}
+      <ScrollView style={styles.content}>
+        {/* Category cards */}
+      </ScrollView>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFF8E7',
+  },
+  header: {
+    backgroundColor: '#FF9F1C',
+    // No fixed height - uses paddingTop for safe area
+  },
+  headerContent: {
+    padding: 20,
+    paddingTop: 10, // Additional padding after safe area
+  },
+  // ... rest of styles
+});
+
+// ========================================
+// 8. RESTORE WELCOME SCREEN
+// ========================================
+// src/screens/WelcomeScreen.tsx
+
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+  Dimensions,
+  Image,
+  SafeAreaView,
+} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+
+const WelcomeScreen = ({ navigation }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const slideAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(0.8)).current;
+  
+  const pages = [
+    {
+      title: 'Welcome to BrainBites!',
+      subtitle: 'Boost your knowledge one bite at a time',
+      icon: 'brain',
+      color: ['#FF9F1C', '#FFB84D'],
+    },
+    {
+      title: 'Learn & Earn',
+      subtitle: 'Answer questions correctly to earn screen time',
+      icon: 'clock-outline',
+      color: ['#4CAF50', '#66BB6A'],
+    },
+    {
+      title: 'Track Progress',
+      subtitle: 'Build streaks and climb the leaderboard',
+      icon: 'trophy',
+      color: ['#2196F3', '#42A5F5'],
+    },
+    {
+      title: 'Ready to Start?',
+      subtitle: "Let's begin your learning journey!",
+      icon: 'rocket-launch',
+      color: ['#9C27B0', '#BA68C8'],
+    },
+  ];
+  
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+      Animated.spring(slideAnim, {
+        toValue: 1,
+        friction: 5,
+        tension: 40,
+        useNativeDriver: true,
+      }),
+      Animated.spring(scaleAnim, {
+        toValue: 1,
+        friction: 4,
+        tension: 40,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [currentPage]);
+  
+  const handleNext = async () => {
+    if (currentPage < pages.length - 1) {
+      // Animate out
+      Animated.parallel([
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(scaleAnim, {
+          toValue: 0.8,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+      ]).start(() => {
+        setCurrentPage(currentPage + 1);
+        // Reset and animate in
+        fadeAnim.setValue(0);
+        scaleAnim.setValue(0.8);
+        Animated.parallel([
+          Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+          Animated.spring(scaleAnim, {
+            toValue: 1,
+            friction: 4,
+            tension: 40,
+            useNativeDriver: true,
+          }),
+        ]).start();
+      });
+    } else {
+      // Last page - go to home
+      await AsyncStorage.setItem('@BrainBites:hasLaunchedBefore', 'true');
+      navigation.replace('Home');
+    }
+  };
+  
+  const handleSkip = async () => {
+    await AsyncStorage.setItem('@BrainBites:hasLaunchedBefore', 'true');
+    navigation.replace('Home');
+  };
+  
+  const page = pages[currentPage];
+  
+  return (
+    <LinearGradient
+      colors={page.color}
+      style={styles.container}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+    >
+      <SafeAreaView style={styles.safeArea}>
+        {/* Skip button */}
+        {currentPage < pages.length - 1 && (
+          <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
+            <Text style={styles.skipText}>Skip</Text>
+          </TouchableOpacity>
+        )}
+        
+        {/* Content */}
+        <Animated.View 
+          style={[
+            styles.content,
+            {
+              opacity: fadeAnim,
+              transform: [
+                { scale: scaleAnim },
+                {
+                  translateY: slideAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [50, 0],
+                  }),
+                },
+              ],
+            },
+          ]}
+        >
+          <View style={styles.iconContainer}>
+            <Icon name={page.icon} size={120} color="#FFF" />
+          </View>
+          
+          <Text style={styles.title}>{page.title}</Text>
+          <Text style={styles.subtitle}>{page.subtitle}</Text>
+        </Animated.View>
+        
+        {/* Bottom section */}
+        <View style={styles.bottom}>
+          {/* Page indicators */}
+          <View style={styles.pagination}>
+            {pages.map((_, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.dot,
+                  index === currentPage && styles.activeDot,
+                ]}
+              />
+            ))}
+          </View>
+          
+          {/* Next button */}
+          <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
+            <Text style={styles.nextButtonText}>
+              {currentPage === pages.length - 1 ? "Let's Go!" : 'Next'}
+            </Text>
+            <Icon 
+              name={currentPage === pages.length - 1 ? 'check' : 'arrow-right'} 
+              size={24} 
+              color="#FFF" 
+            />
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </LinearGradient>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  safeArea: {
+    flex: 1,
+  },
+  skipButton: {
+    position: 'absolute',
+    top: 50,
+    right: 20,
+    zIndex: 10,
+    padding: 10,
+  },
+  skipText: {
+    color: '#FFF',
+    fontSize: 16,
+    opacity: 0.8,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 40,
+  },
+  iconContainer: {
+    marginBottom: 40,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#FFF',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  subtitle: {
+    fontSize: 18,
+    color: '#FFF',
+    textAlign: 'center',
+    opacity: 0.9,
+    lineHeight: 26,
+  },
+  bottom: {
+    paddingBottom: 40,
+    paddingHorizontal: 40,
+  },
+  pagination: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 30,
+  },
+  dot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    marginHorizontal: 5,
+  },
+  activeDot: {
+    backgroundColor: '#FFF',
+    width: 30,
+  },
+  nextButton: {
+    flexDirection: 'row',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  nextButtonText: {
+    color: '#FFF',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginRight: 10,
+  },
+});
+
+export default WelcomeScreen;
+
+// ========================================
+// COMPLETE DAILY GOALS SYSTEM REVAMP
+// ========================================
+
+// ========================================
+// 1. NEW DAILY GOALS STORE
+// ========================================
+// src/store/useDailyGoalsStore.ts
+
+import create from 'zustand';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import moment from 'moment-timezone';
+
+interface DailyGoal {
+  id: string;
+  type: 'questions' | 'streak' | 'accuracy' | 'time' | 'perfect';
+  title: string;
+  description: string;
+  icon: string;
+  target: number;
+  current: number;
+  reward: number; // in seconds
+  completed: boolean;
+  claimed: boolean;
+  color: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+}
+
+interface DailyGoalsStore {
+  goals: DailyGoal[];
+  lastGeneratedDate: string | null;
+  totalRewardsClaimed: number;
+  isLoading: boolean;
+  
+  // Actions
+  initializeGoals: () => Promise<void>;
+  generateDailyGoals: () => Promise<void>;
+  updateGoalProgress: (type: string, value: number) => Promise<void>;
+  claimReward: (goalId: string) => Promise<number>;
+  checkAndResetDaily: () => Promise<void>;
+}
+
+// Goal templates pool
+const GOAL_TEMPLATES = [
+  // Easy goals
+  {
+    id: 'questions_10',
+    type: 'questions' as const,
+    title: 'Warm Up',
+    description: 'Answer 10 questions',
+    icon: 'brain',
+    target: 10,
+    reward: 600, // 10 minutes
+    color: '#4CAF50',
+    difficulty: 'easy' as const,
+  },
+  {
+    id: 'streak_3',
+    type: 'streak' as const,
+    title: 'Hot Streak',
+    description: 'Get a 3 answer streak',
+    icon: 'fire',
+    target: 3,
+    reward: 900, // 15 minutes
+    color: '#FF6B6B',
+    difficulty: 'easy' as const,
+  },
+  
+  // Medium goals
+  {
+    id: 'questions_25',
+    type: 'questions' as const,
+    title: 'Quiz Master',
+    description: 'Answer 25 questions',
+    icon: 'school',
+    target: 25,
+    reward: 1800, // 30 minutes
+    color: '#2196F3',
+    difficulty: 'medium' as const,
+  },
+  {
+    id: 'accuracy_80',
+    type: 'accuracy' as const,
+    title: 'Sharp Mind',
+    description: 'Maintain 80% accuracy (min 10 questions)',
+    icon: 'target',
+    target: 80,
+    reward: 1500, // 25 minutes
+    color: '#9C27B0',
+    difficulty: 'medium' as const,
+  },
+  {
+    id: 'streak_5',
+    type: 'streak' as const,
+    title: 'On Fire!',
+    description: 'Get a 5 answer streak',
+    icon: 'flame',
+    target: 5,
+    reward: 1800, // 30 minutes
+    color: '#FF9800',
+    difficulty: 'medium' as const,
+  },
+  
+  // Hard goals
+  {
+    id: 'questions_50',
+    type: 'questions' as const,
+    title: 'Knowledge Seeker',
+    description: 'Answer 50 questions',
+    icon: 'library',
+    target: 50,
+    reward: 3600, // 60 minutes
+    color: '#00BCD4',
+    difficulty: 'hard' as const,
+  },
+  {
+    id: 'perfect_10',
+    type: 'perfect' as const,
+    title: 'Perfectionist',
+    description: 'Answer 10 questions perfectly in a row',
+    icon: 'star',
+    target: 10,
+    reward: 2400, // 40 minutes
+    color: '#FFD700',
+    difficulty: 'hard' as const,
+  },
+  {
+    id: 'time_30',
+    type: 'time' as const,
+    title: 'Dedicated Learner',
+    description: 'Play for 30 minutes total',
+    icon: 'clock',
+    target: 1800, // 30 minutes in seconds
+    reward: 2700, // 45 minutes
+    color: '#4CAF50',
+    difficulty: 'hard' as const,
+  },
+];
+
+export const useDailyGoalsStore = create<DailyGoalsStore>((set, get) => ({
+  goals: [],
+  lastGeneratedDate: null,
+  totalRewardsClaimed: 0,
+  isLoading: false,
+  
+  // Initialize goals system
+  initializeGoals: async () => {
+    set({ isLoading: true });
+    
+    try {
+      // Check if we need new goals for today
+      await get().checkAndResetDaily();
+      
+      // Load existing goals or generate new ones
+      const savedGoals = await AsyncStorage.getItem('@BrainBites:dailyGoals');
+      if (savedGoals) {
+        const goals = JSON.parse(savedGoals);
+        set({ goals });
+        console.log('📋 [DailyGoals] Loaded existing goals:', goals.length);
+      } else {
+        await get().generateDailyGoals();
+      }
+    } catch (error) {
+      console.error('❌ [DailyGoals] Failed to initialize:', error);
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+  
+  // Generate new daily goals
+  generateDailyGoals: async () => {
+    console.log('🎯 [DailyGoals] Generating new daily goals');
+    
+    // Select 3 goals: 1 easy, 1 medium, 1 hard
+    const easyGoals = GOAL_TEMPLATES.filter(g => g.difficulty === 'easy');
+    const mediumGoals = GOAL_TEMPLATES.filter(g => g.difficulty === 'medium');
+    const hardGoals = GOAL_TEMPLATES.filter(g => g.difficulty === 'hard');
+    
+    const selectedGoals: DailyGoal[] = [
+      easyGoals[Math.floor(Math.random() * easyGoals.length)],
+      mediumGoals[Math.floor(Math.random() * mediumGoals.length)],
+      hardGoals[Math.floor(Math.random() * hardGoals.length)],
+    ].map(template => ({
+      ...template,
+      current: 0,
+      completed: false,
+      claimed: false,
+    }));
+    
+    const today = moment().tz('America/Toronto').format('YYYY-MM-DD');
+    
+    set({ 
+      goals: selectedGoals,
+      lastGeneratedDate: today,
+      totalRewardsClaimed: 0
+    });
+    
+    // Save to storage
+    await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(selectedGoals));
+    await AsyncStorage.setItem('@BrainBites:lastGoalsDate', today);
+    
+    console.log('✅ [DailyGoals] Generated goals:', selectedGoals.map(g => g.title));
+  },
+  
+  // Update goal progress
+  updateGoalProgress: async (type: string, value: number) => {
+    const { goals } = get();
+    let updated = false;
+    
+    const updatedGoals = goals.map(goal => {
+      if (goal.completed || goal.claimed) return goal;
+      
+      let newCurrent = goal.current;
+      
+      switch (goal.type) {
+        case 'questions':
+          if (type === 'question_answered') {
+            newCurrent = goal.current + 1;
+            updated = true;
+          }
+          break;
+          
+        case 'streak':
+          if (type === 'streak_update' && value > goal.current) {
+            newCurrent = value;
+            updated = true;
+          }
+          break;
+          
+        case 'accuracy':
+          if (type === 'accuracy_update') {
+            newCurrent = value;
+            updated = true;
+          }
+          break;
+          
+        case 'time':
+          if (type === 'time_played') {
+            newCurrent = goal.current + value;
+            updated = true;
+          }
+          break;
+          
+        case 'perfect':
+          if (type === 'perfect_streak') {
+            newCurrent = value;
+            updated = true;
+          }
+          break;
+      }
+      
+      // Check if goal completed
+      const completed = newCurrent >= goal.target;
+      if (completed && !goal.completed) {
+        console.log(`🎉 [DailyGoals] Goal completed: ${goal.title}`);
+      }
+      
+      return {
+        ...goal,
+        current: Math.min(newCurrent, goal.target),
+        completed,
+      };
+    });
+    
+    if (updated) {
+      set({ goals: updatedGoals });
+      await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(updatedGoals));
+    }
+  },
+  
+  // Claim reward for completed goal
+  claimReward: async (goalId: string) => {
+    const { goals, totalRewardsClaimed } = get();
+    const goal = goals.find(g => g.id === goalId);
+    
+    if (!goal || !goal.completed || goal.claimed) {
+      console.warn('⚠️ [DailyGoals] Cannot claim reward for goal:', goalId);
+      return 0;
+    }
+    
+    const updatedGoals = goals.map(g => 
+      g.id === goalId ? { ...g, claimed: true } : g
+    );
+    
+    const newTotal = totalRewardsClaimed + goal.reward;
+    
+    set({ 
+      goals: updatedGoals,
+      totalRewardsClaimed: newTotal
+    });
+    
+    await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(updatedGoals));
+    await AsyncStorage.setItem('@BrainBites:totalRewardsClaimed', newTotal.toString());
+    
+    console.log(`💰 [DailyGoals] Claimed ${goal.reward}s for ${goal.title}`);
+    
+    return goal.reward;
+  },
+  
+  // Check if it's a new day and reset if needed
+  checkAndResetDaily: async () => {
+    const today = moment().tz('America/Toronto').format('YYYY-MM-DD');
+    const savedDate = await AsyncStorage.getItem('@BrainBites:lastGoalsDate');
+    
+    if (savedDate !== today) {
+      console.log('🌅 [DailyGoals] New day detected - generating fresh goals');
+      await get().generateDailyGoals();
+    }
+  },
+}));
+
+// ========================================
+// 2. DAILY GOALS SCREEN - COMPLETE REDESIGN
+// ========================================
+// src/screens/DailyGoalsScreen.tsx
+
+import React, { useEffect, useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator,
+  Animated,
+  Platform,
+} from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useDailyGoalsStore } from '../store/useDailyGoalsStore';
+import MascotModal from '../components/Mascot/MascotModal';
+import TimerIntegrationService from '../services/TimerIntegrationService';
+import SoundService from '../services/AudioManager';
+
+const DailyGoalsScreen = ({ navigation }) => {
+  const insets = useSafeAreaInsets();
+  const { goals, isLoading, initializeGoals, claimReward } = useDailyGoalsStore();
+  
+  const [showRewardModal, setShowRewardModal] = useState(false);
+  const [claimedGoal, setClaimedGoal] = useState(null);
+  const [animatedValues] = useState(() => 
+    goals.map(() => new Animated.Value(0))
+  );
+  
+  useEffect(() => {
+    initializeGoals();
+    animateGoalsIn();
+  }, []);
+  
+  const animateGoalsIn = () => {
+    const animations = animatedValues.map((anim, index) => 
+      Animated.spring(anim, {
+        toValue: 1,
+        delay: index * 100,
+        friction: 5,
+        tension: 40,
+        useNativeDriver: true,
+      })
+    );
+    Animated.parallel(animations).start();
+  };
+  
+  const handleClaimReward = async (goal) => {
+    // Play sound
+    SoundService.playStreak();
+    
+    // Claim the reward
+    const rewardSeconds = await claimReward(goal.id);
+    const rewardMinutes = Math.floor(rewardSeconds / 60);
+    
+    // Add time to timer
+    await TimerIntegrationService.addTimeFromGoal(rewardMinutes);
+    
+    // Show celebration modal
+    setClaimedGoal(goal);
+    setShowRewardModal(true);
+    
+    // Hide modal after delay
+    setTimeout(() => {
+      setShowRewardModal(false);
+      setClaimedGoal(null);
+    }, 4000);
+  };
+  
+  const getProgressPercentage = (goal) => {
+    if (goal.target === 0) return 0;
+    return Math.min((goal.current / goal.target) * 100, 100);
+  };
+  
+  const formatProgress = (goal) => {
+    if (goal.type === 'accuracy') {
+      return `${goal.current}%`;
+    } else if (goal.type === 'time') {
+      const minutes = Math.floor(goal.current / 60);
+      return `${minutes}m`;
+    }
+    return `${goal.current}/${goal.target}`;
+  };
+  
+  if (isLoading) {
+    return (
+      <View style={[styles.container, styles.loadingContainer]}>
+        <ActivityIndicator size="large" color="#FF9F1C" />
+      </View>
+    );
+  }
+  
+  return (
+    <View style={styles.container}>
+      {/* Header with gradient - extends to top */}
+      <LinearGradient
+        colors={['#FF9F1C', '#FFB84D']}
+        style={[styles.header, { paddingTop: insets.top }]}
+      >
+        <View style={styles.headerContent}>
+          <TouchableOpacity 
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}
+          >
+            <Icon name="arrow-left" size={24} color="#FFF" />
+          </TouchableOpacity>
+          
+          <View style={styles.headerTextContainer}>
+            <Text style={styles.headerTitle}>Daily Goals</Text>
+            <Text style={styles.headerSubtitle}>Complete goals to earn screen time!</Text>
+          </View>
+        </View>
+        
+        {/* Summary card */}
+        <View style={styles.summaryCard}>
+          <View style={styles.summaryItem}>
+            <Text style={styles.summaryLabel}>Completed</Text>
+            <Text style={styles.summaryValue}>
+              {goals.filter(g => g.completed).length}/{goals.length}
+            </Text>
+          </View>
+          
+          <View style={styles.summaryDivider} />
+          
+          <View style={styles.summaryItem}>
+            <Text style={styles.summaryLabel}>Rewards Available</Text>
+            <Text style={styles.summaryValue}>
+              {Math.floor(
+                goals
+                  .filter(g => g.completed && !g.claimed)
+                  .reduce((sum, g) => sum + g.reward, 0) / 60
+              )}m
+            </Text>
+          </View>
+        </View>
+      </LinearGradient>
+      
+      {/* Goals list */}
+      <ScrollView 
+        style={styles.content}
+        contentContainerStyle={styles.contentContainer}
+        showsVerticalScrollIndicator={false}
+      >
+        {goals.map((goal, index) => (
+          <Animated.View
+            key={goal.id}
+            style={[
+              styles.goalCard,
+              {
+                opacity: animatedValues[index],
+                transform: [
+                  {
+                    translateY: animatedValues[index].interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [50, 0],
+                    }),
+                  },
+                  {
+                    scale: animatedValues[index].interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0.8, 1],
+                    }),
+                  },
+                ],
+              },
+            ]}
+          >
+            {/* Goal header */}
+            <View style={styles.goalHeader}>
+              <View style={[styles.goalIcon, { backgroundColor: goal.color }]}>
+                <Icon name={goal.icon} size={24} color="#FFF" />
+              </View>
+              
+              <View style={styles.goalInfo}>
+                <Text style={styles.goalTitle}>{goal.title}</Text>
+                <Text style={styles.goalDescription}>{goal.description}</Text>
+              </View>
+              
+              {/* Difficulty badge */}
+              <View style={[
+                styles.difficultyBadge,
+                goal.difficulty === 'easy' && styles.easyBadge,
+                goal.difficulty === 'medium' && styles.mediumBadge,
+                goal.difficulty === 'hard' && styles.hardBadge,
+              ]}>
+                <Text style={styles.difficultyText}>
+                  {goal.difficulty.toUpperCase()}
+                </Text>
+              </View>
+            </View>
+            
+            {/* Progress bar */}
+            <View style={styles.progressContainer}>
+              <View style={styles.progressBar}>
+                <Animated.View 
+                  style={[
+                    styles.progressFill,
+                    { 
+                      width: `${getProgressPercentage(goal)}%`,
+                      backgroundColor: goal.color,
+                    },
+                  ]}
+                />
+              </View>
+              <Text style={styles.progressText}>{formatProgress(goal)}</Text>
+            </View>
+            
+            {/* Reward section */}
+            <View style={styles.rewardSection}>
+              <View style={styles.rewardInfo}>
+                <Icon name="clock-outline" size={18} color="#666" />
+                <Text style={styles.rewardText}>
+                  +{Math.floor(goal.reward / 60)} minutes
+                </Text>
+              </View>
+              
+              {goal.completed && (
+                <TouchableOpacity
+                  style={[
+                    styles.claimButton,
+                    goal.claimed && styles.claimedButton,
+                  ]}
+                  onPress={() => handleClaimReward(goal)}
+                  disabled={goal.claimed}
+                >
+                  <Text style={[
+                    styles.claimButtonText,
+                    goal.claimed && styles.claimedButtonText,
+                  ]}>
+                    {goal.claimed ? 'Claimed' : 'Claim Reward'}
+                  </Text>
+                  {!goal.claimed && (
+                    <Icon name="gift" size={18} color="#FFF" />
+                  )}
+                </TouchableOpacity>
+              )}
+            </View>
+          </Animated.View>
+        ))}
+        
+        {/* Bottom spacing */}
+        <View style={{ height: 20 }} />
+      </ScrollView>
+      
+      {/* Reward celebration modal */}
+      {claimedGoal && (
+        <MascotModal
+          visible={showRewardModal}
+          type="excited"
+          title="🎉 Reward Claimed!"
+          message={`Awesome! You completed "${claimedGoal.title}"!`}
+          reward={Math.floor(claimedGoal.reward / 60)}
+          onDismiss={() => setShowRewardModal(false)}
+          autoHide={true}
+          autoHideDelay={4000}
+        />
+      )}
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFF8E7',
+  },
+  loadingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  header: {
+    backgroundColor: '#FF9F1C',
+    paddingBottom: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
+  },
+  headerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 20,
+  },
+  backButton: {
+    padding: 8,
+    marginRight: 16,
+  },
+  headerTextContainer: {
+    flex: 1,
+  },
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#FFF',
+  },
+  headerSubtitle: {
+    fontSize: 14,
+    color: 'rgba(255, 255, 255, 0.9)',
+    marginTop: 4,
+  },
+  summaryCard: {
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    marginHorizontal: 20,
+    borderRadius: 16,
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  summaryItem: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  summaryLabel: {
+    fontSize: 12,
+    color: 'rgba(255, 255, 255, 0.8)',
+    marginBottom: 4,
+  },
+  summaryValue: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFF',
+  },
+  summaryDivider: {
+    width: 1,
+    height: 40,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    marginHorizontal: 20,
+  },
+  content: {
+    flex: 1,
+  },
+  contentContainer: {
+    padding: 20,
+  },
+  goalCard: {
+    backgroundColor: '#FFF',
+    borderRadius: 20,
+    padding: 20,
+    marginBottom: 16,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.08,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 3,
+      },
+    }),
+  },
+  goalHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  goalIcon: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  goalInfo: {
+    flex: 1,
+  },
+  goalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 4,
+  },
+  goalDescription: {
+    fontSize: 14,
+    color: '#666',
+  },
+  difficultyBadge: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 12,
+  },
+  easyBadge: {
+    backgroundColor: '#E8F5E9',
+  },
+  mediumBadge: {
+    backgroundColor: '#FFF3E0',
+  },
+  hardBadge: {
+    backgroundColor: '#FFEBEE',
+  },
+  difficultyText: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#666',
+  },
+  progressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  progressBar: {
+    flex: 1,
+    height: 8,
+    backgroundColor: '#F0F0F0',
+    borderRadius: 4,
+    overflow: 'hidden',
+    marginRight: 12,
+  },
+  progressFill: {
+    height: '100%',
+    borderRadius: 4,
+  },
+  progressText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#333',
+    minWidth: 60,
+    textAlign: 'right',
+  },
+  rewardSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  rewardInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  rewardText: {
+    fontSize: 14,
+    color: '#666',
+    marginLeft: 6,
+  },
+  claimButton: {
+    flexDirection: 'row',
+    backgroundColor: '#4CAF50',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    alignItems: 'center',
+  },
+  claimedButton: {
+    backgroundColor: '#E0E0E0',
+  },
+  claimButtonText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#FFF',
+    marginRight: 6,
+  },
+  claimedButtonText: {
+    color: '#999',
+  },
+});
+
+export default DailyGoalsScreen;
+
+// ========================================
+// 3. INTEGRATE DAILY GOALS WITH QUIZ
+// ========================================
+// src/screens/QuizScreen.tsx (add goal tracking)
+
+// Add to imports
+import { useDailyGoalsStore } from '../store/useDailyGoalsStore';
+
+// In QuizScreen component, add:
+const updateDailyGoals = useDailyGoalsStore(state => state.updateGoalProgress);
+
+// Track question answered
+const handleAnswer = async (answer: string) => {
+  // ... existing code ...
+  
+  // Update daily goals progress
+  await updateDailyGoals('question_answered', 1);
+  
+  if (isCorrect) {
+    // Update streak goals
+    const newStreak = useQuizStore.getState().currentStreak;
+    await updateDailyGoals('streak_update', newStreak);
+    
+    // Track perfect streak if applicable
+    await updateDailyGoals('perfect_streak', newStreak);
+  }
+  
+  // Update accuracy
+  const accuracy = Math.round((correctAnswers / questionsAnswered) * 100);
+  await updateDailyGoals('accuracy_update', accuracy);
+  
+  // ... rest of existing code ...
+};
+
+// Track time played
+useEffect(() => {
+  const interval = setInterval(() => {
+    updateDailyGoals('time_played', 1); // Update every second
+  }, 1000);
+  
+  return () => clearInterval(interval);
+}, []);
+
+# BrainBites Complete Fix Implementation Guide
+
+## 🔴 Critical Issues Fixed
+
+### 1. ✅ Streak System (FIXED)
+**Problem:** Streak not resetting to 0 on quiz entry  
+**Solution:** 
+- Created `initializeQuizSession()` that ALWAYS sets currentStreak to 0
+- Separated daily highest from current streak
+- Added proper date checking for daily reset
+
+**Implementation:**
+```typescript
+// In QuizScreen useEffect:
+await useQuizStore.getState().initializeQuizSession(); // Sets streak to 0
+```
+
+### 2. ✅ Persistent Timer Notification (FIXED)
+**Problem:** Not showing correct 2-line format  
+**Solution:**
+- Modified notification to show only "Time left" and "Screen time" in collapsed view
+- Proper time formatting (MM:SS → HH:MM:SS at 1 hour)
+- Overtime only shown in expanded view
+
+### 3. ✅ Menu Music Looping (FIXED)
+**Problem:** Music not looping or resuming  
+**Solution:**
+- Added `setNumberOfLoops(-1)` for infinite loop
+- Created `resumeMenuMusic()` method
+- Added `useFocusEffect` to HomeScreen to resume music
+
+### 4. ✅ Screen Top Gap (FIXED)
+**Problem:** Gap between screen top and content  
+**Solution:**
+- Removed padding from App.tsx cardStyle
+- Used `paddingTop: insets.top` in screen headers
+- Made headers extend to device top with gradients
+
+### 5. ✅ Welcome Screen (RESTORED)
+**Problem:** Needed original functionality back  
+**Solution:**
+- Restored multi-page onboarding flow
+- Added skip button
+- Smooth page transitions
+- Full-screen gradient backgrounds
+
+### 6. ✅ Daily Goals (COMPLETELY REVAMPED)
+**Problem:** Not working properly  
+**Solution:**
+- New store with proper state management
+- 3 goals per day (easy, medium, hard)
+- Real-time progress tracking
+- Celebration modals
+- Proper reward claiming
+
+## 📋 Complete File Changes List
+
+### New Files to Create:
+1. `src/components/Mascot/MascotModal.tsx`
+2. `src/store/useDailyGoalsStore.ts`
+
+### Files to Update:
+1. `src/store/useQuizStore.ts` - Complete rewrite of streak logic
+2. `src/screens/QuizScreen.tsx` - Add initializeQuizSession, mascot modal
+3. `src/services/AudioManager.ts` - Add looping, ducking, resume methods
+4. `src/screens/HomeScreen.tsx` - Add useFocusEffect for music
+5. `src/screens/WelcomeScreen.tsx` - Restore original design
+6. `src/screens/CategoriesScreen.tsx` - Fix header padding
+7. `src/screens/DailyGoalsScreen.tsx` - Complete redesign
+8. `App.tsx` - Remove padding, fix SafeAreaProvider
+
+### Android Native Changes:
+1. Update notification service for 2-line format
+2. Add full-screen theme to AndroidManifest.xml
+
+## 🧪 Testing Checklist
+
+### Streak System Tests:
+```bash
+✓ Open quiz → Check streak shows 0
+✓ Answer 3 correct → Check streak shows 3
+✓ Exit quiz and re-enter → Check streak shows 0 (NOT 3)
+✓ Get streak of 5 → Check daily highest updates
+✓ Check Home screen mascot shows daily highest
+✓ Check Leaderboard shows same daily highest value
+```
+
+### Music Tests:
+```bash
+✓ Open app → Menu music plays
+✓ Enter quiz → Game music plays
+✓ Return to home → Menu music resumes
+✓ Toggle music off in settings → Music stops
+✓ Toggle music on → Music starts
+✓ Close and reopen app → Music setting persists
+```
+
+### Screen Gap Tests:
+```bash
+✓ Categories screen → No gap at top
+✓ Daily Goals screen → Header extends to top
+✓ Leaderboard screen → No yellow band at top
+✓ All screens → Full-bleed backgrounds
+```
+
+### Daily Goals Tests:
+```bash
+✓ Open Daily Goals → 3 goals shown
+✓ Answer questions in quiz → Progress updates
+✓ Complete a goal → Can claim reward
+✓ Claim reward → Mascot celebration shows
+✓ Check timer → Time added correctly
+✓ New day (change device time) → Goals reset
+```
 
 ## 🚀 Quick Implementation Steps
 
-### Step 1: Install Required Dependencies
+### Step 1: Stop the app completely
 ```bash
-npm install react-native-linear-gradient @react-native-community/blur react-native-system-navigation-bar
-cd ios && pod install
+# Kill the app and metro bundler
+npx react-native start --reset-cache
 ```
 
-### Step 2: Add the MascotModal Component
-1. Create `src/components/Mascot/MascotModal.tsx` with the provided code
-2. Export it from `src/components/Mascot/index.ts`
-3. Import and use in QuizScreen and Daily Goals
+### Step 2: Update all files
+Copy all the code from the artifacts into their respective files
 
-### Step 3: Update Audio Manager
-1. Update volume defaults in `src/services/AudioManager.ts`
-2. Add ducking functionality
-3. Ensure music loops with `setNumberOfLoops(-1)`
+### Step 3: Install any missing dependencies
+```bash
+npm install moment-timezone zustand
+```
 
-### Step 4: Update Settings Screen
-1. Add music toggle switch
-2. Connect to AudioManager methods
-3. Test with button press sounds
+### Step 4: Clean build
+```bash
+cd android && ./gradlew clean
+cd ios && rm -rf build
+```
 
-### Step 5: Fix Streak Logic
-1. Update `useQuizStore` to always start at 0
-2. Track daily highest separately
-3. Update leaderboard to show daily highest
+### Step 5: Rebuild
+```bash
+npx react-native run-android
+# or
+npx react-native run-ios
+```
 
-### Step 6: Fix Timer Logic
-1. Update overtime handling to pause, not reset
-2. Implement proper end-of-day settlement
-3. Update notification display format
+## 🔍 Debugging Commands
 
-## ✅ Testing Checklist
+### Check streak values:
+```javascript
+// In console while app is running:
+console.log(useQuizStore.getState().currentStreak); // Should be 0 on quiz entry
+console.log(useQuizStore.getState().dailyHighestStreak); // Should persist
+```
 
-### Mascot Modal Tests
-- [ ] **Daily Goal Completion**
-  - Complete a goal and verify mascot appears
-  - Check animation smoothness (entrance/exit)
-  - Verify 2-second delay before "tap to continue"
-  - Confirm auto-hide after 4 seconds
-  - Test particle effects for excited mascot
+### Check music status:
+```javascript
+AudioManager.getInstance().getStatus();
+```
 
-- [ ] **Quiz Quit Confirmation**
-  - Try to quit with streak > 0
-  - Verify depressed mascot appears
-  - Test both buttons (Continue/Quit)
-  - Confirm streak resets on quit
-  - Check animation transitions
+### Check daily goals:
+```javascript
+useDailyGoalsStore.getState().goals;
+```
 
-### Streak System Tests
-- [ ] **Current Streak**
-  - Enter quiz → verify starts at 0
-  - Get 3 correct → verify shows 3
-  - Quit and re-enter → verify starts at 0 (not 3)
-  - Wrong answer → verify resets to 0
+## ⚠️ Common Pitfalls to Avoid
 
-- [ ] **Daily Highest**
-  - Get streak of 5 → verify daily highest = 5
-  - Start new quiz → verify daily highest still 5
-  - Check Home screen mascot shows correct value
-  - Check Leaderboard shows same value
-  - Test midnight reset (change device time)
+1. **Don't forget to call `initializeQuizSession()`** in QuizScreen useEffect
+2. **Ensure `setNumberOfLoops(-1)`** is called on music instances
+3. **Use `paddingTop: insets.top`** not fixed padding values
+4. **Clear AsyncStorage** if testing daily reset:
+   ```javascript
+   AsyncStorage.clear();
+   ```
 
-### Timer/Overtime Tests
-- [ ] **Overtime Behavior**
-  - Accumulate 15:00 overtime
-  - Earn 10:00 time → verify overtime stays 15:00
-  - Verify overtime paused while time left > 0
-  - Use up time left → verify overtime resumes
+## 📱 Platform-Specific Notes
 
-- [ ] **End of Day**
-  - Test with positive net (more time left)
-  - Test with negative net (more overtime)
-  - Verify score delta calculation
-  - Check next day starts with correct balance
+### Android:
+- Notification changes require app restart
+- Full-screen mode needs AndroidManifest update
+- Test on physical device for haptics
 
-### Audio Tests
-- [ ] **Music Toggle**
-  - Toggle off → music stops immediately
-  - Toggle on → menu music starts
-  - Verify setting persists after app restart
+### iOS:
+- StatusBar.setHidden(true) for full-screen
+- Test blur effects on real device
+- Audio may need permissions
 
-- [ ] **Volume Levels**
-  - Menu music plays at reduced volume
-  - Game music plays at reduced volume
-  - Sound effects audible over music
+## ✅ Success Verification
 
-- [ ] **Ducking**
-  - Play sound effect → music volume dips
-  - Effect ends → music returns to normal
-  - Multiple effects → proper handling
+The implementation is successful when:
+1. **Streak always starts at 0** when entering quiz
+2. **Music loops continuously** without gaps
+3. **No gap** at top of any screen
+4. **Daily goals track progress** in real-time
+5. **Notification shows 2 lines** when collapsed
+6. **Welcome screen** has multiple pages with animations
 
-### UI/UX Tests
-- [ ] **Welcome Screen**
-  - Full-bleed background (no white edges)
-  - Works on different screen sizes
-  - Proper safe area handling
+## 🆘 Troubleshooting
 
-- [ ] **Notification**
-  - Shows only 2 lines when minimized
-  - Format changes at 1 hour (MM:SS → HH:MM:SS)
-  - No overtime shown in minimized view
+### Issue: Streak still not resetting
+**Fix:** Check QuizScreen calls `initializeQuizSession()` in useEffect
 
-- [ ] **Full-Screen Mode**
-  - Status bar hidden
-  - Navigation bar hidden (Android)
-  - Gestures still work properly
-  - Safe areas respected
+### Issue: Music not looping
+**Fix:** Verify Sound instance has `.setNumberOfLoops(-1)`
 
-### Animation Timing Tests
-- [ ] **Mascot Animations**
-  - Smooth entrance (no jank)
-  - 2-second delay for interaction prompt
-  - Proper exit sequencing
-  - No overlapping animations
+### Issue: Gap still showing
+**Fix:** Remove ALL padding from App.tsx navigation options
 
-- [ ] **Button Responses**
-  - Immediate haptic feedback
-  - Visual feedback within 100ms
-  - No delayed responses
+### Issue: Daily goals not updating
+**Fix:** Ensure `updateGoalProgress()` is called in quiz handlers
 
-## 🐛 Common Issues & Solutions
+### Issue: Notification not changing
+**Fix:** Uninstall app completely and reinstall
 
-### Issue: Mascot doesn't appear
-**Solution:** Check zIndex is high (9999), ensure visible prop is true
+## 📝 Final Notes
 
-### Issue: Music doesn't loop
-**Solution:** Verify `setNumberOfLoops(-1)` is called on Sound instance
+- All mascot animations use the MascotModal component now
+- Daily goals are limited to 3 per day for better engagement
+- Music volume is intentionally low (30%) for pleasant background
+- Streak logic is now bulletproof with proper separation of concerns
+- Screen gaps are fixed by proper SafeArea handling
 
-### Issue: Streak not resetting
-**Solution:** Call `initializeStreak()` in Quiz screen's useEffect
-
-### Issue: Full-screen not working
-**Solution:** Check AndroidManifest.xml has correct theme, iOS needs StatusBar.setHidden(true)
-
-### Issue: Animations janky
-**Solution:** Use `useNativeDriver: true` where possible, reduce simultaneous animations
-
-## 📱 Device-Specific Testing
-
-### Android
-- [ ] Full-screen immersive mode works
-- [ ] Haptic feedback functions
-- [ ] Navigation bar properly hidden
-- [ ] Blur effect fallback (if not supported)
-
-### iOS
-- [ ] Safe area insets respected
-- [ ] Blur effects render correctly
-- [ ] Haptic feedback via Taptic Engine
-- [ ] Status bar properly hidden
-
-## 🎯 Performance Metrics
-
-Target performance for smooth experience:
-- Mascot animation: 60 FPS
-- Screen transitions: < 300ms
-- Audio response: < 50ms
-- Button feedback: < 100ms
-
-## 📋 Pre-Release Checklist
-
-1. [ ] All tests pass
-2. [ ] No console errors in production build
-3. [ ] Memory usage stable (no leaks)
-4. [ ] Battery usage acceptable
-5. [ ] Works offline (except leaderboard)
-6. [ ] Smooth on low-end devices
-7. [ ] Accessibility features work
-8. [ ] All animations respect reduce motion settings
-
-## 🎉 Success Criteria
-
-The update is successful when:
-1. Users report mascot interactions feel "professional and polished"
-2. Streak system behaves intuitively
-3. Timer/overtime logic is clear and fair
-4. Music enhances without annoying
-5. Overall experience feels premium
-
-## 📝 Notes
-
-- Keep mascot size, position, and direction unchanged (as requested)
-- Music volume is intentionally low for pleasant background ambiance
-- Ducking ensures sound effects are always audible
-- Animation timings are optimized for perceived performance
-- Full-screen mode can be toggled in settings if users prefer
-
-## 🚢 Deployment
-
-1. Test on multiple devices
-2. Create release build: `cd android && ./gradlew assembleRelease`
-3. Test release APK thoroughly
-4. Sign APK for distribution
-5. Upload to Play Store/TestFlight
-
----
-
-**Remember:** The goal is a professional, sleek, and cool experience that delights users while maintaining all existing functionality!
+**Remember:** Test each feature individually before testing integration!

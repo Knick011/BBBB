@@ -47,6 +47,8 @@ class AudioManager {
   private currentMusicId: string | null = null;
   private soundQueue: QueuedSound[] = [];
   private isProcessingQueue = false;
+  private currentMusicInstance: Sound | null = null;
+  private musicLoopInterval: NodeJS.Timeout | null = null;
 
   // Default settings
   private settings: AudioSettings = {
@@ -105,8 +107,6 @@ class AudioManager {
     ['incorrect', 'incorrect.mp3'],
     ['streak', 'streak.mp3']
   ]);
-
-  private currentMusicInstance: any = null;
 
   private constructor() {
     console.log('🎵 [AudioManager] Initializing simple audio system...');
@@ -393,7 +393,6 @@ class AudioManager {
   // MUSIC MANAGEMENT (PLACEHOLDER)
   // =============================
 
-  // Enhanced play music with loop
   async playMusic(musicId: string): Promise<void> {
     if (!this.settings.musicEnabled || !this.isInitialized) {
       console.log(`🔇 [AudioManager] Music disabled or not initialized`);
@@ -401,11 +400,21 @@ class AudioManager {
     }
 
     try {
-      // Stop current music if playing
+      // If same music is already playing, don't start another instance
+      if (this.currentMusicId === musicId && this.currentMusicInstance) {
+        const isPlaying = this.currentMusicInstance.isPlaying();
+        if (isPlaying) {
+          console.log(`🎵 [AudioManager] ${musicId} already playing, skipping`);
+          return;
+        }
+      }
+
+      // Stop current music if it exists (whether same or different track)
       if (this.currentMusicInstance) {
         this.currentMusicInstance.stop();
         this.currentMusicInstance.release();
         this.currentMusicInstance = null;
+        this.currentMusicId = null;
       }
 
       const musicFile = this.musicTracks.get(musicId);
@@ -422,18 +431,22 @@ class AudioManager {
 
         const musicVolume = this.settings.musicVolume * this.settings.masterVolume;
         this.currentMusicInstance.setVolume(musicVolume);
-        this.currentMusicInstance.setNumberOfLoops(-1); // Loop infinitely
+        
+        // CRITICAL: Set to loop infinitely
+        this.currentMusicInstance.setNumberOfLoops(-1);
         
         this.currentMusicInstance.play((success) => {
-          if (success) {
-            console.log(`✅ [AudioManager] Music completed: ${musicId}`);
-          } else {
-            console.warn(`⚠️ [AudioManager] Music playback failed: ${musicId}`);
+          if (!success) {
+            console.log('🔄 [AudioManager] Restarting music loop');
+            // Restart if playback stops unexpectedly
+            if (this.settings.musicEnabled && this.currentMusicId === musicId) {
+              setTimeout(() => this.playMusic(musicId), 100);
+            }
           }
         });
 
         this.currentMusicId = musicId;
-        console.log(`🎵 [AudioManager] Started playing music: ${musicId} (looping)`);
+        console.log(`🎵 [AudioManager] Started ${musicId} with infinite loop`);
       });
     } catch (error) {
       console.warn(`⚠️ [AudioManager] Error playing music:`, error);
@@ -445,11 +458,11 @@ class AudioManager {
 
     try {
       console.log(`🎵 [AudioManager] Stopping music: ${this.currentMusicId}`);
-      this.currentMusicInstance.stop(() => {
-        this.currentMusicInstance?.release();
-        this.currentMusicInstance = null;
-        this.currentMusicId = null;
-      });
+      this.currentMusicInstance.stop();
+      this.currentMusicInstance.release();
+      this.currentMusicInstance = null;
+      this.currentMusicId = null;
+      console.log('✅ [AudioManager] Music stopped and cleaned up');
     } catch (error) {
       console.warn('⚠️ [AudioManager] Failed to stop music:', error);
     }
@@ -516,9 +529,15 @@ class AudioManager {
 
   async setMusicEnabled(enabled: boolean): Promise<void> {
     this.settings.musicEnabled = enabled;
-    if (!enabled && this.currentMusicId) {
+    
+    if (!enabled) {
+      // Stop any currently playing music
       await this.stopMusic();
+      console.log('🔇 [AudioManager] Music disabled - all music stopped');
+    } else {
+      console.log('🎵 [AudioManager] Music enabled - ready to play');
     }
+    
     await this.saveSettings();
     console.log(`🎵 [AudioManager] Music: ${enabled ? 'enabled' : 'disabled'}`);
   }
@@ -577,6 +596,15 @@ class AudioManager {
 
   async playGameMusic(): Promise<void> {
     await this.playMusic('gameMusic');
+  }
+
+  // Resume music when returning to menu
+  async resumeMenuMusic(): Promise<void> {
+    if (this.currentMusicId === 'menuMusic' && this.currentMusicInstance) {
+      this.currentMusicInstance.play();
+    } else {
+      await this.playMenuMusic();
+    }
   }
 
   // Legacy compatibility methods

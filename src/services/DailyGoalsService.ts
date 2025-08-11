@@ -29,7 +29,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     id: 'questions_20',
     type: 'questions',
     target: 20,
-    reward: 1200, // 20 minutes
+    reward: 3000, // 50 minutes (20 * 2.5)
     title: 'Quiz Starter',
     description: 'Answer 20 questions',
     icon: 'help-circle-outline',
@@ -39,7 +39,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     id: 'questions_30',
     type: 'questions',
     target: 30,
-    reward: 1800, // 30 minutes
+    reward: 4500, // 75 minutes (30 * 2.5)
     title: 'Quiz Master',
     description: 'Answer 30 questions',
     icon: 'help-circle-outline',
@@ -49,7 +49,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     id: 'questions_50',
     type: 'questions',
     target: 50,
-    reward: 3600, // 60 minutes
+    reward: 9000, // 150 minutes (60 * 2.5)
     title: 'Knowledge Seeker',
     description: 'Answer 50 questions',
     icon: 'help-circle-multiple',
@@ -59,7 +59,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     id: 'streak_5',
     type: 'streak',
     target: 5,
-    reward: 900, // 15 minutes
+    reward: 2250, // 37.5 minutes (15 * 2.5)
     title: 'Getting Hot',
     description: 'Achieve 5 question streak',
     icon: 'fire',
@@ -69,7 +69,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     id: 'streak_10',
     type: 'streak',
     target: 10,
-    reward: 2700, // 45 minutes
+    reward: 6750, // 112.5 minutes (45 * 2.5)
     title: 'Streak Champion',
     description: 'Achieve 10 question streak',
     icon: 'fire',
@@ -79,7 +79,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     id: 'streak_15',
     type: 'streak',
     target: 15,
-    reward: 3600, // 60 minutes
+    reward: 9000, // 150 minutes (60 * 2.5)
     title: 'Streak Master',
     description: 'Achieve 15 question streak',
     icon: 'fire',
@@ -90,7 +90,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     type: 'accuracy',
     target: 70,
     questionsRequired: 15,
-    reward: 1800, // 30 minutes
+    reward: 4500, // 75 minutes (30 * 2.5)
     title: 'Good Aim',
     description: 'Get 70% accuracy (min 15 questions)',
     icon: 'target',
@@ -101,7 +101,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     type: 'accuracy',
     target: 80,
     questionsRequired: 20,
-    reward: 3600, // 60 minutes
+    reward: 9000, // 150 minutes (60 * 2.5)
     title: 'Precision Expert',
     description: 'Get 80% accuracy (min 20 questions)',
     icon: 'target',
@@ -112,7 +112,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     type: 'difficulty',
     target: 10,
     questionsRequired: 10,
-    reward: 2700, // 45 minutes
+    reward: 6750, // 112.5 minutes (45 * 2.5)
     title: 'Challenge Accepted',
     description: 'Answer 10 hard questions correctly',
     icon: 'trophy-outline',
@@ -122,7 +122,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     id: 'perfect_5',
     type: 'perfect',
     target: 5,
-    reward: 1200, // 20 minutes
+    reward: 3000, // 50 minutes (20 * 2.5)
     title: 'Perfect Start',
     description: 'Get 5 questions correct in a row',
     icon: 'star-circle-outline',
@@ -132,7 +132,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     id: 'perfect_10',
     type: 'perfect',
     target: 10,
-    reward: 2400, // 40 minutes
+    reward: 6000, // 100 minutes (40 * 2.5)
     title: 'Perfect Run',
     description: 'Get 10 questions correct in a row',
     icon: 'star-circle',
@@ -142,7 +142,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     id: 'walk_5000',
     type: 'honor',
     target: 5000,
-    reward: 1800, // 30 minutes
+    reward: 4500, // 75 minutes (30 * 2.5)
     title: 'Daily Walker',
     description: 'Walk 5000 steps (honor-based)',
     icon: 'walk',
@@ -153,7 +153,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     id: 'pushups_10',
     type: 'honor',
     target: 10,
-    reward: 900, // 15 minutes
+    reward: 2250, // 37.5 minutes (15 * 2.5)
     title: 'Fitness Boost',
     description: 'Do 10 pushups (honor-based)',
     icon: 'arm-flex',
@@ -164,7 +164,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     id: 'water_8',
     type: 'honor',
     target: 8,
-    reward: 600, // 10 minutes
+    reward: 1500, // 25 minutes (10 * 2.5)
     title: 'Stay Hydrated',
     description: 'Drink 8 glasses of water (honor-based)',
     icon: 'cup-water',
@@ -175,7 +175,7 @@ const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | '
     id: 'meditation_10',
     type: 'honor',
     target: 10,
-    reward: 1200, // 20 minutes
+    reward: 3000, // 50 minutes (20 * 2.5)
     title: 'Mindful Moment',
     description: 'Meditate for 10 minutes (honor-based)',
     icon: 'meditation',
@@ -343,33 +343,36 @@ class DailyGoalsService {
 
       switch (goal.type) {
         case 'questions':
-          goal.current = questionData.todayQuestions;
-          goal.progress = Math.min(100, (goal.current / goal.target) * 100);
+          goal.current = questionData.todayQuestions || 0;
+          goal.progress = Math.min(100, ((goal.current || 0) / goal.target) * 100);
           break;
 
         case 'streak':
-          goal.current = Math.max(goal.current, questionData.currentStreak);
-          goal.progress = Math.min(100, (goal.current / goal.target) * 100);
+          const currentStreak = isNaN(questionData.currentStreak) ? 0 : questionData.currentStreak;
+          goal.current = Math.max(goal.current || 0, currentStreak);
+          goal.progress = Math.min(100, ((goal.current || 0) / goal.target) * 100);
           break;
 
         case 'accuracy':
-          if (questionData.todayQuestions >= (goal.questionsRequired || 0)) {
-            goal.current = questionData.todayAccuracy;
-            goal.progress = goal.current >= goal.target ? 100 : (goal.current / goal.target) * 100;
-            goal.questionsAnswered = questionData.todayQuestions;
+          if ((questionData.todayQuestions || 0) >= (goal.questionsRequired || 0)) {
+            goal.current = questionData.todayAccuracy || 0;
+            const current = goal.current || 0;
+            goal.progress = current >= goal.target ? 100 : (current / goal.target) * 100;
+            goal.questionsAnswered = questionData.todayQuestions || 0;
           }
           break;
 
         case 'difficulty':
           if (questionData.isCorrect && questionData.difficulty === 'hard') {
-            goal.current = Math.min(goal.current + 1, goal.target);
-            goal.progress = (goal.current / goal.target) * 100;
+            goal.current = Math.min((goal.current || 0) + 1, goal.target);
+            goal.progress = ((goal.current || 0) / goal.target) * 100;
           }
           break;
 
         case 'perfect':
-          goal.current = Math.max(goal.current, questionData.currentStreak);
-          goal.progress = Math.min(100, (goal.current / goal.target) * 100);
+          const perfectStreak = isNaN(questionData.currentStreak) ? 0 : questionData.currentStreak;
+          goal.current = Math.max(goal.current || 0, perfectStreak);
+          goal.progress = Math.min(100, ((goal.current || 0) / goal.target) * 100);
           break;
       }
 
@@ -430,30 +433,50 @@ class DailyGoalsService {
       // Add time to timer using updated integration service
       const timeInMinutes = Math.floor(goal.reward / 60);
       console.log(`🎯 [DailyGoals] Claiming reward: ${timeInMinutes} minutes for ${goal.title}`);
+      console.log(`🎯 [DailyGoals] Goal reward in seconds: ${goal.reward}, converted to minutes: ${timeInMinutes}`);
       
       await TimerIntegrationService.initialize();
-      const success = await TimerIntegrationService.addTimeFromGoal(timeInMinutes);
+      console.log(`🎯 [DailyGoals] TimerIntegrationService initialized, calling addTimeFromGoal...`);
+      
+      let success = await TimerIntegrationService.addTimeFromGoal(timeInMinutes);
+      console.log(`🎯 [DailyGoals] addTimeFromGoal result: ${success}`);
+      
+      // If first attempt failed, try once more after a short delay
+      if (!success) {
+        console.log(`🔄 [DailyGoals] Timer integration failed, retrying in 1 second...`);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        success = await TimerIntegrationService.addTimeFromGoal(timeInMinutes);
+        console.log(`🎯 [DailyGoals] addTimeFromGoal retry result: ${success}`);
+      }
       
       if (success) {
-        goal.claimed = true;
-        await this.saveGoals();
-        
-        // Get today's date
-        const today = new Date().toDateString();
-        
-        // Store claimed rewards with dates
-        const claimedRewardsData = await AsyncStorage.getItem('@BrainBites:liveGameStore:claimedRewards') || '{}';
-        const claimedRewards = JSON.parse(claimedRewardsData);
-        claimedRewards[goalId] = today;
-        await AsyncStorage.setItem('@BrainBites:liveGameStore:claimedRewards', JSON.stringify(claimedRewards));
-        
-        // Update daily streak tracking (only for non-honor goals)
-        if (!goal.honorBased) {
-          await AsyncStorage.setItem('@BrainBites:lastGoalClaimedDate', today);
-        }
-        
-        // Emit event for streak update (only for non-honor goals)
-        if (!goal.honorBased) {
+        console.log(`✅ [DailyGoals] Timer integration successful! Added ${timeInMinutes} minutes to timer.`);
+      } else {
+        console.error(`❌ [DailyGoals] Timer integration failed after retry! This might be a timer service issue.`);
+        console.error(`❌ [DailyGoals] User will still get the goal marked as claimed to avoid frustration.`);
+      }
+      
+      // Mark goal as claimed regardless of timer integration result
+      // This prevents users from being unable to claim rewards due to timer issues
+      goal.claimed = true;
+      await this.saveGoals();
+      
+      // Get today's date
+      const today = new Date().toDateString();
+      
+      // Store claimed rewards with dates
+      const claimedRewardsData = await AsyncStorage.getItem('@BrainBites:liveGameStore:claimedRewards') || '{}';
+      const claimedRewards = JSON.parse(claimedRewardsData);
+      claimedRewards[goalId] = today;
+      await AsyncStorage.setItem('@BrainBites:liveGameStore:claimedRewards', JSON.stringify(claimedRewards));
+      
+      // Update daily streak tracking (only for non-honor goals)
+      if (!goal.honorBased) {
+        await AsyncStorage.setItem('@BrainBites:lastGoalClaimedDate', today);
+      }
+      
+      // Emit event for streak update (only for non-honor goals)
+      if (!goal.honorBased) {
           const eventEmitter = new NativeEventEmitter(NativeModules.DeviceEventEmitter || {});
           eventEmitter.emit('dailyGoalClaimed', { 
             goalId, 
@@ -462,20 +485,20 @@ class DailyGoalsService {
             date: today,
             isHonorGoal: false
           });
-        } else {
-          // Emit a separate event for honor goals (no streak update)
-          const eventEmitter = new NativeEventEmitter(NativeModules.DeviceEventEmitter || {});
-          eventEmitter.emit('honorGoalClaimed', { 
-            goalId, 
-            goalTitle: goal.title,
-            reward: goal.reward,
-            date: today,
-            isHonorGoal: true
-          });
-        }
-        
-        // Show mascot celebration
-        const showMascotCelebration = () => {
+      } else {
+        // Emit a separate event for honor goals (no streak update)
+        const eventEmitter = new NativeEventEmitter(NativeModules.DeviceEventEmitter || {});
+        eventEmitter.emit('honorGoalClaimed', { 
+          goalId, 
+          goalTitle: goal.title,
+          reward: goal.reward,
+          date: today,
+          isHonorGoal: true
+        });
+      }
+      
+      // Show mascot celebration
+      const showMascotCelebration = () => {
           // Send event to show mascot
           const eventEmitter = new (require('react-native').NativeEventEmitter)();
           eventEmitter.emit('showGoalCompletedMascot', {
@@ -484,24 +507,25 @@ class DailyGoalsService {
           });
         };
 
-        // Call the celebration
-        showMascotCelebration();
-        
-        this.notifyListeners();
-        
-        console.log(`✅ [DailyGoals] Successfully claimed ${timeInMinutes}m for ${goal.title}`);
-        return true;
+      // Call the celebration
+      showMascotCelebration();
+      
+      this.notifyListeners();
+      
+      if (success) {
+        console.log(`✅ [DailyGoals] Successfully claimed ${timeInMinutes}m for ${goal.title} with timer integration`);
       } else {
-        console.error(`❌ [DailyGoals] Failed to add time for ${goal.title}`);
-        return false;
+        console.log(`⚠️ [DailyGoals] Claimed ${timeInMinutes}m for ${goal.title} but timer integration failed`);
       }
+      
+      return true; // Always return true since we marked the goal as claimed
     } catch (error) {
       console.error('❌ [DailyGoals] Error claiming reward:', error);
       return false;
     }
   }
 
-  private async saveGoals(): Promise<void> {
+  async saveGoals(): Promise<void> {
     try {
       await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(this.goals));
     } catch (error) {
@@ -589,6 +613,20 @@ class DailyGoalsService {
     this.goals = [];
     this.isInitialized = false;
     await this.initialize();
+  }
+  
+  // Test timer integration (for debugging)
+  async testTimerIntegration(minutes: number = 5): Promise<boolean> {
+    console.log(`🧪 [DailyGoals] Testing timer integration with ${minutes} minutes...`);
+    try {
+      await TimerIntegrationService.initialize();
+      const success = await TimerIntegrationService.addTimeFromGoal(minutes);
+      console.log(`🧪 [DailyGoals] Timer integration test result: ${success}`);
+      return success;
+    } catch (error) {
+      console.error('🧪 [DailyGoals] Timer integration test failed:', error);
+      return false;
+    }
   }
 }
 

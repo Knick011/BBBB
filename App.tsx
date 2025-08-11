@@ -334,11 +334,11 @@ const App: React.FC = () => {
     <ErrorBoundary>
       <SafeAreaProvider>
         <View style={{ flex: 1, backgroundColor: '#FFF8E7' }}>
+          {/* Hide status bar but don't add padding */}
           <StatusBar 
-            barStyle="dark-content"
-            backgroundColor="#FFF8E7"
             translucent={true}
-            hidden={true}
+            backgroundColor="transparent"
+            barStyle="dark-content"
           />
           <NavigationContainer>
             <Stack.Navigator
@@ -347,8 +347,14 @@ const App: React.FC = () => {
                 headerShown: false,
                 cardStyle: { 
                   backgroundColor: '#FFF8E7',
-                  paddingTop: Platform.OS === 'ios' ? 45 : 20
+                  // Remove padding - let screens handle their own safe areas
                 },
+                // Ensure full screen coverage
+                cardStyleInterpolator: ({ current }) => ({
+                  cardStyle: {
+                    opacity: current.progress,
+                  },
+                }),
               }}
             >
               <Stack.Screen 

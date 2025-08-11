@@ -30,6 +30,7 @@ import BannerAdComponent from '../components/common/BannerAdComponent';
 import { useQuizStore } from '../store/useQuizStore';
 import { useUserStore } from '../store/useUserStore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DailyGoalsService from '../services/DailyGoalsService';
 
 const QuizScreen = ({ navigation, route }: any) => {
   const [currentQuestion, setCurrentQuestion] = useState<any>(null);
@@ -52,6 +53,10 @@ const QuizScreen = ({ navigation, route }: any) => {
   const [showConfirmQuit, setShowConfirmQuit] = useState(false);
   const [showSpeedFeedback, setShowSpeedFeedback] = useState(false);
   const [showQuitModal, setShowQuitModal] = useState(false);
+  
+  // Daily goal completion modal state
+  const [showDailyGoalModal, setShowDailyGoalModal] = useState(false);
+  const [completedGoal, setCompletedGoal] = useState<{title: string; reward: number} | null>(null);
   
   // Mascot state - simplified for quiz functionality
   const [mascotType, setMascotType] = useState<'happy' | 'sad' | 'excited' | 'depressed' | 'gamemode' | 'below'>('happy');
@@ -76,44 +81,26 @@ const QuizScreen = ({ navigation, route }: any) => {
   const questionStartTime = useRef(0);
   
   useEffect(() => {
-    console.log('🎮 [Modern QuizScreen] Component mounted');
-    
-    // Always start fresh when entering quiz
-    setStreak(0);
-    setQuestionsAnswered(0);
-    setCorrectAnswers(0);
-    setScore(0);
-    useQuizStore.getState().resetStreak();
-
-    // Initialize services
-    const initializeServices = async () => {
-      try {
-        await initializeAudio();
-        await EnhancedScoreService.loadSavedData();
-      } catch (error) {
-        console.error('❌ [Modern QuizScreen] Failed to initialize services:', error);
-      }
+    const initializeQuiz = async () => {
+      console.log('🎮 [QuizScreen] Initializing quiz');
+      
+      // CRITICAL: Initialize quiz session (sets streak to 0)
+      await useQuizStore.getState().initializeQuizSession();
+      
+      // Initialize audio
+      await initializeAudio();
+      
+      // Load first question
+      loadQuestion();
     };
     
-    initializeServices();
-    
-    // Load first question
-    loadQuestion();
+    initializeQuiz();
     
     return () => {
-      console.log('🎮 [Modern QuizScreen] Component unmounting, cleaning up...');
-      
-      // Stop game music
+      console.log('🎮 [QuizScreen] Cleaning up quiz session');
+      // Don't save streak on unmount - it should reset
+      // Stop game music but don't completely stop audio system
       SoundService.stopMusic();
-      
-      // Clear timers
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-      
-      if (timerAnimation.current) {
-        timerAnimation.current.stop();
-      }
     };
   }, []);
 
@@ -318,20 +305,14 @@ const QuizScreen = ({ navigation, route }: any) => {
         setSpeedMultiplier(scoreResult.speedMultiplier);
         
         if (correct) {
+          // Use store method to increment
+          await useQuizStore.getState().incrementStreak();
+          const newStreak = useQuizStore.getState().currentStreak;
+          setStreak(newStreak); // Update local state
+          
           setCorrectAnswers(prev => prev + 1);
           setShowPointsAnimation(true);
           setShowSpeedFeedback(true);
-          
-          // Save current quiz streak and update highest streak for the day
-          try {
-            const newStreak = scoreResult.newStreak;
-            await AsyncStorage.setItem('@BrainBites:currentQuizStreak', String(newStreak));
-            const savedHighest = await AsyncStorage.getItem('@BrainBites:highestStreakToday');
-            const currentHighest = savedHighest ? parseInt(savedHighest, 10) : 0;
-            if (newStreak > currentHighest) {
-              await AsyncStorage.setItem('@BrainBites:highestStreakToday', String(newStreak));
-            }
-          } catch {}
 
           // ✅ ADD TIMER INTEGRATION - Add time for correct answers
           let timeToAdd = 1; // Base 1 minute for easy
@@ -349,6 +330,8 @@ const QuizScreen = ({ navigation, route }: any) => {
           } else {
             console.error(`❌ [QuizScreen] Failed to add time to timer`);
           }
+          
+          // Daily goal completion check moved outside to run for all answers
           
           // Animate points and speed feedback
           pointsAnim.setValue(0);
@@ -387,10 +370,12 @@ const QuizScreen = ({ navigation, route }: any) => {
             showExplanationWithAnimation();
           }, 1200);
         } else {
+          // Reset on wrong answer
+          useQuizStore.getState().resetCurrentStreak();
+          setStreak(0);
+          
           // Wrong answer
           SoundService.playIncorrect();
-          setStreak(0);
-          try { await AsyncStorage.setItem('@BrainBites:currentQuizStreak', '0'); } catch {}
           
           // Show mascot for wrong answer
           setTimeout(() => {
@@ -403,6 +388,10 @@ const QuizScreen = ({ navigation, route }: any) => {
             showExplanationWithAnimation();
           }, 2000);
         }
+        
+        // Check for daily goal completion after processing any answer (correct or incorrect)
+        await checkDailyGoalCompletion(correct, difficulty, category);
+        
       } catch (error) {
         console.error('Error processing score:', error);
       }
@@ -450,6 +439,94 @@ const QuizScreen = ({ navigation, route }: any) => {
   
   const handleMascotDismiss = () => {
     setShowMascot(false);
+  };
+  
+  // Check for daily goal completion during quiz
+  const checkDailyGoalCompletion = async (isCorrect: boolean, quizDifficulty: string, quizCategory: string) => {
+    try {
+      // Update progress with current quiz data to trigger goal completion checking
+      const accuracy = questionsAnswered > 0 ? Math.round((correctAnswers / questionsAnswered) * 100) : 0;
+      
+      await DailyGoalsService.updateProgress({
+        isCorrect: isCorrect,
+        difficulty: quizDifficulty || 'medium',
+        category: quizCategory || 'general',
+        todayQuestions: questionsAnswered + 1,
+        currentStreak: streak || 0,
+        todayAccuracy: accuracy
+      });
+      
+      // Check if any goals were just completed
+      const goals = DailyGoalsService.getGoals();
+      console.log(`🎯 [QuizScreen] Checking ${goals.length} goals for completion...`);
+      
+      // Find goals that are completed but not yet claimed and not yet notified
+      const justCompleted = goals.filter(goal => {
+        const isEligible = goal.completed && !goal.claimed && !goal.notified;
+        console.log(`🎯 [QuizScreen] Goal "${goal.title}": completed=${goal.completed}, claimed=${goal.claimed}, notified=${goal.notified}, eligible=${isEligible}`);
+        return isEligible;
+      });
+      
+      if (justCompleted.length > 0) {
+        const goal = justCompleted[0]; // Take the first completed goal
+        console.log(`🎯 [QuizScreen] Showing modal for completed goal: ${goal.title}`);
+        
+        // Mark as notified to prevent showing again
+        goal.notified = true;
+        await DailyGoalsService.saveGoals(); // Save the notified state
+        
+        setCompletedGoal({
+          title: goal.title,
+          reward: Math.floor(goal.reward / 60) // Convert to minutes
+        });
+        setShowDailyGoalModal(true);
+        
+        console.log(`🎯 [QuizScreen] Daily goal completed during quiz: ${goal.title}`);
+      } else {
+        console.log(`🎯 [QuizScreen] No newly completed goals found`);
+      }
+    } catch (error) {
+      console.error('Error checking daily goal completion:', error);
+    }
+  };
+  
+  const handleDailyGoalClaim = async () => {
+    if (!completedGoal) return;
+    
+    try {
+      // Find the completed goal and claim it through the service
+      const goals = DailyGoalsService.getGoals();
+      const goalToBeClaimedIndex = goals.findIndex(g => g.title === completedGoal.title && g.completed && !g.claimed);
+      
+      if (goalToBeClaimedIndex !== -1) {
+        const goalToClaim = goals[goalToBeClaimedIndex];
+        console.log(`🎯 [QuizScreen] Attempting to claim goal: ${goalToClaim.title}`);
+        
+        const claimSuccess = await DailyGoalsService.claimReward(goalToClaim.id);
+        
+        if (claimSuccess) {
+          SoundService.playStreak();
+          console.log(`✅ [QuizScreen] Successfully claimed daily goal: ${completedGoal.title}`);
+        } else {
+          console.error(`❌ [QuizScreen] Failed to claim daily goal: ${completedGoal.title}`);
+          // Still play sound to avoid user confusion
+          SoundService.playStreak();
+        }
+      } else {
+        console.log(`⚠️ [QuizScreen] Goal already claimed or not found: ${completedGoal.title}`);
+        SoundService.playStreak();
+      }
+      
+      // Close modal regardless of claim result
+      setShowDailyGoalModal(false);
+      setCompletedGoal(null);
+      
+    } catch (error) {
+      console.error('Error claiming daily goal reward:', error);
+      // Close modal even on error to avoid stuck state
+      setShowDailyGoalModal(false);
+      setCompletedGoal(null);
+    }
   };
   
   const handleContinue = () => {
@@ -508,7 +585,7 @@ const QuizScreen = ({ navigation, route }: any) => {
     SoundService.playButtonPress();
     
     // Reset streak
-    useQuizStore.getState().resetStreak();
+    useQuizStore.getState().resetCurrentStreak();
     useUserStore.getState().resetStreak();
     
     setShowQuitModal(false);
@@ -860,8 +937,7 @@ const QuizScreen = ({ navigation, route }: any) => {
             onPress={async () => {
               SoundService.playButtonPress();
               try { await AsyncStorage.setItem('@BrainBites:currentQuizStreak', '0'); } catch {}
-              useQuizStore.getState().resetQuiz();
-              useUserStore.getState().resetStreak();
+              useQuizStore.getState().resetCurrentStreak();
               setShowMascot(false);
               setShowConfirmQuit(false);
               if (navigation.canGoBack()) navigation.goBack();
@@ -922,6 +998,35 @@ const QuizScreen = ({ navigation, route }: any) => {
             text: 'Quit Quiz',
             onPress: handleQuitConfirm,
             style: 'danger'
+          }
+        ]}
+      />
+      
+      {/* Daily Goal Completion Modal - only shown during quiz */}
+      <MascotModal
+        visible={showDailyGoalModal}
+        type="excited"
+        title="🎯 Goal Completed!"
+        message={completedGoal ? `Awesome! You just completed "${completedGoal.title}" while playing!\n\nYou earned ${completedGoal.reward} minutes of screen time!` : ''}
+        onDismiss={() => {
+          console.log(`🎯 [QuizScreen] Modal dismissed`);
+          setShowDailyGoalModal(false);
+          setCompletedGoal(null);
+        }}
+        buttons={[
+          {
+            text: "Claim Reward!",
+            onPress: handleDailyGoalClaim,
+            style: 'primary'
+          },
+          {
+            text: 'Continue Quiz',
+            onPress: () => {
+              console.log(`🎯 [QuizScreen] Continue quiz pressed`);
+              setShowDailyGoalModal(false);
+              setCompletedGoal(null);
+            },
+            style: 'secondary'
           }
         ]}
       />

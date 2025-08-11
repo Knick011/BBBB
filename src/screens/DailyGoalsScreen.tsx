@@ -21,9 +21,7 @@ import { RootStackParamList } from '../types';
 import theme from '../styles/theme';
 import SoundService from '../services/SoundService';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
-import MascotModal from '../components/Mascot/MascotModal';
 import DailyGoalsService, { DailyGoal } from '../services/DailyGoalsService';
-import { useDailyGoalsIntegration } from '../hooks/useGameIntegration';
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'DailyGoals'>;
 type MascotType = 'happy' | 'sad' | 'excited' | 'depressed' | 'gamemode' | 'below';
@@ -31,20 +29,13 @@ type MascotType = 'happy' | 'sad' | 'excited' | 'depressed' | 'gamemode' | 'belo
 const DailyGoalsScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp>();
   
-  // Integration hook with MascotModal support
-  const { 
-    dailyGoals, 
-    handleClaimReward, 
-    showGoalModal,
-    completedGoalData,
-    setShowGoalModal,
-    refreshProgress
-  } = useDailyGoalsIntegration();
-  
-  // Local state
+  // Local state - back to direct DailyGoalsService integration
+  const [dailyGoals, setDailyGoals] = useState<DailyGoal[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [animatingGoals, setAnimatingGoals] = useState<string[]>([]);
+  
+  // Remove MascotModal - only use EnhancedMascotDisplay for DailyGoalsScreen
   
   // Mascot state
   const [mascotType, setMascotType] = useState<MascotType>('happy');
@@ -71,28 +62,16 @@ const DailyGoalsScreen: React.FC = () => {
   // Load goals when screen focuses
   useFocusEffect(
     React.useCallback(() => {
-      const loadGoals = async () => {
-        try {
-          setIsLoading(true);
-          console.log('🎯 [DailyGoalsScreen] Refreshing goals...');
-          
-          // Use the integration hook's refresh method
-          await refreshProgress();
-          
-        } catch (error) {
-          console.error('❌ [DailyGoalsScreen] Failed to load goals:', error);
-          Alert.alert(
-            'Error',
-            'Failed to load daily goals. Please try again.',
-            [{ text: 'OK', onPress: () => navigation.goBack() }]
-          );
-        } finally {
-          setIsLoading(false);
-        }
-      };
-
       loadGoals();
-    }, [refreshProgress, navigation])
+      
+      // Listen for goal updates
+      const unsubscribe = DailyGoalsService.addListener((updatedGoals) => {
+        console.log('🎯 [DailyGoalsScreen] Goals updated:', updatedGoals.length);
+        setDailyGoals(updatedGoals);
+      });
+
+      return unsubscribe;
+    }, [])
   );
 
   // Entrance animation
@@ -119,16 +98,56 @@ const DailyGoalsScreen: React.FC = () => {
     }
   }, [dailyGoals]);
 
+  const loadGoals = async () => {
+    try {
+      setIsLoading(true);
+      console.log('🎯 [DailyGoalsScreen] Loading goals...');
+      
+      await DailyGoalsService.initialize();
+      const goals = DailyGoalsService.getGoals();
+      
+      console.log('🎯 [DailyGoalsScreen] Loaded goals:', goals.length, goals.map(g => g.title));
+      
+      // Debug current goals
+      DailyGoalsService.debugGoals();
+      
+      // Check if we have honor goals - if not, force regenerate
+      const honorGoals = goals.filter(g => g.honorBased);
+      if (honorGoals.length === 0) {
+        console.log('🔄 [DailyGoalsScreen] No honor goals found, forcing regeneration...');
+        await DailyGoalsService.forceRegenerateGoals();
+        const newGoals = DailyGoalsService.getGoals();
+        console.log('🔄 [DailyGoalsScreen] Regenerated goals:', newGoals.length, newGoals.map(g => g.title));
+        DailyGoalsService.debugGoals();
+        setDailyGoals(newGoals);
+      } else {
+        setDailyGoals(goals);
+      }
+      
+      if (goals.length === 0) {
+        console.warn('⚠️ [DailyGoalsScreen] No goals loaded - this should not happen');
+        Alert.alert(
+          'No Goals Found',
+          'Unable to load daily goals. Please try again.',
+          [{ text: 'OK', onPress: () => navigation.goBack() }]
+        );
+      }
+    } catch (error) {
+      console.error('❌ [DailyGoalsScreen] Failed to load goals:', error);
+      Alert.alert(
+        'Error',
+        'Failed to load daily goals. Please try again.',
+        [{ text: 'OK', onPress: () => navigation.goBack() }]
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleRefresh = async () => {
     setIsRefreshing(true);
-    try {
-      console.log('🔄 [DailyGoalsScreen] Refreshing goals...');
-      await refreshProgress();
-    } catch (error) {
-      console.error('❌ [DailyGoalsScreen] Failed to refresh goals:', error);
-    } finally {
-      setIsRefreshing(false);
-    }
+    await loadGoals();
+    setIsRefreshing(false);
   };
 
   const handleCompleteHonorGoal = async (goalId: string, goalIndex: number) => {
@@ -191,16 +210,44 @@ const DailyGoalsScreen: React.FC = () => {
         })
       ]).start();
 
-      // Use integration hook's handleClaimReward (includes MascotModal)
-      await handleClaimReward(goalId);
+      console.log(`🎯 [DailyGoalsScreen] Claiming reward for: ${goal.title}`);
       
-      // Add goal to animating list for local UI feedback
-      setAnimatingGoals(prev => [...prev, goalId]);
+      // Claim the reward using DailyGoalsService
+      const success = await DailyGoalsService.claimReward(goalId);
       
-      // Remove from animating after delay
-      setTimeout(() => {
-        setAnimatingGoals(prev => prev.filter(id => id !== goalId));
-      }, 2000);
+      if (success) {
+        // Success animation and sound
+        SoundService.playCorrect();
+        
+        // Show EnhancedMascotDisplay celebration
+        setMascotType('excited');
+        setMascotMessage(`🎉 Goal Complete! 🎉\n\nAmazing! You completed "${goal.title}"!\nYou earned ${Math.floor(goal.reward / 60)} minutes!\n\nGreat job!`);
+        setShowMascot(true);
+        
+        // Add goal to animating list
+        setAnimatingGoals(prev => [...prev, goalId]);
+        
+        // Remove from animating after delay
+        setTimeout(() => {
+          setAnimatingGoals(prev => prev.filter(id => id !== goalId));
+        }, 2000);
+        
+        // Hide mascot after delay
+        setTimeout(() => {
+          setShowMascot(false);
+        }, 4000);
+        
+        console.log(`✅ [DailyGoalsScreen] Successfully claimed reward for ${goal.title}`);
+      } else {
+        // Error feedback
+        SoundService.playIncorrect();
+        Alert.alert(
+          'Claim Failed',
+          'Unable to claim reward. Please try again.',
+          [{ text: 'OK' }]
+        );
+        console.error(`❌ [DailyGoalsScreen] Failed to claim reward for ${goal.title}`);
+      }
         
     } catch (error) {
       console.error('❌ [DailyGoalsScreen] Error claiming reward:', error);
@@ -430,7 +477,7 @@ const DailyGoalsScreen: React.FC = () => {
            onPress={async () => {
              console.log('🔄 [DailyGoalsScreen] Manual refresh triggered');
              await DailyGoalsService.forceRegenerateGoals();
-             await refreshProgress();
+             await loadGoals();
            }}
            style={styles.debugButton}
          >
@@ -508,19 +555,16 @@ const DailyGoalsScreen: React.FC = () => {
         fullScreen={true}
       />
 
-      {/* Professional MascotModal for goal completion */}
-      {completedGoalData && (
-        <MascotModal
-          visible={showGoalModal}
-          type="excited"
-          title="🎉 Goal Complete!"
-          message={`Amazing! You completed "${completedGoalData.title}"!`}
-          reward={completedGoalData.reward}
-          onDismiss={() => setShowGoalModal(false)}
-          autoHide={true}
-          autoHideDelay={4000}
-        />
-      )}
+      {/* EnhancedMascotDisplay for goal completion celebrations */}
+      <EnhancedMascotDisplay
+        type={mascotType}
+        position="left"
+        showMascot={showMascot}
+        message={mascotMessage}
+        onDismiss={() => setShowMascot(false)}
+        autoHide={true}
+        fullScreen={true}
+      />
     </SafeAreaView>
   );
 };

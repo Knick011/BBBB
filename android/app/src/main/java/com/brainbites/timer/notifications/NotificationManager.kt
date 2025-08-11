@@ -56,22 +56,45 @@ class BrainBitesNotificationManager private constructor(private val context: Con
             PendingIntent.FLAG_IMMUTABLE
         )
 
-        val formattedTimeLeft = formatDuration(timerState.remainingTime)
-        val formattedScreenTime = formatDuration(timerState.todayScreenTime)
-        val statusText = getStatusText(timerState)
+        val timeLeftStr = formatTime(timerState.remainingTime.toInt())
+        val screenTimeStr = formatTime(timerState.todayScreenTime.toInt())
+        val overtime = if (timerState.remainingTime < 0) Math.abs(timerState.remainingTime.toInt()) else 0
 
-        return NotificationCompat.Builder(context, CHANNEL_ID)
+        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("Screen Time: $formattedTimeLeft left")
-            .setContentText("Usage today: $formattedScreenTime")
-            .setSubText(statusText)
             .setOngoing(true)
-            .setOnlyAlertOnce(true)
             .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setOnlyAlertOnce(true)
             .setContentIntent(pendingIntent)
-            .build()
+        
+        // IMPORTANT: Only show 2 lines in collapsed view
+        builder.setContentTitle("Time left: $timeLeftStr")
+        builder.setContentText("Screen time: $screenTimeStr")
+        
+        // Don't show overtime in collapsed view
+        // Expanded view can show more details
+        val bigStyle = NotificationCompat.BigTextStyle()
+        bigStyle.setBigContentTitle("BrainBites Timer")
+        val expandedText = "Time left: $timeLeftStr\nScreen time: $screenTimeStr" +
+                if (overtime > 0) "\nOvertime: ${formatTime(overtime)}" else ""
+        bigStyle.bigText(expandedText)
+        builder.setStyle(bigStyle)
+        
+        return builder.build()
     }
 
+    private fun formatTime(seconds: Int): String {
+        val hours = seconds / 3600
+        val minutes = (seconds % 3600) / 60
+        val secs = seconds % 60
+        
+        return if (hours > 0) {
+            String.format("%02d:%02d:%02d", hours, minutes, secs)
+        } else {
+            String.format("%02d:%02d", minutes, secs)
+        }
+    }
+    
     private fun formatDuration(seconds: Long): String {
         if (seconds <= 0) return "0m"
 

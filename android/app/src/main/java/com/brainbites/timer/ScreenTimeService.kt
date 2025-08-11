@@ -412,39 +412,31 @@ class ScreenTimeService : Service() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         
-        // Format times in HH:MM:SS
-        val timeLeftText = if (remainingTimeSeconds > 0) {
-            formatTimeWithSeconds(remainingTimeSeconds)
-        } else {
-            "00:00:00"
-        }
-        
-        val screenTimeText = formatTimeWithSeconds(todayScreenTimeSeconds)
-        val overtimeText = if (overtimeSeconds > 0) {
-            formatTimeWithSeconds(overtimeSeconds)
-        } else {
-            "00:00:00"
-        }
-        
-        val notificationColor = if (remainingTimeSeconds <= 0 && overtimeSeconds > 0) {
-            0xFFF44336.toInt() // Red for overtime
-        } else {
-            0xFFFF9F1C.toInt() // Orange for normal
-        }
-        
-        val bigText = "Screen Time: $screenTimeText\nOvertime: $overtimeText"
-        
-        return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(if (overtimeSeconds > 0) R.drawable.ic_notification else android.R.drawable.ic_menu_recent_history)
-            .setContentTitle("Time Left: $timeLeftText")
-            .setContentText("$screenTimeText • $overtimeText")
-            .setContentIntent(pendingIntent)
+        val timeLeftStr = formatTimeWithSeconds(remainingTimeSeconds)
+        val screenTimeStr = formatTimeWithSeconds(todayScreenTimeSeconds)
+        val overtime = if (remainingTimeSeconds < 0) Math.abs(remainingTimeSeconds) else overtimeSeconds
+
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_notification)
             .setOngoing(true)
             .setPriority(NotificationCompat.PRIORITY_LOW)
-            .setSilent(true)
-            .setColor(notificationColor)
-            .setStyle(NotificationCompat.BigTextStyle().bigText(bigText))
-            .build()
+            .setOnlyAlertOnce(true)
+            .setContentIntent(pendingIntent)
+        
+        // IMPORTANT: Only show 2 lines in collapsed view
+        builder.setContentTitle("Time left: $timeLeftStr")
+        builder.setContentText("Screen time: $screenTimeStr")
+        
+        // Don't show overtime in collapsed view
+        // Expanded view can show more details
+        val bigStyle = NotificationCompat.BigTextStyle()
+        bigStyle.setBigContentTitle("BrainBites Timer")
+        val expandedText = "Time left: $timeLeftStr\nScreen time: $screenTimeStr" +
+                if (overtime > 0) "\nOvertime: ${formatTimeWithSeconds(overtime)}" else ""
+        bigStyle.bigText(expandedText)
+        builder.setStyle(bigStyle)
+        
+        return builder.build()
     }
     
     private fun updatePersistentNotification() {
