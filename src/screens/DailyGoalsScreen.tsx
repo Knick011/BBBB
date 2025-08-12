@@ -269,12 +269,12 @@ const DailyGoalsScreen: React.FC = () => {
         style={[
           styles.goalCard,
           {
-            opacity: slideAnims[index] || 1,
+            opacity: slideAnims[index] ? slideAnims[index] : 1,
             transform: [{
-              translateY: slideAnims[index]?.interpolate({
+              translateY: slideAnims[index] ? slideAnims[index].interpolate({
                 inputRange: [0, 1],
                 outputRange: [50, 0],
-              }) || 0
+              }) : 0
             }]
           }
         ]}
@@ -306,15 +306,15 @@ const DailyGoalsScreen: React.FC = () => {
                 styles.progressFill,
                 {
                   backgroundColor: goal.color,
-                  width: `${goal.progress}%`,
+                  width: `${Math.max(0, goal.progress || 0)}%`,
                 }
               ]}
             />
           </View>
           <Text style={styles.progressText}>
             {goal.type === 'accuracy' && goal.questionsRequired
-              ? `${goal.current}% accuracy (${goal.questionsAnswered || 0}/${goal.questionsRequired} questions)`
-              : `${goal.current} / ${goal.target}`}
+              ? `${goal.current || 0}% accuracy (${goal.questionsAnswered || 0}/${goal.questionsRequired} questions)`
+              : `${goal.current || 0} / ${goal.target}`}
           </Text>
         </View>
 
@@ -322,9 +322,9 @@ const DailyGoalsScreen: React.FC = () => {
         {goal.honorBased && !goal.completed && (
           <Animated.View
             style={{
-              opacity: claimButtonAnims[index] || 1,
+              opacity: claimButtonAnims[index] ? claimButtonAnims[index] : 1,
               transform: [{
-                scale: claimButtonAnims[index] || 1
+                scale: claimButtonAnims[index] ? claimButtonAnims[index] : 1
               }]
             }}
           >
@@ -360,9 +360,9 @@ const DailyGoalsScreen: React.FC = () => {
         {!goal.honorBased && goal.completed && !goal.claimed && (
           <Animated.View
             style={{
-              opacity: claimButtonAnims[index] || 1,
+              opacity: claimButtonAnims[index] ? claimButtonAnims[index] : 1,
               transform: [{
-                scale: claimButtonAnims[index] || 1
+                scale: claimButtonAnims[index] ? claimButtonAnims[index] : 1
               }]
             }}
           >
@@ -391,9 +391,9 @@ const DailyGoalsScreen: React.FC = () => {
         {goal.honorBased && goal.completed && !goal.claimed && (
           <Animated.View
             style={{
-              opacity: claimButtonAnims[index] || 1,
+              opacity: claimButtonAnims[index] ? claimButtonAnims[index] : 1,
               transform: [{
-                scale: claimButtonAnims[index] || 1
+                scale: claimButtonAnims[index] ? claimButtonAnims[index] : 1
               }]
             }}
           >
@@ -554,17 +554,6 @@ const DailyGoalsScreen: React.FC = () => {
         autoHideDuration={3000}
         fullScreen={true}
       />
-
-      {/* EnhancedMascotDisplay for goal completion celebrations */}
-      <EnhancedMascotDisplay
-        type={mascotType}
-        position="left"
-        showMascot={showMascot}
-        message={mascotMessage}
-        onDismiss={() => setShowMascot(false)}
-        autoHide={true}
-        fullScreen={true}
-      />
     </SafeAreaView>
   );
 };
@@ -573,6 +562,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+    marginTop: 15,  // ADD THIS
   },
   header: {
     flexDirection: 'row',

@@ -271,7 +271,8 @@ class DailyGoalsService {
           progress: 0,
           completed: false,
           claimed: false,
-          questionsAnswered: 0
+          questionsAnswered: 0,
+          notified: false
         });
         usedTypes.add(goalTemplate.type);
       }
@@ -288,7 +289,8 @@ class DailyGoalsService {
           progress: 0,
           completed: false,
           claimed: false,
-          questionsAnswered: 0
+          questionsAnswered: 0,
+          notified: false
         });
       } else {
         break;
@@ -326,6 +328,13 @@ class DailyGoalsService {
     todayAccuracy: number;
     todayQuestions: number;
   }): Promise<void> {
+    // Sanitize input data to prevent null/undefined issues
+    const safeData = {
+      ...questionData,
+      currentStreak: Math.max(0, questionData.currentStreak || 0),
+      todayAccuracy: Math.max(0, Math.min(100, questionData.todayAccuracy || 0)),
+      todayQuestions: Math.max(0, questionData.todayQuestions || 0)
+    };
     if (!this.isInitialized) {
       await this.initialize();
     }
@@ -343,36 +352,36 @@ class DailyGoalsService {
 
       switch (goal.type) {
         case 'questions':
-          goal.current = questionData.todayQuestions || 0;
-          goal.progress = Math.min(100, ((goal.current || 0) / goal.target) * 100);
+          goal.current = safeData.todayQuestions;
+          goal.progress = Math.min(100, Math.max(0, ((goal.current || 0) / goal.target) * 100));
           break;
 
         case 'streak':
-          const currentStreak = isNaN(questionData.currentStreak) ? 0 : questionData.currentStreak;
+          const currentStreak = safeData.currentStreak;
           goal.current = Math.max(goal.current || 0, currentStreak);
-          goal.progress = Math.min(100, ((goal.current || 0) / goal.target) * 100);
+          goal.progress = Math.min(100, Math.max(0, ((goal.current || 0) / goal.target) * 100));
           break;
 
         case 'accuracy':
-          if ((questionData.todayQuestions || 0) >= (goal.questionsRequired || 0)) {
-            goal.current = questionData.todayAccuracy || 0;
+          if (safeData.todayQuestions >= (goal.questionsRequired || 0)) {
+            goal.current = safeData.todayAccuracy;
             const current = goal.current || 0;
-            goal.progress = current >= goal.target ? 100 : (current / goal.target) * 100;
-            goal.questionsAnswered = questionData.todayQuestions || 0;
+            goal.progress = current >= goal.target ? 100 : Math.max(0, (current / goal.target) * 100);
+            goal.questionsAnswered = safeData.todayQuestions;
           }
           break;
 
         case 'difficulty':
-          if (questionData.isCorrect && questionData.difficulty === 'hard') {
+          if (safeData.isCorrect && safeData.difficulty === 'hard') {
             goal.current = Math.min((goal.current || 0) + 1, goal.target);
-            goal.progress = ((goal.current || 0) / goal.target) * 100;
+            goal.progress = Math.max(0, ((goal.current || 0) / goal.target) * 100);
           }
           break;
 
         case 'perfect':
-          const perfectStreak = isNaN(questionData.currentStreak) ? 0 : questionData.currentStreak;
+          const perfectStreak = safeData.currentStreak;
           goal.current = Math.max(goal.current || 0, perfectStreak);
-          goal.progress = Math.min(100, ((goal.current || 0) / goal.target) * 100);
+          goal.progress = Math.min(100, Math.max(0, ((goal.current || 0) / goal.target) * 100));
           break;
       }
 
@@ -585,15 +594,6 @@ class DailyGoalsService {
         console.error('❌ [DailyGoals] Error in listener:', error);
       }
     });
-  }
-
-  // Helper to persist current goals state
-  async saveGoals(): Promise<void> {
-    try {
-      await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(this.goals));
-    } catch (error) {
-      console.error('❌ [DailyGoals] Failed to save goals:', error);
-    }
   }
 
   async resetForTesting(): Promise<void> {

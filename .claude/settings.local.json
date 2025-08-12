@@ -22,7 +22,8 @@
       "Bash(git push:*)",
       "Bash(./gradlew:*)",
       "Bash(npx react-native start:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(npx react-native:*)"
     ],
     "deny": []
   }

@@ -25,6 +25,7 @@ import theme from '../styles/theme';
 
 // ✅ LIVE STATE INTEGRATION
 import { useLeaderboardIntegration } from '../hooks/useGameIntegration';
+import { useQuizStore } from '../store/useQuizStore';
 
 // Funny capybara-themed player names - expanded for more variety!
 const FAKE_NAMES = [
@@ -173,6 +174,9 @@ const LeaderboardScreen = () => {
   } = useLeaderboardIntegration();
   const [userStreakOverride, setUserStreakOverride] = useState<number | null>(null);
   
+  // Get the daily highest streak from quiz store
+  const { dailyHighestStreak } = useQuizStore();
+  
   const [activeTab, setActiveTab] = useState('global'); // 'global', 'friends'
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>([]);
   const [userRank, setUserRank] = useState<number | null>(null);
@@ -235,8 +239,16 @@ const LeaderboardScreen = () => {
   // Refresh leaderboard when screen comes into focus
   useFocusEffect(
     useCallback(() => {
-      console.log('🏆 [Modern LeaderboardScreen] Screen focused, refreshing data');
-      refreshData();
+      const loadData = async () => {
+        console.log('🏆 [Modern LeaderboardScreen] Screen focused, refreshing data');
+        
+        // Load the daily highest streak
+        await useQuizStore.getState().loadDailyHighest();
+        
+        refreshData();
+      };
+      
+      loadData();
     }, [])
   );
   
@@ -457,7 +469,7 @@ const LeaderboardScreen = () => {
           {/* Best Streak */}
           <View style={styles.statCard}>
             <Icon name="fire" size={24} color={theme.colors.primary} />
-            <Text style={styles.statValue}>{userStreak}</Text>
+            <Text style={styles.statValue}>{dailyHighestStreak || 0}</Text>
             <Text style={styles.statLabel}>Best Streak</Text>
           </View>
           
@@ -509,7 +521,7 @@ const LeaderboardScreen = () => {
               <View style={styles.userCardStatItem}>
                 <Icon name="fire" size={16} color={theme.colors.primary} />
                 <Text style={styles.userCardScore}>
-                  {userStreak}
+                  {dailyHighestStreak || 0}
                 </Text>
               </View>
             </View>

@@ -33,6 +33,8 @@ class ScreenTimeService : Service() {
     private var remainingTimeSeconds = 0
     private var todayScreenTimeSeconds = 0
     private var overtimeSeconds = 0 // Track overtime
+    private var overtimePaused = false // Track if overtime is paused
+    private var overtimePausedAt = 0 // Track overtime value when paused
     private var sessionStartTime = 0L
     private var isAppInForeground = false
     private var lastTickTime = 0L
@@ -42,6 +44,7 @@ class ScreenTimeService : Service() {
         private const val TAG = "ScreenTimeService"
         private const val NOTIFICATION_ID = 1001
         private const val CHANNEL_ID = "brainbites_timer_channel"
+        private const val ALERT_CHANNEL_ID = "brainbites_alerts"
         private const val PREFS_NAME = "BrainBitesTimerPrefs"
         private const val KEY_REMAINING_TIME = "remaining_time"
         private const val KEY_TODAY_SCREEN_TIME = "today_screen_time"
@@ -80,6 +83,13 @@ class ScreenTimeService : Service() {
         createNotificationChannel()
         loadSavedData()
         acquireWakeLock()
+        
+        // In onCreate, load overtime
+        overtimeSeconds = sharedPrefs.getInt(KEY_OVERTIME, 0)
+        overtimePaused = sharedPrefs.getBoolean("overtime_paused", false)
+        overtimePausedAt = sharedPrefs.getInt("overtime_paused_at", 0)
+        
+        Log.d(TAG, "Loaded overtime: ${overtimeSeconds}s (paused: $overtimePaused)")
         
         Log.d(TAG, "✅ Service initialized with ${remainingTimeSeconds}s remaining, ${todayScreenTimeSeconds}s used today, ${overtimeSeconds}s overtime")
     }
@@ -128,19 +138,38 @@ class ScreenTimeService : Service() {
         saveData()
     }
 
+    // Update createNotificationChannel to have TWO channels
     private fun createNotificationChannel() {
-        val channel = NotificationChannel(
-            CHANNEL_ID,
-            "BrainBites Screen Time Timer",
-            NotificationManager.IMPORTANCE_LOW
-        ).apply {
-            description = "Shows remaining app time and screen time used"
-            setShowBadge(false)
-            setSound(null, null)
-            enableLights(true)
-            lightColor = 0xFFFF9F1C.toInt() // Theme orange
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            
+            // Channel 1: Silent persistent notification
+            val silentChannel = NotificationChannel(
+                CHANNEL_ID,
+                "Timer Tracking",
+                NotificationManager.IMPORTANCE_LOW
+            ).apply {
+                description = "Silent timer tracking"
+                setSound(null, null) // No sound
+                enableVibration(false)
+                setShowBadge(false)
+            }
+            
+            // Channel 2: Alert notifications (with sound)
+            val alertChannel = NotificationChannel(
+                ALERT_CHANNEL_ID,
+                "Timer Alerts",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                description = "Timer warnings and alerts"
+                enableVibration(true)
+                setShowBadge(true)
+                // Default sound will be used
+            }
+            
+            notificationManager.createNotificationChannel(silentChannel)
+            notificationManager.createNotificationChannel(alertChannel)
         }
-        notificationManagerCompat.createNotificationChannel(channel)
     }
     
     private fun acquireWakeLock() {
@@ -264,7 +293,6 @@ class ScreenTimeService : Service() {
                     if (remainingTimeSeconds > 0) {
                         val newRemaining = remainingTimeSeconds - deltaSec
                         if (newRemaining <= 0) {
-                            overtimeSeconds += Math.abs(newRemaining)
                             remainingTimeSeconds = 0
                             handleTimeExpired()
                         } else {
@@ -277,9 +305,29 @@ class ScreenTimeService : Service() {
                             120 -> showLowTimeNotification(2)
                             60 -> showLowTimeNotification(1)
                         }
-                    } else {
-                        // Already in overtime, keep tracking
-                        overtimeSeconds += deltaSec
+                    }
+                    
+                    // In updateTimer when time runs out
+                    if (remainingTimeSeconds <= 0) {
+                        // Resume paused overtime if applicable
+                        if (overtimePaused && overtimePausedAt > 0) {
+                            overtimeSeconds = overtimePausedAt
+                            overtimePaused = false
+                            overtimePausedAt = 0
+                            sharedPrefs.edit()
+                                .putBoolean("overtime_paused", false)
+                                .remove("overtime_paused_at")
+                                .apply()
+                            Log.d(TAG, "Resuming overtime at ${overtimeSeconds}s")
+                        }
+                        
+                        // Increment overtime if not paused
+                        if (!overtimePaused) {
+                            overtimeSeconds++
+                            sharedPrefs.edit()
+                                .putInt(KEY_OVERTIME, overtimeSeconds)
+                                .apply()
+                        }
                     }
                 } else {
                     Log.d(TAG, "⏸️ Timer NOT updating - App in foreground: $isAppInForeground, Screen locked: ${keyguardManager.isKeyguardLocked}, Screen interactive: ${powerManager.isInteractive}")
@@ -320,15 +368,21 @@ class ScreenTimeService : Service() {
     }
     
     private fun addTime(seconds: Int) {
-        remainingTimeSeconds += seconds
-        // Reset overtime when time is added
-        if (remainingTimeSeconds > 0) {
-            overtimeSeconds = 0
+        // If we have overtime and it's not paused, pause it
+        if (overtimeSeconds > 0 && !overtimePaused) {
+            overtimePaused = true
+            overtimePausedAt = overtimeSeconds
+            sharedPrefs.edit()
+                .putBoolean("overtime_paused", true)
+                .putInt("overtime_paused_at", overtimeSeconds)
+                .apply()
+            Log.d(TAG, "Pausing overtime at ${overtimeSeconds}s")
         }
+        
+        remainingTimeSeconds += seconds
         saveData()
         updatePersistentNotification()
         broadcastUpdate()
-        Log.d(TAG, "➕ Added ${seconds}s, new remaining: ${remainingTimeSeconds}s")
     }
     
     private fun broadcastUpdate() {
@@ -358,44 +412,33 @@ class ScreenTimeService : Service() {
         updatePersistentNotification()
     }
     
+    // Update warning notifications to use alert channel
     private fun showLowTimeNotification(minutes: Int) {
         try {
-            val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            val notification = NotificationCompat.Builder(this, ALERT_CHANNEL_ID) // Alert channel
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle("⏱️ CaBBy Says: Time Check!")
-                .setContentText("Whoa! Only $minutes minute${if (minutes > 1) "s" else ""} left! Time to power up! 🧠✨")
+                .setContentText("Only $minutes minutes left!")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setDefaults(NotificationCompat.DEFAULT_ALL) // Sound + Vibration
                 .setAutoCancel(true)
-                .setColor(0xFFFF9F1C.toInt())
-                .setLights(0xFFFF9F1C.toInt(), 1000, 1000)
                 .build()
                 
             notificationManagerCompat.notify(1000 + minutes, notification)
-            Log.d(TAG, "⚠️ Sent ${minutes} minute warning notification")
         } catch (e: Exception) {
-            Log.e(TAG, "❌ Failed to show low time notification", e)
+            Log.e(TAG, "Failed to show warning", e)
         }
     }
     
     private fun showTimeExpiredNotification() {
         try {
-            val intent = Intent(this, MainActivity::class.java)
-            val pendingIntent = PendingIntent.getActivity(
-                this, 0, intent, 
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
-            
-            val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            val notification = NotificationCompat.Builder(this, ALERT_CHANNEL_ID) // Alert channel
                 .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle("🎯 CaBBy Needs You!")
-                .setContentText("Your earned time is up! Come challenge your brain to unlock more! 🌟")
+                .setContentTitle("🎯 Time's Up!")
+                .setContentText("Come earn more time!")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setDefaults(NotificationCompat.DEFAULT_ALL) // Sound + Vibration
                 .setAutoCancel(true)
-                .setContentIntent(pendingIntent)
-                .setColor(0xFFFF9F1C.toInt())
-                .setLights(0xFFFF9F1C.toInt(), 1000, 1000)
                 .build()
                 
             notificationManagerCompat.notify(999, notification)
@@ -416,24 +459,38 @@ class ScreenTimeService : Service() {
         val screenTimeStr = formatTimeWithSeconds(todayScreenTimeSeconds)
         val overtime = if (remainingTimeSeconds < 0) Math.abs(remainingTimeSeconds) else overtimeSeconds
 
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID) // Use silent channel
             .setSmallIcon(R.drawable.ic_notification)
             .setOngoing(true)
             .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setSilent(true) // Explicitly silent
             .setOnlyAlertOnce(true)
             .setContentIntent(pendingIntent)
         
-        // IMPORTANT: Only show 2 lines in collapsed view
-        builder.setContentTitle("Time left: $timeLeftStr")
-        builder.setContentText("Screen time: $screenTimeStr")
+        // Show overtime in title if active and not paused
+        val title = if (overtimeSeconds > 0 && !overtimePaused) {
+            "Overtime: ${formatTime(overtimeSeconds)}"
+        } else {
+            "Time left: $timeLeftStr"
+        }
         
-        // Don't show overtime in collapsed view
-        // Expanded view can show more details
+        val text = "Screen time: $screenTimeStr"
+        
+        builder.setContentTitle(title)
+        builder.setContentText(text)
+        
+        // For expanded view
         val bigStyle = NotificationCompat.BigTextStyle()
         bigStyle.setBigContentTitle("BrainBites Timer")
-        val expandedText = "Time left: $timeLeftStr\nScreen time: $screenTimeStr" +
-                if (overtime > 0) "\nOvertime: ${formatTimeWithSeconds(overtime)}" else ""
-        bigStyle.bigText(expandedText)
+        val bigText = buildString {
+            append("Time left: $timeLeftStr\n")
+            append("Screen time: $screenTimeStr")
+            if (overtimeSeconds > 0) {
+                append("\nOvertime: ${formatTime(overtimeSeconds)}")
+                if (overtimePaused) append(" (paused)")
+            }
+        }
+        bigStyle.bigText(bigText)
         builder.setStyle(bigStyle)
         
         return builder.build()

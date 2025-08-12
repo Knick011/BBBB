@@ -58,10 +58,17 @@ const QuizScreen = ({ navigation, route }: any) => {
   const [showDailyGoalModal, setShowDailyGoalModal] = useState(false);
   const [completedGoal, setCompletedGoal] = useState<{title: string; reward: number} | null>(null);
   
+  // New timing control state variables
+  const [showingQuestion, setShowingQuestion] = useState(false);
+  const [showingOptions, setShowingOptions] = useState(false);
+  const [timerStarted, setTimerStarted] = useState(false);
+  const [readyForInput, setReadyForInput] = useState(false);
+  
   // Mascot state - simplified for quiz functionality
   const [mascotType, setMascotType] = useState<'happy' | 'sad' | 'excited' | 'depressed' | 'gamemode' | 'below'>('happy');
   const [mascotMessage, setMascotMessage] = useState('');
   const [showMascot, setShowMascot] = useState(false);
+  const [showCelebrationScreen, setShowCelebrationScreen] = useState(false);
   
   // Animation values
   const cardAnim = useRef(new Animated.Value(0)).current;
@@ -80,12 +87,17 @@ const QuizScreen = ({ navigation, route }: any) => {
   // Store start time for scoring
   const questionStartTime = useRef(0);
   
+  // In the useEffect for initialization
   useEffect(() => {
     const initializeQuiz = async () => {
-      console.log('🎮 [QuizScreen] Initializing quiz');
+      console.log('🎮 Initializing quiz session');
       
       // CRITICAL: Initialize quiz session (sets streak to 0)
       await useQuizStore.getState().initializeQuizSession();
+      setStreak(0); // Ensure local state matches
+      
+      // Initialize services
+      await DailyGoalsService.initialize();
       
       // Initialize audio
       await initializeAudio();
@@ -97,9 +109,7 @@ const QuizScreen = ({ navigation, route }: any) => {
     initializeQuiz();
     
     return () => {
-      console.log('🎮 [QuizScreen] Cleaning up quiz session');
-      // Don't save streak on unmount - it should reset
-      // Stop game music but don't completely stop audio system
+      console.log('🎮 Cleaning up quiz session');
       SoundService.stopMusic();
     };
   }, []);
@@ -119,121 +129,133 @@ const QuizScreen = ({ navigation, route }: any) => {
     }
   };
 
-  // Start a new question
+  // Start a new question with comprehensive timing gaps
   const loadQuestion = async () => {
-    setIsLoading(true);
-    setSelectedAnswer(null);
-    setIsCorrect(null);
-    setShowExplanation(false);
-    setShowPointsAnimation(false);
-    setIsStreakMilestone(false);
-    setShowMascot(false); // Hide mascot when loading new question
-    setShowSpeedFeedback(false);
-    setSpeedCategory('');
-    setSpeedMultiplier(1.0);
-    
-    // Reset animations
-    cardAnim.setValue(0);
-    fadeAnim.setValue(0);
-    explanationAnim.setValue(0);
-    timerAnim.setValue(1);
-    
     try {
-      let question;
+      setIsLoading(true);
+      setSelectedAnswer(null);
+      setIsCorrect(null);
+      setShowExplanation(false);
+      setSpeedCategory('');
+      setPointsEarned(0);
+      setSpeedMultiplier(1.0);
+      setShowingQuestion(false);
+      setShowingOptions(false);
+      setTimerStarted(false);
+      setReadyForInput(false);
+      // Hide score popups when starting new question
+      setShowPointsAnimation(false);
+      setShowSpeedFeedback(false);
       
+      // Reset all animations
+      fadeAnim.setValue(0);
+      cardAnim.setValue(0);
+      explanationAnim.setValue(0);
+      optionsAnim.forEach(anim => anim?.setValue(0));
+      timerAnim.setValue(1);
+      
+      // Stop any running timers
+      if (timerAnimation.current) {
+        timerAnimation.current.stop();
+      }
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+      
+      // Get the question
+      let question;
       if (category) {
-        console.log(`🎯 [Modern QuizScreen] Loading question for category: ${category}`);
         question = await QuestionService.getRandomQuestion(category);
       } else if (difficulty) {
-        console.log(`🎯 [Modern QuizScreen] Loading question for difficulty: ${difficulty}`);
         question = await QuestionService.getQuestionsByDifficulty(difficulty);
       } else {
-        console.log(`🎯 [Modern QuizScreen] Loading random question`);
         question = await QuestionService.getRandomQuestion();
       }
       
       if (!question) {
-        console.error('❌ [Modern QuizScreen] No question received from service');
-        // Handle error case - maybe show error message or fallback
-        return;
+        throw new Error('No question received');
       }
-
-      console.log(`✅ [Modern QuizScreen] Loaded question:`, {
-        id: question.id,
-        category: question.category,
-        difficulty: question.difficulty,
-        options: question.options
-      });
-
+      
       setCurrentQuestion(question);
-      setQuestionsAnswered(prev => prev + 1);
+      setIsLoading(false);
       
-      // Play button sound
-      SoundService.playButtonPress();
+      // STEP 1: Fade in the question card (1 second)
+      await new Promise((resolve) => {
+        setShowingQuestion(true);
+        Animated.parallel([
+          Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 600,
+            useNativeDriver: true,
+            easing: Easing.out(Easing.cubic),
+          }),
+          Animated.spring(cardAnim, {
+            toValue: 1,
+            delay: 200,
+            friction: 8,
+            tension: 40,
+            useNativeDriver: true,
+          }),
+        ]).start(() => resolve(undefined));
+      });
       
-      // Create animation values for each option
+      // STEP 2: Let user read the question (3 seconds)
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      
+      // STEP 3: Show "Get Ready!" message (optional)
+      // You could show a countdown here: 3... 2... 1...
+      
+      // STEP 4: Animate options in with stagger (1.5 seconds total)
       const optionKeys = Object.keys(question.options || {});
       optionsAnim.length = optionKeys.length;
       for (let i = 0; i < optionsAnim.length; i++) {
         optionsAnim[i] = new Animated.Value(0);
       }
       
-      // Start animations
-      Animated.parallel([
-        Animated.timing(cardAnim, {
-          toValue: 1,
-          duration: 500,
-          useNativeDriver: true,
-          easing: Easing.out(Easing.back(1.5)),
-        }),
-        Animated.timing(fadeAnim, {
-          toValue: 1,
-          duration: 400,
-          useNativeDriver: true,
-          easing: Easing.out(Easing.cubic),
-        }),
-        // Staggered options animation
-        ...optionsAnim.map((anim, index) => 
+      setShowingOptions(true);
+      
+      await new Promise((resolve) => {
+        const animations = optionsAnim.map((anim, index) => 
           Animated.sequence([
-            Animated.delay(400 + (index * 100)),
+            Animated.delay(index * 200), // Stagger by 200ms
             Animated.spring(anim, {
               toValue: 1,
-              friction: 7,
+              friction: 6,
               tension: 40,
               useNativeDriver: true,
             }),
           ])
-        ),
-      ]).start();
-      
-      // Start timer animation (20 seconds)
-      timerAnimation.current = Animated.timing(timerAnim, {
-        toValue: 0,
-        duration: 20000,
-        useNativeDriver: false, // Need for width animation
-        easing: Easing.linear,
+        );
+        
+        Animated.parallel(animations).start(() => {
+          // Start timer immediately when options animation completes
+          setTimerStarted(true);
+          setReadyForInput(true);
+          questionStartTime.current = Date.now();
+          
+          // Animate timer countdown
+          timerAnimation.current = Animated.timing(timerAnim, {
+            toValue: 0,
+            duration: 20000,
+            useNativeDriver: false,
+            easing: Easing.linear,
+          });
+          
+          timerAnimation.current.start();
+          
+          // Set timeout for time up
+          timerRef.current = setTimeout(() => {
+            if (selectedAnswer === null) {
+              handleTimeUp();
+            }
+          }, 20000);
+          
+          resolve(undefined);
+        });
       });
       
-      timerAnimation.current.start();
-      
-      // Set timer to show time's up after 20 seconds
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-      
-      timerRef.current = setTimeout(() => {
-        // Only trigger if no answer selected yet
-        if (selectedAnswer === null) {
-          handleTimeUp();
-        }
-      }, 20000);
-      
-      // Record start time for scoring
-      questionStartTime.current = Date.now();
-      
-    } catch (error: any) {
-      console.error('❌ [Modern QuizScreen] Error loading question:', error?.message || error);
-    } finally {
+    } catch (error) {
+      console.error('Error loading question:', error);
       setIsLoading(false);
     }
   };
@@ -266,12 +288,14 @@ const QuizScreen = ({ navigation, route }: any) => {
     setShowMascot(true);
   };
 
-  const handleAnswerSelect = (option: string) => {
-    if (selectedAnswer !== null) return;
+  // Update handleAnswerSelect with better timing
+  const handleAnswerSelect = async (option: string) => {
+    // Don't accept input until ready
+    if (!readyForInput || selectedAnswer !== null || isLoading) return;
     
-    console.log(`🎯 [Modern QuizScreen] Answer selected: ${option}`);
+    setReadyForInput(false); // Disable further input
     
-    // Stop timer animation and clear timeout immediately
+    // Stop timer immediately
     if (timerAnimation.current) {
       timerAnimation.current.stop();
     }
@@ -279,125 +303,171 @@ const QuizScreen = ({ navigation, route }: any) => {
       clearTimeout(timerRef.current);
     }
     
+    // Play selection sound
+    SoundService.playButtonPress();
+    
     setSelectedAnswer(option);
     const correct = option === currentQuestion.correctAnswer;
     setIsCorrect(correct);
     
-    // Process answer using EnhancedScoreService
-    const processScoring = async () => {
-      try {
-        const difficulty = route.params?.difficulty || 'medium';
-        const metadata = {
-          startTime: questionStartTime.current,
-          category: category,
-          difficulty: difficulty
-        };
+    // STEP 1: Show selection feedback (500ms)
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    // STEP 2: Calculate speed multiplier
+    const responseTime = Date.now() - questionStartTime.current;
+    const speedMultiplier = calculateSpeedMultiplier(responseTime);
+    setSpeedMultiplier(speedMultiplier);
+    
+    // STEP 3: Process the scoring first
+    await processScoring(correct);
+    
+    // STEP 4: Show animations only for correct answers, after scoring is complete
+    if (correct) {
+      // Reset animation values
+      pointsAnim.setValue(0);
+      speedAnim.setValue(0);
+      
+      // Show multiplier popup first, then score popup
+      await new Promise((resolve) => {
+        setShowSpeedFeedback(true);
+        Animated.timing(speedAnim, {
+          toValue: 1,
+          duration: 500,
+          easing: Easing.bezier(0.25, 0.46, 0.45, 0.94),
+          useNativeDriver: true,
+        }).start(() => resolve(undefined));
+      });
+      
+      // Then show score popup after a short delay
+      await new Promise(resolve => setTimeout(resolve, 200));
+      await new Promise((resolve) => {
+        setShowPointsAnimation(true);
+        Animated.timing(pointsAnim, {
+          toValue: 1,
+          duration: 500,
+          easing: Easing.bezier(0.25, 0.46, 0.45, 0.94),
+          useNativeDriver: true,
+        }).start(() => resolve(undefined));
+      });
+      
+      // Auto-hide both popups with smooth exit after 2 seconds
+      setTimeout(() => {
+        Animated.parallel([
+          Animated.timing(pointsAnim, {
+            toValue: 0,
+            duration: 300,
+            easing: Easing.bezier(0.55, 0.085, 0.68, 0.53),
+            useNativeDriver: true,
+          }),
+          Animated.timing(speedAnim, {
+            toValue: 0,
+            duration: 300,
+            easing: Easing.bezier(0.55, 0.085, 0.68, 0.53),
+            useNativeDriver: true,
+          })
+        ]).start(() => {
+          setShowPointsAnimation(false);
+          setShowSpeedFeedback(false);
+        });
+      }, 2000);
+    }
+    
+    // STEP 5: Show explanation after a delay (1 second)
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    setShowExplanation(true);
+    Animated.timing(explanationAnim, {
+      toValue: 1,
+      duration: 400,
+      useNativeDriver: true,
+      easing: Easing.out(Easing.cubic),
+    }).start();
+  };
+  
+  // Add calculateSpeedMultiplier function
+  const calculateSpeedMultiplier = (responseTime: number): number => {
+    if (responseTime < 3000) return 2.0; // Lightning fast
+    if (responseTime < 5000) return 1.5; // Fast
+    if (responseTime < 10000) return 1.2; // Good
+    return 1.0; // Normal
+  };
+  
+  // Add processScoring function
+  const processScoring = async (correct: boolean) => {
+    try {
+      const difficulty = route.params?.difficulty || 'medium';
+      const metadata = {
+        startTime: questionStartTime.current,
+        category: category,
+        difficulty: difficulty
+      };
+      
+      const scoreResult = await EnhancedScoreService.processAnswer(correct, difficulty, metadata);
+      
+      // Update UI with score results
+      setPointsEarned(scoreResult.pointsEarned);
+      setScore(scoreResult.newScore);
+      setStreak(scoreResult.newStreak);
+      setStreakLevel(scoreResult.streakLevel);
+      setIsStreakMilestone(scoreResult.isMilestone);
+      setSpeedCategory(scoreResult.speedCategory);
+      
+      if (correct) {
+        // Use store method to increment
+        await useQuizStore.getState().incrementStreak();
+        const newStreak = useQuizStore.getState().currentStreak;
+        setStreak(newStreak); // Update local state
         
-        const scoreResult = await EnhancedScoreService.processAnswer(correct, difficulty, metadata);
-        
-        // Update UI with score results
-        setPointsEarned(scoreResult.pointsEarned);
-        setScore(scoreResult.newScore);
-        setStreak(scoreResult.newStreak);
-        setStreakLevel(scoreResult.streakLevel);
-        setIsStreakMilestone(scoreResult.isMilestone);
-        setSpeedCategory(scoreResult.speedCategory);
-        setSpeedMultiplier(scoreResult.speedMultiplier);
-        
-        if (correct) {
-          // Use store method to increment
-          await useQuizStore.getState().incrementStreak();
-          const newStreak = useQuizStore.getState().currentStreak;
-          setStreak(newStreak); // Update local state
-          
-          setCorrectAnswers(prev => prev + 1);
-          setShowPointsAnimation(true);
-          setShowSpeedFeedback(true);
+        setCorrectAnswers(prev => prev + 1);
+        // Score animations are now handled in the answer selection logic above
 
-          // ✅ ADD TIMER INTEGRATION - Add time for correct answers
-          let timeToAdd = 1; // Base 1 minute for easy
-          if (difficulty === 'medium') timeToAdd = 2;
-          if (difficulty === 'hard') timeToAdd = 3;
-          
-          console.log(`🧠 [QuizScreen] Adding ${timeToAdd} minutes for correct ${difficulty} answer`);
-          
-          // Initialize timer integration if needed
-          await TimerIntegrationService.initialize();
-          const timerResult = await TimerIntegrationService.addTimeFromQuiz(timeToAdd);
-          
-          if (timerResult) {
-            console.log(`✅ [QuizScreen] Successfully added ${timeToAdd}m to timer`);
-          } else {
-            console.error(`❌ [QuizScreen] Failed to add time to timer`);
-          }
-          
-          // Daily goal completion check moved outside to run for all answers
-          
-          // Animate points and speed feedback
-          pointsAnim.setValue(0);
-          speedAnim.setValue(0);
-          
-          Animated.parallel([
-            Animated.spring(pointsAnim, {
-              toValue: 1,
-              friction: 5,
-              useNativeDriver: true,
-            }),
-            Animated.sequence([
-              Animated.delay(300),
-              Animated.spring(speedAnim, {
-                toValue: 1,
-                friction: 5,
-                useNativeDriver: true,
-              })
-            ])
-          ]).start();
-
-          // Check for streak milestone
-          if (scoreResult.isMilestone) {
-            setMascotType('gamemode');
-            setMascotMessage(`🔥 ${scoreResult.newStreak} question streak! 🔥\nAmazing work! Keep it up!`);
-            setShowMascot(true);
-            SoundService.playStreak();
-          } else {
-            // Regular correct answer
-            SoundService.playCorrect();
-          }
-          
-          // Show explanation
-          setTimeout(() => {
-            setShowExplanation(true);
-            showExplanationWithAnimation();
-          }, 1200);
+        // Add time for correct answers
+        let timeToAdd = 1; // Base 1 minute for easy
+        if (difficulty === 'medium') timeToAdd = 2;
+        if (difficulty === 'hard') timeToAdd = 3;
+        
+        console.log(`🧠 [QuizScreen] Adding ${timeToAdd} minutes for correct ${difficulty} answer`);
+        
+        // Initialize timer integration if needed
+        await TimerIntegrationService.initialize();
+        const timerResult = await TimerIntegrationService.addTimeFromQuiz(timeToAdd);
+        
+        if (timerResult) {
+          console.log(`✅ [QuizScreen] Successfully added ${timeToAdd}m to timer`);
         } else {
-          // Reset on wrong answer
-          useQuizStore.getState().resetCurrentStreak();
-          setStreak(0);
-          
-          // Wrong answer
-          SoundService.playIncorrect();
-          
-          // Show mascot for wrong answer
-          setTimeout(() => {
-            showMascotForWrongAnswer();
-          }, 500);
-          
-          // Show explanation
-          setTimeout(() => {
-            setShowExplanation(true);
-            showExplanationWithAnimation();
-          }, 2000);
+          console.error(`❌ [QuizScreen] Failed to add time to timer`);
         }
         
-        // Check for daily goal completion after processing any answer (correct or incorrect)
-        await checkDailyGoalCompletion(correct, difficulty, category);
+        // Check for streak milestone
+        if (scoreResult.isMilestone) {
+          setMascotType('gamemode');
+          setMascotMessage(`🔥 ${scoreResult.newStreak} question streak! 🔥\nAmazing work! Keep it up!`);
+          setShowMascot(true);
+          SoundService.playStreak();
+        } else {
+          // Regular correct answer
+          SoundService.playCorrect();
+        }
+      } else {
+        // Reset on wrong answer
+        useQuizStore.getState().resetCurrentStreak();
+        setStreak(0);
         
-      } catch (error) {
-        console.error('Error processing score:', error);
+        // Wrong answer
+        SoundService.playIncorrect();
+        
+        // Show mascot for wrong answer
+        setTimeout(() => {
+          showMascotForWrongAnswer();
+        }, 500);
       }
-    };
-    
-    processScoring();
+      
+      // Update daily goals progress after processing any answer
+      await checkDailyGoalCompletion(correct, difficulty, category);
+      
+    } catch (error) {
+      console.error('Error processing score:', error);
+    }
   };
   
   const showExplanationWithAnimation = () => {
@@ -441,12 +511,14 @@ const QuizScreen = ({ navigation, route }: any) => {
     setShowMascot(false);
   };
   
-  // Check for daily goal completion during quiz
+  // Update daily goal progress - only updates progress, doesn't show modal
   const checkDailyGoalCompletion = async (isCorrect: boolean, quizDifficulty: string, quizCategory: string) => {
     try {
-      // Update progress with current quiz data to trigger goal completion checking
       const accuracy = questionsAnswered > 0 ? Math.round((correctAnswers / questionsAnswered) * 100) : 0;
       
+      console.log(`🎯 [QuizScreen] Updating daily goals progress...`);
+      
+      // Update progress - this is what actually completes goals
       await DailyGoalsService.updateProgress({
         isCorrect: isCorrect,
         difficulty: quizDifficulty || 'medium',
@@ -456,86 +528,134 @@ const QuizScreen = ({ navigation, route }: any) => {
         todayAccuracy: accuracy
       });
       
-      // Check if any goals were just completed
+      // Check if any new goals were completed but don't show modal yet
       const goals = DailyGoalsService.getGoals();
-      console.log(`🎯 [QuizScreen] Checking ${goals.length} goals for completion...`);
+      const newlyCompletedGoals = goals.filter(goal => goal.completed && !goal.claimed && !goal.notified);
       
-      // Find goals that are completed but not yet claimed and not yet notified
-      const justCompleted = goals.filter(goal => {
-        const isEligible = goal.completed && !goal.claimed && !goal.notified;
-        console.log(`🎯 [QuizScreen] Goal "${goal.title}": completed=${goal.completed}, claimed=${goal.claimed}, notified=${goal.notified}, eligible=${isEligible}`);
-        return isEligible;
-      });
-      
-      if (justCompleted.length > 0) {
-        const goal = justCompleted[0]; // Take the first completed goal
-        console.log(`🎯 [QuizScreen] Showing modal for completed goal: ${goal.title}`);
-        
-        // Mark as notified to prevent showing again
-        goal.notified = true;
-        await DailyGoalsService.saveGoals(); // Save the notified state
-        
-        setCompletedGoal({
-          title: goal.title,
-          reward: Math.floor(goal.reward / 60) // Convert to minutes
-        });
-        setShowDailyGoalModal(true);
-        
-        console.log(`🎯 [QuizScreen] Daily goal completed during quiz: ${goal.title}`);
-      } else {
-        console.log(`🎯 [QuizScreen] No newly completed goals found`);
+      if (newlyCompletedGoals.length > 0) {
+        console.log(`🎯 [QuizScreen] ${newlyCompletedGoals.length} goals completed, will show on continue`);
       }
     } catch (error) {
-      console.error('Error checking daily goal completion:', error);
+      console.error('❌ [QuizScreen] Error updating daily goal progress:', error);
     }
   };
   
+  // Update handleDailyGoalClaim with enhanced timer integration
   const handleDailyGoalClaim = async () => {
     if (!completedGoal) return;
     
     try {
-      // Find the completed goal and claim it through the service
+      // Find and claim the goal
       const goals = DailyGoalsService.getGoals();
-      const goalToBeClaimedIndex = goals.findIndex(g => g.title === completedGoal.title && g.completed && !g.claimed);
+      const goalToClaim = goals.find(g => g.title === completedGoal.title && g.completed && !g.claimed);
       
-      if (goalToBeClaimedIndex !== -1) {
-        const goalToClaim = goals[goalToBeClaimedIndex];
+      if (goalToClaim) {
         console.log(`🎯 [QuizScreen] Attempting to claim goal: ${goalToClaim.title}`);
+        console.log(`🎯 [QuizScreen] Goal reward: ${goalToClaim.reward} seconds (${Math.floor(goalToClaim.reward / 60)} minutes)`);
         
-        const claimSuccess = await DailyGoalsService.claimReward(goalToClaim.id);
+        // Claim the reward (this adds time to timer internally)
+        const success = await DailyGoalsService.claimReward(goalToClaim.id);
         
-        if (claimSuccess) {
+        if (success) {
+          console.log(`✅ [QuizScreen] Successfully claimed daily goal: ${goalToClaim.title}`);
+          
+          // Double-check that time was added by getting timer state
+          const timerState = await TimerIntegrationService.getTimerState();
+          console.log(`🕐 [QuizScreen] Timer state after claiming reward:`, timerState);
+          
+          // Play success sound
           SoundService.playStreak();
-          console.log(`✅ [QuizScreen] Successfully claimed daily goal: ${completedGoal.title}`);
         } else {
-          console.error(`❌ [QuizScreen] Failed to claim daily goal: ${completedGoal.title}`);
-          // Still play sound to avoid user confusion
-          SoundService.playStreak();
+          console.error(`❌ [QuizScreen] Failed to claim goal: ${goalToClaim.title}`);
+          
+          // Try manual timer integration as fallback
+          const timeInMinutes = Math.floor(goalToClaim.reward / 60);
+          console.log(`🔄 [QuizScreen] Attempting manual timer integration for ${timeInMinutes} minutes`);
+          
+          const fallbackSuccess = await TimerIntegrationService.addTimeFromGoal(timeInMinutes);
+          if (fallbackSuccess) {
+            console.log(`✅ [QuizScreen] Manual timer integration successful!`);
+            // Mark as claimed manually since the service failed but timer worked
+            goalToClaim.claimed = true;
+            await DailyGoalsService.saveGoals();
+            SoundService.playStreak();
+          } else {
+            console.error(`❌ [QuizScreen] Both goal claim and manual timer integration failed!`);
+          }
         }
       } else {
-        console.log(`⚠️ [QuizScreen] Goal already claimed or not found: ${completedGoal.title}`);
-        SoundService.playStreak();
+        console.warn(`⚠️ [QuizScreen] Could not find goal to claim: ${completedGoal.title}`);
       }
-      
-      // Close modal regardless of claim result
-      setShowDailyGoalModal(false);
-      setCompletedGoal(null);
-      
     } catch (error) {
-      console.error('Error claiming daily goal reward:', error);
-      // Close modal even on error to avoid stuck state
+      console.error('❌ [QuizScreen] Error claiming daily goal:', error);
+    } finally {
+      // Close modal and celebration screen, then proceed to next question
       setShowDailyGoalModal(false);
       setCompletedGoal(null);
+      setShowCelebrationScreen(false);
+      
+      // Load next question after celebration
+      setTimeout(() => {
+        loadQuestion();
+      }, 300);
     }
   };
   
-  const handleContinue = () => {
+  const handleContinue = async () => {
     // Play button sound
     SoundService.playButtonPress();
     
     // Hide mascot if still showing
     setShowMascot(false);
     
+    // Check for completed goals before proceeding
+    try {
+      const goals = DailyGoalsService.getGoals();
+      const unclaimedGoals = goals.filter(goal => goal.completed && !goal.claimed && !goal.notified);
+      
+      if (unclaimedGoals.length > 0) {
+        const goal = unclaimedGoals[0];
+        
+        console.log(`🎉 [QuizScreen] Found completed goal to show: ${goal.title} (${Math.floor(goal.reward / 60)} minutes)`);
+        
+        // Set the goal with correct format for MascotModal
+        setCompletedGoal({
+          title: goal.title,
+          reward: goal.reward
+        });
+        
+        // Mark as notified to prevent showing again
+        goal.notified = true;
+        await DailyGoalsService.saveGoals();
+        
+        // Show celebration screen first
+        console.log(`🎉 [QuizScreen] Showing celebration screen`);
+        setShowCelebrationScreen(true);
+        
+        // Hide explanation and then show goal modal after short delay
+        Animated.timing(explanationAnim, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+          easing: Easing.in(Easing.cubic),
+        }).start(() => {
+          setTimeout(() => {
+            setShowExplanation(false);
+            console.log(`🎉 [QuizScreen] About to show daily goal modal`);
+            // Wait a bit more then show the goal modal
+            setTimeout(() => {
+              setShowDailyGoalModal(true);
+              console.log(`🎉 [QuizScreen] Daily goal modal should now be visible`);
+            }, 500);
+          }, 0);
+        });
+        return;
+      }
+    } catch (error) {
+      console.error('Error checking for completed goals:', error);
+    }
+    
+    // No goals to show - proceed normally
     // Add a small delay before starting next question
     setTimeout(() => {
       // Hide explanation with animation
@@ -768,16 +888,23 @@ const QuizScreen = ({ navigation, route }: any) => {
           <Text style={styles.questionText}>{currentQuestion?.question}</Text>
           
           <View style={styles.optionsContainer}>
-            {currentQuestion?.options && Object.entries(currentQuestion.options).map(([key, value], index) => (
+            {/* In the render, conditionally show options based on state */}
+            {showingOptions && currentQuestion?.options && Object.entries(currentQuestion.options).map(([key, value], index) => (
               <Animated.View
                 key={key}
                 style={{
-                  opacity: optionsAnim[index] || fadeAnim,
+                  opacity: optionsAnim[index] || new Animated.Value(0),
                   transform: [
                     { 
-                      translateY: (optionsAnim[index] || fadeAnim).interpolate({
+                      translateY: (optionsAnim[index] || new Animated.Value(0)).interpolate({
                         inputRange: [0, 1],
                         outputRange: [20, 0]
+                      })
+                    },
+                    {
+                      scale: (optionsAnim[index] || new Animated.Value(0)).interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0.8, 1]
                       })
                     }
                   ]
@@ -789,11 +916,10 @@ const QuizScreen = ({ navigation, route }: any) => {
                     selectedAnswer === key && (
                       key === currentQuestion.correctAnswer ? styles.correctOption : styles.incorrectOption
                     ),
-                    // Add hover effect when no selection yet
-                    selectedAnswer === null && styles.hoverableOption
+                    !readyForInput && styles.disabledOption
                   ]}
                   onPress={() => handleAnswerSelect(key)}
-                  disabled={selectedAnswer !== null}
+                  disabled={!readyForInput || selectedAnswer !== null}
                   activeOpacity={0.8}
                 >
                   <View style={[
@@ -856,8 +982,8 @@ const QuizScreen = ({ navigation, route }: any) => {
                   },
                   { 
                     scale: pointsAnim.interpolate({
-                      inputRange: [0, 0.5, 1],
-                      outputRange: [0.8, 1.2, 1]
+                      inputRange: [0, 0.3, 1],
+                      outputRange: [0.5, 1.1, 1]
                     })
                   }
                 ]
@@ -885,8 +1011,8 @@ const QuizScreen = ({ navigation, route }: any) => {
                   },
                   { 
                     scale: speedAnim.interpolate({
-                      inputRange: [0, 0.5, 1],
-                      outputRange: [0.8, 1.1, 1]
+                      inputRange: [0, 0.3, 1],
+                      outputRange: [0.5, 1.05, 1]
                     })
                   }
                 ]
@@ -1002,34 +1128,24 @@ const QuizScreen = ({ navigation, route }: any) => {
         ]}
       />
       
-      {/* Daily Goal Completion Modal - only shown during quiz */}
-      <MascotModal
-        visible={showDailyGoalModal}
-        type="excited"
-        title="🎯 Goal Completed!"
-        message={completedGoal ? `Awesome! You just completed "${completedGoal.title}" while playing!\n\nYou earned ${completedGoal.reward} minutes of screen time!` : ''}
-        onDismiss={() => {
-          console.log(`🎯 [QuizScreen] Modal dismissed`);
-          setShowDailyGoalModal(false);
-          setCompletedGoal(null);
-        }}
-        buttons={[
-          {
-            text: "Claim Reward!",
-            onPress: handleDailyGoalClaim,
-            style: 'primary'
-          },
-          {
-            text: 'Continue Quiz',
-            onPress: () => {
-              console.log(`🎯 [QuizScreen] Continue quiz pressed`);
-              setShowDailyGoalModal(false);
-              setCompletedGoal(null);
-            },
-            style: 'secondary'
-          }
-        ]}
-      />
+      {/* Celebration Screen - blank background for goal celebration */}
+      {showCelebrationScreen && (
+        <View style={styles.celebrationScreen}>
+          <Text style={styles.celebrationText}>🎉 Goal Complete! 🎉</Text>
+        </View>
+      )}
+      
+      {/* Daily Goal Completion Modal - shown on celebration screen */}
+      {showDailyGoalModal && completedGoal && (
+        <MascotModal
+          visible={showDailyGoalModal}
+          type="excited"
+          message={`🎉 Goal Completed! 🎉\n\n${completedGoal.title}\n\nYou earned ${Math.floor(completedGoal.reward / 60)} minutes!`}
+          reward={Math.floor(completedGoal.reward / 60)}
+          onDismiss={handleDailyGoalClaim}
+          autoHide={false}
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -1043,6 +1159,7 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 16,
     paddingBottom: 40,
+    marginTop: 15,  // ADD THIS
   },
   loadingContainer: {
     flex: 1,
@@ -1401,6 +1518,27 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     marginLeft: 8,
+  },
+  disabledOption: {
+    opacity: 0.6,
+  },
+  celebrationScreen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#FFF8E7',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 999,
+  },
+  celebrationText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FF6B35',
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
   },
 });
 

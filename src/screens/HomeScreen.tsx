@@ -33,6 +33,7 @@ import BannerAdComponent from '../components/common/BannerAdComponent';
 // ✅ LIVE STATE INTEGRATION
 import { useHomeIntegration } from '../hooks/useGameIntegration';
 import { useLiveScore } from '../store/useLiveGameStore';
+import { useQuizStore } from '../store/useQuizStore';
 import TimerIntegrationService from '../services/TimerIntegrationService';
 
 const { width } = Dimensions.get('window');
@@ -107,19 +108,19 @@ const HomeScreen: React.FC = () => {
     animatingStreak 
   } = useLiveScore();
   
+  // Get the daily highest streak from quiz store
+  const { dailyHighestStreak } = useQuizStore();
+  
   // Keep existing local state for UI
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [dailyStreak, setDailyStreak] = useState(0);
   const [lastPlayedDate, setLastPlayedDate] = useState<string | null>(null);
-  const [highestStreak, setHighestStreak] = useState(0);
   // In the HomeScreen component, update the useEffect that loads stats
   useEffect(() => {
     const loadStats = async () => {
       try {
-        // Get highest streak from the same source as peeking mascot
-        const savedHighestStreak = await AsyncStorage.getItem('@BrainBites:highestStreakToday');
-        const highestStreakValue = savedHighestStreak ? parseInt(savedHighestStreak, 10) : 0;
-        setHighestStreak(highestStreakValue);
+        // Load the daily highest streak from the store
+        await useQuizStore.getState().loadDailyHighest();
       } catch (error) {
         console.error('Error loading stats:', error);
       }
@@ -139,6 +140,14 @@ const HomeScreen: React.FC = () => {
   // Refresh data when screen comes into focus
   useFocusEffect(
     React.useCallback(() => {
+      const loadData = async () => {
+        // Load the daily highest streak
+        await useQuizStore.getState().loadDailyHighest();
+        
+        // Rest of your refresh logic
+        handleRefresh();
+      };
+      
       // Initialize and start menu music when returning to home
       const resumeMusic = async () => {
         try {
@@ -151,7 +160,7 @@ const HomeScreen: React.FC = () => {
       };
       
       resumeMusic();
-      handleRefresh();
+      loadData();
       
       return () => {
         // Don't stop music when leaving (let next screen handle it)
@@ -432,8 +441,8 @@ const HomeScreen: React.FC = () => {
   const handlePeekingMascotPress = () => {
     let message = '';
     
-    if (highestStreak >= 5) {
-      message = `🔥 Amazing Streak! 🔥\n\nYour best streak today: ${highestStreak} questions!\nKeep it up, you're unstoppable!`;
+    if (dailyHighestStreak >= 5) {
+      message = `🔥 Amazing Streak! 🔥\n\nYour best streak today: ${dailyHighestStreak} questions!\nKeep it up, you're unstoppable!`;
       setMascotType('excited');
     } else if (questionsToday >= 10) {
       message = `🎯 Great Progress! 🎯\n\nYou've answered ${questionsToday} questions today!\nAccuracy: ${accuracy}%`;
@@ -545,7 +554,7 @@ const HomeScreen: React.FC = () => {
         <Animated.View style={[styles.header, { opacity: fadeAnim }]}>
           <Text style={styles.headerTitle}>Brain Bites</Text>
           <View style={styles.headerRight}>
-            <ScoreDisplay score={dailyScore} />
+            <ScoreDisplay score={dailyScore} showStreak={false} />
             <TouchableOpacity 
               onPress={() => navigation.navigate('Settings')}
               style={styles.settingsButton}
@@ -683,7 +692,7 @@ const HomeScreen: React.FC = () => {
             </View>
             <View style={styles.statItem}>
               <Icon name="fire" size={24} color="#FF9F1C" />
-              <Text style={styles.statValue}>{highestStreak || 0}</Text>
+              <Text style={styles.statValue}>{dailyHighestStreak || 0}</Text>
               <Text style={styles.statLabel}>Best Streak</Text>
             </View>
           </View>
@@ -715,6 +724,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    backgroundColor: '#FFF8E7',
+    marginTop: 15,  // ADD THIS
   },
   scrollContent: {
     paddingHorizontal: 16,

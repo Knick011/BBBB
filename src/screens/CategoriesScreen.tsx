@@ -232,6 +232,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     backgroundColor: '#FFF8E7',
+    marginTop: 15,  // ADD THIS
   },
   mascotContainer: {
     position: 'absolute',

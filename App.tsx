@@ -93,13 +93,19 @@ const App: React.FC = () => {
   // Check if this is the first launch
   const checkFirstLaunch = useCallback(async () => {
     try {
+      // Check both the new key and the old key for backwards compatibility
+      const hasCompletedOnboarding = await AsyncStorage.getItem('brainbites_onboarding_complete');
       const hasLaunchedBefore = await AsyncStorage.getItem('@BrainBites:hasLaunchedBefore');
-      const isFirst = !hasLaunchedBefore;
+      
+      // If onboarding was completed OR user has launched before, it's not first time
+      const isFirst = !hasCompletedOnboarding && !hasLaunchedBefore;
       
       if (isFirst) {
-        console.log('👋 [BrainBites] First launch detected');
+        console.log('👋 [BrainBites] First launch detected - showing welcome screen');
+        // Set the old key for backwards compatibility
+        await AsyncStorage.setItem('@BrainBites:hasLaunchedBefore', 'true');
       } else {
-        console.log('🔄 [BrainBites] Returning user detected');
+        console.log('🔄 [BrainBites] Returning user detected - onboarding previously completed');
       }
       
       return isFirst;
