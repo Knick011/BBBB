@@ -280,6 +280,32 @@ class ScreenTimeService : Service() {
             val deltaMs = now - lastTickTime
             lastTickTime = now
             
+            // Detect midnight/day change and reset daily counters immediately
+            try {
+                val today = android.text.format.DateFormat.format("yyyy-MM-dd", java.util.Date()).toString()
+                val lastSaveDate = sharedPrefs.getString(KEY_LAST_SAVE_DATE, today)
+                if (lastSaveDate != today) {
+                    // New day detected while service is running
+                    todayScreenTimeSeconds = 0
+                    overtimeSeconds = 0
+                    overtimePaused = false
+                    overtimePausedAt = 0
+                    sharedPrefs.edit()
+                        .putInt(KEY_TODAY_SCREEN_TIME, 0)
+                        .putInt(KEY_OVERTIME, 0)
+                        .putBoolean("overtime_paused", false)
+                        .remove("overtime_paused_at")
+                        .putString(KEY_LAST_SAVE_DATE, today)
+                        .apply()
+                    Log.d(TAG, "📅 Midnight rollover detected - daily screen time and overtime reset")
+                    // Persist notification and broadcast fresh state
+                    updatePersistentNotification()
+                    broadcastUpdate()
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "❌ Failed daily rollover check", e)
+            }
+
             // Only update timer logic if at least 1 second has passed (avoid micro-updates)
             if (deltaMs >= 1000) {
                 val deltaSec = (deltaMs / 1000).toInt()

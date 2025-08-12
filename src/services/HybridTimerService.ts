@@ -320,80 +320,101 @@ class HybridTimerService {
   }
 
   /**
-   * Add time from goal completion - updated with overtime handling
+   * Add time from goal completion - updated with overtime handling and forced native refresh
    */
-async addTimeFromGoal(minutes: number): Promise<boolean> {
-  try {
-    const secondsToAdd = minutes * 60;
-    console.log(`🎯 [HybridTimer] Adding ${minutes} minutes (${secondsToAdd}s) from goal completion`);
-    
-    // Pause overtime if active but don't reset it
-    if (this.overtime > 0 && !this.overtimePaused) {
-      this.pausedOvertimeValue = this.overtime;
-      this.overtimePaused = true;
-      console.log(`⏸️ [Timer] Pausing overtime at ${this.overtime}s`);
-    }
-    
-    // Add to time left
-    const previousTime = this.timeLeft;
-    this.timeLeft += secondsToAdd;
-    console.log(`🎯 [HybridTimer] Updated timeLeft: ${previousTime}s -> ${this.timeLeft}s`);
-    
-    // Update native modules - crucial for persistent notification updates
-    let brainBitesSuccess = false;
-    let screenTimeSuccess = false;
-
-    // Add to BrainBitesTimer (persistent notifications)
+  async addTimeFromGoal(minutes: number): Promise<boolean> {
     try {
-      const { BrainBitesTimer } = NativeModules;
-      if (BrainBitesTimer && BrainBitesTimer.addTime) {
-        brainBitesSuccess = await BrainBitesTimer.addTime(secondsToAdd);
-        console.log(`🎯 [HybridTimer] BrainBitesTimer addTime result: ${brainBitesSuccess}`);
-      } else {
-        console.log('⚠️ [HybridTimer] BrainBitesTimer module not available for goal time');
-      }
-    } catch (error) {
-      console.error('❌ [HybridTimer] Failed to add goal time to BrainBitesTimer:', error);
-    }
+      const secondsToAdd = minutes * 60;
+      console.log(`🎯 [HybridTimer] Adding ${minutes} minutes (${secondsToAdd}s) from goal completion`);
 
-    // Add to ScreenTimeModule
-    try {
-      const { ScreenTimeModule } = NativeModules;
-      if (ScreenTimeModule && ScreenTimeModule.addTime) {
-        screenTimeSuccess = await ScreenTimeModule.addTime(secondsToAdd);
-        console.log(`🎯 [HybridTimer] ScreenTimeModule addTime result: ${screenTimeSuccess}`);
-      } else {
-        console.log('⚠️ [HybridTimer] ScreenTimeModule not available for goal time');
+      // Pause overtime if active but don't reset it
+      if (this.overtime > 0 && !this.overtimePaused) {
+        this.pausedOvertimeValue = this.overtime;
+        this.overtimePaused = true;
+        console.log(`⏸️ [Timer] Pausing overtime at ${this.overtime}s`);
       }
-    } catch (error) {
-      console.error('❌ [HybridTimer] Failed to add goal time to ScreenTimeModule:', error);
-    }
-    
-    // Save state regardless of native module results
-    await this.saveTimerState();
-    
-    // Update current data
-    if (this.currentData) {
-      this.currentData = {
-        ...this.currentData,
-        remainingTime: this.timeLeft,
-        overtime: this.overtimePaused ? this.pausedOvertimeValue : this.overtime
-      };
+
+      // Add to time left
+      const previousTime = this.timeLeft;
+      this.timeLeft += secondsToAdd;
+      console.log(`🎯 [HybridTimer] Updated timeLeft: ${previousTime}s -> ${this.timeLeft}s`);
+
+      // Update native modules - crucial for persistent notification updates
+      let brainBitesSuccess = false;
+      let screenTimeSuccess = false;
+
+      // Add to BrainBitesTimer (persistent notifications) - FORCE REFRESH
+      try {
+        const { BrainBitesTimer } = NativeModules;
+        if (BrainBitesTimer) {
+          if (BrainBitesTimer.addTime) {
+            await BrainBitesTimer.addTime(secondsToAdd);
+            brainBitesSuccess = true;
+            console.log(`✅ [HybridTimer] BrainBitesTimer addTime: ${secondsToAdd}s`);
+          }
+          if (BrainBitesTimer.updateTime) {
+            await BrainBitesTimer.updateTime(this.timeLeft);
+            console.log(`✅ [HybridTimer] BrainBitesTimer updateTime: ${this.timeLeft}s total`);
+          }
+          if (BrainBitesTimer.refreshNotification) {
+            await BrainBitesTimer.refreshNotification();
+            console.log('✅ [HybridTimer] BrainBitesTimer notification refreshed');
+          }
+        }
+      } catch (error) {
+        console.error('❌ [HybridTimer] Failed to add goal time to BrainBitesTimer:', error);
+      }
+
+      // Add to ScreenTimeModule (widget support) - Additive and refresh
+      try {
+        const { ScreenTimeModule } = NativeModules;
+        if (ScreenTimeModule) {
+          if (ScreenTimeModule.addTimeFromGoal) {
+            screenTimeSuccess = await ScreenTimeModule.addTimeFromGoal(minutes);
+            console.log(`✅ [HybridTimer] ScreenTimeModule addTimeFromGoal: ${minutes}m`);
+          }
+          // Do NOT call setScreenTime here to avoid overriding total with reward value
+          // The service will broadcast and update the widget immediately after add
+        }
+      } catch (error) {
+        console.error('❌ [HybridTimer] Failed to add goal time to ScreenTimeModule:', error);
+      }
+
+      // Save state and notify listeners
+      await this.saveTimerState();
+
+      // Update current data
+      if (this.currentData) {
+        this.currentData = {
+          ...this.currentData,
+          remainingTime: this.timeLeft,
+          overtime: this.overtimePaused ? this.pausedOvertimeValue : this.overtime,
+        };
+      }
+
+      // Notify all listeners to refresh UI
       this.notifyListeners();
+
+      // Emit event to force UI refresh
+      const eventEmitter = new NativeEventEmitter(NativeModules.DeviceEventEmitter || {});
+      eventEmitter.emit('timerUpdated', {
+        remainingTime: this.timeLeft,
+        addedTime: secondsToAdd,
+        source: 'goal_completion',
+      });
+
+      // Update notification display for local state
+      this.updateNotification();
+
+      const success = brainBitesSuccess || screenTimeSuccess;
+      console.log(`${success ? '✅' : '❌'} [HybridTimer] Goal time addition result: ${success}`);
+
+      return success;
+    } catch (error) {
+      console.error('❌ [HybridTimer] Failed to add goal time:', error);
+      return false;
     }
-    
-    // Update notification display
-    this.updateNotification();
-    
-    const anySuccess = brainBitesSuccess || screenTimeSuccess || true; // Always consider local state update a success
-    console.log(`🎯 [HybridTimer] Goal time addition result: ${anySuccess} (BrainBites: ${brainBitesSuccess}, ScreenTime: ${screenTimeSuccess})`);
-    
-    return anySuccess;
-  } catch (error) {
-    console.error('❌ [HybridTimer] Failed to add goal time:', error);
-    return false;
   }
-}
 
 // Add method to resume overtime when timer reaches 0 again
 private checkOvertimeResume(): void {

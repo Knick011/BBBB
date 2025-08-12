@@ -16,7 +16,10 @@ import {
   ScrollView,
   StatusBar,
   Platform,
-  BackHandler
+  BackHandler,
+  Alert,
+  NativeEventEmitter,
+  NativeModules
 } from 'react-native';
 import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -53,6 +56,10 @@ const QuizScreen = ({ navigation, route }: any) => {
   const [showConfirmQuit, setShowConfirmQuit] = useState(false);
   const [showSpeedFeedback, setShowSpeedFeedback] = useState(false);
   const [showQuitModal, setShowQuitModal] = useState(false);
+  // Goal celebration state (new flow)
+  const [showGoalCelebration, setShowGoalCelebration] = useState(false);
+  const [celebrationGoal, setCelebrationGoal] = useState<{title: string; reward: number} | null>(null);
+  const [pendingNextQuestion, setPendingNextQuestion] = useState(false);
   
   // Daily goal completion modal state
   const [showDailyGoalModal, setShowDailyGoalModal] = useState(false);
@@ -63,6 +70,8 @@ const QuizScreen = ({ navigation, route }: any) => {
   const [showingOptions, setShowingOptions] = useState(false);
   const [timerStarted, setTimerStarted] = useState(false);
   const [readyForInput, setReadyForInput] = useState(false);
+  const [showContinueButton, setShowContinueButton] = useState(false);
+  const continueButtonTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   // Mascot state - simplified for quiz functionality
   const [mascotType, setMascotType] = useState<'happy' | 'sad' | 'excited' | 'depressed' | 'gamemode' | 'below'>('happy');
@@ -95,6 +104,10 @@ const QuizScreen = ({ navigation, route }: any) => {
       // CRITICAL: Initialize quiz session (sets streak to 0)
       await useQuizStore.getState().initializeQuizSession();
       setStreak(0); // Ensure local state matches
+      // Ensure scoring service streak is fully reset for a fresh session
+      try {
+        EnhancedScoreService.endQuizSession();
+      } catch {}
       
       // Initialize services
       await DailyGoalsService.initialize();
@@ -110,9 +123,59 @@ const QuizScreen = ({ navigation, route }: any) => {
     
     return () => {
       console.log('🎮 Cleaning up quiz session');
+      if (continueButtonTimerRef.current) {
+        clearTimeout(continueButtonTimerRef.current);
+        continueButtonTimerRef.current = null;
+      }
       SoundService.stopMusic();
     };
   }, []);
+
+  // Listen for goal completion events to prepare celebration
+  useEffect(() => {
+    const eventEmitter = new NativeEventEmitter(NativeModules.DeviceEventEmitter || {});
+    const goalListener = eventEmitter.addListener('dailyGoalCompleted', (data) => {
+      try {
+        console.log('🎯 [QuizScreen] Daily goal completed event received:', data);
+        setCelebrationGoal({ title: data.goalTitle, reward: data.reward });
+      } catch (e) {}
+    });
+    const honorListener = eventEmitter.addListener('honorGoalCompleted', (data) => {
+      try {
+        console.log('🎯 [QuizScreen] Honor goal completed event received:', data);
+        setCelebrationGoal({ title: data.goalTitle, reward: data.reward });
+      } catch (e) {}
+    });
+    // Back-compat: some services emit 'showGoalCompletedMascot'
+    const legacyListener = eventEmitter.addListener('showGoalCompletedMascot', (data) => {
+      try {
+        console.log('🎯 [QuizScreen] Legacy goal completed event received:', data);
+        setCelebrationGoal({ title: data.goalTitle, reward: data.reward });
+      } catch (e) {}
+    });
+    return () => {
+      try { goalListener.remove(); } catch {}
+      try { honorListener.remove(); } catch {}
+      try { legacyListener.remove(); } catch {}
+    };
+  }, []);
+
+  // Proceed to next question helper
+  const proceedToNextQuestion = () => {
+    setTimeout(() => {
+      Animated.timing(explanationAnim, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+        easing: Easing.in(Easing.cubic),
+      }).start(() => {
+        setTimeout(() => {
+          setShowExplanation(false);
+          loadQuestion();
+        }, 0);
+      });
+    }, 100);
+  };
 
   const initializeAudio = async () => {
     try {
@@ -161,6 +224,11 @@ const QuizScreen = ({ navigation, route }: any) => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
       }
+      if (continueButtonTimerRef.current) {
+        clearTimeout(continueButtonTimerRef.current);
+        continueButtonTimerRef.current = null;
+      }
+      setShowContinueButton(false);
       
       // Get the question
       let question;
@@ -280,6 +348,14 @@ const QuizScreen = ({ navigation, route }: any) => {
     
     // Show mascot for timeout
     showMascotForTimeout();
+
+    // Show continue button after a short delay to avoid simultaneous appearance
+    if (continueButtonTimerRef.current) {
+      clearTimeout(continueButtonTimerRef.current);
+    }
+    continueButtonTimerRef.current = setTimeout(() => {
+      setShowContinueButton(true);
+    }, 1000);
   };
   
   const showMascotForTimeout = () => {
@@ -372,6 +448,14 @@ const QuizScreen = ({ navigation, route }: any) => {
       }, 2000);
     }
     
+    // STEP 4.5: Reveal Continue button 1s after scoring update
+    if (continueButtonTimerRef.current) {
+      clearTimeout(continueButtonTimerRef.current);
+    }
+    continueButtonTimerRef.current = setTimeout(() => {
+      setShowContinueButton(true);
+    }, 1000);
+
     // STEP 5: Show explanation after a delay (1 second)
     await new Promise(resolve => setTimeout(resolve, 1000));
     
@@ -602,76 +686,53 @@ const QuizScreen = ({ navigation, route }: any) => {
   };
   
   const handleContinue = async () => {
-    // Play button sound
     SoundService.playButtonPress();
-    
-    // Hide mascot if still showing
     setShowMascot(false);
-    
-    // Check for completed goals before proceeding
+    setShowContinueButton(false);
+
     try {
       const goals = DailyGoalsService.getGoals();
-      const unclaimedGoals = goals.filter(goal => goal.completed && !goal.claimed && !goal.notified);
-      
-      if (unclaimedGoals.length > 0) {
-        const goal = unclaimedGoals[0];
-        
-        console.log(`🎉 [QuizScreen] Found completed goal to show: ${goal.title} (${Math.floor(goal.reward / 60)} minutes)`);
-        
-        // Set the goal with correct format for MascotModal
-        setCompletedGoal({
-          title: goal.title,
-          reward: goal.reward
-        });
-        
-        // Mark as notified to prevent showing again
-        goal.notified = true;
-        await DailyGoalsService.saveGoals();
-        
-        // Show celebration screen first
-        console.log(`🎉 [QuizScreen] Showing celebration screen`);
-        setShowCelebrationScreen(true);
-        
-        // Hide explanation and then show goal modal after short delay
-        Animated.timing(explanationAnim, {
-          toValue: 0,
-          duration: 300,
-          useNativeDriver: true,
-          easing: Easing.in(Easing.cubic),
-        }).start(() => {
-          setTimeout(() => {
-            setShowExplanation(false);
-            console.log(`🎉 [QuizScreen] About to show daily goal modal`);
-            // Wait a bit more then show the goal modal
-            setTimeout(() => {
-              setShowDailyGoalModal(true);
-              console.log(`🎉 [QuizScreen] Daily goal modal should now be visible`);
-            }, 500);
-          }, 0);
-        });
+      const unclaimedCompletedGoal = goals.find(g => g.completed && !g.claimed);
+
+      if (unclaimedCompletedGoal || celebrationGoal) {
+        const goalToShow = unclaimedCompletedGoal || celebrationGoal!;
+        console.log('🎉 [QuizScreen] Showing goal celebration for:', goalToShow.title);
+        setCelebrationGoal({ title: goalToShow.title, reward: goalToShow.reward });
+        setShowGoalCelebration(true);
+        setPendingNextQuestion(true);
         return;
       }
     } catch (error) {
       console.error('Error checking for completed goals:', error);
     }
-    
-    // No goals to show - proceed normally
-    // Add a small delay before starting next question
-    setTimeout(() => {
-      // Hide explanation with animation
-      Animated.timing(explanationAnim, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-        easing: Easing.in(Easing.cubic),
-      }).start(() => {
-        // Fix useInsertionEffect error
-        setTimeout(() => {
-          setShowExplanation(false);
-          loadQuestion();
-        }, 0);
-      });
-    }, 100); // Small delay to prevent accidental double-tap
+
+    // Proceed normally
+    proceedToNextQuestion();
+  };
+
+  const handleClaimGoalReward = async () => {
+    if (!celebrationGoal) return;
+    try {
+      console.log('🎯 [QuizScreen] Claiming goal reward:', celebrationGoal.title);
+      const goals = DailyGoalsService.getGoals();
+      const goalToClaim = goals.find(g => g.title === celebrationGoal.title && g.completed && !g.claimed);
+      if (goalToClaim) {
+        const success = await DailyGoalsService.claimReward(goalToClaim.id);
+        if (success) {
+          const timeInMinutes = Math.floor(goalToClaim.reward / 60);
+          Alert.alert('⏰ Time Added!', `${timeInMinutes} minutes added to your timer!`, [{ text: 'Awesome!', style: 'default' }]);
+        }
+      }
+    } catch (error) {
+      console.error('❌ [QuizScreen] Error claiming goal reward:', error);
+    } finally {
+      setShowGoalCelebration(false);
+      setCelebrationGoal(null);
+      if (pendingNextQuestion) {
+        setPendingNextQuestion(false);
+        proceedToNextQuestion();
+      }
+    }
   };
   
   // Handle hardware back button
@@ -687,18 +748,8 @@ const QuizScreen = ({ navigation, route }: any) => {
   );
 
   const handleGoBack = () => {
-    if (streak > 0) {
-      // Show professional mascot modal instead of Alert
-      setShowQuitModal(true);
-    } else {
-      // No streak, just go back
-      SoundService.playButtonPress();
-      if (navigation.canGoBack()) {
-        navigation.goBack();
-      } else {
-        navigation.navigate('Home');
-      }
-    }
+    // Always show professional mascot modal for consistent UI
+    setShowQuitModal(true);
   };
 
   const handleQuitConfirm = () => {
@@ -707,6 +758,7 @@ const QuizScreen = ({ navigation, route }: any) => {
     // Reset streak
     useQuizStore.getState().resetCurrentStreak();
     useUserStore.getState().resetStreak();
+    try { EnhancedScoreService.endQuizSession(); } catch {}
     
     setShowQuitModal(false);
     
@@ -1040,8 +1092,8 @@ const QuizScreen = ({ navigation, route }: any) => {
           </Animated.View>
         )}
         
-        {/* Continue button after answering */}
-        {selectedAnswer !== null && (
+        {/* Continue button after answering with 1s delay after score update */}
+        {showContinueButton && (
           <TouchableOpacity
             style={styles.continueButton}
             onPress={handleContinue}
@@ -1135,17 +1187,28 @@ const QuizScreen = ({ navigation, route }: any) => {
         </View>
       )}
       
-      {/* Daily Goal Completion Modal - shown on celebration screen */}
-      {showDailyGoalModal && completedGoal && (
-        <MascotModal
-          visible={showDailyGoalModal}
-          type="excited"
-          message={`🎉 Goal Completed! 🎉\n\n${completedGoal.title}\n\nYou earned ${Math.floor(completedGoal.reward / 60)} minutes!`}
-          reward={Math.floor(completedGoal.reward / 60)}
-          onDismiss={handleDailyGoalClaim}
-          autoHide={false}
-        />
-      )}
+      {/* New Goal Celebration Modal that interrupts flow */}
+      <MascotModal
+        visible={showGoalCelebration}
+        type="excited"
+        title="🎉 Goal Completed!"
+        message={celebrationGoal ? `You completed "${celebrationGoal.title}"!\n\nReward: ${Math.floor((celebrationGoal.reward || 0) / 60)} minutes of extra time!` : ''}
+        buttons={[
+          {
+            text: `Claim ${celebrationGoal ? Math.floor((celebrationGoal.reward || 0) / 60) : 0} Minutes`,
+            onPress: handleClaimGoalReward,
+            style: 'primary'
+          }
+        ]}
+        onDismiss={() => {
+          setShowGoalCelebration(false);
+          setCelebrationGoal(null);
+          if (pendingNextQuestion) {
+            setPendingNextQuestion(false);
+            proceedToNextQuestion();
+          }
+        }}
+      />
     </SafeAreaView>
   );
 };

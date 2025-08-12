@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Modal,
   View,
@@ -7,229 +7,120 @@ import {
   TouchableOpacity,
   Animated,
   Dimensions,
-  Platform,
+  Image,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import SoundService from '../../services/SoundService';
 
 const { width, height } = Dimensions.get('window');
 
+// Mascot images
+const MASCOT_IMAGES = {
+  excited: require('../../assets/mascot/excited.png'),
+  depressed: require('../../assets/mascot/depressed.png'),
+  sad: require('../../assets/mascot/sad.png'),
+  happy: require('../../assets/mascot/happy.png'),
+};
+
 interface MascotModalProps {
   visible: boolean;
-  type?: 'excited' | 'sad' | 'warning' | 'celebration';
+  type?: 'excited' | 'depressed' | 'sad' | 'happy';
   title?: string;
   message: string;
-  reward?: number;
-  onDismiss: () => void;
   buttons?: Array<{
     text: string;
     onPress: () => void;
     style: 'primary' | 'secondary' | 'danger';
   }>;
+  onDismiss?: () => void;
+  // Back-compat optional props used elsewhere
+  reward?: number;
   autoHide?: boolean;
   autoHideDelay?: number;
+  streak?: number;
 }
 
 const MascotModal: React.FC<MascotModalProps> = ({
   visible,
-  type = 'excited',
+  type = 'happy',
   title,
   message,
-  reward,
+  buttons = [],
   onDismiss,
-  buttons,
-  autoHide = false,
-  autoHideDelay = 5000,
 }) => {
-  const [showModal, setShowModal] = useState(false);
-  const scaleAnim = useRef(new Animated.Value(0)).current;
-  const bounceAnim = useRef(new Animated.Value(0)).current;
+  const slideAnim = useRef(new Animated.Value(height)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const particleAnims = useRef(
-    Array(6).fill(null).map(() => ({
-      x: new Animated.Value(0),
-      y: new Animated.Value(0),
-      opacity: new Animated.Value(0),
-      scale: new Animated.Value(0),
-    }))
-  ).current;
-  
-  const hideTimer = useRef<NodeJS.Timeout | null>(null);
+  const scaleAnim = useRef(new Animated.Value(0.8)).current;
 
   useEffect(() => {
     if (visible) {
-      setShowModal(true);
-      animateIn();
-      
-      if (autoHide) {
-        hideTimer.current = setTimeout(() => {
-          onDismiss();
-        }, autoHideDelay);
+      if (type === 'excited') {
+        SoundService.playSuccess?.();
       }
-    } else {
-      animateOut();
-    }
-    
-    return () => {
-      if (hideTimer.current) {
-        clearTimeout(hideTimer.current);
-      }
-    };
-  }, [visible]);
-
-  const animateIn = () => {
-    // Play sound based on type
-    if (type === 'excited' || type === 'celebration') {
-      SoundService.playStreak();
-    }
-    
-    // Animate modal
-    Animated.sequence([
       Animated.parallel([
-        Animated.spring(scaleAnim, {
-          toValue: 1,
-          friction: 4,
-          tension: 40,
-          useNativeDriver: true,
-        }),
         Animated.timing(fadeAnim, {
           toValue: 1,
           duration: 300,
           useNativeDriver: true,
         }),
-      ]),
-      Animated.loop(
-        Animated.sequence([
-          Animated.timing(bounceAnim, {
-            toValue: -10,
-            duration: 1000,
-            useNativeDriver: true,
-          }),
-          Animated.timing(bounceAnim, {
-            toValue: 0,
-            duration: 1000,
-            useNativeDriver: true,
-          }),
-        ])
-      ),
-    ]).start();
-    
-    // Animate particles for celebration
-    if (type === 'celebration' || (type === 'excited' && reward)) {
-      animateParticles();
-    }
-  };
-
-  const animateOut = () => {
-    Animated.parallel([
-      Animated.timing(scaleAnim, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }),
-      Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
-      setShowModal(false);
-    });
-  };
-
-  const animateParticles = () => {
-    particleAnims.forEach((anim, index) => {
-      const delay = index * 100;
-      const angle = (index * 60) * Math.PI / 180;
-      const distance = 100 + Math.random() * 50;
-      
-      Animated.sequence([
-        Animated.delay(delay),
-        Animated.parallel([
-          Animated.timing(anim.opacity, {
-            toValue: 1,
-            duration: 200,
-            useNativeDriver: true,
-          }),
-          Animated.spring(anim.scale, {
-            toValue: 1,
-            friction: 5,
-            useNativeDriver: true,
-          }),
-          Animated.timing(anim.x, {
-            toValue: Math.cos(angle) * distance,
-            duration: 1000,
-            useNativeDriver: true,
-          }),
-          Animated.timing(anim.y, {
-            toValue: Math.sin(angle) * distance,
-            duration: 1000,
-            useNativeDriver: true,
-          }),
-        ]),
-        Animated.timing(anim.opacity, {
+        Animated.spring(slideAnim, {
           toValue: 0,
-          duration: 500,
+          tension: 65,
+          friction: 10,
+          useNativeDriver: true,
+        }),
+        Animated.spring(scaleAnim, {
+          toValue: 1,
+          tension: 65,
+          friction: 10,
           useNativeDriver: true,
         }),
       ]).start();
-    });
-  };
+    } else {
+      Animated.parallel([
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(slideAnim, {
+          toValue: height,
+          duration: 250,
+          useNativeDriver: true,
+        }),
+        Animated.timing(scaleAnim, {
+          toValue: 0.8,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }
+  }, [visible]);
 
-  const getMascotEmoji = () => {
-    switch (type) {
-      case 'excited':
-      case 'celebration':
-        return '🎉';
-      case 'sad':
-        return '😢';
-      case 'warning':
-        return '⚠️';
+  if (!visible) return null;
+
+  const getButtonStyle = (style: string) => {
+    switch (style) {
+      case 'primary':
+        return styles.primaryButton;
+      case 'danger':
+        return styles.dangerButton;
       default:
-        return '😊';
+        return styles.secondaryButton;
     }
   };
-
-  const getGradientColors = () => {
-    switch (type) {
-      case 'excited':
-      case 'celebration':
-        return ['#FFD700', '#FFA500'];
-      case 'sad':
-        return ['#87CEEB', '#4682B4'];
-      case 'warning':
-        return ['#FF6B6B', '#FF4444'];
-      default:
-        return ['#FF9F1C', '#FFD699'];
-    }
-  };
-
-  const handleButtonPress = (button: any) => {
-    if (hideTimer.current) {
-      clearTimeout(hideTimer.current);
-    }
-    button.onPress();
-  };
-
-  if (!showModal) return null;
 
   return (
     <Modal
       transparent
-      visible={showModal}
-      onRequestClose={onDismiss}
+      visible={visible}
       animationType="none"
+      onRequestClose={onDismiss}
     >
-      <Animated.View 
-        style={[
-          styles.overlay,
-          { opacity: fadeAnim }
-        ]}
-      >
+      <Animated.View style={[styles.overlay, { opacity: fadeAnim }]}>
         <TouchableOpacity 
-          style={styles.overlayTouch} 
-          activeOpacity={1} 
+          style={StyleSheet.absoluteFillObject} 
+          activeOpacity={1}
           onPress={onDismiss}
         />
         
@@ -238,87 +129,50 @@ const MascotModal: React.FC<MascotModalProps> = ({
             styles.modalContainer,
             {
               transform: [
-                { scale: scaleAnim },
-                { translateY: bounceAnim }
+                { translateY: slideAnim },
+                { scale: scaleAnim }
               ],
             },
           ]}
         >
-          <LinearGradient
-            colors={getGradientColors()}
-            style={styles.gradient}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-          >
-            {/* Particles */}
-            {(type === 'celebration' || (type === 'excited' && reward)) &&
-              particleAnims.map((anim, index) => (
-                <Animated.View
-                  key={index}
-                  style={[
-                    styles.particle,
-                    {
-                      opacity: anim.opacity,
-                      transform: [
-                        { translateX: anim.x },
-                        { translateY: anim.y },
-                        { scale: anim.scale },
-                      ],
-                    },
-                  ]}
-                >
-                  <Text style={styles.particleEmoji}>
-                    {['🌟', '✨', '💫', '⭐', '🎊', '🎈'][index]}
-                  </Text>
-                </Animated.View>
-              ))
-            }
-            
-            {/* Mascot */}
-            <View style={styles.mascotContainer}>
-              <Text style={styles.mascotEmoji}>{getMascotEmoji()}</Text>
-            </View>
-            
-            {/* Content */}
-            <View style={styles.content}>
-              {title && <Text style={styles.title}>{title}</Text>}
-              <Text style={styles.message}>{message}</Text>
-              
-              {reward && (
-                <View style={styles.rewardContainer}>
-                  <Icon name="clock-plus-outline" size={24} color="#FFF" />
-                  <Text style={styles.rewardText}>+{reward} minutes!</Text>
-                </View>
-              )}
-            </View>
+          {/* Mascot Image - Top 40% */}
+          <View style={styles.mascotContainer}>
+            <Image
+              source={MASCOT_IMAGES[type]}
+              style={styles.mascotImage}
+              resizeMode="contain"
+            />
+            {/* Gradient overlay to fade bottom of mascot */}
+            <LinearGradient
+              colors={['transparent', 'rgba(26, 31, 46, 0.95)', '#1A1F2E']}
+              style={styles.mascotGradient}
+            />
+          </View>
+          
+          {/* Content */}
+          <View style={styles.content}>
+            {title && (
+              <Text style={styles.title}>{title}</Text>
+            )}
+            <Text style={styles.message}>{message}</Text>
             
             {/* Buttons */}
-            {buttons && buttons.length > 0 && (
-              <View style={styles.buttonContainer}>
-                {buttons.map((button, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    style={[
-                      styles.button,
-                      button.style === 'primary' && styles.primaryButton,
-                      button.style === 'secondary' && styles.secondaryButton,
-                      button.style === 'danger' && styles.dangerButton,
-                    ]}
-                    onPress={() => handleButtonPress(button)}
-                  >
-                    <Text
-                      style={[
-                        styles.buttonText,
-                        button.style === 'secondary' && styles.secondaryButtonText,
-                      ]}
-                    >
-                      {button.text}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            )}
-          </LinearGradient>
+            <View style={styles.buttonContainer}>
+              {buttons.map((button, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={[styles.button, getButtonStyle(button.style)]}
+                  onPress={() => {
+                    SoundService.playButtonPress?.();
+                    button.onPress();
+                  }}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.buttonText}>{button.text}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
         </Animated.View>
       </Animated.View>
     </Modal>
@@ -328,106 +182,84 @@ const MascotModal: React.FC<MascotModalProps> = ({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  overlayTouch: {
-    ...StyleSheet.absoluteFillObject,
-  },
   modalContainer: {
-    width: width * 0.85,
+    width: width * 0.9,
     maxWidth: 400,
-    borderRadius: 24,
+    backgroundColor: '#1A1F2E',
+    borderRadius: 20,
     overflow: 'hidden',
     elevation: 10,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.3,
-    shadowRadius: 8,
-  },
-  gradient: {
-    padding: 24,
-    alignItems: 'center',
+    shadowRadius: 20,
   },
   mascotContainer: {
-    marginBottom: 16,
+    height: 200,
+    width: '100%',
+    position: 'relative',
+    overflow: 'hidden',
   },
-  mascotEmoji: {
-    fontSize: 64,
+  mascotImage: {
+    width: '100%',
+    height: '133%', // Show ~top 75% by making image ~1.33x larger
+    position: 'absolute',
+    top: 0,
+  },
+  mascotGradient: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 80,
   },
   content: {
-    alignItems: 'center',
+    padding: 20,
+    paddingTop: 10,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FFF',
-    marginBottom: 8,
+    color: '#FFFFFF',
     textAlign: 'center',
-    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-black',
+    marginBottom: 10,
   },
   message: {
     fontSize: 16,
-    color: '#FFF',
+    color: '#B8BED0',
     textAlign: 'center',
-    lineHeight: 24,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir-Medium' : 'sans-serif-medium',
-  },
-  rewardContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
-  },
-  rewardText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#FFF',
-    marginLeft: 8,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-black',
+    marginBottom: 20,
+    lineHeight: 22,
   },
   buttonContainer: {
-    marginTop: 24,
-    width: '100%',
-    gap: 12,
+    flexDirection: 'column',
+    gap: 10,
   },
   button: {
     paddingVertical: 14,
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     borderRadius: 12,
     alignItems: 'center',
   },
   primaryButton: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#4CAF50',
   },
   secondaryButton: {
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    borderWidth: 2,
-    borderColor: '#FFF',
+    backgroundColor: '#2C3548',
+    borderWidth: 1,
+    borderColor: '#3A4358',
   },
   dangerButton: {
-    backgroundColor: '#FF4444',
+    backgroundColor: '#FF3B30',
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#FF9F1C',
-    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-black',
-  },
-  secondaryButtonText: {
-    color: '#FFF',
-  },
-  particle: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-  },
-  particleEmoji: {
-    fontSize: 24,
+    fontWeight: '600',
+    color: '#FFFFFF',
   },
 });
 
