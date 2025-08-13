@@ -19,6 +19,7 @@ import com.brainbites.timer.ScreenTimePackage
 import com.brainbites.timer.ScreenTimeReceiver
 import com.brainbites.timer.ScreenTimeService
 import com.brainbites.timer.DailyScoreCarryoverPackage
+import com.brainbites.modules.BrainBitesPackage
 
 class MainApplication : Application(), ReactApplication {
 
@@ -33,6 +34,8 @@ class MainApplication : Application(), ReactApplication {
               add(ScreenTimePackage())
               // Add the score carryover package
               add(DailyScoreCarryoverPackage())
+              // Add the notification package
+              add(BrainBitesPackage())
             }
 
         override fun getJSMainModuleName(): String = "index"

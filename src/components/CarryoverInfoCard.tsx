@@ -8,6 +8,7 @@ import {
   Animated,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import LinearGradient from 'react-native-linear-gradient';
 import { colors } from '../styles/theme';
 
 interface CarryoverInfo {
@@ -57,7 +58,7 @@ export const CarryoverInfoCard: React.FC = () => {
 
   const heightInterpolate = animation.interpolate({
     inputRange: [0, 1],
-    outputRange: [60, 160],
+    outputRange: [90, 200],
   });
 
   const rotateInterpolate = animation.interpolate({
@@ -65,78 +66,89 @@ export const CarryoverInfoCard: React.FC = () => {
     outputRange: ['0deg', '180deg'],
   });
 
-  return (
-    <Animated.View style={[styles.container, { height: heightInterpolate }]}>
-      <TouchableOpacity onPress={toggleExpanded} activeOpacity={0.8}>
-        <View style={styles.header}>
-          <View style={styles.titleContainer}>
-            <Icon 
-              name={isPositive ? 'trending-up' : 'trending-down'} 
-              size={24} 
-              color={isPositive ? colors.success : colors.error} 
-            />
-            <Text style={styles.title}>Tomorrow's Score Impact</Text>
-          </View>
-          <Animated.View style={{ transform: [{ rotate: rotateInterpolate }] }}>
-            <Icon name="chevron-down" size={24} color={colors.textPrimary} />
-          </Animated.View>
-        </View>
-      </TouchableOpacity>
+  // Summary chips removed as requested for a cleaner header
 
-      {isExpanded && (
-        <View style={styles.content}>
-          {overtimeMinutes > 0 ? (
-            <>
-              <View style={styles.row}>
-                <Icon name="alert-circle" size={20} color={colors.error} />
-                <Text style={styles.label}>Overtime:</Text>
-                <Text style={[styles.value, styles.negative]}>{overtimeMinutes} minutes</Text>
-              </View>
-              <View style={styles.row}>
-                <Icon name="minus-circle" size={20} color={colors.error} />
-                <Text style={styles.label}>Score Penalty:</Text>
-                <Text style={[styles.value, styles.negative]}>-{Math.abs(potentialCarryoverScore)} points</Text>
-              </View>
-              <Text style={styles.explanation}>
-                ⚠️ Complete quizzes to earn more time and avoid tomorrow's penalty!
-              </Text>
-            </>
-          ) : (
-            <>
-              <View style={styles.row}>
-                <Icon name="clock-check" size={20} color={colors.success} />
-                <Text style={styles.label}>Saved Time:</Text>
-                <Text style={[styles.value, styles.positive]}>{remainingTimeMinutes} minutes</Text>
-              </View>
-              <View style={styles.row}>
-                <Icon name="plus-circle" size={20} color={colors.success} />
-                <Text style={styles.label}>Score Bonus:</Text>
-                <Text style={[styles.value, styles.positive]}>+{potentialCarryoverScore} points</Text>
-              </View>
-              <Text style={styles.explanation}>
-                🎉 Great job! Your unused time will give you bonus points tomorrow!
-              </Text>
-            </>
-          )}
-        </View>
-      )}
+  return (
+    <Animated.View style={[styles.wrapper, { height: heightInterpolate }]}>      
+      <View style={[styles.container, styles.containerWhite]}>
+        <TouchableOpacity onPress={toggleExpanded} activeOpacity={0.8}>
+          <View style={styles.header}>
+            <View style={styles.titleContainer}>
+              <Icon
+                name={isPositive ? 'trending-up' : 'trending-down'}
+                size={24}
+                color={isPositive ? colors.success : colors.error}
+              />
+              <Text style={styles.title}>Tomorrow's Score Impact</Text>
+            </View>
+            <Animated.View style={{ transform: [{ rotate: rotateInterpolate }] }}>
+              <Icon name="chevron-down" size={24} color={colors.textPrimary} />
+            </Animated.View>
+          </View>
+        </TouchableOpacity>
+
+        {isExpanded && (
+          <View style={styles.content}>
+            {overtimeMinutes > 0 ? (
+              <>
+                <View style={styles.row}>
+                  <Icon name="alert-circle" size={20} color={colors.error} />
+                  <Text style={styles.label}>Overtime:</Text>
+                  <Text style={[styles.value, styles.negative]}>{overtimeMinutes} minutes</Text>
+                </View>
+                <View style={styles.row}>
+                  <Icon name="minus-circle" size={20} color={colors.error} />
+                  <Text style={styles.label}>Score Penalty:</Text>
+                  <Text style={[styles.value, styles.negative]}>-{Math.abs(potentialCarryoverScore)} points</Text>
+                </View>
+                <Text style={styles.explanation}>
+                  ⚠️ Complete quizzes to earn more time and avoid tomorrow's penalty!
+                </Text>
+              </>
+            ) : (
+              <>
+                <View style={styles.row}>
+                  <Icon name="clock-check" size={20} color={colors.success} />
+                  <Text style={styles.label}>Saved Time:</Text>
+                  <Text style={[styles.value, styles.positive]}>{remainingTimeMinutes} minutes</Text>
+                </View>
+                <View style={styles.row}>
+                  <Icon name="plus-circle" size={20} color={colors.success} />
+                  <Text style={styles.label}>Score Bonus:</Text>
+                  <Text style={[styles.value, styles.positive]}>+{potentialCarryoverScore} points</Text>
+                </View>
+                <Text style={styles.explanation}>
+                  🎉 Great job! Your unused time will give you bonus points tomorrow!
+                </Text>
+              </>
+            )}
+          </View>
+        )}
+      </View>
     </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.backgroundLight,
-    borderRadius: 16,
+  wrapper: {
     marginHorizontal: 20,
-    marginVertical: 10,
-    padding: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    marginVertical: 12,
+    borderRadius: 20,
     overflow: 'hidden',
+  },
+  container: {
+    borderRadius: 20,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    elevation: 5,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+  },
+  containerWhite: {
+    backgroundColor: '#FFFFFF',
   },
   header: {
     flexDirection: 'row',
@@ -149,9 +161,35 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   title: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 17,
+    fontWeight: '700',
     color: colors.textPrimary,
+    letterSpacing: 0.3,
+  },
+  summaryRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginRight: 8,
+  },
+  chip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 16,
+    gap: 6,
+  },
+  chipPositive: {
+    backgroundColor: colors.success,
+  },
+  chipNegative: {
+    backgroundColor: colors.error,
+  },
+  chipText: {
+    color: '#FFFFFF',
+    fontWeight: '700',
+    fontSize: 12,
   },
   content: {
     marginTop: 16,

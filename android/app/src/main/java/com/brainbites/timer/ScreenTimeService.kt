@@ -39,6 +39,7 @@ class ScreenTimeService : Service() {
     private var isAppInForeground = false
     private var lastTickTime = 0L
     private var screenTimeManager: ScreenTimeManager? = null
+    private var lastHourNotified = 0
     
     companion object {
         private const val TAG = "ScreenTimeService"
@@ -50,6 +51,7 @@ class ScreenTimeService : Service() {
         private const val KEY_TODAY_SCREEN_TIME = "today_screen_time"
         private const val KEY_OVERTIME = "overtime_seconds"
         private const val KEY_LAST_SAVE_DATE = "last_save_date"
+        private const val KEY_LAST_HOUR_NOTIFIED = "last_hour_notified"
         private const val UPDATE_INTERVAL = 1000L // 1 second for smooth updates
         
         // Actions
@@ -84,10 +86,11 @@ class ScreenTimeService : Service() {
         loadSavedData()
         acquireWakeLock()
         
-        // In onCreate, load overtime
+        // In onCreate, load overtime and hourly notification state
         overtimeSeconds = sharedPrefs.getInt(KEY_OVERTIME, 0)
         overtimePaused = sharedPrefs.getBoolean("overtime_paused", false)
         overtimePausedAt = sharedPrefs.getInt("overtime_paused_at", 0)
+        lastHourNotified = sharedPrefs.getInt(KEY_LAST_HOUR_NOTIFIED, 0)
         
         Log.d(TAG, "Loaded overtime: ${overtimeSeconds}s (paused: $overtimePaused)")
         
@@ -202,16 +205,31 @@ class ScreenTimeService : Service() {
         val lastSaveDate = sharedPrefs.getString(KEY_LAST_SAVE_DATE, today)
         
         if (lastSaveDate != today) {
-            // New day - reset daily data but keep remaining time
+            // Reset daily data
             todayScreenTimeSeconds = 0
             overtimeSeconds = 0
-            Log.d(TAG, "📅 New day detected - resetting daily stats")
+            overtimePaused = false
+            overtimePausedAt = 0
+            lastHourNotified = 0  // Reset hourly notification counter
+            sharedPrefs.edit()
+                .putInt(KEY_TODAY_SCREEN_TIME, 0)
+                .putInt(KEY_OVERTIME, 0)
+                .putBoolean("overtime_paused", false)
+                .remove("overtime_paused_at")
+                .putInt(KEY_LAST_HOUR_NOTIFIED, 0)
+                .putString(KEY_LAST_SAVE_DATE, today)
+                .apply()
+            Log.d(TAG, "📅 New day detected - daily counters reset")
         } else {
+            remainingTimeSeconds = sharedPrefs.getInt(KEY_REMAINING_TIME, 0)
             todayScreenTimeSeconds = sharedPrefs.getInt(KEY_TODAY_SCREEN_TIME, 0)
             overtimeSeconds = sharedPrefs.getInt(KEY_OVERTIME, 0)
+            overtimePaused = sharedPrefs.getBoolean("overtime_paused", false)
+            overtimePausedAt = sharedPrefs.getInt("overtime_paused_at", 0)
+            lastHourNotified = sharedPrefs.getInt(KEY_LAST_HOUR_NOTIFIED, 0)
         }
         
-        remainingTimeSeconds = sharedPrefs.getInt(KEY_REMAINING_TIME, 0)
+        Log.d(TAG, "📊 Loaded data - Remaining: ${remainingTimeSeconds}s, Today: ${todayScreenTimeSeconds}s, Overtime: ${overtimeSeconds}s, LastHour: $lastHourNotified")
     }
     
     private fun saveData() {
@@ -290,11 +308,13 @@ class ScreenTimeService : Service() {
                     overtimeSeconds = 0
                     overtimePaused = false
                     overtimePausedAt = 0
+                    lastHourNotified = 0  // Reset hourly notification counter
                     sharedPrefs.edit()
                         .putInt(KEY_TODAY_SCREEN_TIME, 0)
                         .putInt(KEY_OVERTIME, 0)
                         .putBoolean("overtime_paused", false)
                         .remove("overtime_paused_at")
+                        .putInt(KEY_LAST_HOUR_NOTIFIED, 0)
                         .putString(KEY_LAST_SAVE_DATE, today)
                         .apply()
                     Log.d(TAG, "📅 Midnight rollover detected - daily screen time and overtime reset")
@@ -306,35 +326,44 @@ class ScreenTimeService : Service() {
                 Log.e(TAG, "❌ Failed daily rollover check", e)
             }
 
-            // Only update timer logic if at least 1 second has passed (avoid micro-updates)
-            if (deltaMs >= 1000) {
-                val deltaSec = (deltaMs / 1000).toInt()
+            // Update timers based on conditions
+            val deltaSecs = (deltaMs / 1000.0).toInt()
+            if (deltaSecs > 0) {
+                val isScreenLocked = keyguardManager.isKeyguardLocked
+                val isScreenOn = powerManager.isInteractive
                 
-                // Always update screen time when screen is on and app is not in foreground
-                if (!isAppInForeground && !keyguardManager.isKeyguardLocked && powerManager.isInteractive) {
-                    Log.d(TAG, "⏰ Timer updating: deltaSec=$deltaSec, remaining=${remainingTimeSeconds}s, screenTime=${todayScreenTimeSeconds}s, overtime=${overtimeSeconds}s")
-                    todayScreenTimeSeconds += deltaSec
+                // Only update when screen is on and app is NOT in foreground (like original)
+                if (!isAppInForeground && !isScreenLocked && isScreenOn) {
+                    Log.d(TAG, "⏰ Timer updating: deltaSecs=$deltaSecs, remaining=${remainingTimeSeconds}s, screenTime=${todayScreenTimeSeconds}s, overtime=${overtimeSeconds}s")
+                    todayScreenTimeSeconds += deltaSecs
+                    sharedPrefs.edit()
+                        .putInt(KEY_TODAY_SCREEN_TIME, todayScreenTimeSeconds)
+                        .apply()
                     
-                    // Update remaining time or overtime
+                    // Check for hourly milestone
+                    checkHourlyMilestone()
+                    
+                    // Update remaining time or overtime (original logic)
                     if (remainingTimeSeconds > 0) {
-                        val newRemaining = remainingTimeSeconds - deltaSec
+                        val newRemaining = remainingTimeSeconds - deltaSecs
                         if (newRemaining <= 0) {
+                            overtimeSeconds += Math.abs(newRemaining)
                             remainingTimeSeconds = 0
                             handleTimeExpired()
                         } else {
                             remainingTimeSeconds = newRemaining
                         }
+                        sharedPrefs.edit()
+                            .putInt(KEY_REMAINING_TIME, remainingTimeSeconds)
+                            .apply()
                         
-                        // Check for low time warnings
+                        // Check warnings
                         when (remainingTimeSeconds) {
-                            300 -> showLowTimeNotification(5)
-                            120 -> showLowTimeNotification(2)
-                            60 -> showLowTimeNotification(1)
+                            300 -> showLowTimeNotification(5) // 5 minutes
+                            120 -> showLowTimeNotification(2) // 2 minutes (original)
+                            60 -> showLowTimeNotification(1)  // 1 minute
                         }
-                    }
-                    
-                    // In updateTimer when time runs out
-                    if (remainingTimeSeconds <= 0) {
+                    } else if (remainingTimeSeconds <= 0) {
                         // Resume paused overtime if applicable
                         if (overtimePaused && overtimePausedAt > 0) {
                             overtimeSeconds = overtimePausedAt
@@ -349,22 +378,14 @@ class ScreenTimeService : Service() {
                         
                         // Increment overtime if not paused
                         if (!overtimePaused) {
-                            overtimeSeconds++
+                            overtimeSeconds += deltaSecs
                             sharedPrefs.edit()
                                 .putInt(KEY_OVERTIME, overtimeSeconds)
                                 .apply()
                         }
                     }
                 } else {
-                    Log.d(TAG, "⏸️ Timer NOT updating - App in foreground: $isAppInForeground, Screen locked: ${keyguardManager.isKeyguardLocked}, Screen interactive: ${powerManager.isInteractive}")
-                }
-                
-                // Save data and broadcast every 30 seconds to reduce overhead
-                if (todayScreenTimeSeconds % 30 == 0) {
-                    handler.post {
-                        saveData()
-                        broadcastUpdate()
-                    }
+                    Log.d(TAG, "⏸️ Timer NOT updating - App in foreground: $isAppInForeground, Screen locked: $isScreenLocked, Screen interactive: $isScreenOn")
                 }
             }
             
@@ -375,7 +396,6 @@ class ScreenTimeService : Service() {
             
         } catch (e: Exception) {
             Log.e(TAG, "❌ Error in updateTimer", e)
-            // Continue running the timer even if there's an error
         }
     }
     
@@ -409,6 +429,7 @@ class ScreenTimeService : Service() {
         saveData()
         updatePersistentNotification()
         broadcastUpdate()
+        Log.d(TAG, "➕ Added ${seconds}s, new remaining: ${remainingTimeSeconds}s")
     }
     
     private fun broadcastUpdate() {
@@ -553,6 +574,99 @@ class ScreenTimeService : Service() {
         }
         saveData()
         Log.d(TAG, "✅ Updated remaining time to ${remainingTimeSeconds}s")
+    }
+
+    // Add this new function to check for hourly milestones:
+    private fun checkHourlyMilestone() {
+        val currentHours = todayScreenTimeSeconds / 3600
+        
+        // Check if we've crossed an hour boundary
+        if (currentHours > lastHourNotified) {
+            lastHourNotified = currentHours
+            sharedPrefs.edit()
+                .putInt(KEY_LAST_HOUR_NOTIFIED, lastHourNotified)
+                .apply()
+            
+            // Show hourly notification
+            showHourlyScreenTimeNotification(currentHours)
+        }
+    }
+
+    // Add this new function to show hourly notifications:
+    private fun showHourlyScreenTimeNotification(hours: Int) {
+        try {
+            val totalMinutes = todayScreenTimeSeconds / 60
+            val displayHours = totalMinutes / 60
+            val displayMinutes = totalMinutes % 60
+            
+            val timeString = if (displayHours > 0) {
+                "${displayHours}h ${displayMinutes}m"
+            } else {
+                "${displayMinutes}m"
+            }
+            
+            val messages = when (hours) {
+                1 -> arrayOf(
+                    "Whoa! You've spent an hour on your screen today! 📱",
+                    "One hour milestone reached! Your screentime: $timeString ⏰",
+                    "Hour mark! You've been on screen for $timeString today 🕐"
+                )
+                2 -> arrayOf(
+                    "Two hours and counting! Screentime: $timeString 📊",
+                    "Double hour alert! You're at $timeString today ⏰⏰",
+                    "2 hour checkpoint! Total today: $timeString 🎯"
+                )
+                3 -> arrayOf(
+                    "Three hours reached! Consider a break? Screentime: $timeString 🌟",
+                    "Triple hour milestone! You're at $timeString ⏰⏰⏰",
+                    "3 hours on screen! Maybe time for a stretch? Total: $timeString 🤸"
+                )
+                4 -> arrayOf(
+                    "Four hours of screentime! You're at $timeString 📈",
+                    "Quad hour alert! Total screentime: $timeString ⏰⏰⏰⏰",
+                    "4 hour mark reached! Consider some offline time? Total: $timeString 🌳"
+                )
+                else -> arrayOf(
+                    "Screentime milestone: $hours hours! Total today: $timeString 📊",
+                    "$hours hour alert! You've spent $timeString on screen ⏰",
+                    "Hour $hours reached! Your screentime is now $timeString 📱"
+                )
+            }
+            
+            val message = messages.random()
+            
+            // Add emoji suggestions for breaks
+            val breakSuggestion = when {
+                hours >= 3 -> "\n\n💡 Tip: How about a quick walk or stretch?"
+                hours >= 2 -> "\n\n👀 Remember to rest your eyes!"
+                else -> ""
+            }
+            
+            val pendingIntent = PendingIntent.getActivity(
+                this, 0, Intent(this, MainActivity::class.java),
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            
+            val notification = NotificationCompat.Builder(this, ALERT_CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentTitle("📱 Screentime Milestone!")
+                .setContentText(message)
+                .setStyle(NotificationCompat.BigTextStyle()
+                    .bigText(message + breakSuggestion))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setContentIntent(pendingIntent)
+                .build()
+            
+            // Use unique ID for each hour
+            val notificationId = 5000 + hours
+            notificationManagerCompat.notify(notificationId, notification)
+            
+            Log.d(TAG, "📱 Hourly screentime notification shown for hour $hours")
+        } catch (e: Exception) {
+            Log.e(TAG, "❌ Failed to show hourly notification", e)
+        }
     }
     
     private fun formatTime(seconds: Int): String {

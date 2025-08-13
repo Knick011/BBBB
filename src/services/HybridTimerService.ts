@@ -2,6 +2,7 @@
 // ✅ HYBRID TIMER SERVICE - Combines persistent notifications with widget support
 import { NativeEventEmitter, NativeModules } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NotificationService } from './NotificationService';
 
 interface TimerData {
   remainingTime: number;
@@ -13,6 +14,19 @@ interface TimerData {
   notificationText?: string;
 }
 
+interface TimerState {
+  timeLeft: number;
+  screenTime: number;
+  overtime: number;
+  overtimePaused: boolean;
+  isTracking: boolean;
+  isAppForeground: boolean;
+  lastUpdate: number;
+  todayHours: number;
+  todayMinutes: number;
+  lastHourNotified: number;
+}
+
 class HybridTimerService {
   private static instance: HybridTimerService;
   private listeners: Array<(data: TimerData) => void> = [];
@@ -21,13 +35,10 @@ class HybridTimerService {
   private subscriptions: any[] = [];
   private timeLeft: number = 0;
   private screenTime: number = 0;
-  // Add these properties for comprehensive overtime persistence
-  private overtimeSeconds: number = 0;
-  private overtimePaused: boolean = false;
-  private overtimePausedAt: number = 0;
   private overtime: number = 0;
-  private pausedOvertimeValue: number = 0;
-  private isPaused: boolean = false;
+  
+  private lastHourNotified: number = 0;
+  private readonly HOURLY_NOTIFICATION_KEY = '@BrainBites:lastHourNotified';
 
   static getInstance(): HybridTimerService {
     if (!HybridTimerService.instance) {
@@ -36,10 +47,28 @@ class HybridTimerService {
     return HybridTimerService.instance;
   }
 
-  // Update initialize to load overtime
+  /**
+   * Initialize the timer service
+   */
   async initialize(): Promise<boolean> {
     try {
       console.log('🔄 [HybridTimer] Initializing hybrid timer service...');
+      
+      // Load saved timer state
+      await this.loadTimerState();
+      
+      // Load last hour notified
+      const savedHour = await AsyncStorage.getItem(this.HOURLY_NOTIFICATION_KEY);
+      this.lastHourNotified = savedHour ? parseInt(savedHour, 10) : 0;
+      
+      // Check if we need to reset for new day
+      const today = new Date().toDateString();
+      const lastReset = await AsyncStorage.getItem('@BrainBites:lastTimerReset');
+      if (lastReset !== today) {
+        this.lastHourNotified = 0;
+        await AsyncStorage.setItem(this.HOURLY_NOTIFICATION_KEY, '0');
+        await AsyncStorage.setItem('@BrainBites:lastTimerReset', today);
+      }
       
       // Set up event listeners for both timer systems
       this.setupBrainBitesTimerListener();
@@ -48,23 +77,7 @@ class HybridTimerService {
       // Load initial state
       await this.loadInitialState();
       
-      // Load overtime from storage
-      const savedOvertime = await AsyncStorage.getItem('@BrainBites:overtime');
-      const savedOvertimePaused = await AsyncStorage.getItem('@BrainBites:overtimePaused');
-      
-      if (savedOvertime) {
-        this.overtimeSeconds = parseInt(savedOvertime, 10);
-      }
-      if (savedOvertimePaused === 'true') {
-        this.overtimePaused = true;
-        const pausedAt = await AsyncStorage.getItem('@BrainBites:overtimePausedAt');
-        this.overtimePausedAt = pausedAt ? parseInt(pausedAt, 10) : 0;
-      }
-      
-      console.log(`⏰ Loaded overtime: ${this.overtimeSeconds}s (paused: ${this.overtimePaused})`);
-      
-      // Reset daily overtime if it's a new day
-      await this.resetDailyOvertime();
+      // Simple initialization - let the native service handle overtime
       
       console.log('✅ [HybridTimer] Hybrid timer service initialized');
       return true;
@@ -99,9 +112,6 @@ class HybridTimerService {
             notificationText: data.notificationText
           };
           
-          // Handle timer tick for overtime logic
-          await this.handleTimerTick();
-          
           this.notifyListeners();
         });
         
@@ -116,6 +126,9 @@ class HybridTimerService {
     }
   }
 
+  /**
+   * Handle timer update from native service
+   */
   private setupScreenTimeModuleListener(): void {
     try {
       const emitter = new NativeEventEmitter(NativeModules.ScreenTimeModule);
@@ -123,15 +136,24 @@ class HybridTimerService {
       const subscription = emitter.addListener('timerUpdate', async (data: TimerData) => {
         console.log('🔄 [HybridTimer] ScreenTimeModule update:', data);
         
+        // Store previous values for comparison
+        const previousScreenTime = this.screenTime;
+        
         // Update local state from ScreenTimeModule
         this.timeLeft = data.remainingTime || this.timeLeft;
+        this.screenTime = data.todayScreenTime || 0;
+        this.overtime = data.overtime || 0;
+        this.overtimePaused = false; // Will be updated if needed
+        
+        // Check for hourly milestone
+        await this.checkHourlyMilestone();
         
         // Merge data from ScreenTimeModule (has today's screen time)
         if (this.currentData) {
           this.currentData = {
             ...this.currentData,
             remainingTime: this.timeLeft,
-            todayScreenTime: data.todayScreenTime || 0,
+            todayScreenTime: this.screenTime,
             overtime: this.overtimeSeconds, // Use our persistent overtime
             notificationTitle: data.notificationTitle,
             notificationText: data.notificationText
@@ -143,8 +165,13 @@ class HybridTimerService {
           };
         }
         
-        // Handle timer tick for overtime logic
-        await this.handleTimerTick();
+        // Update current data and notify listeners
+        this.updateCurrentData();
+        
+        // Save state periodically (every 30 seconds)
+        if (this.screenTime % 30 === 0 && this.screenTime !== previousScreenTime) {
+          await this.saveTimerState();
+        }
         
         this.notifyListeners();
       });
@@ -207,88 +234,26 @@ class HybridTimerService {
     }
   }
 
-  // Update addTimeFromQuiz to pause but not reset overtime
   async addTimeFromQuiz(minutes: number): Promise<boolean> {
-    try {
-      const secondsToAdd = minutes * 60;
-      
-      // If we have overtime and it's not paused, pause it
-      if (this.overtimeSeconds > 0 && !this.overtimePaused) {
-        this.overtimePaused = true;
-        this.overtimePausedAt = this.overtimeSeconds;
-        await AsyncStorage.setItem('@BrainBites:overtimePaused', 'true');
-        await AsyncStorage.setItem('@BrainBites:overtimePausedAt', this.overtimeSeconds.toString());
-        console.log(`⏸️ Pausing overtime at ${this.overtimeSeconds}s`);
-      }
-      
-      // Add time to remaining
-      const currentRemaining = this.currentData?.remainingTime || 0;
-      const newRemaining = currentRemaining + secondsToAdd;
-      
-      // Call native module
-      const success = await this.callNativeAddTime(minutes);
-      
-      if (success && this.currentData) {
-        this.currentData = {
-          ...this.currentData,
-          remainingTime: newRemaining,
-          overtime: this.overtimeSeconds // Keep overtime value
-        };
-        this.notifyListeners();
-      }
-      
-      return success;
-    } catch (error) {
-      console.error('Failed to add time:', error);
-      return false;
+    console.log(`🧠 [HybridTimer] Adding ${minutes} minutes from quiz`);
+    
+    const success = await this.callNativeAddTime(minutes);
+    
+    // Update local state and notify listeners
+    if (success && this.currentData) {
+      const oldRemainingTime = this.currentData.remainingTime;
+      this.currentData = {
+        ...this.currentData,
+        remainingTime: oldRemainingTime + (minutes * 60) // Add minutes in seconds
+      };
+      console.log(`🔄 [HybridTimer] Updated remaining time: ${oldRemainingTime}s -> ${this.currentData.remainingTime}s (+${minutes * 60}s)`);
+      this.notifyListeners();
     }
+    
+    console.log(`${success ? '✅' : '❌'} [HybridTimer] Quiz time addition result: ${success}`);
+    return success;
   }
 
-  // Add method to handle timer updates
-  private async handleTimerTick(): Promise<void> {
-    if (!this.currentData) return;
-    
-    const { remainingTime } = this.currentData;
-    
-    // If time runs out and overtime was paused, resume it
-    if (remainingTime <= 0 && this.overtimePaused && this.overtimePausedAt > 0) {
-      this.overtimeSeconds = this.overtimePausedAt;
-      this.overtimePaused = false;
-      this.overtimePausedAt = 0;
-      await AsyncStorage.setItem('@BrainBites:overtimePaused', 'false');
-      await AsyncStorage.removeItem('@BrainBites:overtimePausedAt');
-      console.log(`▶️ Resuming overtime at ${this.overtimeSeconds}s`);
-    }
-    
-    // If in overtime mode (not paused), increment overtime
-    if (remainingTime <= 0 && !this.overtimePaused) {
-      this.overtimeSeconds++;
-      await AsyncStorage.setItem('@BrainBites:overtime', this.overtimeSeconds.toString());
-    }
-    
-    // Update current data with overtime
-    this.currentData = {
-      ...this.currentData,
-      overtime: this.overtimeSeconds
-    };
-  }
-  
-  // Add method to reset overtime (only on new day)
-  async resetDailyOvertime(): Promise<void> {
-    const today = new Date().toDateString();
-    const lastReset = await AsyncStorage.getItem('@BrainBites:lastOvertimeReset');
-    
-    if (lastReset !== today) {
-      this.overtimeSeconds = 0;
-      this.overtimePaused = false;
-      this.overtimePausedAt = 0;
-      await AsyncStorage.setItem('@BrainBites:overtime', '0');
-      await AsyncStorage.setItem('@BrainBites:overtimePaused', 'false');
-      await AsyncStorage.removeItem('@BrainBites:overtimePausedAt');
-      await AsyncStorage.setItem('@BrainBites:lastOvertimeReset', today);
-      console.log('🌅 New day - overtime reset');
-    }
-  }
   
   private async callNativeAddTime(minutes: number): Promise<boolean> {
     let brainBitesSuccess = false;
@@ -323,108 +288,25 @@ class HybridTimerService {
    * Add time from goal completion - updated with overtime handling and forced native refresh
    */
   async addTimeFromGoal(minutes: number): Promise<boolean> {
-    try {
-      const secondsToAdd = minutes * 60;
-      console.log(`🎯 [HybridTimer] Adding ${minutes} minutes (${secondsToAdd}s) from goal completion`);
-
-      // Pause overtime if active but don't reset it
-      if (this.overtime > 0 && !this.overtimePaused) {
-        this.pausedOvertimeValue = this.overtime;
-        this.overtimePaused = true;
-        console.log(`⏸️ [Timer] Pausing overtime at ${this.overtime}s`);
-      }
-
-      // Add to time left
-      const previousTime = this.timeLeft;
-      this.timeLeft += secondsToAdd;
-      console.log(`🎯 [HybridTimer] Updated timeLeft: ${previousTime}s -> ${this.timeLeft}s`);
-
-      // Update native modules - crucial for persistent notification updates
-      let brainBitesSuccess = false;
-      let screenTimeSuccess = false;
-
-      // Add to BrainBitesTimer (persistent notifications) - FORCE REFRESH
-      try {
-        const { BrainBitesTimer } = NativeModules;
-        if (BrainBitesTimer) {
-          if (BrainBitesTimer.addTime) {
-            await BrainBitesTimer.addTime(secondsToAdd);
-            brainBitesSuccess = true;
-            console.log(`✅ [HybridTimer] BrainBitesTimer addTime: ${secondsToAdd}s`);
-          }
-          if (BrainBitesTimer.updateTime) {
-            await BrainBitesTimer.updateTime(this.timeLeft);
-            console.log(`✅ [HybridTimer] BrainBitesTimer updateTime: ${this.timeLeft}s total`);
-          }
-          if (BrainBitesTimer.refreshNotification) {
-            await BrainBitesTimer.refreshNotification();
-            console.log('✅ [HybridTimer] BrainBitesTimer notification refreshed');
-          }
-        }
-      } catch (error) {
-        console.error('❌ [HybridTimer] Failed to add goal time to BrainBitesTimer:', error);
-      }
-
-      // Add to ScreenTimeModule (widget support) - Additive and refresh
-      try {
-        const { ScreenTimeModule } = NativeModules;
-        if (ScreenTimeModule) {
-          if (ScreenTimeModule.addTimeFromGoal) {
-            screenTimeSuccess = await ScreenTimeModule.addTimeFromGoal(minutes);
-            console.log(`✅ [HybridTimer] ScreenTimeModule addTimeFromGoal: ${minutes}m`);
-          }
-          // Do NOT call setScreenTime here to avoid overriding total with reward value
-          // The service will broadcast and update the widget immediately after add
-        }
-      } catch (error) {
-        console.error('❌ [HybridTimer] Failed to add goal time to ScreenTimeModule:', error);
-      }
-
-      // Save state and notify listeners
-      await this.saveTimerState();
-
-      // Update current data
-      if (this.currentData) {
-        this.currentData = {
-          ...this.currentData,
-          remainingTime: this.timeLeft,
-          overtime: this.overtimePaused ? this.pausedOvertimeValue : this.overtime,
-        };
-      }
-
-      // Notify all listeners to refresh UI
+    console.log(`🎯 [HybridTimer] Adding ${minutes} minutes from goal completion`);
+    
+    const success = await this.callNativeAddTime(minutes);
+    
+    // Update local state and notify listeners
+    if (success && this.currentData) {
+      const oldRemainingTime = this.currentData.remainingTime;
+      this.currentData = {
+        ...this.currentData,
+        remainingTime: oldRemainingTime + (minutes * 60) // Add minutes in seconds
+      };
+      console.log(`🔄 [HybridTimer] Updated remaining time: ${oldRemainingTime}s -> ${this.currentData.remainingTime}s (+${minutes * 60}s)`);
       this.notifyListeners();
-
-      // Emit event to force UI refresh
-      const eventEmitter = new NativeEventEmitter(NativeModules.DeviceEventEmitter || {});
-      eventEmitter.emit('timerUpdated', {
-        remainingTime: this.timeLeft,
-        addedTime: secondsToAdd,
-        source: 'goal_completion',
-      });
-
-      // Update notification display for local state
-      this.updateNotification();
-
-      const success = brainBitesSuccess || screenTimeSuccess;
-      console.log(`${success ? '✅' : '❌'} [HybridTimer] Goal time addition result: ${success}`);
-
-      return success;
-    } catch (error) {
-      console.error('❌ [HybridTimer] Failed to add goal time:', error);
-      return false;
     }
+    
+    console.log(`${success ? '✅' : '❌'} [HybridTimer] Goal time addition result: ${success}`);
+    return success;
   }
 
-// Add method to resume overtime when timer reaches 0 again
-private checkOvertimeResume(): void {
-  if (this.timeLeft <= 0 && this.overtimePaused && this.pausedOvertimeValue > 0) {
-    this.overtime = this.pausedOvertimeValue;
-    this.overtimePaused = false;
-    this.pausedOvertimeValue = 0;
-    console.log(`▶️ [Timer] Resuming overtime at ${this.overtime}s`);
-  }
-}
 
   /**
    * Set initial screen time - uses both systems
@@ -598,6 +480,155 @@ private checkOvertimeResume(): void {
   }
 
   /**
+   * Check if we've reached an hourly milestone
+   */
+  private async checkHourlyMilestone(): Promise<void> {
+    const currentHours = Math.floor(this.screenTime / 3600);
+    
+    // Check if we've crossed an hour boundary
+    if (currentHours > this.lastHourNotified && currentHours > 0) {
+      this.lastHourNotified = currentHours;
+      await AsyncStorage.setItem(this.HOURLY_NOTIFICATION_KEY, currentHours.toString());
+      
+      // Show hourly notification
+      await this.showHourlyNotification(currentHours);
+    }
+  }
+
+  /**
+   * Show hourly screentime notification
+   */
+  private async showHourlyNotification(hours: number): Promise<void> {
+    try {
+      const totalMinutes = Math.floor(this.screenTime / 60);
+      const displayHours = Math.floor(totalMinutes / 60);
+      const displayMinutes = totalMinutes % 60;
+      
+      const timeString = displayHours > 0 
+        ? `${displayHours}h ${displayMinutes}m`
+        : `${displayMinutes}m`;
+      
+      // Create varied messages based on hour
+      const messages = this.getHourlyMessages(hours, timeString);
+      const message = messages[Math.floor(Math.random() * messages.length)];
+      
+      // Add break suggestions for longer sessions
+      const breakSuggestion = this.getBreakSuggestion(hours);
+      
+      // Use NotificationService to show the notification
+      await NotificationService.showLocalNotification({
+        title: '📱 Screentime Milestone!',
+        body: message + breakSuggestion,
+        data: { 
+          type: 'hourly_screentime',
+          hours: hours,
+          totalTime: this.screenTime
+        }
+      });
+      
+      console.log(`📱 [HybridTimer] Hourly notification shown for hour ${hours}`);
+      
+      // Also emit event for UI updates
+      const eventEmitter = new (require('react-native').NativeEventEmitter)();
+      eventEmitter.emit('hourlyScreentime', {
+        hours,
+        totalSeconds: this.screenTime,
+        timeString
+      });
+      
+    } catch (error) {
+      console.error('❌ [HybridTimer] Failed to show hourly notification:', error);
+    }
+  }
+
+  /**
+   * Get varied messages for hourly notifications
+   */
+  private getHourlyMessages(hours: number, timeString: string): string[] {
+    switch (hours) {
+      case 1:
+        return [
+          `Whoa! You've spent an hour on your screen today! 📱`,
+          `One hour milestone reached! Your screentime: ${timeString} ⏰`,
+          `Hour mark! You've been on screen for ${timeString} today 🕐`,
+          `First hour complete! Total screentime: ${timeString} 📊`
+        ];
+      case 2:
+        return [
+          `Two hours and counting! Screentime: ${timeString} 📊`,
+          `Double hour alert! You're at ${timeString} today ⏰⏰`,
+          `2 hour checkpoint! Total today: ${timeString} 🎯`,
+          `Two hours on screen! Current total: ${timeString} 📱`
+        ];
+      case 3:
+        return [
+          `Three hours reached! Consider a break? Screentime: ${timeString} 🌟`,
+          `Triple hour milestone! You're at ${timeString} ⏰⏰⏰`,
+          `3 hours on screen! Maybe time for a stretch? Total: ${timeString} 🤸`,
+          `Third hour complete! Your screentime: ${timeString} 📈`
+        ];
+      case 4:
+        return [
+          `Four hours of screentime! You're at ${timeString} 📈`,
+          `Quad hour alert! Total screentime: ${timeString} ⏰⏰⏰⏰`,
+          `4 hour mark reached! Consider some offline time? Total: ${timeString} 🌳`,
+          `Four hours logged! Current total: ${timeString} 📱`
+        ];
+      case 5:
+        return [
+          `Five hours on screen! You're at ${timeString} 📊`,
+          `5 hour milestone! Total today: ${timeString} ⏰`,
+          `Fifth hour reached! Maybe time for a longer break? Total: ${timeString} 🌿`,
+          `Five hours of screentime logged: ${timeString} 📱`
+        ];
+      default:
+        return [
+          `Screentime milestone: ${hours} hours! Total today: ${timeString} 📊`,
+          `${hours} hour alert! You've spent ${timeString} on screen ⏰`,
+          `Hour ${hours} reached! Your screentime is now ${timeString} 📱`,
+          `${hours} hours logged! Current total: ${timeString} 📈`
+        ];
+    }
+  }
+
+  /**
+   * Get break suggestion based on hours
+   */
+  private getBreakSuggestion(hours: number): string {
+    if (hours >= 5) {
+      return '\n\n🚶 Suggestion: Time for a proper break! How about a 15-minute walk?';
+    } else if (hours >= 4) {
+      return '\n\n🌳 Tip: Consider some offline time to recharge!';
+    } else if (hours >= 3) {
+      return '\n\n💡 Tip: How about a quick walk or stretch?';
+    } else if (hours >= 2) {
+      return '\n\n👀 Remember to rest your eyes!';
+    }
+    return '';
+  }
+
+  /**
+   * Get current timer state
+   */
+  getCurrentState(): TimerState {
+    const hoursSpent = Math.floor(this.screenTime / 3600);
+    const minutesSpent = Math.floor((this.screenTime % 3600) / 60);
+    
+    return {
+      timeLeft: this.timeLeft,
+      screenTime: this.screenTime,
+      overtime: this.overtime,
+      overtimePaused: this.overtimePaused,
+      isTracking: this.currentData?.isTracking || false,
+      isAppForeground: this.currentData?.isAppForeground || false,
+      lastUpdate: Date.now(),
+      todayHours: hoursSpent,
+      todayMinutes: minutesSpent,
+      lastHourNotified: this.lastHourNotified
+    };
+  }
+
+  /**
    * Save timer state to AsyncStorage
    */
   private async saveTimerState(): Promise<void> {
@@ -610,6 +641,29 @@ private checkOvertimeResume(): void {
       ]);
     } catch (error) {
       console.error('❌ [Timer] Failed to save timer state:', error);
+    }
+  }
+
+  /**
+   * Load timer state from AsyncStorage
+   */
+  private async loadTimerState(): Promise<void> {
+    try {
+      const [timeLeft, screenTime, overtime, overtimePaused] = await AsyncStorage.multiGet([
+        '@BrainBites:timeLeft',
+        '@BrainBites:screenTime', 
+        '@BrainBites:overtime',
+        '@BrainBites:overtimePaused'
+      ]);
+
+      this.timeLeft = parseInt(timeLeft[1] || '0', 10);
+      this.screenTime = parseInt(screenTime[1] || '0', 10);
+      this.overtime = parseInt(overtime[1] || '0', 10);
+      this.overtimePaused = overtimePaused[1] === 'true';
+
+      console.log('✅ [HybridTimer] Timer state loaded from storage');
+    } catch (error) {
+      console.error('❌ [HybridTimer] Failed to load timer state:', error);
     }
   }
 

@@ -10,12 +10,21 @@ interface NotificationData {
   scheduledTime?: Date;
 }
 
+interface LocalNotificationData {
+  title: string;
+  body: string;
+  data?: any;
+  playSound?: boolean;
+  vibrate?: boolean;
+}
+
 interface NotificationSettings {
   enabled: boolean;
   dailyReminder: boolean;
   reminderTime: string; // HH:MM format
   streakReminder: boolean;
   achievementNotifications: boolean;
+  hourlyReminders: boolean;
 }
 
 class NotificationServiceClass {
@@ -26,6 +35,7 @@ class NotificationServiceClass {
     reminderTime: '19:00', // 7 PM
     streakReminder: true,
     achievementNotifications: true,
+    hourlyReminders: true,
   };
   private SETTINGS_KEY = '@BrainBites:notificationSettings';
 
@@ -276,6 +286,126 @@ class NotificationServiceClass {
 
   isNotificationEnabled(): boolean {
     return this.isInitialized && this.settings.enabled;
+  }
+
+  /**
+   * Show a local notification immediately
+   */
+  async showLocalNotification(notification: LocalNotificationData): Promise<void> {
+    try {
+      if (!this.isInitialized || !this.settings.enabled) {
+        console.log('⚠️ Notifications not enabled, skipping');
+        return;
+      }
+      
+      const { NativeModules, Platform } = require('react-native');
+      
+      if (Platform.OS === 'android') {
+        const { NotificationModule } = NativeModules;
+        
+        if (NotificationModule && NotificationModule.showNotification) {
+          await NotificationModule.showNotification({
+            title: notification.title,
+            message: notification.body,
+            playSound: notification.playSound !== false,
+            vibrate: notification.vibrate !== false,
+            data: notification.data || {}
+          });
+          
+          console.log('✅ Local notification shown:', notification.title);
+        }
+      } else if (Platform.OS === 'ios') {
+        // iOS implementation - fallback to console log if push notifications not available
+        try {
+          // Try to use native iOS notifications if available
+          console.log('✅ iOS local notification (fallback):', notification.title);
+          // TODO: Implement iOS notifications when @react-native-community/push-notification-ios is installed
+        } catch (error) {
+          console.log('iOS notifications not available, logged instead:', notification.title);
+        }
+      }
+    } catch (error) {
+      console.error('❌ Failed to show local notification:', error);
+    }
+  }
+
+  /**
+   * Schedule hourly screentime reminders
+   */
+  async scheduleHourlyReminders(enabled: boolean = true): Promise<void> {
+    try {
+      const key = '@BrainBites:hourlyRemindersEnabled';
+      
+      if (enabled) {
+        await AsyncStorage.setItem(key, 'true');
+        console.log('✅ Hourly screentime reminders enabled');
+      } else {
+        await AsyncStorage.setItem(key, 'false');
+        console.log('⏸️ Hourly screentime reminders disabled');
+      }
+      
+      // Update settings
+      this.settings = {
+        ...this.settings,
+        hourlyReminders: enabled
+      };
+      await this.saveSettings();
+      
+    } catch (error) {
+      console.error('❌ Failed to update hourly reminder settings:', error);
+    }
+  }
+
+  /**
+   * Check if hourly reminders are enabled
+   */
+  async areHourlyRemindersEnabled(): Promise<boolean> {
+    try {
+      const enabled = await AsyncStorage.getItem('@BrainBites:hourlyRemindersEnabled');
+      return enabled !== 'false'; // Default to true
+    } catch (error) {
+      console.error('Error checking hourly reminder status:', error);
+      return true; // Default to enabled
+    }
+  }
+
+  /**
+   * Show a motivational notification for break time
+   */
+  async showBreakNotification(hours: number): Promise<void> {
+    const breakMessages = [
+      '🧘 Time for a mindful break! Your eyes will thank you.',
+      '🚶 How about a quick walk? Movement boosts brain power!',
+      '💧 Hydration check! When did you last have some water?',
+      '🌟 Great job tracking your time! Now for a quick refresh.',
+      '🎯 You\'re doing great! A short break will help you focus better.'
+    ];
+    
+    const message = breakMessages[Math.floor(Math.random() * breakMessages.length)];
+    
+    await this.showLocalNotification({
+      title: '⏰ Break Time Suggestion',
+      body: message,
+      data: { type: 'break_reminder', hours }
+    });
+  }
+
+  /**
+   * Clear specific notification by ID (for Android)
+   */
+  async clearNotification(notificationId: number): Promise<void> {
+    try {
+      const { NativeModules, Platform } = require('react-native');
+      
+      if (Platform.OS === 'android') {
+        const { NotificationModule } = NativeModules;
+        if (NotificationModule && NotificationModule.clearNotification) {
+          await NotificationModule.clearNotification(notificationId);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to clear notification:', error);
+    }
   }
 }
 

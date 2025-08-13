@@ -115,6 +115,12 @@ const HomeScreen: React.FC = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [dailyStreak, setDailyStreak] = useState(0);
   const [lastPlayedDate, setLastPlayedDate] = useState<string | null>(null);
+  
+  // State to track if today is completed for streak flow
+  const [todayCompleted, setTodayCompleted] = useState(false);
+  
+  // State to track streak history for the week (last 7 days) - true = completed, false = missed
+  const [weekHistory, setWeekHistory] = useState<boolean[]>([false, false, false, false, false, false, false]);
   // In the HomeScreen component, update the useEffect that loads stats
   useEffect(() => {
     const loadStats = async () => {
@@ -222,6 +228,115 @@ const HomeScreen: React.FC = () => {
     });
     
     return () => subscription.remove();
+  }, []);
+
+  // Load week history and check today's completion
+  useEffect(() => {
+    const loadWeekHistory = async () => {
+      try {
+        // Load the past 7 days history
+        const history = [false, false, false, false, false, false, false];
+        const today = new Date();
+        
+        // Get the current day of week in Monday-first format
+        const currentDayOfWeek = (today.getDay() + 6) % 7; // Convert Sunday=0 to Monday=0
+        
+        // Check each day of the week (Monday=0 to Sunday=6)
+        for (let i = 0; i < 7; i++) {
+          const checkDate = new Date(today);
+          const daysFromMonday = i - currentDayOfWeek; // Days from this Monday
+          checkDate.setDate(today.getDate() + daysFromMonday);
+          const dateFormatted = checkDate.toISOString().split('T')[0];
+          const dateString = checkDate.toDateString();
+          
+          // Check if this day had a completed goal
+          const lastCompletedDay = await AsyncStorage.getItem('@BrainBites:lastDailyGoalDay');
+          const goalsData = await AsyncStorage.getItem('@BrainBites:liveGameStore:claimedRewards');
+          const claimedRewards = goalsData ? JSON.parse(goalsData) : {};
+          
+          let dayCompleted = lastCompletedDay === dateFormatted;
+          
+          // Also check claimed rewards for non-honor goals for this date
+          const dayClaims = Object.entries(claimedRewards).filter(([goalId, claimDate]) => {
+            if (typeof claimDate === 'string') {
+              return new Date(claimDate).toDateString() === dateString;
+            }
+            return false;
+          });
+          
+          const nonHonorClaims = dayClaims.filter(([goalId]) => 
+            !goalId.includes('honor') && !goalId.includes('stretch') && !goalId.includes('read') && !goalId.includes('walk')
+          );
+          
+          if (nonHonorClaims.length > 0) {
+            dayCompleted = true;
+          }
+          
+          history[i] = dayCompleted;
+        }
+        
+        setWeekHistory(history);
+        
+        // Set today's completion (current day index in Monday-first format)
+        const todayIndex = (today.getDay() + 6) % 7;
+        setTodayCompleted(history[todayIndex]);
+        
+        if (history[todayIndex]) {
+          console.log('✅ Today marked as completed for daily streak');
+        }
+      } catch (error) {
+        console.error('Error loading week history:', error);
+      }
+    };
+    
+    loadWeekHistory();
+    
+    // Re-check when screen gains focus
+    const unsubscribe = navigation.addListener('focus', loadWeekHistory);
+    return unsubscribe;
+  }, [navigation]);
+
+  // Listen for daily goal completion events - moved from renderStreakFlow
+  useEffect(() => {
+    const eventEmitter = new (require('react-native').NativeEventEmitter)();
+    
+    const dailyGoalListener = eventEmitter.addListener('dailyGoalDayCompleted', () => {
+      console.log('📅 Daily goal day completed event received');
+      setTodayCompleted(true);
+      // Update week history at the correct index for today
+      setWeekHistory(prev => {
+        const newHistory = [...prev];
+        const today = new Date().getDay();
+        const mondayFirstIndex = (today + 6) % 7; // Convert to Monday-first
+        newHistory[mondayFirstIndex] = true;
+        return newHistory;
+      });
+    });
+    
+    const claimListener = eventEmitter.addListener('dailyGoalClaimed', () => {
+      console.log('🎯 Daily goal claimed event received');
+      // Re-check completion status and update history
+      const checkCompletion = async () => {
+        const todayFormatted = new Date().toISOString().split('T')[0];
+        const lastCompletedDay = await AsyncStorage.getItem('@BrainBites:lastDailyGoalDay');
+        if (lastCompletedDay === todayFormatted) {
+          setTodayCompleted(true);
+          setWeekHistory(prev => {
+            const newHistory = [...prev];
+            const today = new Date().getDay();
+            const mondayFirstIndex = (today + 6) % 7; // Convert to Monday-first
+            newHistory[mondayFirstIndex] = true;
+            return newHistory;
+          });
+        }
+      };
+      checkCompletion();
+    });
+    
+    return () => {
+      dailyGoalListener.remove();
+      claimListener.remove();
+    };
   }, []);
 
   // Listen for goal completion mascot events
@@ -479,73 +594,75 @@ const HomeScreen: React.FC = () => {
     const today = new Date().getDay();
     const mondayFirst = [(today + 6) % 7]; // Convert to Monday-first
     
-    // Check if any daily goal has been completed (claimed) today
-    const checkTodayCompletion = async () => {
-      const todayString = new Date().toDateString();
-      
-      // Check claimed goals (excluding honor goals)
-      const goalsData = await AsyncStorage.getItem('@BrainBites:liveGameStore:claimedRewards');
-      const claimedRewards = goalsData ? JSON.parse(goalsData) : {};
-      
-      // Get current goals to check which ones are honor-based
-      const currentGoalsData = await AsyncStorage.getItem('@BrainBites:dailyGoals');
-      const currentGoals = currentGoalsData ? JSON.parse(currentGoalsData) : [];
-      
-      // Filter out honor-based goals
-      const honorGoalIds = currentGoals
-        .filter((goal: any) => goal.honorBased)
-        .map((goal: any) => goal.id);
-      
-      const hasNonHonorClaimToday = Object.entries(claimedRewards).some(([goalId, date]: [string, any]) => {
-        const isHonorGoal = honorGoalIds.includes(goalId);
-        const isToday = new Date(date).toDateString() === todayString;
-        return !isHonorGoal && isToday;
-      });
-      
-      // Check quiz play
-      const hasPlayedToday = lastPlayedDate === todayString;
-      
-      return hasNonHonorClaimToday || hasPlayedToday;
-    };
-    
-    const [hasCompletedToday, setHasCompletedToday] = useState(false);
-    
-    useEffect(() => {
-      checkTodayCompletion().then(setHasCompletedToday);
-    }, [dailyGoals, lastPlayedDate]);
+    // Calculate current streak counting back from today only
+    let currentStreak = 0;
+    for (let i = mondayFirst[0]; i >= 0; i--) {
+      if (weekHistory[i]) {
+        currentStreak++;
+      } else {
+        break;
+      }
+    }
     
     return (
-      <View style={styles.streakContainer}>
-        <View style={styles.streakHeader}>
-          <Icon name="fire" size={24} color="#FF9F1C" />
-          <Text style={styles.streakTitle}>Daily Streak</Text>
-          <Text style={styles.streakCount}>{dailyStreak} days</Text>
+      <LinearGradient
+        colors={["#FFF1E0", "#FFE6C6"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.streakContainer}
+      >
+        <View style={styles.flowHeader}>
+          <View style={styles.flowTitleRow}>
+            <Icon name="calendar-check-outline" size={22} color={theme.colors.primary} />
+            <Text style={styles.streakTitle}>Daily Flow</Text>
+          </View>
+          <View style={styles.flowBadge}>
+            <Icon name="water" size={14} color="#FFFFFF" />
+            <Text style={styles.flowBadgeText}>{Math.max(currentStreak, 0)}d</Text>
+          </View>
         </View>
-        <View style={styles.streakDays}>
+        <Text style={styles.flowSubtitle}>Finish a goal daily to keep your flow alive</Text>
+        <View style={styles.weekFlow}>
           {days.map((day, index) => {
             const isToday = index === mondayFirst[0];
-            const isCompleted = hasCompletedToday && isToday;
-            const isPast = index < mondayFirst[0] && dailyStreak > (mondayFirst[0] - index);
+            const dayCompleted = weekHistory[index];
+            const isPast = index < mondayFirst[0];
+            const isMissed = isPast && !dayCompleted;
             
             return (
-              <View key={index} style={styles.streakDayContainer}>
-                <Text style={styles.streakDayLabel}>{day}</Text>
+              <View key={index} style={styles.dayItem}>
                 <View style={[
-                  styles.streakDay,
-                  isCompleted && styles.streakDayCompleted,
-                  isToday && styles.streakDayToday,
-                  isPast && styles.streakDayPast
+                  styles.dayCircle,
+                  isToday && styles.todayCircle,
+                  dayCompleted && styles.completedCircle,
+                  isMissed && styles.missedCircle,
                 ]}>
-                  {isCompleted && <Icon name="check" size={16} color="white" />}
+                  {dayCompleted ? (
+                    <Icon name="check" size={16} color="#FFFFFF" />
+                  ) : isMissed ? (
+                    <Icon name="close" size={16} color="#FFFFFF" />
+                  ) : (
+                    <Text style={[
+                      styles.dayText,
+                      isToday && styles.todayText,
+                    ]}>
+                      {day}
+                    </Text>
+                  )}
                 </View>
+                {isToday && dayCompleted && (
+                  <Text style={styles.todayCompletedText}>✨ Done!</Text>
+                )}
               </View>
             );
           })}
         </View>
-        {hasCompletedToday && (
-          <Text style={styles.streakMessage}>🎉 You did it today!</Text>
+        {currentStreak > 0 && (
+          <Text style={styles.streakCount}>
+            🌊 {currentStreak} day{currentStreak > 1 ? 's' : ''} in a row
+          </Text>
         )}
-      </View>
+      </LinearGradient>
     );
   };
   
@@ -783,11 +900,49 @@ const styles = StyleSheet.create({
     ...theme.shadows.small,
   },
   streakContainer: {
-    backgroundColor: 'white',
-    borderRadius: 16,
-    padding: 16,
+    borderRadius: 24,
+    padding: 24,
     marginBottom: 24,
-    ...theme.shadows.medium,
+    marginHorizontal: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+  },
+  flowHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  flowTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingTop: 2,
+  },
+  flowBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#16A085',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+    gap: 6,
+  },
+  flowBadgeText: {
+    color: '#FFFFFF',
+    fontWeight: '700',
+    fontSize: 12,
+  },
+  flowSubtitle: {
+    color: '#2C3E50',
+    opacity: 0.7,
+    marginBottom: 12,
+    fontSize: 12,
   },
   streakHeader: {
     flexDirection: 'row',
@@ -795,17 +950,28 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   streakTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-    marginLeft: 8,
-    flex: 1,
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#2C3E50',
+    textAlign: 'center',
+    marginBottom: 0,
+    letterSpacing: 0.5,
     fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
+    lineHeight: 24,
+    includeFontPadding: false,
   },
   streakCount: {
-    fontSize: 16,
-    color: '#FF9F1C',
-    fontWeight: 'bold',
+    fontSize: 18,
+    color: '#3498DB',
+    fontWeight: '700',
+    textAlign: 'center',
+    marginTop: 20,
+    letterSpacing: 0.3,
+    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    alignSelf: 'center',
     fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
   },
   streakDays: {
@@ -849,6 +1015,62 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     marginTop: 8,
+  },
+  weekFlow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+  },
+  dayItem: {
+    alignItems: 'center',
+  },
+  dayCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#f8f9fa',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: 'transparent',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  todayCircle: {
+    borderColor: '#3498DB',
+    borderWidth: 3,
+    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+  },
+  completedCircle: {
+    backgroundColor: '#16A085',
+    borderColor: '#16A085',
+    shadowColor: '#16A085',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  missedCircle: {
+    backgroundColor: '#FF5252',
+    borderColor: '#FF5252',
+  },
+  dayText: {
+    fontSize: 12,
+    color: '#666',
+    fontWeight: '600',
+  },
+  todayText: {
+    color: '#FF9F1C',
+    fontWeight: 'bold',
+  },
+  todayCompletedText: {
+    fontSize: 10,
+    color: '#4CAF50',
+    fontWeight: 'bold',
+    marginTop: 2,
   },
   difficultySection: {
     marginBottom: 24,
