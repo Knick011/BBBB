@@ -79,6 +79,9 @@ const QuizScreen = ({ navigation, route }: any) => {
   const [showMascot, setShowMascot] = useState(false);
   const [showCelebrationScreen, setShowCelebrationScreen] = useState(false);
   
+  // Response time tracking
+  const [responseTime, setResponseTime] = useState<number>(0);
+  
   // Animation values
   const cardAnim = useRef(new Animated.Value(0)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -335,6 +338,8 @@ const QuizScreen = ({ navigation, route }: any) => {
     console.log('⏰ [Modern QuizScreen] Time up!');
     setSelectedAnswer('TIMEOUT');
     setIsCorrect(false);
+    // Count this question as answered in-session
+    setQuestionsAnswered((prev) => prev + 1);
     
     // Show explanation with a short delay
     setTimeout(() => {
@@ -371,7 +376,10 @@ const QuizScreen = ({ navigation, route }: any) => {
     
     setReadyForInput(false); // Disable further input
     
-    // Stop timer immediately
+    // Stop timer immediately and capture response time
+    const responseTime = Date.now() - questionStartTime.current;
+    setResponseTime(responseTime);
+    
     if (timerAnimation.current) {
       timerAnimation.current.stop();
     }
@@ -385,17 +393,18 @@ const QuizScreen = ({ navigation, route }: any) => {
     setSelectedAnswer(option);
     const correct = option === currentQuestion.correctAnswer;
     setIsCorrect(correct);
+    // Count this question in-session
+    setQuestionsAnswered((prev) => prev + 1);
     
     // STEP 1: Show selection feedback (500ms)
     await new Promise(resolve => setTimeout(resolve, 500));
     
     // STEP 2: Calculate speed multiplier
-    const responseTime = Date.now() - questionStartTime.current;
     const speedMultiplier = calculateSpeedMultiplier(responseTime);
     setSpeedMultiplier(speedMultiplier);
     
     // STEP 3: Process the scoring first
-    await processScoring(correct);
+    await processScoring(correct, responseTime);
     
     // STEP 4: Show animations only for correct answers, after scoring is complete
     if (correct) {
@@ -477,9 +486,10 @@ const QuizScreen = ({ navigation, route }: any) => {
   };
   
   // Add processScoring function
-  const processScoring = async (correct: boolean) => {
+  const processScoring = async (correct: boolean, responseTimeMs?: number) => {
     try {
       const difficulty = route.params?.difficulty || 'medium';
+      const responseTime = responseTimeMs || (Date.now() - questionStartTime.current);
       const metadata = {
         startTime: questionStartTime.current,
         category: category,
@@ -495,6 +505,7 @@ const QuizScreen = ({ navigation, route }: any) => {
       setStreakLevel(scoreResult.streakLevel);
       setIsStreakMilestone(scoreResult.isMilestone);
       setSpeedCategory(scoreResult.speedCategory);
+      setSpeedMultiplier(scoreResult.speedMultiplier);
       
       if (correct) {
         // Use store method to increment
@@ -512,14 +523,11 @@ const QuizScreen = ({ navigation, route }: any) => {
         
         console.log(`🧠 [QuizScreen] Adding ${timeToAdd} minutes for correct ${difficulty} answer`);
         
-        // Initialize timer integration if needed
         await TimerIntegrationService.initialize();
         const timerResult = await TimerIntegrationService.addTimeFromQuiz(timeToAdd);
         
         if (timerResult) {
-          console.log(`✅ [QuizScreen] Successfully added ${timeToAdd}m to timer`);
-        } else {
-          console.error(`❌ [QuizScreen] Failed to add time to timer`);
+          console.log(`✅ [QuizScreen] Successfully added ${timeToAdd} minutes to timer`);
         }
         
         // Check for streak milestone
@@ -546,8 +554,19 @@ const QuizScreen = ({ navigation, route }: any) => {
         }, 500);
       }
       
-      // Update daily goals progress after processing any answer
-      await checkDailyGoalCompletion(correct, difficulty, category);
+      // Daily goals progress is handled inside EnhancedScoreService; no duplicate call here
+      
+      // Check for completed goals and show celebration
+      const completedGoals = DailyGoalsService.getCompletedGoals();
+      if (completedGoals.length > 0) {
+        const unclaimedGoal = completedGoals.find(g => !g.claimed);
+        if (unclaimedGoal) {
+          // Show mascot celebration for completed goal
+          setMascotType('excited');
+          setMascotMessage(`🎉 Goal Complete!\n"${unclaimedGoal.title}"\nClaim your reward!`);
+          setShowMascot(true);
+        }
+      }
       
     } catch (error) {
       console.error('Error processing score:', error);
@@ -595,33 +614,14 @@ const QuizScreen = ({ navigation, route }: any) => {
     setShowMascot(false);
   };
   
-  // Update daily goal progress - only updates progress, doesn't show modal
-  const checkDailyGoalCompletion = async (isCorrect: boolean, quizDifficulty: string, quizCategory: string) => {
-    try {
-      const accuracy = questionsAnswered > 0 ? Math.round((correctAnswers / questionsAnswered) * 100) : 0;
-      
-      console.log(`🎯 [QuizScreen] Updating daily goals progress...`);
-      
-      // Update progress - this is what actually completes goals
-      await DailyGoalsService.updateProgress({
-        isCorrect: isCorrect,
-        difficulty: quizDifficulty || 'medium',
-        category: quizCategory || 'general',
-        todayQuestions: questionsAnswered + 1,
-        currentStreak: streak || 0,
-        todayAccuracy: accuracy
-      });
-      
-      // Check if any new goals were completed but don't show modal yet
-      const goals = DailyGoalsService.getGoals();
-      const newlyCompletedGoals = goals.filter(goal => goal.completed && !goal.claimed && !goal.notified);
-      
-      if (newlyCompletedGoals.length > 0) {
-        console.log(`🎯 [QuizScreen] ${newlyCompletedGoals.length} goals completed, will show on continue`);
-      }
-    } catch (error) {
-      console.error('❌ [QuizScreen] Error updating daily goal progress:', error);
-    }
+  // Helper function to get speed feedback
+  const getSpeedFeedback = (responseTimeMs: number): string => {
+    const seconds = responseTimeMs / 1000;
+    if (seconds < 3) return "⚡ Lightning Fast!";
+    if (seconds < 4) return "🔥 Super Quick!";
+    if (seconds < 5) return "✨ Very Fast!";
+    if (seconds < 7) return "👍 Good Speed!";
+    return "✓ Nice Work!";
   };
   
   // Update handleDailyGoalClaim with enhanced timer integration
@@ -1047,8 +1047,8 @@ const QuizScreen = ({ navigation, route }: any) => {
           </Animated.View>
         )}
 
-        {/* Speed feedback popup */}
-        {showSpeedFeedback && (
+        {/* Speed feedback popup (classic style) */}
+        {showSpeedFeedback && isCorrect && (
           <Animated.View 
             style={[
               styles.speedFeedbackContainer,
@@ -1073,20 +1073,20 @@ const QuizScreen = ({ navigation, route }: any) => {
           >
             <View style={styles.speedFeedbackContent}>
               <Icon 
-                name={speedMultiplier >= 2 ? "flash" : speedMultiplier >= 1.5 ? "run-fast" : "check"} 
-                size={18} 
-                color={speedMultiplier >= 2 ? "#FF6B35" : speedMultiplier >= 1.5 ? "#FFA500" : "#4CAF50"} 
+                name={speedMultiplier >= 2 ? 'flash' : speedMultiplier >= 1.5 ? 'run-fast' : 'check'}
+                size={18}
+                color={speedMultiplier >= 2 ? '#FF6B35' : speedMultiplier >= 1.5 ? '#FFA500' : '#4CAF50'}
               />
-              <Text style={[
-                styles.speedCategoryText,
-                { color: speedMultiplier >= 2 ? "#FF6B35" : speedMultiplier >= 1.5 ? "#FFA500" : "#4CAF50" }
-              ]}>
-                {speedCategory}
+              <Text
+                style={[
+                  styles.speedCategoryText,
+                  { color: speedMultiplier >= 2 ? '#FF6B35' : speedMultiplier >= 1.5 ? '#FFA500' : '#4CAF50' },
+                ]}
+              >
+                {speedCategory || getSpeedFeedback(responseTime)}
               </Text>
               {speedMultiplier > 1 && (
-                <Text style={styles.speedMultiplierText}>
-                  {speedMultiplier}x Bonus!
-                </Text>
+                <Text style={styles.speedMultiplierText}>{speedMultiplier}x Bonus!</Text>
               )}
             </View>
           </Animated.View>
@@ -1602,6 +1602,33 @@ const styles = StyleSheet.create({
     color: '#FF6B35',
     textAlign: 'center',
     fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
+  },
+  speedFeedback: {
+    position: 'absolute',
+    top: 100,
+    alignSelf: 'center',
+    backgroundColor: '#FFC107',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 25,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+    zIndex: 1000,
+  },
+  speedText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  speedMultiplier: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    marginTop: 4,
+    textAlign: 'center',
   },
 });
 

@@ -1,15 +1,19 @@
 // src/services/DailyGoalsService.ts
-// ✅ COMPREHENSIVE DAILY GOALS SERVICE - FIXED VERSION
+// ✅ UPDATED DAILY GOALS SERVICE WITH AD-GATING AND NEW GOAL STRUCTURE
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// @ts-ignore - RN types may not include these named exports in this setup
 import { NativeEventEmitter, NativeModules } from 'react-native';
+import { getTorontoDateString } from '../utils/timeUtils';
 import EnhancedScoreService from './EnhancedScoreService';
 import TimerIntegrationService from './TimerIntegrationService';
 
 export interface DailyGoal {
   id: string;
-  type: 'questions' | 'streak' | 'accuracy' | 'difficulty' | 'category' | 'perfect' | 'honor';
+  type: 'questions' | 'streak' | 'accuracy' | 'speed' | 'honor';
+  subType?: 'quick_answers' | 'streak_speed' | 'honor_standard' | 'honor_walk';
   target: number;
   questionsRequired?: number;
+  thresholdPerAnswerSeconds?: number; // For speed goals
   reward: number; // in seconds
   title: string;
   description: string;
@@ -21,174 +25,217 @@ export interface DailyGoal {
   claimed: boolean;
   questionsAnswered?: number;
   honorBased?: boolean;
+  difficulty?: 'easy' | 'medium' | 'hard';
+  requiresAdUnlock?: boolean;
+  unlocked?: boolean;
+  isPlaceholder?: boolean;
+  isSpecial?: boolean; // Special ad-gated goals that are always visible
   notified?: boolean;
+  speedStreak?: number; // For tracking consecutive fast answers
 }
 
-const DAILY_GOALS_POOL: Omit<DailyGoal, 'current' | 'progress' | 'completed' | 'claimed'>[] = [
-  {
+// Define difficulty levels for each goal type
+const QUESTIONS_GOALS = {
+  easy: {
+    id: 'questions_10',
+    type: 'questions' as const,
+    target: 10,
+    reward: 1500, // 25 minutes
+    title: 'Quick 10',
+    description: 'Answer 10 questions',
+    icon: 'help-circle-outline',
+    color: '#4CAF50',
+    difficulty: 'easy' as const
+  },
+  medium: {
     id: 'questions_20',
-    type: 'questions',
+    type: 'questions' as const,
     target: 20,
-    reward: 3000, // 50 minutes (20 * 2.5)
-    title: 'Quiz Starter',
+    reward: 3000, // 50 minutes
+    title: 'Solid 20',
     description: 'Answer 20 questions',
     icon: 'help-circle-outline',
-    color: '#4CAF50'
+    color: '#4CAF50',
+    difficulty: 'medium' as const
   },
-  {
-    id: 'questions_30',
-    type: 'questions',
-    target: 30,
-    reward: 4500, // 75 minutes (30 * 2.5)
-    title: 'Quiz Master',
-    description: 'Answer 30 questions',
-    icon: 'help-circle-outline',
-    color: '#4CAF50'
-  },
-  {
-    id: 'questions_50',
-    type: 'questions',
-    target: 50,
-    reward: 9000, // 150 minutes (60 * 2.5)
-    title: 'Knowledge Seeker',
-    description: 'Answer 50 questions',
+  hard: {
+    id: 'questions_40',
+    type: 'questions' as const,
+    target: 40,
+    reward: 6000, // 100 minutes
+    title: 'Marathon 40',
+    description: 'Answer 40 questions',
     icon: 'help-circle-multiple',
-    color: '#2E7D32'
-  },
-  {
-    id: 'streak_5',
-    type: 'streak',
-    target: 5,
-    reward: 2250, // 37.5 minutes (15 * 2.5)
-    title: 'Getting Hot',
-    description: 'Achieve 5 question streak',
+    color: '#2E7D32',
+    difficulty: 'hard' as const
+  }
+};
+
+const STREAK_GOALS = {
+  easy: {
+    id: 'streak_3',
+    type: 'streak' as const,
+    target: 3,
+    reward: 1200, // 20 minutes
+    title: 'Warm Streak',
+    description: 'Achieve 3 question streak',
     icon: 'fire',
-    color: '#FF9800'
+    color: '#FF9800',
+    difficulty: 'easy' as const
   },
-  {
+  medium: {
+    id: 'streak_6',
+    type: 'streak' as const,
+    target: 6,
+    reward: 2700, // 45 minutes
+    title: 'On a Roll',
+    description: 'Achieve 6 question streak',
+    icon: 'fire',
+    color: '#FF9F1C',
+    difficulty: 'medium' as const
+  },
+  hard: {
     id: 'streak_10',
-    type: 'streak',
+    type: 'streak' as const,
     target: 10,
-    reward: 6750, // 112.5 minutes (45 * 2.5)
-    title: 'Streak Champion',
+    reward: 4500, // 75 minutes
+    title: 'Unstoppable',
     description: 'Achieve 10 question streak',
     icon: 'fire',
-    color: '#FF9F1C'
-  },
-  {
-    id: 'streak_15',
-    type: 'streak',
-    target: 15,
-    reward: 9000, // 150 minutes (60 * 2.5)
-    title: 'Streak Master',
-    description: 'Achieve 15 question streak',
-    icon: 'fire',
-    color: '#F57C00'
-  },
-  {
-    id: 'accuracy_70',
-    type: 'accuracy',
-    target: 70,
-    questionsRequired: 15,
-    reward: 4500, // 75 minutes (30 * 2.5)
-    title: 'Good Aim',
-    description: 'Get 70% accuracy (min 15 questions)',
+    color: '#F57C00',
+    difficulty: 'hard' as const
+  }
+};
+
+const ACCURACY_GOALS = {
+  easy: {
+    id: 'accuracy_65_q12',
+    type: 'accuracy' as const,
+    target: 65,
+    questionsRequired: 12,
+    reward: 2100, // 35 minutes
+    title: 'Steady Aim',
+    description: 'Get 65% accuracy (min 12 questions)',
     icon: 'target',
-    color: '#2196F3'
+    color: '#2196F3',
+    difficulty: 'easy' as const
   },
-  {
-    id: 'accuracy_80',
-    type: 'accuracy',
-    target: 80,
+  medium: {
+    id: 'accuracy_75_q16',
+    type: 'accuracy' as const,
+    target: 75,
+    questionsRequired: 16,
+    reward: 3600, // 60 minutes
+    title: 'Eagle Eye',
+    description: 'Get 75% accuracy (min 16 questions)',
+    icon: 'target',
+    color: '#1976D2',
+    difficulty: 'medium' as const
+  },
+  hard: {
+    id: 'accuracy_85_q20',
+    type: 'accuracy' as const,
+    target: 85,
     questionsRequired: 20,
-    reward: 9000, // 150 minutes (60 * 2.5)
-    title: 'Precision Expert',
-    description: 'Get 80% accuracy (min 20 questions)',
+    reward: 5400, // 90 minutes
+    title: 'Sharpshooter',
+    description: 'Get 85% accuracy (min 20 questions)',
     icon: 'target',
-    color: '#1976D2'
-  },
+    color: '#0D47A1',
+    difficulty: 'hard' as const
+  }
+};
+
+// Speed goals pool (ad-gated, rotated daily)
+const SPEED_GOALS_POOL = [
   {
-    id: 'hard_difficulty',
-    type: 'difficulty',
-    target: 10,
-    questionsRequired: 10,
-    reward: 6750, // 112.5 minutes (45 * 2.5)
-    title: 'Challenge Accepted',
-    description: 'Answer 10 hard questions correctly',
-    icon: 'trophy-outline',
-    color: '#E91E63'
-  },
-  {
-    id: 'perfect_5',
-    type: 'perfect',
+    id: 'speed_5_under4s',
+    type: 'speed' as const,
+    subType: 'quick_answers' as const,
     target: 5,
-    reward: 3000, // 50 minutes (20 * 2.5)
-    title: 'Perfect Start',
-    description: 'Get 5 questions correct in a row',
-    icon: 'star-circle-outline',
-    color: '#FFD700'
-  },
-  {
-    id: 'perfect_10',
-    type: 'perfect',
-    target: 10,
-    reward: 6000, // 100 minutes (40 * 2.5)
-    title: 'Perfect Run',
-    description: 'Get 10 questions correct in a row',
-    icon: 'star-circle',
+    thresholdPerAnswerSeconds: 4,
+    reward: 2400, // 40 minutes
+    title: 'Quickfire Five',
+    description: 'Answer 5 questions correctly in under 4s each',
+    icon: 'lightning-bolt',
     color: '#FFC107'
   },
   {
-    id: 'walk_5000',
-    type: 'honor',
-    target: 5000,
-    reward: 4500, // 75 minutes (30 * 2.5)
-    title: 'Daily Walker',
-    description: 'Walk 5000 steps (honor-based)',
-    icon: 'walk',
-    color: '#4CAF50',
-    honorBased: true
-  },
-  {
-    id: 'pushups_10',
-    type: 'honor',
-    target: 10,
-    reward: 2250, // 37.5 minutes (15 * 2.5)
-    title: 'Fitness Boost',
-    description: 'Do 10 pushups (honor-based)',
-    icon: 'arm-flex',
-    color: '#FF5722',
-    honorBased: true
-  },
-  {
-    id: 'water_8',
-    type: 'honor',
+    id: 'speed_8_under5s',
+    type: 'speed' as const,
+    subType: 'quick_answers' as const,
     target: 8,
-    reward: 1500, // 25 minutes (10 * 2.5)
-    title: 'Stay Hydrated',
-    description: 'Drink 8 glasses of water (honor-based)',
-    icon: 'cup-water',
-    color: '#2196F3',
-    honorBased: true
+    thresholdPerAnswerSeconds: 5,
+    reward: 3000, // 50 minutes
+    title: 'Lightning Eight',
+    description: 'Answer 8 questions correctly in under 5s each',
+    icon: 'lightning-bolt',
+    color: '#FF9800'
   },
   {
-    id: 'meditation_10',
-    type: 'honor',
-    target: 10,
-    reward: 3000, // 50 minutes (20 * 2.5)
-    title: 'Mindful Moment',
-    description: 'Meditate for 10 minutes (honor-based)',
-    icon: 'meditation',
-    color: '#9C27B0',
-    honorBased: true
+    id: 'speed_streak3_under3s',
+    type: 'speed' as const,
+    subType: 'streak_speed' as const,
+    target: 3,
+    thresholdPerAnswerSeconds: 3,
+    reward: 2700, // 45 minutes
+    title: 'Focus Triple Streak',
+    description: 'Answer 3 questions in a row correctly in under 3s each',
+    icon: 'lightning-bolt-circle',
+    color: '#FF5722'
   }
 ];
+
+// Honor goals
+const HONOR_GOALS = {
+  stretch: {
+    id: 'stretch_10',
+    type: 'honor' as const,
+    subType: 'honor_standard' as const,
+    target: 10,
+    reward: 1500, // 25 minutes
+    title: 'Stretch Flow',
+    description: '10 minutes of stretching',
+    icon: 'yoga',
+    color: '#9C27B0',
+    honorBased: true
+  },
+  read: {
+    id: 'read_15',
+    type: 'honor' as const,
+    subType: 'honor_standard' as const,
+    target: 15,
+    reward: 1500, // 25 minutes
+    title: 'Bookworm',
+    description: '15 minutes of reading',
+    icon: 'book-open',
+    color: '#3F51B5',
+    honorBased: true
+  },
+  walk: {
+    id: 'walk_5000',
+    type: 'honor' as const,
+    subType: 'honor_walk' as const,
+    target: 5000,
+    reward: 2400, // 40 minutes
+    title: 'Nature Walk',
+    description: 'Walk 5000 steps',
+    icon: 'walk',
+    color: '#4CAF50',
+    honorBased: true,
+    requiresAdUnlock: true
+  }
+};
 
 class DailyGoalsService {
   private static instance: DailyGoalsService;
   private goals: DailyGoal[] = [];
   private listeners: Array<(goals: DailyGoal[]) => void> = [];
   private isInitialized = false;
+  private dailySpeedGoalIndex = 0; // Track which speed goal to use today
+  private readonly DAILY_DAY_STREAK_KEY = '@BrainBites:dailyGoalDayStreak';
+  private readonly DAILY_DAY_LAST_KEY = '@BrainBites:lastDailyGoalDay';
+  private readonly DAILY_DAY_NOTIFIED_KEY = '@BrainBites:dailyGoalDayNotified';
 
   static getInstance(): DailyGoalsService {
     if (!DailyGoalsService.instance) {
@@ -209,7 +256,7 @@ class DailyGoalsService {
     } catch (error) {
       console.error('❌ [DailyGoals] Failed to initialize:', error);
       // Fallback to generated goals
-      this.goals = this.generateDailyGoals();
+      this.goals = await this.generateDailyGoals();
       this.isInitialized = true;
     }
   }
@@ -232,7 +279,7 @@ class DailyGoalsService {
 
     // Generate new goals for today
     console.log('🎯 [DailyGoals] Generating new goals for today');
-    this.goals = this.generateDailyGoals();
+    this.goals = await this.generateDailyGoals();
     
     // Save new goals
     await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(this.goals));
@@ -241,83 +288,145 @@ class DailyGoalsService {
     console.log('✅ [DailyGoals] Generated and saved new goals');
   }
 
-  private generateDailyGoals(): DailyGoal[] {
-    // Separate regular goals and honor goals
-    const regularGoals = DAILY_GOALS_POOL.filter(goal => !goal.honorBased);
-    const honorGoals = DAILY_GOALS_POOL.filter(goal => goal.honorBased);
+  private async generateDailyGoals(): Promise<DailyGoal[]> {
+    const selected: DailyGoal[] = [];
     
-    // Shuffle both pools
-    const shuffledRegular = [...regularGoals].sort(() => 0.5 - Math.random());
-    const shuffledHonor = [...honorGoals].sort(() => 0.5 - Math.random());
+    // Get today's speed goal index (rotate through pool)
+    const savedIndex = await AsyncStorage.getItem('@BrainBites:speedGoalIndex');
+    this.dailySpeedGoalIndex = savedIndex ? (parseInt(savedIndex) + 1) % SPEED_GOALS_POOL.length : 0;
+    await AsyncStorage.setItem('@BrainBites:speedGoalIndex', this.dailySpeedGoalIndex.toString());
     
-    console.log('🎯 [DailyGoals] Goal pools:', {
-      regularPool: regularGoals.length,
-      honorPool: honorGoals.length,
-      honorTitles: honorGoals.map(g => g.title)
+    // Select difficulty distribution: exactly 1 Easy + 1 Medium + 1 Hard
+    const difficulties: ('easy' | 'medium' | 'hard')[] = ['easy', 'medium', 'hard'];
+    const shuffledDifficulties = [...difficulties].sort(() => Math.random() - 0.5);
+    
+    // Assign difficulties to goal types
+    const questionsGoal = QUESTIONS_GOALS[shuffledDifficulties[0]];
+    const streakGoal = STREAK_GOALS[shuffledDifficulties[1]];
+    const accuracyGoal = ACCURACY_GOALS[shuffledDifficulties[2]];
+    
+    // Add the three standard daily goals
+    selected.push({
+      ...questionsGoal,
+      current: 0,
+      progress: 0,
+      completed: false,
+      claimed: false,
+      questionsAnswered: 0,
+      notified: false
     });
     
-    const selected: DailyGoal[] = [];
-    const usedTypes = new Set<string>();
-
-    // Select 3 regular goals (prefer different types)
-    for (const goalTemplate of shuffledRegular) {
-      if (selected.length >= 3) break;
-      
-      // Prefer different types, but allow duplicates if needed
-      if (!usedTypes.has(goalTemplate.type) || selected.length === 0) {
-        selected.push({
-          ...goalTemplate,
-          current: 0,
-          progress: 0,
-          completed: false,
-          claimed: false,
-          questionsAnswered: 0,
-          notified: false
-        });
-        usedTypes.add(goalTemplate.type);
-      }
-    }
-
-    // If we don't have 3 regular goals, fill with remaining regular goals
-    while (selected.length < 3 && selected.length < shuffledRegular.length) {
-      const remaining = shuffledRegular.filter(g => !selected.find(s => s.id === g.id));
-      if (remaining.length > 0) {
-        const goalTemplate = remaining[0];
-        selected.push({
-          ...goalTemplate,
-          current: 0,
-          progress: 0,
-          completed: false,
-          claimed: false,
-          questionsAnswered: 0,
-          notified: false
-        });
-      } else {
-        break;
-      }
-    }
-
-    // Add 2 honor goals
-    for (let i = 0; i < 2 && i < shuffledHonor.length; i++) {
-      const goalTemplate = shuffledHonor[i];
+    selected.push({
+      ...streakGoal,
+      current: 0,
+      progress: 0,
+      completed: false,
+      claimed: false,
+      notified: false
+    });
+    
+    selected.push({
+      ...accuracyGoal,
+      current: 0,
+      progress: 0,
+      completed: false,
+      claimed: false,
+      questionsAnswered: 0,
+      notified: false
+    });
+    
+    // Add 2 standard honor goals
+    const honorGoalsArray = [HONOR_GOALS.stretch, HONOR_GOALS.read];
+    const shuffledHonor = [...honorGoalsArray].sort(() => Math.random() - 0.5);
+    
+    for (let i = 0; i < 2; i++) {
       selected.push({
-        ...goalTemplate,
+        ...shuffledHonor[i],
         current: 0,
         progress: 0,
         completed: false,
         claimed: false,
-        questionsAnswered: 0
+        honorBased: true,
+        notified: false
       });
     }
-
-    console.log('🎯 [DailyGoals] Generated goals:', selected.map(g => `${g.title} (${g.type}${g.honorBased ? ' - honor' : ''})`));
-    console.log('🎯 [DailyGoals] Goal breakdown:', {
-      total: selected.length,
-      regular: selected.filter(g => !g.honorBased).length,
-      honor: selected.filter(g => g.honorBased).length,
-      honorGoals: selected.filter(g => g.honorBased).map(g => g.title)
+    
+    // SPECIAL AD-GATED GOALS - Always visible, require ads to unlock
+    // These appear in a separate "Special Goals" section
+    
+    // Special Speed Goal - Today's rotating speed challenge
+    const todaysSpeedGoal = SPEED_GOALS_POOL[this.dailySpeedGoalIndex];
+    selected.push({
+      ...todaysSpeedGoal,
+      id: 'special_speed_' + todaysSpeedGoal.id,
+      title: '⚡ ' + todaysSpeedGoal.title,
+      description: todaysSpeedGoal.description + ' (Watch ad to unlock)',
+      current: 0,
+      progress: 0,
+      completed: false,
+      claimed: false,
+      requiresAdUnlock: true,
+      unlocked: false,
+      isSpecial: true,
+      speedStreak: 0,
+      notified: false
     });
+    
+    // Special Honor Goal - Nature Walk challenge
+    selected.push({
+      ...HONOR_GOALS.walk,
+      id: 'special_honor_walk',
+      title: '🚶 ' + HONOR_GOALS.walk.title,
+      description: HONOR_GOALS.walk.description + ' (Watch ad to unlock)',
+      current: 0,
+      progress: 0,
+      completed: false,
+      claimed: false,
+      honorBased: true,
+      requiresAdUnlock: true,
+      unlocked: false,
+      isSpecial: true,
+      notified: false
+    });
+    
+    console.log('🎯 [DailyGoals] Generated goals:', selected.map(g => ({
+      title: g.title,
+      type: g.type,
+      difficulty: g.difficulty,
+      locked: g.requiresAdUnlock,
+      special: g.isSpecial,
+      honor: g.honorBased
+    })));
+    
     return selected;
+  }
+
+  async unlockGatedGoal(kind: 'daily' | 'honor'): Promise<DailyGoal | null> {
+    console.log(`🔓 [DailyGoals] Unlocking ${kind} special goal`);
+    
+    // Find the special goal to unlock
+    const goalId = kind === 'daily' ? 'special_speed_' : 'special_honor_';
+    const goal = this.goals.find(g => g.isSpecial && g.id.startsWith(goalId));
+    
+    if (!goal) {
+      console.warn(`⚠️ [DailyGoals] No locked special ${kind} goal found`);
+      return null;
+    }
+    
+    if (goal.unlocked) {
+      console.log(`ℹ️ [DailyGoals] Special ${kind} goal already unlocked`);
+      return goal;
+    }
+    
+    // Unlock the goal (it keeps all its original properties, just becomes unlocked)
+    goal.unlocked = true;
+    goal.requiresAdUnlock = true; // Keep this true so we know it was unlocked via ad
+    
+    await this.saveGoals();
+    this.notifyListeners();
+    
+    console.log(`✅ [DailyGoals] Unlocked special goal: ${goal.title}`);
+    return goal;
   }
 
   async updateProgress(questionData: {
@@ -325,16 +434,10 @@ class DailyGoalsService {
     difficulty: 'easy' | 'medium' | 'hard';
     category?: string;
     currentStreak: number;
-    todayAccuracy: number;
     todayQuestions: number;
+    todayCorrect: number;
+    responseTimeMs?: number; // Add response time for speed goals
   }): Promise<void> {
-    // Sanitize input data to prevent null/undefined issues
-    const safeData = {
-      ...questionData,
-      currentStreak: Math.max(0, questionData.currentStreak || 0),
-      todayAccuracy: Math.max(0, Math.min(100, questionData.todayAccuracy || 0)),
-      todayQuestions: Math.max(0, questionData.todayQuestions || 0)
-    };
     if (!this.isInitialized) {
       await this.initialize();
     }
@@ -342,64 +445,76 @@ class DailyGoalsService {
     let hasChanges = false;
 
     for (const goal of this.goals) {
-      if (goal.completed) continue;
-      
-      // Skip honor-based goals - they are manually completed by user
-      if (goal.honorBased) continue;
+      // Skip locked goals
+      if (goal.requiresAdUnlock && !goal.unlocked) {
+        continue;
+      }
 
       const oldProgress = goal.progress;
-      const wasCompleted = goal.completed;
 
       switch (goal.type) {
         case 'questions':
-          goal.current = safeData.todayQuestions;
-          goal.progress = Math.min(100, Math.max(0, ((goal.current || 0) / goal.target) * 100));
+          if (questionData.isCorrect) {
+            goal.current = Math.min(goal.current + 1, goal.target);
+            goal.progress = (goal.current / goal.target) * 100;
+          }
           break;
 
         case 'streak':
-          const currentStreak = safeData.currentStreak;
-          goal.current = Math.max(goal.current || 0, currentStreak);
-          goal.progress = Math.min(100, Math.max(0, ((goal.current || 0) / goal.target) * 100));
+          if (questionData.isCorrect) {
+            goal.current = Math.max(goal.current, questionData.currentStreak);
+            goal.progress = Math.min(100, (goal.current / goal.target) * 100);
+          }
           break;
 
         case 'accuracy':
-          if (safeData.todayQuestions >= (goal.questionsRequired || 0)) {
-            goal.current = safeData.todayAccuracy;
-            const current = goal.current || 0;
-            goal.progress = current >= goal.target ? 100 : Math.max(0, (current / goal.target) * 100);
-            goal.questionsAnswered = safeData.todayQuestions;
+          if (goal.questionsRequired && questionData.todayQuestions >= goal.questionsRequired) {
+            const accuracy = (questionData.todayCorrect / questionData.todayQuestions) * 100;
+            goal.current = Math.floor(accuracy);
+            goal.progress = accuracy >= goal.target ? 100 : (goal.current / goal.target) * 100;
+            goal.questionsAnswered = questionData.todayQuestions;
           }
           break;
 
-        case 'difficulty':
-          if (safeData.isCorrect && safeData.difficulty === 'hard') {
-            goal.current = Math.min((goal.current || 0) + 1, goal.target);
-            goal.progress = Math.max(0, ((goal.current || 0) / goal.target) * 100);
+        case 'speed':
+          if (questionData.isCorrect && questionData.responseTimeMs && goal.thresholdPerAnswerSeconds) {
+            const thresholdMs = goal.thresholdPerAnswerSeconds * 1000;
+            
+            if (questionData.responseTimeMs <= thresholdMs) {
+              if (goal.subType === 'streak_speed') {
+                // Track consecutive fast answers
+                goal.speedStreak = (goal.speedStreak || 0) + 1;
+                if (goal.speedStreak >= goal.target) {
+                  goal.current = goal.target;
+                  goal.progress = 100;
+                }
+              } else {
+                // Track total fast answers
+                goal.current = Math.min(goal.current + 1, goal.target);
+                goal.progress = (goal.current / goal.target) * 100;
+              }
+            } else if (goal.subType === 'streak_speed') {
+              // Reset streak if answer wasn't fast enough
+              goal.speedStreak = 0;
+            }
+          } else if (!questionData.isCorrect && goal.subType === 'streak_speed') {
+            // Reset streak on incorrect answer
+            goal.speedStreak = 0;
           }
           break;
-
-        case 'perfect':
-          const perfectStreak = safeData.currentStreak;
-          goal.current = Math.max(goal.current || 0, perfectStreak);
-          goal.progress = Math.min(100, Math.max(0, ((goal.current || 0) / goal.target) * 100));
-          break;
       }
 
-      // Check if goal is completed
-      if (!goal.completed && goal.progress >= 100) {
-        goal.completed = true;
-        console.log(`🎉 [DailyGoals] Goal completed: ${goal.title}`);
+        // Check if goal is completed
+        if (!goal.completed && goal.progress >= 100) {
+          goal.completed = true;
+          console.log(`🎉 [DailyGoals] Goal completed: ${goal.title}`);
 
-        // Prefer excited mascot instead of system alert
-        try {
-          const eventEmitter = new (require('react-native').NativeEventEmitter)();
-          eventEmitter.emit('showGoalCompletedMascot', {
-            goalTitle: goal.title,
-            reward: goal.reward,
-          });
-          goal.notified = true;
-        } catch {}
-      }
+          // If this is a regular (non-honor, non-special) goal, register daily-day streak
+          const isRegular = !goal.honorBased && !goal.isSpecial;
+          if (isRegular) {
+            await this.registerDailyGoalDayCompletion();
+          }
+        }
 
       if (goal.progress !== oldProgress) {
         hasChanges = true;
@@ -412,15 +527,80 @@ class DailyGoalsService {
     }
   }
 
+  /**
+   * Registers that at least one regular daily goal was completed today and
+   * updates a persistent day-streak (consecutive days with at least one regular goal complete).
+   * Emits 'dailyGoalDayCompleted' once per day when it increments/reset the streak.
+   */
+  private async registerDailyGoalDayCompletion(): Promise<void> {
+    try {
+      const today = getTorontoDateString();
+      const [last, streakStr, notified] = await Promise.all([
+        AsyncStorage.getItem(this.DAILY_DAY_LAST_KEY),
+        AsyncStorage.getItem(this.DAILY_DAY_STREAK_KEY),
+        AsyncStorage.getItem(this.DAILY_DAY_NOTIFIED_KEY),
+      ]);
+
+      // Only fire once per day
+      if (notified === today) {
+        return;
+      }
+
+      let streak = streakStr ? parseInt(streakStr, 10) : 0;
+
+      if (last) {
+        // If yesterday, increment; otherwise, reset to 1
+        const lastDate = last;
+        const yesterday = new Date(today);
+        // Build yesterday string in Toronto; safe approximation by subtracting 1 day
+        const d = new Date();
+        d.setDate(d.getDate() - 1);
+        const yyyymmdd = `${d.getFullYear()}-${`${d.getMonth() + 1}`.padStart(2, '0')}-${`${d.getDate()}`.padStart(2, '0')}`;
+        if (lastDate === yyyymmdd) {
+          streak += 1;
+        } else if (lastDate === today) {
+          // Already counted today
+          await AsyncStorage.setItem(this.DAILY_DAY_NOTIFIED_KEY, today);
+          return;
+        } else {
+          streak = 1;
+        }
+      } else {
+        streak = 1;
+      }
+
+      await AsyncStorage.multiSet([
+        [this.DAILY_DAY_STREAK_KEY, streak.toString()],
+        [this.DAILY_DAY_LAST_KEY, today],
+        [this.DAILY_DAY_NOTIFIED_KEY, today],
+      ]);
+
+      // Emit an event so UI (e.g., QuizScreen) can celebrate
+      const emitter = new NativeEventEmitter(NativeModules.DeviceEventEmitter || {});
+      try {
+        emitter.emit('dailyGoalDayCompleted', { dayStreak: streak, date: today });
+      } catch {}
+    } catch (e) {
+      console.error('❌ [DailyGoals] Failed to register daily goal day completion:', e);
+    }
+  }
+
   async completeHonorGoal(goalId: string): Promise<boolean> {
     const goal = this.goals.find(g => g.id === goalId);
     if (!goal || !goal.honorBased || goal.completed) {
+      return false;
+    }
+    
+    // Skip if locked
+    if (goal.requiresAdUnlock && !goal.unlocked) {
+      console.warn('⚠️ [DailyGoals] Cannot complete locked goal');
       return false;
     }
 
     try {
       goal.completed = true;
       goal.progress = 100;
+      goal.current = goal.target;
       await this.saveGoals();
       this.notifyListeners();
       
@@ -437,108 +617,45 @@ class DailyGoalsService {
     if (!goal || !goal.completed || goal.claimed) {
       return false;
     }
+    
+    // Skip if locked
+    if (goal.requiresAdUnlock && !goal.unlocked) {
+      console.warn('⚠️ [DailyGoals] Cannot claim locked goal reward');
+      return false;
+    }
 
     try {
-      // Add time to timer using updated integration service
-      const timeInMinutes = Math.floor(goal.reward / 60);
-      console.log(`🎯 [DailyGoals] Claiming reward: ${timeInMinutes} minutes for ${goal.title}`);
-      console.log(`🎯 [DailyGoals] Goal reward in seconds: ${goal.reward}, converted to minutes: ${timeInMinutes}`);
+      // Add time to timer
+      const minutesToAdd = Math.floor(goal.reward / 60);
+      console.log(`⏱️ [DailyGoals] Adding ${minutesToAdd} minutes for goal: ${goal.title}`);
       
       await TimerIntegrationService.initialize();
-      console.log(`🎯 [DailyGoals] TimerIntegrationService initialized, calling addTimeFromGoal...`);
-      
-      let success = await TimerIntegrationService.addTimeFromGoal(timeInMinutes);
-      console.log(`🎯 [DailyGoals] addTimeFromGoal result: ${success}`);
-      
-      // If first attempt failed, try once more after a short delay
-      if (!success) {
-        console.log(`🔄 [DailyGoals] Timer integration failed, retrying in 1 second...`);
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        success = await TimerIntegrationService.addTimeFromGoal(timeInMinutes);
-        console.log(`🎯 [DailyGoals] addTimeFromGoal retry result: ${success}`);
-      }
+      const success = await TimerIntegrationService.addTimeFromGoal(minutesToAdd);
       
       if (success) {
-        console.log(`✅ [DailyGoals] Timer integration successful! Added ${timeInMinutes} minutes to timer.`);
+        goal.claimed = true;
+        await this.saveGoals();
+        this.notifyListeners();
+        
+        console.log(`✅ [DailyGoals] Reward claimed for: ${goal.title}`);
+        // Emit events for UI layers
+        try {
+          const emitter = new NativeEventEmitter(NativeModules.DeviceEventEmitter || {});
+          const payload = { goalId, goalTitle: goal.title, reward: goal.reward };
+          if (goal.honorBased) {
+            emitter.emit('honorGoalClaimed', payload);
+          } else {
+            emitter.emit('dailyGoalClaimed', payload);
+          }
+        } catch {}
+        return true;
       } else {
-        console.error(`❌ [DailyGoals] Timer integration failed after retry! This might be a timer service issue.`);
-        console.error(`❌ [DailyGoals] User will still get the goal marked as claimed to avoid frustration.`);
+        console.error('❌ [DailyGoals] Failed to add time to timer');
+        return false;
       }
-      
-      // Mark goal as claimed regardless of timer integration result
-      // This prevents users from being unable to claim rewards due to timer issues
-      goal.claimed = true;
-      await this.saveGoals();
-      
-      // Get today's date
-      const today = new Date().toDateString();
-      
-      // Store claimed rewards with dates
-      const claimedRewardsData = await AsyncStorage.getItem('@BrainBites:liveGameStore:claimedRewards') || '{}';
-      const claimedRewards = JSON.parse(claimedRewardsData);
-      claimedRewards[goalId] = today;
-      await AsyncStorage.setItem('@BrainBites:liveGameStore:claimedRewards', JSON.stringify(claimedRewards));
-      
-      // Update daily streak tracking (only for non-honor goals)
-      if (!goal.honorBased) {
-        await AsyncStorage.setItem('@BrainBites:lastGoalClaimedDate', today);
-      }
-      
-      // Emit event for streak update (only for non-honor goals)
-      if (!goal.honorBased) {
-          const eventEmitter = new NativeEventEmitter(NativeModules.DeviceEventEmitter || {});
-          eventEmitter.emit('dailyGoalClaimed', { 
-            goalId, 
-            goalTitle: goal.title,
-            reward: goal.reward,
-            date: today,
-            isHonorGoal: false
-          });
-      } else {
-        // Emit a separate event for honor goals (no streak update)
-        const eventEmitter = new NativeEventEmitter(NativeModules.DeviceEventEmitter || {});
-        eventEmitter.emit('honorGoalClaimed', { 
-          goalId, 
-          goalTitle: goal.title,
-          reward: goal.reward,
-          date: today,
-          isHonorGoal: true
-        });
-      }
-      
-      // Show mascot celebration
-      const showMascotCelebration = () => {
-          // Send event to show mascot
-          const eventEmitter = new (require('react-native').NativeEventEmitter)();
-          eventEmitter.emit('showGoalCompletedMascot', {
-            goalTitle: goal.title,
-            reward: goal.reward
-          });
-        };
-
-      // Call the celebration
-      showMascotCelebration();
-      
-      this.notifyListeners();
-      
-      if (success) {
-        console.log(`✅ [DailyGoals] Successfully claimed ${timeInMinutes}m for ${goal.title} with timer integration`);
-      } else {
-        console.log(`⚠️ [DailyGoals] Claimed ${timeInMinutes}m for ${goal.title} but timer integration failed`);
-      }
-      
-      return true; // Always return true since we marked the goal as claimed
     } catch (error) {
       console.error('❌ [DailyGoals] Error claiming reward:', error);
       return false;
-    }
-  }
-
-  async saveGoals(): Promise<void> {
-    try {
-      await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(this.goals));
-    } catch (error) {
-      console.error('❌ [DailyGoals] Failed to save goals:', error);
     }
   }
 
@@ -546,18 +663,20 @@ class DailyGoalsService {
     return [...this.goals];
   }
 
-  getCompletedCount(): number {
-    return this.goals.filter(g => g.completed).length;
+  getCompletedGoals(): DailyGoal[] {
+    return this.goals.filter(g => g.completed && !g.claimed);
   }
 
-  getClaimedCount(): number {
-    return this.goals.filter(g => g.claimed).length;
+  getUnlockedGoals(): DailyGoal[] {
+    return this.goals.filter(g => !g.requiresAdUnlock || g.unlocked);
   }
 
-  getTotalRewards(): number {
-    return this.goals
-      .filter(g => g.claimed)
-      .reduce((total, g) => total + g.reward, 0);
+  private async saveGoals(): Promise<void> {
+    try {
+      await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(this.goals));
+    } catch (error) {
+      console.error('❌ [DailyGoals] Failed to save goals:', error);
+    }
   }
 
   // Debug method to check current goals
@@ -566,12 +685,16 @@ class DailyGoalsService {
       total: this.goals.length,
       regular: this.goals.filter(g => !g.honorBased).length,
       honor: this.goals.filter(g => g.honorBased).length,
+      locked: this.goals.filter(g => g.requiresAdUnlock && !g.unlocked).length,
+      unlocked: this.goals.filter(g => !g.requiresAdUnlock || g.unlocked).length,
       allGoals: this.goals.map(g => ({
         title: g.title,
         type: g.type,
+        difficulty: g.difficulty,
         honorBased: g.honorBased,
         completed: g.completed,
-        claimed: g.claimed
+        claimed: g.claimed,
+        locked: g.requiresAdUnlock && !g.unlocked
       }))
     });
   }
@@ -600,33 +723,20 @@ class DailyGoalsService {
     console.log('🧪 [DailyGoals] Resetting for testing');
     await AsyncStorage.removeItem('@BrainBites:dailyGoals');
     await AsyncStorage.removeItem('@BrainBites:lastGoalReset');
+    await AsyncStorage.removeItem('@BrainBites:speedGoalIndex');
     this.goals = [];
     this.isInitialized = false;
     await this.initialize();
   }
 
-  // Force regenerate goals for today (useful for testing)
   async forceRegenerateGoals(): Promise<void> {
     console.log('🔄 [DailyGoals] Force regenerating goals');
     await AsyncStorage.removeItem('@BrainBites:dailyGoals');
     await AsyncStorage.removeItem('@BrainBites:lastGoalReset');
+    await AsyncStorage.removeItem('@BrainBites:speedGoalIndex');
     this.goals = [];
     this.isInitialized = false;
     await this.initialize();
-  }
-  
-  // Test timer integration (for debugging)
-  async testTimerIntegration(minutes: number = 5): Promise<boolean> {
-    console.log(`🧪 [DailyGoals] Testing timer integration with ${minutes} minutes...`);
-    try {
-      await TimerIntegrationService.initialize();
-      const success = await TimerIntegrationService.addTimeFromGoal(minutes);
-      console.log(`🧪 [DailyGoals] Timer integration test result: ${success}`);
-      return success;
-    } catch (error) {
-      console.error('🧪 [DailyGoals] Timer integration test failed:', error);
-      return false;
-    }
   }
 }
 

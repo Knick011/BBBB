@@ -1,97 +1,267 @@
-// src/screens/DailyGoalsScreen.tsx
-// ✅ FIXED DAILY GOALS SCREEN WITH WORKING GOALS
+// src/screens/DailyGoalsScreen.tsx - Updated with ad-gating support
 import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   ScrollView,
+  TouchableOpacity,
   SafeAreaView,
-  RefreshControl,
+  ActivityIndicator,
   Animated,
+  RefreshControl,
+  Alert,
   Easing,
+  Dimensions,
   Platform,
-  Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../types';
-import theme from '../styles/theme';
+import DailyGoalsService from '../services/DailyGoalsService';
 import SoundService from '../services/SoundService';
+import LinearGradient from 'react-native-linear-gradient';
+import { DailyGoal } from '../services/DailyGoalsService';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
-import DailyGoalsService, { DailyGoal } from '../services/DailyGoalsService';
+import RewardedAdService from '../services/RewardedAdService';
+import theme from '../styles/theme';
 
-type NavigationProp = StackNavigationProp<RootStackParamList, 'DailyGoals'>;
-type MascotType = 'happy' | 'sad' | 'excited' | 'depressed' | 'gamemode' | 'below';
+// Extracted child component to avoid using hooks inside render loops
+type GoalCardProps = {
+  goal: DailyGoal;
+  index: number;
+  fadeValue?: Animated.Value | number;
+  scaleValue?: Animated.Value | number;
+  onUnlockGoal: (goalId: string) => void;
+  onClaimReward: (goalId: string) => void;
+  onCompleteHonorGoal: (goalId: string) => void;
+};
 
-const DailyGoalsScreen: React.FC = () => {
-  const navigation = useNavigation<NavigationProp>();
-  
-  // Local state - back to direct DailyGoalsService integration
+const GoalCard: React.FC<GoalCardProps> = ({
+  goal,
+  index,
+  fadeValue,
+  scaleValue,
+  onUnlockGoal,
+  onClaimReward,
+  onCompleteHonorGoal,
+}) => {
+  const isLocked = goal.requiresAdUnlock && !goal.unlocked;
+  const progressAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(progressAnim, {
+      toValue: goal.progress,
+      duration: 1000,
+      easing: Easing.out(Easing.quad),
+      useNativeDriver: false,
+    }).start();
+  }, [goal.progress, progressAnim]);
+
+  const getStatusColor = () => {
+    if (isLocked) return '#BDBDBD';
+    if (goal.completed) return '#4CAF50';
+    // Default to goal's accent color for a more vibrant look
+    return goal.color || '#4CAF50';
+  };
+
+  const getStatusIcon = () => {
+    if (isLocked) return 'lock';
+    if (goal.completed && goal.claimed) return 'check-circle';
+    if (goal.completed) return 'gift';
+    return goal.icon;
+  };
+
+  return (
+    <Animated.View
+      style={[
+        styles.goalCard,
+        {
+          opacity: fadeValue || 1,
+          transform: [{ scale: (scaleValue as any) || 1 }],
+        },
+      ]}
+    >
+      <LinearGradient
+        colors={isLocked ? ['#f8f8f8', '#f0f0f0'] : ['#ffffff', '#fafafa']}
+        style={styles.goalGradient}
+      >
+        {/* Progress Border */}
+        <View style={[styles.progressBorder, { backgroundColor: getStatusColor() }]} />
+
+        {/* Goal Header */}
+        <View style={styles.goalHeader}>
+          <View style={[styles.goalIconContainer, { backgroundColor: getStatusColor() }]}>
+            <Icon name={getStatusIcon()} size={24} color="white" />
+          </View>
+
+            <View style={styles.goalInfo}>
+            <View style={styles.titleRow}>
+                <Text style={[styles.goalTitle, isLocked && styles.lockedText]}>
+                  {goal.title}
+                  {/* Inline reward minutes on title */}
+                  <Text style={styles.rewardInline}>{`  +${Math.floor(goal.reward / 60)}min`}</Text>
+                </Text>
+              {goal.isSpecial && (
+                <View style={styles.specialBadge}>
+                  <Icon name="star" size={12} color="#FFD700" />
+                  <Text style={styles.specialBadgeText}>SPECIAL</Text>
+                </View>
+              )}
+            </View>
+
+              <Text style={[styles.goalDescription, isLocked && styles.lockedText]}>
+              {goal.description}
+            </Text>
+
+            {/* Reward Info */}
+              <View style={styles.rewardRow}>
+                <Icon name="clock-outline" size={14} color="#FF9F1C" />
+                <Text style={styles.rewardText}>+{Math.floor(goal.reward / 60)}min</Text>
+              </View>
+          </View>
+        </View>
+
+        {/* Progress Section */}
+        {!isLocked && (
+          <View style={styles.progressSection}>
+            {!goal.honorBased ? (
+              // Regular goal progress
+              <>
+                <View style={styles.progressContainer}>
+                  <View style={styles.progressHeader}>
+                    <Text style={styles.progressLabel}>Progress</Text>
+                    <Text style={styles.progressPercentage}>{Math.round(goal.progress)}%</Text>
+                  </View>
+                  <View style={styles.progressBar}>
+                    <Animated.View
+                      style={[
+                        styles.progressFill,
+                        {
+                          width: progressAnim.interpolate({
+                            inputRange: [0, 100],
+                            outputRange: ['0%', '100%'],
+                            extrapolate: 'clamp',
+                          }),
+                          backgroundColor: goal.completed ? '#4CAF50' : goal.color,
+                        },
+                      ]}
+                    />
+                  </View>
+                  <Text style={styles.progressText}>
+                    {goal.type === 'accuracy' && goal.questionsAnswered
+                      ? `${goal.current}% accuracy (${goal.questionsAnswered}/${goal.questionsRequired || 10} questions)`
+                      : goal.type === 'speed' && goal.subType === 'streak_speed'
+                      ? `${goal.speedStreak || 0} / ${goal.target} fast answers in a row`
+                      : `${goal.current} / ${goal.target} completed`}
+                  </Text>
+                </View>
+              </>
+            ) : (
+              // Honor goal info
+              <View style={styles.honorSection}>
+                <View style={styles.honorInfo}>
+                  <Icon name="heart" size={16} color="#E91E63" />
+                  <Text style={styles.honorLabel}>Honor-Based Goal</Text>
+                </View>
+                <Text style={styles.honorDescription}>
+                  Complete this activity on your own and mark it as done!
+                </Text>
+              </View>
+            )}
+          </View>
+        )}
+
+        {/* Action Buttons */}
+        <View style={styles.actionSection}>
+          {isLocked ? (
+            <TouchableOpacity
+              style={[styles.actionButton, styles.unlockButton]}
+              onPress={() => onUnlockGoal(goal.id)}
+            >
+              <Icon name="play-circle" size={20} color="#FFFFFF" />
+              <Text style={styles.actionButtonText}>Watch Ad to Unlock</Text>
+            </TouchableOpacity>
+          ) : goal.completed && !goal.claimed ? (
+            <TouchableOpacity
+              style={[styles.actionButton, styles.claimButton]}
+              onPress={() => onClaimReward(goal.id)}
+            >
+              <Icon name="gift" size={20} color="#FFFFFF" />
+              <Text style={styles.actionButtonText}>Claim +{Math.floor(goal.reward / 60)} minutes</Text>
+            </TouchableOpacity>
+          ) : goal.honorBased && !goal.completed ? (
+            <TouchableOpacity
+              style={[styles.actionButton, styles.completeButton]}
+              onPress={() => onCompleteHonorGoal(goal.id)}
+            >
+              <Icon name="check-circle-outline" size={20} color="#FFFFFF" />
+              <Text style={styles.actionButtonText}>Mark as Complete</Text>
+            </TouchableOpacity>
+          ) : goal.completed && goal.claimed ? (
+            <View style={styles.completedBadge}>
+              <Icon name="check-circle" size={20} color="#4CAF50" />
+              <Text style={styles.completedText}>Completed & Claimed!</Text>
+            </View>
+          ) : null}
+        </View>
+      </LinearGradient>
+    </Animated.View>
+  );
+};
+
+const DailyGoalsScreen = ({ navigation }: any) => {
   const [dailyGoals, setDailyGoals] = useState<DailyGoal[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [animatingGoals, setAnimatingGoals] = useState<string[]>([]);
-  
-  // Remove MascotModal - only use EnhancedMascotDisplay for DailyGoalsScreen
-  
-  // Mascot state
-  const [mascotType, setMascotType] = useState<MascotType>('happy');
-  const [mascotMessage, setMascotMessage] = useState('');
   const [showMascot, setShowMascot] = useState(false);
+  const [mascotType, setMascotType] = useState<'happy' | 'sad' | 'excited' | 'depressed' | 'gamemode' | 'below'>('happy');
+  const [mascotMessage, setMascotMessage] = useState('');
   
   // Animation values
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-  const slideAnims = useRef<Animated.Value[]>([]).current;
-  const claimButtonAnims = useRef<Animated.Value[]>([]).current;
+  const fadeAnims = useRef<Animated.Value[]>([]).current;
+  const scaleAnims = useRef<Animated.Value[]>([]).current;
 
-  // Initialize animations
   useEffect(() => {
-    dailyGoals.forEach((_, index) => {
-      if (!slideAnims[index]) {
-        slideAnims[index] = new Animated.Value(0);
-      }
-      if (!claimButtonAnims[index]) {
-        claimButtonAnims[index] = new Animated.Value(1);
-      }
+    loadGoals();
+    
+    // Set up listener for goal updates
+    const unsubscribe = DailyGoalsService.addListener((goals) => {
+      setDailyGoals(goals);
     });
-  }, [dailyGoals]);
+    
+    return unsubscribe;
+  }, []);
 
-  // Load goals when screen focuses
-  useFocusEffect(
-    React.useCallback(() => {
-      loadGoals();
-      
-      // Listen for goal updates
-      const unsubscribe = DailyGoalsService.addListener((updatedGoals) => {
-        console.log('🎯 [DailyGoalsScreen] Goals updated:', updatedGoals.length);
-        setDailyGoals(updatedGoals);
-      });
-
-      return unsubscribe;
-    }, [])
-  );
-
-  // Entrance animation
   useEffect(() => {
+    // Animate goals when they change
     if (dailyGoals.length > 0) {
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 500,
-        useNativeDriver: true,
-      }).start();
-
-      // Stagger goal animations
-      const animations = dailyGoals.map((_, index) => 
-        Animated.timing(slideAnims[index], {
-          toValue: 1,
-          duration: 300,
-          delay: index * 100,
-          easing: Easing.out(Easing.quad),
-          useNativeDriver: true,
-        })
+      fadeAnims.length = dailyGoals.length;
+      scaleAnims.length = dailyGoals.length;
+      
+      for (let i = 0; i < dailyGoals.length; i++) {
+        if (!fadeAnims[i]) {
+          fadeAnims[i] = new Animated.Value(0);
+          scaleAnims[i] = new Animated.Value(0.8);
+        }
+      }
+      
+      // Stagger animations
+      const animations = fadeAnims.map((anim, index) => 
+        Animated.parallel([
+          Animated.timing(anim, {
+            toValue: 1,
+            duration: 300,
+            delay: index * 100,
+            easing: Easing.out(Easing.quad),
+            useNativeDriver: true,
+          }),
+          Animated.spring(scaleAnims[index], {
+            toValue: 1,
+            delay: index * 100,
+            friction: 8,
+            tension: 40,
+            useNativeDriver: true,
+          })
+        ])
       );
 
       Animated.stagger(100, animations).start();
@@ -101,44 +271,13 @@ const DailyGoalsScreen: React.FC = () => {
   const loadGoals = async () => {
     try {
       setIsLoading(true);
-      console.log('🎯 [DailyGoalsScreen] Loading goals...');
-      
       await DailyGoalsService.initialize();
       const goals = DailyGoalsService.getGoals();
-      
-      console.log('🎯 [DailyGoalsScreen] Loaded goals:', goals.length, goals.map(g => g.title));
-      
-      // Debug current goals
+      setDailyGoals(goals);
       DailyGoalsService.debugGoals();
-      
-      // Check if we have honor goals - if not, force regenerate
-      const honorGoals = goals.filter(g => g.honorBased);
-      if (honorGoals.length === 0) {
-        console.log('🔄 [DailyGoalsScreen] No honor goals found, forcing regeneration...');
-        await DailyGoalsService.forceRegenerateGoals();
-        const newGoals = DailyGoalsService.getGoals();
-        console.log('🔄 [DailyGoalsScreen] Regenerated goals:', newGoals.length, newGoals.map(g => g.title));
-        DailyGoalsService.debugGoals();
-        setDailyGoals(newGoals);
-      } else {
-        setDailyGoals(goals);
-      }
-      
-      if (goals.length === 0) {
-        console.warn('⚠️ [DailyGoalsScreen] No goals loaded - this should not happen');
-        Alert.alert(
-          'No Goals Found',
-          'Unable to load daily goals. Please try again.',
-          [{ text: 'OK', onPress: () => navigation.goBack() }]
-        );
-      }
     } catch (error) {
       console.error('❌ [DailyGoalsScreen] Failed to load goals:', error);
-      Alert.alert(
-        'Error',
-        'Failed to load daily goals. Please try again.',
-        [{ text: 'OK', onPress: () => navigation.goBack() }]
-      );
+      Alert.alert('Error', 'Failed to load daily goals. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -150,15 +289,60 @@ const DailyGoalsScreen: React.FC = () => {
     setIsRefreshing(false);
   };
 
-  const handleCompleteHonorGoal = async (goalId: string, goalIndex: number) => {
+  const handleUnlockGoal = async (goalId: string) => {
+    try {
+      // Determine goal type from ID
+      let kind: 'daily' | 'honor';
+      if (goalId.startsWith('special_speed_')) {
+        kind = 'daily';
+      } else if (goalId.startsWith('special_honor_')) {
+        kind = 'honor';
+      } else {
+        console.error('❌ [DailyGoalsScreen] Unknown special goal ID:', goalId);
+        return;
+      }
+      
+      console.log(`📺 [DailyGoalsScreen] Attempting to unlock special ${kind} goal: ${goalId}`);
+      
+      // Show rewarded ad
+      const adShown = await RewardedAdService.showRewardedAd();
+      
+      if (adShown) {
+        console.log('✅ [DailyGoalsScreen] Ad completed successfully, unlocking goal');
+        
+        // Unlock the goal
+        const unlockedGoal = await DailyGoalsService.unlockGatedGoal(kind);
+        
+        if (unlockedGoal) {
+          SoundService.playCorrect();
+          
+          // Show mascot celebration
+          setMascotType('excited');
+          setMascotMessage(`🎉 Special Goal Unlocked!\n"${unlockedGoal.title}"\n\nNow you can work towards completing it!`);
+          setShowMascot(true);
+          
+          console.log('✅ [DailyGoalsScreen] Special goal unlocked and mascot shown');
+        } else {
+          console.error('❌ [DailyGoalsScreen] Failed to unlock goal after ad');
+          Alert.alert('Error', 'Failed to unlock goal. Please try again.');
+        }
+      } else {
+        console.log('❌ [DailyGoalsScreen] Ad was not completed successfully');
+        Alert.alert('Ad Not Completed', 'Please watch the full ad to unlock the goal.');
+      }
+    } catch (error) {
+      console.error('❌ [DailyGoalsScreen] Failed to unlock goal:', error);
+      Alert.alert('Error', 'Failed to unlock goal. Please try again.');
+    }
+  };
+
+  const handleCompleteHonorGoal = async (goalId: string) => {
     const goal = dailyGoals.find(g => g.id === goalId);
     if (!goal || !goal.honorBased || goal.completed) {
       return;
     }
 
     try {
-      console.log(`🎯 [DailyGoalsScreen] Completing honor goal: ${goal.title}`);
-      
       const success = await DailyGoalsService.completeHonorGoal(goalId);
       
       if (success) {
@@ -168,290 +352,49 @@ const DailyGoalsScreen: React.FC = () => {
         setMascotType('excited');
         setMascotMessage(`Great job! You completed "${goal.title}"! 🎉`);
         setShowMascot(true);
-        
-        console.log(`✅ [DailyGoalsScreen] Successfully completed honor goal: ${goal.title}`);
-      } else {
-        SoundService.playIncorrect();
-        Alert.alert(
-          'Error',
-          'Unable to complete goal. Please try again.',
-          [{ text: 'OK' }]
-        );
       }
     } catch (error) {
-      console.error('❌ [DailyGoalsScreen] Error completing honor goal:', error);
-      SoundService.playIncorrect();
-      Alert.alert(
-        'Error',
-        'An error occurred while completing your goal.',
-        [{ text: 'OK' }]
-      );
+      console.error('❌ [DailyGoalsScreen] Failed to complete goal:', error);
+      Alert.alert('Error', 'Unable to complete goal. Please try again.');
     }
   };
 
-  const handleLocalClaimReward = async (goalId: string, goalIndex: number) => {
+  const handleClaimReward = async (goalId: string) => {
     const goal = dailyGoals.find(g => g.id === goalId);
     if (!goal || !goal.completed || goal.claimed) {
       return;
     }
 
     try {
-      // Animation: Claim button press
-      Animated.sequence([
-        Animated.timing(claimButtonAnims[goalIndex], {
-          toValue: 0.9,
-          duration: 100,
-          useNativeDriver: true,
-        }),
-        Animated.timing(claimButtonAnims[goalIndex], {
-          toValue: 1,
-          duration: 100,
-          useNativeDriver: true,
-        })
-      ]).start();
-
-      console.log(`🎯 [DailyGoalsScreen] Claiming reward for: ${goal.title}`);
-      
-      // Claim the reward using DailyGoalsService
       const success = await DailyGoalsService.claimReward(goalId);
       
       if (success) {
-        // Success animation and sound
         SoundService.playCorrect();
         
-        // Show EnhancedMascotDisplay celebration
+        const minutes = Math.floor(goal.reward / 60);
         setMascotType('excited');
-        setMascotMessage(`🎉 Goal Complete! 🎉\n\nAmazing! You completed "${goal.title}"!\nYou earned ${Math.floor(goal.reward / 60)} minutes!\n\nGreat job!`);
+        setMascotMessage(`🎉 Reward Claimed!\n+${minutes} minutes added to your timer!`);
         setShowMascot(true);
-        
-        // Add goal to animating list
-        setAnimatingGoals(prev => [...prev, goalId]);
-        
-        // Remove from animating after delay
-        setTimeout(() => {
-          setAnimatingGoals(prev => prev.filter(id => id !== goalId));
-        }, 2000);
-        
-        // Hide mascot after delay
-        setTimeout(() => {
-          setShowMascot(false);
-        }, 4000);
-        
-        console.log(`✅ [DailyGoalsScreen] Successfully claimed reward for ${goal.title}`);
-      } else {
-        // Error feedback
-        SoundService.playIncorrect();
-        Alert.alert(
-          'Claim Failed',
-          'Unable to claim reward. Please try again.',
-          [{ text: 'OK' }]
-        );
-        console.error(`❌ [DailyGoalsScreen] Failed to claim reward for ${goal.title}`);
       }
-        
     } catch (error) {
-      console.error('❌ [DailyGoalsScreen] Error claiming reward:', error);
-      SoundService.playIncorrect();
-      Alert.alert(
-        'Error',
-        'An error occurred while claiming your reward.',
-        [{ text: 'OK' }]
-      );
+      console.error('❌ [DailyGoalsScreen] Failed to claim reward:', error);
+      Alert.alert('Error', 'Unable to claim reward. Please try again.');
     }
   };
 
-  const renderGoalItem = (goal: DailyGoal, index: number) => {
-    const isAnimating = animatingGoals.includes(goal.id);
-    
-    return (
-      <Animated.View
-        key={goal.id}
-        style={[
-          styles.goalCard,
-          {
-            opacity: slideAnims[index] ? slideAnims[index] : 1,
-            transform: [{
-              translateY: slideAnims[index] ? slideAnims[index].interpolate({
-                inputRange: [0, 1],
-                outputRange: [50, 0],
-              }) : 0
-            }]
-          }
-        ]}
-      >
-                 <View style={styles.goalHeader}>
-           <View style={[styles.goalIconContainer, { backgroundColor: goal.color }]}>
-             <Icon name={goal.icon} size={24} color="white" />
-           </View>
-           <View style={styles.goalInfo}>
-             <Text style={styles.goalTitle}>{goal.title}</Text>
-             <Text style={styles.goalDescription}>{goal.description}</Text>
-             {goal.honorBased && (
-               <View style={styles.honorBadge}>
-                 <Icon name="heart" size={12} color="#FF5722" />
-                 <Text style={styles.honorText}>Honor-based</Text>
-               </View>
-             )}
-           </View>
-           <View style={styles.rewardContainer}>
-             <Icon name="clock-outline" size={16} color="#FF9F1C" />
-             <Text style={styles.rewardText}>+{Math.floor(goal.reward / 60)}m</Text>
-           </View>
-         </View>
+  // NOTE: Render helper removed; hooks now live in child `GoalCard`.
 
-        <View style={styles.progressContainer}>
-          <View style={styles.progressBar}>
-            <Animated.View
-              style={[
-                styles.progressFill,
-                {
-                  backgroundColor: goal.color,
-                  width: `${Math.max(0, goal.progress || 0)}%`,
-                }
-              ]}
-            />
-          </View>
-          <Text style={styles.progressText}>
-            {goal.type === 'accuracy' && goal.questionsRequired
-              ? `${goal.current || 0}% accuracy (${goal.questionsAnswered || 0}/${goal.questionsRequired} questions)`
-              : `${goal.current || 0} / ${goal.target}`}
-          </Text>
-        </View>
-
-        {/* Honor Goal - Show Complete button if not completed */}
-        {goal.honorBased && !goal.completed && (
-          <Animated.View
-            style={{
-              opacity: claimButtonAnims[index] ? claimButtonAnims[index] : 1,
-              transform: [{
-                scale: claimButtonAnims[index] ? claimButtonAnims[index] : 1
-              }]
-            }}
-          >
-            <TouchableOpacity
-              style={[
-                styles.claimButton,
-                { backgroundColor: '#4CAF50' }
-              ]}
-              onPress={() => {
-                Alert.alert(
-                  'Complete Honor Goal',
-                  `Did you complete "${goal.description}"?`,
-                  [
-                    { text: 'No', style: 'cancel' },
-                    { text: 'Yes, I completed it!', onPress: () => handleCompleteHonorGoal(goal.id, index) }
-                  ]
-                );
-              }}
-            >
-              <Icon 
-                name="check-circle-outline" 
-                size={20} 
-                color="white" 
-              />
-              <Text style={styles.claimButtonText}>
-                Mark as Complete
-              </Text>
-            </TouchableOpacity>
-          </Animated.View>
-        )}
-
-        {/* Regular Goal - Show Claim button if completed but not claimed */}
-        {!goal.honorBased && goal.completed && !goal.claimed && (
-          <Animated.View
-            style={{
-              opacity: claimButtonAnims[index] ? claimButtonAnims[index] : 1,
-              transform: [{
-                scale: claimButtonAnims[index] ? claimButtonAnims[index] : 1
-              }]
-            }}
-          >
-            <TouchableOpacity
-              style={[
-                styles.claimButton,
-                goal.claimed && styles.claimedButton,
-                isAnimating && styles.animatingButton
-              ]}
-              onPress={() => handleLocalClaimReward(goal.id, index)}
-              disabled={goal.claimed || isAnimating}
-            >
-              <Icon 
-                name={goal.claimed ? "check-circle" : isAnimating ? "loading" : "gift-outline"} 
-                size={20} 
-                color="white" 
-              />
-              <Text style={styles.claimButtonText}>
-                {goal.claimed ? 'Claimed' : isAnimating ? 'Claiming...' : 'Claim Reward'}
-              </Text>
-            </TouchableOpacity>
-          </Animated.View>
-        )}
-
-        {/* Honor Goal - Show Claim button if completed but not claimed */}
-        {goal.honorBased && goal.completed && !goal.claimed && (
-          <Animated.View
-            style={{
-              opacity: claimButtonAnims[index] ? claimButtonAnims[index] : 1,
-              transform: [{
-                scale: claimButtonAnims[index] ? claimButtonAnims[index] : 1
-              }]
-            }}
-          >
-            <TouchableOpacity
-              style={[
-                styles.claimButton,
-                goal.claimed && styles.claimedButton,
-                isAnimating && styles.animatingButton
-              ]}
-              onPress={() => {
-                Alert.alert(
-                  'Honor-Based Goal',
-                  `Did you complete "${goal.description}"?`,
-                  [
-                    { text: 'No', style: 'cancel' },
-                    { text: 'Yes', onPress: () => handleLocalClaimReward(goal.id, index) }
-                  ]
-                );
-              }}
-              disabled={goal.claimed || isAnimating}
-            >
-              <Icon 
-                name={goal.claimed ? "check-circle" : isAnimating ? "loading" : "gift-outline"} 
-                size={20} 
-                color="white" 
-              />
-              <Text style={styles.claimButtonText}>
-                {goal.claimed ? 'Claimed' : isAnimating ? 'Claiming...' : 'Claim Reward'}
-              </Text>
-            </TouchableOpacity>
-          </Animated.View>
-        )}
-      </Animated.View>
-    );
-  };
-
-     const completedCount = dailyGoals.filter(g => g.completed).length;
-   const claimedCount = dailyGoals.filter(g => g.claimed).length;
-   const honorCount = dailyGoals.filter(g => g.honorBased).length;
-   const totalRewards = Math.floor(DailyGoalsService.getTotalRewards() / 60);
+  // Separate goals by type for better organization
+  const regularGoals = dailyGoals.filter(g => !g.honorBased && !g.isSpecial);
+  const honorGoals = dailyGoals.filter(g => g.honorBased && !g.isSpecial);
+  const specialGoals = dailyGoals.filter(g => g.isSpecial);
 
   if (isLoading) {
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-            <Icon name="arrow-left" size={24} color="#333" />
-          </TouchableOpacity>
-          <View style={styles.headerTitleContainer}>
-            <Text style={styles.headerTitle}>Daily Goals</Text>
-            <Text style={styles.headerSubtitle}>Loading...</Text>
-          </View>
-          <View style={{ width: 40 }} />
-        </View>
-        
         <View style={styles.loadingContainer}>
-          <Icon name="loading" size={48} color={theme.colors.primary} />
-          <Text style={styles.loadingText}>Loading your daily goals...</Text>
+          <ActivityIndicator size="large" color="#4CAF50" />
+          <Text style={styles.loadingText}>Loading Goals...</Text>
         </View>
       </SafeAreaView>
     );
@@ -460,150 +403,112 @@ const DailyGoalsScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => {
-          if (navigation.canGoBack()) {
-            navigation.goBack();
-          } else {
-            navigation.navigate('Home');
-          }
-        }} style={styles.backButton}>
-          <Icon name="arrow-left" size={24} color="#333" />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="arrow-left" size={24} color="#FFFFFF" />
         </TouchableOpacity>
-                 <View style={styles.headerTitleContainer}>
-           <Text style={styles.headerTitle}>Daily Goals</Text>
-           <Text style={styles.headerSubtitle}>Complete to earn time!</Text>
-         </View>
-         <TouchableOpacity 
-           onPress={async () => {
-             console.log('🔄 [DailyGoalsScreen] Manual refresh triggered');
-             await DailyGoalsService.forceRegenerateGoals();
-             await loadGoals();
-           }}
-           style={styles.debugButton}
-         >
-           <Icon name="refresh" size={20} color="#FF5722" />
-         </TouchableOpacity>
+        <Text style={styles.headerTitle}>Daily Goals</Text>
+        <TouchableOpacity onPress={handleRefresh}>
+          <Icon name="refresh" size={24} color="#FFFFFF" />
+        </TouchableOpacity>
       </View>
-      
-      {/* Summary Card */}
-      <Animated.View 
-        style={[
-          styles.summaryCard,
-          { opacity: fadeAnim }
-        ]}
-      >
-                 <View style={styles.summaryRow}>
-           <View style={styles.summaryItem}>
-             <Text style={styles.summaryValue}>{completedCount}/{dailyGoals.length}</Text>
-             <Text style={styles.summaryLabel}>Completed</Text>
-           </View>
-           <View style={styles.summaryDivider} />
-           <View style={styles.summaryItem}>
-             <Text style={styles.summaryValue}>{claimedCount}/{dailyGoals.length}</Text>
-             <Text style={styles.summaryLabel}>Claimed</Text>
-           </View>
-           <View style={styles.summaryDivider} />
-           <View style={styles.summaryItem}>
-             <Text style={[styles.summaryValue, honorCount > 0 && { color: '#FF5722' }]}>{honorCount}</Text>
-             <Text style={[styles.summaryLabel, honorCount > 0 && { color: '#FF5722' }]}>Honor Goals</Text>
-           </View>
-         </View>
-      </Animated.View>
-      
-      
-      {/* Goals List */}
+
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl
-            refreshing={isRefreshing}
-            onRefresh={handleRefresh}
-            colors={[theme.colors.primary]}
-            tintColor={theme.colors.primary}
-          />
+          <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
         }
       >
-        {dailyGoals.length > 0 ? (
-          dailyGoals.map((goal, index) => renderGoalItem(goal, index))
-        ) : (
-          <View style={styles.emptyState}>
-            <Icon name="target" size={64} color="#ccc" />
-            <Text style={styles.emptyTitle}>No Goals Available</Text>
-            <Text style={styles.emptySubtitle}>Pull down to refresh</Text>
+        {regularGoals.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Daily Challenges</Text>
+            {regularGoals.map((goal, index) => (
+              <GoalCard
+                key={goal.id}
+                goal={goal}
+                index={index}
+                fadeValue={fadeAnims[index]}
+                scaleValue={scaleAnims[index]}
+                onUnlockGoal={handleUnlockGoal}
+                onClaimReward={handleClaimReward}
+                onCompleteHonorGoal={handleCompleteHonorGoal}
+              />
+            ))}
           </View>
         )}
-        
-        <View style={styles.footer}>
-          <Icon name="information-circle-outline" size={20} color="#999" />
-          <Text style={styles.footerText}>
-            Goals reset daily at midnight
-          </Text>
-        </View>
+
+        {honorGoals.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Honor Goals</Text>
+            {honorGoals.map((goal, index) => (
+              <GoalCard
+                key={goal.id}
+                goal={goal}
+                index={regularGoals.length + index}
+                fadeValue={fadeAnims[regularGoals.length + index]}
+                scaleValue={scaleAnims[regularGoals.length + index]}
+                onUnlockGoal={handleUnlockGoal}
+                onClaimReward={handleClaimReward}
+                onCompleteHonorGoal={handleCompleteHonorGoal}
+              />
+            ))}
+          </View>
+        )}
+
+        {specialGoals.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>⭐ Special Goals</Text>
+            <Text style={styles.sectionSubtitle}>Premium challenges unlocked with ads</Text>
+            {specialGoals.map((goal, index) => (
+              <GoalCard
+                key={goal.id}
+                goal={goal}
+                index={regularGoals.length + honorGoals.length + index}
+                fadeValue={fadeAnims[regularGoals.length + honorGoals.length + index]}
+                scaleValue={scaleAnims[regularGoals.length + honorGoals.length + index]}
+                onUnlockGoal={handleUnlockGoal}
+                onClaimReward={handleClaimReward}
+                onCompleteHonorGoal={handleCompleteHonorGoal}
+              />
+            ))}
+          </View>
+        )}
       </ScrollView>
-      
-      {/* Enhanced Mascot */}
+
       <EnhancedMascotDisplay
         type={mascotType}
         position="right"
         showMascot={showMascot}
         message={mascotMessage}
         onDismiss={() => setShowMascot(false)}
+        onMessageComplete={() => setShowMascot(false)}
         autoHide={true}
-        autoHideDuration={3000}
-        fullScreen={true}
+        autoHideDuration={4000}
+        fullScreen={false}
       />
     </SafeAreaView>
   );
 };
 
+const { width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
-    marginTop: 15,  // ADD THIS
+    backgroundColor: '#FFF8E7',
   },
   header: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-    backgroundColor: 'white',
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-     backButton: {
-     width: 40,
-     height: 40,
-     borderRadius: 20,
-     backgroundColor: '#f5f5f5',
-     justifyContent: 'center',
-     alignItems: 'center',
-   },
-   debugButton: {
-     width: 40,
-     height: 40,
-     borderRadius: 20,
-     backgroundColor: '#f5f5f5',
-     justifyContent: 'center',
-     alignItems: 'center',
-   },
-  headerTitleContainer: {
     alignItems: 'center',
+    padding: 16,
+    paddingTop: Platform.OS === 'ios' ? 50 : 20,
+    backgroundColor: 'rgba(255, 248, 231, 0.95)',
   },
   headerTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 24,
+    fontWeight: '700',
     color: '#333',
-    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
-  },
-  headerSubtitle: {
-    fontSize: 12,
-    color: '#666',
-    marginTop: 2,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir' : 'sans-serif',
   },
   loadingContainer: {
     flex: 1,
@@ -613,121 +518,178 @@ const styles = StyleSheet.create({
   loadingText: {
     marginTop: 16,
     fontSize: 16,
-    color: theme.colors.textSecondary,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir' : 'sans-serif',
-  },
-  summaryCard: {
-    backgroundColor: 'white',
-    margin: 16,
-    borderRadius: 16,
-    padding: 20,
-    ...theme.shadows.medium,
-  },
-  summaryRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  summaryItem: {
-    alignItems: 'center',
-    flex: 1,
-  },
-  summaryValue: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: theme.colors.primary,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir-Black' : 'sans-serif-black',
-  },
-  summaryLabel: {
-    fontSize: 12,
-    color: '#666',
-    marginTop: 4,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir' : 'sans-serif',
-  },
-  summaryDivider: {
-    width: 1,
-    height: 40,
-    backgroundColor: '#eee',
-  },
-  rewardedAdSection: {
-    paddingHorizontal: 16,
-    marginBottom: 8,
+    color: '#777',
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
+    paddingBottom: 30,
+  },
+  section: {
+    marginTop: 24,
     paddingHorizontal: 16,
-    paddingBottom: 100,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#333',
+    marginBottom: 8,
+  },
+  sectionSubtitle: {
+    fontSize: 14,
+    color: '#777',
+    marginBottom: 16,
+    fontStyle: 'italic',
   },
   goalCard: {
+    marginBottom: 20,
+    borderRadius: 20,
+    overflow: 'hidden',
     backgroundColor: 'white',
-    borderRadius: 16,
-    padding: 20,
-    marginBottom: 16,
-    ...theme.shadows.medium,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  goalGradient: {
+    position: 'relative',
+  },
+  progressBorder: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 4,
+  },
+  goalContent: {
+    flex: 1,
   },
   goalHeader: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
+    alignItems: 'flex-start',
+    padding: 20,
+    paddingBottom: 16,
   },
   goalIconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 12,
+    backgroundColor: '#4CAF50',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
   goalInfo: {
     flex: 1,
+    marginLeft: 16,
   },
-  goalTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 4,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
-  },
-     goalDescription: {
-     fontSize: 14,
-     color: '#666',
-     fontFamily: Platform.OS === 'ios' ? 'Avenir' : 'sans-serif',
-   },
-   honorBadge: {
-     flexDirection: 'row',
-     alignItems: 'center',
-     marginTop: 4,
-   },
-   honorText: {
-     fontSize: 10,
-     color: '#FF5722',
-     marginLeft: 4,
-     fontFamily: Platform.OS === 'ios' ? 'Avenir' : 'sans-serif',
-     fontWeight: 'bold',
-   },
-  rewardContainer: {
+  titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFF5E6',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 20,
+    justifyContent: 'space-between',
+    marginBottom: 6,
+  },
+  goalTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#333',
+    flex: 1,
+  },
+  goalDescription: {
+    fontSize: 14,
+    color: '#666',
+    lineHeight: 20,
+    marginBottom: 12,
+  },
+  specialBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFD700',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+    marginLeft: 8,
+  },
+  specialBadgeText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#333',
+    marginLeft: 4,
+  },
+  rewardRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   rewardText: {
-    marginLeft: 4,
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: '600',
     color: '#FF9F1C',
-    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
+    marginLeft: 4,
+    marginRight: 12,
+  },
+  rewardInline: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#FF9F1C',
+  },
+  difficultyBadge: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+    marginTop: 4,
+  },
+  difficultyeasy: {
+    backgroundColor: '#4CAF50',
+  },
+  difficultymedium: {
+    backgroundColor: '#FF9800',
+  },
+  difficultyhard: {
+    backgroundColor: '#F44336',
+  },
+  difficultyText: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+  },
+  lockedText: {
+    color: '#BDBDBD',
+  },
+  
+  // Progress Section
+  progressSection: {
+    paddingHorizontal: 20,
+    paddingBottom: 16,
   },
   progressContainer: {
-    marginBottom: 12,
+    marginBottom: 8,
+  },
+  progressHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  progressLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#333',
+  },
+  progressPercentage: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#FF9F1C',
   },
   progressBar: {
     height: 8,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#E8E8E8',
     borderRadius: 4,
     overflow: 'hidden',
     marginBottom: 8,
@@ -740,59 +702,80 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#666',
     textAlign: 'center',
-    fontFamily: Platform.OS === 'ios' ? 'Avenir' : 'sans-serif',
+    lineHeight: 16,
+  },
+  
+  // Honor Section
+  honorSection: {
+    backgroundColor: '#FFF5F5',
+    padding: 12,
+    borderRadius: 12,
+    marginBottom: 8,
+  },
+  honorInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  honorLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#E91E63',
+    marginLeft: 8,
+  },
+  honorDescription: {
+    fontSize: 12,
+    color: '#666',
+    lineHeight: 16,
+  },
+  
+  // Action Section
+  actionSection: {
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+  },
+  actionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 14,
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  actionButtonText: {
+    marginLeft: 8,
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  unlockButton: {
+    backgroundColor: '#FF9F1C',
+  },
+  completeButton: {
+    backgroundColor: '#2196F3',
   },
   claimButton: {
-    backgroundColor: theme.colors.primary,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    borderRadius: 24,
-    ...theme.shadows.small,
-  },
-  claimedButton: {
     backgroundColor: '#4CAF50',
   },
-  animatingButton: {
-    backgroundColor: '#FF9800',
-  },
-  claimButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 14,
-    marginLeft: 8,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
-  },
-  emptyState: {
-    alignItems: 'center',
-    paddingVertical: 60,
-  },
-  emptyTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#999',
-    marginTop: 16,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
-  },
-  emptySubtitle: {
-    fontSize: 14,
-    color: '#ccc',
-    marginTop: 8,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir' : 'sans-serif',
-  },
-  footer: {
-    alignItems: 'center',
-    paddingVertical: 20,
+  completedBadge: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#E8F5E8',
+    paddingVertical: 14,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#4CAF50',
   },
-  footerText: {
-    fontSize: 12,
-    color: '#999',
-    fontStyle: 'italic',
-    fontFamily: Platform.OS === 'ios' ? 'Avenir' : 'sans-serif',
+  completedText: {
     marginLeft: 8,
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#4CAF50',
   },
 });
 

@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import SoundService from './src/services/SoundService';
 import QuestionService from './src/services/QuestionService';
 import AdMobService from './src/services/AdMobService';
+import RewardedAdService from './src/services/RewardedAdService';
 import FirebaseAnalyticsService from './src/services/FirebaseAnalyticsService';
 import ErrorBoundary from './src/components/common/ErrorBoundary';
 import LoadingScreen from './src/components/common/LoadingScreen';
@@ -168,6 +169,16 @@ const App: React.FC = () => {
         const admobReady = await AdMobService.initialize();
         if (admobReady) {
           console.log('✅ [BrainBites] Google AdMob initialized successfully (banner ads only)');
+          
+          // Initialize RewardedAdService after AdMob is ready
+          try {
+            await RewardedAdService.initialize();
+            console.log('✅ [BrainBites] RewardedAdService initialized successfully');
+          } catch (rewardedAdError: any) {
+            console.log('⚠️ [BrainBites] RewardedAdService initialization failed:', rewardedAdError?.message || rewardedAdError);
+            // Don't fail the whole app if rewarded ads fail
+          }
+          
           setAppState(prev => ({ 
             ...prev, 
             services: { ...prev.services, admob: 'success' } 

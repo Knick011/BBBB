@@ -191,6 +191,20 @@ const HomeScreen: React.FC = () => {
     return () => subscription.remove();
   }, []);
 
+  // Listen for regular daily goal day completion (from DailyGoalsService)
+  useEffect(() => {
+    const eventEmitter = new (require('react-native').NativeEventEmitter)();
+    const subscription = eventEmitter.addListener('dailyGoalDayCompleted', async (data: any) => {
+      try {
+        console.log('📅 [HomeScreen] dailyGoalDayCompleted received:', data);
+        await updateDailyStreak();
+      } catch (e) {
+        console.error('Failed to update daily streak from dailyGoalDayCompleted:', e);
+      }
+    });
+    return () => subscription.remove();
+  }, []);
+
   // Listen for honor goal claims (no streak update)
   useEffect(() => {
     const eventEmitter = new (require('react-native').NativeEventEmitter)();
