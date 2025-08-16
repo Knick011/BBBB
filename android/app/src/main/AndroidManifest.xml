@@ -20,7 +20,8 @@
       <!-- Set a safe default. This will be overridden by debug manifest and should be updated for release builds. -->
       <meta-data
           android:name="com.google.android.gms.ads.APPLICATION_ID"
-          android:value="ca-app-pub-3940256099942544~3347511713" />
+          android:value="ca-app-pub-3940256099942544~3347511713"
+          tools:replace="android:value" />
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

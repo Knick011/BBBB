@@ -23,7 +23,11 @@
       "Bash(./gradlew:*)",
       "Bash(npx react-native start:*)",
       "Bash(grep:*)",
-      "Bash(npx react-native:*)"
+      "Bash(npx react-native:*)",
+      "Bash(npm run tsc:*)",
+      "Bash(npm start:*)",
+      "Bash(java:*)",
+      "Bash(.gradlew.bat clean)"
     ],
     "deny": []
   }
