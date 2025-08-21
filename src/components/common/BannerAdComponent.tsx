@@ -19,13 +19,8 @@ const BannerAdComponent: React.FC<BannerAdComponentProps> = ({ placement, style 
     return () => {};
   }, [placement]);
 
-  // Use production Ad Unit IDs based on environment
-  // IMPORTANT: Replace these with your actual AdMob Ad Unit IDs
-  const adUnitId = __DEV__ 
-    ? TestIds.BANNER 
-    : Platform.OS === 'ios'
-      ? 'ca-app-pub-YOUR_IOS_BANNER_ID' // Replace with your iOS banner ID
-      : 'ca-app-pub-YOUR_ANDROID_BANNER_ID'; // Replace with your Android banner ID
+  // Production banner ad ID for Play Store
+  const adUnitId = 'ca-app-pub-7353957756801275/3370462815';
 
   if (!shouldShow) {
     return null;

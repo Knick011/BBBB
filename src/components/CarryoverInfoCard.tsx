@@ -53,6 +53,11 @@ export const CarryoverInfoCard: React.FC = () => {
 
   const { remainingTimeMinutes, overtimeMinutes, potentialCarryoverScore, isPositive } = carryoverInfo;
   
+  // Calculate net time difference and score impact
+  const netTimeMinutes = remainingTimeMinutes - overtimeMinutes;
+  const netScoreImpact = (remainingTimeMinutes * 10) - (overtimeMinutes * 5); // +10 per remaining, -5 per overtime
+  const isNetPositive = netTimeMinutes > 0;
+  
   // Don't show if no carryover potential
   if (remainingTimeMinutes === 0 && overtimeMinutes === 0) return null;
 
@@ -75,9 +80,9 @@ export const CarryoverInfoCard: React.FC = () => {
           <View style={styles.header}>
             <View style={styles.titleContainer}>
               <Icon
-                name={isPositive ? 'trending-up' : 'trending-down'}
+                name={isNetPositive ? 'trending-up' : 'trending-down'}
                 size={24}
-                color={isPositive ? colors.success : colors.error}
+                color={isNetPositive ? colors.success : colors.error}
               />
               <Text style={styles.title}>Tomorrow's Score Impact</Text>
             </View>
@@ -89,7 +94,34 @@ export const CarryoverInfoCard: React.FC = () => {
 
         {isExpanded && (
           <View style={styles.content}>
-            {overtimeMinutes > 0 ? (
+            {/* Show breakdown when both exist */}
+            {remainingTimeMinutes > 0 && overtimeMinutes > 0 ? (
+              <>
+                <View style={styles.row}>
+                  <Icon name="clock-check" size={20} color={colors.success} />
+                  <Text style={styles.label}>Time Saved:</Text>
+                  <Text style={[styles.value, styles.positive]}>+{remainingTimeMinutes} min</Text>
+                </View>
+                <View style={styles.row}>
+                  <Icon name="alert-circle" size={20} color={colors.error} />
+                  <Text style={styles.label}>Overtime Used:</Text>
+                  <Text style={[styles.value, styles.negative]}>-{overtimeMinutes} min</Text>
+                </View>
+                <View style={[styles.row, styles.totalRow]}>
+                  <Icon name="calculator" size={20} color={isNetPositive ? colors.success : colors.error} />
+                  <Text style={[styles.label, styles.totalLabel]}>Net Impact:</Text>
+                  <Text style={[styles.value, styles.totalValue, isNetPositive ? styles.positive : styles.negative]}>
+                    {isNetPositive ? '+' : ''}{netTimeMinutes} min {isNetPositive ? '+' : ''}{netScoreImpact} pts
+                  </Text>
+                </View>
+                <Text style={styles.explanation}>
+                  {isNetPositive ? 
+                    '🎉 Great! You saved more time than you used in overtime!' :
+                    '⚠️ You used more overtime than saved time. Try to answer quizzes faster!'
+                  }
+                </Text>
+              </>
+            ) : overtimeMinutes > 0 ? (
               <>
                 <View style={styles.row}>
                   <Icon name="alert-circle" size={20} color={colors.error} />
@@ -200,6 +232,12 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     gap: 8,
   },
+  totalRow: {
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+    paddingTop: 12,
+    marginTop: 8,
+  },
   label: {
     flex: 1,
     fontSize: 14,
@@ -208,6 +246,14 @@ const styles = StyleSheet.create({
   value: {
     fontSize: 16,
     fontWeight: '600',
+  },
+  totalLabel: {
+    fontWeight: '700',
+    fontSize: 15,
+  },
+  totalValue: {
+    fontSize: 17,
+    fontWeight: '700',
   },
   positive: {
     color: colors.success,

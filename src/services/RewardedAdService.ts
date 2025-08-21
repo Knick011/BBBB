@@ -9,15 +9,12 @@ class RewardedAdService {
   private currentAd: RewardedAd | null = null;
   private isAdLoaded = false;
   private adUnitId: string;
+  private isInitialized = false;
+  private isInitializing = false;
 
   constructor() {
-    // Use test ads in development, real ad unit IDs in production
-    this.adUnitId = __DEV__ 
-      ? TestIds.REWARDED
-      : Platform.select({
-          ios: 'ca-app-pub-3940256099942544/1712485313', // Test ad unit for now
-          android: 'ca-app-pub-3940256099942544/5224354917', // Test ad unit for now
-        }) || TestIds.REWARDED;
+    // Production rewarded ad ID for Play Store
+    this.adUnitId = 'ca-app-pub-7353957756801275/3777656920';
         
     console.log(`📺 [RewardedAdService] Using ad unit ID: ${this.adUnitId}`);
   }
@@ -30,15 +27,31 @@ class RewardedAdService {
   }
 
   async initialize(): Promise<void> {
+    // Prevent multiple simultaneous initialization attempts
+    if (this.isInitialized) {
+      console.log('📺 [RewardedAdService] Already initialized');
+      return;
+    }
+    
+    if (this.isInitializing) {
+      console.log('📺 [RewardedAdService] Initialization already in progress');
+      return;
+    }
+    
     try {
+      this.isInitializing = true;
       console.log('📺 [RewardedAdService] Initializing rewarded ads...');
       
       // Load the first ad
       await this.loadAd();
       
+      this.isInitialized = true;
       console.log('✅ [RewardedAdService] Rewarded ads initialized');
     } catch (error) {
       console.error('❌ [RewardedAdService] Failed to initialize:', error);
+      throw error;
+    } finally {
+      this.isInitializing = false;
     }
   }
 
@@ -70,6 +83,7 @@ class RewardedAdService {
 
   async showRewardedAd(): Promise<boolean> {
     try {
+      // Ensure we have a loaded ad
       if (!this.isAdLoaded || !this.currentAd) {
         console.log('⏳ [RewardedAdService] Ad not loaded, loading now...');
         await this.loadAd();
@@ -84,44 +98,63 @@ class RewardedAdService {
       
       return new Promise((resolve) => {
         let resolved = false;
+        let unsubscribeEarned: (() => void) | null = null;
+        let unsubscribeClosed: (() => void) | null = null;
         
-        // Set up event listeners
-        const unsubscribeEarned = this.currentAd!.addAdEventListener(
-          RewardedAdEventType.EARNED_REWARD,
-          (reward) => {
-            if (!resolved) {
-              resolved = true;
-              console.log('✅ [RewardedAdService] User earned reward:', reward);
-              unsubscribeEarned();
-              unsubscribeClosed();
-              resolve(true);
-            }
+        const cleanup = () => {
+          if (unsubscribeEarned) {
+            try { unsubscribeEarned(); } catch (e) { /* ignore */ }
           }
-        );
+          if (unsubscribeClosed) {
+            try { unsubscribeClosed(); } catch (e) { /* ignore */ }
+          }
+        };
         
-        const unsubscribeClosed = this.currentAd!.addAdEventListener(
-          AdEventType.CLOSED,
-          () => {
+        try {
+          // Set up event listeners with error handling
+          unsubscribeEarned = this.currentAd!.addAdEventListener(
+            RewardedAdEventType.EARNED_REWARD,
+            (reward) => {
+              if (!resolved) {
+                resolved = true;
+                console.log('✅ [RewardedAdService] User earned reward:', reward);
+                cleanup();
+                resolve(true);
+              }
+            }
+          );
+          
+          unsubscribeClosed = this.currentAd!.addAdEventListener(
+            AdEventType.CLOSED,
+            () => {
+              if (!resolved) {
+                resolved = true;
+                console.log('❌ [RewardedAdService] Ad closed without reward');
+                cleanup();
+                resolve(false);
+              }
+            }
+          );
+          
+          // Show the ad
+          this.currentAd!.show().catch((error) => {
             if (!resolved) {
               resolved = true;
-              console.log('❌ [RewardedAdService] Ad closed without reward');
-              unsubscribeEarned();
-              unsubscribeClosed();
+              console.error('❌ [RewardedAdService] Error showing ad:', error);
+              cleanup();
               resolve(false);
             }
-          }
-        );
-        
-        // Show the ad
-        this.currentAd!.show().catch((error) => {
+          });
+          
+        } catch (listenerError) {
+          // Handle event listener setup errors
+          console.error('❌ [RewardedAdService] Error setting up ad listeners:', listenerError);
           if (!resolved) {
             resolved = true;
-            console.error('❌ [RewardedAdService] Error showing ad:', error);
-            unsubscribeEarned();
-            unsubscribeClosed();
+            cleanup();
             resolve(false);
           }
-        });
+        }
         
         // Mark ad as used
         this.isAdLoaded = false;

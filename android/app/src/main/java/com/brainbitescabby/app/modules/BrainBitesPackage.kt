@@ -1,4 +1,4 @@
-package com.brainbites.modules
+package com.brainbitescabby.app.modules
 
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule

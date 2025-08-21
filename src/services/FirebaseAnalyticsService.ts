@@ -213,6 +213,175 @@ class FirebaseAnalyticsService {
   }
 
   // =============================
+  // CRITICAL USER BEHAVIOR EVENTS
+  // =============================
+  
+  async logUserEngagement(engagementData: {
+    sessionLength: number;
+    questionsAnswered: number;
+    streakMaintained: boolean;
+    goalsCompleted: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('user_engagement', engagementData);
+  }
+
+  async logRetention(data: {
+    daysSinceInstall: number;
+    consecutiveDays: number;
+    returningUser: boolean;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('retention_check', data);
+  }
+
+  async logChurnRisk(data: {
+    daysInactive: number;
+    lastActivity: string;
+    streakLost: boolean;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('churn_risk_detected', data);
+  }
+
+  // =============================
+  // MONETIZATION EVENTS
+  // =============================
+  
+  async logPurchaseIntent(data: {
+    itemType: string;
+    pricePoint: number;
+    abandonedCart: boolean;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('purchase_intent', data);
+  }
+
+  async logSubscriptionStatus(data: {
+    status: 'trial' | 'active' | 'cancelled' | 'expired';
+    tier: string;
+    daysRemaining: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('subscription_status', data);
+  }
+
+  // =============================
+  // FEATURE USAGE
+  // =============================
+  
+  async logFeatureUsage(data: {
+    feature: string;
+    duration: number;
+    completed: boolean;
+    firstTime: boolean;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('feature_used', data);
+  }
+
+  async logTutorialProgress(data: {
+    step: number;
+    completed: boolean;
+    skipped: boolean;
+    timeSpent: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('tutorial_progress', data);
+  }
+
+  // =============================
+  // PERFORMANCE METRICS
+  // =============================
+  
+  async logAppPerformance(data: {
+    loadTime: number;
+    crashCount: number;
+    memoryUsage: number;
+    batteryDrain: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('app_performance', data);
+  }
+
+  async logErrorOccurred(data: {
+    errorType: string;
+    errorMessage: string;
+    screen: string;
+    severity: 'low' | 'medium' | 'high' | 'critical';
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('error_occurred', data);
+  }
+
+  // =============================
+  // SOCIAL & SHARING
+  // =============================
+  
+  async logSocialShare(data: {
+    platform: string;
+    contentType: string;
+    success: boolean;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('social_share', data);
+  }
+
+  async logReferral(data: {
+    source: string;
+    newUser: boolean;
+    rewardEarned: boolean;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('referral_tracked', data);
+  }
+
+  // =============================
+  // NOTIFICATION EFFECTIVENESS
+  // =============================
+  
+  async logNotificationInteraction(data: {
+    type: string;
+    action: 'opened' | 'dismissed' | 'ignored';
+    timeSinceSent: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('notification_interaction', data);
+  }
+
+  // =============================
+  // CONTENT ENGAGEMENT
+  // =============================
+  
+  async logQuestionQuality(data: {
+    questionId: string;
+    difficulty: string;
+    skipRate: number;
+    avgTimeToAnswer: number;
+    correctRate: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('question_quality', data);
+  }
+
+  async logCategoryPreference(data: {
+    category: string;
+    playCount: number;
+    avgScore: number;
+    preference: 'liked' | 'neutral' | 'disliked';
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('category_preference', data);
+  }
+
+  // =============================
+  // A/B TESTING
+  // =============================
+  
+  async logExperimentExposure(data: {
+    experimentId: string;
+    variant: string;
+    userId: string;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('experiment_exposure', data);
+  }
+
+  async logExperimentConversion(data: {
+    experimentId: string;
+    variant: string;
+    conversionType: string;
+    value: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('experiment_conversion', data);
+  }
+
+  // =============================
   // CLEANUP
   // =============================
 

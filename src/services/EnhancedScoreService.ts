@@ -3,7 +3,7 @@ import { NativeModules } from 'react-native';
 import { getTorontoDateString } from '../utils/timeUtils';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DailyGoalsService from './DailyGoalsService';
-import { UserStats } from '../types';
+// import { UserStats } from '../types';
 
 interface ScoreInfo {
   dailyScore: number;
@@ -117,11 +117,7 @@ class EnhancedScoreService {
     const lastReset = await AsyncStorage.getItem(this.STORAGE_KEYS.LAST_RESET);
     
     if (lastReset !== today) {
-      // Check for carryover from native module
-      await this.checkAndApplyCarryover();
-      
-      // Reset daily data
-      this.dailyScore = 0;
+      // Reset daily stats first (but preserve score for carryover)
       this.todayStats = {
         totalQuestions: 0,
         correctAnswers: 0,
@@ -131,6 +127,12 @@ class EnhancedScoreService {
         accuracy: 0
       };
       
+      // Reset daily score to 0 initially
+      this.dailyScore = 0;
+      
+      // Check for carryover from native module and apply it
+      await this.checkAndApplyCarryover();
+      
       await AsyncStorage.setItem(this.STORAGE_KEYS.LAST_RESET, today);
       await AsyncStorage.setItem(this.STORAGE_KEYS.CARRYOVER_APPLIED, 'false');
       await this.saveData();
@@ -139,7 +141,6 @@ class EnhancedScoreService {
 
   private async checkAndApplyCarryover(): Promise<void> {
     try {
-      const today = getTorontoDateString();
       const carryoverApplied = await AsyncStorage.getItem(this.STORAGE_KEYS.CARRYOVER_APPLIED);
       
       if (carryoverApplied === 'true') {
@@ -153,8 +154,8 @@ class EnhancedScoreService {
         if (carryoverScore !== 0) {
           console.log(`🎯 Applying carryover score: ${carryoverScore > 0 ? '+' : ''}${carryoverScore}`);
           
-          // Apply carryover to daily score
-          this.dailyScore = Math.max(0, carryoverScore); // Don't go below 0
+          // Apply carryover to daily score (allow negative scores for penalties)
+          this.dailyScore = carryoverScore;
           
           // Mark as applied
           await AsyncStorage.setItem(this.STORAGE_KEYS.CARRYOVER_APPLIED, 'true');
@@ -251,6 +252,9 @@ class EnhancedScoreService {
     let speedMultiplier = 1.0;
     let baseScore = 0;
     
+    // Calculate response time for all answers (needed for speed goals)
+    const responseTime = startTime ? Date.now() - startTime : 10000;
+    
     if (isCorrect) {
       this.correctAnswers++;
       this.todayStats.correctAnswers++;
@@ -265,7 +269,6 @@ class EnhancedScoreService {
       const basePoints = 100;
       
       // Time bonus (faster = more points)
-      const responseTime = startTime ? Date.now() - startTime : 10000;
       const timeBonus = Math.max(0, Math.floor((20000 - responseTime) / 1000) * 5);
       
       // Streak bonus
@@ -299,10 +302,10 @@ class EnhancedScoreService {
       this.currentStreak = 0;
     }
     
-    // Apply debt penalty if timer is negative
+    // Apply debt penalty if timer is negative (allow negative scores)
     const debtPenalty = this.getDebtPenalty();
     if (debtPenalty > 0) {
-      this.dailyScore = Math.max(0, this.dailyScore - debtPenalty);
+      this.dailyScore = this.dailyScore - debtPenalty;
     }
     
     // Update accuracy
@@ -320,10 +323,9 @@ class EnhancedScoreService {
         difficulty,
         category: metadata?.category,
         currentStreak: this.currentStreak,
-        todayAccuracy: this.todayStats.correctAnswers > 0 
-          ? Math.round((this.todayStats.correctAnswers / this.todayStats.totalQuestions) * 100)
-          : 0,
-        todayQuestions: this.todayStats.totalQuestions
+        todayAccuracy: this.todayStats.accuracy, // Use the already calculated accuracy
+        todayQuestions: this.todayStats.totalQuestions,
+        responseTimeMs: responseTime // Add response time for speed goals
       });
       
       console.log('✅ [EnhancedScoreService] Updated daily goals progress');
@@ -355,13 +357,9 @@ class EnhancedScoreService {
 
   private getDebtPenalty(): number {
     // Import from timer service if available
-    try {
-      // const EnhancedTimerService = require('./EnhancedTimerService').default;
-      // return EnhancedTimerService.getDebtPenalty();
-      return 0; // Fallback when EnhancedTimerService is not available
-    } catch (error) {
-      return 0;
-    }
+    // const EnhancedTimerService = require('./EnhancedTimerService').default;
+    // return EnhancedTimerService.getDebtPenalty();
+    return 0; // Fallback when EnhancedTimerService is not available
   }
 
   endQuizSession(): void {
@@ -372,9 +370,10 @@ class EnhancedScoreService {
   }
 
   getScoreInfo(): ScoreInfo {
-    const accuracy = this.totalQuestionsAnswered > 0 
-      ? Math.round((this.correctAnswers / this.totalQuestionsAnswered) * 100)
-      : 0;
+    // Fix NaN issues in accuracy calculation
+    const accuracy = this.todayStats.totalQuestions > 0 
+      ? Math.round((this.todayStats.correctAnswers / this.todayStats.totalQuestions) * 100)
+      : 0; // Return 0 instead of NaN when no questions answered
     
     return {
       dailyScore: this.dailyScore,
@@ -383,7 +382,7 @@ class EnhancedScoreService {
       streakLevel: this.streakLevel,
       totalQuestions: this.totalQuestionsAnswered,
       correctAnswers: this.correctAnswers,
-      accuracy,
+      accuracy: isNaN(accuracy) ? 0 : accuracy, // Additional NaN check
       questionsToday: this.todayStats.totalQuestions
     };
   }
@@ -414,6 +413,27 @@ class EnhancedScoreService {
     }
   }
 
+  async resetDailyStats(): Promise<void> {
+    this.todayStats = {
+      totalQuestions: 0,
+      correctAnswers: 0,
+      categoryCounts: {},
+      difficultyCounts: {},
+      date: new Date().toDateString(),
+      accuracy: 0
+    };
+    
+    // Reset daily score to 0 initially
+    this.dailyScore = 0;
+    this.currentStreak = 0;
+    
+    // Check for and apply any carryover score
+    await this.checkAndApplyCarryover();
+    
+    await this.saveAllData();
+    console.log('✅ Daily stats reset for new day');
+  }
+
   async resetAllData(): Promise<void> {
     this.currentStreak = 0;
     this.dailyScore = 0;
@@ -430,7 +450,7 @@ class EnhancedScoreService {
       accuracy: 0
     };
     
-    await this.saveData();
+    await this.saveAllData();
   }
 }
 

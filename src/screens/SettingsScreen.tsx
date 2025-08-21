@@ -9,7 +9,8 @@ import {
   Switch,
   Platform,
   Alert,
-  Vibration
+  Vibration,
+  Linking
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
@@ -143,6 +144,40 @@ const SettingsScreen: React.FC = () => {
     }
   };
   
+  const handleSendFeedback = () => {
+    const email = 'brainbites.vx@gmail.com';
+    const subject = 'BrainBites App Feedback';
+    const body = 'Hi! I have some feedback about the BrainBites app:\n\n';
+    
+    const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    Linking.canOpenURL(mailto)
+      .then((supported) => {
+        if (supported) {
+          return Linking.openURL(mailto);
+        } else {
+          Alert.alert(
+            'Email Not Available',
+            `Please send your feedback to: ${email}`,
+            [
+              { text: 'Copy Email', onPress: () => {
+                // Note: Clipboard copy would require additional import
+                Alert.alert('Email Address', email);
+              }},
+              { text: 'OK' }
+            ]
+          );
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to open email:', error);
+        Alert.alert(
+          'Email Not Available', 
+          `Please send your feedback to: ${email}`
+        );
+      });
+  };
+
   const renderSettingItem = (icon: string, title: string, subtitle?: string, rightElement?: React.ReactNode) => (
     <View style={styles.settingItem}>
       <View style={styles.settingLeft}>
@@ -291,6 +326,22 @@ const SettingsScreen: React.FC = () => {
           )}
         </View>
         
+        {/* Support & Feedback Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Support & Feedback</Text>
+          
+          <TouchableOpacity style={styles.feedbackItem} onPress={handleSendFeedback}>
+            <View style={styles.settingLeft}>
+              <Icon name="email-outline" size={24} color={theme.colors.primary} style={styles.settingIcon} />
+              <View style={styles.settingTextContainer}>
+                <Text style={styles.settingTitle}>Send Feedback</Text>
+                <Text style={styles.settingSubtitle}>Help us improve BrainBites with your suggestions</Text>
+              </View>
+            </View>
+            <Icon name="chevron-right" size={20} color="#999" />
+          </TouchableOpacity>
+        </View>
+        
         {/* About Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>About</Text>
@@ -419,6 +470,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: theme.colors.primary,
     fontWeight: '500',
+  },
+  feedbackItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 16,
   },
   aboutItem: {
     flexDirection: 'row',

@@ -1,4 +1,4 @@
-package com.brainbites.timer
+package com.brainbitescabby.app.timer
 
 import android.content.BroadcastReceiver
 import android.content.Context

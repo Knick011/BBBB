@@ -1,9 +1,9 @@
-package com.brainbites.timer.storage
+package com.brainbitescabby.app.timer.storage
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.brainbites.timer.TimerState
-import com.brainbites.timer.TimerStatus
+import com.brainbitescabby.app.timer.TimerState
+import com.brainbitescabby.app.timer.TimerStatus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*

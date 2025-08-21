@@ -1,4 +1,4 @@
-package com.brainbites.timer
+package com.brainbitescabby.app.timer
 
 import android.app.*
 import android.content.Context
@@ -13,10 +13,10 @@ import android.os.PowerManager
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import android.app.PendingIntent
-import com.brainbites.MainActivity
-import com.brainbites.R
-import com.brainbites.timer.notifications.BrainBitesNotificationManager
-import com.brainbites.permissions.NotificationPermissionHandler
+import com.brainbitescabby.app.MainActivity
+import com.brainbitescabby.app.R
+import com.brainbitescabby.app.timer.notifications.BrainBitesNotificationManager
+import com.brainbitescabby.app.permissions.NotificationPermissionHandler
 
 class ScreenTimeService : Service() {
     
@@ -55,9 +55,9 @@ class ScreenTimeService : Service() {
         private const val UPDATE_INTERVAL = 1000L // 1 second for smooth updates
         
         // Actions
-        const val ACTION_START = "com.brainbites.timer.START"
-        const val ACTION_PAUSE = "com.brainbites.timer.PAUSE" 
-        const val ACTION_STOP = "com.brainbites.timer.STOP"
+        const val ACTION_START = "com.brainbitescabby.app.timer.START"
+        const val ACTION_PAUSE = "com.brainbitescabby.app.timer.PAUSE" 
+        const val ACTION_STOP = "com.brainbitescabby.app.timer.STOP"
         const val ACTION_UPDATE_TIME = "update_time"
         const val ACTION_ADD_TIME = "add_time"
         const val ACTION_APP_FOREGROUND = "app_foreground"
@@ -434,7 +434,7 @@ class ScreenTimeService : Service() {
     
     private fun broadcastUpdate() {
         try {
-            val intent = Intent("com.brainbites.TIMER_UPDATE").apply {
+            val intent = Intent("com.brainbitescabby.app.TIMER_UPDATE").apply {
                 putExtra("remaining_time", remainingTimeSeconds)
                 putExtra("today_screen_time", todayScreenTimeSeconds)
                 putExtra("overtime", overtimeSeconds)
@@ -607,39 +607,47 @@ class ScreenTimeService : Service() {
             
             val messages = when (hours) {
                 1 -> arrayOf(
-                    "Whoa! You've spent an hour on your screen today! 📱",
-                    "One hour milestone reached! Your screentime: $timeString ⏰",
-                    "Hour mark! You've been on screen for $timeString today 🕐"
+                    "😲 Whoa! You just hit your FIRST HOUR of screentime! Maybe it's time for a quick break? 🌿",
+                    "🎯 One hour already?! Time flies when you're... staring at screens! Consider a stretch? 🤸",
+                    "⏰ HOUR ONE COMPLETE! Your eyes are sending you a message: \"We need a break!\" 👀"
                 )
                 2 -> arrayOf(
-                    "Two hours and counting! Screentime: $timeString 📊",
-                    "Double hour alert! You're at $timeString today ⏰⏰",
-                    "2 hour checkpoint! Total today: $timeString 🎯"
+                    "😰 TWO HOURS! CaBBy is getting worried! Your screen time is at $timeString! Break time? 🥺",
+                    "🔥 Double hour alert! $timeString on screen! Your body is begging for movement! 🏃",
+                    "⚠️ WARNING: $timeString of screentime! Even I need breaks, and I'm digital! 💭"
                 )
                 3 -> arrayOf(
-                    "Three hours reached! Consider a break? Screentime: $timeString 🌟",
-                    "Triple hour milestone! You're at $timeString ⏰⏰⏰",
-                    "3 hours on screen! Maybe time for a stretch? Total: $timeString 🤸"
+                    "😱 THREE HOURS?! CaBBy is seriously concerned! $timeString is A LOT! Please take a break! 🆘",
+                    "🚨🚨 CRITICAL: $timeString on screen! Your eyes are crying for mercy! 😭",
+                    "🔴 RED ALERT: $timeString of screentime! Even robots need maintenance breaks! 🤖"
                 )
                 4 -> arrayOf(
-                    "Four hours of screentime! You're at $timeString 📈",
-                    "Quad hour alert! Total screentime: $timeString ⏰⏰⏰⏰",
-                    "4 hour mark reached! Consider some offline time? Total: $timeString 🌳"
+                    "😨😨 FOUR HOURS!! CaBBy is PANICKING! $timeString is too much! PLEASE REST NOW! 🛑",
+                    "🚨🔥 EMERGENCY: $timeString on screens! Your health matters more than this! 💚",
+                    "⛔ STOP! $timeString is excessive! Time for a REAL break, not a scroll break! 🚶"
+                )
+                5 -> arrayOf(
+                    "😵‍💫 FIVE HOURS?!? CaBBy is LOSING IT! $timeString!! This is an intervention!! 🚑",
+                    "🆘🆘🆘 MAYDAY! $timeString of screentime! Your future self will thank you for stopping! 🙏",
+                    "🔴🔴🔴 CRITICAL OVERLOAD: $timeString! Even I'm getting dizzy from all this screen time! 🌀"
                 )
                 else -> arrayOf(
-                    "Screentime milestone: $hours hours! Total today: $timeString 📊",
-                    "$hours hour alert! You've spent $timeString on screen ⏰",
-                    "Hour $hours reached! Your screentime is now $timeString 📱"
+                    "😭😭😭 $hours HOURS?! CaBBy has given up hope... $timeString is digital addiction territory! 📵",
+                    "💀💀💀 $timeString of screentime... CaBBy is filing a missing person report for your real life! 👮",
+                    "⚰️ RIP healthy habits. Cause of death: $timeString of screentime. CaBBy will miss you... 🪦"
                 )
             }
             
             val message = messages.random()
             
-            // Add emoji suggestions for breaks
+            // More urgent break suggestions
             val breakSuggestion = when {
-                hours >= 3 -> "\n\n💡 Tip: How about a quick walk or stretch?"
-                hours >= 2 -> "\n\n👀 Remember to rest your eyes!"
-                else -> ""
+                hours == 1 -> "\n\n💭 CaBBy suggests: Maybe look out the window for 30 seconds?"
+                hours == 2 -> "\n\n😟 CaBBy insists: Your eyes REALLY need a 5-minute break! Please?"
+                hours == 3 -> "\n\n😰 CaBBy begs: PLEASE take a 10-minute walk! Your body needs it!"
+                hours == 4 -> "\n\n😱 CaBBy demands: STOP NOW! Take at least 15 minutes away from screens!"
+                hours >= 5 -> "\n\n🆘 CaBBy screams: THIS IS NOT HEALTHY! Take a 30-minute break IMMEDIATELY!"
+                else -> "\n\n💀 CaBBy has fainted from shock. Even virtual mascots have limits..."
             }
             
             val pendingIntent = PendingIntent.getActivity(
@@ -649,13 +657,14 @@ class ScreenTimeService : Service() {
             
             val notification = NotificationCompat.Builder(this, ALERT_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle("📱 Screentime Milestone!")
+                .setContentTitle("⚠️ SCREENTIME ALERT from CaBBy!")
                 .setContentText(message)
                 .setStyle(NotificationCompat.BigTextStyle()
                     .bigText(message + breakSuggestion))
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setPriority(NotificationCompat.PRIORITY_MAX) // Maximum priority for warnings
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setVibrate(longArrayOf(0, 500, 200, 500)) // Double vibration for urgency
                 .setContentIntent(pendingIntent)
                 .build()
             

@@ -1,4 +1,4 @@
-package com.brainbites.timer
+package com.brainbitescabby.app.timer
 
 import com.facebook.react.bridge.*
 import com.facebook.react.modules.core.DeviceEventManagerModule

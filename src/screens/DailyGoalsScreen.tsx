@@ -216,6 +216,10 @@ const DailyGoalsScreen = ({ navigation }: any) => {
   const [mascotType, setMascotType] = useState<'happy' | 'sad' | 'excited' | 'depressed' | 'gamemode' | 'below'>('happy');
   const [mascotMessage, setMascotMessage] = useState('');
   
+  // For triple-tap detection
+  const [tapCount, setTapCount] = useState(0);
+  const tapTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
   // Animation values
   const fadeAnims = useRef<Animated.Value[]>([]).current;
   const scaleAnims = useRef<Animated.Value[]>([]).current;
@@ -289,6 +293,44 @@ const DailyGoalsScreen = ({ navigation }: any) => {
     setIsRefreshing(false);
   };
 
+  // Debug method to force regenerate goals (triple-tap refresh button)
+  const handleForceRegenerate = async () => {
+    setIsRefreshing(true);
+    try {
+      console.log('🔄 [DailyGoalsScreen] Force regenerating goals...');
+      await DailyGoalsService.forceRegenerateGoals();
+      console.log('✅ [DailyGoalsScreen] Goals force regenerated');
+      
+      // Show mascot confirmation
+      setMascotType('excited');
+      setMascotMessage('🎲 Goals Regenerated!\n\nNew daily challenges have been generated for testing!');
+      setShowMascot(true);
+    } catch (error) {
+      console.error('❌ [DailyGoalsScreen] Failed to force regenerate goals:', error);
+    }
+    setIsRefreshing(false);
+  };
+
+  // Handle triple-tap detection
+  const handleRefreshTap = () => {
+    setTapCount(prev => prev + 1);
+    
+    // Clear existing timeout
+    if (tapTimeoutRef.current) {
+      clearTimeout(tapTimeoutRef.current);
+    }
+    
+    // Set new timeout
+    tapTimeoutRef.current = setTimeout(() => {
+      if (tapCount >= 2) { // Triple tap detected (0->1->2->3)
+        handleForceRegenerate();
+      } else {
+        handleRefresh();
+      }
+      setTapCount(0);
+    }, 500);
+  };
+
   const handleUnlockGoal = async (goalId: string) => {
     try {
       // Determine goal type from ID
@@ -303,6 +345,13 @@ const DailyGoalsScreen = ({ navigation }: any) => {
       }
       
       console.log(`📺 [DailyGoalsScreen] Attempting to unlock special ${kind} goal: ${goalId}`);
+      
+      // Ensure RewardedAdService is initialized before showing ad
+      try {
+        await RewardedAdService.initialize();
+      } catch (initError) {
+        console.log('📺 [DailyGoalsScreen] Ad service already initialized or init failed:', initError);
+      }
       
       // Show rewarded ad
       const adShown = await RewardedAdService.showRewardedAd();
@@ -407,7 +456,7 @@ const DailyGoalsScreen = ({ navigation }: any) => {
           <Icon name="arrow-left" size={24} color="#FFFFFF" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Daily Goals</Text>
-        <TouchableOpacity onPress={handleRefresh}>
+        <TouchableOpacity onPress={handleRefreshTap}>
           <Icon name="refresh" size={24} color="#FFFFFF" />
         </TouchableOpacity>
       </View>

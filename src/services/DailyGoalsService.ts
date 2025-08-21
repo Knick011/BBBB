@@ -296,14 +296,37 @@ class DailyGoalsService {
     this.dailySpeedGoalIndex = savedIndex ? (parseInt(savedIndex) + 1) % SPEED_GOALS_POOL.length : 0;
     await AsyncStorage.setItem('@BrainBites:speedGoalIndex', this.dailySpeedGoalIndex.toString());
     
+    // Create a better seed based on current date to ensure daily variation
+    const today = new Date();
+    const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+    
+    // Simple seeded random function for consistent but varied daily shuffling
+    let seedValue = seed;
+    const seededRandom = () => {
+      seedValue = (seedValue * 9301 + 49297) % 233280;
+      return seedValue / 233280;
+    };
+    
     // Select difficulty distribution: exactly 1 Easy + 1 Medium + 1 Hard
     const difficulties: ('easy' | 'medium' | 'hard')[] = ['easy', 'medium', 'hard'];
-    const shuffledDifficulties = [...difficulties].sort(() => Math.random() - 0.5);
+    
+    // Properly shuffle using Fisher-Yates algorithm with seeded random
+    for (let i = difficulties.length - 1; i > 0; i--) {
+      const j = Math.floor(seededRandom() * (i + 1));
+      [difficulties[i], difficulties[j]] = [difficulties[j], difficulties[i]];
+    }
+    
+    console.log('🎯 [DailyGoals] Today\'s difficulty assignment:', {
+      questions: difficulties[0],
+      streak: difficulties[1], 
+      accuracy: difficulties[2],
+      seed: seed
+    });
     
     // Assign difficulties to goal types
-    const questionsGoal = QUESTIONS_GOALS[shuffledDifficulties[0]];
-    const streakGoal = STREAK_GOALS[shuffledDifficulties[1]];
-    const accuracyGoal = ACCURACY_GOALS[shuffledDifficulties[2]];
+    const questionsGoal = QUESTIONS_GOALS[difficulties[0]];
+    const streakGoal = STREAK_GOALS[difficulties[1]];
+    const accuracyGoal = ACCURACY_GOALS[difficulties[2]];
     
     // Add the three standard daily goals
     selected.push({
@@ -434,8 +457,8 @@ class DailyGoalsService {
     difficulty: 'easy' | 'medium' | 'hard';
     category?: string;
     currentStreak: number;
+    todayAccuracy: number;
     todayQuestions: number;
-    todayCorrect: number;
     responseTimeMs?: number; // Add response time for speed goals
   }): Promise<void> {
     if (!this.isInitialized) {
@@ -468,11 +491,25 @@ class DailyGoalsService {
           break;
 
         case 'accuracy':
-          if (goal.questionsRequired && questionData.todayQuestions >= goal.questionsRequired) {
-            const accuracy = (questionData.todayCorrect / questionData.todayQuestions) * 100;
-            goal.current = Math.floor(accuracy);
-            goal.progress = accuracy >= goal.target ? 100 : (goal.current / goal.target) * 100;
+          // Fix NaN issues by ensuring we have valid numbers
+          if (questionData.todayQuestions > 0 && goal.questionsRequired) {
+            // Always show current accuracy
+            const accuracy = isNaN(questionData.todayAccuracy) ? 0 : questionData.todayAccuracy;
+            goal.current = Math.round(accuracy);
             goal.questionsAnswered = questionData.todayQuestions;
+            
+            if (questionData.todayQuestions >= goal.questionsRequired) {
+              // Enough questions - check if goal is completed
+              goal.progress = goal.current >= goal.target ? 100 : (goal.current / goal.target) * 100;
+            } else {
+              // Not enough questions yet - don't complete
+              goal.progress = 0;
+            }
+          } else {
+            // No questions answered yet
+            goal.current = 0;
+            goal.progress = 0;
+            goal.questionsAnswered = 0;
           }
           break;
 
@@ -480,10 +517,13 @@ class DailyGoalsService {
           if (questionData.isCorrect && questionData.responseTimeMs && goal.thresholdPerAnswerSeconds) {
             const thresholdMs = goal.thresholdPerAnswerSeconds * 1000;
             
+            console.log(`🏃 [DailyGoals] Speed goal progress: ${goal.title}, Response: ${questionData.responseTimeMs}ms, Threshold: ${thresholdMs}ms`);
+            
             if (questionData.responseTimeMs <= thresholdMs) {
               if (goal.subType === 'streak_speed') {
                 // Track consecutive fast answers
                 goal.speedStreak = (goal.speedStreak || 0) + 1;
+                console.log(`⚡ [DailyGoals] Streak speed goal progress: ${goal.speedStreak}/${goal.target}`);
                 if (goal.speedStreak >= goal.target) {
                   goal.current = goal.target;
                   goal.progress = 100;
@@ -492,14 +532,17 @@ class DailyGoalsService {
                 // Track total fast answers
                 goal.current = Math.min(goal.current + 1, goal.target);
                 goal.progress = (goal.current / goal.target) * 100;
+                console.log(`⚡ [DailyGoals] Quick answers goal progress: ${goal.current}/${goal.target} (${Math.round(goal.progress)}%)`);
               }
             } else if (goal.subType === 'streak_speed') {
               // Reset streak if answer wasn't fast enough
               goal.speedStreak = 0;
+              console.log(`❌ [DailyGoals] Streak speed goal reset: too slow`);
             }
           } else if (!questionData.isCorrect && goal.subType === 'streak_speed') {
             // Reset streak on incorrect answer
             goal.speedStreak = 0;
+            console.log(`❌ [DailyGoals] Streak speed goal reset: incorrect answer`);
           }
           break;
       }
@@ -737,6 +780,64 @@ class DailyGoalsService {
     this.goals = [];
     this.isInitialized = false;
     await this.initialize();
+    this.notifyListeners();
+    console.log('✅ [DailyGoals] Goals force regenerated');
+  }
+
+  // Add method to test different difficulty distributions
+  async testDifficultyDistribution(): Promise<void> {
+    console.log('🧪 [DailyGoals] Testing difficulty distribution over multiple generations:');
+    const distributions: string[] = [];
+    
+    for (let i = 0; i < 10; i++) {
+      // Temporarily clear storage to force regeneration
+      await AsyncStorage.removeItem('@BrainBites:dailyGoals');
+      await AsyncStorage.removeItem('@BrainBites:lastGoalReset');
+      
+      // Generate new goals
+      const testGoals = await this.generateDailyGoals();
+      const regularGoals = testGoals.filter(g => !g.honorBased && !g.isSpecial);
+      
+      const dist = regularGoals.map(g => `${g.type}:${g.difficulty}`).join(', ');
+      distributions.push(dist);
+      console.log(`Generation ${i + 1}: ${dist}`);
+    }
+    
+    console.log('🧪 [DailyGoals] Distribution test complete');
+    
+    // Restore normal goals
+    await this.forceRegenerateGoals();
+  }
+
+  // Add midnight reset functionality
+  async checkAndResetAtMidnight(): Promise<void> {
+    const today = getTorontoDateString(); // This function doesn't take parameters
+    
+    const lastReset = await AsyncStorage.getItem('@BrainBites:lastGoalReset');
+    
+    if (lastReset !== today) {
+      console.log('🌙 Midnight reset triggered - Goals and daily stats will be reset');
+      
+      // Reset all goals including accuracy
+      this.goals = await this.generateDailyGoals();
+      
+      // Reset accuracy tracking in EnhancedScoreService
+      await EnhancedScoreService.resetDailyStats();
+      
+      await AsyncStorage.setItem('@BrainBites:lastGoalReset', today);
+      await this.saveGoals();
+      this.notifyListeners();
+      
+      console.log('✅ Midnight reset completed');
+    }
+  }
+
+  private async saveGoals(): Promise<void> {
+    try {
+      await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(this.goals));
+    } catch (error) {
+      console.error('❌ [DailyGoals] Failed to save goals:', error);
+    }
   }
 }
 

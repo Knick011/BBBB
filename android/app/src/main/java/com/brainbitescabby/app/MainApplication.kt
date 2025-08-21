@@ -1,4 +1,4 @@
-package com.brainbites
+package com.brainbitescabby.app
 
 import android.app.Application
 import android.app.Activity
@@ -15,11 +15,11 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.soloader.OpenSourceMergedSoMapping
 import com.facebook.soloader.SoLoader
-import com.brainbites.timer.ScreenTimePackage
-import com.brainbites.timer.ScreenTimeReceiver
-import com.brainbites.timer.ScreenTimeService
-import com.brainbites.timer.DailyScoreCarryoverPackage
-import com.brainbites.modules.BrainBitesPackage
+import com.brainbitescabby.app.timer.ScreenTimePackage
+import com.brainbitescabby.app.timer.ScreenTimeReceiver
+import com.brainbitescabby.app.timer.ScreenTimeService
+import com.brainbitescabby.app.timer.DailyScoreCarryoverPackage
+import com.brainbitescabby.app.modules.BrainBitesPackage
 
 class MainApplication : Application(), ReactApplication {
 

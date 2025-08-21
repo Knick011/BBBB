@@ -1,9 +1,9 @@
-package com.brainbites.timer
+package com.brainbitescabby.app.timer
 
 import android.content.Context
 import android.os.SystemClock
 import android.util.Log
-import com.brainbites.timer.storage.ScreenTimeStorage
+import com.brainbitescabby.app.timer.storage.ScreenTimeStorage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

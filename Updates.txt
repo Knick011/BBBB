@@ -1,229 +1,89 @@
-// Updated renderStreakFlow function in HomeScreen.tsx
-// Replace the existing renderStreakFlow function with this:
+# BrainBites App - Complete Fix Solutions
 
-const renderStreakFlow = () => {
-  const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-  const today = new Date().getDay();
-  const mondayFirst = [(today + 6) % 7]; // Convert to Monday-first
-  
-  // State to track if today is completed
-  const [todayCompleted, setTodayCompleted] = useState(false);
-  
-  // Check if any daily goal has been completed (claimed) today
-  useEffect(() => {
-    const checkTodayCompletion = async () => {
-      try {
-        const todayString = new Date().toDateString();
-        
-        // Check the daily goal day streak data from DailyGoalsService
-        const lastCompletedDay = await AsyncStorage.getItem('@BrainBites:lastDailyGoalDay');
-        const dayStreak = await AsyncStorage.getItem('@BrainBites:dailyGoalDayStreak');
-        
-        // Format today as YYYY-MM-DD to match the service format
-        const todayFormatted = new Date().toISOString().split('T')[0];
-        
-        // Check if today has been completed
-        const isCompleted = lastCompletedDay === todayFormatted;
-        setTodayCompleted(isCompleted);
-        
-        // Also check claimed rewards for non-honor goals
-        const goalsData = await AsyncStorage.getItem('@BrainBites:liveGameStore:claimedRewards');
-        const claimedRewards = goalsData ? JSON.parse(goalsData) : {};
-        
-        // Check if any non-honor goals were claimed today
-        const todaysClaims = Object.entries(claimedRewards).filter(([goalId, claimDate]) => {
-          if (typeof claimDate === 'string') {
-            return new Date(claimDate).toDateString() === todayString;
-          }
-          return false;
-        });
-        
-        // Filter out honor goals (they don't count for streak)
-        const nonHonorClaims = todaysClaims.filter(([goalId]) => 
-          !goalId.includes('honor') && !goalId.includes('stretch') && !goalId.includes('read') && !goalId.includes('walk')
-        );
-        
-        if (nonHonorClaims.length > 0 || isCompleted) {
-          setTodayCompleted(true);
-          console.log('✅ Today marked as completed for daily streak');
-        }
-      } catch (error) {
-        console.error('Error checking today completion:', error);
-      }
-    };
-    
-    checkTodayCompletion();
-    
-    // Re-check when screen gains focus
-    const unsubscribe = navigation.addListener('focus', checkTodayCompletion);
-    return unsubscribe;
-  }, [navigation]);
-  
-  // Listen for daily goal completion events
-  useEffect(() => {
-    const eventEmitter = new (require('react-native').NativeEventEmitter)();
-    
-    const dailyGoalListener = eventEmitter.addListener('dailyGoalDayCompleted', () => {
-      console.log('📅 Daily goal day completed event received');
-      setTodayCompleted(true);
-    });
-    
-    const claimListener = eventEmitter.addListener('dailyGoalClaimed', () => {
-      console.log('🎯 Daily goal claimed event received');
-      // Re-check completion status
-      const checkCompletion = async () => {
-        const todayFormatted = new Date().toISOString().split('T')[0];
-        const lastCompletedDay = await AsyncStorage.getItem('@BrainBites:lastDailyGoalDay');
-        if (lastCompletedDay === todayFormatted) {
-          setTodayCompleted(true);
-        }
-      };
-      checkCompletion();
-    });
-    
-    return () => {
-      dailyGoalListener.remove();
-      claimListener.remove();
-    };
-  }, []);
-  
-  return (
-    <View style={styles.streakContainer}>
-      <Text style={styles.streakTitle}>Daily Goals Streak</Text>
-      <View style={styles.weekFlow}>
-        {days.map((day, index) => {
-          const isToday = index === mondayFirst[0];
-          const isPast = index < mondayFirst[0];
-          const isCompleted = isPast || (isToday && todayCompleted);
-          
-          return (
-            <View key={index} style={styles.dayItem}>
-              <View style={[
-                styles.dayCircle,
-                isToday && styles.todayCircle,
-                isCompleted && styles.completedCircle,
-              ]}>
-                {isCompleted ? (
-                  <Icon name="check" size={16} color="#FFFFFF" />
-                ) : (
-                  <Text style={[
-                    styles.dayText,
-                    isToday && styles.todayText,
-                  ]}>
-                    {day}
-                  </Text>
-                )}
-              </View>
-              {isToday && todayCompleted && (
-                <Text style={styles.todayCompletedText}>✨ Done!</Text>
-              )}
-            </View>
-          );
-        })}
-      </View>
-      {dailyStreak > 0 && (
-        <Text style={styles.streakCount}>
-          🔥 {dailyStreak} day streak!
-        </Text>
-      )}
-    </View>
-  );
-};
+## 1. Enhanced Hourly Milestones with Mascot Personality
 
-// Add these to the ScreenTimeService.kt file
+### Issue
+The hourly milestones feel more like reminders than warnings and need to be more engaging with mascot personality.
 
-// In companion object, add:
-private const val KEY_LAST_HOUR_NOTIFIED = "last_hour_notified"
-private var lastHourNotified = 0
+### Solution
 
-// In onCreate(), add after loadSavedData():
-lastHourNotified = sharedPrefs.getInt(KEY_LAST_HOUR_NOTIFIED, 0)
+#### Update `HybridTimerService.ts`
 
-// In updateTimer() function, add this after updating todayScreenTimeSeconds:
-private fun updateTimer() {
-    try {
-        val now = System.currentTimeMillis()
-        val deltaMs = now - lastTickTime
-        lastTickTime = now
-        
-        // ... existing midnight detection code ...
-        
-        // Update timers based on conditions
-        val deltaSecs = (deltaMs / 1000.0).toInt()
-        if (deltaSecs > 0) {
-            val isScreenLocked = keyguardManager.isKeyguardLocked
-            val isScreenOn = powerManager.isInteractive
-            
-            if (isAppInForeground && !isScreenLocked && isScreenOn) {
-                // Increment screen time
-                todayScreenTimeSeconds += deltaSecs
-                sharedPrefs.edit()
-                    .putInt(KEY_TODAY_SCREEN_TIME, todayScreenTimeSeconds)
-                    .apply()
-                
-                // Check for hourly milestone
-                checkHourlyMilestone()
-                
-                // Decrement remaining time or increment overtime
-                if (remainingTimeSeconds > 0) {
-                    remainingTimeSeconds = maxOf(0, remainingTimeSeconds - deltaSecs)
-                    sharedPrefs.edit()
-                        .putInt(KEY_REMAINING_TIME, remainingTimeSeconds)
-                        .apply()
-                    
-                    // Check warnings
-                    when (remainingTimeSeconds) {
-                        300 -> showLowTimeNotification(5) // 5 minutes
-                        60 -> showLowTimeNotification(1)  // 1 minute
-                        0 -> handleTimeExpired()
-                    }
-                } else if (remainingTimeSeconds <= 0) {
-                    // Resume paused overtime if applicable
-                    if (overtimePaused && overtimePausedAt > 0) {
-                        overtimeSeconds = overtimePausedAt
-                        overtimePaused = false
-                        overtimePausedAt = 0
-                        sharedPrefs.edit()
-                            .putBoolean("overtime_paused", false)
-                            .remove("overtime_paused_at")
-                            .apply()
-                        Log.d(TAG, "Resuming overtime at ${overtimeSeconds}s")
-                    }
-                    
-                    // Increment overtime if not paused
-                    if (!overtimePaused) {
-                        overtimeSeconds++
-                        sharedPrefs.edit()
-                            .putInt(KEY_OVERTIME, overtimeSeconds)
-                            .apply()
-                    }
-                }
-            }
-        }
-        
-        // ... rest of existing code ...
-    } catch (e: Exception) {
-        Log.e(TAG, "❌ Error in updateTimer", e)
-    }
+```typescript
+// src/services/HybridTimerService.ts
+
+// Update the getHourlyMessages method with more mascot personality
+private getHourlyMessages(hours: number, timeString: string): string[] {
+  switch (hours) {
+    case 1:
+      return [
+        `😲 Whoa! You just hit your FIRST HOUR of screentime! Maybe it's time for a quick break? 🌿`,
+        `🎯 One hour already?! Time flies when you're... staring at screens! Consider a stretch? 🤸`,
+        `⏰ HOUR ONE COMPLETE! Your eyes are sending you a message: "We need a break!" 👀`,
+        `🚨 Attention! ${timeString} of screentime achieved! Your brain says: "Fresh air sounds nice!" 🌳`
+      ];
+    case 2:
+      return [
+        `😰 TWO HOURS! CaBBy is getting worried! Your screen time is at ${timeString}! Break time? 🥺`,
+        `🔥 Double hour alert! ${timeString} on screen! Your body is begging for movement! 🏃`,
+        `😵 Two hours down! That's ${timeString} of pixels! Time to look at something real? 🌍`,
+        `⚠️ WARNING: ${timeString} of screentime! Even I need breaks, and I'm digital! 💭`
+      ];
+    case 3:
+      return [
+        `😱 THREE HOURS?! CaBBy is seriously concerned! ${timeString} is A LOT! Please take a break! 🆘`,
+        `🚨🚨 CRITICAL: ${timeString} on screen! Your eyes are crying for mercy! 😭`,
+        `💀 Three hour milestone! That's ${timeString} of blue light! Nature misses you! 🌲`,
+        `🔴 RED ALERT: ${timeString} of screentime! Even robots need maintenance breaks! 🤖`
+      ];
+    case 4:
+      return [
+        `😨😨 FOUR HOURS!! CaBBy is PANICKING! ${timeString} is too much! PLEASE REST NOW! 🛑`,
+        `🚨🔥 EMERGENCY: ${timeString} on screens! Your health matters more than this! 💚`,
+        `☠️ Four hours... ${timeString} of screentime... CaBBy is very disappointed... 😔`,
+        `⛔ STOP! ${timeString} is excessive! Time for a REAL break, not a scroll break! 🚶`
+      ];
+    case 5:
+      return [
+        `😵‍💫 FIVE HOURS?!? CaBBy is LOSING IT! ${timeString}!! This is an intervention!! 🚑`,
+        `🆘🆘🆘 MAYDAY! ${timeString} of screentime! Your future self will thank you for stopping! 🙏`,
+        `💔 Five hours... CaBBy's heart is breaking... ${timeString} is harmful! Please stop! 😢`,
+        `🔴🔴🔴 CRITICAL OVERLOAD: ${timeString}! Even I'm getting dizzy from all this screen time! 🌀`
+      ];
+    default: // 6+ hours
+      return [
+        `😭😭😭 ${hours} HOURS?! CaBBy has given up hope... ${timeString} is digital addiction territory! 📵`,
+        `💀💀💀 ${timeString} of screentime... CaBBy is filing a missing person report for your real life! 👮`,
+        `🏳️ CaBBy surrenders... ${hours} hours (${timeString}) is beyond intervention... You win, screens... 📱`,
+        `⚰️ RIP healthy habits. Cause of death: ${timeString} of screentime. CaBBy will miss you... 🪦`
+      ];
+  }
 }
 
-// Add this new function to check for hourly milestones:
-private fun checkHourlyMilestone() {
-    val currentHours = todayScreenTimeSeconds / 3600
-    
-    // Check if we've crossed an hour boundary
-    if (currentHours > lastHourNotified) {
-        lastHourNotified = currentHours
-        sharedPrefs.edit()
-            .putInt(KEY_LAST_HOUR_NOTIFIED, lastHourNotified)
-            .apply()
-        
-        // Show hourly notification
-        showHourlyScreenTimeNotification(currentHours)
-    }
+// Update break suggestions to be more urgent
+private getBreakSuggestion(hours: number): string {
+  switch(hours) {
+    case 1:
+      return '\n\n💭 CaBBy suggests: Maybe look out the window for 30 seconds?';
+    case 2:
+      return '\n\n😟 CaBBy insists: Your eyes REALLY need a 5-minute break! Please?';
+    case 3:
+      return '\n\n😰 CaBBy begs: PLEASE take a 10-minute walk! Your body needs it!';
+    case 4:
+      return '\n\n😱 CaBBy demands: STOP NOW! Take at least 15 minutes away from screens!';
+    case 5:
+      return '\n\n🆘 CaBBy screams: THIS IS NOT HEALTHY! Take a 30-minute break IMMEDIATELY!';
+    default:
+      return '\n\n💀 CaBBy has fainted from shock. Even virtual mascots have limits...';
+  }
 }
+```
 
-// Add this new function to show hourly notifications:
+#### Update Android `ScreenTimeService.kt`
+
+```kotlin
+// android/app/src/main/java/com/brainbites/timer/ScreenTimeService.kt
+
 private fun showHourlyScreenTimeNotification(hours: Int) {
     try {
         val totalMinutes = todayScreenTimeSeconds / 60
@@ -238,765 +98,834 @@ private fun showHourlyScreenTimeNotification(hours: Int) {
         
         val messages = when (hours) {
             1 -> arrayOf(
-                "Whoa! You've spent an hour on your screen today! 📱",
-                "One hour milestone reached! Your screentime: $timeString ⏰",
-                "Hour mark! You've been on screen for $timeString today 🕐"
+                "😲 Whoa! You just hit your FIRST HOUR of screentime! Maybe it's time for a quick break? 🌿",
+                "🎯 One hour already?! Time flies when you're... staring at screens! Consider a stretch? 🤸",
+                "⏰ HOUR ONE COMPLETE! Your eyes are sending you a message: \"We need a break!\" 👀"
             )
             2 -> arrayOf(
-                "Two hours and counting! Screentime: $timeString 📊",
-                "Double hour alert! You're at $timeString today ⏰⏰",
-                "2 hour checkpoint! Total today: $timeString 🎯"
+                "😰 TWO HOURS! CaBBy is getting worried! Your screen time is at $timeString! Break time? 🥺",
+                "🔥 Double hour alert! $timeString on screen! Your body is begging for movement! 🏃",
+                "⚠️ WARNING: $timeString of screentime! Even I need breaks, and I'm digital! 💭"
             )
             3 -> arrayOf(
-                "Three hours reached! Consider a break? Screentime: $timeString 🌟",
-                "Triple hour milestone! You're at $timeString ⏰⏰⏰",
-                "3 hours on screen! Maybe time for a stretch? Total: $timeString 🤸"
+                "😱 THREE HOURS?! CaBBy is seriously concerned! $timeString is A LOT! Please take a break! 🆘",
+                "🚨🚨 CRITICAL: $timeString on screen! Your eyes are crying for mercy! 😭",
+                "🔴 RED ALERT: $timeString of screentime! Even robots need maintenance breaks! 🤖"
             )
             4 -> arrayOf(
-                "Four hours of screentime! You're at $timeString 📈",
-                "Quad hour alert! Total screentime: $timeString ⏰⏰⏰⏰",
-                "4 hour mark reached! Consider some offline time? Total: $timeString 🌳"
+                "😨😨 FOUR HOURS!! CaBBy is PANICKING! $timeString is too much! PLEASE REST NOW! 🛑",
+                "🚨🔥 EMERGENCY: $timeString on screens! Your health matters more than this! 💚",
+                "⛔ STOP! $timeString is excessive! Time for a REAL break, not a scroll break! 🚶"
+            )
+            5 -> arrayOf(
+                "😵‍💫 FIVE HOURS?!? CaBBy is LOSING IT! $timeString!! This is an intervention!! 🚑",
+                "🆘🆘🆘 MAYDAY! $timeString of screentime! Your future self will thank you for stopping! 🙏",
+                "🔴🔴🔴 CRITICAL OVERLOAD: $timeString! Even I'm getting dizzy from all this screen time! 🌀"
             )
             else -> arrayOf(
-                "Screentime milestone: $hours hours! Total today: $timeString 📊",
-                "$hours hour alert! You've spent $timeString on screen ⏰",
-                "Hour $hours reached! Your screentime is now $timeString 📱"
+                "😭😭😭 $hours HOURS?! CaBBy has given up hope... $timeString is digital addiction territory! 📵",
+                "💀💀💀 $timeString of screentime... CaBBy is filing a missing person report for your real life! 👮",
+                "⚰️ RIP healthy habits. Cause of death: $timeString of screentime. CaBBy will miss you... 🪦"
             )
         }
         
         val message = messages.random()
         
-        // Add emoji suggestions for breaks
+        // More urgent break suggestions
         val breakSuggestion = when {
-            hours >= 3 -> "\n\n💡 Tip: How about a quick walk or stretch?"
-            hours >= 2 -> "\n\n👀 Remember to rest your eyes!"
-            else -> ""
+            hours == 1 -> "\n\n💭 CaBBy suggests: Maybe look out the window for 30 seconds?"
+            hours == 2 -> "\n\n😟 CaBBy insists: Your eyes REALLY need a 5-minute break! Please?"
+            hours == 3 -> "\n\n😰 CaBBy begs: PLEASE take a 10-minute walk! Your body needs it!"
+            hours == 4 -> "\n\n😱 CaBBy demands: STOP NOW! Take at least 15 minutes away from screens!"
+            hours >= 5 -> "\n\n🆘 CaBBy screams: THIS IS NOT HEALTHY! Take a 30-minute break IMMEDIATELY!"
+            else -> "\n\n💀 CaBBy has fainted from shock. Even virtual mascots have limits..."
         }
         
         val notification = NotificationCompat.Builder(this, ALERT_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("📱 Screentime Milestone!")
+            .setContentTitle("⚠️ SCREENTIME ALERT from CaBBy!")
             .setContentText(message)
             .setStyle(NotificationCompat.BigTextStyle()
                 .bigText(message + breakSuggestion))
+            .setPriority(NotificationCompat.PRIORITY_MAX) // Maximum priority for warnings
+            .setAutoCancel(true)
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
+            .setVibrate(longArrayOf(0, 500, 200, 500)) // Double vibration for urgency
+            .build()
+        
+        val notificationId = 5000 + hours
+        notificationManagerCompat.notify(notificationId, notification)
+    } catch (e: Exception) {
+        Log.e(TAG, "Failed to show hourly notification", e)
+    }
+}
+```
+
+## 2. Fix Daily Flow Streak Counter
+
+### Issue
+The daily flow element is not properly registering the number of days the streak is going on.
+
+### Solution
+
+#### Update `HomeScreen.tsx`
+
+```typescript
+// src/screens/HomeScreen.tsx
+
+const renderStreakFlow = () => {
+  const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  const today = new Date().getDay();
+  const mondayFirst = (today + 6) % 7; // Convert to Monday-first
+  
+  // State for tracking the actual streak count
+  const [dailyStreakCount, setDailyStreakCount] = useState(0);
+  const [todayCompleted, setTodayCompleted] = useState(false);
+  
+  useEffect(() => {
+    const loadStreakData = async () => {
+      try {
+        // Load the actual streak count from DailyGoalsService
+        const streakData = await AsyncStorage.getItem('@BrainBites:dailyGoalDayStreak');
+        const streakCount = streakData ? parseInt(streakData, 10) : 0;
+        setDailyStreakCount(streakCount);
+        
+        // Check if today's goal is completed
+        const today = new Date().toISOString().split('T')[0];
+        const lastCompleted = await AsyncStorage.getItem('@BrainBites:dailyGoalDayLast');
+        setTodayCompleted(lastCompleted === today);
+        
+        // Update week history based on streak
+        const newWeekHistory = [...weekHistory];
+        for (let i = 0; i < 7; i++) {
+          if (i < mondayFirst) {
+            // Past days - check if they were part of the streak
+            const daysAgo = mondayFirst - i;
+            newWeekHistory[i] = daysAgo <= streakCount;
+          } else if (i === mondayFirst) {
+            // Today
+            newWeekHistory[i] = todayCompleted;
+          } else {
+            // Future days
+            newWeekHistory[i] = false;
+          }
+        }
+        setWeekHistory(newWeekHistory);
+      } catch (error) {
+        console.error('Error loading streak data:', error);
+      }
+    };
+    
+    loadStreakData();
+    
+    // Listen for daily goal completion events
+    const handleGoalCompleted = () => {
+      loadStreakData(); // Reload when a goal is completed
+    };
+    
+    DeviceEventEmitter.addListener('dailyGoalDayCompleted', handleGoalCompleted);
+    DeviceEventEmitter.addListener('dailyGoalClaimed', handleGoalCompleted);
+    
+    return () => {
+      DeviceEventEmitter.removeListener('dailyGoalDayCompleted', handleGoalCompleted);
+      DeviceEventEmitter.removeListener('dailyGoalClaimed', handleGoalCompleted);
+    };
+  }, [mondayFirst]);
+  
+  return (
+    <LinearGradient
+      colors={["#FFF1E0", "#FFE6C6"]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={styles.streakContainer}
+    >
+      <View style={styles.flowHeader}>
+        <View style={styles.flowTitleRow}>
+          <Icon name="calendar-check-outline" size={22} color={theme.colors.primary} />
+          <Text style={styles.streakTitle}>Daily Flow</Text>
+        </View>
+        <View style={styles.flowBadge}>
+          <Icon name="water" size={14} color="#FFFFFF" />
+          <Text style={styles.flowBadgeText}>{dailyStreakCount}d</Text>
+        </View>
+      </View>
+      <Text style={styles.flowSubtitle}>Finish a goal daily to keep your flow alive</Text>
+      <View style={styles.weekFlow}>
+        {days.map((day, index) => {
+          const isToday = index === mondayFirst;
+          const dayCompleted = weekHistory[index];
+          const isPast = index < mondayFirst;
+          const isMissed = isPast && !dayCompleted;
+          
+          return (
+            <View key={index} style={styles.dayItem}>
+              <View style={[
+                styles.dayCircle,
+                isToday && styles.todayCircle,
+                dayCompleted && styles.completedCircle,
+                isMissed && styles.missedCircle,
+              ]}>
+                {dayCompleted ? (
+                  isToday ? (
+                    <Text style={styles.doneText}>✨</Text>
+                  ) : (
+                    <Icon name="check" size={16} color="#FFFFFF" />
+                  )
+                ) : isMissed ? (
+                  <Icon name="close" size={16} color="#FF6B6B" />
+                ) : null}
+              </View>
+              <Text style={[
+                styles.dayLabel,
+                isToday && styles.todayLabel,
+              ]}>{day}</Text>
+              {isToday && todayCompleted && (
+                <Text style={styles.todayDoneText}>Done!</Text>
+              )}
+            </View>
+          );
+        })}
+      </View>
+    </LinearGradient>
+  );
+};
+```
+
+## 3. Fix Accuracy Goal NaN Issues
+
+### Issue
+Accuracy goal shows NaN/xx and is not being reset at midnight.
+
+### Solution
+
+#### Update `DailyGoalsService.ts`
+
+```typescript
+// src/services/DailyGoalsService.ts
+
+async updateProgress(questionData: {
+  isCorrect: boolean;
+  difficulty: 'easy' | 'medium' | 'hard';
+  category?: string;
+  currentStreak: number;
+  todayAccuracy: number;
+  todayQuestions: number;
+  responseTimeMs?: number;
+}): Promise<void> {
+  if (!this.isInitialized) {
+    await this.initialize();
+  }
+
+  let hasChanges = false;
+
+  for (const goal of this.goals) {
+    if (goal.completed || goal.honorBased) continue;
+
+    const oldProgress = goal.progress;
+
+    switch (goal.type) {
+      case 'accuracy':
+        // Fix NaN issues by ensuring we have valid numbers
+        if (questionData.todayQuestions > 0 && goal.questionsRequired) {
+          if (questionData.todayQuestions >= goal.questionsRequired) {
+            // Calculate accuracy safely
+            const accuracy = isNaN(questionData.todayAccuracy) ? 0 : questionData.todayAccuracy;
+            goal.current = Math.round(accuracy);
+            goal.progress = goal.current >= goal.target ? 100 : (goal.current / goal.target) * 100;
+            goal.questionsAnswered = questionData.todayQuestions;
+          } else {
+            // Not enough questions yet
+            goal.current = 0;
+            goal.progress = 0;
+            goal.questionsAnswered = questionData.todayQuestions;
+          }
+        } else {
+          // No questions answered yet
+          goal.current = 0;
+          goal.progress = 0;
+          goal.questionsAnswered = 0;
+        }
+        break;
+      
+      // ... other cases
+    }
+
+    // Check if goal is completed
+    if (!goal.completed && goal.progress >= 100) {
+      goal.completed = true;
+      console.log(`🎉 Goal completed: ${goal.title}`);
+      
+      if (!goal.honorBased && !goal.isSpecial) {
+        await this.registerDailyGoalDayCompletion();
+      }
+    }
+
+    if (goal.progress !== oldProgress) {
+      hasChanges = true;
+    }
+  }
+
+  if (hasChanges) {
+    await this.saveGoals();
+    this.notifyListeners();
+  }
+}
+
+// Add midnight reset functionality
+async checkAndResetAtMidnight(): Promise<void> {
+  const now = new Date();
+  const today = this.getTorontoDateString(now);
+  
+  const lastReset = await AsyncStorage.getItem(this.LAST_RESET_KEY);
+  
+  if (lastReset !== today) {
+    console.log('🌙 Midnight reset triggered');
+    
+    // Reset all goals including accuracy
+    this.goals = await this.generateDailyGoals();
+    
+    // Reset accuracy tracking in EnhancedScoreService
+    const { EnhancedScoreService } = require('./EnhancedScoreService');
+    await EnhancedScoreService.resetDailyStats();
+    
+    await AsyncStorage.setItem(this.LAST_RESET_KEY, today);
+    await this.saveGoals();
+    this.notifyListeners();
+  }
+}
+```
+
+#### Update `EnhancedScoreService.ts`
+
+```typescript
+// src/services/EnhancedScoreService.ts
+
+async resetDailyStats(): Promise<void> {
+  this.todayStats = {
+    totalQuestions: 0,
+    correctAnswers: 0,
+    totalScore: 0,
+    bestStreak: 0,
+    startTime: Date.now()
+  };
+  
+  this.dailyScore = 0;
+  this.currentStreak = 0;
+  this.highestStreak = 0;
+  
+  await this.saveAllData();
+  console.log('✅ Daily stats reset for new day');
+}
+
+getScoreInfo(): ScoreInfo {
+  // Fix NaN issues in accuracy calculation
+  const accuracy = this.todayStats.totalQuestions > 0 
+    ? Math.round((this.todayStats.correctAnswers / this.todayStats.totalQuestions) * 100)
+    : 0; // Return 0 instead of NaN when no questions answered
+  
+  return {
+    dailyScore: this.dailyScore,
+    totalScore: this.totalScore,
+    currentStreak: this.currentStreak,
+    highestStreak: this.highestStreak,
+    streakLevel: this.streakLevel,
+    totalQuestions: this.totalQuestionsAnswered,
+    correctAnswers: this.totalCorrectAnswers,
+    accuracy: isNaN(accuracy) ? 0 : accuracy, // Additional NaN check
+    questionsToday: this.todayStats.totalQuestions,
+    bestStreakToday: this.todayStats.bestStreak
+  };
+}
+```
+
+## 4. Fix Morning Notification
+
+### Issue
+Morning notification is not being sent at the specified time.
+
+### Solution
+
+#### Create/Update Native Android Module `NotificationModule.kt`
+
+```kotlin
+// android/app/src/main/java/com/brainbites/modules/NotificationModule.kt
+
+package com.brainbites.modules
+
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.os.Build
+import com.facebook.react.bridge.*
+import java.util.Calendar
+
+class NotificationModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+    
+    override fun getName() = "NotificationModule"
+    
+    @ReactMethod
+    fun scheduleMorningReminder(hour: Int, minute: Int, promise: Promise) {
+        try {
+            val context = reactApplicationContext
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            
+            // Create intent for the notification
+            val intent = Intent(context, MorningNotificationReceiver::class.java).apply {
+                putExtra("title", "🌅 Time to Start Your Day Right!")
+                putExtra("body", "Let's begin with some brain-boosting questions! Complete a daily goal to keep your streak alive.")
+            }
+            
+            val pendingIntent = PendingIntent.getBroadcast(
+                context,
+                MORNING_NOTIFICATION_ID,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            
+            // Set up the time
+            val calendar = Calendar.getInstance().apply {
+                timeInMillis = System.currentTimeMillis()
+                set(Calendar.HOUR_OF_DAY, hour)
+                set(Calendar.MINUTE, minute)
+                set(Calendar.SECOND, 0)
+                
+                // If the time has already passed today, schedule for tomorrow
+                if (timeInMillis <= System.currentTimeMillis()) {
+                    add(Calendar.DAY_OF_MONTH, 1)
+                }
+            }
+            
+            // Cancel any existing alarm
+            alarmManager.cancel(pendingIntent)
+            
+            // Schedule the new alarm
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                alarmManager.setExactAndAllowWhileIdle(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    pendingIntent
+                )
+            } else {
+                alarmManager.setExact(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    pendingIntent
+                )
+            }
+            
+            // Schedule repeating daily
+            alarmManager.setRepeating(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                AlarmManager.INTERVAL_DAY,
+                pendingIntent
+            )
+            
+            promise.resolve(true)
+        } catch (e: Exception) {
+            promise.reject("SCHEDULE_ERROR", e.message, e)
+        }
+    }
+    
+    @ReactMethod
+    fun cancelMorningReminder(promise: Promise) {
+        try {
+            val context = reactApplicationContext
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            
+            val intent = Intent(context, MorningNotificationReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(
+                context,
+                MORNING_NOTIFICATION_ID,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            
+            alarmManager.cancel(pendingIntent)
+            promise.resolve(true)
+        } catch (e: Exception) {
+            promise.reject("CANCEL_ERROR", e.message, e)
+        }
+    }
+    
+    companion object {
+        private const val MORNING_NOTIFICATION_ID = 9001
+    }
+}
+```
+
+#### Create Broadcast Receiver `MorningNotificationReceiver.kt`
+
+```kotlin
+// android/app/src/main/java/com/brainbites/receivers/MorningNotificationReceiver.kt
+
+package com.brainbites.receivers
+
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import com.brainbites.MainActivity
+import com.brainbites.R
+
+class MorningNotificationReceiver : BroadcastReceiver() {
+    
+    override fun onReceive(context: Context, intent: Intent) {
+        val title = intent.getStringExtra("title") ?: "Good Morning!"
+        val body = intent.getStringExtra("body") ?: "Time to start your day with BrainBites!"
+        
+        showNotification(context, title, body)
+    }
+    
+    private fun showNotification(context: Context, title: String, body: String) {
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        
+        // Create notification channel for Android O and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                CHANNEL_ID,
+                "Morning Reminders",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                description = "Daily morning reminders to complete goals"
+                enableVibration(true)
+                enableLights(true)
+            }
+            notificationManager.createNotificationChannel(channel)
+        }
+        
+        // Create intent to open app
+        val mainIntent = Intent(context, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            mainIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+        
+        // Build notification
+        val notification = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_notification)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setContentIntent(pendingIntent)
             .build()
         
-        // Use unique ID for each hour
-        val notificationId = 5000 + hours
-        notificationManagerCompat.notify(notificationId, notification)
-        
-        Log.d(TAG, "📱 Hourly screentime notification shown for hour $hours")
-    } catch (e: Exception) {
-        Log.e(TAG, "❌ Failed to show hourly notification", e)
+        notificationManager.notify(NOTIFICATION_ID, notification)
     }
-}
-
-// In loadSavedData(), add:
-private fun loadSavedData() {
-    val today = android.text.format.DateFormat.format("yyyy-MM-dd", java.util.Date()).toString()
-    val lastSaveDate = sharedPrefs.getString(KEY_LAST_SAVE_DATE, today)
-    
-    if (lastSaveDate != today) {
-        // Reset daily data
-        todayScreenTimeSeconds = 0
-        overtimeSeconds = 0
-        overtimePaused = false
-        overtimePausedAt = 0
-        lastHourNotified = 0  // Reset hourly notification counter
-        sharedPrefs.edit()
-            .putInt(KEY_TODAY_SCREEN_TIME, 0)
-            .putInt(KEY_OVERTIME, 0)
-            .putBoolean("overtime_paused", false)
-            .remove("overtime_paused_at")
-            .putInt(KEY_LAST_HOUR_NOTIFIED, 0)
-            .putString(KEY_LAST_SAVE_DATE, today)
-            .apply()
-        Log.d(TAG, "📅 New day detected - daily counters reset")
-    } else {
-        remainingTimeSeconds = sharedPrefs.getInt(KEY_REMAINING_TIME, 0)
-        todayScreenTimeSeconds = sharedPrefs.getInt(KEY_TODAY_SCREEN_TIME, 0)
-        overtimeSeconds = sharedPrefs.getInt(KEY_OVERTIME, 0)
-        overtimePaused = sharedPrefs.getBoolean("overtime_paused", false)
-        overtimePausedAt = sharedPrefs.getInt("overtime_paused_at", 0)
-        lastHourNotified = sharedPrefs.getInt(KEY_LAST_HOUR_NOTIFIED, 0)
-    }
-    
-    Log.d(TAG, "📊 Loaded data - Remaining: ${remainingTimeSeconds}s, Today: ${todayScreenTimeSeconds}s, Overtime: ${overtimeSeconds}s, LastHour: $lastHourNotified")
-}
-
-// Add these to HybridTimerService.ts
-
-import { NotificationService } from './NotificationService';
-
-class HybridTimerService {
-  // ... existing properties ...
-  
-  private lastHourNotified: number = 0;
-  private readonly HOURLY_NOTIFICATION_KEY = '@BrainBites:lastHourNotified';
-  
-  // ... existing code ...
-  
-  /**
-   * Initialize the timer service
-   */
-  async initialize(): Promise<void> {
-    console.log('🔄 [HybridTimer] Initializing hybrid timer service');
-    
-    // Load saved timer state
-    await this.loadTimerState();
-    
-    // Load last hour notified
-    const savedHour = await AsyncStorage.getItem(this.HOURLY_NOTIFICATION_KEY);
-    this.lastHourNotified = savedHour ? parseInt(savedHour, 10) : 0;
-    
-    // Check if we need to reset for new day
-    const today = new Date().toDateString();
-    const lastReset = await AsyncStorage.getItem('@BrainBites:lastTimerReset');
-    if (lastReset !== today) {
-      this.lastHourNotified = 0;
-      await AsyncStorage.setItem(this.HOURLY_NOTIFICATION_KEY, '0');
-      await AsyncStorage.setItem('@BrainBites:lastTimerReset', today);
-    }
-    
-    // ... rest of existing initialization ...
-  }
-  
-  /**
-   * Handle timer update from native service
-   */
-  private async handleTimerUpdate(data: TimerData): Promise<void> {
-    console.log('⏱️ [HybridTimer] Timer update received:', {
-      timeLeft: data.remainingTime,
-      screenTime: data.todayScreenTime,
-      overtime: data.overtime,
-      tracking: data.isTracking
-    });
-    
-    // Store previous values for comparison
-    const previousScreenTime = this.screenTime;
-    
-    // Update local state
-    this.timeLeft = data.remainingTime;
-    this.screenTime = data.todayScreenTime;
-    this.overtime = data.overtime;
-    this.overtimePaused = false; // Will be updated if needed
-    
-    // Check for hourly milestone
-    await this.checkHourlyMilestone();
-    
-    // Update current data and notify listeners
-    this.updateCurrentData();
-    
-    // Save state periodically (every 30 seconds)
-    if (this.screenTime % 30 === 0 && this.screenTime !== previousScreenTime) {
-      await this.saveTimerState();
-    }
-  }
-  
-  /**
-   * Check if we've reached an hourly milestone
-   */
-  private async checkHourlyMilestone(): Promise<void> {
-    const currentHours = Math.floor(this.screenTime / 3600);
-    
-    // Check if we've crossed an hour boundary
-    if (currentHours > this.lastHourNotified && currentHours > 0) {
-      this.lastHourNotified = currentHours;
-      await AsyncStorage.setItem(this.HOURLY_NOTIFICATION_KEY, currentHours.toString());
-      
-      // Show hourly notification
-      await this.showHourlyNotification(currentHours);
-    }
-  }
-  
-  /**
-   * Show hourly screentime notification
-   */
-  private async showHourlyNotification(hours: number): Promise<void> {
-    try {
-      const totalMinutes = Math.floor(this.screenTime / 60);
-      const displayHours = Math.floor(totalMinutes / 60);
-      const displayMinutes = totalMinutes % 60;
-      
-      const timeString = displayHours > 0 
-        ? `${displayHours}h ${displayMinutes}m`
-        : `${displayMinutes}m`;
-      
-      // Create varied messages based on hour
-      const messages = this.getHourlyMessages(hours, timeString);
-      const message = messages[Math.floor(Math.random() * messages.length)];
-      
-      // Add break suggestions for longer sessions
-      const breakSuggestion = this.getBreakSuggestion(hours);
-      
-      // Use NotificationService to show the notification
-      await NotificationService.showLocalNotification({
-        title: '📱 Screentime Milestone!',
-        body: message + breakSuggestion,
-        data: { 
-          type: 'hourly_screentime',
-          hours: hours,
-          totalTime: this.screenTime
-        }
-      });
-      
-      console.log(`📱 [HybridTimer] Hourly notification shown for hour ${hours}`);
-      
-      // Also emit event for UI updates
-      const eventEmitter = new (require('react-native').NativeEventEmitter)();
-      eventEmitter.emit('hourlyScreentime', {
-        hours,
-        totalSeconds: this.screenTime,
-        timeString
-      });
-      
-    } catch (error) {
-      console.error('❌ [HybridTimer] Failed to show hourly notification:', error);
-    }
-  }
-  
-  /**
-   * Get varied messages for hourly notifications
-   */
-  private getHourlyMessages(hours: number, timeString: string): string[] {
-    switch (hours) {
-      case 1:
-        return [
-          `Whoa! You've spent an hour on your screen today! 📱`,
-          `One hour milestone reached! Your screentime: ${timeString} ⏰`,
-          `Hour mark! You've been on screen for ${timeString} today 🕐`,
-          `First hour complete! Total screentime: ${timeString} 📊`
-        ];
-      case 2:
-        return [
-          `Two hours and counting! Screentime: ${timeString} 📊`,
-          `Double hour alert! You're at ${timeString} today ⏰⏰`,
-          `2 hour checkpoint! Total today: ${timeString} 🎯`,
-          `Two hours on screen! Current total: ${timeString} 📱`
-        ];
-      case 3:
-        return [
-          `Three hours reached! Consider a break? Screentime: ${timeString} 🌟`,
-          `Triple hour milestone! You're at ${timeString} ⏰⏰⏰`,
-          `3 hours on screen! Maybe time for a stretch? Total: ${timeString} 🤸`,
-          `Third hour complete! Your screentime: ${timeString} 📈`
-        ];
-      case 4:
-        return [
-          `Four hours of screentime! You're at ${timeString} 📈`,
-          `Quad hour alert! Total screentime: ${timeString} ⏰⏰⏰⏰`,
-          `4 hour mark reached! Consider some offline time? Total: ${timeString} 🌳`,
-          `Four hours logged! Current total: ${timeString} 📱`
-        ];
-      case 5:
-        return [
-          `Five hours on screen! You're at ${timeString} 📊`,
-          `5 hour milestone! Total today: ${timeString} ⏰`,
-          `Fifth hour reached! Maybe time for a longer break? Total: ${timeString} 🌿`,
-          `Five hours of screentime logged: ${timeString} 📱`
-        ];
-      default:
-        return [
-          `Screentime milestone: ${hours} hours! Total today: ${timeString} 📊`,
-          `${hours} hour alert! You've spent ${timeString} on screen ⏰`,
-          `Hour ${hours} reached! Your screentime is now ${timeString} 📱`,
-          `${hours} hours logged! Current total: ${timeString} 📈`
-        ];
-    }
-  }
-  
-  /**
-   * Get break suggestion based on hours
-   */
-  private getBreakSuggestion(hours: number): string {
-    if (hours >= 5) {
-      return '\n\n🚶 Suggestion: Time for a proper break! How about a 15-minute walk?';
-    } else if (hours >= 4) {
-      return '\n\n🌳 Tip: Consider some offline time to recharge!';
-    } else if (hours >= 3) {
-      return '\n\n💡 Tip: How about a quick walk or stretch?';
-    } else if (hours >= 2) {
-      return '\n\n👀 Remember to rest your eyes!';
-    }
-    return '';
-  }
-  
-  /**
-   * Get current timer state
-   */
-  getCurrentState(): TimerState {
-    const hoursSpent = Math.floor(this.screenTime / 3600);
-    const minutesSpent = Math.floor((this.screenTime % 3600) / 60);
-    
-    return {
-      timeLeft: this.timeLeft,
-      screenTime: this.screenTime,
-      overtime: this.overtime,
-      overtimePaused: this.overtimePaused,
-      isTracking: this.currentData?.isTracking || false,
-      isAppForeground: this.currentData?.isAppForeground || false,
-      lastUpdate: Date.now(),
-      todayHours: hoursSpent,
-      todayMinutes: minutesSpent,
-      lastHourNotified: this.lastHourNotified
-    };
-  }
-  
-  // ... rest of existing code ...
-}
-
-// Add these methods to NotificationService.ts
-
-interface LocalNotificationData {
-  title: string;
-  body: string;
-  data?: any;
-  playSound?: boolean;
-  vibrate?: boolean;
-}
-
-class NotificationServiceClass {
-  // ... existing code ...
-  
-  /**
-   * Show a local notification immediately
-   */
-  async showLocalNotification(notification: LocalNotificationData): Promise<void> {
-    try {
-      if (!this.isInitialized || !this.settings.enabled) {
-        console.log('⚠️ Notifications not enabled, skipping');
-        return;
-      }
-      
-      const { NativeModules, Platform } = require('react-native');
-      
-      if (Platform.OS === 'android') {
-        const { NotificationModule } = NativeModules;
-        
-        if (NotificationModule && NotificationModule.showNotification) {
-          await NotificationModule.showNotification({
-            title: notification.title,
-            message: notification.body,
-            playSound: notification.playSound !== false,
-            vibrate: notification.vibrate !== false,
-            data: notification.data || {}
-          });
-          
-          console.log('✅ Local notification shown:', notification.title);
-        }
-      } else if (Platform.OS === 'ios') {
-        // iOS implementation using PushNotificationIOS
-        const PushNotificationIOS = require('@react-native-community/push-notification-ios').default;
-        
-        PushNotificationIOS.addNotificationRequest({
-          id: `local_${Date.now()}`,
-          title: notification.title,
-          body: notification.body,
-          sound: notification.playSound !== false ? 'default' : undefined,
-          userInfo: notification.data || {}
-        });
-        
-        console.log('✅ iOS local notification shown:', notification.title);
-      }
-    } catch (error) {
-      console.error('❌ Failed to show local notification:', error);
-    }
-  }
-  
-  /**
-   * Schedule hourly screentime reminders
-   */
-  async scheduleHourlyReminders(enabled: boolean = true): Promise<void> {
-    try {
-      const key = '@BrainBites:hourlyRemindersEnabled';
-      
-      if (enabled) {
-        await AsyncStorage.setItem(key, 'true');
-        console.log('✅ Hourly screentime reminders enabled');
-      } else {
-        await AsyncStorage.setItem(key, 'false');
-        console.log('⏸️ Hourly screentime reminders disabled');
-      }
-      
-      // Update settings
-      this.settings = {
-        ...this.settings,
-        hourlyReminders: enabled
-      };
-      await this.saveSettings();
-      
-    } catch (error) {
-      console.error('❌ Failed to update hourly reminder settings:', error);
-    }
-  }
-  
-  /**
-   * Check if hourly reminders are enabled
-   */
-  async areHourlyRemindersEnabled(): Promise<boolean> {
-    try {
-      const enabled = await AsyncStorage.getItem('@BrainBites:hourlyRemindersEnabled');
-      return enabled !== 'false'; // Default to true
-    } catch (error) {
-      console.error('Error checking hourly reminder status:', error);
-      return true; // Default to enabled
-    }
-  }
-  
-  /**
-   * Show a motivational notification for break time
-   */
-  async showBreakNotification(hours: number): Promise<void> {
-    const breakMessages = [
-      '🧘 Time for a mindful break! Your eyes will thank you.',
-      '🚶 How about a quick walk? Movement boosts brain power!',
-      '💧 Hydration check! When did you last have some water?',
-      '🌟 Great job tracking your time! Now for a quick refresh.',
-      '🎯 You\'re doing great! A short break will help you focus better.'
-    ];
-    
-    const message = breakMessages[Math.floor(Math.random() * breakMessages.length)];
-    
-    await this.showLocalNotification({
-      title: '⏰ Break Time Suggestion',
-      body: message,
-      data: { type: 'break_reminder', hours }
-    });
-  }
-  
-  /**
-   * Clear specific notification by ID (for Android)
-   */
-  async clearNotification(notificationId: number): Promise<void> {
-    try {
-      const { NativeModules, Platform } = require('react-native');
-      
-      if (Platform.OS === 'android') {
-        const { NotificationModule } = NativeModules;
-        if (NotificationModule && NotificationModule.clearNotification) {
-          await NotificationModule.clearNotification(notificationId);
-        }
-      }
-    } catch (error) {
-      console.error('Failed to clear notification:', error);
-    }
-  }
-  
-  // ... existing code ...
-}
-
-// Create this file at: android/app/src/main/java/com/brainbites/modules/NotificationModule.kt
-
-package com.brainbites.modules
-
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.os.Build
-import androidx.core.app.NotificationCompat
-import com.facebook.react.bridge.*
-import com.brainbites.MainActivity
-import com.brainbites.R
-import org.json.JSONObject
-
-class NotificationModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
     
     companion object {
-        private const val CHANNEL_ID = "brainbites_general"
-        private const val CHANNEL_NAME = "BrainBites Notifications"
-        private const val CHANNEL_DESC = "General notifications from BrainBites"
-    }
-    
-    override fun getName(): String = "NotificationModule"
-    
-    init {
-        createNotificationChannel()
-    }
-    
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val importance = NotificationManager.IMPORTANCE_HIGH
-            val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance).apply {
-                description = CHANNEL_DESC
-                enableVibration(true)
-                enableLights(true)
-            }
-            
-            val notificationManager = reactApplicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
-    
-    @ReactMethod
-    fun showNotification(params: ReadableMap, promise: Promise) {
-        try {
-            val title = params.getString("title") ?: "BrainBites"
-            val message = params.getString("message") ?: ""
-            val playSound = if (params.hasKey("playSound")) params.getBoolean("playSound") else true
-            val vibrate = if (params.hasKey("vibrate")) params.getBoolean("vibrate") else true
-            val data = if (params.hasKey("data")) params.getMap("data") else null
-            
-            // Create intent for notification tap
-            val intent = Intent(reactApplicationContext, MainActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                
-                // Add data to intent
-                data?.let { map ->
-                    val iterator = map.keySetIterator()
-                    while (iterator.hasNextKey()) {
-                        val key = iterator.nextKey()
-                        when (val value = map.getDynamic(key)) {
-                            is ReadableType -> {
-                                when (value.type) {
-                                    ReadableType.String -> putExtra(key, map.getString(key))
-                                    ReadableType.Number -> putExtra(key, map.getDouble(key))
-                                    ReadableType.Boolean -> putExtra(key, map.getBoolean(key))
-                                    else -> {}
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            val pendingIntent = PendingIntent.getActivity(
-                reactApplicationContext,
-                System.currentTimeMillis().toInt(),
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
-            
-            // Build notification
-            val notificationBuilder = NotificationCompat.Builder(reactApplicationContext, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setStyle(NotificationCompat.BigTextStyle().bigText(message))
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent)
-            
-            // Set sound and vibration
-            if (playSound || vibrate) {
-                var defaults = 0
-                if (playSound) defaults = defaults or NotificationCompat.DEFAULT_SOUND
-                if (vibrate) defaults = defaults or NotificationCompat.DEFAULT_VIBRATE
-                notificationBuilder.setDefaults(defaults)
-            }
-            
-            // Show notification
-            val notificationManager = reactApplicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            val notificationId = System.currentTimeMillis().toInt()
-            notificationManager.notify(notificationId, notificationBuilder.build())
-            
-            promise.resolve(notificationId)
-        } catch (e: Exception) {
-            promise.reject("NOTIFICATION_ERROR", "Failed to show notification: ${e.message}", e)
-        }
-    }
-    
-    @ReactMethod
-    fun clearNotification(notificationId: Int, promise: Promise) {
-        try {
-            val notificationManager = reactApplicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.cancel(notificationId)
-            promise.resolve(true)
-        } catch (e: Exception) {
-            promise.reject("CLEAR_ERROR", "Failed to clear notification: ${e.message}", e)
-        }
-    }
-    
-    @ReactMethod
-    fun clearAllNotifications(promise: Promise) {
-        try {
-            val notificationManager = reactApplicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.cancelAll()
-            promise.resolve(true)
-        } catch (e: Exception) {
-            promise.reject("CLEAR_ALL_ERROR", "Failed to clear all notifications: ${e.message}", e)
-        }
+        private const val CHANNEL_ID = "morning_reminder_channel"
+        private const val NOTIFICATION_ID = 9001
     }
 }
-
-// Add this to your MainApplication.kt or create a new ReactPackage
-
-// In MainApplication.kt, add this ReactPackage:
-
-package com.brainbites
-
-import com.facebook.react.ReactPackage
-import com.facebook.react.bridge.NativeModule
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.uimanager.ViewManager
-import com.brainbites.modules.NotificationModule
-
-class BrainBitesPackage : ReactPackage {
-    override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
-        return listOf(
-            NotificationModule(reactContext)
-            // Add other native modules here
-        )
-    }
-    
-    override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
-        return emptyList()
-    }
-}
-
-// Then in MainApplication's getPackages() method, add:
-override protected fun getPackages(): List<ReactPackage> {
-    return PackageList(this).packages.apply {
-        // Add your custom package
-        add(BrainBitesPackage())
-    }
-}// Add this to your MainApplication.kt or create a new ReactPackage
-
-// In MainApplication.kt, add this ReactPackage:
-
-package com.brainbites
-
-import com.facebook.react.ReactPackage
-import com.facebook.react.bridge.NativeModule
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.uimanager.ViewManager
-import com.brainbites.modules.NotificationModule
-
-class BrainBitesPackage : ReactPackage {
-    override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
-        return listOf(
-            NotificationModule(reactContext)
-            // Add other native modules here
-        )
-    }
-    
-    override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
-        return emptyList()
-    }
-}
-
-// Then in MainApplication's getPackages() method, add:
-override protected fun getPackages(): List<ReactPackage> {
-    return PackageList(this).packages.apply {
-        // Add your custom package
-        add(BrainBitesPackage())
-    }
-}
-
-# Implementation Summary: Daily Streak Fix & Hourly Screentime Notifications
-
-## 1. Daily Streak Fix
-
-### Problem
-The daily streak element in the home screen wasn't properly registering when daily goals were completed and claimed.
-
-### Solution
-Updated the `renderStreakFlow` function in `HomeScreen.tsx` to:
-- Properly check AsyncStorage for the daily goal completion status
-- Listen to `dailyGoalDayCompleted` and `dailyGoalClaimed` events
-- Compare dates in the correct format (YYYY-MM-DD)
-- Update the UI immediately when a goal is completed
-- Show "✨ Done!" text when today's goal is achieved
-
-### Key Changes:
-- Added state tracking for `todayCompleted`
-- Added event listeners for daily goal events
-- Fixed date comparison logic
-- Added visual feedback for completed days
-
-## 2. Hourly Screentime Notifications
-
-### Android Implementation (ScreenTimeService.kt)
-
-Added the following features:
-- **Hour tracking**: Tracks the last hour for which a notification was sent
-- **Hourly check**: `checkHourlyMilestone()` function that triggers when crossing hour boundaries
-- **Varied messages**: Different notification messages for each hour (1-5+ hours)
-- **Break suggestions**: Helpful tips based on screentime duration
-- **Persistence**: Saves `lastHourNotified` to SharedPreferences
-
-### TypeScript Implementation (HybridTimerService.ts)
-
-Added:
-- **Hour milestone detection**: Checks when screentime crosses hour boundaries
-- **Notification dispatch**: Uses NotificationService to show local notifications
-- **Message variety**: Array of different messages for each hour
-- **Break suggestions**: Progressive suggestions based on hours spent
-- **Event emission**: Emits `hourlyScreentime` events for UI updates
-
-### NotificationService Enhancement
-
-Added new methods:
-- `showLocalNotification()`: Shows immediate local notifications
-- `scheduleHourlyReminders()`: Enable/disable hourly reminders
-- `areHourlyRemindersEnabled()`: Check reminder status
-- `showBreakNotification()`: Special break time notifications
-- `clearNotification()`: Clear specific notifications
-
-### Native Android Module (NotificationModule.kt)
-
-Created a new native module for better notification control:
-- Proper notification channel setup
-- Support for custom data in notifications
-- Sound and vibration control
-- Notification clearing capabilities
-
-## 3. Installation Steps
-
-1. **Update HomeScreen.tsx**: Replace the `renderStreakFlow` function with the updated version
-2. **Update ScreenTimeService.kt**: Add the hourly notification logic
-3. **Update HybridTimerService.ts**: Add hourly milestone checking
-4. **Update NotificationService.ts**: Add new notification methods
-5. **Create NotificationModule.kt**: Add the native Android module
-6. **Register the module**: Update MainApplication.kt to register the new module
-
-## 4. Features Added
-
-### Daily Streak
-- ✅ Properly detects when daily goals are completed
-- ✅ Shows "Done!" indicator for today when goal is achieved
-- ✅ Updates immediately upon goal claim
-- ✅ Distinguishes between regular and honor goals (honor goals don't count for streak)
-
-### Hourly Notifications
-- ✅ Sends notification every hour of screentime
-- ✅ Varied messages to keep it interesting
-- ✅ Progressive break suggestions (eyes rest at 2h, walk at 3h, etc.)
-- ✅ Tracks across app restarts
-- ✅ Resets daily at midnight
-- ✅ Shows total screentime in notification (e.g., "2h 34m")
-
-## 5. Testing Checklist
-
-- [ ] Complete a daily goal and verify streak updates
-- [ ] Check that honor goals don't trigger streak updates
-- [ ] Verify "Done!" appears on today's circle when goal completed
-- [ ] Use app for 1 hour and verify notification appears
-- [ ] Check that hourly notifications show correct time
-- [ ] Verify notifications have varied messages
-- [ ] Test that notifications reset at midnight
-- [ ] Confirm break suggestions appear at appropriate times
-
-## 6. Configuration
-
-The hourly notifications are enabled by default but can be toggled:
-```typescript
-// Enable hourly notifications
-await NotificationService.scheduleHourlyReminders(true);
-
-// Disable hourly notifications
-await NotificationService.scheduleHourlyReminders(false);
 ```
 
-## 7. Important Notes
+#### Update AndroidManifest.xml
 
-- The daily streak only counts **regular** daily goals (not honor-based goals)
-- Hourly notifications will only trigger while the app is actively tracking screentime
-- Notifications reset at midnight based on device local time
-- All notification texts are family-friendly and encouraging
-- Break suggestions become more prominent as screentime increases
+```xml
+<!-- Add these permissions and receiver to AndroidManifest.xml -->
+
+<uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+<uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+<!-- Inside <application> tag -->
+<receiver 
+    android:name=".receivers.MorningNotificationReceiver"
+    android:enabled="true"
+    android:exported="false" />
+
+<receiver 
+    android:name=".receivers.BootReceiver"
+    android:enabled="true"
+    android:exported="true"
+    android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+    <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+    </intent-filter>
+</receiver>
+```
+
+## 5. Firebase Analytics - Current Events & Recommendations
+
+### Current Events Being Tracked
+
+Based on your `AnalyticsManager.ts`, these events are currently being tracked:
+
+1. **Session Events**
+   - `app_open` - When app starts
+   - `session_started` - New session begins
+   - `session_ended` - Session ends with duration
+
+2. **Quiz Events**
+   - `quiz_started` - Category and difficulty
+   - `question_answered` - Correct/incorrect, time taken, streak, score earned
+   - `quiz_completed` - Total questions, score, accuracy, time
+
+3. **User Progress**
+   - `level_up` - New level reached
+   - `achievement_unlocked` - Achievement earned
+   - `streak_milestone` - Streak milestones (5, 10, 20, etc.)
+
+4. **Daily Goals**
+   - `daily_goal_completed` - Goal type, value, reward
+   - `goal_claimed` - When reward is claimed
+
+5. **Screen Views**
+   - `screen_viewed` - Track screen navigation
+
+6. **Ad Events**
+   - `ad_impression` - Ad shown
+   - `earn_virtual_currency` - Ad reward earned
+
+### Recommended Additional Analytics
+
+```typescript
+// src/services/FirebaseAnalyticsService.ts
+
+// Add these new tracking methods to FirebaseAnalyticsService
+
+class FirebaseAnalyticsService {
+  // ... existing code ...
+
+  // CRITICAL USER BEHAVIOR EVENTS
+  
+  async logUserEngagement(engagementData: {
+    sessionLength: number;
+    questionsAnswered: number;
+    streakMaintained: boolean;
+    goalsCompleted: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('user_engagement', engagementData);
+  }
+
+  async logRetention(data: {
+    daysSinceInstall: number;
+    consecutiveDays: number;
+    returningUser: boolean;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('retention_check', data);
+  }
+
+  async logChurnRisk(data: {
+    daysInactive: number;
+    lastActivity: string;
+    streakLost: boolean;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('churn_risk_detected', data);
+  }
+
+  // MONETIZATION EVENTS
+  
+  async logPurchaseIntent(data: {
+    itemType: string;
+    pricePoint: number;
+    abandonedCart: boolean;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('purchase_intent', data);
+  }
+
+  async logSubscriptionStatus(data: {
+    status: 'trial' | 'active' | 'cancelled' | 'expired';
+    tier: string;
+    daysRemaining: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('subscription_status', data);
+  }
+
+  // FEATURE USAGE
+  
+  async logFeatureUsage(data: {
+    feature: string;
+    duration: number;
+    completed: boolean;
+    firstTime: boolean;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('feature_used', data);
+  }
+
+  async logTutorialProgress(data: {
+    step: number;
+    completed: boolean;
+    skipped: boolean;
+    timeSpent: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('tutorial_progress', data);
+  }
+
+  // PERFORMANCE METRICS
+  
+  async logAppPerformance(data: {
+    loadTime: number;
+    crashCount: number;
+    memoryUsage: number;
+    batteryDrain: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('app_performance', data);
+  }
+
+  async logErrorOccurred(data: {
+    errorType: string;
+    errorMessage: string;
+    screen: string;
+    severity: 'low' | 'medium' | 'high' | 'critical';
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('error_occurred', data);
+  }
+
+  // SOCIAL & SHARING
+  
+  async logSocialShare(data: {
+    platform: string;
+    contentType: string;
+    success: boolean;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('social_share', data);
+  }
+
+  async logReferral(data: {
+    source: string;
+    newUser: boolean;
+    rewardEarned: boolean;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('referral_tracked', data);
+  }
+
+  // NOTIFICATION EFFECTIVENESS
+  
+  async logNotificationInteraction(data: {
+    type: string;
+    action: 'opened' | 'dismissed' | 'ignored';
+    timeSinceSent: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('notification_interaction', data);
+  }
+
+  // CONTENT ENGAGEMENT
+  
+  async logQuestionQuality(data: {
+    questionId: string;
+    difficulty: string;
+    skipRate: number;
+    avgTimeToAnswer: number;
+    correctRate: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('question_quality', data);
+  }
+
+  async logCategoryPreference(data: {
+    category: string;
+    playCount: number;
+    avgScore: number;
+    preference: 'liked' | 'neutral' | 'disliked';
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('category_preference', data);
+  }
+
+  // A/B TESTING
+  
+  async logExperimentExposure(data: {
+    experimentId: string;
+    variant: string;
+    userId: string;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('experiment_exposure', data);
+  }
+
+  async logExperimentConversion(data: {
+    experimentId: string;
+    variant: string;
+    conversionType: string;
+    value: number;
+  }): Promise<void> {
+    this.analyticsManager.trackEvent('experiment_conversion', data);
+  }
+}
+```
+
+### Implementation Example
+
+```typescript
+// Example: Track user engagement on app foreground
+AppState.addEventListener('change', (nextAppState) => {
+  if (nextAppState === 'active') {
+    FirebaseAnalyticsService.logUserEngagement({
+      sessionLength: getCurrentSessionLength(),
+      questionsAnswered: getTodayQuestionCount(),
+      streakMaintained: isStreakActive(),
+      goalsCompleted: getCompletedGoalsCount()
+    });
+  }
+});
+
+// Example: Track feature usage
+const onDailyGoalsOpen = () => {
+  const startTime = Date.now();
+  
+  // When closing/leaving the screen
+  FirebaseAnalyticsService.logFeatureUsage({
+    feature: 'daily_goals',
+    duration: Date.now() - startTime,
+    completed: hasClaimedAnyGoal(),
+    firstTime: isFirstTimeUser()
+  });
+};
+
+// Example: Track notification effectiveness
+PushNotification.configure({
+  onNotification: (notification) => {
+    FirebaseAnalyticsService.logNotificationInteraction({
+      type: notification.data.type,
+      action: 'opened',
+      timeSinceSent: Date.now() - notification.sentTime
+    });
+  }
+});
+```
+
+## Testing Instructions
+
+1. **Test Hourly Notifications**
+   - Use the app for 1 hour continuously
+   - Verify increasingly urgent messages appear
+   - Check that CaBBy's personality shows through
+
+2. **Test Daily Streak Counter**
+   - Complete a daily goal
+   - Verify the streak number increments
+   - Check that "Done!" appears for today
+   - Verify it persists across app restarts
+
+3. **Test Accuracy Goal**
+   - Answer questions and check accuracy display
+   - Verify no NaN appears
+   - Let app run past midnight and verify reset
+
+4. **Test Morning Notification**
+   - Set a morning reminder time
+   - Close the app
+   - Verify notification arrives at set time
+   - Test across device restarts
+
+5. **Verify Analytics**
+   - Check Firebase Console for events
+   - Verify all listed events are being tracked
+   - Monitor user engagement metrics
+
+## Important Notes
+
+- The morning notification requires exact alarm permissions on Android 12+
+- The streak counter uses the device's local timezone
+- Hourly notifications reset at midnight local time
+- Analytics require Firebase to be properly configured in your project
+- Test on real devices for accurate notification behavior

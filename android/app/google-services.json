@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1089165314678:android:bb38e368be58e1e488ad57",
+        "mobilesdk_app_id": "1:1089165314678:android:5f69bb1e5adc0e0688ad57",
         "android_client_info": {
-          "package_name": "com.brainbites"
+          "package_name": "com.brainbitescabby.app"
         }
       },
       "oauth_client": [],

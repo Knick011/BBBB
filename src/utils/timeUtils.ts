@@ -31,12 +31,20 @@ export const formatClock = (seconds: number): string => {
 };
 
 /**
- * Returns a YYYY-MM-DD string for the current date in America/Toronto time.
+ * Returns a YYYY-MM-DD string for the current date in the user's local timezone.
+ * @deprecated Use getLocalDateString instead
  */
 export const getTorontoDateString = (): string => {
+  return getLocalDateString();
+};
+
+/**
+ * Returns a YYYY-MM-DD string for the current date in the user's local timezone.
+ */
+export const getLocalDateString = (): string => {
   try {
+    // Use user's local timezone instead of hardcoded Toronto
     const fmt = new Intl.DateTimeFormat('en-CA', {
-      timeZone: 'America/Toronto',
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
@@ -44,7 +52,7 @@ export const getTorontoDateString = (): string => {
     const [{ value: year }, , { value: month }, , { value: day }] = fmt.formatToParts(new Date());
     return `${year}-${month}-${day}`;
   } catch {
-    // Fallback to local date if Intl with timezone is unavailable
+    // Fallback to local date if Intl is unavailable
     const d = new Date();
     const y = d.getFullYear();
     const m = `${d.getMonth() + 1}`.padStart(2, '0');

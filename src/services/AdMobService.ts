@@ -15,16 +15,16 @@ import {
 } from 'react-native-google-mobile-ads';
 import { Platform } from 'react-native';
 
-// AdMob App IDs and Ad Unit IDs
+// AdMob App IDs and Ad Unit IDs - PRODUCTION
 const ADMOB_CONFIG = {
-  // Test IDs for development - Replace with your actual Ad Unit IDs for production
-  ANDROID_APP_ID: 'ca-app-pub-3940256099942544~3347511713', // Test App ID
-  IOS_APP_ID: 'ca-app-pub-3940256099942544~1458002511', // Test App ID
+  // Production App ID
+  ANDROID_APP_ID: 'ca-app-pub-7353957756801275~5242496423',
+  IOS_APP_ID: 'ca-app-pub-7353957756801275~5242496423', // Same for iOS
   
-  // Always use test IDs for safety during development
-  BANNER_AD_UNIT_ID: TestIds.BANNER,
-  INTERSTITIAL_AD_UNIT_ID: TestIds.INTERSTITIAL, 
-  REWARDED_AD_UNIT_ID: TestIds.REWARDED,
+  // Production ad IDs for Play Store launch
+  BANNER_AD_UNIT_ID: 'ca-app-pub-7353957756801275/3370462815',
+  INTERSTITIAL_AD_UNIT_ID: TestIds.INTERSTITIAL, // No interstitial provided yet
+  REWARDED_AD_UNIT_ID: 'ca-app-pub-7353957756801275/3777656920',
 };
 
 interface AdMobServiceState {

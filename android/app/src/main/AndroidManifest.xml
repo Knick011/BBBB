@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
       android:name=".MainApplication"
@@ -17,10 +20,10 @@
       android:allowBackup="false"
       android:theme="@style/AppTheme"
       android:supportsRtl="true">
-      <!-- Set a safe default. This will be overridden by debug manifest and should be updated for release builds. -->
+      <!-- Production AdMob App ID -->
       <meta-data
           android:name="com.google.android.gms.ads.APPLICATION_ID"
-          android:value="ca-app-pub-3940256099942544~3347511713"
+          android:value="ca-app-pub-7353957756801275~5242496423"
           tools:replace="android:value" />
       <activity
         android:name=".MainActivity"
@@ -38,7 +41,7 @@
 
       <!-- Timer Service -->
       <service
-        android:name="com.brainbites.timer.ScreenTimeService"
+        android:name="com.brainbitescabby.app.timer.ScreenTimeService"
         android:enabled="true"
         android:exported="false"
         android:foregroundServiceType="dataSync" />
@@ -47,7 +50,7 @@
 
       <!-- Screen Receiver -->
       <receiver
-        android:name="com.brainbites.timer.ScreenTimeReceiver"
+        android:name="com.brainbitescabby.app.timer.ScreenTimeReceiver"
         android:enabled="true"
         android:exported="false">
         <intent-filter android:priority="1000">
@@ -55,6 +58,23 @@
           <action android:name="android.intent.action.SCREEN_OFF" />
           <action android:name="android.intent.action.USER_PRESENT" />
         </intent-filter>
+      </receiver>
+
+      <!-- Morning Notification Receiver -->
+      <receiver 
+          android:name=".receivers.MorningNotificationReceiver"
+          android:enabled="true"
+          android:exported="false" />
+
+      <!-- Boot Receiver -->
+      <receiver 
+          android:name=".receivers.BootReceiver"
+          android:enabled="true"
+          android:exported="true"
+          android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+          <intent-filter>
+              <action android:name="android.intent.action.BOOT_COMPLETED" />
+          </intent-filter>
       </receiver>
 
     </application>

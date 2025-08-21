@@ -1,4 +1,4 @@
-package com.brainbites.permissions
+package com.brainbitescabby.app.permissions
 
 import android.Manifest
 import android.app.Activity

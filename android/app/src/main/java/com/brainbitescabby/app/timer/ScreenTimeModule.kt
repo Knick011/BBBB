@@ -1,4 +1,4 @@
-package com.brainbites.timer
+package com.brainbitescabby.app.timer
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -63,7 +63,7 @@ class ScreenTimeModule(reactContext: ReactApplicationContext) : ReactContextBase
         }
         
         try {
-            val filter = IntentFilter("com.brainbites.TIMER_UPDATE")
+            val filter = IntentFilter("com.brainbitescabby.app.TIMER_UPDATE")
             ContextCompat.registerReceiver(
                 reactApplicationContext, 
                 timerReceiver, 

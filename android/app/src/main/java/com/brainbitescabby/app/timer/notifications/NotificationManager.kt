@@ -1,4 +1,4 @@
-package com.brainbites.timer.notifications
+package com.brainbitescabby.app.timer.notifications
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -8,10 +8,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import com.brainbites.MainActivity
-import com.brainbites.R
-import com.brainbites.timer.TimerState
-import com.brainbites.timer.TimerStatus
+import com.brainbitescabby.app.MainActivity
+import com.brainbitescabby.app.R
+import com.brainbitescabby.app.timer.TimerState
+import com.brainbitescabby.app.timer.TimerStatus
 
 class BrainBitesNotificationManager private constructor(private val context: Context) {
     companion object {

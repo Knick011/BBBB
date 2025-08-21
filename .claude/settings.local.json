@@ -27,7 +27,24 @@
       "Bash(npm run tsc:*)",
       "Bash(npm start:*)",
       "Bash(java:*)",
-      "Bash(.gradlew.bat clean)"
+      "Bash(.gradlew.bat clean)",
+      "Bash(node:*)",
+      "Bash(npx eslint:*)",
+      "Bash(npx @react-native-community/cli generate-android-icons:*)",
+      "Bash(magick:*)",
+      "Bash(for:*)",
+      "Bash(do)",
+      "Bash(done)",
+      "Bash(where emulator)",
+      "Bash(keytool:*)",
+      "Bash(pkill:*)",
+      "Bash(npx @react-native-community/cli clean:*)",
+      "Bash(npm update:*)",
+      "Bash(.androidgradlew.bat:*)",
+      "Bash(./android/gradlew clean:*)",
+      "Bash(./android/gradlew:*)",
+      "Bash($env:NODE_OPTIONS=\"--max-old-space-size=8192\")",
+      "Bash(NODE_OPTIONS=\"--max-old-space-size=8192\" npx react-native start)"
     ],
     "deny": []
   }

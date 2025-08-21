@@ -1,4 +1,4 @@
-package com.brainbites.timer
+package com.brainbitescabby.app.timer
 
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule

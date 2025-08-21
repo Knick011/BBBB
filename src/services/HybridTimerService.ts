@@ -542,69 +542,73 @@ class HybridTimerService {
   }
 
   /**
-   * Get varied messages for hourly notifications
+   * Get varied messages for hourly notifications with CaBBy personality
    */
   private getHourlyMessages(hours: number, timeString: string): string[] {
     switch (hours) {
       case 1:
         return [
-          `Whoa! You've spent an hour on your screen today! 📱`,
-          `One hour milestone reached! Your screentime: ${timeString} ⏰`,
-          `Hour mark! You've been on screen for ${timeString} today 🕐`,
-          `First hour complete! Total screentime: ${timeString} 📊`
+          `😲 Whoa! You just hit your FIRST HOUR of screentime! Maybe it's time for a quick break? 🌿`,
+          `🎯 One hour already?! Time flies when you're... staring at screens! Consider a stretch? 🤸`,
+          `⏰ HOUR ONE COMPLETE! Your eyes are sending you a message: "We need a break!" 👀`,
+          `🚨 Attention! ${timeString} of screentime achieved! Your brain says: "Fresh air sounds nice!" 🌳`
         ];
       case 2:
         return [
-          `Two hours and counting! Screentime: ${timeString} 📊`,
-          `Double hour alert! You're at ${timeString} today ⏰⏰`,
-          `2 hour checkpoint! Total today: ${timeString} 🎯`,
-          `Two hours on screen! Current total: ${timeString} 📱`
+          `😰 TWO HOURS! CaBBy is getting worried! Your screen time is at ${timeString}! Break time? 🥺`,
+          `🔥 Double hour alert! ${timeString} on screen! Your body is begging for movement! 🏃`,
+          `😵 Two hours down! That's ${timeString} of pixels! Time to look at something real? 🌍`,
+          `⚠️ WARNING: ${timeString} of screentime! Even I need breaks, and I'm digital! 💭`
         ];
       case 3:
         return [
-          `Three hours reached! Consider a break? Screentime: ${timeString} 🌟`,
-          `Triple hour milestone! You're at ${timeString} ⏰⏰⏰`,
-          `3 hours on screen! Maybe time for a stretch? Total: ${timeString} 🤸`,
-          `Third hour complete! Your screentime: ${timeString} 📈`
+          `😱 THREE HOURS?! CaBBy is seriously concerned! ${timeString} is A LOT! Please take a break! 🆘`,
+          `🚨🚨 CRITICAL: ${timeString} on screen! Your eyes are crying for mercy! 😭`,
+          `💀 Three hour milestone! That's ${timeString} of blue light! Nature misses you! 🌲`,
+          `🔴 RED ALERT: ${timeString} of screentime! Even robots need maintenance breaks! 🤖`
         ];
       case 4:
         return [
-          `Four hours of screentime! You're at ${timeString} 📈`,
-          `Quad hour alert! Total screentime: ${timeString} ⏰⏰⏰⏰`,
-          `4 hour mark reached! Consider some offline time? Total: ${timeString} 🌳`,
-          `Four hours logged! Current total: ${timeString} 📱`
+          `😨😨 FOUR HOURS!! CaBBy is PANICKING! ${timeString} is too much! PLEASE REST NOW! 🛑`,
+          `🚨🔥 EMERGENCY: ${timeString} on screens! Your health matters more than this! 💚`,
+          `☠️ Four hours... ${timeString} of screentime... CaBBy is very disappointed... 😔`,
+          `⛔ STOP! ${timeString} is excessive! Time for a REAL break, not a scroll break! 🚶`
         ];
       case 5:
         return [
-          `Five hours on screen! You're at ${timeString} 📊`,
-          `5 hour milestone! Total today: ${timeString} ⏰`,
-          `Fifth hour reached! Maybe time for a longer break? Total: ${timeString} 🌿`,
-          `Five hours of screentime logged: ${timeString} 📱`
+          `😵‍💫 FIVE HOURS?!? CaBBy is LOSING IT! ${timeString}!! This is an intervention!! 🚑`,
+          `🆘🆘🆘 MAYDAY! ${timeString} of screentime! Your future self will thank you for stopping! 🙏`,
+          `💔 Five hours... CaBBy's heart is breaking... ${timeString} is harmful! Please stop! 😢`,
+          `🔴🔴🔴 CRITICAL OVERLOAD: ${timeString}! Even I'm getting dizzy from all this screen time! 🌀`
         ];
-      default:
+      default: // 6+ hours
         return [
-          `Screentime milestone: ${hours} hours! Total today: ${timeString} 📊`,
-          `${hours} hour alert! You've spent ${timeString} on screen ⏰`,
-          `Hour ${hours} reached! Your screentime is now ${timeString} 📱`,
-          `${hours} hours logged! Current total: ${timeString} 📈`
+          `😭😭😭 ${hours} HOURS?! CaBBy has given up hope... ${timeString} is digital addiction territory! 📵`,
+          `💀💀💀 ${timeString} of screentime... CaBBy is filing a missing person report for your real life! 👮`,
+          `🏳️ CaBBy surrenders... ${hours} hours (${timeString}) is beyond intervention... You win, screens... 📱`,
+          `⚰️ RIP healthy habits. Cause of death: ${timeString} of screentime. CaBBy will miss you... 🪦`
         ];
     }
   }
 
   /**
-   * Get break suggestion based on hours
+   * Get break suggestion based on hours with CaBBy personality
    */
   private getBreakSuggestion(hours: number): string {
-    if (hours >= 5) {
-      return '\n\n🚶 Suggestion: Time for a proper break! How about a 15-minute walk?';
-    } else if (hours >= 4) {
-      return '\n\n🌳 Tip: Consider some offline time to recharge!';
-    } else if (hours >= 3) {
-      return '\n\n💡 Tip: How about a quick walk or stretch?';
-    } else if (hours >= 2) {
-      return '\n\n👀 Remember to rest your eyes!';
+    switch(hours) {
+      case 1:
+        return '\n\n💭 CaBBy suggests: Maybe look out the window for 30 seconds?';
+      case 2:
+        return '\n\n😟 CaBBy insists: Your eyes REALLY need a 5-minute break! Please?';
+      case 3:
+        return '\n\n😰 CaBBy begs: PLEASE take a 10-minute walk! Your body needs it!';
+      case 4:
+        return '\n\n😱 CaBBy demands: STOP NOW! Take at least 15 minutes away from screens!';
+      case 5:
+        return '\n\n🆘 CaBBy screams: THIS IS NOT HEALTHY! Take a 30-minute break IMMEDIATELY!';
+      default:
+        return '\n\n💀 CaBBy has fainted from shock. Even virtual mascots have limits...';
     }
-    return '';
   }
 
   /**

@@ -215,11 +215,12 @@ class NotificationServiceClass {
         const hours = time.getHours();
         const minutes = time.getMinutes();
         
-        await NotificationModule.scheduleMorningReminder(hours, minutes, {
-          title: "🌅 Time to Start Your Day Right!",
-          body: "Let's begin with some brain-boosting questions! Complete a daily goal to keep your streak alive.",
-          data: { type: 'morning_reminder' }
-        });
+        await NotificationModule.scheduleMorningReminder(
+          hours, 
+          minutes, 
+          "🌅 Time to Start Your Day Right!",
+          "Let's begin with some brain-boosting questions! Complete a daily goal to keep your streak alive."
+        );
         
         console.log(`✅ Morning reminder scheduled for ${hours}:${minutes}`);
       }
@@ -235,9 +236,24 @@ class NotificationServiceClass {
       
       if (NotificationModule && NotificationModule.cancelMorningReminder) {
         await NotificationModule.cancelMorningReminder();
+        console.log('✅ Morning reminder cancelled');
       }
     } catch (error) {
       console.error('Failed to cancel morning reminder:', error);
+    }
+  }
+
+  async testMorningNotification() {
+    try {
+      const { NativeModules } = require('react-native');
+      const { NotificationModule } = NativeModules;
+      
+      if (NotificationModule && NotificationModule.testMorningNotification) {
+        await NotificationModule.testMorningNotification();
+        console.log('✅ Test notification sent');
+      }
+    } catch (error) {
+      console.error('Failed to test morning notification:', error);
     }
   }
 

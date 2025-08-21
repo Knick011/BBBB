@@ -134,6 +134,87 @@ const HomeScreen: React.FC = () => {
     
     loadStats();
   }, []);
+
+  // New state for consecutive daily flow tracking
+  const [consecutiveFlowDays, setConsecutiveFlowDays] = useState(0);
+  const [showFlowCelebration, setShowFlowCelebration] = useState(false);
+
+  // Load and calculate consecutive flow days
+  useEffect(() => {
+    const loadConsecutiveFlowDays = async () => {
+      try {
+        // Get today's date
+        const today = new Date().toISOString().split('T')[0];
+        
+        // Load the flow completion history
+        const flowHistoryData = await AsyncStorage.getItem('@BrainBites:flowCompletionHistory');
+        const flowHistory = flowHistoryData ? JSON.parse(flowHistoryData) : {};
+        
+        // Calculate consecutive days by going backwards from today
+        let consecutiveDays = 0;
+        let checkDate = new Date(today);
+        
+        // Check if today is completed
+        if (flowHistory[today]) {
+          consecutiveDays = 1;
+          checkDate.setDate(checkDate.getDate() - 1);
+          
+          // Go backwards checking previous days
+          while (true) {
+            const dateStr = checkDate.toISOString().split('T')[0];
+            if (flowHistory[dateStr]) {
+              consecutiveDays++;
+              checkDate.setDate(checkDate.getDate() - 1);
+            } else {
+              break;
+            }
+          }
+        }
+        
+        setConsecutiveFlowDays(consecutiveDays);
+        setDailyStreak(consecutiveDays); // Keep the old state in sync
+        console.log(`🌊 [HomeScreen] Consecutive flow days: ${consecutiveDays}`);
+      } catch (error) {
+        console.error('Error loading consecutive flow days:', error);
+      }
+    };
+
+    loadConsecutiveFlowDays();
+    
+    // Listen for daily goal completion events
+    const handleGoalCompleted = async () => {
+      const today = new Date().toISOString().split('T')[0];
+      
+      // Mark today as completed in flow history
+      try {
+        const flowHistoryData = await AsyncStorage.getItem('@BrainBites:flowCompletionHistory');
+        const flowHistory = flowHistoryData ? JSON.parse(flowHistoryData) : {};
+        
+        if (!flowHistory[today]) {
+          flowHistory[today] = true;
+          await AsyncStorage.setItem('@BrainBites:flowCompletionHistory', JSON.stringify(flowHistory));
+          
+          // Show celebration message
+          setShowFlowCelebration(true);
+          setTimeout(() => setShowFlowCelebration(false), 4000); // Show for 4 seconds
+        }
+        
+        // Recalculate consecutive days
+        loadConsecutiveFlowDays();
+      } catch (error) {
+        console.error('Error updating flow history:', error);
+      }
+    };
+    
+    const { DeviceEventEmitter } = require('react-native');
+    const dailyGoalListener = DeviceEventEmitter.addListener('dailyGoalDayCompleted', handleGoalCompleted);
+    const claimListener = DeviceEventEmitter.addListener('dailyGoalClaimed', handleGoalCompleted);
+    
+    return () => {
+      dailyGoalListener.remove();
+      claimListener.remove();
+    };
+  }, []);
   
   const [mascotType, setMascotType] = useState<MascotType>('happy');
   const [mascotMessage, setMascotMessage] = useState('');
@@ -234,22 +315,41 @@ const HomeScreen: React.FC = () => {
   useEffect(() => {
     const loadWeekHistory = async () => {
       try {
-        // Load the past 7 days history
+        // Load persistent week completion history
+        const weekHistoryData = await AsyncStorage.getItem('@BrainBites:weekCompletionHistory');
+        let storedWeekHistory = weekHistoryData ? JSON.parse(weekHistoryData) : {};
+        
         const history = [false, false, false, false, false, false, false];
         const today = new Date();
         
-        // Get the current day of week in Monday-first format
+        // Get the current week's Monday date
         const currentDayOfWeek = (today.getDay() + 6) % 7; // Convert Sunday=0 to Monday=0
+        const mondayDate = new Date(today);
+        mondayDate.setDate(today.getDate() - currentDayOfWeek);
+        const weekKey = mondayDate.toISOString().split('T')[0]; // Use Monday's date as week key
         
-        // Check each day of the week (Monday=0 to Sunday=6)
+        // Initialize week history if not exists
+        if (!storedWeekHistory[weekKey]) {
+          storedWeekHistory[weekKey] = [false, false, false, false, false, false, false];
+        }
+        
+        // Get the stored history for this week
+        const currentWeekHistory = storedWeekHistory[weekKey];
+        
+        // Check each day of the current week for NEW completions
         for (let i = 0; i < 7; i++) {
-          const checkDate = new Date(today);
-          const daysFromMonday = i - currentDayOfWeek; // Days from this Monday
-          checkDate.setDate(today.getDate() + daysFromMonday);
+          const checkDate = new Date(mondayDate);
+          checkDate.setDate(mondayDate.getDate() + i);
           const dateFormatted = checkDate.toISOString().split('T')[0];
           const dateString = checkDate.toDateString();
           
-          // Check if this day had a completed goal
+          // If already marked as completed in stored history, keep it completed
+          if (currentWeekHistory[i]) {
+            history[i] = true;
+            continue;
+          }
+          
+          // Check if this day had a completed goal (only if not already marked complete)
           const lastCompletedDay = await AsyncStorage.getItem('@BrainBites:lastDailyGoalDay');
           const goalsData = await AsyncStorage.getItem('@BrainBites:liveGameStore:claimedRewards');
           const claimedRewards = goalsData ? JSON.parse(goalsData) : {};
@@ -273,12 +373,19 @@ const HomeScreen: React.FC = () => {
           }
           
           history[i] = dayCompleted;
+          
+          // Update stored history if newly completed
+          if (dayCompleted && !currentWeekHistory[i]) {
+            currentWeekHistory[i] = true;
+            storedWeekHistory[weekKey] = currentWeekHistory;
+            await AsyncStorage.setItem('@BrainBites:weekCompletionHistory', JSON.stringify(storedWeekHistory));
+          }
         }
         
         setWeekHistory(history);
         
         // Set today's completion (current day index in Monday-first format)
-        const todayIndex = (today.getDay() + 6) % 7;
+        const todayIndex = currentDayOfWeek;
         setTodayCompleted(history[todayIndex]);
         
         if (history[todayIndex]) {
@@ -300,37 +407,79 @@ const HomeScreen: React.FC = () => {
   useEffect(() => {
     const eventEmitter = new (require('react-native').NativeEventEmitter)();
     
-    const dailyGoalListener = eventEmitter.addListener('dailyGoalDayCompleted', () => {
+    const dailyGoalListener = eventEmitter.addListener('dailyGoalDayCompleted', async () => {
       console.log('📅 Daily goal day completed event received');
       setTodayCompleted(true);
-      // Update week history at the correct index for today
-      setWeekHistory(prev => {
-        const newHistory = [...prev];
-        const today = new Date().getDay();
-        const mondayFirstIndex = (today + 6) % 7; // Convert to Monday-first
-        newHistory[mondayFirstIndex] = true;
-        return newHistory;
-      });
+      
+      // Update persistent week history
+      const today = new Date();
+      const currentDayOfWeek = (today.getDay() + 6) % 7; // Convert to Monday-first
+      const mondayDate = new Date(today);
+      mondayDate.setDate(today.getDate() - currentDayOfWeek);
+      const weekKey = mondayDate.toISOString().split('T')[0];
+      
+      try {
+        const weekHistoryData = await AsyncStorage.getItem('@BrainBites:weekCompletionHistory');
+        const storedWeekHistory = weekHistoryData ? JSON.parse(weekHistoryData) : {};
+        
+        if (!storedWeekHistory[weekKey]) {
+          storedWeekHistory[weekKey] = [false, false, false, false, false, false, false];
+        }
+        
+        // Mark today as completed
+        storedWeekHistory[weekKey][currentDayOfWeek] = true;
+        await AsyncStorage.setItem('@BrainBites:weekCompletionHistory', JSON.stringify(storedWeekHistory));
+        
+        // Update local state
+        setWeekHistory(prev => {
+          const newHistory = [...prev];
+          newHistory[currentDayOfWeek] = true;
+          return newHistory;
+        });
+      } catch (error) {
+        console.error('Error updating week history:', error);
+      }
     });
     
-    const claimListener = eventEmitter.addListener('dailyGoalClaimed', () => {
+    const claimListener = eventEmitter.addListener('dailyGoalClaimed', async () => {
       console.log('🎯 Daily goal claimed event received');
-      // Re-check completion status and update history
-      const checkCompletion = async () => {
-        const todayFormatted = new Date().toISOString().split('T')[0];
-        const lastCompletedDay = await AsyncStorage.getItem('@BrainBites:lastDailyGoalDay');
-        if (lastCompletedDay === todayFormatted) {
-          setTodayCompleted(true);
+      
+      // Re-check completion status and update persistent history
+      const todayFormatted = new Date().toISOString().split('T')[0];
+      const lastCompletedDay = await AsyncStorage.getItem('@BrainBites:lastDailyGoalDay');
+      
+      if (lastCompletedDay === todayFormatted) {
+        setTodayCompleted(true);
+        
+        // Update persistent week history
+        const today = new Date();
+        const currentDayOfWeek = (today.getDay() + 6) % 7; // Convert to Monday-first
+        const mondayDate = new Date(today);
+        mondayDate.setDate(today.getDate() - currentDayOfWeek);
+        const weekKey = mondayDate.toISOString().split('T')[0];
+        
+        try {
+          const weekHistoryData = await AsyncStorage.getItem('@BrainBites:weekCompletionHistory');
+          const storedWeekHistory = weekHistoryData ? JSON.parse(weekHistoryData) : {};
+          
+          if (!storedWeekHistory[weekKey]) {
+            storedWeekHistory[weekKey] = [false, false, false, false, false, false, false];
+          }
+          
+          // Mark today as completed
+          storedWeekHistory[weekKey][currentDayOfWeek] = true;
+          await AsyncStorage.setItem('@BrainBites:weekCompletionHistory', JSON.stringify(storedWeekHistory));
+          
+          // Update local state
           setWeekHistory(prev => {
             const newHistory = [...prev];
-            const today = new Date().getDay();
-            const mondayFirstIndex = (today + 6) % 7; // Convert to Monday-first
-            newHistory[mondayFirstIndex] = true;
+            newHistory[currentDayOfWeek] = true;
             return newHistory;
           });
+        } catch (error) {
+          console.error('Error updating week history:', error);
         }
-      };
-      checkCompletion();
+      }
     });
     
     return () => {
@@ -374,7 +523,20 @@ const HomeScreen: React.FC = () => {
       }
     };
     
+    // Check for daily reset at midnight
+    const checkDailyReset = async () => {
+      try {
+        // Import and check for midnight reset
+        const { default: DailyGoalsService } = await import('../services/DailyGoalsService');
+        await DailyGoalsService.checkAndResetAtMidnight();
+        console.log('✅ [HomeScreen] Daily reset check completed');
+      } catch (error) {
+        console.error('❌ [HomeScreen] Failed to check daily reset:', error);
+      }
+    };
+    
     initializeTimer();
+    checkDailyReset();
     
     Animated.parallel([
       Animated.timing(fadeAnim, {
@@ -592,17 +754,7 @@ const HomeScreen: React.FC = () => {
   const renderStreakFlow = () => {
     const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
     const today = new Date().getDay();
-    const mondayFirst = [(today + 6) % 7]; // Convert to Monday-first
-    
-    // Calculate current streak counting back from today only
-    let currentStreak = 0;
-    for (let i = mondayFirst[0]; i >= 0; i--) {
-      if (weekHistory[i]) {
-        currentStreak++;
-      } else {
-        break;
-      }
-    }
+    const mondayFirst = (today + 6) % 7; // Convert to Monday-first
     
     return (
       <LinearGradient
@@ -618,15 +770,25 @@ const HomeScreen: React.FC = () => {
           </View>
           <View style={styles.flowBadge}>
             <Icon name="water" size={14} color="#FFFFFF" />
-            <Text style={styles.flowBadgeText}>{Math.max(currentStreak, 0)}d</Text>
+            <Text style={styles.flowBadgeText}>{consecutiveFlowDays}d</Text>
           </View>
         </View>
         <Text style={styles.flowSubtitle}>Finish a goal daily to keep your flow alive</Text>
+        
+        {/* Flow Celebration Message */}
+        {showFlowCelebration && (
+          <View style={styles.flowCelebration}>
+            <Text style={styles.flowCelebrationText}>
+              🌊 {consecutiveFlowDays === 1 ? '1 day flow!' : `${consecutiveFlowDays} day flow!`}
+            </Text>
+          </View>
+        )}
+        
         <View style={styles.weekFlow}>
           {days.map((day, index) => {
-            const isToday = index === mondayFirst[0];
+            const isToday = index === mondayFirst;
             const dayCompleted = weekHistory[index];
-            const isPast = index < mondayFirst[0];
+            const isPast = index < mondayFirst;
             const isMissed = isPast && !dayCompleted;
             
             return (
@@ -657,9 +819,9 @@ const HomeScreen: React.FC = () => {
             );
           })}
         </View>
-        {currentStreak > 0 && (
+        {consecutiveFlowDays > 0 && !showFlowCelebration && (
           <Text style={styles.streakCount}>
-            🌊 {currentStreak} day{currentStreak > 1 ? 's' : ''} in a row
+            🌊 {consecutiveFlowDays} day{consecutiveFlowDays > 1 ? 's' : ''} in a row
           </Text>
         )}
       </LinearGradient>
@@ -1200,6 +1362,22 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderTopWidth: 1,
     borderTopColor: 'rgba(0, 0, 0, 0.1)',
+  },
+  flowCelebration: {
+    backgroundColor: 'rgba(22, 160, 133, 0.15)',
+    borderRadius: 12,
+    padding: 12,
+    marginVertical: 8,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(22, 160, 133, 0.3)',
+  },
+  flowCelebrationText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#16A085',
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
   },
 });
 

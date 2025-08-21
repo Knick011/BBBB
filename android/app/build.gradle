@@ -77,9 +77,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.brainbites"
+    namespace "com.brainbitescabby.app"
     defaultConfig {
-        applicationId "com.brainbites"
+        applicationId "com.brainbitescabby.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -96,15 +96,19 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('brainbites-release-key.keystore')
+            storePassword 'Nihith@111'
+            keyAlias 'brainbites-key-alias'
+            keyPassword 'Nihith@111'
+        }
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -124,8 +128,8 @@ dependencies {
     // Add AndroidX core for ChoreographerCompat
     implementation("androidx.core:core:1.13.1")
 
-    // Firebase BOM
-    implementation platform('com.google.firebase:firebase-bom:33.1.2')
+    // Firebase BOM (Latest version)
+    implementation platform('com.google.firebase:firebase-bom:33.16.0')
     implementation 'com.google.firebase:firebase-analytics'
 
     if (hermesEnabled.toBoolean()) {
