@@ -25,6 +25,7 @@ import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/nativ
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import QuestionService from '../services/QuestionService';
 import SoundService from '../services/SoundService';
+import AudioManager from '../services/AudioManager';
 import EnhancedScoreService from '../services/EnhancedScoreService';
 import TimerIntegrationService from '../services/TimerIntegrationService';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
@@ -131,6 +132,8 @@ const QuizScreen = ({ navigation, route }: any) => {
         continueButtonTimerRef.current = null;
       }
       SoundService.stopMusic();
+      // Also stop AudioManager music
+      AudioManager.stopMusic();
     };
   }, []);
 
@@ -184,9 +187,16 @@ const QuizScreen = ({ navigation, route }: any) => {
     try {
       console.log('🔊 [Modern QuizScreen] Initializing audio...');
       const audioReady = await SoundService.initialize();
+      
+      // Initialize AudioManager for enhanced music system
+      await AudioManager.initialize();
+      
       if (audioReady) {
         await SoundService.startGameMusic();
+        // Also start game music in AudioManager for speed control
+        await AudioManager.playGameMusic();
         console.log('🔊 [Modern QuizScreen] Audio initialized and game music started');
+        console.log('🎵 [Modern QuizScreen] Enhanced music system ready for streak-based speed changes');
       } else {
         console.log('⚠️ [Modern QuizScreen] Audio not available, continuing without sound');
       }
@@ -513,6 +523,10 @@ const QuizScreen = ({ navigation, route }: any) => {
         const newStreak = useQuizStore.getState().currentStreak;
         setStreak(newStreak); // Update local state
         
+        // Update music speed based on new streak
+        await AudioManager.updateMusicSpeedForStreak(newStreak);
+        console.log(`🎵 [QuizScreen] Music speed updated for streak: ${newStreak}`);
+        
         setCorrectAnswers(prev => prev + 1);
         // Score animations are now handled in the answer selection logic above
 
@@ -544,6 +558,10 @@ const QuizScreen = ({ navigation, route }: any) => {
         // Reset on wrong answer
         useQuizStore.getState().resetCurrentStreak();
         setStreak(0);
+        
+        // Reset music speed to normal when streak breaks
+        await AudioManager.updateMusicSpeedForStreak(0);
+        console.log(`🎵 [QuizScreen] Music speed reset to normal (streak broken)`);
         
         // Wrong answer
         SoundService.playIncorrect();

@@ -64,6 +64,11 @@ class AudioManager {
   private originalMusicVolume = 0.3;
   private duckingTimeout: NodeJS.Timeout | null = null;
 
+  // Streak-based music speed system
+  private currentStreak = 0;
+  private baseSpeed = 1.0;
+  private targetSpeed = 1.0;
+
   // Sound effects configuration with haptic feedback
   private soundEffects: Map<string, SoundEffect> = new Map([
     ['buttonPress', { 
@@ -435,6 +440,10 @@ class AudioManager {
         // CRITICAL: Set to loop infinitely
         this.currentMusicInstance.setNumberOfLoops(-1);
         
+        // Apply current streak-based speed
+        this.currentMusicInstance.setSpeed(this.targetSpeed);
+        console.log(`🎵 [AudioManager] Music started with speed: ${this.targetSpeed}x`);
+        
         this.currentMusicInstance.play((success) => {
           if (!success) {
             console.log('🔄 [AudioManager] Restarting music loop');
@@ -488,6 +497,125 @@ class AudioManager {
     } catch (error) {
       console.warn('⚠️ [AudioManager] Failed to resume music:', error);
     }
+  }
+
+  // =============================
+  // STREAK-BASED MUSIC SPEED
+  // =============================
+
+  /**
+   * Updates music speed based on current streak with enhanced granularity
+   * @param streak Current user streak (0-20+)
+   */
+  async updateMusicSpeedForStreak(streak: number): Promise<void> {
+    this.currentStreak = Math.max(0, streak);
+    
+    // Enhanced speed calculation with more granular levels
+    let newSpeed = 1.0; // Base speed
+    
+    if (streak >= 20) {
+      newSpeed = 3.0; // 3x speed for 20+ streak (extreme)
+    } else if (streak >= 15) {
+      newSpeed = 2.5; // 2.5x speed for 15-19 streak
+    } else if (streak >= 12) {
+      newSpeed = 2.2; // 2.2x speed for 12-14 streak
+    } else if (streak >= 10) {
+      newSpeed = 2.0; // 2x speed for 10-11 streak
+    } else if (streak >= 8) {
+      newSpeed = 1.8; // 1.8x speed for 8-9 streak
+    } else if (streak >= 6) {
+      newSpeed = 1.6; // 1.6x speed for 6-7 streak
+    } else if (streak >= 5) {
+      newSpeed = 1.5; // 1.5x speed for 5 streak
+    } else if (streak >= 3) {
+      newSpeed = 1.2; // 1.2x speed for 3-4 streak
+    } else if (streak >= 1) {
+      newSpeed = 1.1; // 1.1x speed for 1-2 streak (subtle boost)
+    }
+    
+    // Only update if speed changed significantly
+    if (Math.abs(newSpeed - this.targetSpeed) > 0.01) {
+      const oldSpeed = this.targetSpeed;
+      this.targetSpeed = newSpeed;
+      
+      // Apply to currently playing music
+      if (this.currentMusicInstance) {
+        try {
+          this.currentMusicInstance.setSpeed(this.targetSpeed);
+          
+          // Enhanced logging with streak thresholds
+          const speedChange = newSpeed > oldSpeed ? '⬆️' : (newSpeed < oldSpeed ? '⬇️' : '➡️');
+          const speedDesc = this.getSpeedDescription(newSpeed);
+          
+          console.log(`🎵 [AudioManager] Music speed ${speedChange} ${oldSpeed.toFixed(1)}x → ${newSpeed.toFixed(1)}x (${speedDesc}) - Streak: ${streak}`);
+          
+          // Log milestone achievements
+          this.logSpeedMilestone(streak, newSpeed);
+          
+        } catch (error) {
+          console.warn('⚠️ [AudioManager] Failed to update music speed:', error);
+        }
+      } else {
+        console.log(`🎵 [AudioManager] Music speed queued: ${newSpeed.toFixed(1)}x for next track (streak: ${streak})`);
+      }
+    }
+  }
+  
+  /**
+   * Get descriptive text for speed level
+   */
+  private getSpeedDescription(speed: number): string {
+    if (speed >= 3.0) return 'Insane';
+    if (speed >= 2.5) return 'Extreme';
+    if (speed >= 2.2) return 'Very Fast';
+    if (speed >= 2.0) return 'Fast';
+    if (speed >= 1.8) return 'Quick';
+    if (speed >= 1.6) return 'Upbeat';
+    if (speed >= 1.5) return 'Energetic';
+    if (speed >= 1.2) return 'Lively';
+    if (speed >= 1.1) return 'Slightly Faster';
+    return 'Normal';
+  }
+  
+  /**
+   * Log milestone achievements for speed increases
+   */
+  private logSpeedMilestone(streak: number, speed: number): void {
+    const milestones = [
+      { streak: 1, message: '🎵 Music gets a little boost!' },
+      { streak: 3, message: '🎵 Music picks up the pace!' },
+      { streak: 5, message: '🔥 Music hits energetic mode!' },
+      { streak: 8, message: '⚡ Music enters upbeat territory!' },
+      { streak: 10, message: '🚀 Music goes into fast mode!' },
+      { streak: 15, message: '🌟 Music reaches extreme speeds!' },
+      { streak: 20, message: '💫 INSANE MUSIC SPEED UNLOCKED!' }
+    ];
+    
+    const milestone = milestones.find(m => m.streak === streak);
+    if (milestone) {
+      console.log(`🎯 [AudioManager] MILESTONE: ${milestone.message} (${speed.toFixed(1)}x)`);
+    }
+  }
+
+  /**
+   * Gets current music speed multiplier
+   */
+  getCurrentMusicSpeed(): number {
+    return this.targetSpeed;
+  }
+
+  /**
+   * Gets current streak that affects music speed
+   */
+  getCurrentStreak(): number {
+    return this.currentStreak;
+  }
+
+  /**
+   * Resets music speed to normal (used when streak breaks)
+   */
+  async resetMusicSpeed(): Promise<void> {
+    await this.updateMusicSpeedForStreak(0);
   }
 
   // =============================
@@ -679,7 +807,7 @@ class AudioManager {
       library: 'react-native-sound',
       soundInstancesLoaded: this.soundInstances.size,
       features: [
-        'Real Audio Playback',
+        'Real Audio Playbook',
         'Sound Effects Support',
         'Background Music Support', 
         'Volume Control',
@@ -690,6 +818,7 @@ class AudioManager {
         'Graceful Degradation',
         'Professional Audio Management',
         'Full Backward Compatibility',
+        'Streak-Based Music Speed',
         'Production Ready'
       ]
     };
@@ -711,6 +840,35 @@ class AudioManager {
     await this.playStreak();
     
     console.log('✅ [AudioManager] All sound effects tested');
+  }
+
+  // Development helper to test enhanced streak-based music speeds
+  async testMusicSpeeds(): Promise<void> {
+    console.log('🎵 [AudioManager] Testing enhanced streak-based music speeds...');
+    
+    if (!this.settings.musicEnabled) {
+      console.log('⚠️ [AudioManager] Music is disabled, enable music to test speeds');
+      return;
+    }
+
+    // Start game music
+    await this.playGameMusic();
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Test all the milestone streaks and some in-between values
+    const streaks = [0, 1, 3, 5, 6, 8, 10, 12, 15, 18, 20, 25];
+    
+    for (const streak of streaks) {
+      console.log(`🎵 [AudioManager] Testing streak ${streak}...`);
+      await this.updateMusicSpeedForStreak(streak);
+      const description = this.getSpeedDescription(this.targetSpeed);
+      console.log(`🎵 [AudioManager] Speed: ${this.targetSpeed}x (${description})`);
+      await new Promise(resolve => setTimeout(resolve, 2500)); // Listen for 2.5 seconds
+    }
+    
+    // Reset to normal
+    await this.updateMusicSpeedForStreak(0);
+    console.log('✅ [AudioManager] Enhanced music speed test completed');
   }
 
   // =============================

@@ -22,12 +22,14 @@ import { RootStackParamList } from '../types';
 import theme from '../styles/theme';
 import SoundService from '../services/SoundService';
 import AudioManager from '../services/AudioManager';
+import StreakMusicService from '../services/StreakMusicService';
 import EnhancedScoreService from '../services/EnhancedScoreService';
+import TestUpdates from '../utils/TestUpdates';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
 import ScoreDisplay from '../components/common/ScoreDisplay';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TimerWidget } from '../components/Timer/TimerWidget';
-import { CarryoverInfoCard } from '../components/CarryoverInfoCard';
+import { ScoreInsightsCard } from '../components/ScoreInsightsCard';
 import BannerAdComponent from '../components/common/BannerAdComponent';
 
 // ✅ LIVE STATE INTEGRATION
@@ -139,80 +141,81 @@ const HomeScreen: React.FC = () => {
   const [consecutiveFlowDays, setConsecutiveFlowDays] = useState(0);
   const [showFlowCelebration, setShowFlowCelebration] = useState(false);
 
-  // Load and calculate consecutive flow days
+  // Load Daily Flow data using DailyGoalsService streak
   useEffect(() => {
-    const loadConsecutiveFlowDays = async () => {
+    const loadDailyFlowData = async () => {
       try {
-        // Get today's date
-        const today = new Date().toISOString().split('T')[0];
+        console.log('🌊 [HomeScreen] Loading Daily Flow data...');
         
-        // Load the flow completion history
-        const flowHistoryData = await AsyncStorage.getItem('@BrainBites:flowCompletionHistory');
-        const flowHistory = flowHistoryData ? JSON.parse(flowHistoryData) : {};
+        // Use the official DailyGoalsService streak tracking
+        const streakData = await AsyncStorage.getItem('@BrainBites:dailyGoalDayStreak');
+        const currentStreak = streakData ? parseInt(streakData, 10) : 0;
         
-        // Calculate consecutive days by going backwards from today
-        let consecutiveDays = 0;
-        let checkDate = new Date(today);
+        setConsecutiveFlowDays(currentStreak);
+        setDailyStreak(currentStreak); // Keep legacy state in sync
         
-        // Check if today is completed
-        if (flowHistory[today]) {
-          consecutiveDays = 1;
-          checkDate.setDate(checkDate.getDate() - 1);
-          
-          // Go backwards checking previous days
-          while (true) {
-            const dateStr = checkDate.toISOString().split('T')[0];
-            if (flowHistory[dateStr]) {
-              consecutiveDays++;
-              checkDate.setDate(checkDate.getDate() - 1);
-            } else {
-              break;
-            }
-          }
-        }
+        // Update music speed based on streak
+        await StreakMusicService.updateStreak(currentStreak);
         
-        setConsecutiveFlowDays(consecutiveDays);
-        setDailyStreak(consecutiveDays); // Keep the old state in sync
-        console.log(`🌊 [HomeScreen] Consecutive flow days: ${consecutiveDays}`);
+        console.log(`✅ [HomeScreen] Daily Flow streak loaded: ${currentStreak} days`);
       } catch (error) {
-        console.error('Error loading consecutive flow days:', error);
+        console.error('❌ [HomeScreen] Error loading Daily Flow data:', error);
       }
     };
-
-    loadConsecutiveFlowDays();
+    
+    loadDailyFlowData();
+    
+    // Start streak-music monitoring
+    StreakMusicService.startMonitoring().then(() => {
+      console.log('✅ [HomeScreen] StreakMusicService started successfully');
+      
+      // Log system status for debugging
+      TestUpdates.logSystemStatus();
+      
+      // Test the system after a short delay
+      setTimeout(() => {
+        TestUpdates.testStreakService();
+      }, 3000);
+      
+    }).catch((error) => {
+      console.error('❌ [HomeScreen] Failed to start StreakMusicService:', error);
+    });
     
     // Listen for daily goal completion events
-    const handleGoalCompleted = async () => {
-      const today = new Date().toISOString().split('T')[0];
-      
-      // Mark today as completed in flow history
+    const handleGoalCompletion = async () => {
       try {
-        const flowHistoryData = await AsyncStorage.getItem('@BrainBites:flowCompletionHistory');
-        const flowHistory = flowHistoryData ? JSON.parse(flowHistoryData) : {};
+        console.log('🎯 [HomeScreen] Goal completion event received');
         
-        if (!flowHistory[today]) {
-          flowHistory[today] = true;
-          await AsyncStorage.setItem('@BrainBites:flowCompletionHistory', JSON.stringify(flowHistory));
-          
-          // Show celebration message
+        // Reload streak data
+        const streakData = await AsyncStorage.getItem('@BrainBites:dailyGoalDayStreak');
+        const currentStreak = streakData ? parseInt(streakData, 10) : 0;
+        
+        setConsecutiveFlowDays(currentStreak);
+        setDailyStreak(currentStreak);
+        
+        // Update music speed for new streak
+        await StreakMusicService.updateStreak(currentStreak);
+        
+        // Show celebration if new streak
+        if (currentStreak > 0) {
           setShowFlowCelebration(true);
-          setTimeout(() => setShowFlowCelebration(false), 4000); // Show for 4 seconds
+          setTimeout(() => setShowFlowCelebration(false), 3000);
         }
         
-        // Recalculate consecutive days
-        loadConsecutiveFlowDays();
+        console.log(`✅ [HomeScreen] Flow data updated: ${currentStreak} days`);
       } catch (error) {
-        console.error('Error updating flow history:', error);
+        console.error('❌ [HomeScreen] Error handling goal completion:', error);
       }
     };
     
     const { DeviceEventEmitter } = require('react-native');
-    const dailyGoalListener = DeviceEventEmitter.addListener('dailyGoalDayCompleted', handleGoalCompleted);
-    const claimListener = DeviceEventEmitter.addListener('dailyGoalClaimed', handleGoalCompleted);
+    const dailyGoalListener = DeviceEventEmitter.addListener('dailyGoalDayCompleted', handleGoalCompletion);
+    const claimListener = DeviceEventEmitter.addListener('dailyGoalClaimed', handleGoalCompletion);
     
     return () => {
-      dailyGoalListener.remove();
-      claimListener.remove();
+      dailyGoalListener?.remove?.();
+      claimListener?.remove?.();
+      // Don't stop monitoring here as other screens may need it
     };
   }, []);
   
@@ -311,180 +314,115 @@ const HomeScreen: React.FC = () => {
     return () => subscription.remove();
   }, []);
 
-  // Load week history and check today's completion
+  // Load week history based on streak data
   useEffect(() => {
-    const loadWeekHistory = async () => {
+    const buildWeekHistory = async () => {
       try {
-        // Load persistent week completion history
-        const weekHistoryData = await AsyncStorage.getItem('@BrainBites:weekCompletionHistory');
-        let storedWeekHistory = weekHistoryData ? JSON.parse(weekHistoryData) : {};
+        console.log('📅 [HomeScreen] Building week history...');
         
-        const history = [false, false, false, false, false, false, false];
+        // Get current streak and completion data
+        const streakData = await AsyncStorage.getItem('@BrainBites:dailyGoalDayStreak');
+        const lastCompletedDate = await AsyncStorage.getItem('@BrainBites:lastDailyGoalDay');
+        
+        const currentStreak = streakData ? parseInt(streakData, 10) : 0;
         const today = new Date();
+        const todayStr = today.toISOString().split('T')[0];
+        const currentDayOfWeek = (today.getDay() + 6) % 7; // Monday = 0
         
-        // Get the current week's Monday date
-        const currentDayOfWeek = (today.getDay() + 6) % 7; // Convert Sunday=0 to Monday=0
-        const mondayDate = new Date(today);
-        mondayDate.setDate(today.getDate() - currentDayOfWeek);
-        const weekKey = mondayDate.toISOString().split('T')[0]; // Use Monday's date as week key
+        // Initialize week history array
+        const history = [false, false, false, false, false, false, false];
         
-        // Initialize week history if not exists
-        if (!storedWeekHistory[weekKey]) {
-          storedWeekHistory[weekKey] = [false, false, false, false, false, false, false];
+        // Check if today is completed
+        const todayCompleted = lastCompletedDate === todayStr;
+        if (todayCompleted) {
+          history[currentDayOfWeek] = true;
         }
         
-        // Get the stored history for this week
-        const currentWeekHistory = storedWeekHistory[weekKey];
-        
-        // Check each day of the current week for NEW completions
-        for (let i = 0; i < 7; i++) {
-          const checkDate = new Date(mondayDate);
-          checkDate.setDate(mondayDate.getDate() + i);
-          const dateFormatted = checkDate.toISOString().split('T')[0];
-          const dateString = checkDate.toDateString();
+        // Fill in streak days working backwards from today
+        if (currentStreak > 0) {
+          let streakDaysRemaining = todayCompleted ? currentStreak - 1 : currentStreak;
+          let dayIndex = todayCompleted ? currentDayOfWeek - 1 : currentDayOfWeek - 1;
           
-          // If already marked as completed in stored history, keep it completed
-          if (currentWeekHistory[i]) {
-            history[i] = true;
-            continue;
-          }
-          
-          // Check if this day had a completed goal (only if not already marked complete)
-          const lastCompletedDay = await AsyncStorage.getItem('@BrainBites:lastDailyGoalDay');
-          const goalsData = await AsyncStorage.getItem('@BrainBites:liveGameStore:claimedRewards');
-          const claimedRewards = goalsData ? JSON.parse(goalsData) : {};
-          
-          let dayCompleted = lastCompletedDay === dateFormatted;
-          
-          // Also check claimed rewards for non-honor goals for this date
-          const dayClaims = Object.entries(claimedRewards).filter(([goalId, claimDate]) => {
-            if (typeof claimDate === 'string') {
-              return new Date(claimDate).toDateString() === dateString;
-            }
-            return false;
-          });
-          
-          const nonHonorClaims = dayClaims.filter(([goalId]) => 
-            !goalId.includes('honor') && !goalId.includes('stretch') && !goalId.includes('read') && !goalId.includes('walk')
-          );
-          
-          if (nonHonorClaims.length > 0) {
-            dayCompleted = true;
-          }
-          
-          history[i] = dayCompleted;
-          
-          // Update stored history if newly completed
-          if (dayCompleted && !currentWeekHistory[i]) {
-            currentWeekHistory[i] = true;
-            storedWeekHistory[weekKey] = currentWeekHistory;
-            await AsyncStorage.setItem('@BrainBites:weekCompletionHistory', JSON.stringify(storedWeekHistory));
+          // Mark consecutive days in current week
+          while (streakDaysRemaining > 0 && dayIndex >= 0) {
+            history[dayIndex] = true;
+            streakDaysRemaining--;
+            dayIndex--;
           }
         }
         
         setWeekHistory(history);
+        setTodayCompleted(todayCompleted);
         
-        // Set today's completion (current day index in Monday-first format)
-        const todayIndex = currentDayOfWeek;
-        setTodayCompleted(history[todayIndex]);
-        
-        if (history[todayIndex]) {
-          console.log('✅ Today marked as completed for daily streak');
-        }
+        console.log('✅ [HomeScreen] Week history built:', { currentStreak, todayCompleted, history });
       } catch (error) {
-        console.error('Error loading week history:', error);
+        console.error('❌ [HomeScreen] Error building week history:', error);
       }
     };
     
-    loadWeekHistory();
+    buildWeekHistory();
     
-    // Re-check when screen gains focus
-    const unsubscribe = navigation.addListener('focus', loadWeekHistory);
+    // Rebuild when screen gains focus
+    const unsubscribe = navigation.addListener('focus', buildWeekHistory);
     return unsubscribe;
   }, [navigation]);
 
-  // Listen for daily goal completion events - moved from renderStreakFlow
+  // Simplified event listener for week history updates
   useEffect(() => {
     const eventEmitter = new (require('react-native').NativeEventEmitter)();
     
-    const dailyGoalListener = eventEmitter.addListener('dailyGoalDayCompleted', async () => {
-      console.log('📅 Daily goal day completed event received');
-      setTodayCompleted(true);
-      
-      // Update persistent week history
-      const today = new Date();
-      const currentDayOfWeek = (today.getDay() + 6) % 7; // Convert to Monday-first
-      const mondayDate = new Date(today);
-      mondayDate.setDate(today.getDate() - currentDayOfWeek);
-      const weekKey = mondayDate.toISOString().split('T')[0];
-      
+    const handleStreakUpdate = async () => {
       try {
-        const weekHistoryData = await AsyncStorage.getItem('@BrainBites:weekCompletionHistory');
-        const storedWeekHistory = weekHistoryData ? JSON.parse(weekHistoryData) : {};
+        console.log('🔄 [HomeScreen] Streak update event received');
         
-        if (!storedWeekHistory[weekKey]) {
-          storedWeekHistory[weekKey] = [false, false, false, false, false, false, false];
-        }
+        // Reload all data when a goal is completed/claimed
+        const streakData = await AsyncStorage.getItem('@BrainBites:dailyGoalDayStreak');
+        const lastCompletedDate = await AsyncStorage.getItem('@BrainBites:lastDailyGoalDay');
         
-        // Mark today as completed
-        storedWeekHistory[weekKey][currentDayOfWeek] = true;
-        await AsyncStorage.setItem('@BrainBites:weekCompletionHistory', JSON.stringify(storedWeekHistory));
-        
-        // Update local state
-        setWeekHistory(prev => {
-          const newHistory = [...prev];
-          newHistory[currentDayOfWeek] = true;
-          return newHistory;
-        });
-      } catch (error) {
-        console.error('Error updating week history:', error);
-      }
-    });
-    
-    const claimListener = eventEmitter.addListener('dailyGoalClaimed', async () => {
-      console.log('🎯 Daily goal claimed event received');
-      
-      // Re-check completion status and update persistent history
-      const todayFormatted = new Date().toISOString().split('T')[0];
-      const lastCompletedDay = await AsyncStorage.getItem('@BrainBites:lastDailyGoalDay');
-      
-      if (lastCompletedDay === todayFormatted) {
-        setTodayCompleted(true);
-        
-        // Update persistent week history
+        const currentStreak = streakData ? parseInt(streakData, 10) : 0;
         const today = new Date();
-        const currentDayOfWeek = (today.getDay() + 6) % 7; // Convert to Monday-first
-        const mondayDate = new Date(today);
-        mondayDate.setDate(today.getDate() - currentDayOfWeek);
-        const weekKey = mondayDate.toISOString().split('T')[0];
+        const todayStr = today.toISOString().split('T')[0];
+        const currentDayOfWeek = (today.getDay() + 6) % 7;
         
-        try {
-          const weekHistoryData = await AsyncStorage.getItem('@BrainBites:weekCompletionHistory');
-          const storedWeekHistory = weekHistoryData ? JSON.parse(weekHistoryData) : {};
-          
-          if (!storedWeekHistory[weekKey]) {
-            storedWeekHistory[weekKey] = [false, false, false, false, false, false, false];
-          }
-          
-          // Mark today as completed
-          storedWeekHistory[weekKey][currentDayOfWeek] = true;
-          await AsyncStorage.setItem('@BrainBites:weekCompletionHistory', JSON.stringify(storedWeekHistory));
-          
-          // Update local state
-          setWeekHistory(prev => {
-            const newHistory = [...prev];
-            newHistory[currentDayOfWeek] = true;
-            return newHistory;
-          });
-        } catch (error) {
-          console.error('Error updating week history:', error);
+        // Update streak
+        setConsecutiveFlowDays(currentStreak);
+        setDailyStreak(currentStreak);
+        
+        // Update today's completion
+        const todayCompleted = lastCompletedDate === todayStr;
+        setTodayCompleted(todayCompleted);
+        
+        // Rebuild week history
+        const history = [false, false, false, false, false, false, false];
+        if (todayCompleted) {
+          history[currentDayOfWeek] = true;
         }
+        
+        if (currentStreak > 0) {
+          let streakDaysRemaining = todayCompleted ? currentStreak - 1 : currentStreak;
+          let dayIndex = todayCompleted ? currentDayOfWeek - 1 : currentDayOfWeek - 1;
+          
+          while (streakDaysRemaining > 0 && dayIndex >= 0) {
+            history[dayIndex] = true;
+            streakDaysRemaining--;
+            dayIndex--;
+          }
+        }
+        
+        setWeekHistory(history);
+        console.log('✅ [HomeScreen] Streak and week history updated');
+        
+      } catch (error) {
+        console.error('❌ [HomeScreen] Error updating streak data:', error);
       }
-    });
+    };
+    
+    const dailyGoalListener = eventEmitter.addListener('dailyGoalDayCompleted', handleStreakUpdate);
+    const claimListener = eventEmitter.addListener('dailyGoalClaimed', handleStreakUpdate);
     
     return () => {
-      dailyGoalListener.remove();
-      claimListener.remove();
+      dailyGoalListener?.remove?.();
+      claimListener?.remove?.();
     };
   }, []);
 
@@ -673,7 +611,15 @@ const HomeScreen: React.FC = () => {
 
   // Add this helper function
   const updateDailyStreakFromGoal = async () => {
-    await updateDailyStreak();
+    // Use the unified flow data update
+    try {
+      const streakData = await AsyncStorage.getItem('@BrainBites:dailyGoalDayStreak');
+      const currentStreak = streakData ? parseInt(streakData, 10) : 0;
+      setConsecutiveFlowDays(currentStreak);
+      setDailyStreak(currentStreak);
+    } catch (error) {
+      console.error('❌ [HomeScreen] Error updating streak from goal:', error);
+    }
   };
   
   const loadDailyStreak = async () => {
@@ -830,7 +776,7 @@ const HomeScreen: React.FC = () => {
   
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar backgroundColor="#FFF8E7" barStyle="dark-content" hidden={false} translucent={false} />
+      <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={true} translucent={true} />
       <ScrollView 
         style={styles.container}
         contentContainerStyle={styles.scrollContent}
@@ -862,9 +808,9 @@ const HomeScreen: React.FC = () => {
           <TimerWidget onEarnMorePress={handleDifficultyPress.bind(null, 'easy')} />
         </Animated.View>
         
-        {/* Carryover Info Card */}
+        {/* Enhanced Score Insights Card */}
         <Animated.View style={[{ opacity: fadeAnim, transform: [{ scale: scaleAnim }] }]}>
-          <CarryoverInfoCard />
+          <ScoreInsightsCard />
         </Animated.View>
         
         {/* Streak Flow */}

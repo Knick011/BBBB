@@ -36,9 +36,11 @@ class HybridTimerService {
   private timeLeft: number = 0;
   private screenTime: number = 0;
   private overtime: number = 0;
+  private overtimePaused: boolean = false;
   
   private lastHourNotified: number = 0;
   private readonly HOURLY_NOTIFICATION_KEY = '@BrainBites:lastHourNotified';
+  private readonly LAST_CARRYOVER_DATE_KEY = '@BrainBites:lastCarryoverDate';
 
   static getInstance(): HybridTimerService {
     if (!HybridTimerService.instance) {
@@ -61,13 +63,29 @@ class HybridTimerService {
       const savedHour = await AsyncStorage.getItem(this.HOURLY_NOTIFICATION_KEY);
       this.lastHourNotified = savedHour ? parseInt(savedHour, 10) : 0;
       
-      // Check if we need to reset for new day
+      // Check if we need to reset for new day and process carryover
       const today = new Date().toDateString();
       const lastReset = await AsyncStorage.getItem('@BrainBites:lastTimerReset');
+      const lastCarryover = await AsyncStorage.getItem(this.LAST_CARRYOVER_DATE_KEY);
+      
       if (lastReset !== today) {
+        console.log('🌙 [HybridTimer] New day detected, processing end of day carryover');
+        
+        // Only process carryover if we haven't already done it today
+        if (lastCarryover !== today) {
+          const carryoverScore = await this.processEndOfDay();
+          console.log(`📊 [HybridTimer] Carryover processed: ${carryoverScore}s`);
+          await AsyncStorage.setItem(this.LAST_CARRYOVER_DATE_KEY, today);
+        } else {
+          console.log('🔄 [HybridTimer] Carryover already processed today, skipping');
+        }
+        
+        // Reset hourly notifications
         this.lastHourNotified = 0;
         await AsyncStorage.setItem(this.HOURLY_NOTIFICATION_KEY, '0');
         await AsyncStorage.setItem('@BrainBites:lastTimerReset', today);
+        
+        console.log('✅ [HybridTimer] New day initialization complete');
       }
       
       // Set up event listeners for both timer systems

@@ -262,7 +262,8 @@ class DailyGoalsService {
   }
 
   private async loadOrGenerateGoals(): Promise<void> {
-    const today = new Date().toDateString();
+    // Use ISO date string for consistency across all components
+    const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
     const lastResetDate = await AsyncStorage.getItem('@BrainBites:lastGoalReset');
     
     console.log('🎯 [DailyGoals] Today:', today, 'Last reset:', lastResetDate);
@@ -271,9 +272,21 @@ class DailyGoalsService {
       // Load existing goals
       const savedGoals = await AsyncStorage.getItem('@BrainBites:dailyGoals');
       if (savedGoals) {
-        this.goals = JSON.parse(savedGoals);
-        console.log('✅ [DailyGoals] Loaded existing goals');
-        return;
+        try {
+          this.goals = JSON.parse(savedGoals);
+          console.log('✅ [DailyGoals] Loaded existing goals:', this.goals.length, 'goals');
+          
+          // Validate goals structure
+          if (!Array.isArray(this.goals) || this.goals.length === 0) {
+            console.log('⚠️ [DailyGoals] Invalid goals structure, regenerating...');
+            throw new Error('Invalid goals structure');
+          }
+          
+          return;
+        } catch (error) {
+          console.error('❌ [DailyGoals] Error parsing saved goals:', error);
+          // Fall through to regenerate goals
+        }
       }
     }
 
@@ -281,11 +294,14 @@ class DailyGoalsService {
     console.log('🎯 [DailyGoals] Generating new goals for today');
     this.goals = await this.generateDailyGoals();
     
-    // Save new goals
-    await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(this.goals));
-    await AsyncStorage.setItem('@BrainBites:lastGoalReset', today);
-    
-    console.log('✅ [DailyGoals] Generated and saved new goals');
+    // Save new goals with error handling
+    try {
+      await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(this.goals));
+      await AsyncStorage.setItem('@BrainBites:lastGoalReset', today);
+      console.log('✅ [DailyGoals] Generated and saved new goals:', this.goals.length, 'goals');
+    } catch (error) {
+      console.error('❌ [DailyGoals] Error saving goals:', error);
+    }
   }
 
   private async generateDailyGoals(): Promise<DailyGoal[]> {
@@ -717,8 +733,18 @@ class DailyGoalsService {
   private async saveGoals(): Promise<void> {
     try {
       await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(this.goals));
+      console.log('✅ [DailyGoals] Goals saved successfully');
     } catch (error) {
       console.error('❌ [DailyGoals] Failed to save goals:', error);
+      // Retry once after a short delay
+      setTimeout(async () => {
+        try {
+          await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(this.goals));
+          console.log('✅ [DailyGoals] Goals saved on retry');
+        } catch (retryError) {
+          console.error('❌ [DailyGoals] Failed to save goals on retry:', retryError);
+        }
+      }, 1000);
     }
   }
 
@@ -829,14 +855,6 @@ class DailyGoalsService {
       this.notifyListeners();
       
       console.log('✅ Midnight reset completed');
-    }
-  }
-
-  private async saveGoals(): Promise<void> {
-    try {
-      await AsyncStorage.setItem('@BrainBites:dailyGoals', JSON.stringify(this.goals));
-    } catch (error) {
-      console.error('❌ [DailyGoals] Failed to save goals:', error);
     }
   }
 }

@@ -55,11 +55,10 @@ const FAKE_NAMES = [
   'QuietBara', 'CapyWhisper', 'SilentBara', 'CapyMute', 'StealthBara'
 ];
 
-// Calculate score for hours of play
-// Assuming average of 10 seconds per question, 100 points per correct answer
-// 4 hours = 14,400 seconds = 1,440 questions = 144,000 base points
-// With streaks and bonuses, could be ~200,000-300,000 points
-const TOP_PLAYER_DAILY_SCORE = 120000;
+// Calculate score for achievable daily play
+// Targeting more realistic scoring for user engagement
+// Top players achieve 50k-60k through consistent play and good streaks
+const TOP_PLAYER_DAILY_SCORE = 55000; // More achievable top score
 
 // Shuffle array to get random capybara names
 const shuffleArray = (array: any[]) => {
@@ -71,25 +70,39 @@ const shuffleArray = (array: any[]) => {
   return shuffled;
 };
 
-// Generate top 10 ultra-competitive scores with varied characters
+// Generate top 10 competitive but achievable scores
 const generateTop10DailyScores = () => {
   const scores = [];
-  let currentScore = TOP_PLAYER_DAILY_SCORE;
   
   // Shuffle names to get variety each time
   const shuffledNames = shuffleArray(FAKE_NAMES);
   
-  // Top 10 players have very high scores, close competition
+  // Create a more varied top 10 with bigger gaps for motivation
+  const topScores = [
+    55000, // #1 - Top player
+    48500, // #2 - Strong second place
+    42000, // #3 - Solid third
+    37500, // #4
+    33000, // #5
+    29500, // #6
+    26000, // #7
+    23500, // #8
+    21000, // #9
+    18500  // #10
+  ];
+  
   for (let i = 0; i < 10; i++) {
-    const dropPercentage = 0.92 + (Math.random() * 0.06); // 92-98% of previous
-    currentScore = Math.floor(currentScore * dropPercentage);
+    // Add some small random variation to scores for realism
+    const baseScore = topScores[i];
+    const variation = Math.floor(Math.random() * 1000) - 500; // ±500 points
+    const finalScore = Math.max(baseScore + variation, 1000);
     
     scores.push({
       id: `top_${i}`,
       rank: i + 1,
       displayName: shuffledNames[i],
-      score: currentScore,
-      highestStreak: Math.floor(Math.random() * 25) + 5, // 5-30 streak for more variety
+      score: finalScore,
+      highestStreak: Math.floor(Math.random() * 25) + 5, // 5-30 streak
       isCurrentUser: false,
       lastActive: i < 3 ? 'Online now' : `${Math.floor(Math.random() * 59) + 1}m ago`,
     });
@@ -98,55 +111,73 @@ const generateTop10DailyScores = () => {
   return scores;
 };
 
-// Calculate user's actual rank based on score
+// Calculate user's dynamic rank based on score - more achievable progression
 const calculateUserRank = (userScore: number) => {
-  // Handle case where user has 0 score
-  if (userScore === 0) {
-    return Math.floor(Math.random() * 1000) + 5000; // Random rank between 5000-6000
+  // Handle case where user has very low/no score
+  if (userScore < 100) {
+    return Math.floor(Math.random() * 500) + 2000; // Random rank between 2000-2500
   }
   
-  // Rough calculation: every 100 points difference = ~3 ranks
-  // This creates a realistic distribution
-  const scoreDifference = TOP_PLAYER_DAILY_SCORE - userScore;
-  const estimatedRank = Math.floor(scoreDifference / 100) * 3 + 11;
+  // More dynamic ranking system based on score brackets
+  if (userScore >= 50000) return Math.floor(Math.random() * 5) + 1;    // Top 5
+  if (userScore >= 40000) return Math.floor(Math.random() * 10) + 6;   // 6-15
+  if (userScore >= 30000) return Math.floor(Math.random() * 20) + 16;  // 16-35
+  if (userScore >= 20000) return Math.floor(Math.random() * 30) + 36;  // 36-65
+  if (userScore >= 15000) return Math.floor(Math.random() * 40) + 66;  // 66-105
+  if (userScore >= 10000) return Math.floor(Math.random() * 60) + 106; // 106-165
+  if (userScore >= 5000) return Math.floor(Math.random() * 100) + 166; // 166-265
+  if (userScore >= 2500) return Math.floor(Math.random() * 200) + 266; // 266-465
+  if (userScore >= 1000) return Math.floor(Math.random() * 300) + 466; // 466-765
   
-  // Add some randomness
-  const variance = Math.floor(Math.random() * 20) - 10;
-  
-  return Math.max(11, estimatedRank + variance);
+  // Lower scores get higher ranks
+  const baseRank = 766;
+  const scoreRatio = userScore / 1000; // 0-1 ratio
+  const rankRange = 1234; // Range of possible ranks
+  return Math.floor(baseRank + (rankRange * (1 - scoreRatio)));
 };
 
-// Generate players around user's rank with more variety
+// Generate players around user's rank with dynamic scoring
 const generateAroundUserScores = (userScore: number, userRank: number) => {
   const scores = [];
-  // Get a fresh shuffle of names for variety
   const shuffledNames = shuffleArray(FAKE_NAMES);
   
-  // Generate 3 players above and 3 below the user for more context
+  // Generate 3-4 players above and 3-4 below the user
   for (let i = -3; i <= 3; i++) {
     if (i === 0) continue; // Skip user's position
-    let rank = userRank + i;
-    if (isNaN(rank)) rank = 1000 + i; // fallback for NaN
     
-    // More varied score differences
-    const scoreDiff = i * (30 + Math.random() * 70); // 30-100 points difference per rank
-    const score = Math.max(50, Math.floor(userScore - scoreDiff));
+    let rank = userRank + i;
+    if (isNaN(rank)) rank = 1000 + i;
+    
+    // Dynamic score calculation based on rank and user score
+    let score;
+    if (rank < userRank) {
+      // Players above user should have higher scores
+      const rankDiff = userRank - rank;
+      const scoreIncrease = rankDiff * (50 + Math.random() * 100); // 50-150 points per rank
+      score = Math.floor(userScore + scoreIncrease);
+    } else {
+      // Players below user should have lower scores
+      const rankDiff = rank - userRank;
+      const scoreDecrease = rankDiff * (30 + Math.random() * 80); // 30-110 points per rank
+      score = Math.max(50, Math.floor(userScore - scoreDecrease));
+    }
     
     // Use different names from the shuffled array
     const nameIndex = Math.abs(rank + i * 7) % FAKE_NAMES.length;
     
     scores.push({
-      id: `around_${rank}_${i}`, // ensure unique key
+      id: `around_${rank}_${i}`,
       rank: rank,
       displayName: shuffledNames[nameIndex],
       score: score,
-      highestStreak: Math.floor(Math.random() * 35) + 3, // 3-38 streak for variety
+      highestStreak: Math.floor(Math.random() * 35) + 3, // 3-38 streak
       isCurrentUser: false,
       lastActive: Math.random() > 0.3 ? `${Math.floor(Math.random() * 23) + 1}h ago` : 
                   Math.random() > 0.5 ? `${Math.floor(Math.random() * 59) + 1}m ago` : 'Online now',
     });
   }
-  return scores;
+  
+  return scores.sort((a, b) => a.rank - b.rank);
 };
 
 interface LeaderboardEntry {
@@ -270,6 +301,7 @@ const LeaderboardScreen = () => {
           displayName: 'CaBBybara',
           score: userScore,
           highestStreak: userStreakOverride ?? userStreak,
+          dailyHighestStreak: dailyHighestStreak || (userStreakOverride ?? userStreak),
           isCurrentUser: true,
           lastActive: 'Online now',
         };
@@ -337,6 +369,7 @@ const LeaderboardScreen = () => {
           displayName: 'CaBBybara',
           score: userScore,
           highestStreak: userStreak,
+          dailyHighestStreak: dailyHighestStreak || userStreak,
           isCurrentUser: true,
           lastActive: 'Online now',
         });

@@ -44,8 +44,16 @@
       "Bash(./android/gradlew clean:*)",
       "Bash(./android/gradlew:*)",
       "Bash($env:NODE_OPTIONS=\"--max-old-space-size=8192\")",
-      "Bash(NODE_OPTIONS=\"--max-old-space-size=8192\" npx react-native start)"
+      "Bash(NODE_OPTIONS=\"--max-old-space-size=8192\" npx react-native start)",
+      "Read(/c:\\Users\\nihit\\OneDrive\\Pictures\\Screenshots/**)",
+      "Read(/c:\\Users\\nihit\\OneDrive\\Pictures\\Screenshots/**)",
+      "Read(/c:\\Users\\nihit\\OneDrive\\Pictures\\Screenshots/**)",
+      "Read(/c:\\Users\\nihit\\OneDrive\\Pictures\\Screenshots/**)",
+      "Bash(npm run lint:*)"
     ],
-    "deny": []
+    "deny": [],
+    "additionalDirectories": [
+      "D:\\d\\FInalversion\\brainbites"
+    ]
   }
 }
