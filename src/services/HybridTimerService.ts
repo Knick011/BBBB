@@ -486,9 +486,9 @@ class HybridTimerService {
     // Save score delta
     await AsyncStorage.setItem('@BrainBites:scoreDelta', net.toString());
     
-    // Reset for next day but keep the net balance
-    this.timeLeft = Math.max(0, net); // Start next day with positive balance or 0
-    this.overtime = Math.max(0, -net); // Start with debt if negative
+    // Reset for next day - fresh start for all timers
+    this.timeLeft = 0;
+    this.overtime = 0;
     this.screenTime = 0;
     this.overtimePaused = false;
     

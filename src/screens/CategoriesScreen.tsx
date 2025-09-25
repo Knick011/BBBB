@@ -24,6 +24,7 @@ import CategoryCard from '../components/CategoryCard';
 import PeekingMascot from '../components/Mascot/PeekingMascot';
 import { getAvailableCategories, CategoryInfo, getTotalQuestionsCount } from '../utils/categoryUtils';
 import LinearGradient from 'react-native-linear-gradient';
+import BannerAdComponent from '../components/common/BannerAdComponent';
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'Categories'>;
 
@@ -164,16 +165,7 @@ const CategoriesScreen: React.FC = () => {
       
       {/* Categories content */}
       <View style={styles.content}>
-        <Animated.View 
-          style={[
-            styles.mascotContainer,
-            {
-              transform: [{ translateX: mascotTranslateX }]
-            }
-          ]}
-        >
-          <PeekingMascot mood="excited" size={100} />
-        </Animated.View>
+        {/* Mascot removed on Categories screen to avoid overlapping banner */}
         
         {categories.length > 0 ? (
           <FlatList
@@ -193,6 +185,9 @@ const CategoriesScreen: React.FC = () => {
           </View>
         )}
       </View>
+
+      {/* Banner Ad */}
+      <BannerAdComponent placement="categories_screen" />
     </View>
   );
 };

@@ -18,8 +18,8 @@ class DailyScoreCarryoverService private constructor(private val context: Contex
         private const val KEY_DAILY_START_SCORE = "daily_start_score"
         
         // Score calculation constants
-        private const val MINUTES_TO_POINTS_POSITIVE = 10 // 10 points per minute of unused time
-        private const val MINUTES_TO_POINTS_NEGATIVE = 5  // 5 points per minute of overtime (penalty)
+        private const val MINUTES_TO_POINTS_POSITIVE = 100 // 100 points per minute of unused time (10x impact)
+        private const val MINUTES_TO_POINTS_NEGATIVE = 50  // 50 points per minute of overtime (5x penalty)
         
         @Volatile
         private var instance: DailyScoreCarryoverService? = null
@@ -56,12 +56,27 @@ class DailyScoreCarryoverService private constructor(private val context: Contex
                 
                 Log.d(TAG, "🌙 Processing end-of-day carryover for: $today")
                 
-                // Get current timer state
+                // Get current timer state - including paused overtime
                 val remainingSeconds = timerPrefs.getInt("remaining_time", 0)
                 val overtimeSeconds = timerPrefs.getInt("overtime_seconds", 0)
+                val overtimePaused = timerPrefs.getBoolean("overtime_paused", false)
+                val overtimePausedAt = timerPrefs.getInt("overtime_paused_at", 0)
                 
-                // Calculate carryover score
-                val carryoverScore = calculateCarryoverScore(remainingSeconds, overtimeSeconds)
+                // Total overtime = active overtime + paused overtime
+                val totalOvertimeSeconds = if (overtimePaused && overtimePausedAt > 0) {
+                    overtimeSeconds + overtimePausedAt
+                } else {
+                    overtimeSeconds
+                }
+                
+                Log.d(TAG, "📊 End-of-day timer state:")
+                Log.d(TAG, "   - Remaining: ${remainingSeconds}s")
+                Log.d(TAG, "   - Active overtime: ${overtimeSeconds}s") 
+                Log.d(TAG, "   - Paused overtime: ${if (overtimePaused) overtimePausedAt else 0}s")
+                Log.d(TAG, "   - Total overtime: ${totalOvertimeSeconds}s")
+                
+                // Calculate carryover score using total overtime
+                val carryoverScore = calculateCarryoverScore(remainingSeconds, totalOvertimeSeconds)
                 
                 // Save carryover score
                 sharedPrefs.edit().apply {
@@ -85,25 +100,26 @@ class DailyScoreCarryoverService private constructor(private val context: Contex
     }
     
     /**
-     * Calculate carryover score based on remaining time or overtime
+     * Calculate carryover score based on remaining time AND overtime (net calculation)
+     * Both can be non-zero simultaneously when user earns time while in overtime
      */
     private fun calculateCarryoverScore(remainingSeconds: Int, overtimeSeconds: Int): Int {
-        return when {
-            // If there's overtime, apply negative score
-            overtimeSeconds > 0 -> {
-                val overtimeMinutes = overtimeSeconds / 60
-                val penalty = overtimeMinutes * MINUTES_TO_POINTS_NEGATIVE
-                -penalty // Negative score
-            }
-            // If there's remaining time, apply positive score
-            remainingSeconds > 0 -> {
-                val remainingMinutes = remainingSeconds / 60
-                val bonus = remainingMinutes * MINUTES_TO_POINTS_POSITIVE
-                bonus // Positive score
-            }
-            // No remaining time or overtime
-            else -> 0
-        }
+        val remainingMinutes = remainingSeconds / 60
+        val overtimeMinutes = overtimeSeconds / 60
+        
+        // Calculate positive and negative scores separately
+        val bonusPoints = remainingMinutes * MINUTES_TO_POINTS_POSITIVE
+        val penaltyPoints = overtimeMinutes * MINUTES_TO_POINTS_NEGATIVE
+        
+        // Net score = bonus - penalty
+        val netScore = bonusPoints - penaltyPoints
+        
+        Log.d(TAG, "💰 Carryover calculation:")
+        Log.d(TAG, "   - Remaining: ${remainingMinutes}m = +${bonusPoints} points")
+        Log.d(TAG, "   - Overtime: ${overtimeMinutes}m = -${penaltyPoints} points") 
+        Log.d(TAG, "   - Net score: ${bonusPoints} - ${penaltyPoints} = ${netScore} points")
+        
+        return netScore
     }
     
     /**
@@ -144,17 +160,29 @@ class DailyScoreCarryoverService private constructor(private val context: Contex
     
     /**
      * Reset daily timer data (called at midnight)
+     * IMPORTANT: This resets remaining time to 0 after converting to score
      */
     private fun resetDailyTimerData() {
+        val remainingSeconds = timerPrefs.getInt("remaining_time", 0)
+        val overtimeSeconds = timerPrefs.getInt("overtime_seconds", 0)
+        val overtimePausedAt = timerPrefs.getInt("overtime_paused_at", 0)
+        
         timerPrefs.edit().apply {
-            // Keep remaining time but reset daily tracking
+            // Reset ALL timer data for new day - everything gets converted to score
+            putInt("remaining_time", 0)  // RESET remaining time to 0
             putInt("today_screen_time", 0)
             putInt("overtime_seconds", 0)
+            putBoolean("overtime_paused", false)  // Reset overtime pause state
+            remove("overtime_paused_at")  // Clear paused overtime
             putString("last_save_date", getCurrentDateString())
             apply()
         }
         
         Log.d(TAG, "🔄 Reset daily timer data for new day")
+        Log.d(TAG, "   - Remaining time was: ${remainingSeconds}s (${remainingSeconds / 60}m)")
+        Log.d(TAG, "   - Overtime was: ${overtimeSeconds}s (${overtimeSeconds / 60}m)")
+        Log.d(TAG, "   - Paused overtime was: ${overtimePausedAt}s (${overtimePausedAt / 60}m)")
+        Log.d(TAG, "   - All timers now: 0s (converted to carryover score)")
     }
     
     /**
@@ -185,12 +213,22 @@ class DailyScoreCarryoverService private constructor(private val context: Contex
     fun getCarryoverInfo(): CarryoverInfo {
         val remainingSeconds = timerPrefs.getInt("remaining_time", 0)
         val overtimeSeconds = timerPrefs.getInt("overtime_seconds", 0)
-        val potentialScore = calculateCarryoverScore(remainingSeconds, overtimeSeconds)
+        val overtimePaused = timerPrefs.getBoolean("overtime_paused", false)
+        val overtimePausedAt = timerPrefs.getInt("overtime_paused_at", 0)
+        
+        // Calculate total overtime (active + paused)
+        val totalOvertimeSeconds = if (overtimePaused && overtimePausedAt > 0) {
+            overtimeSeconds + overtimePausedAt
+        } else {
+            overtimeSeconds
+        }
+        
+        val potentialScore = calculateCarryoverScore(remainingSeconds, totalOvertimeSeconds)
         val currentCarryover = sharedPrefs.getInt(KEY_CARRYOVER_SCORE, 0)
         
         return CarryoverInfo(
             remainingTimeMinutes = remainingSeconds / 60,
-            overtimeMinutes = overtimeSeconds / 60,
+            overtimeMinutes = totalOvertimeSeconds / 60,  // Show total overtime
             potentialCarryoverScore = potentialScore,
             appliedCarryoverScore = currentCarryover,
             isPositive = potentialScore >= 0

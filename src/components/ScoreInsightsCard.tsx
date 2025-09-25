@@ -157,9 +157,9 @@ export const ScoreInsightsCard: React.FC = () => {
     
     console.log('⏰ [ScoreInsightsCard] Time breakdown:', { remainingMinutes, overtimeMinutes });
     
-    // Score calculation: +10 points per remaining minute, -5 points per overtime minute
-    const remainingScore = remainingMinutes * 10;
-    const overtimePenalty = overtimeMinutes * 5;
+    // Score calculation: +100 points per remaining minute, -50 points per overtime minute (10x impact)
+    const remainingScore = remainingMinutes * 100;
+    const overtimePenalty = overtimeMinutes * 50;
     const netScore = remainingScore - overtimePenalty;
     const netTimeMinutes = remainingMinutes - overtimeMinutes;
     const isPositive = netScore >= 0;
@@ -326,7 +326,7 @@ export const ScoreInsightsCard: React.FC = () => {
             <View style={styles.tipSection}>
               <Icon name="lightbulb" size={16} color="#FFB300" />
               <Text style={styles.tipText}>
-                💡 Pro tip: Save time = +10 points per minute tomorrow! Use overtime = -5 points per minute. Balance is key! 🎯
+                💡 Pro tip: Save time = +100 points per minute tomorrow! Use overtime = -50 points per minute. Balance is key! 🎯
               </Text>
             </View>
           </ScrollView>

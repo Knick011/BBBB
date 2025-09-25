@@ -48,6 +48,8 @@ interface EnhancedMascotDisplayProps {
   isQuizScreen?: boolean;
   currentQuestion?: any;
   selectedAnswer?: string | null;
+  // Offset to avoid bottom UI like banner ads (in dp)
+  bottomOffset?: number;
 }
 
 const EnhancedMascotDisplay: React.FC<EnhancedMascotDisplayProps> = ({ 
@@ -67,7 +69,8 @@ const EnhancedMascotDisplay: React.FC<EnhancedMascotDisplayProps> = ({
   // Quiz-specific props
   isQuizScreen = false,
   currentQuestion = null,
-  selectedAnswer = null
+  selectedAnswer = null,
+  bottomOffset = 0
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [displayedMessage, setDisplayedMessage] = useState(message);
@@ -362,7 +365,10 @@ const EnhancedMascotDisplay: React.FC<EnhancedMascotDisplayProps> = ({
   if (!isVisible && !showOverlay) {
     // Always show peeking mascot when main mascot is not visible
     return (
-      <View style={styles.peekingContainer}>
+      <View style={[
+        styles.peekingContainer,
+        { bottom: -36 + bottomOffset }
+      ]}>
         <TouchableOpacity 
           style={styles.peekingMascot}
           onPress={handlePeekingMascotPress}
@@ -555,7 +561,7 @@ const styles = StyleSheet.create({
     width: 180,
     height: 180,
     overflow: 'hidden',
-    transform: [{ rotate: '45deg' }],
+    transform: [{ rotate: '90deg' }],
   },
   peekingImage: {
     width: 180,

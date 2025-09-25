@@ -49,7 +49,21 @@
       "Read(/c:\\Users\\nihit\\OneDrive\\Pictures\\Screenshots/**)",
       "Read(/c:\\Users\\nihit\\OneDrive\\Pictures\\Screenshots/**)",
       "Read(/c:\\Users\\nihit\\OneDrive\\Pictures\\Screenshots/**)",
-      "Bash(npm run lint:*)"
+      "Bash(npm run lint:*)",
+      "Read(/c:\\Users\\nihit\\OneDrive\\Pictures\\Screenshots/**)",
+      "Bash(npm outdated:*)",
+      "Bash(start D:FInalversionbrainbitesbrainbiteslinkedin-post-image.html)",
+      "Bash(adb:*)",
+      "Read(//c/Users/nihit/OneDrive/Pictures/Screenshots/**)",
+      "Bash(taskkill:*)",
+      "Bash(npx kill-port:*)",
+      "WebSearch",
+      "Bash(sed:*)",
+      "Bash(awk:*)",
+      "Bash(npm run android:*)",
+      "Bash(bash:*)",
+      "Bash(powershell:*)",
+      "Bash(git reset:*)"
     ],
     "deny": [],
     "additionalDirectories": [

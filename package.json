@@ -1,13 +1,15 @@
 {
   "name": "brainbites",
-  "version": "0.0.1",
+  "version": "10.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "debug": "node debug-console.js && npx react-native run-android --variant=debug",
+    "firebase-debug": "adb shell setprop debug.firebase.analytics.app com.brainbitescabby.app"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",
@@ -15,8 +17,8 @@
     "@react-native-community/datetimepicker": "^8.4.2",
     "@react-native-community/netinfo": "^11.4.1",
     "@react-native-community/slider": "^4.5.7",
-    "@react-native-firebase/analytics": "^22.4.0",
-    "@react-native-firebase/app": "^22.4.0",
+    "@react-native-firebase/analytics": "^23.3.0",
+    "@react-native-firebase/app": "^23.1.1",
     "@react-native/new-app-screen": "0.80.2",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",

@@ -5,7 +5,7 @@ import theme from '../../styles/theme';
 const LoadingScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor="#FFF8E7" barStyle="dark-content" />
+      <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={true} translucent={true} />
       <View style={styles.content}>
         <ActivityIndicator size="large" color="#FF9F1C" />
         <Text style={styles.title}>Brain Bites</Text>

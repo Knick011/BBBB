@@ -193,6 +193,73 @@ class TimerIntegrationService {
       return false;
     }
   }
+
+  /**
+   * Get detailed timer status including remaining time and overtime
+   */
+  static async getTimerStatus(): Promise<{
+    remainingSeconds: number;
+    overtimeSeconds: number;
+    totalUsedToday: number;
+    isOvertime: boolean;
+  }> {
+    try {
+      await TimerIntegrationService.initialize();
+      
+      const data = HybridTimerService.getCurrentData();
+      
+      return {
+        remainingSeconds: data.remainingTime || 0,
+        overtimeSeconds: data.overtimeMinutes ? data.overtimeMinutes * 60 : 0,
+        totalUsedToday: data.todayScreenTime || 0,
+        isOvertime: (data.overtimeMinutes || 0) > 0
+      };
+    } catch (error) {
+      console.error(`❌ [TimerIntegration] Error getting timer status:`, error);
+      return {
+        remainingSeconds: 0,
+        overtimeSeconds: 0,
+        totalUsedToday: 0,
+        isOvertime: false
+      };
+    }
+  }
+
+  /**
+   * Reduce overtime by specified seconds (for responsibility rewards)
+   */
+  static async reduceOvertime(seconds: number): Promise<boolean> {
+    try {
+      console.log(`💪 [TimerIntegration] Reducing overtime by ${seconds} seconds`);
+      
+      await TimerIntegrationService.initialize();
+      
+      const data = HybridTimerService.getCurrentData();
+      const currentOvertimeMinutes = data.overtimeMinutes || 0;
+      const reductionMinutes = seconds / 60;
+      
+      if (currentOvertimeMinutes > 0) {
+        const newOvertimeMinutes = Math.max(0, currentOvertimeMinutes - reductionMinutes);
+        
+        // Use HybridTimerService to update overtime
+        const result = await HybridTimerService.updateOvertime(newOvertimeMinutes);
+        
+        if (result) {
+          console.log(`✅ [TimerIntegration] Reduced overtime from ${currentOvertimeMinutes}m to ${newOvertimeMinutes}m`);
+          return true;
+        } else {
+          console.error(`❌ [TimerIntegration] Failed to reduce overtime`);
+          return false;
+        }
+      } else {
+        console.log(`ℹ️ [TimerIntegration] No overtime to reduce`);
+        return true;
+      }
+    } catch (error) {
+      console.error(`❌ [TimerIntegration] Error reducing overtime:`, error);
+      return false;
+    }
+  }
 }
 
 export default TimerIntegrationService;

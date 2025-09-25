@@ -4,6 +4,7 @@
 // console.log: "Modern QuestionService with direct questionsData.ts import - fixes blank options"
 
 import { questionsCSV } from '../assets/data/questionsData';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface Question {
   id: number;
@@ -37,7 +38,12 @@ class QuestionServiceClass {
   private questions: Question[] = [];
   private isInitialized: boolean = false;
   private usedQuestionIds: Set<number> = new Set();
+  private permanentlyCorrectIds: Set<number> = new Set();
   private categoryCounts: Record<string, number> = {};
+
+  private readonly STORAGE_KEYS = {
+    PERMANENT_CORRECT_IDS: '@BrainBites:permanentCorrectQuestionIds'
+  } as const;
 
   constructor() {
     console.log('🚀 [Modern QuestionService] Constructor called');
@@ -62,6 +68,7 @@ class QuestionServiceClass {
       this.questions = parsedQuestions;
       this.updateCategoryCounts();
       this.isInitialized = true;
+      await this.loadPermanentCorrectIds();
 
       console.log(`✅ [Modern QuestionService] Successfully initialized with ${this.questions.length} questions`);
       console.log(`📊 [Modern QuestionService] Categories available:`, Object.keys(this.categoryCounts));
@@ -69,13 +76,31 @@ class QuestionServiceClass {
 
     } catch (error: any) {
       console.error('❌ [Modern QuestionService] Initialization failed:', error?.message || error);
+      console.error('❌ [Modern QuestionService] Stack trace:', error?.stack);
       
       // Fallback to hardcoded questions to prevent app crash
-      this.questions = this.getFallbackQuestions();
-      this.updateCategoryCounts();
-      this.isInitialized = true;
-      
-      console.log(`⚠️ [Modern QuestionService] Using ${this.questions.length} fallback questions`);
+      try {
+        this.questions = this.getFallbackQuestions();
+        this.updateCategoryCounts();
+        this.isInitialized = true;
+        
+        console.log(`⚠️ [Modern QuestionService] Using ${this.questions.length} fallback questions`);
+      } catch (fallbackError: any) {
+        console.error('❌ [Modern QuestionService] Even fallback questions failed:', fallbackError?.message || fallbackError);
+        // Last resort - create minimal questions programmatically
+        this.questions = [{
+          id: 1,
+          category: 'general',
+          question: 'What is 2 + 2?',
+          options: { A: '3', B: '4', C: '5', D: '6' },
+          correctAnswer: 'B',
+          explanation: '2 + 2 equals 4',
+          difficulty: 'Easy'
+        }];
+        this.updateCategoryCounts();
+        this.isInitialized = true;
+        console.log('⚠️ [Modern QuestionService] Using minimal emergency question');
+      }
     }
   }
 
@@ -117,31 +142,49 @@ class QuestionServiceClass {
 
   private parseCSVLine(line: string, lineNumber: number): Question | null {
     try {
-      // Simple CSV parsing (handles basic cases)
-      // Note: This assumes no commas within the fields themselves
-      const fields = line.split(',');
-      
-      if (fields.length < 10) {
-        console.warn(`⚠️ [Modern QuestionService] Line ${lineNumber} has insufficient fields (${fields.length})`);
+      // Robust CSV parsing that tolerates commas in question and explanation fields
+      // Strategy: split by comma, then assign fields from both ends inward
+      const tokens = line.split(',');
+      if (tokens.length < 10) {
+        console.warn(`⚠️ [Modern QuestionService] Line ${lineNumber} has insufficient fields (${tokens.length})`);
         return null;
       }
 
-      const [
-        id,
-        category,
-        question,
-        optionA,
-        optionB,
-        optionC,
-        optionD,
-        correctAnswer,
-        explanation,
-        level
-      ] = fields;
+      const id = tokens[0];
+      const category = tokens[1];
+      const level = tokens[tokens.length - 1];
+
+      // Find the last single-letter token A/B/C/D to identify the correct answer position
+      let correctIdx = -1;
+      for (let i = tokens.length - 2; i >= 0; i--) {
+        const t = tokens[i].trim().toUpperCase();
+        if (t.length === 1 && ['A', 'B', 'C', 'D'].includes(t)) {
+          correctIdx = i;
+          break;
+        }
+      }
+      if (correctIdx === -1) {
+        console.warn(`⚠️ [Modern QuestionService] Line ${lineNumber} could not locate correct answer token (A/B/C/D)`);
+        return null;
+      }
+
+      // Expect options immediately before correct answer (A,B,C,D order)
+      const optionD = tokens[correctIdx - 1];
+      const optionC = tokens[correctIdx - 2];
+      const optionB = tokens[correctIdx - 3];
+      const optionA = tokens[correctIdx - 4];
+      if ([optionA, optionB, optionC, optionD].some(v => v === undefined)) {
+        console.warn(`⚠️ [Modern QuestionService] Line ${lineNumber} missing options around correct answer index`);
+        return null;
+      }
+
+      const correctAnswer = tokens[correctIdx];
+      const question = tokens.slice(2, correctIdx - 4).join(',');
+      const explanation = tokens.slice(correctIdx + 1, tokens.length - 1).join(',');
 
       // Validate required fields
       if (!id || !category || !question || !optionA || !optionB || !optionC || !optionD || !correctAnswer || !explanation) {
-        console.warn(`⚠️ [Modern QuestionService] Line ${lineNumber} missing required fields`);
+        console.warn(`⚠️ [Modern QuestionService] Line ${lineNumber} missing required fields after reconstruction`);
         return null;
       }
 
@@ -159,11 +202,11 @@ class QuestionServiceClass {
           A: optionA.trim(),
           B: optionB.trim(),
           C: optionC.trim(),
-          D: optionD.trim()
+          D: optionD.trim(),
         },
         correctAnswer: correctAnswer.trim().toUpperCase() as 'A' | 'B' | 'C' | 'D',
         explanation: explanation.trim(),
-        difficulty: (level?.trim() || 'Medium') as 'Easy' | 'Medium' | 'Hard'
+        difficulty: (level?.trim() || 'Medium') as 'Easy' | 'Medium' | 'Hard',
       };
 
       // Validate parsed data
@@ -304,21 +347,25 @@ class QuestionServiceClass {
         return null;
       }
 
-      // Filter out recently used questions
-      const availableQuestions = filteredQuestions.filter(q => 
-        !this.usedQuestionIds.has(q.id)
-      );
+      // Filter out permanently-correct questions first, then recently used
+      filteredQuestions = filteredQuestions.filter(q => !this.permanentlyCorrectIds.has(q.id));
+      const availableQuestions = filteredQuestions.filter(q => !this.usedQuestionIds.has(q.id));
 
       // If all questions have been used, reset the used set for this filter
       if (availableQuestions.length === 0) {
-        console.log(`🔄 [Modern QuestionService] Resetting used questions for current filter`);
-        
-        // Remove used IDs for current filter only
-        const currentFilterIds = new Set(filteredQuestions.map(q => q.id));
-        currentFilterIds.forEach(id => this.usedQuestionIds.delete(id));
-        
-        // Retry with reset list
-        return this.getRandomQuestion(category, difficulty);
+        console.log(`🔄 [Modern QuestionService] No available questions for current filter after exclusions`);
+        // Try any category/difficulty, still respecting permanent and used exclusions
+        const fallbackPool = this.questions.filter(q => !this.permanentlyCorrectIds.has(q.id) && !this.usedQuestionIds.has(q.id));
+        if (fallbackPool.length === 0) {
+          console.warn('🛑 [Modern QuestionService] Entire pool exhausted (all questions answered correctly). Resetting pool.');
+          await this.resetPermanentCorrectIds();
+          // Retry with same filters from a fresh pool
+          return this.getRandomQuestion(category, difficulty);
+        }
+        const idx = Math.floor(Math.random() * fallbackPool.length);
+        const picked = fallbackPool[idx];
+        this.usedQuestionIds.add(picked.id);
+        return picked;
       }
 
       // Select random question from available ones
@@ -345,6 +392,43 @@ class QuestionServiceClass {
       }
       
       return null;
+    }
+  }
+
+  private async loadPermanentCorrectIds(): Promise<void> {
+    try {
+      const json = await AsyncStorage.getItem(this.STORAGE_KEYS.PERMANENT_CORRECT_IDS);
+      if (json) {
+        const arr: number[] = JSON.parse(json);
+        this.permanentlyCorrectIds = new Set(arr);
+        console.log(`🔒 [Modern QuestionService] Loaded ${this.permanentlyCorrectIds.size} permanently-correct IDs`);
+      }
+    } catch (e) {
+      console.warn('⚠️ [Modern QuestionService] Failed to load permanent correct IDs');
+    }
+  }
+
+  async markQuestionCorrect(questionId: number): Promise<void> {
+    try {
+      if (!this.permanentlyCorrectIds.has(questionId)) {
+        this.permanentlyCorrectIds.add(questionId);
+        const arr = Array.from(this.permanentlyCorrectIds);
+        await AsyncStorage.setItem(this.STORAGE_KEYS.PERMANENT_CORRECT_IDS, JSON.stringify(arr));
+        console.log(`✅ [Modern QuestionService] Permanently excluded question ${questionId}`);
+      }
+    } catch (e) {
+      console.warn('⚠️ [Modern QuestionService] Failed to persist permanent correct ID:', questionId);
+    }
+  }
+
+  private async resetPermanentCorrectIds(): Promise<void> {
+    try {
+      this.permanentlyCorrectIds.clear();
+      this.usedQuestionIds.clear();
+      await AsyncStorage.removeItem(this.STORAGE_KEYS.PERMANENT_CORRECT_IDS);
+      console.log('♻️ [Modern QuestionService] Cleared permanent correct IDs and session used IDs');
+    } catch (e) {
+      console.warn('⚠️ [Modern QuestionService] Failed to reset permanent correct IDs');
     }
   }
 

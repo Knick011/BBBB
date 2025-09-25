@@ -20,6 +20,8 @@ import theme from '../styles/theme';
 import SoundService from '../services/SoundService';
 import AudioManager from '../services/AudioManager';
 import { NotificationService } from '../services/NotificationService';
+import { NativeModules } from 'react-native';
+import BannerAdComponent from '../components/common/BannerAdComponent';
 
 interface NotificationSettings {
   morningReminder: boolean;
@@ -325,6 +327,53 @@ const SettingsScreen: React.FC = () => {
             />
           )}
         </View>
+
+        {/* Power Management */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Power Management</Text>
+
+          <TouchableOpacity
+            style={styles.feedbackItem}
+            onPress={async () => {
+              try {
+                const ignoring = await NativeModules.NotificationModule?.isIgnoringBatteryOptimizations?.();
+                if (!ignoring) {
+                  await NativeModules.NotificationModule?.requestIgnoreBatteryOptimizations?.();
+                } else {
+                  Alert.alert('Already Allowed', 'Battery optimizations are already disabled for BrainBites.');
+                }
+              } catch (e) {
+                Alert.alert('Action Unavailable', 'Opening battery optimization dialog failed. Opening settings list…');
+                try { await NativeModules.NotificationModule?.openBatteryOptimizationSettings?.(); } catch {}
+              }
+            }}
+          >
+            <View style={styles.settingLeft}>
+              <Icon name="battery-heart" size={24} color={theme.colors.primary} style={styles.settingIcon} />
+              <View style={styles.settingTextContainer}>
+                <Text style={styles.settingTitle}>Allow uninterrupted background timing</Text>
+                <Text style={styles.settingSubtitle}>Ask Android to ignore battery optimizations (one-time)</Text>
+              </View>
+            </View>
+            <Icon name="chevron-right" size={20} color="#999" />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.feedbackItem}
+            onPress={async () => {
+              try { await NativeModules.NotificationModule?.openBatteryOptimizationSettings?.(); } catch {}
+            }}
+          >
+            <View style={styles.settingLeft}>
+              <Icon name="cog-outline" size={24} color={theme.colors.primary} style={styles.settingIcon} />
+              <View style={styles.settingTextContainer}>
+                <Text style={styles.settingTitle}>Open battery optimization settings</Text>
+                <Text style={styles.settingSubtitle}>Manually set BrainBites to “Don’t optimize”</Text>
+              </View>
+            </View>
+            <Icon name="chevron-right" size={20} color="#999" />
+          </TouchableOpacity>
+        </View>
         
         {/* Support & Feedback Section */}
         <View style={styles.section}>
@@ -372,6 +421,8 @@ const SettingsScreen: React.FC = () => {
           onChange={handleTimeChange}
         />
       )}
+
+      <BannerAdComponent placement="settings_screen" />
     </SafeAreaView>
   );
 };

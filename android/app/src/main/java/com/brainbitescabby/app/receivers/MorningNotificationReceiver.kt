@@ -16,11 +16,14 @@ class MorningNotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         android.util.Log.d("MorningNotificationReceiver", "Morning alarm triggered!")
         
-        val title = intent.getStringExtra("title") ?: "Good Morning!"
-        val body = intent.getStringExtra("body") ?: "Time to start your day with BrainBites!"
+        val title = intent.getStringExtra("title") ?: "Good Morning! 🌅"
+        val body = intent.getStringExtra("body") ?: "Open BrainBites to keep your timer running and earn your screen time!"
         
         android.util.Log.d("MorningNotificationReceiver", "Showing notification: $title")
         showNotification(context, title, body)
+        
+        // Note: Service restart removed for Android 15 compliance
+        // Users can tap the notification to open the app and restart the service
     }
     
     private fun showNotification(context: Context, title: String, body: String) {

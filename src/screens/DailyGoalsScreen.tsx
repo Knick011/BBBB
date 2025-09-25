@@ -23,6 +23,7 @@ import { DailyGoal } from '../services/DailyGoalsService';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
 import RewardedAdService from '../services/RewardedAdService';
 import theme from '../styles/theme';
+import BannerAdComponent from '../components/common/BannerAdComponent';
 
 // Extracted child component to avoid using hooks inside render loops
 type GoalCardProps = {
@@ -524,6 +525,8 @@ const DailyGoalsScreen = ({ navigation }: any) => {
         )}
       </ScrollView>
 
+      <BannerAdComponent placement="daily_goals_screen" />
+
       <EnhancedMascotDisplay
         type={mascotType}
         position="right"
@@ -534,6 +537,7 @@ const DailyGoalsScreen = ({ navigation }: any) => {
         autoHide={true}
         autoHideDuration={4000}
         fullScreen={false}
+        bottomOffset={80}
       />
     </SafeAreaView>
   );

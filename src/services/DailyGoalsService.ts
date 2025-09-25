@@ -9,8 +9,8 @@ import TimerIntegrationService from './TimerIntegrationService';
 
 export interface DailyGoal {
   id: string;
-  type: 'questions' | 'streak' | 'accuracy' | 'speed' | 'honor';
-  subType?: 'quick_answers' | 'streak_speed' | 'honor_standard' | 'honor_walk';
+  type: 'questions' | 'streak' | 'accuracy' | 'speed' | 'honor' | 'responsibility';
+  subType?: 'quick_answers' | 'streak_speed' | 'honor_standard' | 'honor_walk' | 'background_checkin';
   target: number;
   questionsRequired?: number;
   thresholdPerAnswerSeconds?: number; // For speed goals
@@ -32,6 +32,8 @@ export interface DailyGoal {
   isSpecial?: boolean; // Special ad-gated goals that are always visible
   notified?: boolean;
   speedStreak?: number; // For tracking consecutive fast answers
+  isResponsibility?: boolean; // For responsibility check-in goals
+  lockCondition?: string; // Condition to unlock the goal
 }
 
 // Define difficulty levels for each goal type
@@ -227,6 +229,21 @@ const HONOR_GOALS = {
   }
 };
 
+// Responsibility check-in goal
+const RESPONSIBILITY_GOAL = {
+  id: 'responsibility_checkin',
+  type: 'responsibility' as const,
+  subType: 'background_checkin' as const,
+  target: 1,
+  reward: 2400, // 40 minutes
+  title: 'Check-in',
+  description: 'Return after 6+ hours away to earn +40m or reduce 40m overtime',
+  icon: 'shield-check',
+  color: '#2E86AB',
+  isResponsibility: true,
+  lockCondition: 'Unlocks after 6+ hours since last use'
+};
+
 class DailyGoalsService {
   private static instance: DailyGoalsService;
   private goals: DailyGoal[] = [];
@@ -251,6 +268,8 @@ class DailyGoalsService {
     
     try {
       await this.loadOrGenerateGoals();
+      // Migrate any persisted goal titles (e.g., responsibility goal title change)
+      await this.migrateResponsibilityTitle();
       this.isInitialized = true;
       console.log('✅ [DailyGoals] Service initialized with', this.goals.length, 'goals');
     } catch (error) {
@@ -262,8 +281,8 @@ class DailyGoalsService {
   }
 
   private async loadOrGenerateGoals(): Promise<void> {
-    // Use ISO date string for consistency across all components
-    const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+    // Use local date string for daily reset consistency
+    const today = getTorontoDateString(); // YYYY-MM-DD format (local)
     const lastResetDate = await AsyncStorage.getItem('@BrainBites:lastGoalReset');
     
     console.log('🎯 [DailyGoals] Today:', today, 'Last reset:', lastResetDate);
@@ -312,25 +331,44 @@ class DailyGoalsService {
     this.dailySpeedGoalIndex = savedIndex ? (parseInt(savedIndex) + 1) % SPEED_GOALS_POOL.length : 0;
     await AsyncStorage.setItem('@BrainBites:speedGoalIndex', this.dailySpeedGoalIndex.toString());
     
-    // Create a better seed based on current date to ensure daily variation
+    // Create a more varied seed that ensures different combinations daily
     const today = new Date();
-    const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+    const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24));
+    const seed = today.getFullYear() * 10000 + dayOfYear * 13 + today.getDay() * 7; // More varied seed
     
-    // Simple seeded random function for consistent but varied daily shuffling
-    let seedValue = seed;
-    const seededRandom = () => {
-      seedValue = (seedValue * 9301 + 49297) % 233280;
-      return seedValue / 233280;
+    // Multiple seeded random generators with different parameters for better distribution
+    let seedValue1 = seed;
+    let seedValue2 = seed + 12345;
+    let seedValue3 = seed + 67890;
+    
+    const seededRandom1 = () => {
+      seedValue1 = (seedValue1 * 16807) % 2147483647;
+      return seedValue1 / 2147483647;
     };
     
-    // Select difficulty distribution: exactly 1 Easy + 1 Medium + 1 Hard
-    const difficulties: ('easy' | 'medium' | 'hard')[] = ['easy', 'medium', 'hard'];
+    const seededRandom2 = () => {
+      seedValue2 = (seedValue2 * 48271) % 2147483647;
+      return seedValue2 / 2147483647;
+    };
     
-    // Properly shuffle using Fisher-Yates algorithm with seeded random
-    for (let i = difficulties.length - 1; i > 0; i--) {
-      const j = Math.floor(seededRandom() * (i + 1));
-      [difficulties[i], difficulties[j]] = [difficulties[j], difficulties[i]];
-    }
+    const seededRandom3 = () => {
+      seedValue3 = (seedValue3 * 69621) % 2147483647;  
+      return seedValue3 / 2147483647;
+    };
+    
+    // Create all possible permutations of difficulties
+    const allPermutations = [
+      ['easy', 'medium', 'hard'],
+      ['easy', 'hard', 'medium'], 
+      ['medium', 'easy', 'hard'],
+      ['medium', 'hard', 'easy'],
+      ['hard', 'easy', 'medium'],
+      ['hard', 'medium', 'easy']
+    ];
+    
+    // Select permutation based on day of year to ensure cycling
+    const permutationIndex = dayOfYear % allPermutations.length;
+    const difficulties = allPermutations[permutationIndex] as ('easy' | 'medium' | 'hard')[];
     
     console.log('🎯 [DailyGoals] Today\'s difficulty assignment:', {
       questions: difficulties[0],
@@ -374,13 +412,17 @@ class DailyGoalsService {
       notified: false
     });
     
-    // Add 2 standard honor goals
+    // Add 2 standard honor goals - use deterministic selection for variety
     const honorGoalsArray = [HONOR_GOALS.stretch, HONOR_GOALS.read];
-    const shuffledHonor = [...honorGoalsArray].sort(() => Math.random() - 0.5);
+    
+    // Use day-based selection to ensure different combinations
+    const honorSelection = dayOfYear % 2 === 0 
+      ? [honorGoalsArray[0], honorGoalsArray[1]] 
+      : [honorGoalsArray[1], honorGoalsArray[0]];
     
     for (let i = 0; i < 2; i++) {
       selected.push({
-        ...shuffledHonor[i],
+        ...honorSelection[i],
         current: 0,
         progress: 0,
         completed: false,
@@ -428,13 +470,27 @@ class DailyGoalsService {
       notified: false
     });
     
+    // RESPONSIBILITY CHECK-IN GOAL - Always at the bottom, locked until 6+ hours background
+    selected.push({
+      ...RESPONSIBILITY_GOAL,
+      current: 0,
+      progress: 0,
+      completed: false,
+      claimed: false,
+      requiresAdUnlock: false, // Unlocked by time, not ads
+      unlocked: false, // Initially locked
+      isResponsibility: true,
+      notified: false
+    });
+    
     console.log('🎯 [DailyGoals] Generated goals:', selected.map(g => ({
       title: g.title,
       type: g.type,
       difficulty: g.difficulty,
       locked: g.requiresAdUnlock,
       special: g.isSpecial,
-      honor: g.honorBased
+      honor: g.honorBased,
+      responsibility: g.isResponsibility
     })));
     
     return selected;
@@ -634,6 +690,15 @@ class DailyGoalsService {
         [this.DAILY_DAY_NOTIFIED_KEY, today],
       ]);
 
+      // Cancel the morning Daily Goal reminder if scheduled, since today's regular goal is complete
+      try {
+        const { NotificationService } = require('./NotificationService');
+        await NotificationService.cancelScheduledNotification('daily_goals_morning');
+        console.log('✅ [DailyGoals] Canceled morning daily-goal reminder (goal completed)');
+      } catch (e) {
+        console.log('⚠️ [DailyGoals] Could not cancel morning reminder:', e?.message || e);
+      }
+
       // Emit an event so UI (e.g., QuizScreen) can celebrate
       const emitter = new NativeEventEmitter(NativeModules.DeviceEventEmitter || {});
       try {
@@ -684,7 +749,22 @@ class DailyGoalsService {
     }
 
     try {
-      // Add time to timer
+      // Handle responsibility check-in goals differently
+      if (goal.isResponsibility) {
+        const success = await this.claimResponsibilityReward();
+        if (success) {
+          goal.claimed = true;
+          await this.saveGoals();
+          this.notifyListeners();
+          console.log(`✅ [DailyGoals] Responsibility reward claimed: ${goal.title}`);
+          return true;
+        } else {
+          console.error('❌ [DailyGoals] Failed to claim responsibility reward');
+          return false;
+        }
+      }
+      
+      // Regular goals - add time to timer
       const minutesToAdd = Math.floor(goal.reward / 60);
       console.log(`⏱️ [DailyGoals] Adding ${minutesToAdd} minutes for goal: ${goal.title}`);
       
@@ -852,9 +932,190 @@ class DailyGoalsService {
       
       await AsyncStorage.setItem('@BrainBites:lastGoalReset', today);
       await this.saveGoals();
+      // Ensure titles reflect latest copy even on existing day
+      await this.migrateResponsibilityTitle();
       this.notifyListeners();
       
       console.log('✅ Midnight reset completed');
+    }
+  }
+
+  /**
+   * Migration: ensure responsibility goal uses updated title copy.
+   */
+  private async migrateResponsibilityTitle(): Promise<void> {
+    try {
+      let changed = false;
+      for (const goal of this.goals) {
+        if (goal.isResponsibility && goal.title !== 'Check-in') {
+          goal.title = 'Check-in';
+          changed = true;
+        }
+      }
+      if (changed) {
+        await this.saveGoals();
+        console.log('🛠️ [DailyGoals] Migrated responsibility goal title to "Check-in"');
+      }
+    } catch (e) {
+      console.warn('⚠️ [DailyGoals] Failed to migrate responsibility goal title:', e);
+    }
+  }
+
+  /**
+   * Reconcile daily goal day streak on app activation. If the last completed day
+   * is not yesterday or today, reset the day streak to 0 so UI reflects a broken streak.
+   */
+  async reconcileDayStreak(): Promise<void> {
+    try {
+      const today = getTorontoDateString();
+      const last = await AsyncStorage.getItem(this.DAILY_DAY_LAST_KEY);
+      const streakStr = await AsyncStorage.getItem(this.DAILY_DAY_STREAK_KEY);
+      const streak = streakStr ? parseInt(streakStr, 10) : 0;
+      if (!last) {
+        return;
+      }
+      // Build yesterday as local date string
+      const d = new Date();
+      d.setDate(d.getDate() - 1);
+      const yesterday = `${d.getFullYear()}-${`${d.getMonth() + 1}`.padStart(2, '0')}-${`${d.getDate()}`.padStart(2, '0')}`;
+      if (last !== today && last !== yesterday) {
+        if (streak !== 0) {
+          await AsyncStorage.setItem(this.DAILY_DAY_STREAK_KEY, '0');
+          // Do not emit event here; UI will load updated value
+          console.log('🔄 [DailyGoals] Reconciled day streak -> 0 (missed days)');
+        }
+      }
+    } catch (e) {
+      console.error('❌ [DailyGoals] Failed to reconcile day streak:', e);
+    }
+  }
+
+  // RESPONSIBILITY CHECK-IN METHODS
+  
+  /**
+   * Check if app has been inactive (backgrounded or closed) for 6+ hours and unlock responsibility goal
+   */
+  async checkBackgroundTime(): Promise<void> {
+    try {
+      const responsibilityGoal = this.goals.find(g => g.isResponsibility);
+      if (!responsibilityGoal || responsibilityGoal.unlocked) return;
+
+      // Prefer unified last inactive time; fallback to legacy lastBackgroundTime
+      const lastInactive = await AsyncStorage.getItem('@BrainBites:lastInactiveTime');
+      const legacyBackground = await AsyncStorage.getItem('@BrainBites:lastBackgroundTime');
+      const anchor = lastInactive || legacyBackground;
+      if (!anchor) return;
+
+      const inactiveMs = Date.now() - parseInt(anchor);
+      const inactiveHours = inactiveMs / (1000 * 60 * 60);
+
+      console.log(`🕐 [DailyGoals] App inactive time: ${inactiveHours.toFixed(1)} hours`);
+
+      if (inactiveHours >= 6) {
+        // Unlock the responsibility goal
+        responsibilityGoal.unlocked = true;
+        responsibilityGoal.lockCondition = `Unlocked! ${inactiveHours.toFixed(1)}h inactive`;
+        
+        await this.saveGoals();
+        this.notifyListeners();
+        
+        console.log(`🔓 [DailyGoals] Responsibility goal unlocked after ${inactiveHours.toFixed(1)} hours`);
+      }
+    } catch (error) {
+      console.error('❌ [DailyGoals] Error checking background time:', error);
+    }
+  }
+
+  /**
+   * Complete the responsibility check-in goal
+   */
+  async completeResponsibilityCheckin(): Promise<boolean> {
+    try {
+      const responsibilityGoal = this.goals.find(g => g.isResponsibility);
+      if (!responsibilityGoal || !responsibilityGoal.unlocked || responsibilityGoal.completed) {
+        return false;
+      }
+
+      // Mark goal as completed
+      responsibilityGoal.completed = true;
+      responsibilityGoal.progress = 100;
+      responsibilityGoal.current = 1;
+
+      await this.saveGoals();
+      this.notifyListeners();
+
+      console.log(`✅ [DailyGoals] Responsibility check-in completed!`);
+      return true;
+    } catch (error) {
+      console.error('❌ [DailyGoals] Error completing responsibility check-in:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Claim responsibility reward - either add time or reduce overtime
+   */
+  private async claimResponsibilityReward(): Promise<boolean> {
+    try {
+      await TimerIntegrationService.initialize();
+      
+      // Get current timer status
+      const timerStatus = await TimerIntegrationService.getTimerStatus();
+      const hasRemainingTime = timerStatus.remainingSeconds > 0;
+      const hasOvertime = timerStatus.overtimeSeconds > 0;
+
+      if (hasRemainingTime) {
+        // User has remaining time - add bonus 40 minutes
+        const success = await TimerIntegrationService.addTimeFromGoal(40);
+        if (success) {
+          console.log(`🎁 [DailyGoals] Added 40 bonus minutes - responsible user!`);
+          return true;
+        }
+      } else if (hasOvertime) {
+        // User has overtime - reduce by up to 40 minutes
+        const overtimeReductionSeconds = Math.min(timerStatus.overtimeSeconds, 40 * 60);
+        const success = await TimerIntegrationService.reduceOvertime(overtimeReductionSeconds);
+        if (success) {
+          console.log(`💪 [DailyGoals] Reduced overtime by ${overtimeReductionSeconds / 60} minutes!`);
+          return true;
+        }
+      } else {
+        // No remaining time and no overtime - just add 40 minutes
+        const success = await TimerIntegrationService.addTimeFromGoal(40);
+        if (success) {
+          console.log(`🎁 [DailyGoals] Added 40 minutes for responsibility!`);
+          return true;
+        }
+      }
+
+      return false;
+    } catch (error) {
+      console.error('❌ [DailyGoals] Error claiming responsibility reward:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Set last inactive time when app goes to background
+   */
+  async setBackgroundTime(): Promise<void> {
+    try {
+      await AsyncStorage.setItem('@BrainBites:lastInactiveTime', Date.now().toString());
+      console.log(`📱 [DailyGoals] Inactive time recorded: ${new Date().toISOString()}`);
+    } catch (error) {
+      console.error('❌ [DailyGoals] Error setting background time:', error);
+    }
+  }
+
+  /**
+   * Clear scheduled comeback reminder when app comes to foreground (do not clear the inactive anchor prematurely)
+   */
+  async clearBackgroundTime(): Promise<void> {
+    try {
+      // We intentionally keep lastInactiveTime until checkBackgroundTime evaluates and unlocks
+      console.log(`📱 [DailyGoals] Foreground: leaving lastInactiveTime for evaluation`);
+    } catch (error) {
+      console.error('❌ [DailyGoals] Error clearing background time:', error);
     }
   }
 }

@@ -13,6 +13,9 @@ import QuestionService from './src/services/QuestionService';
 import AdMobService from './src/services/AdMobService';
 import RewardedAdService from './src/services/RewardedAdService';
 import FirebaseAnalyticsService from './src/services/FirebaseAnalyticsService';
+import DailyGoalsService from './src/services/DailyGoalsService';
+import { NotificationService } from './src/services/NotificationService';
+import DebugLogger from './src/utils/DebugLogger';
 import ErrorBoundary from './src/components/common/ErrorBoundary';
 import LoadingScreen from './src/components/common/LoadingScreen';
 import ErrorScreen from './src/components/common/ErrorScreen';
@@ -75,6 +78,25 @@ const App: React.FC = () => {
         SystemNavigationBar.navigationShow();
       }
       
+      // Set last inactive time for responsibility check-ins and schedule comeback reminder in 6h
+      DailyGoalsService.setBackgroundTime().catch(error => {
+        console.log('⚠️ [BrainBites] Failed to set background time:', error);
+      });
+      // Persist background timestamp for hybrid 6h comeback detection
+      AsyncStorage.setItem('@BrainBites:lastBackgroundTs', String(Date.now())).catch(() => {});
+      try {
+        const when = new Date(Date.now() + 6 * 60 * 60 * 1000);
+        NotificationService.scheduleOneTimeNotification(
+          'responsibility_comeback',
+          when,
+          '🎯 Responsibility Check-in Ready',
+          'Come back to claim your +40 minutes (or reduce 40 minutes of overtime)!',
+          { type: 'responsibility_comeback' }
+        );
+      } catch (e) {
+        console.log('⚠️ [BrainBites] Failed to schedule 6h comeback notification:', e);
+      }
+      
       // Log analytics event
       FirebaseAnalyticsService.logSessionEnd();
     } else if (nextAppState === 'active') {
@@ -85,6 +107,77 @@ const App: React.FC = () => {
       if (Platform.OS === 'android') {
         SystemNavigationBar.navigationHide();
       }
+      
+      // Check background time and potentially unlock responsibility goal
+      DailyGoalsService.checkBackgroundTime().catch(error => {
+        console.log('⚠️ [BrainBites] Failed to check background time:', error);
+      });
+
+      // Reconcile daily flow day streak immediately so Home shows correct value
+      DailyGoalsService.reconcileDayStreak().catch(error => {
+        console.log('⚠️ [BrainBites] Failed to reconcile day streak:', error);
+      });
+
+      // Deliver any due fallback scheduled notifications
+      NotificationService.deliverPendingIfDue?.();
+      // Record last active timestamp for re-engagement logic
+      AsyncStorage.setItem('@BrainBites:lastActiveTs', String(Date.now())).catch(() => {});
+      // Ensure daily schedules (morning daily goal + leaderboard nudges) are set for today
+      NotificationService.ensureDailySchedules?.().catch(() => {});
+      
+      // If we are back before 6h, cancel the scheduled comeback notification (native + fallback)
+      try {
+        NotificationService.cancelScheduledNotification('responsibility_comeback');
+      } catch {}
+
+      // Hybrid 6h comeback check: if >=6h elapsed since last background, unlock and nudge
+      (async () => {
+        try {
+          const ts = await AsyncStorage.getItem('@BrainBites:lastBackgroundTs');
+          if (ts) {
+            const last = parseInt(ts, 10);
+            if (!isNaN(last)) {
+              const elapsedMs = Date.now() - last;
+              const sixHoursMs = 6 * 60 * 60 * 1000;
+              if (elapsedMs >= sixHoursMs) {
+                // Clear timestamp so this does not repeat
+                await AsyncStorage.removeItem('@BrainBites:lastBackgroundTs');
+                // Proactively complete responsibility check-in if unlocked by time gap
+                try { await DailyGoalsService.completeResponsibilityCheckin(); } catch {}
+                // Nudge user with a local notification (fallback path)
+                try {
+                  await NotificationService.showLocalNotification({
+                    title: '🎯 Responsibility Check-in Ready',
+                    body: 'Come back to claim your +40 minutes (or reduce 40 minutes of overtime)!',
+                    data: { type: 'responsibility_comeback_resume' },
+                    playSound: true,
+                    vibrate: true,
+                  });
+                } catch (e) {
+                  console.log('⚠️ [BrainBites] Failed to show 6h comeback fallback notification:', e);
+                }
+              }
+            }
+          }
+        } catch (e) {
+          console.log('⚠️ [BrainBites] Hybrid 6h comeback check failed:', e);
+        }
+      })();
+
+      // Complete responsibility check-in if unlocked
+      DailyGoalsService.completeResponsibilityCheckin().catch(error => {
+        console.log('⚠️ [BrainBites] Failed to complete responsibility check-in:', error);
+      });
+      
+      // Ensure daily goals reset at local midnight even if Home isn't opened first
+      DailyGoalsService.checkAndResetAtMidnight().catch(error => {
+        console.log('⚠️ [BrainBites] Failed to check/reset daily goals at midnight:', error);
+      });
+
+      // Clear background time tracking
+      DailyGoalsService.clearBackgroundTime().catch(error => {
+        console.log('⚠️ [BrainBites] Failed to clear background time:', error);
+      });
       
       // Log analytics event
       FirebaseAnalyticsService.logSessionStart();
@@ -117,11 +210,11 @@ const App: React.FC = () => {
   }, []);
 
   // Initialize app services
-  const initializeApp = useCallback(async () => {
-    console.log('🚀 [BrainBites] Starting app initialization...');
+  const initializeApp = useCallback(async (retryCount: number = 0) => {
+    console.log(`🚀 [BrainBites] Starting app initialization... (attempt ${retryCount + 1})`);
     
     try {
-      setAppState(prev => ({ ...prev, isInitializing: true }));
+      setAppState(prev => ({ ...prev, isInitializing: true, criticalError: null }));
 
       // Check if this is first launch
       const isFirstLaunch = await checkFirstLaunch();
@@ -139,19 +232,53 @@ const App: React.FC = () => {
         if (firebaseReady) {
           console.log('✅ [BrainBites] Firebase Analytics initialized successfully');
           
+          // Enable debug mode and comprehensive logging
+          await DebugLogger.enableDebugMode();
+          await DebugLogger.logFirebaseStatus();
+          
           // Log app open event automatically as per research recommendations
           await analytics().logAppOpen();
           console.log('📊 [BrainBites] App open event logged to Firebase');
+          
+          // Log user activity to ensure active user tracking
+          await DebugLogger.logUserActivity();
+          
+          // Set user properties for better tracking
+          const userId = await AsyncStorage.getItem('@BrainBites:userId') || `user_${Date.now()}`;
+          await analytics().setUserId(userId);
+          await analytics().setUserProperties({
+            platform: Platform.OS,
+            app_version: '1.2',
+            first_open_time: new Date().toISOString(),
+          });
+          
+          console.log('👤 [BrainBites] User properties set for analytics');
           
           setAppState(prev => ({ 
             ...prev, 
             services: { ...prev.services, firebase: 'success' } 
           }));
+
+          // Request battery optimization exemption once right after notifications prompt on first launch
+          try {
+            const askedKey = '@BrainBites:askedBatteryExemption';
+            const alreadyAsked = await AsyncStorage.getItem(askedKey);
+            if (!alreadyAsked && Platform.OS === 'android') {
+              const { NativeModules } = require('react-native');
+              if (NativeModules.NotificationModule?.requestIgnoreBatteryOptimizations) {
+                await NativeModules.NotificationModule.requestIgnoreBatteryOptimizations();
+                await AsyncStorage.setItem(askedKey, 'true');
+              }
+            }
+          } catch (e) {
+            console.log('⚠️ [BrainBites] Battery optimization request failed (non-fatal):', e?.message || e);
+          }
         } else {
           throw new Error('Firebase Analytics initialization failed');
         }
       } catch (firebaseError: any) {
         console.log('⚠️ [BrainBites] Firebase Analytics initialization failed:', firebaseError?.message || firebaseError);
+        DebugLogger.log('FIREBASE_ERROR', 'Initialization failed', firebaseError);
         setAppState(prev => ({ 
           ...prev, 
           services: { ...prev.services, firebase: 'failed' } 
@@ -188,10 +315,12 @@ const App: React.FC = () => {
         }
       } catch (admobError: any) {
         console.log('⚠️ [BrainBites] AdMob initialization failed:', admobError?.message || admobError);
+        console.log('⚠️ [BrainBites] AdMob stack trace:', admobError?.stack);
         setAppState(prev => ({ 
           ...prev, 
           services: { ...prev.services, admob: 'failed' } 
         }));
+        // AdMob failure should not block app startup
       }
 
       // Initialize Sound Service
@@ -256,37 +385,56 @@ const App: React.FC = () => {
         }));
       }
 
-      // Complete initialization
-      const criticalServicesFailed = appState.services.questions === 'failed';
-      
-      if (criticalServicesFailed) {
-        console.log('🚨 [BrainBites] Critical services failed, showing error state');
-        setAppState(prev => ({ 
-          ...prev,
-          isInitializing: false,
-          initializationComplete: false,
-          criticalError: 'Failed to initialize critical app services. Please restart the app.'
-        }));
-      } else {
-        console.log('🎉 [BrainBites] App initialization completed successfully');
-        setAppState(prev => ({ 
-          ...prev,
-          isInitializing: false,
-          initializationComplete: true,
-          criticalError: null
-        }));
+      // Complete initialization - check final status
+      setAppState(prev => {
+        const criticalServicesFailed = prev.services.questions === 'failed';
         
-        // Log successful app initialization
-        await FirebaseAnalyticsService.logSessionStart();
-      }
+        if (criticalServicesFailed) {
+          console.log('🚨 [BrainBites] Critical services failed, showing error state');
+          return {
+            ...prev,
+            isInitializing: false,
+            initializationComplete: false,
+            criticalError: 'Failed to initialize critical app services. Please restart the app.'
+          };
+        } else {
+          console.log('🎉 [BrainBites] App initialization completed successfully');
+          // Log successful app initialization
+          FirebaseAnalyticsService.logSessionStart().catch(error => {
+            console.log('⚠️ [BrainBites] Failed to log session start:', error);
+          });
+          
+          return {
+            ...prev,
+            isInitializing: false,
+            initializationComplete: true,
+            criticalError: null
+          };
+        }
+      });
 
     } catch (error: any) {
       console.log('❌ [BrainBites] App initialization failed:', error?.message || error);
+      console.log('❌ [BrainBites] Stack trace:', error?.stack);
+      
+      // Provide more user-friendly error messages
+      let userFriendlyMessage = 'Something went wrong during app startup.';
+      
+      if (error?.message?.includes('Network')) {
+        userFriendlyMessage = 'Network connection issue. Please check your internet connection and try again.';
+      } else if (error?.message?.includes('Firebase')) {
+        userFriendlyMessage = 'Unable to connect to our services. Please try again in a moment.';
+      } else if (error?.message?.includes('Question')) {
+        userFriendlyMessage = 'Problem loading quiz content. The app will use backup questions.';
+      } else if (error?.message?.includes('Permission')) {
+        userFriendlyMessage = 'App permissions need to be set up. Please restart the app.';
+      }
+      
       setAppState(prev => ({ 
         ...prev,
         isInitializing: false,
         initializationComplete: false,
-        criticalError: `App initialization failed: ${error?.message || 'Unknown error'}`
+        criticalError: userFriendlyMessage
       }));
     }
   }, [checkFirstLaunch]);
@@ -340,7 +488,7 @@ const App: React.FC = () => {
     return (
       <ErrorBoundary>
         <ErrorScreen 
-          error={appState.criticalError}
+          message={appState.criticalError}
           onRetry={initializeApp}
         />
       </ErrorBoundary>
@@ -356,6 +504,7 @@ const App: React.FC = () => {
             translucent={true}
             backgroundColor="transparent"
             barStyle="dark-content"
+            hidden={true}
           />
           <NavigationContainer>
             <Stack.Navigator

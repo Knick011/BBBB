@@ -78,9 +78,9 @@ export const CarryoverInfoCard: React.FC = () => {
 
   const { remainingTimeMinutes, overtimeMinutes, potentialCarryoverScore, isPositive } = carryoverInfo;
   
-  // Calculate net time difference and score impact
+  // Calculate net time difference and use native-provided net score impact
   const netTimeMinutes = remainingTimeMinutes - overtimeMinutes;
-  const netScoreImpact = (remainingTimeMinutes * 10) - (overtimeMinutes * 5); // +10 per remaining, -5 per overtime
+  const netScoreImpact = carryoverInfo.potentialCarryoverScore;
   const isNetPositive = netTimeMinutes > 0;
   
   // Show card if there's any timer data or just to show the UI
@@ -110,7 +110,7 @@ export const CarryoverInfoCard: React.FC = () => {
                 size={24}
                 color={isNetPositive ? colors.success : colors.error}
               />
-              <Text style={styles.title}>Tomorrow's Score Impact</Text>
+              <Text style={styles.title}>Tomorrow's Net Carryover</Text>
             </View>
             <Animated.View style={{ transform: [{ rotate: rotateInterpolate }] }}>
               <Icon name="chevron-down" size={24} color={colors.textPrimary} />
@@ -140,7 +140,7 @@ export const CarryoverInfoCard: React.FC = () => {
                 </View>
                 <View style={[styles.row, styles.totalRow]}>
                   <Icon name="calculator" size={20} color={isNetPositive ? colors.success : colors.error} />
-                  <Text style={[styles.label, styles.totalLabel]}>Net Impact:</Text>
+                  <Text style={[styles.label, styles.totalLabel]}>Net Impact (points use +100/min, -50/min):</Text>
                   <Text style={[styles.value, styles.totalValue, isNetPositive ? styles.positive : styles.negative]}>
                     {isNetPositive ? '+' : ''}{netTimeMinutes} min {isNetPositive ? '+' : ''}{netScoreImpact} pts
                   </Text>

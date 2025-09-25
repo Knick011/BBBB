@@ -7,6 +7,9 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.PowerManager
+import android.net.Uri
+import android.provider.Settings
 import androidx.core.app.NotificationCompat
 import com.facebook.react.bridge.*
 import com.brainbitescabby.app.MainActivity
@@ -261,6 +264,52 @@ class NotificationModule(reactContext: ReactApplicationContext) : ReactContextBa
         } catch (e: Exception) {
             android.util.Log.e("NotificationModule", "Error testing notification", e)
             promise.reject("TEST_ERROR", e.message, e)
+        }
+    }
+
+    @ReactMethod
+    fun requestIgnoreBatteryOptimizations(promise: Promise) {
+        try {
+            val ctx = reactApplicationContext
+            val pm = ctx.getSystemService(Context.POWER_SERVICE) as PowerManager
+            val pkg = ctx.packageName
+            if (!pm.isIgnoringBatteryOptimizations(pkg)) {
+                val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
+                    data = Uri.parse("package:$pkg")
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+                ctx.startActivity(intent)
+            }
+            promise.resolve(true)
+        } catch (e: Exception) {
+            promise.reject("BATTERY_OPT_ERROR", e.message, e)
+        }
+    }
+
+    @ReactMethod
+    fun isIgnoringBatteryOptimizations(promise: Promise) {
+        try {
+            val ctx = reactApplicationContext
+            val pm = ctx.getSystemService(Context.POWER_SERVICE) as PowerManager
+            val pkg = ctx.packageName
+            val ignoring = pm.isIgnoringBatteryOptimizations(pkg)
+            promise.resolve(ignoring)
+        } catch (e: Exception) {
+            promise.reject("BATTERY_OPT_QUERY_ERROR", e.message, e)
+        }
+    }
+
+    @ReactMethod
+    fun openBatteryOptimizationSettings(promise: Promise) {
+        try {
+            val ctx = reactApplicationContext
+            val intent = Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            ctx.startActivity(intent)
+            promise.resolve(true)
+        } catch (e: Exception) {
+            promise.reject("BATTERY_OPT_SETTINGS_ERROR", e.message, e)
         }
     }
 }

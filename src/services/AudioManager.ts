@@ -435,27 +435,32 @@ class AudioManager {
         }
 
         const musicVolume = this.settings.musicVolume * this.settings.masterVolume;
-        this.currentMusicInstance.setVolume(musicVolume);
         
-        // CRITICAL: Set to loop infinitely
-        this.currentMusicInstance.setNumberOfLoops(-1);
-        
-        // Apply current streak-based speed
-        this.currentMusicInstance.setSpeed(this.targetSpeed);
+        if (this.currentMusicInstance) {
+          this.currentMusicInstance.setVolume(musicVolume);
+          
+          // CRITICAL: Set to loop infinitely
+          this.currentMusicInstance.setNumberOfLoops(-1);
+          
+          // Apply current streak-based speed
+          this.currentMusicInstance.setSpeed(this.targetSpeed);
+        }
         console.log(`🎵 [AudioManager] Music started with speed: ${this.targetSpeed}x`);
         
-        this.currentMusicInstance.play((success) => {
-          if (!success) {
-            console.log('🔄 [AudioManager] Restarting music loop');
-            // Restart if playback stops unexpectedly
-            if (this.settings.musicEnabled && this.currentMusicId === musicId) {
-              setTimeout(() => this.playMusic(musicId), 100);
+        if (this.currentMusicInstance) {
+          this.currentMusicInstance.play((success) => {
+            if (!success) {
+              console.log('🔄 [AudioManager] Restarting music loop');
+              // Restart if playback stops unexpectedly
+              if (this.settings.musicEnabled && this.currentMusicId === musicId) {
+                setTimeout(() => this.playMusic(musicId), 100);
+              }
             }
-          }
-        });
+          });
 
-        this.currentMusicId = musicId;
-        console.log(`🎵 [AudioManager] Started ${musicId} with infinite loop`);
+          this.currentMusicId = musicId;
+          console.log(`🎵 [AudioManager] Started ${musicId} with infinite loop`);
+        }
       });
     } catch (error) {
       console.warn(`⚠️ [AudioManager] Error playing music:`, error);
@@ -509,28 +514,36 @@ class AudioManager {
    */
   async updateMusicSpeedForStreak(streak: number): Promise<void> {
     this.currentStreak = Math.max(0, streak);
+    // Do not apply streak speed while menu music is active to avoid speed blips on Home
+    if (this.currentMusicId === 'menuMusic') {
+      this.targetSpeed = 1.0;
+      if (this.currentMusicInstance) {
+        try { this.currentMusicInstance.setSpeed(1.0); } catch {}
+      }
+      return;
+    }
     
-    // Enhanced speed calculation with more granular levels
+    // Rebalanced speed calculation with 2.2x maximum
     let newSpeed = 1.0; // Base speed
     
     if (streak >= 20) {
-      newSpeed = 3.0; // 3x speed for 20+ streak (extreme)
+      newSpeed = 2.2; // 2.2x speed for 20+ streak (increased from 1.8x)
     } else if (streak >= 15) {
-      newSpeed = 2.5; // 2.5x speed for 15-19 streak
+      newSpeed = 1.9; // 1.9x speed for 15-19 streak
     } else if (streak >= 12) {
-      newSpeed = 2.2; // 2.2x speed for 12-14 streak
+      newSpeed = 1.7; // 1.7x speed for 12-14 streak
     } else if (streak >= 10) {
-      newSpeed = 2.0; // 2x speed for 10-11 streak
+      newSpeed = 1.5; // 1.5x speed for 10-11 streak
     } else if (streak >= 8) {
-      newSpeed = 1.8; // 1.8x speed for 8-9 streak
+      newSpeed = 1.4; // 1.4x speed for 8-9 streak
     } else if (streak >= 6) {
-      newSpeed = 1.6; // 1.6x speed for 6-7 streak
+      newSpeed = 1.3; // 1.3x speed for 6-7 streak
     } else if (streak >= 5) {
-      newSpeed = 1.5; // 1.5x speed for 5 streak
+      newSpeed = 1.25; // 1.25x speed for 5 streak
     } else if (streak >= 3) {
-      newSpeed = 1.2; // 1.2x speed for 3-4 streak
+      newSpeed = 1.15; // 1.15x speed for 3-4 streak
     } else if (streak >= 1) {
-      newSpeed = 1.1; // 1.1x speed for 1-2 streak (subtle boost)
+      newSpeed = 1.1; // 1.1x speed for 1-2 streak
     }
     
     // Only update if speed changed significantly
@@ -565,14 +578,14 @@ class AudioManager {
    * Get descriptive text for speed level
    */
   private getSpeedDescription(speed: number): string {
-    if (speed >= 3.0) return 'Insane';
-    if (speed >= 2.5) return 'Extreme';
     if (speed >= 2.2) return 'Very Fast';
-    if (speed >= 2.0) return 'Fast';
-    if (speed >= 1.8) return 'Quick';
-    if (speed >= 1.6) return 'Upbeat';
-    if (speed >= 1.5) return 'Energetic';
-    if (speed >= 1.2) return 'Lively';
+    if (speed >= 1.9) return 'Fast';
+    if (speed >= 1.7) return 'Energetic';
+    if (speed >= 1.5) return 'Upbeat';
+    if (speed >= 1.4) return 'Quick';
+    if (speed >= 1.3) return 'Lively';
+    if (speed >= 1.25) return 'Peppy';
+    if (speed >= 1.15) return 'Faster';
     if (speed >= 1.1) return 'Slightly Faster';
     return 'Normal';
   }
@@ -582,13 +595,13 @@ class AudioManager {
    */
   private logSpeedMilestone(streak: number, speed: number): void {
     const milestones = [
-      { streak: 1, message: '🎵 Music gets a little boost!' },
+      { streak: 1, message: '🎵 Music gets a gentle boost!' },
       { streak: 3, message: '🎵 Music picks up the pace!' },
-      { streak: 5, message: '🔥 Music hits energetic mode!' },
-      { streak: 8, message: '⚡ Music enters upbeat territory!' },
-      { streak: 10, message: '🚀 Music goes into fast mode!' },
-      { streak: 15, message: '🌟 Music reaches extreme speeds!' },
-      { streak: 20, message: '💫 INSANE MUSIC SPEED UNLOCKED!' }
+      { streak: 5, message: '🔥 Music gets peppy!' },
+      { streak: 8, message: '⚡ Music becomes quick!' },
+      { streak: 10, message: '🚀 Music hits upbeat mode!' },
+      { streak: 15, message: '🌟 Music reaches fast speeds!' },
+      { streak: 20, message: '💫 VERY FAST MUSIC UNLOCKED!' }
     ];
     
     const milestone = milestones.find(m => m.streak === streak);
@@ -719,6 +732,8 @@ class AudioManager {
 
   // Music shortcuts
   async playMenuMusic(): Promise<void> {
+    // ALWAYS reset speed to normal for menu music
+    this.targetSpeed = 1.0;
     await this.playMusic('menuMusic');
   }
 
@@ -729,6 +744,9 @@ class AudioManager {
   // Resume music when returning to menu
   async resumeMenuMusic(): Promise<void> {
     if (this.currentMusicId === 'menuMusic' && this.currentMusicInstance) {
+      // Reset speed to normal and resume
+      this.targetSpeed = 1.0;
+      this.currentMusicInstance.setSpeed(1.0);
       this.currentMusicInstance.play();
     } else {
       await this.playMenuMusic();

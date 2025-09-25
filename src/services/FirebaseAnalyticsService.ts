@@ -222,7 +222,7 @@ class FirebaseAnalyticsService {
     streakMaintained: boolean;
     goalsCompleted: number;
   }): Promise<void> {
-    this.analyticsManager.trackEvent('user_engagement', engagementData);
+    this.analyticsManager.trackEvent('user_activity_tracked', engagementData);
   }
 
   async logRetention(data: {

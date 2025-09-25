@@ -53,6 +53,9 @@ class ScreenTimeService : Service() {
         private const val KEY_LAST_SAVE_DATE = "last_save_date"
         private const val KEY_LAST_HOUR_NOTIFIED = "last_hour_notified"
         private const val UPDATE_INTERVAL = 1000L // 1 second for smooth updates
+        private const val MAX_SERVICE_LIFETIME_MS = 16 * 60 * 60 * 1000L // 16 hours
+        @Volatile private var running: Boolean = false
+        fun isServiceRunning(): Boolean = running
         
         // Actions
         const val ACTION_START = "com.brainbitescabby.app.timer.START"
@@ -85,6 +88,7 @@ class ScreenTimeService : Service() {
         createNotificationChannel()
         loadSavedData()
         acquireWakeLock()
+        companionStart()
         
         // In onCreate, load overtime and hourly notification state
         overtimeSeconds = sharedPrefs.getInt(KEY_OVERTIME, 0)
@@ -95,6 +99,13 @@ class ScreenTimeService : Service() {
         Log.d(TAG, "Loaded overtime: ${overtimeSeconds}s (paused: $overtimePaused)")
         
         Log.d(TAG, "✅ Service initialized with ${remainingTimeSeconds}s remaining, ${todayScreenTimeSeconds}s used today, ${overtimeSeconds}s overtime")
+    }
+
+    private var serviceStartAtMs: Long = 0L
+
+    private fun companionStart() {
+        running = true
+        serviceStartAtMs = System.currentTimeMillis()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -139,6 +150,7 @@ class ScreenTimeService : Service() {
         releaseWakeLock()
         stopTimer()
         saveData()
+        running = false
     }
 
     // Update createNotificationChannel to have TWO channels
@@ -281,6 +293,7 @@ class ScreenTimeService : Service() {
         Log.d(TAG, "⏹️ Stopping timer")
         stopTimerInternal()
         stopForeground(STOP_FOREGROUND_REMOVE)
+        stopSelf()
         broadcastUpdate()
     }
     
@@ -294,6 +307,14 @@ class ScreenTimeService : Service() {
     
     private fun updateTimer() {
         try {
+            // Enforce max lifetime for safety
+            if (serviceStartAtMs > 0 && (System.currentTimeMillis() - serviceStartAtMs) >= MAX_SERVICE_LIFETIME_MS) {
+                Log.w(TAG, "⏹️ Max service lifetime (16h) reached. Stopping service to avoid OS kills.")
+                stopTimer()
+                stopSelf()
+                return
+            }
+
             val now = System.currentTimeMillis()
             val deltaMs = now - lastTickTime
             lastTickTime = now
@@ -303,7 +324,19 @@ class ScreenTimeService : Service() {
                 val today = android.text.format.DateFormat.format("yyyy-MM-dd", java.util.Date()).toString()
                 val lastSaveDate = sharedPrefs.getString(KEY_LAST_SAVE_DATE, today)
                 if (lastSaveDate != today) {
-                    // New day detected while service is running
+                    // New day detected while service is running - FIRST trigger carryover processing
+                    Log.d(TAG, "📅 Midnight rollover detected - processing carryover before reset")
+                    
+                    // Process end-of-day carryover BEFORE resetting data
+                    try {
+                        val carryoverService = DailyScoreCarryoverService.getInstance(applicationContext)
+                        carryoverService.processEndOfDay()
+                        Log.d(TAG, "✅ Carryover processing completed")
+                    } catch (e: Exception) {
+                        Log.e(TAG, "❌ Failed to process carryover", e)
+                    }
+                    
+                    // Now reset local service data (carryover service handles timer data reset)
                     todayScreenTimeSeconds = 0
                     overtimeSeconds = 0
                     overtimePaused = false
@@ -317,7 +350,8 @@ class ScreenTimeService : Service() {
                         .putInt(KEY_LAST_HOUR_NOTIFIED, 0)
                         .putString(KEY_LAST_SAVE_DATE, today)
                         .apply()
-                    Log.d(TAG, "📅 Midnight rollover detected - daily screen time and overtime reset")
+                    Log.d(TAG, "🔄 Service data reset completed")
+                    
                     // Persist notification and broadcast fresh state
                     updatePersistentNotification()
                     broadcastUpdate()

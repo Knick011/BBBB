@@ -22,6 +22,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SoundService from '../services/SoundService';
 import EnhancedScoreService from '../services/EnhancedScoreService';
 import theme from '../styles/theme';
+import BannerAdComponent from '../components/common/BannerAdComponent';
 
 // ✅ LIVE STATE INTEGRATION
 import { useLeaderboardIntegration } from '../hooks/useGameIntegration';
@@ -319,6 +320,7 @@ const LeaderboardScreen = () => {
           });
           
           fakeData = top10;
+          setUserRank(userData.rank);
         } else {
           // User is not in top 10, show top 10 + separator + user area
           fakeData = [...top10];
@@ -653,6 +655,7 @@ const LeaderboardScreen = () => {
            </TouchableOpacity>
          </View>
        )}
+      <BannerAdComponent placement="leaderboard_screen" />
       </SafeAreaView>
     );
 };

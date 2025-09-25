@@ -25,12 +25,16 @@ import AudioManager from '../services/AudioManager';
 import StreakMusicService from '../services/StreakMusicService';
 import EnhancedScoreService from '../services/EnhancedScoreService';
 import TestUpdates from '../utils/TestUpdates';
+import DebugLogger from '../utils/DebugLogger';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
 import ScoreDisplay from '../components/common/ScoreDisplay';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TimerWidget } from '../components/Timer/TimerWidget';
 import { ScoreInsightsCard } from '../components/ScoreInsightsCard';
 import BannerAdComponent from '../components/common/BannerAdComponent';
+import WalkthroughOverlay from '../components/common/WalkthroughOverlay';
+import { useWalkthrough } from '../hooks/useWalkthrough';
+import analytics from '@react-native-firebase/analytics';
 
 // ✅ LIVE STATE INTEGRATION
 import { useHomeIntegration } from '../hooks/useGameIntegration';
@@ -81,6 +85,21 @@ const DIFFICULTY_BUTTONS: DifficultyButton[] = [
 
 const HomeScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp>();
+  const scrollViewRef = useRef<ScrollView>(null);
+  
+  // ✅ WALKTHROUGH INTEGRATION
+  const walkthrough = useWalkthrough({
+    screen: 'home',
+    enabled: true,
+    scrollViewRef: scrollViewRef,
+    onComplete: () => {
+      console.log('🎉 [HomeScreen] Walkthrough completed!');
+      // Could trigger a celebration or show a completion message
+    },
+    onSkip: () => {
+      console.log('⏭️ [HomeScreen] Walkthrough skipped');
+    },
+  });
   
   // ✅ LIVE STATE INTEGRATION - Replaces old state management
   const { 
@@ -147,7 +166,20 @@ const HomeScreen: React.FC = () => {
       try {
         console.log('🌊 [HomeScreen] Loading Daily Flow data...');
         
-        // Use the official DailyGoalsService streak tracking
+        // Log screen view for Firebase Analytics
+        await analytics().logScreenView({
+          screen_name: 'HomeScreen',
+          screen_class: 'HomeScreen',
+        });
+        
+        // Log user engagement
+        await DebugLogger.logCustomEvent('home_screen_opened', {
+          timestamp: new Date().toISOString(),
+          session_start: true,
+        });
+        
+        // Reconcile streak before reading to avoid showing stale value after missed days
+        try { (await import('../services/DailyGoalsService')).default.reconcileDayStreak(); } catch {}
         const streakData = await AsyncStorage.getItem('@BrainBites:dailyGoalDayStreak');
         const currentStreak = streakData ? parseInt(streakData, 10) : 0;
         
@@ -157,9 +189,20 @@ const HomeScreen: React.FC = () => {
         // Update music speed based on streak
         await StreakMusicService.updateStreak(currentStreak);
         
+        // Log user activity with streak data
+        await analytics().logEvent('home_screen_engagement', {
+          engagement_time_msec: 5000,
+          screen: 'home',
+          current_streak: currentStreak,
+          user_active: true,
+        });
+        
         console.log(`✅ [HomeScreen] Daily Flow streak loaded: ${currentStreak} days`);
+        DebugLogger.log('HOME_SCREEN', 'Screen loaded with analytics tracking', { currentStreak });
+        
       } catch (error) {
         console.error('❌ [HomeScreen] Error loading Daily Flow data:', error);
+        DebugLogger.log('HOME_ERROR', 'Failed to load Daily Flow data', error);
       }
     };
     
@@ -186,7 +229,8 @@ const HomeScreen: React.FC = () => {
       try {
         console.log('🎯 [HomeScreen] Goal completion event received');
         
-        // Reload streak data
+        // Reconcile and reload streak data
+        try { (await import('../services/DailyGoalsService')).default.reconcileDayStreak(); } catch {}
         const streakData = await AsyncStorage.getItem('@BrainBites:dailyGoalDayStreak');
         const currentStreak = streakData ? parseInt(streakData, 10) : 0;
         
@@ -509,7 +553,7 @@ const HomeScreen: React.FC = () => {
       setDailyStreak(streak.streak);
       setLastPlayedDate(streak.lastDate);
       
-      SoundService.startMenuMusic();
+      // Menu music is started via AudioManager on focus; avoid duplicate starts
       
       // ✅ Live state automatically initializes and loads
       
@@ -597,12 +641,12 @@ const HomeScreen: React.FC = () => {
           // If diffDays > 1, streak resets to 1
         }
         
-        await AsyncStorage.setItem('@BrainBites:dailyStreak', newStreak.toString());
-        await AsyncStorage.setItem('@BrainBites:lastStreakUpdateDate', today);
-        
-        setDailyStreak(newStreak);
-        
-        console.log(`🔥 Daily streak updated: ${newStreak} days (nonHonorClaimedToday: ${nonHonorClaimedToday}, hasPlayedQuiz: ${hasPlayedQuiz})`);
+        // Deprecated local keys removed; rely on DailyGoalsService streak only
+        try { (await import('../services/DailyGoalsService')).default.reconcileDayStreak(); } catch {}
+        const streakData = await AsyncStorage.getItem('@BrainBites:dailyGoalDayStreak');
+        const currentStreak = streakData ? parseInt(streakData, 10) : 0;
+        setDailyStreak(currentStreak);
+        console.log(`🔥 Daily flow streak updated from service: ${currentStreak} days`);
       }
     } catch (error) {
       console.error('Error updating daily streak:', error);
@@ -624,31 +668,10 @@ const HomeScreen: React.FC = () => {
   
   const loadDailyStreak = async () => {
     try {
-      const savedStreak = await AsyncStorage.getItem('@BrainBites:dailyStreak');
-      const lastStreakUpdate = await AsyncStorage.getItem('@BrainBites:lastStreakUpdateDate');
-      
-      const today = new Date().toDateString();
-      const currentStreak = parseInt(savedStreak || '0', 10);
-      
-      if (!lastStreakUpdate) {
-        return { streak: 0, lastDate: null };
-      }
-      
-      const lastDate = new Date(lastStreakUpdate);
-      const todayDate = new Date(today);
-      const diffTime = Math.abs(todayDate.getTime() - lastDate.getTime());
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      
-      if (diffDays === 0) {
-        // Same day - keep streak
-        return { streak: currentStreak, lastDate: lastStreakUpdate };
-      } else if (diffDays === 1) {
-        // Yesterday - streak continues if they complete something today
-        return { streak: currentStreak, lastDate: lastStreakUpdate };
-      } else {
-        // More than 1 day - streak broken
-        return { streak: 0, lastDate: null };
-      }
+      try { (await import('../services/DailyGoalsService')).default.reconcileDayStreak(); } catch {}
+      const streakData = await AsyncStorage.getItem('@BrainBites:dailyGoalDayStreak');
+      const currentStreak = streakData ? parseInt(streakData, 10) : 0;
+      return { streak: currentStreak, lastDate: null };
     } catch (error) {
       console.error('Error loading daily streak:', error);
       return { streak: 0, lastDate: null };
@@ -778,6 +801,7 @@ const HomeScreen: React.FC = () => {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={true} translucent={true} />
       <ScrollView 
+        ref={scrollViewRef}
         style={styles.container}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
@@ -938,8 +962,10 @@ const HomeScreen: React.FC = () => {
         </Animated.View>
       </ScrollView>
       
-      {/* Banner Ad - Subtle placement at bottom */}
-      <BannerAdComponent placement="home_screen" style={styles.bannerAd} />
+      {/* Banner Ad - hide when overlays could obscure it */}
+      {!walkthrough.isVisible && !showMascot && (
+        <BannerAdComponent placement="home_screen" style={styles.bannerAd} />
+      )}
       
       {/* EnhancedMascotDisplay handles both peeking mascot and goal completion celebrations */}
       <EnhancedMascotDisplay
@@ -951,6 +977,19 @@ const HomeScreen: React.FC = () => {
         autoHide={true}
         fullScreen={true}
         onPeekingPress={handlePeekingMascotPress}
+        bottomOffset={80}
+      />
+      
+      {/* Dynamic Walkthrough for New Users */}
+      <WalkthroughOverlay
+        visible={walkthrough.isVisible}
+        steps={walkthrough.steps}
+        currentStepIndex={walkthrough.currentStepIndex}
+        onNext={walkthrough.onNext}
+        onPrevious={walkthrough.onPrevious}
+        onSkip={walkthrough.onSkip}
+        onComplete={walkthrough.onComplete}
+        showSkipButton={true}
       />
     </SafeAreaView>
   );

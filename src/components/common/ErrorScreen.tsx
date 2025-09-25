@@ -14,7 +14,7 @@ const ErrorScreen: React.FC<ErrorScreenProps> = ({
 }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor="#FFF8E7" barStyle="dark-content" />
+      <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={true} translucent={true} />
       <View style={styles.content}>
         <Icon name="alert-circle-outline" size={80} color="#FF6B6B" />
         <Text style={styles.title}>Oops!</Text>

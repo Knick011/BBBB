@@ -46,10 +46,15 @@ class ScreenTimeReceiver : BroadcastReceiver() {
             action = ScreenTimeService.ACTION_START
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(serviceIntent)
-        } else {
-            context.startService(serviceIntent)
+        // Avoid restricted background starts; only start if app brings it to foreground soon
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.startForegroundService(serviceIntent)
+            } else {
+                context.startService(serviceIntent)
+            }
+        } catch (_: Exception) {
+            // If not allowed (Android 12+ background restrictions), skip start.
         }
     }
 } 

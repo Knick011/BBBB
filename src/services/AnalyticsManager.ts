@@ -103,7 +103,12 @@ class AnalyticsManager {
       return true;
     } catch (error) {
       console.error('❌ [Analytics] Initialization failed:', error);
-      this.initialized = true; // Continue without analytics
+      console.error('❌ [Analytics] Stack trace:', error?.stack);
+      // Continue without analytics rather than blocking app startup
+      this.initialized = true;
+      this.config.localStorageOnly = true;
+      this.firebaseInitialized = false;
+      console.log('⚠️ [Analytics] Running in fallback mode without Firebase');
       return false;
     }
   }
@@ -248,14 +253,26 @@ class AnalyticsManager {
       // Convert properties to Firebase-compatible format
       const firebaseProperties: FirebaseAnalyticsTypes.EventParameters = {};
       
+      let paramCount = 0;
       for (const [key, value] of Object.entries(properties)) {
+        // Firebase has a limit of 25 custom parameters per event
+        if (paramCount >= 25) {
+          console.warn('⚠️ [Analytics] Exceeded 25 parameter limit, skipping remaining parameters');
+          break;
+        }
+        
         // Firebase has limitations on parameter names and values
         const cleanKey = key.replace(/[^a-zA-Z0-9_]/g, '_').toLowerCase();
+        
+        // Skip empty keys or reserved parameter names
+        if (!cleanKey || cleanKey.startsWith('firebase_') || cleanKey.startsWith('google_') || cleanKey.startsWith('ga_')) {
+          continue;
+        }
         
         if (typeof value === 'string') {
           firebaseProperties[cleanKey] = value.substring(0, 100); // Max 100 chars
         } else if (typeof value === 'number') {
-          firebaseProperties[cleanKey] = value;
+          firebaseProperties[cleanKey] = isFinite(value) ? value : 0;
         } else if (typeof value === 'boolean') {
           firebaseProperties[cleanKey] = value ? 'true' : 'false';
         } else if (Array.isArray(value)) {
@@ -263,9 +280,15 @@ class AnalyticsManager {
         } else {
           firebaseProperties[cleanKey] = String(value).substring(0, 100);
         }
+        paramCount++;
       }
 
-      await analytics().logEvent(event.replace(/[^a-zA-Z0-9_]/g, '_').toLowerCase(), firebaseProperties);
+      let eventName = event.replace(/[^a-zA-Z0-9_]/g, '_').toLowerCase();
+      if (eventName.length > 40) {
+        console.warn(`⚠️ [Analytics] Event name too long, truncating: ${eventName}`);
+        eventName = eventName.substring(0, 40);
+      }
+      await analytics().logEvent(eventName, firebaseProperties);
       
       if (this.config.debugMode) {
         console.log('✅ [Analytics] Event sent to Firebase:', event);
@@ -486,7 +509,7 @@ class AnalyticsManager {
     // Set Firebase user ID
     if (this.firebaseInitialized) {
       try {
-        await analytics().setUserId(userId);
+        await analytics().setUserId(userId ? userId.toString() : null);
         console.log('✅ [Analytics] Firebase user ID set:', userId);
       } catch (error) {
         console.warn('⚠️ [Analytics] Failed to set Firebase user ID:', error);

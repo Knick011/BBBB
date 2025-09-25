@@ -192,14 +192,14 @@ class StreakMusicService {
    * Get descriptive text for current speed level
    */
   private getSpeedDescription(speed: number): string {
-    if (speed >= 3.0) return 'Insane';
-    if (speed >= 2.5) return 'Extreme';
     if (speed >= 2.2) return 'Very Fast';
-    if (speed >= 2.0) return 'Fast';
-    if (speed >= 1.8) return 'Quick';
-    if (speed >= 1.6) return 'Upbeat';
-    if (speed >= 1.5) return 'Energetic';
-    if (speed >= 1.2) return 'Lively';
+    if (speed >= 1.9) return 'Fast';
+    if (speed >= 1.7) return 'Energetic';
+    if (speed >= 1.5) return 'Upbeat';
+    if (speed >= 1.4) return 'Quick';
+    if (speed >= 1.3) return 'Lively';
+    if (speed >= 1.25) return 'Peppy';
+    if (speed >= 1.15) return 'Faster';
     if (speed >= 1.1) return 'Slightly Faster';
     return 'Normal';
   }
@@ -210,14 +210,14 @@ class StreakMusicService {
   private getNextMilestone(currentStreak: number): { streak: number; speed: number; description: string } | undefined {
     const milestones = [
       { streak: 1, speed: 1.1, description: 'Slightly Faster' },
-      { streak: 3, speed: 1.2, description: 'Lively' },
-      { streak: 5, speed: 1.5, description: 'Energetic' },
-      { streak: 6, speed: 1.6, description: 'Upbeat' },
-      { streak: 8, speed: 1.8, description: 'Quick' },
-      { streak: 10, speed: 2.0, description: 'Fast' },
-      { streak: 12, speed: 2.2, description: 'Very Fast' },
-      { streak: 15, speed: 2.5, description: 'Extreme' },
-      { streak: 20, speed: 3.0, description: 'Insane' }
+      { streak: 3, speed: 1.15, description: 'Faster' },
+      { streak: 5, speed: 1.25, description: 'Peppy' },
+      { streak: 6, speed: 1.3, description: 'Lively' },
+      { streak: 8, speed: 1.4, description: 'Quick' },
+      { streak: 10, speed: 1.5, description: 'Upbeat' },
+      { streak: 12, speed: 1.7, description: 'Energetic' },
+      { streak: 15, speed: 1.9, description: 'Fast' },
+      { streak: 20, speed: 2.2, description: 'Very Fast' }
     ];
     
     return milestones.find(m => m.streak > currentStreak);
@@ -228,14 +228,14 @@ class StreakMusicService {
    */
   getCurrentMilestone(): { streak: number; speed: number; description: string } | undefined {
     const milestones = [
-      { streak: 20, speed: 3.0, description: 'Insane' },
-      { streak: 15, speed: 2.5, description: 'Extreme' },
-      { streak: 12, speed: 2.2, description: 'Very Fast' },
-      { streak: 10, speed: 2.0, description: 'Fast' },
-      { streak: 8, speed: 1.8, description: 'Quick' },
-      { streak: 6, speed: 1.6, description: 'Upbeat' },
-      { streak: 5, speed: 1.5, description: 'Energetic' },
-      { streak: 3, speed: 1.2, description: 'Lively' },
+      { streak: 20, speed: 2.2, description: 'Very Fast' },
+      { streak: 15, speed: 1.9, description: 'Fast' },
+      { streak: 12, speed: 1.7, description: 'Energetic' },
+      { streak: 10, speed: 1.5, description: 'Upbeat' },
+      { streak: 8, speed: 1.4, description: 'Quick' },
+      { streak: 6, speed: 1.3, description: 'Lively' },
+      { streak: 5, speed: 1.25, description: 'Peppy' },
+      { streak: 3, speed: 1.15, description: 'Faster' },
       { streak: 1, speed: 1.1, description: 'Slightly Faster' },
       { streak: 0, speed: 1.0, description: 'Normal' }
     ];

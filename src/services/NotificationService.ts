@@ -1,5 +1,6 @@
 import { Platform, PermissionsAndroid, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getTorontoDateString } from '../utils/timeUtils';
 
 // Simple notification interface for BrainBites
 interface NotificationData {
@@ -38,6 +39,12 @@ class NotificationServiceClass {
     hourlyReminders: true,
   };
   private SETTINGS_KEY = '@BrainBites:notificationSettings';
+  private LAST_DAILY_SCHEDULE_KEY = '@BrainBites:lastDailyScheduleDate';
+
+  // Default schedule times (local)
+  private MORNING_GOALS_TIME = { hour: 7, minute: 30 };
+  private MIDDAY_LEADERBOARD_TIME = { hour: 12, minute: 0 };
+  private EVENING_LEADERBOARD_TIME = { hour: 18, minute: 30 };
 
   async initialize(): Promise<boolean> {
     try {
@@ -48,9 +55,23 @@ class NotificationServiceClass {
       
       // Request permissions
       const hasPermission = await this.requestPermissions();
+      // Immediately (and only once) request battery optimization exemption after notification prompt
+      try {
+        const { Platform, NativeModules } = require('react-native');
+        if (Platform.OS === 'android' && NativeModules.NotificationModule?.requestIgnoreBatteryOptimizations) {
+          const askedKey = '@BrainBites:askedBatteryExemption';
+          const asked = await AsyncStorage.getItem(askedKey);
+          if (asked !== 'true') {
+            await NativeModules.NotificationModule.requestIgnoreBatteryOptimizations();
+            await AsyncStorage.setItem(askedKey, 'true');
+          }
+        }
+      } catch {}
       
       if (hasPermission && this.settings.enabled) {
         await this.scheduleDefaultNotifications();
+        // Ensure daily set (morning goals + leaderboard nudges) is scheduled for today
+        await this.ensureDailySchedules();
       }
       
       this.isInitialized = true;
@@ -58,6 +79,50 @@ class NotificationServiceClass {
       return true;
     } catch (error) {
       console.error('Failed to initialize notifications:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Ensure the daily notification set is scheduled for the current local date.
+   * Includes: Morning Daily Goal reminder + midday/evening leaderboard nudges.
+   */
+  async ensureDailySchedules(): Promise<void> {
+    try {
+      if (!this.isInitialized || !this.settings.enabled) return;
+      const dateKey = getTorontoDateString();
+      const last = await AsyncStorage.getItem(this.LAST_DAILY_SCHEDULE_KEY);
+      if (last === dateKey) {
+        console.log('📅 Daily schedules already set for', dateKey);
+        return;
+      }
+
+      // Morning daily goals reminder — skip if a regular daily goal was already completed today (streak day recorded)
+      const dayDone = await this.isDailyGoalDayCompletedToday();
+      if (dayDone) {
+        console.log('⏭️ Skipping morning Daily Goal reminder (already completed today)');
+        try { await this.cancelScheduledNotification('daily_goals_morning'); } catch {}
+      } else {
+        await this.scheduleDailyGoalsMorningReminder(this.MORNING_GOALS_TIME.hour, this.MORNING_GOALS_TIME.minute);
+      }
+      // Leaderboard nudges
+      await this.scheduleLeaderboardNudge('midday', this.MIDDAY_LEADERBOARD_TIME.hour, this.MIDDAY_LEADERBOARD_TIME.minute);
+      await this.scheduleLeaderboardNudge('evening', this.EVENING_LEADERBOARD_TIME.hour, this.EVENING_LEADERBOARD_TIME.minute);
+
+      await AsyncStorage.setItem(this.LAST_DAILY_SCHEDULE_KEY, dateKey);
+      console.log('✅ Scheduled daily notifications for', dateKey);
+    } catch (e) {
+      console.error('Failed to ensure daily schedules:', e);
+    }
+  }
+
+  /** Check if a regular daily goal has been completed today (streak day recorded). */
+  private async isDailyGoalDayCompletedToday(): Promise<boolean> {
+    try {
+      const today = getTorontoDateString();
+      const last = await AsyncStorage.getItem('@BrainBites:lastDailyGoalDay');
+      return last === today;
+    } catch {
       return false;
     }
   }
@@ -137,11 +202,9 @@ class NotificationServiceClass {
     const notification: NotificationData = {
       id: 'daily_reminder',
       title: '🧠 Time for Brain Bites!',
-      body: 'Ready to boost your brainpower? Answer a few questions and have fun learning!',
+      body: 'Open BrainBites to boost your brainpower today.',
       data: { type: 'daily_reminder' }
     };
-
-    // In a real app, you'd schedule this with a notification library
     console.log('Daily reminder scheduled:', notification);
   }
 
@@ -229,6 +292,65 @@ class NotificationServiceClass {
     }
   }
 
+  /** Schedule morning Daily Goal reminder (native if available, fallback to one-time). */
+  private async scheduleDailyGoalsMorningReminder(hour: number, minute: number): Promise<void> {
+    try {
+      const now = new Date();
+      const when = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute, 0, 0);
+      if (when.getTime() <= Date.now()) {
+        // if time passed, schedule a few minutes later today
+        when.setMinutes(when.getMinutes() + 5);
+      }
+      // Prefer dedicated native scheduling if present
+      const { NativeModules } = require('react-native');
+      const { NotificationModule } = NativeModules;
+      if (NotificationModule && NotificationModule.scheduleMorningReminder) {
+        await NotificationModule.scheduleMorningReminder(hour, minute,
+          '🌅 Start Strong: Complete a Daily Goal',
+          'Knock out your first goal and set the tone for today.'
+        );
+        console.log('✅ Morning Daily Goal reminder scheduled via native');
+        return;
+      }
+      // Fallback: one-time schedule for today
+      await this.scheduleOneTimeNotification(
+        'daily_goals_morning', when,
+        '🌅 Start Strong: Complete a Daily Goal',
+        'Knock out your first goal and set the tone for today.',
+        { type: 'daily_goal_morning' }
+      );
+    } catch (e) {
+      console.error('Failed to schedule morning daily-goal reminder:', e);
+    }
+  }
+
+  /** Schedule leaderboard nudge (midday/evening). */
+  private async scheduleLeaderboardNudge(kind: 'midday' | 'evening', hour: number, minute: number): Promise<void> {
+    try {
+      const now = new Date();
+      const when = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute, 0, 0);
+      if (when.getTime() <= Date.now()) {
+        // If time passed already, nudge a bit later today
+        when.setMinutes(when.getMinutes() + 10);
+      }
+      const title = kind === 'midday' ? '📈 Midday Momentum' : '🏁 Evening Push';
+      const body = kind === 'midday'
+        ? 'Quick score push moves your rank up. Jump in when ready.'
+        : 'One last score boost can secure your spot on the leaderboard.';
+
+      await this.scheduleOneTimeNotification(
+        `leaderboard_${kind}_${when.toDateString()}`,
+        when,
+        title,
+        body,
+        { type: 'leaderboard_nudge', kind }
+      );
+      console.log(`✅ Leaderboard ${kind} nudge scheduled for ${when.toISOString()}`);
+    } catch (e) {
+      console.error('Failed to schedule leaderboard nudge:', e);
+    }
+  }
+
   async cancelMorningReminder() {
     try {
       const { NativeModules } = require('react-native');
@@ -302,6 +424,78 @@ class NotificationServiceClass {
 
   isNotificationEnabled(): boolean {
     return this.isInitialized && this.settings.enabled;
+  }
+
+  /**
+   * Schedule a one-time local notification at a specific Date.
+   * Falls back to storing the schedule and delivering on next app activation if native scheduling is unavailable.
+   */
+  async scheduleOneTimeNotification(id: string, when: Date, title: string, body: string, data?: any): Promise<void> {
+    try {
+      if (!this.isInitialized || !this.settings.enabled) {
+        console.log('⚠️ Notifications not enabled, skipping schedule');
+        return;
+      }
+
+      const { NativeModules, Platform } = require('react-native');
+      const ts = when.getTime();
+
+      if (Platform.OS === 'android') {
+        const { NotificationModule } = NativeModules;
+        if (NotificationModule && NotificationModule.scheduleOneTimeNotification) {
+          await NotificationModule.scheduleOneTimeNotification(ts, title, body, id, data || {});
+          console.log(`✅ Scheduled one-time notification (${id}) for ${when.toISOString()}`);
+          return;
+        }
+      }
+
+      // Fallback: store schedule; will deliver on next app activation if due
+      await AsyncStorage.setItem(`@BrainBites:scheduledNotif:${id}`, JSON.stringify({ ts, title, body, data: data || {} }));
+      console.log(`🗓️ Stored fallback notification (${id}) for ${when.toISOString()}`);
+    } catch (error) {
+      console.error('❌ Failed to schedule one-time notification:', error);
+    }
+  }
+
+  /** Cancel a scheduled one-time notification */
+  async cancelScheduledNotification(id: string): Promise<void> {
+    try {
+      const { NativeModules, Platform } = require('react-native');
+      if (Platform.OS === 'android') {
+        const { NotificationModule } = NativeModules;
+        if (NotificationModule && NotificationModule.cancelScheduledNotification) {
+          await NotificationModule.cancelScheduledNotification(id);
+          console.log(`✅ Canceled scheduled notification (${id})`);
+        }
+      }
+      await AsyncStorage.removeItem(`@BrainBites:scheduledNotif:${id}`);
+    } catch (error) {
+      console.error('❌ Failed to cancel scheduled notification:', error);
+    }
+  }
+
+  /** Deliver any pending fallback notifications that are due (called on app active) */
+  async deliverPendingIfDue(): Promise<void> {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      const dueKeys = keys.filter(k => k.startsWith('@BrainBites:scheduledNotif:'));
+      if (dueKeys.length === 0) return;
+      const entries = await AsyncStorage.multiGet(dueKeys);
+      const now = Date.now();
+      for (const [key, value] of entries) {
+        if (!value) continue;
+        try {
+          const parsed = JSON.parse(value);
+          if (parsed.ts <= now) {
+            await this.showLocalNotification({ title: parsed.title, body: parsed.body, data: parsed.data });
+            await AsyncStorage.removeItem(key);
+            console.log(`📬 Delivered pending notification: ${key}`);
+          }
+        } catch {}
+      }
+    } catch (error) {
+      console.error('❌ Failed to deliver pending notifications:', error);
+    }
   }
 
   /**

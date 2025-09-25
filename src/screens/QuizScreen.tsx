@@ -518,6 +518,7 @@ const QuizScreen = ({ navigation, route }: any) => {
       setSpeedMultiplier(scoreResult.speedMultiplier);
       
       if (correct) {
+        try { await QuestionService.markQuestionCorrect(currentQuestion.id); } catch {}
         // Use store method to increment
         await useQuizStore.getState().incrementStreak();
         const newStreak = useQuizStore.getState().currentStreak;
@@ -801,7 +802,7 @@ const QuizScreen = ({ navigation, route }: any) => {
   if (isLoading) {
     return (
       <SafeAreaView style={styles.safeArea}>
-        <StatusBar backgroundColor="#FFF8E7" barStyle="dark-content" />
+        <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={true} translucent={true} />
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#FF9F1C" />
           <Text style={styles.loadingText}>Loading question...</Text>
@@ -812,7 +813,7 @@ const QuizScreen = ({ navigation, route }: any) => {
   
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar backgroundColor="#FFF8E7" barStyle="dark-content" hidden={false} translucent={false} />
+      <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={true} translucent={true} />
       <ScrollView 
         contentContainerStyle={styles.container}
         showsVerticalScrollIndicator={false}
@@ -1122,8 +1123,10 @@ const QuizScreen = ({ navigation, route }: any) => {
         )}
       </ScrollView>
       
-      {/* Banner Ad - Subtle placement at bottom */}
-      <BannerAdComponent placement="quiz_screen" style={styles.bannerAd} />
+      {/* Banner Ad - hide when overlays could obscure it */}
+      {!showConfirmQuit && !showMascot && (
+        <BannerAdComponent placement="quiz_screen" style={styles.bannerAd} />
+      )}
       
       {/* Quit confirmation overlay using mascot instead of system alert */}
       {showConfirmQuit && (
@@ -1175,6 +1178,7 @@ const QuizScreen = ({ navigation, route }: any) => {
         selectedAnswer={selectedAnswer}
         showExplanation={showExplanation}
         isCorrect={isCorrect}
+        bottomOffset={80}
       />
 
       <MascotModal

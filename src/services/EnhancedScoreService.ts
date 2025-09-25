@@ -142,34 +142,62 @@ class EnhancedScoreService {
   private async checkAndApplyCarryover(): Promise<void> {
     try {
       const carryoverApplied = await AsyncStorage.getItem(this.STORAGE_KEYS.CARRYOVER_APPLIED);
-      
       if (carryoverApplied === 'true') {
         return; // Already applied for today
       }
 
-      // Get carryover score from native module
+      // First check if it's a new day and process carryover (native helper)
+      if (NativeModules.DailyScoreCarryover) {
+        try {
+          await NativeModules.DailyScoreCarryover.checkAndProcessNewDay();
+          console.log('✅ [EnhancedScore] Checked for new day carryover processing');
+        } catch (error) {
+          console.error('❌ [EnhancedScore] Failed to check new day:', error);
+        }
+      }
+
+      // Native carryover score
       if (NativeModules.DailyScoreCarryover) {
         const carryoverScore = await NativeModules.DailyScoreCarryover.getTodayStartScore();
-        
         if (carryoverScore !== 0) {
           console.log(`🎯 Applying carryover score: ${carryoverScore > 0 ? '+' : ''}${carryoverScore}`);
-          
-          // Apply carryover to daily score (allow negative scores for penalties)
-          this.dailyScore = carryoverScore;
-          
-          // Mark as applied
+          this.dailyScore = carryoverScore; // allow negative
           await AsyncStorage.setItem(this.STORAGE_KEYS.CARRYOVER_APPLIED, 'true');
           await this.saveData();
-          
-          // Notify user about carryover
           if (NativeModules.ToastModule) {
-            const message = carryoverScore > 0 
-              ? `🎉 Bonus! +${carryoverScore} points from yesterday's saved time!`
+            const message = carryoverScore > 0
+              ? `🎉 Bonus! +${carryoverScore} points from yesterday's leftover time!`
               : `⚠️ Starting with ${Math.abs(carryoverScore)} point penalty from yesterday's overtime`;
-            
-            NativeModules.ToastModule.show(message, NativeModules.ToastModule.LONG);
+            try { NativeModules.ToastModule.show(message, NativeModules.ToastModule.LONG); } catch {}
           }
+          return; // Native path handled
         }
+      }
+
+      // JS fallback: derive points from EOD net seconds stored by HybridTimerService
+      try {
+        const deltaStr = await AsyncStorage.getItem('@BrainBites:scoreDelta');
+        const netSeconds = deltaStr ? parseInt(deltaStr, 10) : 0;
+        if (!isNaN(netSeconds) && netSeconds !== 0) {
+          const minutes = Math.max(1, Math.round(Math.abs(netSeconds) / 60));
+          // Save time => +100 pts/min, Overtime => -50 pts/min (10x carryover impact)
+          const carryoverPoints = netSeconds > 0 ? minutes * 100 : -(minutes * 50);
+          console.log(`🎯 [EnhancedScore] JS fallback carryover: net=${netSeconds}s, minutes=${minutes}, points=${carryoverPoints}`);
+          this.dailyScore = carryoverPoints;
+          await AsyncStorage.setItem(this.STORAGE_KEYS.CARRYOVER_APPLIED, 'true');
+          await AsyncStorage.removeItem('@BrainBites:scoreDelta');
+          await this.saveData();
+          if (NativeModules.ToastModule) {
+            const message = carryoverPoints > 0
+              ? `🎉 Bonus! +${carryoverPoints} points from yesterday's leftover time!`
+              : `⚠️ Starting with ${Math.abs(carryoverPoints)} point penalty from yesterday's overtime`;
+            try { NativeModules.ToastModule.show(message, NativeModules.ToastModule.LONG); } catch {}
+          }
+        } else {
+          console.log('ℹ️ [EnhancedScore] No carryover delta found in JS fallback');
+        }
+      } catch (fallbackErr) {
+        console.warn('⚠️ [EnhancedScore] JS carryover fallback failed:', fallbackErr);
       }
     } catch (error) {
       console.error('Failed to apply carryover score:', error);

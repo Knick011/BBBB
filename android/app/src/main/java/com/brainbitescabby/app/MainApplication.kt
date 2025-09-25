@@ -90,6 +90,11 @@ class MainApplication : Application(), ReactApplication {
   }
 
   private fun notifyAppState(state: String) {
+    // Only send app state to an already running service to avoid
+    // accidental background starts on Android 12+
+    if (!ScreenTimeService.isServiceRunning()) {
+      return
+    }
     val serviceIntent = Intent(this, ScreenTimeService::class.java).apply {
       action = when(state) {
         "app_foreground" -> ScreenTimeService.ACTION_APP_FOREGROUND
@@ -97,7 +102,11 @@ class MainApplication : Application(), ReactApplication {
         else -> return
       }
     }
-    startService(serviceIntent)
+    try {
+      startService(serviceIntent)
+    } catch (_: Exception) {
+      // Ignore if starting is not allowed in current app state
+    }
   }
 
   private fun initializeTimer() {
