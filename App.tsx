@@ -385,6 +385,16 @@ const App: React.FC = () => {
         }));
       }
 
+      // Initialize NotificationService for scheduled notifications
+      console.log('🔔 [BrainBites] Initializing NotificationService...');
+      try {
+        await NotificationService.initialize();
+        console.log('✅ [BrainBites] NotificationService initialized successfully');
+      } catch (notificationError: any) {
+        console.log('⚠️ [BrainBites] NotificationService initialization failed:', notificationError?.message || notificationError);
+        // Don't fail the whole app if notification service fails
+      }
+
       // Complete initialization - check final status
       setAppState(prev => {
         const criticalServicesFailed = prev.services.questions === 'failed';

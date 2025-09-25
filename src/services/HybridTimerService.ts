@@ -3,6 +3,7 @@
 import { NativeEventEmitter, NativeModules } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NotificationService } from './NotificationService';
+import TimerProtectionService from './TimerProtectionService';
 
 interface TimerData {
   remainingTime: number;
@@ -397,7 +398,24 @@ class HybridTimerService {
 
     const success = brainBitesSuccess || screenTimeSuccess;
     console.log(`${success ? '✅' : '❌'} [HybridTimer] Start tracking result: ${success}`);
-    
+
+    // 🛡️ START TIMER PROTECTION
+    if (success) {
+      try {
+        console.log('🛡️ [HybridTimer] Starting timer protection...');
+        await TimerProtectionService.startProtection({
+          enableHeartbeat: true,
+          enableWatchdog: true,
+          enablePreventiveRestart: true,
+          restartIntervalHours: 2
+        });
+        console.log('✅ [HybridTimer] Timer protection activated');
+      } catch (error) {
+        console.error('❌ [HybridTimer] Failed to start timer protection:', error);
+        // Don't fail the entire timer start if protection fails
+      }
+    }
+
     return success;
   }
 

@@ -8,8 +8,8 @@ import com.facebook.react.uimanager.ViewManager
 class BrainBitesPackage : ReactPackage {
     override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
         return listOf(
-            NotificationModule(reactContext)
-            // Add other native modules here
+            NotificationModule(reactContext),
+            TimerGuardianModule(reactContext)
         )
     }
     
