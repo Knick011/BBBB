@@ -35,6 +35,7 @@ import BannerAdComponent from '../components/common/BannerAdComponent';
 import WalkthroughOverlay from '../components/common/WalkthroughOverlay';
 import { useWalkthrough } from '../hooks/useWalkthrough';
 import analytics from '@react-native-firebase/analytics';
+import { useTranslation } from 'react-i18next';
 
 // ✅ LIVE STATE INTEGRATION
 import { useHomeIntegration } from '../hooks/useGameIntegration';
@@ -85,6 +86,7 @@ const DIFFICULTY_BUTTONS: DifficultyButton[] = [
 
 const HomeScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp>();
+  const { t } = useTranslation();
   const scrollViewRef = useRef<ScrollView>(null);
   
   // ✅ WALKTHROUGH INTEGRATION
@@ -878,7 +880,7 @@ const HomeScreen: React.FC = () => {
                     end={{ x: 1, y: 1 }}
                   >
                     <Icon name={difficulty.icon} size={40} color="white" />
-                    <Text style={styles.difficultyTitle}>{difficulty.title}</Text>
+                    <Text style={styles.difficultyTitle}>{t(`home.difficulty.${difficulty.level}`)}</Text>
                     <View style={styles.difficultyInfo}>
                       <View style={styles.infoItem}>
                         <Icon name="star" size={14} color="white" />
@@ -909,7 +911,7 @@ const HomeScreen: React.FC = () => {
             end={{ x: 1, y: 1 }}
           >
             <Icon name="folder-multiple-outline" size={24} color="white" />
-            <Text style={styles.categoriesText}>Browse Categories</Text>
+            <Text style={styles.categoriesText}>{t('home.categories')}</Text>
             <Icon name="chevron-right" size={24} color="white" />
           </LinearGradient>
         </TouchableOpacity>
@@ -923,18 +925,18 @@ const HomeScreen: React.FC = () => {
             <View style={[styles.actionIconContainer, { backgroundColor: '#4CAF50' }]}>
               <Icon name="target" size={24} color="white" />
             </View>
-            <Text style={styles.actionButtonText}>Daily Goals</Text>
+            <Text style={styles.actionButtonText}>{t('home.dailyGoals')}</Text>
             <Icon name="chevron-right" size={20} color="#999" />
           </TouchableOpacity>
-          
-          <TouchableOpacity 
+
+          <TouchableOpacity
             style={styles.actionButton}
             onPress={handleLeaderboardPress}
           >
             <View style={[styles.actionIconContainer, { backgroundColor: '#FF9F1C' }]}>
               <Icon name="trophy-outline" size={24} color="white" />
             </View>
-            <Text style={styles.actionButtonText}>Leaderboard</Text>
+            <Text style={styles.actionButtonText}>{t('home.leaderboard')}</Text>
             <Icon name="chevron-right" size={20} color="#999" />
           </TouchableOpacity>
         </View>

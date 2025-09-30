@@ -14,8 +14,10 @@ import { colors } from '../styles/theme';
 import { useLiveScore } from '../store/useLiveGameStore';
 import { useQuizStore } from '../store/useQuizStore';
 import HybridTimerService from '../services/HybridTimerService';
+import { useTranslation } from 'react-i18next';
 
 export const ScoreInsightsCard: React.FC = () => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
   const [animation] = useState(new Animated.Value(0));
   const [timerData, setTimerData] = useState<{
@@ -149,43 +151,43 @@ export const ScoreInsightsCard: React.FC = () => {
   // Calculate time impact on tomorrow's score
   const getScoreImpactData = () => {
     console.log('🧮 [ScoreInsightsCard] Calculating score impact with timer data:', timerData);
-    
-    if (!timerData) return { netScore: 0, netTimeMinutes: 0, isPositive: false, message: '🤖 CaBBy is loading your time data...' };
-    
+
+    if (!timerData) return { netScore: 0, netTimeMinutes: 0, isPositive: false, message: t('scoreInsights.loading') };
+
     const remainingMinutes = Math.floor(timerData.remainingTime / 60);
     const overtimeMinutes = Math.floor(timerData.overtime / 60);
-    
+
     console.log('⏰ [ScoreInsightsCard] Time breakdown:', { remainingMinutes, overtimeMinutes });
-    
+
     // Score calculation: +100 points per remaining minute, -50 points per overtime minute (10x impact)
     const remainingScore = remainingMinutes * 100;
     const overtimePenalty = overtimeMinutes * 50;
     const netScore = remainingScore - overtimePenalty;
     const netTimeMinutes = remainingMinutes - overtimeMinutes;
     const isPositive = netScore >= 0;
-    
+
     let message = '';
     if (remainingMinutes > 0 && overtimeMinutes > 0) {
-      message = isPositive 
-        ? `🎉 Nice balance! You're getting bonus points tomorrow!`
-        : `⚖️ You went a bit over time, but that's okay - every minute counts!`;
+      message = isPositive
+        ? t('scoreInsights.positiveMessage')
+        : t('scoreInsights.negativeMessage');
     } else if (overtimeMinutes > 0) {
-      message = `⏳ You've been using overtime - let's earn some time back with quizzes!`;
+      message = t('scoreInsights.overtimeOnlyMessage');
     } else if (remainingMinutes > 0) {
-      message = `🌟 Awesome! Your time savings are earning you bonus points!`;
+      message = t('scoreInsights.savingsOnlyMessage');
     } else {
-      message = '🕐 Start your timer journey - every minute counts toward tomorrow!';
+      message = t('scoreInsights.readyMessage');
     }
-    
-    return { 
-      netScore, 
-      netTimeMinutes, 
-      isPositive, 
-      message, 
-      remainingMinutes, 
-      overtimeMinutes, 
-      remainingScore, 
-      overtimePenalty 
+
+    return {
+      netScore,
+      netTimeMinutes,
+      isPositive,
+      message,
+      remainingMinutes,
+      overtimeMinutes,
+      remainingScore,
+      overtimePenalty
     };
   };
 
@@ -216,9 +218,9 @@ export const ScoreInsightsCard: React.FC = () => {
                 <Icon name={scoreImpact.isPositive ? 'trending-up' : 'trending-down'} size={20} color="#FFFFFF" />
               </View>
               <View>
-                <Text style={styles.title}>Tomorrow's Bonus</Text>
+                <Text style={styles.title}>{t('scoreInsights.title')}</Text>
                 <Text style={styles.subtitle}>
-                  {scoreImpact.netScore > 0 ? `+${scoreImpact.netScore}` : scoreImpact.netScore === 0 ? 'Ready to start!' : `${scoreImpact.netScore}`} points
+                  {scoreImpact.netScore > 0 ? `+${scoreImpact.netScore}` : scoreImpact.netScore === 0 ? t('scoreInsights.readyMessage') : `${scoreImpact.netScore}`} {t('quiz.score').toLowerCase()}
                 </Text>
               </View>
             </View>
@@ -245,17 +247,17 @@ export const ScoreInsightsCard: React.FC = () => {
               <>
                 <View style={styles.row}>
                   <Icon name="clock-check" size={20} color={colors.success} />
-                  <Text style={styles.label}>Time in the bank:</Text>
+                  <Text style={styles.label}>{t('scoreInsights.timeInBank')}</Text>
                   <Text style={[styles.value, styles.positive]}>+{scoreImpact.remainingMinutes} min</Text>
                 </View>
                 <View style={styles.row}>
                   <Icon name="alert-circle" size={20} color={colors.error} />
-                  <Text style={styles.label}>Overtime adventures:</Text>
+                  <Text style={styles.label}>{t('scoreInsights.overtimeAdventures')}</Text>
                   <Text style={[styles.value, styles.negative]}>{scoreImpact.overtimeMinutes} min</Text>
                 </View>
                 <View style={styles.row}>
                   <Icon name="plus-circle" size={20} color={colors.success} />
-                  <Text style={styles.label}>Savings reward:</Text>
+                  <Text style={styles.label}>{t('scoreInsights.savingsReward')}</Text>
                   <Text style={[styles.value, styles.positive]}>+{scoreImpact.remainingScore} pts</Text>
                 </View>
                 <View style={styles.row}>
