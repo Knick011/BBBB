@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
       android:name=".MainApplication"
@@ -60,11 +61,41 @@
       </receiver>
 
       <!-- Morning Notification Receiver -->
-      <receiver 
+      <receiver
           android:name=".receivers.MorningNotificationReceiver"
           android:enabled="true"
           android:exported="false" />
 
+      <!-- Scheduled Notification Receiver -->
+      <receiver
+          android:name=".receivers.ScheduledNotificationReceiver"
+          android:enabled="true"
+          android:exported="false" />
+
+      <!-- Timer Restart Job Service -->
+      <service
+          android:name="com.brainbitescabby.app.timer.TimerRestartJobService"
+          android:permission="android.permission.BIND_JOB_SERVICE"
+          android:exported="false" />
+
+      <!-- Timer Wakeup Receiver -->
+      <receiver
+          android:name="com.brainbitescabby.app.timer.TimerWakeupReceiver"
+          android:enabled="true"
+          android:exported="false" />
+
+      <!-- Boot Receiver for Timer Restart -->
+      <receiver
+          android:name=".receivers.BootReceiver"
+          android:enabled="true"
+          android:exported="true">
+          <intent-filter android:priority="1000">
+              <action android:name="android.intent.action.BOOT_COMPLETED" />
+              <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+              <action android:name="android.intent.action.PACKAGE_REPLACED" />
+              <data android:scheme="package" />
+          </intent-filter>
+      </receiver>
 
     </application>
 </manifest>

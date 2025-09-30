@@ -89,7 +89,13 @@ class PersistentTimerGuardian private constructor(private val context: Context) 
             addAction(GUARDIAN_ACTION)
             addAction(RESTART_ACTION)
         }
-        context.registerReceiver(guardianReceiver, filter)
+
+        // Use Android 14+ compatible receiver registration
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            context.registerReceiver(guardianReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            context.registerReceiver(guardianReceiver, filter)
+        }
 
         // Start all protection mechanisms
         startHeartbeat()

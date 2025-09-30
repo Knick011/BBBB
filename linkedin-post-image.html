@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .linkedin-banner {
+            width: 1200px;
+            height: 627px;
+            background: linear-gradient(135deg, #FF6B35 0%, #FF9F1C 30%, #FFD23F 100%);
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0;
+        }
+        
+        /* Decorative background elements */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 2px, transparent 2px),
+                radial-gradient(circle at 70% 70%, rgba(255,255,255,0.2) 3px, transparent 3px),
+                radial-gradient(circle at 90% 20%, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 80px 80px, 120px 120px, 60px 60px;
+        }
+        
+        /* Left side - Mascot and branding */
+        .left-section {
+            width: 45%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 40px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .mascot-container {
+            width: 500px;
+            height: 480px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin-bottom: 5px;
+            position: relative;
+        }
+        
+        .main-mascot {
+            width: 550px;
+            height: 400px;
+            background-image: url('src/assets/mascot/happy.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center top;
+            position: relative;
+            z-index: 3;
+            clip-path: inset(0 0 40% 0);
+        }
+        
+        .mascot-friends {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .friend-mascot {
+            width: 550px;
+            height: 400px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center top;
+            position: absolute;
+            opacity: 0.8;
+            clip-path: inset(0 0 40% 0);
+        }
+        
+        .friend-1 {
+            background-image: url('src/assets/mascot/excited.png');
+            top: 10px;
+            left: -100px;
+            transform: rotate(-20deg) scale(0.85);
+        }
+        
+        .friend-2 {
+            background-image: url('src/assets/mascot/gamemode.png');
+            top: 5px;
+            right: -105px;
+            transform: rotate(18deg) scale(0.9);
+        }
+        
+        .app-title {
+            font-size: 42px;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            margin-bottom: 3px;
+            letter-spacing: -1px;
+            text-align: center;
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        
+        .tagline {
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.95);
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 0;
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        
+        /* Right side - Features showcase */
+        .right-section {
+            width: 55%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px 60px 50px 20px;
+            position: relative;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .feature-desc {
+            font-size: 11px;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+            line-height: 1.3;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .main-cta {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+        }
+        
+        .sub-cta {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            font-weight: 400;
+        }
+        
+        /* Floating decorative icons */
+        .floating-icon {
+            position: absolute;
+            font-size: 48px;
+            opacity: 0.6;
+            color: white;
+        }
+        
+        .timer-icon {
+            top: 60px;
+            right: 120px;
+            transform: rotate(15deg);
+        }
+        
+        .trophy-icon {
+            bottom: 80px;
+            left: 80px;
+            transform: rotate(-10deg);
+        }
+        
+        .chart-icon {
+            top: 120px;
+            left: 50px;
+            transform: rotate(25deg);
+        }
+        
+        /* Gradient overlay for depth */
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255,107,53,0.1) 0%, 
+                transparent 30%, 
+                rgba(255,210,63,0.1) 100%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="linkedin-banner">
+        <div class="bg-pattern"></div>
+        <div class="gradient-overlay"></div>
+        
+        <!-- Floating decorative icons -->
+        <div class="floating-icon timer-icon">⏱️</div>
+        <div class="floating-icon trophy-icon">🏆</div>
+        <div class="floating-icon chart-icon">📊</div>
+        
+        <!-- Left Section: Branding -->
+        <div class="left-section">
+            <div class="mascot-container">
+                <div class="mascot-friends">
+                    <div class="friend-mascot friend-1"></div>
+                    <div class="friend-mascot friend-2"></div>
+                </div>
+                <div class="main-mascot"></div>
+            </div>
+            <div class="app-title">CaBBy's Brain-Bites</div>
+            <div class="tagline">Turn Screen Time Into Smart Time</div>
+        </div>
+        
+        <!-- Right Section: Features -->
+        <div class="right-section">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <div class="feature-title">Quizzes</div>
+                    <div class="feature-desc">EARN screen time by answering knowledge questions</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <div class="feature-title">Time Balance</div>
+                    <div class="feature-desc">Track earned vs used screen time</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌅</div>
+                    <div class="feature-title">Morning Routine</div>
+                    <div class="feature-desc">Start your day earning screen time</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-title">Brain Training</div>
+                    <div class="feature-desc">Get smarter while managing addiction</div>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <div class="main-cta">Turn Phone Addiction Into Brain Power one step at a time</div>
+                <div class="sub-cta">Smart habits • Better focus • Real results</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Instructions for screenshot -->
+    <div style="margin-top: 30px; padding: 20px; background: white; border-radius: 10px; font-family: 'Poppins', sans-serif;">
+        <h3>📸 LinkedIn Banner Instructions:</h3>
+        <ol>
+            <li>Right-click on the orange banner above</li>
+            <li>Select "Inspect" or "Inspect Element"</li>
+            <li>In DevTools, right-click the highlighted &lt;div class="linkedin-banner"&gt; element</li>
+            <li>Choose "Screenshot node" or use Snipping Tool to capture exactly 1200x630px</li>
+            <li>Save as "linkedin-post-image.png"</li>
+        </ol>
+        <p><strong>✅ Perfect dimensions:</strong> 1200px × 627px | <strong>✅ Clean & professional</strong> | <strong>✅ LinkedIn optimized</strong></p>
+    </div>
+</body>
+</html>

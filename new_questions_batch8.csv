@@ -1,0 +1,500 @@
+5001,Science,What is the powerhouse of the cell?,Nucleus,Mitochondria,Ribosome,Endoplasmic reticulum,B,Mitochondria produce energy for the cell,Easy
+5002,Math,What is 19 × 4?,74,76,78,80,B,19 multiplied by 4 equals 76,Easy
+5003,Geography,Which country is known as the Land of the Rising Sun?,China,Japan,South Korea,Thailand,B,Japan is called the Land of the Rising Sun,Easy
+5004,History,Who was the first person to set foot on the moon?,Neil Armstrong,Buzz Aldrin,John Glenn,Alan Shepard,A,Neil Armstrong was first to walk on the moon,Easy
+5005,Science,What is the chemical symbol for iron?,I,Ir,Fe,Fr,C,Iron has the chemical symbol Fe,Easy
+5006,Literature,Who wrote 'Harry Potter and the Philosopher's Stone'?,Roald Dahl,J.K. Rowling,C.S. Lewis,Philip Pullman,B,J.K. Rowling wrote Harry Potter,Easy
+5007,Animals,Which animal is known for its black and white stripes?,Tiger,Leopard,Zebra,Cheetah,C,Zebras have distinctive black and white stripes,Easy
+5008,Math,What is 63 ÷ 7?,8,9,10,11,B,63 divided by 7 equals 9,Easy
+5009,Science,Which gas is most abundant in the air we breathe?,Oxygen,Carbon dioxide,Nitrogen,Helium,C,Nitrogen makes up about 78% of air,Easy
+5010,Sports,In which sport do players use a racquet and shuttlecock?,Tennis,Badminton,Squash,Table tennis,B,Badminton uses a racquet and shuttlecock,Easy
+5011,Geography,What is the capital of Brazil?,São Paulo,Rio de Janeiro,Brasília,Salvador,C,Brasília is the capital of Brazil,Easy
+5012,Science,What do we call the study of plants?,Zoology,Botany,Geology,Biology,B,Botany is the study of plants,Easy
+5013,Math,What is 20% of 150?,25,30,35,40,B,20% of 150 equals 30,Easy
+5014,History,Which ancient wonder was located in Egypt?,Hanging Gardens,Colossus of Rhodes,Great Pyramid of Giza,Lighthouse of Alexandria,C,The Great Pyramid of Giza was in Egypt,Easy
+5015,Science,What is the process by which plants make oxygen?,Respiration,Photosynthesis,Transpiration,Germination,B,Photosynthesis produces oxygen,Easy
+5016,Literature,Who wrote 'The Chronicles of Narnia'?,J.R.R. Tolkien,C.S. Lewis,Roald Dahl,Lewis Carroll,B,C.S. Lewis wrote The Chronicles of Narnia,Easy
+5017,Animals,Which bird is the symbol of peace?,Eagle,Dove,Owl,Robin,B,The dove is a symbol of peace,Easy
+5018,Math,What is the sum of angles in a triangle?,90°,180°,270°,360°,B,The sum of angles in a triangle is 180°,Easy
+5019,Science,What is the study of the weather called?,Geology,Meteorology,Astronomy,Seismology,B,Meteorology is the study of weather,Easy
+5020,Geography,Which is the longest river in Asia?,Yangtze,Ganges,Mekong,Yellow River,A,The Yangtze is the longest river in Asia,Easy
+5021,Science,What is the Maxwell-Boltzmann distribution used to describe?,Energy distribution of gas molecules,Quantum energy levels,Electromagnetic waves,Nuclear decay,A,Maxwell-Boltzmann describes molecular energy distribution,Medium
+5022,Math,What is the partial derivative ∂/∂x of x²y + xy²?,2xy + y²,x² + 2xy,2x + y,xy + y²,A,∂/∂x(x²y + xy²) = 2xy + y²,Medium
+5023,History,Which dynasty unified China under Emperor Qin Shi Huang?,Han,Tang,Qin,Ming,C,The Qin dynasty unified China under Qin Shi Huang,Medium
+5024,Science,What is the name of the process where light causes electrons to be emitted from a surface?,Photoelectric effect,Compton scattering,Pair production,Photoionization,A,Photoelectric effect involves light-induced electron emission,Medium
+5025,Literature,Who wrote 'The Handmaid's Tale'?,Ursula K. Le Guin,Margaret Atwood,Doris Lessing,Joyce Carol Oates,B,Margaret Atwood wrote The Handmaid's Tale,Medium
+5026,Geography,What causes the aurora borealis (northern lights)?,Solar wind interacting with Earth's magnetosphere,Reflection of city lights,Volcanic ash in atmosphere,Ice crystals in clouds,A,Aurora results from solar wind and magnetosphere interaction,Medium
+5027,Science,What is the SI base unit for luminous intensity?,Candela,Lumen,Lux,Watt,A,The candela is the SI unit for luminous intensity,Medium
+5028,Math,What is the second derivative of e^(2x)?,2e^(2x),4e^(2x),e^(2x),e^(2x)/2,B,The second derivative of e^(2x) is 4e^(2x),Medium
+5029,History,Who was the leader of the Indian independence movement known for non-violent resistance?,Subhas Chandra Bose,Jawaharlal Nehru,Mahatma Gandhi,Sardar Patel,C,Mahatma Gandhi led non-violent resistance,Medium
+5030,Science,What is the term for the minimum frequency of light needed to emit electrons from a material?,Threshold frequency,Resonant frequency,Critical frequency,Natural frequency,A,Threshold frequency is minimum for electron emission,Medium
+5031,Art,Which art technique involves applying paint thickly so brush strokes are visible?,Glazing,Impasto,Scumbling,Sfumato,B,Impasto applies paint thickly with visible strokes,Medium
+5032,Math,What is the sum of an infinite geometric series with first term a and ratio r (|r| < 1)?,a/(1-r),a/(1+r),ar/(1-r),a(1-r),A,Infinite geometric series sum is a/(1-r),Medium
+5033,Science,What is the study of fungi called?,Mycology,Virology,Bacteriology,Phycology,A,Mycology is the study of fungi,Medium
+5034,Geography,Which type of rock is formed from cooling magma?,Sedimentary,Metamorphic,Igneous,Composite,C,Igneous rock forms from cooling magma,Medium
+5035,Literature,Who wrote 'Brave New World'?,George Orwell,Aldous Huxley,Ray Bradbury,Kurt Vonnegut,B,Aldous Huxley wrote Brave New World,Medium
+5036,History,Which war was triggered by the assassination of Archduke Franz Ferdinand?,World War I,World War II,Franco-Prussian War,Crimean War,A,World War I was triggered by Franz Ferdinand's assassination,Medium
+5037,Science,What is the term for the energy needed to break one mole of bonds?,Bond enthalpy,Activation energy,Lattice energy,Hydration energy,A,Bond enthalpy is energy to break one mole of bonds,Medium
+5038,Math,What is the formula for the volume of a sphere?,4πr³,4πr³/3,3πr³/4,πr³,B,Volume of sphere is 4πr³/3,Medium
+5039,Animals,What is the gestation period of a human?,8 months,9 months,10 months,11 months,B,Human gestation is approximately 9 months,Medium
+5040,Science,What is the term for substances that cannot be broken down into simpler substances?,Compounds,Mixtures,Elements,Molecules,C,Elements cannot be broken down further,Medium
+5041,Science,What is the Chandrasekhar limit related to in astrophysics?,Maximum mass of a white dwarf star,Minimum temperature for nuclear fusion,Maximum size of a neutron star,Speed of light in a vacuum,A,Chandrasekhar limit is maximum white dwarf mass,Hard
+5042,Math,What is the Fundamental Theorem of Arithmetic about?,Every integer greater than 1 can be uniquely factored into primes,All even numbers are composite,Prime numbers are infinite,Perfect numbers are rare,A,Fundamental Theorem states unique prime factorization,Hard
+5043,History,Which medieval philosopher developed the Five Ways to prove God's existence?,Augustine of Hippo,Thomas Aquinas,Duns Scotus,William of Ockham,B,Thomas Aquinas developed the Five Ways,Hard
+5044,Science,What is the theoretical framework that describes the behavior of quarks and gluons?,Quantum chromodynamics,Quantum electrodynamics,Electroweak theory,Grand unified theory,A,Quantum chromodynamics describes quarks and gluons,Hard
+5045,Literature,Who wrote 'In Search of Lost Time'?,James Joyce,Virginia Woolf,Marcel Proust,Franz Kafka,C,Marcel Proust wrote In Search of Lost Time,Hard
+5046,Philosophy,What is the central argument of Anselm's ontological proof?,God's existence follows from the concept of perfect being,All knowledge comes from experience,Reality is fundamentally mental,Free will is an illusion,A,Anselm's proof derives God's existence from perfection,Hard
+5047,Science,What is the name of the effect where particles can pass through energy barriers they classically cannot surmount?,Quantum tunneling,Wave-particle duality,Quantum entanglement,Heisenberg uncertainty,A,Quantum tunneling allows passage through barriers,Hard
+5048,Math,What is the Riemannian curvature tensor used to describe?,Curvature of manifolds,Prime number distribution,Function continuity,Matrix eigenvalues,A,Riemannian tensor describes manifold curvature,Hard
+5049,History,Who was the Babylonian king who conquered Jerusalem in 586 BCE?,Hammurabi,Nebuchadnezzar II,Sargon II,Cyrus the Great,B,Nebuchadnezzar II conquered Jerusalem in 586 BCE,Hard
+5050,Science,What is the theoretical process that could convert matter directly into energy with 100% efficiency?,Matter-antimatter annihilation,Nuclear fusion,Nuclear fission,Chemical combustion,A,Matter-antimatter annihilation is 100% efficient,Hard
+5051,Art,Which art movement was characterized by the manifesto 'The Art of Noises'?,Dadaism,Futurism,Constructivism,De Stijl,B,Futurism included 'The Art of Noises' manifesto,Hard
+5052,Math,What is the Hausdorff dimension used to measure?,Fractal complexity,Vector spaces,Function domains,Matrix determinants,A,Hausdorff dimension measures fractal complexity,Hard
+5053,Science,What is the name of the theoretical particle exchange that mediates the weak nuclear force?,W and Z bosons,Photons,Gluons,Gravitons,A,W and Z bosons mediate weak nuclear force,Hard
+5054,Literature,Who wrote the novel 'The Recognitions'?,William Gaddis,Don DeLillo,Thomas Pynchon,David Foster Wallace,A,William Gaddis wrote The Recognitions,Hard
+5055,Geography,What is the term for the slow movement of continents over geological time?,Continental drift,Plate tectonics,Seafloor spreading,Subduction,B,Plate tectonics explains continental movement,Hard
+5056,History,Which treaty established the balance of power in Europe after Napoleon?,Congress of Vienna,Treaty of Paris,Peace of Utrecht,Treaty of Campo Formio,A,Congress of Vienna established European balance,Hard
+5057,Science,What is the theoretical minimum time required for information to travel across a Planck length?,Planck time,Compton time,Schwarzschild time,de Broglie time,A,Planck time is minimum for Planck length traversal,Hard
+5058,Math,What is the Whitehead conjecture about?,Simply connected finite CW-complexes,Prime number gaps,Continuous function properties,Algebraic equation solutions,A,Whitehead conjecture concerns CW-complexes,Hard
+5059,Philosophy,Who developed the philosophical concept of 'thrownness' (Geworfenheit)?,Jean-Paul Sartre,Martin Heidegger,Maurice Merleau-Ponty,Edmund Husserl,B,Heidegger developed the concept of thrownness,Hard
+5060,Science,What is the study of how genes influence behavior called?,Behavioral genetics,Sociobiology,Evolutionary psychology,Ethology,A,Behavioral genetics studies gene-behavior relationships,Hard
+5061,Science,What is the basic unit of heredity?,Gene,Chromosome,DNA,RNA,A,A gene is the basic unit of heredity,Easy
+5062,Math,What is 14 × 8?,102,112,122,132,B,14 multiplied by 8 equals 112,Easy
+5063,Geography,Which is the highest waterfall in the world?,Niagara Falls,Angel Falls,Victoria Falls,Iguazu Falls,B,Angel Falls is the highest waterfall,Easy
+5064,History,Who was the famous Egyptian queen who ruled alongside Julius Caesar and Mark Antony?,Nefertiti,Hatshepsut,Cleopatra,Ankhesenamun,C,Cleopatra ruled with Caesar and Antony,Easy
+5065,Science,What is the chemical formula for carbon dioxide?,CO,CO2,C2O,C2O2,B,Carbon dioxide is CO2,Easy
+5066,Literature,Who wrote 'A Christmas Carol'?,Charles Dickens,Mark Twain,Lewis Carroll,Oscar Wilde,A,Charles Dickens wrote A Christmas Carol,Easy
+5067,Animals,Which animal is known as man's best friend?,Cat,Dog,Horse,Bird,B,Dogs are known as man's best friend,Easy
+5068,Math,What is 144 ÷ 16?,8,9,10,11,B,144 divided by 16 equals 9,Easy
+5069,Science,What is the process called when ice changes directly to water vapor?,Melting,Evaporation,Sublimation,Condensation,C,Sublimation is ice changing directly to vapor,Easy
+5070,Sports,How many holes are on a standard golf course?,16,18,20,22,B,A standard golf course has 18 holes,Easy
+5071,Geography,What is the capital of India?,Mumbai,New Delhi,Bangalore,Kolkata,B,New Delhi is the capital of India,Easy
+5072,Science,Which part of the eye controls how much light enters?,Lens,Cornea,Iris,Retina,C,The iris controls light entering the eye,Easy
+5073,Math,What is 35% of 200?,60,65,70,75,C,35% of 200 equals 70,Easy
+5074,History,Which civilization built the Colosseum?,Greek,Roman,Egyptian,Persian,B,The Romans built the Colosseum,Easy
+5075,Science,What is the hardest natural mineral?,Quartz,Diamond,Granite,Ruby,B,Diamond is the hardest natural mineral,Easy
+5076,Literature,Who wrote 'The Little Prince'?,Antoine de Saint-Exupéry,Jules Verne,Victor Hugo,Alexandre Dumas,A,Antoine de Saint-Exupéry wrote The Little Prince,Easy
+5077,Animals,Which animal is the tallest in the world?,Elephant,Giraffe,Horse,Camel,B,The giraffe is the tallest animal,Easy
+5078,Math,What is the perimeter of a square with side length 8?,24,32,40,64,B,Perimeter of square = 4 × 8 = 32,Easy
+5079,Science,What is the main component of natural gas?,Methane,Propane,Butane,Ethane,A,Methane is the main component of natural gas,Easy
+5080,Geography,Which continent is Antarctica?,Fifth largest,Sixth largest,Seventh largest,Smallest,A,Antarctica is the fifth largest continent,Easy
+5081,Science,What is the Gibbs phase rule used to determine?,Number of degrees of freedom in thermodynamic systems,Chemical reaction rates,Molecular bond angles,Atomic orbital shapes,A,Gibbs phase rule determines thermodynamic degrees of freedom,Medium
+5082,Math,What is the curl of the vector field F = [yz x+z xy]?,[y-1 z-1 x-y],[x-y y-z z-x],[z-x x-y y-z],[y-z z-x x-y],A,Curl components are (∂Fz/∂y - ∂Fy/∂z) etc. giving [y-1 z-1 x-y],Medium
+5083,History,Which European explorer is credited with discovering the Pacific Ocean?,Vasco da Gama,Christopher Columbus,Vasco Núñez de Balboa,Ferdinand Magellan,C,Balboa is credited with discovering the Pacific,Medium
+5084,Science,What is the term for the study of the structure and properties of atomic nuclei?,Nuclear physics,Particle physics,Atomic physics,Quantum physics,A,Nuclear physics studies atomic nuclei,Medium
+5085,Literature,Who wrote 'The Picture of Dorian Gray'?,Bram Stoker,Oscar Wilde,Arthur Conan Doyle,H.G. Wells,B,Oscar Wilde wrote The Picture of Dorian Gray,Medium
+5086,Geography,What type of boundary exists where oceanic crust is created?,Transform boundary,Convergent boundary,Divergent boundary,Strike-slip boundary,C,Divergent boundaries create oceanic crust,Medium
+5087,Science,What is the name for the energy required to remove one electron from a gaseous atom?,Electron affinity,Ionization energy,Electronegativity,Binding energy,B,Ionization energy removes one electron,Medium
+5088,Math,What is the surface area of a cylinder with radius r and height h?,2πr(r + h),πr(r + h),4πr(r + h),πr(2r + h),A,Cylinder surface area is 2πr(r + h),Medium
+5089,History,Who was the Roman general who crossed the Rubicon?,Julius Caesar,Mark Antony,Pompey,Cicero,A,Julius Caesar crossed the Rubicon,Medium
+5090,Science,What is the term for the amount of solute dissolved per unit volume of solution?,Molarity,Molality,Normality,Concentration,A,Molarity is solute per unit volume of solution,Medium
+5091,Art,Which painting technique creates subtle gradations of tone without harsh outlines?,Chiaroscuro,Impasto,Sfumato,Scumbling,C,Sfumato creates subtle tone gradations,Medium
+5092,Math,What is the Fundamental Theorem of Algebra about?,Every non-constant polynomial has at least one complex root,All polynomials are continuous,Algebraic equations have unique solutions,Complex numbers are complete,A,Fundamental Theorem guarantees complex roots,Medium
+5093,Science,What is the study of the origin and development of the universe called?,Astronomy,Cosmology,Astrophysics,Cosmogony,B,Cosmology studies universe origin and development,Medium
+5094,Geography,What is the deepest part of the ocean floor called?,Continental shelf,Abyssal plain,Ocean trench,Mid-ocean ridge,C,Ocean trenches are the deepest parts,Medium
+5095,Literature,Who wrote 'The Sun Also Rises'?,John Steinbeck,Ernest Hemingway,F. Scott Fitzgerald,William Faulkner,B,Ernest Hemingway wrote The Sun Also Rises,Medium
+5096,History,Which ancient Greek city-state was known for its military prowess?,Athens,Sparta,Thebes,Corinth,B,Sparta was known for military prowess,Medium
+5097,Science,What is the term for the study of how living organisms interact with their environment?,Ecology,Biology,Botany,Zoology,A,Ecology studies organism-environment interactions,Medium
+5098,Math,What is the parametric equation for a circle of radius r centered at origin?,x = r cos t y = r sin t,x = r sin t y = r cos t,x = r t y = r/t,x = r² cos t y = r² sin t,A,Circle parametric equations are x = r cos t y = r sin t,Medium
+5099,Animals,What is the largest mammal that ever lived?,Blue whale,African elephant,Woolly mammoth,Megalodon,A,Blue whale is the largest mammal ever,Medium
+5100,Science,What is the term for the study of earthquakes and seismic waves?,Geology,Seismology,Volcanology,Meteorology,B,Seismology studies earthquakes and seismic waves,Medium
+5101,Science,What is the theoretical framework that could unify general relativity and quantum mechanics?,String theory,Loop quantum gravity,Causal set theory,All of the above,D,Multiple approaches attempt quantum gravity unification,Hard
+5102,Math,What is the Millennium Prize Problem concerning the existence of Yang-Mills theory?,Proving the theory exists and has a mass gap,Solving Yang-Mills equations,Computing exact solutions,Finding symmetry groups,A,Yang-Mills problem requires existence and mass gap proof,Hard
+5103,History,Which medieval Islamic philosopher wrote 'The Incoherence of the Philosophers'?,Ibn Sina,Ibn Rushd,Al-Ghazali,Al-Farabi,C,Al-Ghazali wrote The Incoherence of the Philosophers,Hard
+5104,Science,What is the name of the hypothetical particle that could explain dark matter?,Axion,WIMP,Sterile neutrino,All of the above,D,Multiple particles are proposed for dark matter,Hard
+5105,Literature,Who wrote the novel 'Pale Fire'?,Vladimir Nabokov,Jorge Luis Borges,Italo Calvino,Umberto Eco,A,Vladimir Nabokov wrote Pale Fire,Hard
+5106,Philosophy,What is Gettier's challenge to the traditional definition of knowledge?,Showing that justified true belief is insufficient for knowledge,Proving that knowledge is impossible,Arguing that truth is relative,Claiming that beliefs are always false,A,Gettier showed justified true belief isn't enough for knowledge,Hard
+5107,Science,What is the theoretical process by which the universe could collapse back on itself?,Big Crunch,Heat death,Big Rip,False vacuum decay,A,Big Crunch is universal collapse scenario,Hard
+5108,Math,What is the Birkhoff-von Neumann theorem about?,Doubly stochastic matrices can be written as convex combinations of permutation matrices,All matrices are diagonalizable,Eigenvalues determine matrix properties,Linear transformations preserve structure,A,Birkhoff-von Neumann concerns doubly stochastic matrices,Hard
+5109,History,Who was the Visigothic king who sacked Rome in 410 CE?,Theodoric,Alaric I,Athaulf,Euric,B,Alaric I sacked Rome in 410 CE,Hard
+5110,Science,What is the theoretical temperature at which all matter would collapse into a black hole?,Planck temperature,Hagedorn temperature,Critical temperature,Debye temperature,A,Planck temperature is where matter collapses,Hard
+5111,Art,Which avant-garde movement was founded by André Breton with the Surrealist Manifesto?,Dadaism,Surrealism,Futurism,Constructivism,B,Breton founded Surrealism with his manifesto,Hard
+5112,Math,What is the Busemann-Petty problem about?,Comparing volumes of convex bodies and their sections,Prime factorization algorithms,Continuous function properties,Matrix inverse computations,A,Busemann-Petty problem compares convex body volumes,Hard
+5113,Science,What is the name of the theoretical phase of matter that exists at extremely high temperatures?,Quark-gluon plasma,Bose-Einstein condensate,Fermionic condensate,Color glass condensate,A,Quark-gluon plasma exists at extreme temperatures,Hard
+5114,Literature,Who wrote the postmodern novel 'White Noise'?,Don DeLillo,Thomas Pynchon,David Foster Wallace,Jennifer Egan,A,Don DeLillo wrote White Noise,Hard
+5115,Geography,What is the scientific term for the study of glaciers?,Glaciology,Cryology,Hydrology,Limnology,A,Glaciology is the study of glaciers,Hard
+5116,History,Which treaty ended the War of Spanish Succession?,Treaty of Utrecht,Peace of Westphalia,Treaty of Aix-la-Chapelle,Treaty of Ryswick,A,Treaty of Utrecht ended War of Spanish Succession,Hard
+5117,Science,What is the theoretical framework describing the evolution of quantum states?,Schrödinger equation,Heisenberg uncertainty principle,Born rule,Copenhagen interpretation,A,Schrödinger equation describes quantum state evolution,Hard
+5118,Math,What is the Kakeya conjecture about?,Hausdorff dimension of Kakeya sets in higher dimensions,Prime number distributions,Harmonic analysis,Geometric measure theory,A,Kakeya conjecture concerns dimension of Kakeya sets,Hard
+5119,Philosophy,Who developed the concept of 'bad faith' in existentialist philosophy?,Martin Heidegger,Jean-Paul Sartre,Simone de Beauvoir,Albert Camus,B,Sartre developed the concept of bad faith,Hard
+5120,Science,What is the study of how quantum systems can be used for computation called?,Quantum computing,Quantum information theory,Quantum cryptography,All of the above,D,All terms relate to quantum computation applications,Hard
+5121,Science,What is the basic building block of proteins?,Amino acid,Nucleotide,Lipid,Carbohydrate,A,Amino acids are protein building blocks,Easy
+5122,Math,What is 17 × 5?,75,80,85,90,C,17 multiplied by 5 equals 85,Easy
+5123,Geography,Which is the smallest ocean?,Pacific,Atlantic,Indian,Arctic,D,The Arctic Ocean is the smallest,Easy
+5124,History,Who was the famous military leader who conquered most of Europe in the early 19th century?,Alexander the Great,Julius Caesar,Napoleon Bonaparte,Hannibal,C,Napoleon conquered most of Europe,Easy
+5125,Science,What is the chemical symbol for sodium?,S,So,Na,N,C,Sodium has the chemical symbol Na,Easy
+5126,Literature,Who wrote 'Where the Wild Things Are'?,Dr. Seuss,Maurice Sendak,Eric Carle,Shel Silverstein,B,Maurice Sendak wrote Where the Wild Things Are,Easy
+5127,Animals,Which animal is the fastest marine mammal?,Dolphin,Whale,Seal,Orca,A,Dolphins are the fastest marine mammals,Easy
+5128,Math,What is 88 ÷ 8?,10,11,12,13,B,88 divided by 8 equals 11,Easy
+5129,Science,What is the process by which green plants use sunlight to make food?,Respiration,Photosynthesis,Transpiration,Digestion,B,Photosynthesis uses sunlight to make food,Easy
+5130,Sports,In which sport do you try to get the ball in a hole in as few strokes as possible?,Tennis,Baseball,Golf,Basketball,C,Golf aims to get ball in hole with few strokes,Easy
+5131,Geography,What is the capital of Russia?,Moscow,St. Petersburg,Kiev,Volgograd,A,Moscow is the capital of Russia,Easy
+5132,Science,Which organ in the human body filters blood?,Heart,Liver,Kidney,Lung,C,Kidneys filter blood,Easy
+5133,Math,What is 45% of 80?,32,36,40,44,B,45% of 80 equals 36,Easy
+5134,History,Which war lasted from 1914 to 1918?,World War I,World War II,Korean War,Vietnam War,A,World War I lasted from 1914-1918,Easy
+5135,Science,What is the process by which water moves from roots to leaves in plants?,Osmosis,Transpiration,Diffusion,Capillary action,B,Transpiration moves water from roots to leaves,Easy
+5136,Literature,Who wrote 'Matilda'?,J.K. Rowling,Roald Dahl,Enid Blyton,Beverly Cleary,B,Roald Dahl wrote Matilda,Easy
+5137,Animals,Which animal produces honey?,Wasp,Bee,Ant,Fly,B,Bees produce honey,Easy
+5138,Math,What is 12²?,124,144,164,184,B,12 squared equals 144,Easy
+5139,Science,What do we call the invisible force that keeps us on the ground?,Magnetism,Electricity,Gravity,Friction,C,Gravity keeps us on the ground,Easy
+5140,Geography,Which mountain range contains Mount Everest?,Rocky Mountains,Andes,Alps,Himalayas,D,Mount Everest is in the Himalayas,Easy
+5141,Science,What is the Arrhenius equation used to describe?,Temperature dependence of reaction rates,Gas pressure relationships,Electron orbital energies,Molecular vibration frequencies,A,Arrhenius equation describes temperature-rate relationships,Medium
+5142,Math,What is the gradient of the scalar field f(x,y,z) = x²y + z³?,∇f = [2xy x² 3z²],∇f = [x² 2xy z³],∇f = [2x y z],∇f = [xy x 3z],A,Gradient components are partial derivatives: [2xy x² 3z²],Medium
+5143,History,Which revolution began in France in 1789?,Industrial Revolution,American Revolution,French Revolution,Russian Revolution,C,The French Revolution began in 1789,Medium
+5144,Science,What is the name for the number of protons in an atom's nucleus?,Mass number,Atomic number,Electron number,Neutron number,B,Atomic number is the number of protons,Medium
+5145,Literature,Who wrote 'Fahrenheit 451'?,George Orwell,Ray Bradbury,Aldous Huxley,Kurt Vonnegut,B,Ray Bradbury wrote Fahrenheit 451,Medium
+5146,Geography,What is the term for a piece of land completely surrounded by water?,Island,Peninsula,Isthmus,Cape,A,An island is land surrounded by water,Medium
+5147,Science,What is the SI unit for pressure?,Newton,Pascal,Joule,Watt,B,The pascal is the SI unit for pressure,Medium
+5148,Math,What is the formula for compound interest?,A = P(1 + r)^t,A = P + rt,A = Prt,A = P(1 + rt),A,Compound interest formula is A = P(1 + r)^t,Medium
+5149,History,Who was the first person to circumnavigate the globe by ship?,Christopher Columbus,Vasco da Gama,Ferdinand Magellan,James Cook,C,Magellan's expedition first circumnavigated the globe,Medium
+5150,Science,What is the term for a solution that resists changes in pH?,Buffer,Indicator,Catalyst,Inhibitor,A,A buffer resists pH changes,Medium
+5151,Art,Which art movement was Pablo Picasso associated with in his later career?,Impressionism,Expressionism,Cubism,Surrealism,C,Picasso was associated with Cubism,Medium
+5152,Math,What is the integral of 1/x with respect to x?,ln|x| + C,x + C,x²/2 + C,1/x² + C,A,The integral of 1/x is ln|x| + C,Medium
+5153,Science,What is the study of heredity and genetic variation called?,Genetics,Evolution,Ecology,Taxonomy,A,Genetics studies heredity and variation,Medium
+5154,Geography,What type of climate is characterized by hot summers and mild winters?,Tropical,Temperate,Arctic,Desert,B,Temperate climate has hot summers mild winters,Medium
+5155,Literature,Who wrote 'Of Mice and Men'?,Ernest Hemingway,John Steinbeck,William Faulkner,Harper Lee,B,John Steinbeck wrote Of Mice and Men,Medium
+5156,History,Which empire was ruled by Constantine the Great?,Roman Empire,Byzantine Empire,Ottoman Empire,Persian Empire,A,Constantine ruled the Roman Empire,Medium
+5157,Science,What is the term for the energy required to start a chemical reaction?,Activation energy,Potential energy,Kinetic energy,Thermal energy,A,Activation energy starts chemical reactions,Medium
+5158,Math,What is the equation of a line with slope m passing through point (x₁,y₁)?,y - y₁ = m(x - x₁),y + y₁ = m(x + x₁),y = mx + x₁,y = m(x + x₁) - y₁,A,Point-slope form is y - y₁ = m(x - x₁),Medium
+5159,Animals,What is the largest bird that cannot fly?,Penguin,Ostrich,Emu,Kiwi,B,The ostrich is the largest flightless bird,Medium
+5160,Science,What is the term for the study of the motion and behavior of projectiles?,Ballistics,Dynamics,Kinematics,Statics,A,Ballistics studies projectile motion,Medium
+5161,Science,What is the theoretical framework that attempts to describe all four fundamental forces?,Theory of Everything,Grand Unified Theory,String Theory,M-Theory,A,Theory of Everything aims to describe all forces,Hard
+5162,Math,What is the Millennium Prize Problem known as the Hodge conjecture about?,Algebraic cycles on projective algebraic varieties,Prime number distribution,Differential equation solutions,Topological invariants,A,Hodge conjecture concerns algebraic cycles,Hard
+5163,History,Which scholar is considered the father of modern historiography?,Herodotus,Thucydides,Leopold von Ranke,Edward Gibbon,C,Leopold von Ranke founded modern historiography,Hard
+5164,Science,What is the name of the theoretical process that could create a stable wormhole?,Exotic matter with negative energy density,Positive mass energy,Normal matter compression,Electromagnetic field manipulation,A,Exotic matter could theoretically stabilize wormholes,Hard
+5165,Literature,Who wrote the novel 'Gravity's Rainbow'?,Thomas Pynchon,Don DeLillo,David Foster Wallace,William Gaddis,A,Thomas Pynchon wrote Gravity's Rainbow,Hard
+5166,Philosophy,What is the main thesis of Quine's 'Word and Object'?,Indeterminacy of translation and radical interpretation,Language determines thought,Meaning is use,Consciousness is fundamental,A,Quine argued for indeterminacy of translation,Hard
+5167,Science,What is the name of the effect where space and time become quantized at the smallest scales?,Planck scale effects,Heisenberg uncertainty,Quantum foam,All of the above,D,All describe quantum spacetime effects,Hard
+5168,Math,What is the Novikov conjecture about?,Higher-order signatures of manifolds,Prime number gaps,Function continuity,Matrix eigenvalues,A,Novikov conjecture concerns manifold signatures,Hard
+5169,History,Who was the Mongol leader who established the Yuan dynasty in China?,Genghis Khan,Möngke Khan,Kublai Khan,Hulagu Khan,C,Kublai Khan established the Yuan dynasty,Hard
+5170,Science,What is the theoretical maximum information content that can be stored in a spherical region?,Bekenstein bound,Shannon limit,Landauer limit,Holographic bound,A,Bekenstein bound limits information in spherical regions,Hard
+5171,Art,Which conceptual artist created the work 'The Physical Impossibility of Death in the Mind of Someone Living'?,Jeff Koons,Damien Hirst,Tracy Emin,Banksy,B,Damien Hirst created this famous shark artwork,Hard
+5172,Math,What is the Bombieri-Lang conjecture about?,Diophantine equations and algebraic curves,Prime number distribution,Harmonic analysis,Geometric topology,A,Bombieri-Lang concerns Diophantine equations,Hard
+5173,Science,What is the theoretical particle that could mediate gravity in quantum field theory?,Graviton,Higgs boson,Axion,Dilaton,A,Graviton would theoretically mediate gravity,Hard
+5174,Literature,Who wrote the experimental novel 'Finnegans Wake'?,James Joyce,Samuel Beckett,Virginia Woolf,Gertrude Stein,A,James Joyce wrote Finnegans Wake,Hard
+5175,Geography,What is the scientific term for the study of the Earth's magnetic field?,Geomagnetism,Paleomagnetism,Magnetostratigraphy,All of the above,D,All terms relate to Earth's magnetic field study,Hard
+5176,History,Which medieval scholar translated Aristotle's 'Poetics' into Latin?,Boethius,Averroes,William of Moerbeke,Michael Scot,C,William of Moerbeke translated Poetics,Hard
+5177,Science,What is the theoretical framework that could explain why the universe appears fine-tuned for life?,Anthropic principle,Multiverse theory,String landscape,All of the above,D,All address fine-tuning questions,Hard
+5178,Math,What is the Schanuel conjecture about?,Transcendental number theory,Algebraic geometry,Differential equations,Probability theory,A,Schanuel conjecture concerns transcendental numbers,Hard
+5179,Philosophy,Who developed the philosophical concept of 'incommensurability' in philosophy of science?,Karl Popper,Thomas Kuhn,Imre Lakatos,Paul Feyerabend,B,Kuhn developed incommensurability concept,Hard
+5180,Science,What is the study of how complexity emerges from simple rules called?,Complexity theory,Systems theory,Chaos theory,All of the above,D,All study emergence of complexity,Hard
+5181,Science,Which vitamin helps blood clot?,Vitamin A,Vitamin C,Vitamin D,Vitamin K,D,Vitamin K helps blood clot,Easy
+5182,Math,What is 23 × 3?,66,69,72,75,B,23 multiplied by 3 equals 69,Easy
+5183,Geography,Which is the largest country by area?,Russia,Canada,United States,China,A,Russia is the largest country by area,Easy
+5184,History,Who was the first person to walk on the moon?,Neil Armstrong,Buzz Aldrin,John Glenn,Alan Shepard,A,Neil Armstrong was first to walk on the moon,Easy
+5185,Science,What is the chemical symbol for potassium?,P,Po,K,Pt,C,Potassium has the chemical symbol K,Easy
+5186,Literature,Who wrote 'Green Eggs and Ham'?,Dr. Seuss,Maurice Sendak,Eric Carle,Shel Silverstein,A,Dr. Seuss wrote Green Eggs and Ham,Easy
+5187,Animals,Which animal is known for its very long tongue?,Giraffe,Elephant,Anteater,Both A and C,D,Both giraffes and anteaters have long tongues,Easy
+5188,Math,What is 99 ÷ 9?,10,11,12,13,B,99 divided by 9 equals 11,Easy
+5189,Science,What is the Earth's natural satellite called?,Star,Moon,Planet,Comet,B,The Moon is Earth's natural satellite,Easy
+5190,Sports,In which sport do players try to hit a ball over a net without letting it touch the ground on their side?,Tennis,Volleyball,Badminton,Table tennis,B,Volleyball hits ball over net,Easy
+5191,Geography,What is the capital of China?,Beijing,Shanghai,Hong Kong,Guangzhou,A,Beijing is the capital of China,Easy
+5192,Science,Which system in the human body fights disease?,Digestive system,Circulatory system,Immune system,Nervous system,C,The immune system fights disease,Easy
+5193,Math,What is 30% of 120?,30,36,42,48,B,30% of 120 equals 36,Easy
+5194,History,Which ancient civilization is known for building pyramids?,Greek,Roman,Egyptian,Babylonian,C,Egyptians built pyramids,Easy
+5195,Science,What is the process by which liquid water becomes water vapor?,Condensation,Evaporation,Sublimation,Freezing,B,Evaporation turns liquid water to vapor,Easy
+5196,Literature,Who wrote 'The Giving Tree'?,Dr. Seuss,Shel Silverstein,Maurice Sendak,Eric Carle,B,Shel Silverstein wrote The Giving Tree,Easy
+5197,Animals,Which animal is known for its ability to change color to match its surroundings?,Tiger,Leopard,Chameleon,Zebra,C,Chameleons change color to match surroundings,Easy
+5198,Math,What is 15²?,225,235,245,255,A,15 squared equals 225,Easy
+5199,Science,What do we call the layer of gases surrounding Earth?,Biosphere,Atmosphere,Hydrosphere,Lithosphere,B,The atmosphere is the layer of gases,Easy
+5200,Geography,Which river is the longest in South America?,Amazon,Orinoco,Paraná,Magdalena,A,The Amazon is the longest river in South America,Easy
+5201,Science,What is the Beer-Lambert law used to describe?,Relationship between light absorption and concentration,Gas pressure and temperature,Chemical reaction equilibrium,Molecular bond vibrations,A,Beer-Lambert law relates absorption to concentration,Medium
+5202,Math,What is the Laplacian operator ∇²f for f(x,y,z) = x² + y² + z²?,2,4,6,8,C,∇²(x² + y² + z²) = 2 + 2 + 2 = 6,Medium
+5203,History,Which treaty ended the Thirty Years' War in 1648?,Treaty of Westphalia,Treaty of Utrecht,Peace of Augsburg,Treaty of Versailles,A,Treaty of Westphalia ended Thirty Years' War,Medium
+5204,Science,What is the name for the point at which a liquid becomes a gas at any temperature?,Critical point,Triple point,Boiling point,Flash point,A,Critical point is where liquid becomes gas,Medium
+5205,Literature,Who wrote 'The Metamorphosis'?,Thomas Mann,Franz Kafka,Hermann Hesse,Robert Musil,B,Franz Kafka wrote The Metamorphosis,Medium
+5206,Geography,What is the term for the boundary between two air masses of different temperatures?,Front,Ridge,Trough,Isobar,A,A front is the boundary between air masses,Medium
+5207,Science,What is the SI unit for magnetic field strength?,Tesla,Weber,Henry,Gauss,A,The tesla is the SI unit for magnetic field,Medium
+5208,Math,What is the derivative of ln(x²)?,(ln(x²))',2/x,2x,1/x²,B,d/dx[ln(x²)] = 2x/x² = 2/x,Medium
+5209,History,Who led the Protestant Reformation in the 16th century?,John Calvin,Martin Luther,Henry VIII,John Knox,B,Martin Luther led the Protestant Reformation,Medium
+5210,Science,What is the term for a substance that increases the rate of a chemical reaction without being consumed?,Catalyst,Inhibitor,Reagent,Solvent,A,A catalyst increases reaction rate without being consumed,Medium
+5211,Art,Which art technique involves scratching through a surface layer to reveal a lower layer?,Encaustic,Sgraffito,Fresco,Tempera,B,Sgraffito involves scratching through layers,Medium
+5212,Math,What is the volume of a cone with radius r and height h?,πr²h,πr²h/3,2πr²h/3,4πr²h/3,B,Cone volume is πr²h/3,Medium
+5213,Science,What is the study of the behavior of matter and energy called?,Physics,Chemistry,Biology,Geology,A,Physics studies matter and energy behavior,Medium
+5214,Geography,What type of landform is created by the deposition of sediments by a river?,Delta,Canyon,Mesa,Plateau,A,A delta is formed by sediment deposition,Medium
+5215,Literature,Who wrote 'The Stranger' (L'Étranger)?,Jean-Paul Sartre,Albert Camus,André Gide,Michel Foucault,B,Albert Camus wrote The Stranger,Medium
+5216,History,Which empire controlled the Mediterranean in the 2nd century BCE?,Greek,Roman,Persian,Carthaginian,B,Rome controlled the Mediterranean in 2nd century BCE,Medium
+5217,Science,What is the term for the energy stored in the bonds between atoms?,Chemical energy,Nuclear energy,Electrical energy,Thermal energy,A,Chemical energy is stored in atomic bonds,Medium
+5218,Math,What is the distance formula between points (x₁,y₁) and (x₂,y₂)?,√[(x₂-x₁)² + (y₂-y₁)²],√[(x₂+x₁)² + (y₂+y₁)²],(x₂-x₁)² + (y₂-y₁)²,|x₂-x₁| + |y₂-y₁|,A,Distance formula is √[(x₂-x₁)² + (y₂-y₁)²],Medium
+5219,Animals,What is the only continent where penguins live in the wild naturally?,Africa,South America,Australia,Antarctica,D,Penguins naturally live in Antarctica,Medium
+5220,Science,What is the term for the study of fossils?,Paleontology,Archaeology,Anthropology,Geology,A,Paleontology is the study of fossils,Medium
+5221,Science,What is the theoretical framework that describes gravity as the curvature of spacetime?,General Relativity,Special Relativity,Quantum Mechanics,String Theory,A,General Relativity describes gravity as spacetime curvature,Hard
+5222,Math,What is the Clay Institute Millennium Prize Problem concerning the Riemann hypothesis?,The location of zeros of the Riemann zeta function,Prime number distribution patterns,Complex analysis fundamentals,Number theory applications,A,Riemann hypothesis concerns zeta function zeros,Hard
+5223,History,Which medieval Islamic philosopher is known for reconciling Aristotelian philosophy with Islamic theology?,Al-Kindi,Al-Farabi,Ibn Sina (Avicenna),Ibn Rushd (Averroes),C,Ibn Sina reconciled Aristotle with Islamic theology,Hard
+5224,Science,What is the name of the theoretical process that could allow information to be transmitted faster than light?,Quantum entanglement,Tachyonic communication,Wormhole messaging,All are theoretical,D,All are theoretical faster-than-light communication,Hard
+5225,Literature,Who wrote the postmodern novel 'If on a winter's night a traveler'?,Italo Calvino,Umberto Eco,Jorge Luis Borges,Julio Cortázar,A,Italo Calvino wrote this metafictional work,Hard
+5226,Philosophy,What is the central thesis of Foucault's analysis of power?,Power is not possessed but exercised in relationships,Power corrupts absolutely,Power comes from violence,Power is centralized in institutions,A,Foucault saw power as relational and exercised,Hard
+5227,Science,What is the name of the theoretical limit to how much information can be processed by a physical system?,Landauer limit,Bekenstein bound,Shannon limit,Margolus-Levitin theorem,D,Margolus-Levitin theorem limits information processing,Hard
+5228,Math,What is the Grothendieck-Riemann-Roch theorem about?,Relationship between topological and algebraic properties of varieties,Prime factorization algorithms,Differential equation solutions,Probability distributions,A,GRR theorem relates topology and algebra,Hard
+5229,History,Who was the Sassanid king who was a major rival to the Byzantine Empire?,Shapur I,Khosrow I,Yazdegerd III,Hormizd IV,B,Khosrow I was a major Byzantine rival,Hard
+5230,Science,What is the theoretical mechanism that could explain the accelerating expansion of the universe?,Dark energy,Cosmological constant,Quintessence,All of the above,D,Multiple mechanisms explain cosmic acceleration,Hard
+5231,Art,Which art movement was characterized by the integration of text and image in conceptual works?,Pop Art,Conceptual Art,Land Art,Performance Art,B,Conceptual Art integrated text and image,Hard
+5232,Math,What is the Taniyama-Shimura conjecture (now theorem) about?,Connection between elliptic curves and modular forms,Prime number distribution,Algebraic geometry fundamentals,Complex analysis applications,A,Taniyama-Shimura connects elliptic curves to modular forms,Hard
+5233,Science,What is the name of the theoretical particle that could resolve the strong CP problem?,Axion,Magnetic monopole,Supersymmetric particle,Extra-dimensional particle,A,Axion could resolve strong CP problem,Hard
+5234,Literature,Who wrote the novel 'Against the Day'?,Thomas Pynchon,Don DeLillo,David Foster Wallace,William T. Vollmann,A,Thomas Pynchon wrote Against the Day,Hard
+5235,Geography,What is the scientific term for the study of the ocean floor topography?,Bathymetry,Hydrography,Oceanography,Marine geology,A,Bathymetry studies ocean floor topography,Hard
+5236,History,Which treaty established the Holy Roman Empire's relationship with the papacy?,Concordat of Worms,Golden Bull,Treaty of Verdun,Investiture Controversy,A,Concordat of Worms settled investiture controversy,Hard
+5237,Science,What is the theoretical framework describing how information is conserved in black holes?,Black hole information paradox,Holographic principle,AdS/CFT correspondence,All address this issue,D,All frameworks address black hole information,Hard
+5238,Math,What is the Langlands correspondence about?,Connection between number theory representation theory and geometry,Calculus fundamentals,Linear algebra applications,Statistics and probability,A,Langlands connects number theory and geometry,Hard
+5239,Philosophy,Who developed the concept of 'logocentrism' in deconstructive philosophy?,Roland Barthes,Jacques Derrida,Michel Foucault,Jean Baudrillard,B,Derrida developed logocentrism concept,Hard
+5240,Science,What is the study of how quantum effects might influence consciousness called?,Quantum consciousness,Quantum biology,Quantum neuroscience,All of the above,D,All study quantum effects on consciousness,Hard
+5241,Science,What is the most abundant gas in Earth's atmosphere?,Oxygen,Carbon dioxide,Nitrogen,Argon,C,Nitrogen makes up about 78% of the atmosphere,Easy
+5242,Math,What is 26 × 2?,50,52,54,56,B,26 multiplied by 2 equals 52,Easy
+5243,Geography,Which is the coldest continent?,Asia,Antarctica,North America,Europe,B,Antarctica is the coldest continent,Easy
+5244,History,Who painted the famous ceiling of the Sistine Chapel?,Leonardo da Vinci,Michelangelo,Raphael,Donatello,B,Michelangelo painted the Sistine Chapel ceiling,Easy
+5245,Science,What is the chemical symbol for helium?,H,He,Hl,Ho,B,Helium has the chemical symbol He,Easy
+5246,Literature,Who wrote 'The Very Hungry Caterpillar'?,Dr. Seuss,Eric Carle,Maurice Sendak,Shel Silverstein,B,Eric Carle wrote The Very Hungry Caterpillar,Easy
+5247,Animals,Which animal is known for its pouch?,Kangaroo,Koala,Wombat,All of the above,D,All these animals have pouches,Easy
+5248,Math,What is 121 ÷ 11?,10,11,12,13,B,121 divided by 11 equals 11,Easy
+5249,Science,What is the center of our solar system?,Earth,Moon,Sun,Mars,C,The Sun is the center of our solar system,Easy
+5250,Sports,In which sport do players use clubs to hit a small ball into holes?,Tennis,Baseball,Golf,Hockey,C,Golf uses clubs to hit balls into holes,Easy
+5251,Geography,What is the capital of the United Kingdom?,London,Manchester,Birmingham,Liverpool,A,London is the capital of the UK,Easy
+5252,Science,Which part of the plant absorbs water and nutrients from the soil?,Stem,Leaves,Roots,Flowers,C,Roots absorb water and nutrients,Easy
+5253,Math,What is 40% of 75?,25,30,35,40,B,40% of 75 equals 30,Easy
+5254,History,Which country gifted the Statue of Liberty to the United States?,England,France,Spain,Germany,B,France gifted the Statue of Liberty,Easy
+5255,Science,What is the process by which plants release water vapor through their leaves?,Photosynthesis,Transpiration,Respiration,Germination,B,Transpiration releases water vapor,Easy
+5256,Literature,Who wrote 'Charlie and the Chocolate Factory'?,Dr. Seuss,Roald Dahl,C.S. Lewis,J.K. Rowling,B,Roald Dahl wrote Charlie and the Chocolate Factory,Easy
+5257,Animals,Which animal is the largest land mammal?,Giraffe,Elephant,Rhinoceros,Hippopotamus,B,The elephant is the largest land mammal,Easy
+5258,Math,What is 13²?,159,169,179,189,B,13 squared equals 169,Easy
+5259,Science,What do we call the path that Earth takes around the Sun?,Rotation,Orbit,Revolution,Axis,B,Earth's path around the Sun is its orbit,Easy
+5260,Geography,Which ocean surrounds Antarctica?,Pacific,Atlantic,Indian,All of the above,D,All three oceans surround Antarctica,Easy
+5261,Science,What is the Michaelis-Menten equation used to describe?,Enzyme kinetics,Chemical equilibrium,Gas behavior,Nuclear decay,A,Michaelis-Menten describes enzyme kinetics,Medium
+5262,Math,What is the line integral ∮ F·dr for F = [y -x] around the unit circle?,0,π,2π,-2π,C,Line integral of [y -x] around unit circle is 2π,Medium
+5263,History,Which war was fought between Athens and Sparta?,Persian Wars,Peloponnesian War,Punic Wars,Gallic Wars,B,Peloponnesian War was between Athens and Sparta,Medium
+5264,Science,What is the name for the minimum energy difference between the valence and conduction bands in a semiconductor?,Band gap,Work function,Fermi level,Binding energy,A,Band gap is the energy difference in semiconductors,Medium
+5265,Literature,Who wrote 'Catch-22'?,Kurt Vonnegut,Joseph Heller,Norman Mailer,J.D. Salinger,B,Joseph Heller wrote Catch-22,Medium
+5266,Geography,What is the term for the gradual wearing away of rock by wind and water?,Erosion,Deposition,Weathering,Sedimentation,A,Erosion is gradual wearing away of rock,Medium
+5267,Science,What is the SI unit for energy?,Newton,Joule,Watt,Pascal,B,The joule is the SI unit for energy,Medium
+5268,Math,What is the Taylor series expansion of sin(x) around x = 0?,x - x³/3! + x⁵/5! - ...,1 - x²/2! + x⁴/4! - ...,x + x²/2! + x³/3! + ...,1 + x + x²/2! + ...,A,Taylor series of sin(x) is x - x³/3! + x⁵/5! - ...,Medium
+5269,History,Who was the Roman emperor when Jesus Christ was crucified?,Augustus,Tiberius,Caligula,Claudius,B,Tiberius was emperor during Christ's crucifixion,Medium
+5270,Science,What is the term for the amount of heat needed to raise the temperature of 1 gram of water by 1°C?,Calorie,Joule,BTU,Watt-hour,A,A calorie raises 1 gram of water by 1°C,Medium
+5271,Art,Which Renaissance art technique involves painting on wet lime plaster?,Oil painting,Tempera,Fresco,Watercolor,C,Fresco involves painting on wet plaster,Medium
+5272,Math,What is the equation of a parabola with vertex at origin opening upward?,y = x²,x = y²,y² = x,x² + y² = 1,A,Parabola with vertex at origin is y = x²,Medium
+5273,Science,What is the study of the chemical composition of celestial bodies called?,Cosmology,Astrophysics,Astrochemistry,Astrobiology,C,Astrochemistry studies celestial body composition,Medium
+5274,Geography,What is the term for a long narrow inlet of the sea between cliffs?,Fjord,Bay,Gulf,Strait,A,A fjord is a narrow sea inlet between cliffs,Medium
+5275,Literature,Who wrote 'The Bell Jar'?,Sylvia Plath,Anne Sexton,Adrienne Rich,Margaret Atwood,A,Sylvia Plath wrote The Bell Jar,Medium
+5276,History,Which dynasty ruled China for the longest period?,Han,Tang,Ming,Qing,A,The Han dynasty ruled China longest,Medium
+5277,Science,What is the term for the study of how drugs affect living organisms?,Pharmacology,Toxicology,Physiology,Pathology,A,Pharmacology studies drug effects on organisms,Medium
+5278,Math,What is the slope-intercept form of a linear equation?,ax + by = c,y = mx + b,y - y₁ = m(x - x₁),x = my + b,B,Slope-intercept form is y = mx + b,Medium
+5279,Animals,What is the term for animals that are active during twilight?,Diurnal,Nocturnal,Crepuscular,Arrhythmic,C,Crepuscular animals are active during twilight,Medium
+5280,Science,What is the term for the study of the structure and function of cells?,Cytology,Histology,Embryology,Physiology,A,Cytology is the study of cells,Medium
+5281,Science,What is the theoretical framework that could resolve the hierarchy problem in physics?,Supersymmetry,Extra dimensions,Technicolor,All of the above,D,Multiple approaches address hierarchy problem,Hard
+5282,Math,What is the Millennium Prize Problem concerning the P versus NP question?,Whether problems with quickly verifiable solutions can be solved quickly,Prime number distribution,Differential topology,Algebraic geometry,A,P vs NP asks about verification versus solution complexity,Hard
+5283,History,Which medieval scholar is credited with introducing Arabic numerals to Europe?,Leonardo Fibonacci,Gerbert of Aurillac,Adelard of Bath,Robert of Chester,A,Fibonacci introduced Arabic numerals to Europe,Hard
+5284,Science,What is the name of the theoretical process that could create closed timelike curves?,General relativistic time travel,Quantum tunneling,Tachyonic signaling,Causal loops,A,General relativity allows theoretical time travel,Hard
+5285,Literature,Who wrote the novel 'The Recognitions'?,Don DeLillo,William Gaddis,Thomas Pynchon,David Foster Wallace,B,William Gaddis wrote The Recognitions,Hard
+5286,Philosophy,What is the main thesis of Dennett's 'Consciousness Explained'?,Consciousness is an emergent property with no central observer,Consciousness is fundamental to reality,Consciousness cannot be explained scientifically,Consciousness is purely computational,A,Dennett argues consciousness emerges without central observer,Hard
+5287,Science,What is the theoretical limit to the density of information in a physical system?,Planck density,Bekenstein bound,Shannon entropy,Landauer limit,B,Bekenstein bound limits information density,Hard
+5288,Math,What is the Geometric Langlands conjecture about?,Duality between D-modules and perverse sheaves,Prime number theory,Algebraic topology,Complex analysis,A,Geometric Langlands concerns D-modules and sheaves,Hard
+5289,History,Who was the Umayyad caliph who established Muslim rule in Spain?,Abd al-Malik,Al-Walid I,Abd al-Rahman I,Hisham ibn Abd al-Malik,C,Abd al-Rahman I established Umayyad rule in Spain,Hard
+5290,Science,What is the theoretical mechanism that could explain the origin of mass?,Higgs mechanism,Spontaneous symmetry breaking,Electroweak theory,All of the above,D,All mechanisms explain mass origin,Hard
+5291,Art,Which contemporary artist is known for large-scale environmental installations like 'The Gates'?,Andy Goldsworthy,Christo and Jeanne-Claude,Robert Smithson,Walter De Maria,B,Christo and Jeanne-Claude created The Gates,Hard
+5292,Math,What is the Erdős-Straus conjecture about?,Every fraction 4/n can be expressed as sum of three unit fractions,Prime number gaps,Graph coloring problems,Number theory fundamentals,A,Erdős-Straus concerns unit fraction decomposition,Hard
+5293,Science,What is the name of the theoretical phase transition that could have created the universe's matter-antimatter asymmetry?,Baryogenesis,Big Bang nucleosynthesis,Cosmic inflation,Electroweak baryogenesis,A,Baryogenesis explains matter-antimatter asymmetry,Hard
+5294,Literature,Who wrote the postmodern novel 'Mason & Dixon'?,Thomas Pynchon,Don DeLillo,David Foster Wallace,William T. Vollmann,A,Thomas Pynchon wrote Mason & Dixon,Hard
+5295,Geography,What is the scientific term for the study of the Earth's interior structure using seismic waves?,Seismic tomography,Geophysical prospecting,Earthquake seismology,All of the above,A,Seismic tomography studies Earth's interior,Hard
+5296,History,Which Byzantine emperor was responsible for the final compilation of Roman law?,Justinian I,Theodosius II,Leo III,Basil II,A,Justinian I compiled Roman law finally,Hard
+5297,Science,What is the theoretical framework that attempts to explain quantum mechanics through hidden variables?,Pilot wave theory,Many-worlds interpretation,Copenhagen interpretation,Consistent histories,A,Pilot wave theory uses hidden variables,Hard
+5298,Math,What is the Beilinson conjecture about?,Special values of L-functions and motivic cohomology,Algebraic geometry fundamentals,Number theory applications,Differential equations,A,Beilinson conjecture concerns L-functions and cohomology,Hard
+5299,Philosophy,Who developed the philosophical concept of 'hauntology' in deconstruction?,Roland Barthes,Jacques Derrida,Jean Baudrillard,Gilles Deleuze,B,Derrida developed hauntology concept,Hard
+5300,Science,What is the study of how information and computation might emerge from physical processes called?,Digital physics,Computational physics,Information theory,All of the above,A,Digital physics studies computation from physics,Hard
+5301,Science,What is the smallest bone in the human body?,Stapes,Malleus,Incus,Fibula,A,The stapes in the ear is the smallest bone,Easy
+5302,Math,What is 28 ÷ 4?,6,7,8,9,B,28 divided by 4 equals 7,Easy
+5303,Geography,Which desert is the largest hot desert in the world?,Gobi,Sahara,Kalahari,Atacama,B,The Sahara is the largest hot desert,Easy
+5304,History,Who was the first President of the United States?,Thomas Jefferson,George Washington,John Adams,Benjamin Franklin,B,George Washington was the first US President,Easy
+5305,Science,What is the chemical symbol for copper?,Cu,Co,Cp,Ce,A,Copper has the chemical symbol Cu,Easy
+5306,Literature,Who wrote 'The Tale of Peter Rabbit'?,Beatrix Potter,A.A. Milne,Kenneth Grahame,Lewis Carroll,A,Beatrix Potter wrote The Tale of Peter Rabbit,Easy
+5307,Animals,Which animal is known for building dams?,Otter,Beaver,Muskrat,Platypus,B,Beavers are known for building dams,Easy
+5308,Math,What is 18 × 6?,98,108,118,128,B,18 multiplied by 6 equals 108,Easy
+5309,Science,What is the process by which the body breaks down food to release energy?,Digestion,Metabolism,Respiration,Circulation,A,Digestion breaks down food for energy,Easy
+5310,Sports,In which sport do you score by putting the ball through a hoop?,Soccer,Basketball,Baseball,Tennis,B,Basketball scores by putting ball through hoop,Easy
+5311,Geography,What is the capital of Germany?,Berlin,Munich,Hamburg,Frankfurt,A,Berlin is the capital of Germany,Easy
+5312,Science,Which gas do humans need to breathe to survive?,Carbon dioxide,Nitrogen,Oxygen,Helium,C,Humans need oxygen to survive,Easy
+5313,Math,What is 55% of 60?,30,33,36,39,B,55% of 60 equals 33,Easy
+5314,History,Which explorer is famous for discovering America in 1492?,Vasco da Gama,Christopher Columbus,Marco Polo,Ferdinand Magellan,B,Christopher Columbus discovered America in 1492,Easy
+5315,Science,What is the force that opposes motion between two surfaces?,Gravity,Friction,Magnetism,Electricity,B,Friction opposes motion between surfaces,Easy
+5316,Literature,Who wrote 'James and the Giant Peach'?,Dr. Seuss,Roald Dahl,C.S. Lewis,J.K. Rowling,B,Roald Dahl wrote James and the Giant Peach,Easy
+5317,Animals,Which animal has a trunk?,Elephant,Rhinoceros,Hippopotamus,Giraffe,A,Elephants have trunks,Easy
+5318,Math,What is 14²?,186,196,206,216,B,14 squared equals 196,Easy
+5319,Science,What is the study of stars planets and galaxies called?,Geology,Biology,Astronomy,Meteorology,C,Astronomy studies stars planets and galaxies,Easy
+5320,Geography,Which is the highest mountain in the world?,K2,Mount Everest,Kangchenjunga,Lhotse,B,Mount Everest is the highest mountain,Easy
+5321,Science,What is the Nernst equation used to calculate?,Electrode potential under non-standard conditions,Reaction rate constants,Gas solubility,Molecular weight,A,Nernst equation calculates electrode potential,Medium
+5322,Math,What is the surface integral ∬ F·dS for F = [x y z] over the unit sphere?,0,4π,8π,12π,B,Surface integral of [x y z] over unit sphere is 4π,Medium
+5323,History,Which battle marked the end of the Byzantine Empire?,Battle of Manzikert,Fall of Constantinople,Battle of Adrianople,Siege of Thessalonica,B,Fall of Constantinople ended Byzantine Empire,Medium
+5324,Science,What is the name for the temperature at which a semiconductor becomes intrinsic?,Curie temperature,Transition temperature,Intrinsic temperature,Fermi temperature,C,Intrinsic temperature is when semiconductor becomes intrinsic,Medium
+5325,Literature,Who wrote 'Slaughterhouse-Five'?,Joseph Heller,Kurt Vonnegut,Norman Mailer,J.D. Salinger,B,Kurt Vonnegut wrote Slaughterhouse-Five,Medium
+5326,Geography,What is the term for the imaginary line that divides Earth into Northern and Southern hemispheres?,Prime Meridian,Tropic of Cancer,Equator,International Date Line,C,The Equator divides Earth into hemispheres,Medium
+5327,Science,What is the SI unit for electric charge?,Ampere,Coulomb,Volt,Ohm,B,The coulomb is the SI unit for electric charge,Medium
+5328,Math,What is the Maclaurin series for e^x?,1 + x + x²/2! + x³/3! + ...,x + x²/2 + x³/3 + ...,1 + x + x² + x³ + ...,x - x²/2! + x³/3! - ...,A,Maclaurin series for e^x is 1 + x + x²/2! + x³/3! + ...,Medium
+5329,History,Who was the Frankish king who was crowned Holy Roman Emperor in 800 CE?,Clovis I,Charlemagne,Louis the Pious,Charles the Bald,B,Charlemagne was crowned Holy Roman Emperor,Medium
+5330,Science,What is the term for the study of how organisms develop from fertilized egg to adult?,Embryology,Genetics,Evolution,Taxonomy,A,Embryology studies organism development,Medium
+5331,Art,Which painting technique involves applying translucent layers of paint over an opaque base?,Impasto,Glazing,Scumbling,Alla prima,B,Glazing applies translucent layers over opaque base,Medium
+5332,Math,What is the formula for the area of an ellipse with semi-axes a and b?,πab,2πab,πa²b,πab²,A,Area of ellipse is πab,Medium
+5333,Science,What is the study of the distribution of species and ecosystems in geographic space called?,Ecology,Biogeography,Taxonomy,Systematics,B,Biogeography studies species distribution,Medium
+5334,Geography,What is the term for a large body of water completely enclosed by land?,Lake,Sea,Ocean,Gulf,A,A lake is water completely enclosed by land,Medium
+5335,Literature,Who wrote 'The Road'?,Cormac McCarthy,Don DeLillo,Philip Roth,Jonathan Franzen,A,Cormac McCarthy wrote The Road,Medium
+5336,History,Which ancient Greek mathematician is known for his theorem about right triangles?,Euclid,Pythagoras,Archimedes,Thales,B,Pythagoras is known for his right triangle theorem,Medium
+5337,Science,What is the term for the minimum amount of a substance needed to sustain a nuclear chain reaction?,Critical mass,Threshold mass,Minimum mass,Reaction mass,A,Critical mass sustains nuclear chain reaction,Medium
+5338,Math,What is the general solution to the differential equation dy/dx = y?,y = Ce^x,y = Cx,y = C/x,y = Ce^(-x),A,Solution to dy/dx = y is y = Ce^x,Medium
+5339,Animals,What is the largest species of bear?,Grizzly bear,Polar bear,Brown bear,Black bear,B,Polar bears are the largest bear species,Medium
+5340,Science,What is the term for the study of how populations change over time?,Demographics,Population dynamics,Ecology,Evolution,B,Population dynamics studies population changes,Medium
+5341,Science,What is the theoretical framework that could unify quantum field theory with general relativity?,Loop quantum gravity,String theory,Causal dynamical triangulation,All of the above,D,Multiple approaches attempt quantum gravity,Hard
+5342,Math,What is the Clay Millennium Prize Problem known as the Navier-Stokes existence and uniqueness?,Proving solutions exist and are unique for all time,Solving equations analytically,Finding exact solutions,Computing numerical approximations,A,Navier-Stokes problem asks for existence and uniqueness,Hard
+5343,History,Which medieval Islamic scholar wrote 'The Canon of Medicine'?,Al-Razi,Ibn Sina (Avicenna),Ibn Rushd (Averroes),Al-Kindi,B,Ibn Sina wrote The Canon of Medicine,Hard
+5344,Science,What is the name of the theoretical process that could allow energy extraction from black holes?,Penrose process,Hawking radiation,Black hole mining,Ergosphere extraction,A,Penrose process could extract black hole energy,Hard
+5345,Literature,Who wrote the experimental novel 'Finnegans Wake'?,Samuel Beckett,James Joyce,Virginia Woolf,Gertrude Stein,B,James Joyce wrote Finnegans Wake,Hard
+5346,Philosophy,What is the central argument of Putnam's twin Earth thought experiment?,Meaning depends on external environment not just internal states,Language determines thought,Consciousness is computational,Reality is observer-dependent,A,Twin Earth shows meaning depends on environment,Hard
+5347,Science,What is the theoretical minimum energy required for computation?,kT ln(2) per bit erased,Zero energy,Planck energy,Quantum energy,A,Landauer's principle sets minimum energy,Hard
+5348,Math,What is the Baum-Connes conjecture about?,K-theory of C*-algebras and group actions,Algebraic topology fundamentals,Number theory applications,Geometric analysis,A,Baum-Connes concerns K-theory of C*-algebras,Hard
+5349,History,Who was the last Western Roman Emperor?,Romulus Augustulus,Julius Nepos,Majorian,Anthemius,A,Romulus Augustulus was last Western Roman Emperor,Hard
+5350,Science,What is the theoretical maximum temperature that matter can reach?,Planck temperature,Hagedorn temperature,GUT scale temperature,Electroweak scale,A,Planck temperature is theoretical maximum,Hard
+5351,Art,Which artist created the installation 'Weather Project' at the Tate Modern?,Anselm Kiefer,Olafur Eliasson,James Turrell,Dan Flavin,B,Olafur Eliasson created Weather Project,Hard
+5352,Math,What is the Mumford conjecture about?,Stable cohomology of moduli spaces of curves,Algebraic geometry fundamentals,Number theory problems,Differential topology,A,Mumford conjecture concerns moduli space cohomology,Hard
+5353,Science,What is the name of the theoretical particle that could mediate a fifth fundamental force?,Quintessence,Chameleon,Axion,All are candidates,D,Multiple particles proposed for fifth force,Hard
+5354,Literature,Who wrote the novel 'Underworld'?,Thomas Pynchon,Don DeLillo,David Foster Wallace,Jonathan Franzen,B,Don DeLillo wrote Underworld,Hard
+5355,Geography,What is the scientific term for the boundary between Earth's crust and mantle?,Mohorovičić discontinuity,Gutenberg discontinuity,Lehmann discontinuity,Conrad discontinuity,A,Mohorovičić discontinuity separates crust and mantle,Hard
+5356,History,Which treaty established the principle of religious tolerance in the Holy Roman Empire after the Reformation?,Peace of Augsburg,Treaty of Westphalia,Edict of Nantes,Treaty of Passau,A,Peace of Augsburg established religious tolerance,Hard
+5357,Science,What is the theoretical framework that describes the emergence of spacetime from quantum entanglement?,Holographic principle,AdS/CFT correspondence,Emergent gravity,All of the above,D,All describe spacetime emergence from entanglement,Hard
+5358,Math,What is the Weil conjectures (now theorems) about?,Zeta functions of algebraic varieties over finite fields,Prime number distribution,Elliptic curve theory,Modular form theory,A,Weil conjectures concern variety zeta functions,Hard
+5359,Philosophy,Who developed the philosophical concept of 'différance' with an 'a'?,Roland Barthes,Jacques Derrida,Michel Foucault,Jean Baudrillard,B,Derrida developed différance concept,Hard
+5360,Science,What is the study of how computation could be performed using biological or chemical processes called?,Biocomputing,Chemical computing,Molecular computing,All of the above,D,All study alternative computation methods,Hard
+5361,Science,Which planet is closest to Earth?,Venus,Mars,Mercury,Jupiter,A,Venus is closest to Earth on average,Easy
+5362,Math,What is 35 × 2?,60,65,70,75,C,35 multiplied by 2 equals 70,Easy
+5363,Geography,Which continent has the Amazon rainforest?,Africa,Asia,South America,North America,C,South America has the Amazon rainforest,Easy
+5364,History,Who was the ancient Greek philosopher who taught Alexander the Great?,Socrates,Plato,Aristotle,Democritus,C,Aristotle taught Alexander the Great,Easy
+5365,Science,What is the chemical symbol for zinc?,Z,Zn,Zi,Zc,B,Zinc has the chemical symbol Zn,Easy
+5366,Literature,Who wrote 'Goodnight Moon'?,Margaret Wise Brown,Maurice Sendak,Dr. Seuss,Eric Carle,A,Margaret Wise Brown wrote Goodnight Moon,Easy
+5367,Animals,Which animal is known for its ability to spray a bad-smelling liquid when threatened?,Raccoon,Skunk,Opossum,Porcupine,B,Skunks spray bad-smelling liquid when threatened,Easy
+5368,Math,What is 156 ÷ 12?,12,13,14,15,B,156 divided by 12 equals 13,Easy
+5369,Science,What is the hard outer layer that protects the tooth called?,Dentin,Enamel,Pulp,Cementum,B,Enamel is the hard outer layer of teeth,Easy
+5370,Sports,How many players are on a volleyball team during play?,5,6,7,8,B,Volleyball teams have 6 players on court,Easy
+5371,Geography,What is the capital of Mexico?,Mexico City,Guadalajara,Monterrey,Cancun,A,Mexico City is the capital of Mexico,Easy
+5372,Science,Which vitamin is made when our skin is exposed to sunlight?,Vitamin A,Vitamin C,Vitamin D,Vitamin E,C,Vitamin D is made from sunlight exposure,Easy
+5373,Math,What is 65% of 80?,48,52,56,60,B,65% of 80 equals 52,Easy
+5374,History,Which Italian explorer gave his name to America?,Christopher Columbus,Amerigo Vespucci,Marco Polo,Giovanni da Verrazzano,B,Amerigo Vespucci gave his name to America,Easy
+5375,Science,What is the process by which rocks are broken down by wind rain and ice?,Erosion,Weathering,Deposition,Sedimentation,B,Weathering breaks down rocks,Easy
+5376,Literature,Who wrote 'The Cat in the Hat Comes Back'?,Dr. Seuss,Maurice Sendak,Eric Carle,Shel Silverstein,A,Dr. Seuss wrote The Cat in the Hat Comes Back,Easy
+5377,Animals,Which animal has the longest neck relative to its body size?,Giraffe,Swan,Flamingo,Ostrich,A,Giraffes have the longest neck relative to body size,Easy
+5378,Math,What is 16²?,246,256,266,276,B,16 squared equals 256,Easy
+5379,Science,What do we call the imaginary line around the middle of Earth?,Equator,Prime Meridian,Tropic of Cancer,Tropic of Capricorn,A,The Equator is the imaginary line around Earth's middle,Easy
+5380,Geography,Which ocean is between North America and Europe?,Pacific,Atlantic,Indian,Arctic,B,The Atlantic Ocean is between North America and Europe,Easy
+5381,Science,What is the Henderson-Hasselbalch equation used to calculate?,pH of buffer solutions,Reaction equilibrium constants,Gas solubility coefficients,Molecular orbital energies,A,Henderson-Hasselbalch calculates buffer pH,Medium
+5382,Math,What is the triple integral ∭ xyz dV over the unit cube [0,1]³?,1/2,1/4,1/8,1/16,C,Triple integral of xyz over unit cube is 1/8,Medium
+5383,History,Which empire was known for its road system including the phrase 'All roads lead to...'?,Greek Empire,Roman Empire,Persian Empire,Macedonian Empire,B,Roman Empire had extensive road system,Medium
+5384,Science,What is the name for the energy required to remove an electron from the outermost shell of an atom?,First ionization energy,Electron affinity,Electronegativity,Work function,A,First ionization energy removes outermost electron,Medium
+5385,Literature,Who wrote 'One Hundred Years of Solitude'?,Jorge Luis Borges,Gabriel García Márquez,Mario Vargas Llosa,Julio Cortázar,B,Gabriel García Márquez wrote One Hundred Years of Solitude,Medium
+5386,Geography,What is the term for the semi-permanent high pressure systems found over oceans?,Anticyclones,Cyclones,Trade winds,Monsoons,A,Anticyclones are high pressure systems over oceans,Medium
+5387,Science,What is the SI unit for luminous flux?,Candela,Lumen,Lux,Watt,B,The lumen is the SI unit for luminous flux,Medium
+5388,Math,What is the power series expansion of (1+x)^n for |x| < 1?,Σ(n choose k)x^k,Σnx^k/k!,Σx^k/k!,Σx^k,A,Binomial series is Σ(n choose k)x^k,Medium
+5389,History,Who was the Carthaginian general famous for crossing the Alps with elephants?,Hamilcar Barca,Hannibal Barca,Hasdrubal Barca,Mago Barca,B,Hannibal Barca crossed the Alps with elephants,Medium
+5390,Science,What is the term for the study of the motion of fluids?,Fluid statics,Fluid dynamics,Hydrostatics,Hydrodynamics,B,Fluid dynamics studies fluid motion,Medium
+5391,Art,Which art movement was characterized by small visible brushstrokes and emphasis on light?,Realism,Impressionism,Expressionism,Cubism,B,Impressionism had visible brushstrokes and light emphasis,Medium
+5392,Math,What is the arc length formula for a curve y = f(x) from a to b?,∫√(1 + (dy/dx)²) dx,∫√(1 + (dx/dy)²) dy,∫(dy/dx) dx,∫√((dx)² + (dy)²),A,Arc length is ∫√(1 + (dy/dx)²) dx,Medium
+5393,Science,What is the study of the interaction between organisms and their environment called?,Taxonomy,Ecology,Evolution,Genetics,B,Ecology studies organism-environment interactions,Medium
+5394,Geography,What is the term for the boundary between two different air masses?,Convergence zone,Front,Pressure gradient,Isobar,B,A front is the boundary between air masses,Medium
+5395,Literature,Who wrote 'Invisible Man' (1952)?,James Baldwin,Ralph Ellison,Richard Wright,Langston Hughes,B,Ralph Ellison wrote Invisible Man,Medium
+5396,History,Which ancient wonder of the world was a statue of Zeus?,Colossus of Rhodes,Statue of Zeus at Olympia,Mausoleum at Halicarnassus,Lighthouse of Alexandria,B,Statue of Zeus at Olympia was the Zeus wonder,Medium
+5397,Science,What is the term for the amount of energy needed to change a solid directly to a gas?,Heat of fusion,Heat of vaporization,Heat of sublimation,Specific heat,C,Heat of sublimation changes solid directly to gas,Medium
+5398,Math,What is the center of mass formula for a discrete system?,Σmiri / Σmi,Σri / n,Σmi / Σri,Σri,A,Center of mass is Σmiri / Σmi,Medium
+5399,Animals,What is the fastest flying bird?,Peregrine falcon,Golden eagle,Albatross,Hummingbird,A,Peregrine falcon is the fastest flying bird,Medium
+5400,Science,What is the term for the study of the properties and behavior of atomic nuclei?,Nuclear physics,Particle physics,Atomic physics,Quantum physics,A,Nuclear physics studies atomic nuclei,Medium
+5401,Science,What is the theoretical particle proposed to explain dark matter?,Neutralino,WIMP,Axion,All of the above,D,Multiple particles proposed for dark matter,Hard
+5402,Math,What is the Millennium Prize Problem concerning the Birch and Swinnerton-Dyer conjecture?,Rank of elliptic curves and their L-functions,Prime factorization algorithms,Differential equation solutions,Topological invariants,A,BSD conjecture relates elliptic curve rank to L-functions,Hard
+5403,History,Which medieval philosopher wrote 'Summa Theologica'?,Augustine of Hippo,Thomas Aquinas,Duns Scotus,William of Ockham,B,Thomas Aquinas wrote Summa Theologica,Hard
+5404,Science,What is the name of the theoretical framework that could explain why physical constants have their observed values?,Anthropic principle,Fine-tuning problem,Multiverse theory,All of the above,D,All address why constants have observed values,Hard
+5405,Literature,Who wrote the novel 'Gravity's Rainbow'?,Don DeLillo,Thomas Pynchon,David Foster Wallace,William Gaddis,B,Thomas Pynchon wrote Gravity's Rainbow,Hard
+5406,Philosophy,What is Searle's Chinese Room argument primarily about?,The impossibility of machine consciousness,Artificial intelligence limitations,Computational theory of mind,All of the above,D,Chinese Room addresses all these AI issues,Hard
+5407,Science,What is the theoretical process by which virtual particles could become real near black holes?,Hawking radiation,Unruh effect,Casimir effect,Pair production,A,Hawking radiation involves virtual particle pairs,Hard
+5408,Math,What is the Riemann-Roch theorem about?,Relationship between algebraic and topological properties of algebraic curves,Prime number distribution,Differential equation theory,Complex analysis fundamentals,A,Riemann-Roch relates algebra and topology of curves,Hard
+5409,History,Who was the Abbasid caliph who established the House of Wisdom in Baghdad?,Harun al-Rashid,Al-Ma'mun,Al-Mansur,Al-Mutawakkil,B,Al-Ma'mun established the House of Wisdom,Hard
+5410,Science,What is the theoretical maximum efficiency of a heat engine operating between two temperature reservoirs?,Carnot efficiency: 1 - Tc/Th,Otto efficiency,Diesel efficiency,Brayton efficiency,A,Carnot efficiency is theoretical maximum,Hard
+5411,Art,Which art movement was founded by Wassily Kandinsky and focused on spiritual expression through abstract forms?,Der Blaue Reiter,Die Brücke,Bauhaus,Dada,A,Der Blaue Reiter was founded by Kandinsky,Hard
+5412,Math,What is the Atiyah-Singer index theorem about?,Relationship between analytical and topological properties of elliptic operators,Linear algebra applications,Number theory fundamentals,Calculus variations,A,Index theorem relates analytical and topological properties,Hard
+5413,Science,What is the name of the theoretical phase of matter that could exist in the cores of neutron stars?,Strange matter,Quark matter,Color superconductor,All of the above,D,All are theoretical phases in neutron stars,Hard
+5414,Literature,Who wrote the postmodern novel 'The Crying of Lot 49'?,Don DeLillo,Thomas Pynchon,Kurt Vonnegut,Philip K. Dick,B,Thomas Pynchon wrote The Crying of Lot 49,Hard
+5415,Geography,What is the scientific term for the study of past climates through geological evidence?,Paleoclimatology,Climatology,Meteorology,Atmospheric science,A,Paleoclimatology studies past climates,Hard
+5416,History,Which treaty ended the War of the Austrian Succession?,Treaty of Aix-la-Chapelle,Treaty of Utrecht,Peace of Westphalia,Treaty of Paris,A,Treaty of Aix-la-Chapelle ended War of Austrian Succession,Hard
+5417,Science,What is the theoretical framework that describes how spacetime could emerge from quantum information?,It from bit hypothesis,Holographic principle,AdS/CFT correspondence,All of the above,D,All describe spacetime emergence from information,Hard
+5418,Math,What is the modularity theorem (formerly Taniyama-Shimura conjecture) about?,Every elliptic curve over rationals is modular,Prime number distribution,Differential geometry fundamentals,Algebraic topology applications,A,Modularity theorem states elliptic curves are modular,Hard
+5419,Philosophy,Who developed the philosophical concept of 'deconstruction'?,Roland Barthes,Jacques Derrida,Michel Foucault,Jean Baudrillard,B,Derrida developed deconstruction,Hard
+5420,Science,What is the study of how biological processes could be used for quantum computation called?,Quantum biology,Biocomputing,Quantum biocomputing,Molecular computing,C,Quantum biocomputing uses biology for quantum computing,Hard
+5421,Science,What is the liquid part of blood called?,Plasma,Serum,Hemoglobin,Platelets,A,Plasma is the liquid part of blood,Easy
+5422,Math,What is 42 × 2?,82,84,86,88,B,42 multiplied by 2 equals 84,Easy
+5423,Geography,Which river flows through the Grand Canyon?,Colorado River,Rio Grande,Mississippi River,Missouri River,A,The Colorado River flows through Grand Canyon,Easy
+5424,History,Who was the famous queen of ancient Egypt known for her relationship with Julius Caesar?,Nefertiti,Hatshepsut,Cleopatra,Ankhesenamun,C,Cleopatra was known for her relationship with Caesar,Easy
+5425,Science,What is the chemical symbol for lead?,L,Le,Pb,Ld,C,Lead has the chemical symbol Pb,Easy
+5426,Literature,Who wrote 'The Lorax'?,Dr. Seuss,Maurice Sendak,Eric Carle,Shel Silverstein,A,Dr. Seuss wrote The Lorax,Easy
+5427,Animals,Which animal is known for its excellent memory?,Dog,Elephant,Cat,Horse,B,Elephants are known for excellent memory,Easy
+5428,Math,What is 192 ÷ 16?,11,12,13,14,B,192 divided by 16 equals 12,Easy
+5429,Science,What is the bone that protects the brain called?,Skull,Cranium,Both A and B,Vertebra,C,Both skull and cranium protect the brain,Easy
+5430,Sports,In which sport do you use a bat to hit a ball and run around bases?,Tennis,Baseball,Cricket,Golf,B,Baseball uses a bat to hit ball and run bases,Easy
+5431,Geography,What is the capital of South Africa?,Cape Town,Johannesburg,Pretoria,Durban,C,Pretoria is the capital of South Africa,Easy
+5432,Science,Which part of a plant conducts water and nutrients from the roots to the leaves?,Stem,Leaves,Flowers,Fruits,A,The stem conducts water and nutrients,Easy
+5433,Math,What is 75% of 120?,80,85,90,95,C,75% of 120 equals 90,Easy
+5434,History,Which ship was famous for sinking on its maiden voyage in 1912?,Lusitania,Titanic,Britannic,Mauretania,B,The Titanic sank on its maiden voyage,Easy
+5435,Science,What is the process by which animals without backbones shed their outer covering as they grow?,Molting,Metamorphosis,Hibernation,Migration,A,Molting is shedding outer covering,Easy
+5436,Literature,Who wrote 'Horton Hears a Who!'?,Dr. Seuss,Maurice Sendak,Eric Carle,Shel Silverstein,A,Dr. Seuss wrote Horton Hears a Who!,Easy
+5437,Animals,Which animal is the fastest runner on land?,Cheetah,Lion,Horse,Antelope,A,The cheetah is the fastest land runner,Easy
+5438,Math,What is 17²?,279,289,299,309,B,17 squared equals 289,Easy
+5439,Science,What do we call the path a planet takes around a star?,Rotation,Orbit,Revolution,Axis,B,A planet's path around a star is its orbit,Easy
+5440,Geography,Which is the smallest planet in our solar system?,Mercury,Venus,Mars,Pluto,A,Mercury is the smallest planet,Easy
+5441,Science,What is the van 't Hoff equation used to describe?,Temperature dependence of equilibrium constants,Reaction rate kinetics,Gas phase behavior,Solution properties,A,van 't Hoff equation describes temperature-equilibrium relationship,Medium
+5442,Math,What is the work done by force F along path C calculated as?,∮ F·dr,∮ F×dr,∮ |F|dr,∮ F/dr,A,Work is line integral ∮ F·dr,Medium
+5443,History,Which war was fought between Britain and China over trade disputes?,Sino-Japanese War,Boxer Rebellion,Opium War,Taiping Rebellion,C,Opium War was fought over trade disputes,Medium
+5444,Science,What is the name for the energy associated with the motion of electrons in atoms?,Kinetic energy,Electronic energy,Orbital energy,Binding energy,C,Orbital energy is associated with electron motion,Medium
+5445,Literature,Who wrote 'To the Lighthouse'?,James Joyce,Virginia Woolf,E.M. Forster,D.H. Lawrence,B,Virginia Woolf wrote To the Lighthouse,Medium
+5446,Geography,What is the term for the seasonal reversal of wind patterns that brings heavy rains?,Hurricane,Typhoon,Monsoon,Cyclone,C,Monsoon is seasonal wind pattern reversal,Medium
+5447,Science,What is the SI unit for magnetic flux?,Tesla,Weber,Henry,Gauss,B,The weber is the SI unit for magnetic flux,Medium
+5448,Math,What is the Fourier series representation of a periodic function f(x)?,a₀ + Σ[aₙcos(nx) + bₙsin(nx)],Σaₙe^(inx),Σaₙx^n,∫f(x)dx,A,Fourier series is a₀ + Σ[aₙcos(nx) + bₙsin(nx)],Medium
+5449,History,Who was the Mongol emperor who conquered China and established the Yuan dynasty?,Genghis Khan,Ögedei Khan,Kublai Khan,Möngke Khan,C,Kublai Khan established Yuan dynasty,Medium
+5450,Science,What is the term for the minimum concentration of a substance that can produce a detectable response?,Threshold concentration,Detection limit,Sensitivity limit,Response threshold,B,Detection limit is minimum detectable concentration,Medium
+5451,Art,Which art movement was characterized by the rejection of traditional perspective and the use of collage?,Impressionism,Fauvism,Cubism,Surrealism,C,Cubism rejected traditional perspective and used collage,Medium
+5452,Math,What is the moment of inertia of a solid sphere about its center?,⅖mr²,⅖mr²,½mr²,⅔mr²,A,Moment of inertia of solid sphere is ⅖mr²,Medium
+5453,Science,What is the study of the chemical processes that occur in living organisms called?,Biochemistry,Organic chemistry,Physical chemistry,Analytical chemistry,A,Biochemistry studies chemical processes in organisms,Medium
+5454,Geography,What is the term for the movement of water from the atmosphere to the earth and back?,Precipitation,Water cycle,Evaporation,Condensation,B,Water cycle is movement of water in atmosphere-earth,Medium
+5455,Literature,Who wrote 'The Waste Land'?,Ezra Pound,T.S. Eliot,W.B. Yeats,Robert Frost,B,T.S. Eliot wrote The Waste Land,Medium
+5456,History,Which empire was ruled by Akbar the Great?,Ottoman Empire,Mughal Empire,Safavid Empire,Maratha Empire,B,Akbar ruled the Mughal Empire,Medium
+5457,Science,What is the term for the energy required to completely remove an electron from an atom or ion?,Ionization energy,Electron affinity,Electronegativity,Binding energy,A,Ionization energy completely removes electron,Medium
+5458,Math,What is the standard form of a quadratic equation?,ax² + bx + c = 0,y = mx + b,ax + by = c,y = ax² + bx + c,A,Standard quadratic form is ax² + bx + c = 0,Medium
+5459,Animals,What is the largest living bird by wingspan?,Albatross,Condor,Eagle,Pelican,A,Albatross has the largest wingspan,Medium
+5460,Science,What is the term for the study of the behavior of gases?,Gas laws,Pneumatics,Fluid mechanics,Thermodynamics,B,Pneumatics studies gas behavior,Medium
+5461,Science,What is the name of the theoretical framework that could provide a quantum description of black holes?,Black hole thermodynamics,Holographic principle,String theory,All of the above,D,All provide quantum black hole descriptions,Hard
+5462,Math,What is the Millennium Prize Problem known as the Poincaré conjecture about?,Every simply connected closed 3-manifold is homeomorphic to 3-sphere,Topology of 4-manifolds,Algebraic geometry fundamentals,Differential equation theory,A,Poincaré conjecture (now theorem) concerns 3-manifolds,Hard
+5463,History,Which Islamic scholar is considered the father of modern chemistry?,Al-Kindi,Jabir ibn Hayyan,Al-Razi,Ibn Sina,B,Jabir ibn Hayyan is father of chemistry,Hard
+5464,Science,What is the theoretical process that could allow matter to travel faster than light through spacetime manipulation?,Alcubierre warp drive,Tachyonic travel,Wormhole traversal,Quantum tunneling,A,Alcubierre drive manipulates spacetime for FTL,Hard
+5465,Literature,Who wrote the novel 'Beloved'?,Alice Walker,Toni Morrison,Maya Angelou,Zora Neale Hurston,B,Toni Morrison wrote Beloved,Hard
+5466,Philosophy,What is the main argument of Nagel's 'What Is It Like to Be a Bat?'?,Consciousness has subjective experiential aspects that cannot be captured by objective science,Consciousness is computational,Consciousness emerges from complexity,Consciousness is an illusion,A,Nagel argues consciousness has irreducible subjective aspects,Hard
+5467,Science,What is the theoretical limit to how small electronic devices can be made due to quantum effects?,Quantum limit,Ballistic limit,Tunneling limit,All of the above,D,All represent quantum limits on device size,Hard
+5468,Math,What is the Selberg trace formula about?,Relationship between geometric and spectral properties of hyperbolic surfaces,Prime number theory,Algebraic geometry applications,Complex analysis fundamentals,A,Selberg trace formula relates geometry and spectrum,Hard
+5469,History,Who was the Byzantine emperor who reconquered much of the former Western Roman Empire?,Justinian I,Heraclius,Basil II,Alexios I,A,Justinian I reconquered former Western territories,Hard
+5470,Science,What is the theoretical temperature at which quantum fluctuations would prevent further cooling?,Absolute zero,Planck temperature,Unruh temperature,Hawking temperature,A,Absolute zero is limit due to quantum fluctuations,Hard
+5471,Art,Which contemporary artist is famous for wrapping large-scale objects and landscapes?,Andy Warhol,Christo and Jeanne-Claude,Jeff Koons,Damien Hirst,B,Christo and Jeanne-Claude wrapped large objects,Hard
+5472,Math,What is the Lafforgue theorem about?,Langlands correspondence for function fields,Number theory applications,Algebraic topology fundamentals,Differential geometry,A,Lafforgue proved Langlands for function fields,Hard
+5473,Science,What is the name of the theoretical particle that could resolve the strong CP problem in quantum chromodynamics?,Axion,Magnetic monopole,Supersymmetric particle,Extra-dimensional particle,A,Axion could resolve strong CP problem,Hard
+5474,Literature,Who wrote the experimental novel 'Finnegans Wake'?,Samuel Beckett,James Joyce,Virginia Woolf,Gertrude Stein,B,James Joyce wrote Finnegans Wake,Hard
+5475,Geography,What is the scientific term for the study of the relationship between geology and climate over long time scales?,Paleoclimatology,Geochronology,Stratigraphic geology,All of the above,A,Paleoclimatology studies long-term geology-climate relationships,Hard
+5476,History,Which medieval treaty established the concept of sovereignty and ended religious wars in Europe?,Peace of Augsburg,Treaty of Westphalia,Edict of Nantes,Concordat of Worms,B,Treaty of Westphalia established sovereignty concept,Hard
+5477,Science,What is the theoretical framework that describes how consciousness could emerge from quantum processes in microtubules?,Orchestrated objective reduction,Quantum information theory,Many-worlds interpretation,Pilot wave theory,A,Orchestrated OR theory describes quantum consciousness,Hard
+5478,Math,What is the Kazhdan-Lusztig conjecture about?,Characters of irreducible representations of Lie groups,Prime factorization methods,Differential equation solutions,Algebraic geometry applications,A,Kazhdan-Lusztig concerns Lie group representations,Hard
+5479,Philosophy,Who developed the concept of 'archaeological' method in studying the history of ideas?,Roland Barthes,Michel Foucault,Jacques Derrida,Jean Baudrillard,B,Foucault developed archaeological method,Hard
+5480,Science,What is the study of how quantum information could be used to simulate complex systems called?,Quantum simulation,Digital physics,Computational physics,All of the above,A,Quantum simulation uses quantum info for system simulation,Hard
+5481,Science,What is the smallest unit of matter that retains the properties of an element?,Molecule,Atom,Proton,Electron,B,An atom is the smallest unit of an element,Easy
+5482,Math,What is 48 ÷ 6?,6,7,8,9,C,48 divided by 6 equals 8,Easy
+5483,Geography,Which continent is the driest?,Africa,Australia,Antarctica,Asia,C,Antarctica is the driest continent,Easy
+5484,History,Who was known as the 'Maid of Orleans'?,Marie Antoinette,Joan of Arc,Catherine the Great,Elizabeth I,B,Joan of Arc was the Maid of Orleans,Easy
+5485,Science,What is the chemical symbol for tin?,T,Ti,Sn,Tn,C,Tin has the chemical symbol Sn,Easy
+5486,Literature,Who wrote 'Where the Sidewalk Ends'?,Dr. Seuss,Shel Silverstein,Maurice Sendak,Eric Carle,B,Shel Silverstein wrote Where the Sidewalk Ends,Easy
+5487,Animals,Which animal can live both in water and on land?,Fish,Frog,Bird,Mammal,B,Frogs can live both in water and on land,Easy
+5488,Math,What is 25 × 4?,90,95,100,105,C,25 multiplied by 4 equals 100,Easy
+5489,Science,What is the organ that pumps blood through the body?,Lung,Heart,Liver,Kidney,B,The heart pumps blood through the body,Easy
+5490,Sports,In which sport do players slide stones on ice toward a target?,Curling,Ice hockey,Figure skating,Speed skating,A,Curling slides stones on ice toward target,Easy
+5491,Geography,What is the capital of Argentina?,Buenos Aires,São Paulo,Lima,Montevideo,A,Buenos Aires is the capital of Argentina,Easy
+5492,Science,What is the process plants use to turn carbon dioxide and water into glucose using sunlight?,Respiration,Photosynthesis,Transpiration,Fermentation,B,Photosynthesis turns CO2 and water into glucose,Easy
+5493,Math,What is 80% of 125?,90,95,100,105,C,80% of 125 equals 100,Easy
+5494,History,Which wall was built to separate East and West Berlin?,Great Wall,Berlin Wall,Hadrian's Wall,Wall of China,B,The Berlin Wall separated East and West Berlin,Easy
+5495,Science,What is the study of living things called?,Physics,Chemistry,Biology,Geology,C,Biology is the study of living things,Easy
+5496,Literature,Who wrote 'The Sneetches'?,Dr. Seuss,Maurice Sendak,Eric Carle,Shel Silverstein,A,Dr. Seuss wrote The Sneetches,Easy
+5497,Animals,Which animal is known for carrying its baby in a pouch?,Koala,Kangaroo,Opossum,All of the above,D,All these animals carry babies in pouches,Easy
+5498,Math,What is 18²?,314,324,334,344,B,18 squared equals 324,Easy
+5499,Science,What do we call scientists who study rocks and minerals?,Biologists,Geologists,Astronomers,Meteorologists,B,Geologists study rocks and minerals,Easy
+5500,Geography,Which mountain range runs along the western coast of South America?,Rocky Mountains,Andes Mountains,Himalayas,Alps,B,The Andes run along South America's western coast,Easy

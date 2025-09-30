@@ -131,21 +131,34 @@ class NotificationServiceClass {
     try {
       if (Platform.OS === 'android') {
         if (Platform.Version >= 33) {
-          const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
-            {
-              title: 'Notification Permission',
-              message: 'BrainBites would like to send you notifications to help you stay on track with your learning goals.',
-              buttonNeutral: 'Ask Me Later',
-              buttonNegative: 'Cancel',
-              buttonPositive: 'OK',
+          try {
+            // First check if permission is already granted
+            const hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
+            if (hasPermission) {
+              return true;
             }
-          );
-          return granted === PermissionsAndroid.RESULTS.GRANTED;
+
+            // Only request if we have an active Activity context
+            const granted = await PermissionsAndroid.request(
+              PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+              {
+                title: 'Notification Permission',
+                message: 'BrainBites would like to send you notifications to help you stay on track with your learning goals.',
+                buttonNeutral: 'Ask Me Later',
+                buttonNegative: 'Cancel',
+                buttonPositive: 'OK',
+              }
+            );
+            return granted === PermissionsAndroid.RESULTS.GRANTED;
+          } catch (permissionError) {
+            console.warn('Permission request failed (app may not be in foreground):', permissionError);
+            // Return true for now, permission will be requested when app comes to foreground
+            return true;
+          }
         }
         return true;
       }
-      
+
       // For iOS, permissions are handled differently
       return true;
     } catch (error) {

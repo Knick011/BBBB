@@ -15,13 +15,17 @@ import com.facebook.react.bridge.*
 import com.brainbitescabby.app.MainActivity
 import com.brainbitescabby.app.R
 import com.brainbitescabby.app.receivers.MorningNotificationReceiver
+import com.brainbitescabby.app.receivers.ScheduledNotificationReceiver
 import org.json.JSONObject
 import java.util.Calendar
+import android.util.Log
 
 class NotificationModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
     
     companion object {
+        private const val TAG = "NotificationModule"
         private const val CHANNEL_ID = "brainbites_general"
+        private const val SCHEDULED_CHANNEL_ID = "brainbites_scheduled"
         private const val CHANNEL_NAME = "BrainBites Notifications"
         private const val CHANNEL_DESC = "General notifications from BrainBites"
         private const val MORNING_NOTIFICATION_ID = 9001
@@ -35,15 +39,24 @@ class NotificationModule(reactContext: ReactApplicationContext) : ReactContextBa
     
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val importance = NotificationManager.IMPORTANCE_HIGH
-            val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance).apply {
+            val notificationManager = reactApplicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            // General channel
+            val generalChannel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH).apply {
                 description = CHANNEL_DESC
                 enableVibration(true)
                 enableLights(true)
             }
-            
-            val notificationManager = reactApplicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
+
+            // Scheduled notifications channel
+            val scheduledChannel = NotificationChannel(SCHEDULED_CHANNEL_ID, "Scheduled Notifications", NotificationManager.IMPORTANCE_HIGH).apply {
+                description = "Daily reminders and leaderboard nudges"
+                enableVibration(true)
+                enableLights(true)
+            }
+
+            notificationManager.createNotificationChannel(generalChannel)
+            notificationManager.createNotificationChannel(scheduledChannel)
         }
     }
     
@@ -310,6 +323,96 @@ class NotificationModule(reactContext: ReactApplicationContext) : ReactContextBa
             promise.resolve(true)
         } catch (e: Exception) {
             promise.reject("BATTERY_OPT_SETTINGS_ERROR", e.message, e)
+        }
+    }
+
+    @ReactMethod
+    fun scheduleOneTimeNotification(
+        timestamp: Double,
+        title: String,
+        body: String,
+        notificationId: String,
+        data: ReadableMap,
+        promise: Promise
+    ) {
+        try {
+            val context = reactApplicationContext
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+            Log.d(TAG, "Scheduling one-time notification '$notificationId' for timestamp: $timestamp")
+
+            // Convert ReadableMap to JSON string
+            val dataJson = JSONObject()
+            val iterator = data.keySetIterator()
+            while (iterator.hasNextKey()) {
+                val key = iterator.nextKey()
+                when (data.getType(key)) {
+                    ReadableType.String -> dataJson.put(key, data.getString(key))
+                    ReadableType.Number -> dataJson.put(key, data.getDouble(key))
+                    ReadableType.Boolean -> dataJson.put(key, data.getBoolean(key))
+                    else -> {}
+                }
+            }
+
+            val intent = Intent(context, ScheduledNotificationReceiver::class.java).apply {
+                putExtra("notification_id", notificationId)
+                putExtra("title", title)
+                putExtra("body", body)
+                putExtra("data", dataJson.toString())
+            }
+
+            val pendingIntent = PendingIntent.getBroadcast(
+                context,
+                notificationId.hashCode(),
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+
+            // Schedule the notification
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                alarmManager.setExactAndAllowWhileIdle(
+                    AlarmManager.RTC_WAKEUP,
+                    timestamp.toLong(),
+                    pendingIntent
+                )
+            } else {
+                alarmManager.setExact(
+                    AlarmManager.RTC_WAKEUP,
+                    timestamp.toLong(),
+                    pendingIntent
+                )
+            }
+
+            Log.d(TAG, "✅ One-time notification scheduled successfully")
+            promise.resolve(true)
+
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to schedule one-time notification", e)
+            promise.reject("SCHEDULE_ERROR", e.message, e)
+        }
+    }
+
+    @ReactMethod
+    fun cancelScheduledNotification(notificationId: String, promise: Promise) {
+        try {
+            val context = reactApplicationContext
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+            val intent = Intent(context, ScheduledNotificationReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(
+                context,
+                notificationId.hashCode(),
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+
+            alarmManager.cancel(pendingIntent)
+            Log.d(TAG, "✅ Cancelled scheduled notification: $notificationId")
+            promise.resolve(true)
+
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to cancel scheduled notification", e)
+            promise.reject("CANCEL_ERROR", e.message, e)
         }
     }
 }

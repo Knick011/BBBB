@@ -20,6 +20,7 @@ import ErrorBoundary from './src/components/common/ErrorBoundary';
 import LoadingScreen from './src/components/common/LoadingScreen';
 import ErrorScreen from './src/components/common/ErrorScreen';
 import { RootStackParamList } from './src/types';
+import './src/locales/i18n'; // Initialize i18n
 
 // Import screens
 import WelcomeScreen from './src/screens/WelcomeScreen';

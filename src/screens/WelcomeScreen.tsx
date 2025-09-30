@@ -19,6 +19,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import SoundService from '../services/SoundService';
 import EnhancedMascotDisplay from '../components/Mascot/EnhancedMascotDisplay';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from '../components/common/LanguageSelector';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -37,54 +39,57 @@ const slideIcons = {
 
 const WelcomeScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp>();
+  const { t } = useTranslation();
+  const [showLanguageSelector, setShowLanguageSelector] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [showMascot, setShowMascot] = useState(false);
   const [mascotType, setMascotType] = useState<'excited' | 'happy' | 'gamemode' | 'sad' | 'depressed' | 'below'>('excited');
   const [mascotMessage, setMascotMessage] = useState('');
-  
+
   // Animation values
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
   const logoAnim = useRef(new Animated.Value(0)).current;
   const buttonAnim = useRef(new Animated.Value(0)).current;
+
+  // Check if language has been selected
+  useEffect(() => {
+    const checkLanguageSelection = async () => {
+      const languageSelected = await AsyncStorage.getItem('@BrainBites:languageSelected');
+      if (!languageSelected) {
+        setShowLanguageSelector(true);
+      }
+    };
+    checkLanguageSelection();
+  }, []);
+
+  const handleLanguageSelected = async () => {
+    await AsyncStorage.setItem('@BrainBites:languageSelected', 'true');
+    setShowLanguageSelector(false);
+  };
   
   const pages = [
     {
-      title: "Welcome to BrainBites!",
-      bullets: [
-        "Challenge your mind with fun quizzes",
-        "Learn something new every day",
-        "Build better screen time habits",
-        "Track your progress and grow"
-      ],
+      title: t('welcome.slide1.title'),
+      bullets: t('welcome.slide1.bullets', { returnObjects: true }) as string[],
       icon: "brain",
       gradient: ['#FF9F1C', '#FFD699'],
       bulletIcons: slideIcons.welcome
     },
     {
-      title: "Meet CaBBy!",
-      subtitle: "Your friendly quiz companion",
-      bullets: [
-        "Lives in the corner during quizzes",
-        "Tap for hints and explanations",
-        "Tracks your progress",
-        "Always ready to help"
-      ],
+      title: t('welcome.slide2.title'),
+      subtitle: t('welcome.slide2.subtitle'),
+      bullets: t('welcome.slide2.bullets', { returnObjects: true }) as string[],
       icon: "account-heart",
       gradient: ['#FF6B6B', '#FFB8B8'],
       isMascotSlide: true,
       bulletIcons: slideIcons.mascot
     },
     {
-      title: "Ready to Begin?",
-      subtitle: "Start your journey to smarter learning and better screen habits!",
-      bullets: [
-        "Answer quizzes to earn time",
-        "Build daily streaks",
-        "Complete goals for rewards",
-        "CaBBy is here to help!"
-      ],
+      title: t('welcome.slide3.title'),
+      subtitle: t('welcome.slide3.subtitle'),
+      bullets: t('welcome.slide3.bullets', { returnObjects: true }) as string[],
       icon: "rocket-launch",
       gradient: ['#A8E6CF', '#7FCDCD'],
       isLast: true,
@@ -133,11 +138,11 @@ const WelcomeScreen: React.FC = () => {
     
     // Only show mascot on slide 2 (index 1) - the mascot introduction slide
     if (pageIndex === 1) {
-      const mascotMessage = 'Hi there! I\'m CaBBy! 🎉\n\nI\'ll be your friendly quiz buddy, hanging out in the corner of your screen during quizzes. I love cheering on learners and helping them succeed! 💪\n\nI\'ll keep an eye on your progress and give you helpful tips along the way! 👀\n\nTap on me anytime for helpful hints, explanations, or just a friendly chat! ✨';
+      const mascotMessage = t('welcome.slide2.mascotMessage');
       const mascotType = 'excited';
-      
+
       console.log('🐾 [WelcomeScreen] Setting mascot for slide 2:', { type: mascotType, hasMessage: !!mascotMessage });
-      
+
       setMascotType(mascotType);
       setMascotMessage(mascotMessage);
       setShowMascot(true);
@@ -199,7 +204,12 @@ const WelcomeScreen: React.FC = () => {
   };
   
   const page = pages[currentPage];
-  
+
+  // Show language selector first
+  if (showLanguageSelector) {
+    return <LanguageSelector onLanguageSelected={handleLanguageSelected} />;
+  }
+
   return (
     <LinearGradient
       colors={page.gradient}
@@ -221,7 +231,7 @@ const WelcomeScreen: React.FC = () => {
         {/* Skip button */}
         {currentPage < pages.length - 1 && (
           <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-            <Text style={styles.skipText}>Skip</Text>
+            <Text style={styles.skipText}>{t('common.skip')}</Text>
           </TouchableOpacity>
         )}
         
@@ -286,12 +296,12 @@ const WelcomeScreen: React.FC = () => {
           {/* Next button */}
           <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
             <Text style={styles.nextButtonText}>
-              {page.isLast ? "Let's Begin!" : "Next"}
+              {page.isLast ? t('welcome.letsBegin') : t('common.next')}
             </Text>
-            <Icon 
-              name={page.isLast ? 'rocket-launch' : 'arrow-right'} 
-              size={24} 
-              color="#FFF" 
+            <Icon
+              name={page.isLast ? 'rocket-launch' : 'arrow-right'}
+              size={24}
+              color="#FFF"
             />
           </TouchableOpacity>
         </View>

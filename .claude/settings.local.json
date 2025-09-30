@@ -63,7 +63,9 @@
       "Bash(npm run android:*)",
       "Bash(bash:*)",
       "Bash(powershell:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(git restore:*)",
+      "Bash(.gradlew clean)"
     ],
     "deny": [],
     "additionalDirectories": [

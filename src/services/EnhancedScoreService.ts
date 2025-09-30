@@ -140,68 +140,132 @@ class EnhancedScoreService {
   }
 
   private async checkAndApplyCarryover(): Promise<void> {
+    const debugPrefix = '🔍 [CARRYOVER-DEBUG]';
+    const today = getTorontoDateString();
+    console.log(`${debugPrefix} Starting carryover check for ${today}`);
+
     try {
       const carryoverApplied = await AsyncStorage.getItem(this.STORAGE_KEYS.CARRYOVER_APPLIED);
+      console.log(`${debugPrefix} Carryover already applied: ${carryoverApplied}`);
+
       if (carryoverApplied === 'true') {
-        return; // Already applied for today
+        console.log(`${debugPrefix} ✅ Carryover already applied today, skipping`);
+        return;
       }
+
+      console.log(`${debugPrefix} 📊 Current daily score before carryover: ${this.dailyScore}`);
+      console.log(`${debugPrefix} 📱 Checking native module availability...`);
+      console.log(`${debugPrefix} - DailyScoreCarryover available: ${!!NativeModules.DailyScoreCarryover}`);
 
       // First check if it's a new day and process carryover (native helper)
       if (NativeModules.DailyScoreCarryover) {
         try {
+          console.log(`${debugPrefix} 🚀 Calling native checkAndProcessNewDay...`);
           await NativeModules.DailyScoreCarryover.checkAndProcessNewDay();
-          console.log('✅ [EnhancedScore] Checked for new day carryover processing');
+          console.log(`${debugPrefix} ✅ Native new day processing completed`);
         } catch (error) {
-          console.error('❌ [EnhancedScore] Failed to check new day:', error);
+          console.error(`${debugPrefix} ❌ Native new day processing failed:`, error);
         }
+      } else {
+        console.log(`${debugPrefix} ⚠️ Native DailyScoreCarryover module not available`);
       }
 
       // Native carryover score
       if (NativeModules.DailyScoreCarryover) {
-        const carryoverScore = await NativeModules.DailyScoreCarryover.getTodayStartScore();
-        if (carryoverScore !== 0) {
-          console.log(`🎯 Applying carryover score: ${carryoverScore > 0 ? '+' : ''}${carryoverScore}`);
-          this.dailyScore = carryoverScore; // allow negative
-          await AsyncStorage.setItem(this.STORAGE_KEYS.CARRYOVER_APPLIED, 'true');
-          await this.saveData();
-          if (NativeModules.ToastModule) {
-            const message = carryoverScore > 0
-              ? `🎉 Bonus! +${carryoverScore} points from yesterday's leftover time!`
-              : `⚠️ Starting with ${Math.abs(carryoverScore)} point penalty from yesterday's overtime`;
-            try { NativeModules.ToastModule.show(message, NativeModules.ToastModule.LONG); } catch {}
+        try {
+          console.log(`${debugPrefix} 🔄 Fetching today's start score from native...`);
+          const carryoverScore = await NativeModules.DailyScoreCarryover.getTodayStartScore();
+          console.log(`${debugPrefix} 📈 Native carryover score received: ${carryoverScore}`);
+
+          if (carryoverScore !== 0) {
+            console.log(`${debugPrefix} ✨ Applying native carryover score: ${carryoverScore > 0 ? '+' : ''}${carryoverScore}`);
+            console.log(`${debugPrefix} - Previous daily score: ${this.dailyScore}`);
+            this.dailyScore = carryoverScore; // allow negative
+            console.log(`${debugPrefix} - New daily score after carryover: ${this.dailyScore}`);
+
+            await AsyncStorage.setItem(this.STORAGE_KEYS.CARRYOVER_APPLIED, 'true');
+            await this.saveData();
+            console.log(`${debugPrefix} 💾 Native carryover applied and saved`);
+
+            if (NativeModules.ToastModule) {
+              const message = carryoverScore > 0
+                ? `🎉 Bonus! +${carryoverScore} points from yesterday's leftover time!`
+                : `⚠️ Starting with ${Math.abs(carryoverScore)} point penalty from yesterday's overtime`;
+              try {
+                NativeModules.ToastModule.show(message, NativeModules.ToastModule.LONG);
+                console.log(`${debugPrefix} 📱 Toast shown: ${message}`);
+              } catch (toastErr) {
+                console.warn(`${debugPrefix} ⚠️ Toast failed:`, toastErr);
+              }
+            }
+            console.log(`${debugPrefix} ✅ Native carryover processing completed successfully`);
+            return; // Native path handled
+          } else {
+            console.log(`${debugPrefix} ℹ️ Native carryover score is 0, no carryover to apply`);
           }
-          return; // Native path handled
+        } catch (nativeErr) {
+          console.error(`${debugPrefix} ❌ Native carryover fetch failed:`, nativeErr);
         }
       }
 
       // JS fallback: derive points from EOD net seconds stored by HybridTimerService
+      console.log(`${debugPrefix} 🔄 Attempting JS fallback carryover...`);
       try {
         const deltaStr = await AsyncStorage.getItem('@BrainBites:scoreDelta');
+        console.log(`${debugPrefix} 📊 Score delta from storage: ${deltaStr}`);
+
         const netSeconds = deltaStr ? parseInt(deltaStr, 10) : 0;
+        console.log(`${debugPrefix} 🕐 Net seconds parsed: ${netSeconds}`);
+
         if (!isNaN(netSeconds) && netSeconds !== 0) {
           const minutes = Math.max(1, Math.round(Math.abs(netSeconds) / 60));
           // Save time => +100 pts/min, Overtime => -50 pts/min (10x carryover impact)
           const carryoverPoints = netSeconds > 0 ? minutes * 100 : -(minutes * 50);
-          console.log(`🎯 [EnhancedScore] JS fallback carryover: net=${netSeconds}s, minutes=${minutes}, points=${carryoverPoints}`);
+
+          console.log(`${debugPrefix} 🧮 JS fallback calculation:`);
+          console.log(`${debugPrefix} - Net seconds: ${netSeconds}s`);
+          console.log(`${debugPrefix} - Minutes: ${minutes}`);
+          console.log(`${debugPrefix} - Carryover points: ${carryoverPoints}`);
+          console.log(`${debugPrefix} - Formula: ${netSeconds > 0 ? `${minutes} * 100` : `-(${minutes} * 50)`}`);
+
+          console.log(`${debugPrefix} - Previous daily score: ${this.dailyScore}`);
           this.dailyScore = carryoverPoints;
+          console.log(`${debugPrefix} - New daily score after JS carryover: ${this.dailyScore}`);
+
           await AsyncStorage.setItem(this.STORAGE_KEYS.CARRYOVER_APPLIED, 'true');
           await AsyncStorage.removeItem('@BrainBites:scoreDelta');
           await this.saveData();
+          console.log(`${debugPrefix} 💾 JS fallback carryover applied and saved, delta cleared`);
+
           if (NativeModules.ToastModule) {
             const message = carryoverPoints > 0
               ? `🎉 Bonus! +${carryoverPoints} points from yesterday's leftover time!`
               : `⚠️ Starting with ${Math.abs(carryoverPoints)} point penalty from yesterday's overtime`;
-            try { NativeModules.ToastModule.show(message, NativeModules.ToastModule.LONG); } catch {}
+            try {
+              NativeModules.ToastModule.show(message, NativeModules.ToastModule.LONG);
+              console.log(`${debugPrefix} 📱 Toast shown: ${message}`);
+            } catch (toastErr) {
+              console.warn(`${debugPrefix} ⚠️ Toast failed:`, toastErr);
+            }
           }
+          console.log(`${debugPrefix} ✅ JS fallback carryover processing completed successfully`);
         } else {
-          console.log('ℹ️ [EnhancedScore] No carryover delta found in JS fallback');
+          console.log(`${debugPrefix} ℹ️ No carryover delta found in JS fallback (netSeconds: ${netSeconds})`);
         }
       } catch (fallbackErr) {
-        console.warn('⚠️ [EnhancedScore] JS carryover fallback failed:', fallbackErr);
+        console.error(`${debugPrefix} ❌ JS carryover fallback failed:`, fallbackErr);
       }
+
+      console.log(`${debugPrefix} ❌ No carryover applied - neither native nor fallback provided a valid carryover`);
+      console.log(`${debugPrefix} 📊 Final daily score after carryover attempt: ${this.dailyScore}`);
+
     } catch (error) {
+      console.error(`${debugPrefix} ❌ FATAL: Carryover process crashed:`, error);
       console.error('Failed to apply carryover score:', error);
     }
+
+    console.log(`${debugPrefix} 🏁 Carryover check completed for ${today}`);
+    console.log(`${debugPrefix} 📊 Summary - Final daily score: ${this.dailyScore}`);
   }
 
   private async saveData(): Promise<void> {

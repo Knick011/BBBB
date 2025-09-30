@@ -1,6 +1,9 @@
 package com.brainbitescabby.app.timer
 
 import android.app.*
+import android.app.job.JobInfo
+import android.app.job.JobScheduler
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,6 +13,7 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.os.PowerManager
+import android.os.SystemClock
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import android.app.PendingIntent
@@ -25,6 +29,8 @@ class ScreenTimeService : Service() {
     private lateinit var sharedPrefs: SharedPreferences
     private lateinit var notificationManagerCompat: NotificationManager
     private lateinit var notificationManager: BrainBitesNotificationManager
+    private lateinit var jobScheduler: JobScheduler
+    private lateinit var alarmManager: AlarmManager
     
     private val handler = Handler(Looper.getMainLooper())
     private var timerRunnable: Runnable? = null
@@ -40,6 +46,8 @@ class ScreenTimeService : Service() {
     private var lastTickTime = 0L
     private var screenTimeManager: ScreenTimeManager? = null
     private var lastHourNotified = 0
+    private var criticalWakeupIntent: PendingIntent? = null
+    private var serviceStartAtMs = 0L
     
     companion object {
         private const val TAG = "ScreenTimeService"
@@ -54,6 +62,8 @@ class ScreenTimeService : Service() {
         private const val KEY_LAST_HOUR_NOTIFIED = "last_hour_notified"
         private const val UPDATE_INTERVAL = 1000L // 1 second for smooth updates
         private const val MAX_SERVICE_LIFETIME_MS = 16 * 60 * 60 * 1000L // 16 hours
+        private const val SERVICE_RESTART_JOB_ID = 12345
+        private const val CRITICAL_WAKEUP_INTERVAL = 2 * 60 * 60 * 1000L // 2 hours
         @Volatile private var running: Boolean = false
         fun isServiceRunning(): Boolean = running
         
@@ -84,12 +94,18 @@ class ScreenTimeService : Service() {
         notificationManagerCompat = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager = BrainBitesNotificationManager.getInstance(applicationContext)
         screenTimeManager = ScreenTimeManager.getInstance(applicationContext)
+        jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         
         createNotificationChannel()
         loadSavedData()
         acquireWakeLock()
         companionStart()
-        
+
+        // Schedule periodic restart job and critical wakeups
+        scheduleServiceRestartJob()
+        scheduleCriticalWakeup()
+
         // In onCreate, load overtime and hourly notification state
         overtimeSeconds = sharedPrefs.getInt(KEY_OVERTIME, 0)
         overtimePaused = sharedPrefs.getBoolean("overtime_paused", false)
@@ -100,8 +116,6 @@ class ScreenTimeService : Service() {
         
         Log.d(TAG, "✅ Service initialized with ${remainingTimeSeconds}s remaining, ${todayScreenTimeSeconds}s used today, ${overtimeSeconds}s overtime")
     }
-
-    private var serviceStartAtMs: Long = 0L
 
     private fun companionStart() {
         running = true
@@ -117,7 +131,17 @@ class ScreenTimeService : Service() {
         } else {
             startForeground(NOTIFICATION_ID, createPersistentNotification())
         }
-        
+
+        // Check if service has been running too long
+        if (serviceStartAtMs > 0) {
+            val runningTime = System.currentTimeMillis() - serviceStartAtMs
+            if (runningTime > MAX_SERVICE_LIFETIME_MS) {
+                Log.w(TAG, "⚠️ Service running for ${runningTime / 1000 / 60 / 60}h, scheduling restart")
+                scheduleDelayedRestart()
+                return START_STICKY
+            }
+        }
+
         when (intent?.action) {
             ACTION_START -> startTimer()
             ACTION_PAUSE -> pauseTimer()
@@ -726,7 +750,131 @@ class ScreenTimeService : Service() {
         val hours = seconds / 3600
         val minutes = (seconds % 3600) / 60
         val secs = seconds % 60
-        
+
         return String.format("%02d:%02d:%02d", hours, minutes, secs)
+    }
+
+    private fun scheduleServiceRestartJob() {
+        try {
+            val componentName = ComponentName(this, TimerRestartJobService::class.java)
+
+            val jobInfo = JobInfo.Builder(SERVICE_RESTART_JOB_ID, componentName)
+                .setPeriodic(CRITICAL_WAKEUP_INTERVAL) // Every 2 hours
+                .setPersisted(true) // Survives reboot
+                .setRequiresDeviceIdle(false)
+                .build()
+
+            val result = jobScheduler.schedule(jobInfo)
+            if (result == JobScheduler.RESULT_SUCCESS) {
+                Log.d(TAG, "✅ Service restart job scheduled")
+            } else {
+                Log.w(TAG, "⚠️ Service restart job scheduling failed")
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "❌ Failed to schedule service restart job", e)
+        }
+    }
+
+    private fun scheduleCriticalWakeup() {
+        try {
+            // Cancel any existing alarm
+            criticalWakeupIntent?.let { alarmManager.cancel(it) }
+
+            val intent = Intent(this, TimerWakeupReceiver::class.java)
+            criticalWakeupIntent = PendingIntent.getBroadcast(
+                this,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+
+            val triggerTime = System.currentTimeMillis() + CRITICAL_WAKEUP_INTERVAL
+
+            // Use setAlarmClock for critical wakeup that bypasses Doze
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                val showIntent = PendingIntent.getActivity(
+                    this,
+                    0,
+                    Intent(this, MainActivity::class.java),
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                )
+
+                alarmManager.setAlarmClock(
+                    AlarmManager.AlarmClockInfo(triggerTime, showIntent),
+                    criticalWakeupIntent!!
+                )
+            } else {
+                alarmManager.setExact(
+                    AlarmManager.RTC_WAKEUP,
+                    triggerTime,
+                    criticalWakeupIntent!!
+                )
+            }
+
+            Log.d(TAG, "⏰ Critical wakeup scheduled for ${CRITICAL_WAKEUP_INTERVAL / 1000 / 60} minutes")
+        } catch (e: Exception) {
+            Log.e(TAG, "❌ Failed to schedule critical wakeup", e)
+        }
+    }
+
+    private fun scheduleDelayedRestart() {
+        try {
+            // Save current state
+            saveData()
+
+            // Schedule restart in 5 seconds
+            handler.postDelayed({
+                Log.d(TAG, "🔄 Performing service restart after max lifetime")
+                stopSelf()
+
+                // Restart service
+                val restartIntent = Intent(this, ScreenTimeService::class.java).apply {
+                    action = ACTION_START
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    startForegroundService(restartIntent)
+                } else {
+                    startService(restartIntent)
+                }
+            }, 5000)
+        } catch (e: Exception) {
+            Log.e(TAG, "❌ Failed to schedule delayed restart", e)
+        }
+    }
+
+    // Enhanced wakelock management
+    private fun acquireWakeLockEnhanced() {
+        try {
+            if (wakeLock?.isHeld == true) {
+                wakeLock?.release()
+            }
+
+            wakeLock = powerManager.newWakeLock(
+                PowerManager.PARTIAL_WAKE_LOCK,
+                "BrainBites::TimerWakeLock"
+            ).apply {
+                // Use a timeout to prevent battery drain
+                acquire(10 * 60 * 1000L) // 10 minutes timeout
+            }
+
+            Log.d(TAG, "✅ WakeLock acquired with timeout")
+
+            // Schedule wakelock renewal
+            renewWakeLock()
+        } catch (e: Exception) {
+            Log.e(TAG, "❌ Failed to acquire wakelock", e)
+        }
+    }
+
+    // Renew wakelock periodically
+    private fun renewWakeLock() {
+        handler.postDelayed({
+            if (timerRunnable != null) {
+                Log.d(TAG, "🔄 Renewing wakelock")
+                acquireWakeLock()
+                renewWakeLock() // Schedule next renewal
+            }
+        }, 9 * 60 * 1000L) // Renew every 9 minutes
     }
 }

@@ -1,0 +1,236 @@
+{
+  "common": {
+    "appName": "BrainBites",
+    "mascotName": "CaBBy",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "ok": "OK",
+    "yes": "Yes",
+    "no": "No",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "skip": "Skip",
+    "done": "Done",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "retry": "Retry"
+  },
+  "welcome": {
+    "title": "Welcome to BrainBites!",
+    "subtitle": "Your journey to smarter learning begins",
+    "slide1": {
+      "title": "Welcome to BrainBites!",
+      "bullets": [
+        "Challenge your mind with fun quizzes",
+        "Learn something new every day",
+        "Build better screen time habits",
+        "Track your progress and grow"
+      ]
+    },
+    "slide2": {
+      "title": "Meet CaBBy!",
+      "subtitle": "Your friendly quiz companion",
+      "bullets": [
+        "Lives in the corner during quizzes",
+        "Tap for hints and explanations",
+        "Tracks your progress",
+        "Always ready to help"
+      ],
+      "mascotMessage": "Hi there! I'm CaBBy! 🎉\n\nI'll be your friendly quiz buddy, hanging out in the corner of your screen during quizzes. I love cheering on learners and helping them succeed! 💪\n\nI'll keep an eye on your progress and give you helpful tips along the way! 👀\n\nTap on me anytime for helpful hints, explanations, or just a friendly chat! ✨"
+    },
+    "slide3": {
+      "title": "Ready to Begin?",
+      "subtitle": "Start your journey to smarter learning and better screen habits!",
+      "bullets": [
+        "Answer quizzes to earn time",
+        "Build daily streaks",
+        "Complete goals for rewards",
+        "CaBBy is here to help!"
+      ]
+    },
+    "letsBegin": "Let's Begin!"
+  },
+  "home": {
+    "title": "Home",
+    "welcome": "Welcome back!",
+    "dailyGoals": "Daily Goals",
+    "categories": "Categories",
+    "leaderboard": "Leaderboard",
+    "settings": "Settings",
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard",
+      "easyPoints": "{{points}} points",
+      "mediumPoints": "{{points}} points",
+      "hardPoints": "{{points}} points",
+      "easyTime": "{{time}} min",
+      "mediumTime": "{{time}} min",
+      "hardTime": "{{time}} min"
+    }
+  },
+  "timer": {
+    "title": "Reward Timer",
+    "remainingTime": "Remaining Time",
+    "overtime": "Overtime",
+    "todayScreenTime": "Today's Screen Time",
+    "hours": "{{count}}h",
+    "minutes": "{{count}}m",
+    "seconds": "{{count}}s",
+    "startTimer": "Start Timer",
+    "pauseTimer": "Pause Timer",
+    "resumeTimer": "Resume Timer"
+  },
+  "scoreInsights": {
+    "title": "Tomorrow's Bonus",
+    "loading": "CaBBy is loading your time data...",
+    "timeInBank": "Time in the bank:",
+    "overtimeAdventures": "Overtime adventures:",
+    "savingsReward": "Savings reward:",
+    "overtimeCost": "Overtime cost:",
+    "tomorrowYouGet": "Tomorrow you get:",
+    "positiveMessage": "Nice balance! You're getting bonus points tomorrow!",
+    "negativeMessage": "You went a bit over time, but that's okay - every minute counts!",
+    "overtimeOnlyMessage": "You've been using overtime - let's earn some time back with quizzes!",
+    "savingsOnlyMessage": "Awesome! Your time savings are earning you bonus points!",
+    "readyMessage": "Start your timer journey - every minute counts toward tomorrow!",
+    "winningMessage": "You're winning the time game! Those savings really add up!",
+    "overMessage": "You went over a bit, but hey - every minute of learning counts!",
+    "earnBackMessage": "No worries! Play some quizzes to earn time back and flip this around!",
+    "amazingMessage": "Amazing time management! Tomorrow starts with a head start!",
+    "beginMessage": "Start your timer and play quizzes! Save time = bonus points, overtime = small penalty. You've got this!",
+    "proTip": "Pro tip: Save time = +100 points per minute tomorrow! Use overtime = -50 points per minute. Balance is key!"
+  },
+  "quiz": {
+    "title": "Quiz",
+    "question": "Question {{current}} of {{total}}",
+    "selectAnswer": "Select your answer",
+    "submit": "Submit Answer",
+    "next": "Next Question",
+    "finish": "Finish Quiz",
+    "correct": "Correct!",
+    "incorrect": "Incorrect",
+    "timeBonus": "Time Bonus",
+    "streakBonus": "Streak Bonus",
+    "score": "Score",
+    "accuracy": "Accuracy",
+    "streak": "Streak",
+    "explanation": "Explanation"
+  },
+  "categories": {
+    "title": "Categories",
+    "selectCategory": "Select a Category",
+    "all": "All Topics"
+  },
+  "goals": {
+    "title": "Daily Goals",
+    "completed": "Completed",
+    "inProgress": "In Progress",
+    "locked": "Locked",
+    "reward": "Reward",
+    "timeReward": "{{minutes}} minutes",
+    "pointsReward": "{{points}} points",
+    "complete": "Complete",
+    "claim": "Claim Reward"
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "rank": "Rank",
+    "player": "Player",
+    "score": "Score",
+    "you": "You",
+    "today": "Today",
+    "week": "This Week",
+    "allTime": "All Time"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "selectLanguage": "Select Language",
+    "audio": "Audio Settings",
+    "soundEffects": "Sound Effects",
+    "music": "Background Music",
+    "volume": "Volume",
+    "notifications": "Notifications",
+    "enableNotifications": "Enable Notifications",
+    "account": "Account",
+    "profile": "Profile",
+    "logout": "Logout",
+    "about": "About",
+    "version": "Version",
+    "rateApp": "Rate App",
+    "shareApp": "Share App",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "notifications": {
+    "timerTitle": "BrainBites Timer",
+    "timerRunning": "Timer running: {{time}} left",
+    "overtime": "Overtime: {{time}}",
+    "hourlyMilestone": "{{hours}} hour screen time",
+    "goalComplete": "Goal completed!",
+    "streakMilestone": "{{streak}} question streak!",
+    "dailyReminder": "Time for your daily quiz!",
+    "carryoverBonus": "Bonus! +{{points}} points from yesterday's leftover time!",
+    "carryoverPenalty": "Starting with {{points}} point penalty from yesterday's overtime"
+  },
+  "mascot": {
+    "greeting": "Hey there! I'm CaBBy!",
+    "encouragement": "You're doing great!",
+    "hint": "Need a hint?",
+    "celebration": "Awesome job!",
+    "motivation": "Keep it up!",
+    "correctAnswer": "That's right!",
+    "incorrectAnswer": "Don't worry, you'll get the next one!",
+    "streak": "Amazing streak!",
+    "milestone": "You reached a milestone!"
+  },
+  "walkthrough": {
+    "timerWidget": {
+      "title": "Your Reward Timer ⏰",
+      "description": "This shows your available reward time! Complete quizzes to earn guilt-free screen time. Check your notifications where I keep track of your screen time and reward time with a persistent notification so you won't remove it by mistake."
+    },
+    "bonusPenalty": {
+      "title": "Tomorrow's Bonus/Penalty 📊",
+      "description": "This shows your bonus or penalty score for tomorrow based on how much screen time you used today. Use your reward time wisely!"
+    },
+    "dailyFlow": {
+      "title": "Daily Flow 🌊",
+      "description": "Complete goals daily to maintain your flow! Each day completed keeps it flowing, if you miss a day, the flow breaks."
+    },
+    "difficultyButtons": {
+      "title": "Choose Your Challenge 🎯",
+      "description": "Pick your difficulty level! Easy gets you started, Medium tests your skills, and Hard pushes your limits."
+    },
+    "categoriesButton": {
+      "title": "Explore Topics 📚",
+      "description": "Browse different categories like Science, History, and Math. Find subjects that spark your curiosity!"
+    },
+    "dailyGoalsButton": {
+      "title": "Daily Goals & Rewards 🎁",
+      "description": "Complete daily challenges to earn time bonuses and maintain your streak. Check here for your progress!"
+    },
+    "leaderboardButton": {
+      "title": "Compete & Compare 🏆",
+      "description": "See how you rank against other learners. Climb the leaderboard by answering questions correctly!"
+    },
+    "readyToStart": {
+      "title": "You're All Set! 🚀",
+      "description": "Now you know the basics! Start with an Easy quiz to get comfortable, then challenge yourself as you improve."
+    },
+    "skipTour": "Skip Tour",
+    "getStarted": "Get Started! 🎉"
+  },
+  "errors": {
+    "networkError": "Network connection error",
+    "loadingFailed": "Failed to load data",
+    "saveFailed": "Failed to save data",
+    "unknownError": "An unknown error occurred",
+    "tryAgain": "Please try again"
+  }
+}

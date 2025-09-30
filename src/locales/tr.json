@@ -1,0 +1,236 @@
+{
+  "common": {
+    "appName": "BrainBites",
+    "mascotName": "CaBBy",
+    "cancel": "İptal",
+    "confirm": "Onayla",
+    "ok": "Tamam",
+    "yes": "Evet",
+    "no": "Hayır",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "close": "Kapat",
+    "back": "Geri",
+    "next": "İleri",
+    "skip": "Atla",
+    "done": "Bitti",
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "retry": "Tekrar Dene"
+  },
+  "welcome": {
+    "title": "BrainBites'a Hoş Geldiniz!",
+    "subtitle": "Daha akıllı öğrenme yolculuğunuz başlıyor",
+    "slide1": {
+      "title": "BrainBites'a Hoş Geldiniz!",
+      "bullets": [
+        "Eğlenceli sınavlarla zihninizi zorlayın",
+        "Her gün yeni şeyler öğrenin",
+        "Daha iyi ekran süresi alışkanlıkları edinin",
+        "İlerlemenizi takip edin ve gelişin"
+      ]
+    },
+    "slide2": {
+      "title": "CaBBy ile Tanışın!",
+      "subtitle": "Dostane sınav arkadaşınız",
+      "bullets": [
+        "Sınavlar sırasında köşede yaşar",
+        "İpuçları ve açıklamalar için dokunun",
+        "İlerlemenizi takip eder",
+        "Her zaman yardıma hazır"
+      ],
+      "mascotMessage": "Merhaba! Ben CaBBy! 🎉\n\nSenin dostane sınav arkadaşın olacağım, sınavlar sırasında ekranının köşesinde takılacağım. Öğrenenleri desteklemeyi ve başarılı olmalarına yardımcı olmayı seviyorum! 💪\n\nİlerlemenizi takip edip yol boyunca faydalı ipuçları vereceğim! 👀\n\nYardımcı ipuçları, açıklamalar veya sadece dostça bir sohbet için istediğin zaman bana dokun! ✨"
+    },
+    "slide3": {
+      "title": "Başlamaya Hazır mısın?",
+      "subtitle": "Daha akıllı öğrenme ve daha iyi ekran alışkanlıklarına doğru yolculuğa başla!",
+      "bullets": [
+        "Zaman kazanmak için sınavlara cevap ver",
+        "Günlük seriler oluştur",
+        "Ödüller için görevleri tamamla",
+        "CaBBy yardım etmek için burada!"
+      ]
+    },
+    "letsBegin": "Hadi Başlayalım!"
+  },
+  "home": {
+    "title": "Ana Sayfa",
+    "welcome": "Tekrar hoş geldin!",
+    "dailyGoals": "Günlük Hedefler",
+    "categories": "Kategoriler",
+    "leaderboard": "Lider Tablosu",
+    "settings": "Ayarlar",
+    "difficulty": {
+      "easy": "Kolay",
+      "medium": "Orta",
+      "hard": "Zor",
+      "easyPoints": "{{points}} puan",
+      "mediumPoints": "{{points}} puan",
+      "hardPoints": "{{points}} puan",
+      "easyTime": "{{time}} dk",
+      "mediumTime": "{{time}} dk",
+      "hardTime": "{{time}} dk"
+    }
+  },
+  "timer": {
+    "title": "Ödül Zamanlayıcısı",
+    "remainingTime": "Kalan Süre",
+    "overtime": "Fazla Mesai",
+    "todayScreenTime": "Bugünün Ekran Süresi",
+    "hours": "{{count}}s",
+    "minutes": "{{count}}dk",
+    "seconds": "{{count}}sn",
+    "startTimer": "Zamanlayıcıyı Başlat",
+    "pauseTimer": "Duraklat",
+    "resumeTimer": "Devam Et"
+  },
+  "scoreInsights": {
+    "title": "Yarının Bonusu",
+    "loading": "CaBBy zaman verilerinizi yüklüyor...",
+    "timeInBank": "Bankadaki zaman:",
+    "overtimeAdventures": "Fazla mesai maceraları:",
+    "savingsReward": "Tasarruf ödülü:",
+    "overtimeCost": "Fazla mesai maliyeti:",
+    "tomorrowYouGet": "Yarın alacaksın:",
+    "positiveMessage": "Güzel denge! Yarın bonus puanlar alacaksın!",
+    "negativeMessage": "Biraz aştın ama sorun değil - her dakika önemli!",
+    "overtimeOnlyMessage": "Fazla mesai kullanıyorsun - hadi sınavlarla zaman kazanalım!",
+    "savingsOnlyMessage": "Harika! Zaman tasarrufun bonus puanlar kazandırıyor!",
+    "readyMessage": "Zamanlayıcı yolculuğuna başla - her dakika yarın için önemli!",
+    "winningMessage": "Zaman oyununu kazanıyorsun! Bu tasarruflar gerçekten birikiyor!",
+    "overMessage": "Biraz aştın ama hey - her öğrenme dakikası önemli!",
+    "earnBackMessage": "Sorun değil! Zaman kazanmak ve durumu tersine çevirmek için sınavlara gir!",
+    "amazingMessage": "Muhteşem zaman yönetimi! Yarın avantajlı başlıyorsun!",
+    "beginMessage": "Zamanlayıcını başlat ve sınavlara gir! Zaman tasarrufu = bonus puanlar, fazla mesai = küçük ceza. Yapabilirsin!",
+    "proTip": "Profesyonel ipucu: Zaman tasarrufu = yarın dakika başına +100 puan! Fazla mesai = dakika başına -50 puan. Denge anahtardır!"
+  },
+  "quiz": {
+    "title": "Sınav",
+    "question": "Soru {{current}} / {{total}}",
+    "selectAnswer": "Cevabını seç",
+    "submit": "Cevabı Gönder",
+    "next": "Sonraki Soru",
+    "finish": "Sınavı Bitir",
+    "correct": "Doğru!",
+    "incorrect": "Yanlış",
+    "timeBonus": "Zaman Bonusu",
+    "streakBonus": "Seri Bonusu",
+    "score": "Puan",
+    "accuracy": "Doğruluk",
+    "streak": "Seri",
+    "explanation": "Açıklama"
+  },
+  "categories": {
+    "title": "Kategoriler",
+    "selectCategory": "Bir Kategori Seç",
+    "all": "Tüm Konular"
+  },
+  "goals": {
+    "title": "Günlük Hedefler",
+    "completed": "Tamamlandı",
+    "inProgress": "Devam Ediyor",
+    "locked": "Kilitli",
+    "reward": "Ödül",
+    "timeReward": "{{minutes}} dakika",
+    "pointsReward": "{{points}} puan",
+    "complete": "Tamamla",
+    "claim": "Ödülü Al"
+  },
+  "leaderboard": {
+    "title": "Lider Tablosu",
+    "rank": "Sıra",
+    "player": "Oyuncu",
+    "score": "Puan",
+    "you": "Sen",
+    "today": "Bugün",
+    "week": "Bu Hafta",
+    "allTime": "Tüm Zamanlar"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "language": "Dil",
+    "selectLanguage": "Dil Seç",
+    "audio": "Ses Ayarları",
+    "soundEffects": "Ses Efektleri",
+    "music": "Arka Plan Müziği",
+    "volume": "Ses Seviyesi",
+    "notifications": "Bildirimler",
+    "enableNotifications": "Bildirimleri Etkinleştir",
+    "account": "Hesap",
+    "profile": "Profil",
+    "logout": "Çıkış Yap",
+    "about": "Hakkında",
+    "version": "Versiyon",
+    "rateApp": "Uygulamayı Değerlendir",
+    "shareApp": "Uygulamayı Paylaş",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Şartları"
+  },
+  "notifications": {
+    "timerTitle": "BrainBites Zamanlayıcı",
+    "timerRunning": "Zamanlayıcı çalışıyor: {{time}} kaldı",
+    "overtime": "Fazla mesai: {{time}}",
+    "hourlyMilestone": "{{hours}} saat ekran süresi",
+    "goalComplete": "Hedef tamamlandı!",
+    "streakMilestone": "{{streak}} soru serisi!",
+    "dailyReminder": "Günlük sınav zamanı!",
+    "carryoverBonus": "Bonus! Dünün kalan zamanından +{{points}} puan!",
+    "carryoverPenalty": "Dünün fazla mesaisinden {{points}} puan cezası ile başlıyorsun"
+  },
+  "mascot": {
+    "greeting": "Merhaba! Ben CaBBy!",
+    "encouragement": "Harika gidiyorsun!",
+    "hint": "İpucu ister misin?",
+    "celebration": "Muhteşem iş!",
+    "motivation": "Böyle devam et!",
+    "correctAnswer": "İşte bu!",
+    "incorrectAnswer": "Endişelenme, bir sonrakini alırsın!",
+    "streak": "İnanılmaz seri!",
+    "milestone": "Bir dönüm noktasına ulaştın!"
+  },
+  "walkthrough": {
+    "timerWidget": {
+      "title": "Ödül Zamanlayıcın ⏰",
+      "description": "Bu, mevcut ödül sürenizi gösterir! Suçsuz ekran süresi kazanmak için sınavları tamamlayın. Bildirimlerinizi kontrol edin, ekran sürenizi ve ödül sürenizi kalıcı bir bildirimle takip ediyorum, böylece yanlışlıkla silemezsiniz."
+    },
+    "bonusPenalty": {
+      "title": "Yarının Bonus/Ceza 📊",
+      "description": "Bu, bugün ne kadar ekran süresi kullandığınıza göre yarın için bonus veya ceza puanınızı gösterir. Ödül sürenizi akıllıca kullanın!"
+    },
+    "dailyFlow": {
+      "title": "Günlük Akış 🌊",
+      "description": "Akışınızı sürdürmek için hedefleri günlük olarak tamamlayın! Her tamamlanan gün akışı sürdürür, bir gün kaçırırsanız akış bozulur."
+    },
+    "difficultyButtons": {
+      "title": "Meydan Okumanı Seç 🎯",
+      "description": "Zorluk seviyeni seç! Kolay başlatır, Orta becerilerini test eder ve Zor limitlerini zorlar."
+    },
+    "categoriesButton": {
+      "title": "Konuları Keşfet 📚",
+      "description": "Bilim, Tarih ve Matematik gibi farklı kategorilere göz at. Merakını uyandıran konuları bul!"
+    },
+    "dailyGoalsButton": {
+      "title": "Günlük Hedefler ve Ödüller 🎁",
+      "description": "Zaman bonusları kazanmak ve serinizi sürdürmek için günlük zorlukları tamamlayın. İlerlemenizi buradan kontrol edin!"
+    },
+    "leaderboardButton": {
+      "title": "Yarış ve Karşılaştır 🏆",
+      "description": "Diğer öğrencilere karşı nasıl sıralandığını gör. Soruları doğru yanıtlayarak lider tablosunda yüksel!"
+    },
+    "readyToStart": {
+      "title": "Hazırsın! 🚀",
+      "description": "Artık temelleri biliyorsun! Rahat etmek için Kolay bir sınavla başla, sonra geliştikçe kendini zorla."
+    },
+    "skipTour": "Turu Atla",
+    "getStarted": "Başlayalım! 🎉"
+  },
+  "errors": {
+    "networkError": "Ağ bağlantı hatası",
+    "loadingFailed": "Veri yüklenemedi",
+    "saveFailed": "Veri kaydedilemedi",
+    "unknownError": "Bilinmeyen bir hata oluştu",
+    "tryAgain": "Lütfen tekrar deneyin"
+  }
+}
