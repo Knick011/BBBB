@@ -1,10 +1,13 @@
 // src/services/QuestionService.ts
 // ✅ FIXED: Direct import from questionsData.ts to resolve blank options issue
 // ✅ FIXED: Proper CSV parsing and data mapping for option display
-// console.log: "Modern QuestionService with direct questionsData.ts import - fixes blank options"
+// ✅ ADDED: Multi-language support for Turkish and English questions
+// console.log: "Modern QuestionService with multi-language support"
 
 import { questionsCSV } from '../assets/data/questionsData';
+import { questionsTurkishCSV } from '../assets/data/questionsTurkishData';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getCurrentLanguage } from '../locales/i18n';
 
 interface Question {
   id: number;
@@ -56,11 +59,18 @@ class QuestionServiceClass {
     }
 
     try {
-      console.log('🚀 [Modern QuestionService] Initializing with direct questionsData.ts import...');
-      
+      // Get current language
+      const currentLanguage = getCurrentLanguage();
+      const isTurkish = currentLanguage === 'tr';
+
+      console.log(`🚀 [Modern QuestionService] Initializing with ${isTurkish ? 'Turkish' : 'English'} questions...`);
+
+      // Select appropriate CSV based on language
+      const selectedCSV = isTurkish ? questionsTurkishCSV : questionsCSV;
+
       // Parse CSV data directly from imported string
-      const parsedQuestions = this.parseQuestionsCSV(questionsCSV);
-      
+      const parsedQuestions = this.parseQuestionsCSV(selectedCSV);
+
       if (parsedQuestions.length === 0) {
         throw new Error('No questions parsed from CSV data');
       }
@@ -70,7 +80,7 @@ class QuestionServiceClass {
       this.isInitialized = true;
       await this.loadPermanentCorrectIds();
 
-      console.log(`✅ [Modern QuestionService] Successfully initialized with ${this.questions.length} questions`);
+      console.log(`✅ [Modern QuestionService] Successfully initialized with ${this.questions.length} ${isTurkish ? 'Turkish' : 'English'} questions`);
       console.log(`📊 [Modern QuestionService] Categories available:`, Object.keys(this.categoryCounts));
       console.log(`📊 [Modern QuestionService] Questions per category:`, this.categoryCounts);
 
@@ -102,6 +112,19 @@ class QuestionServiceClass {
         console.log('⚠️ [Modern QuestionService] Using minimal emergency question');
       }
     }
+  }
+
+  /**
+   * Reinitialize with new language
+   * Call this when user changes language
+   */
+  async reinitialize(): Promise<void> {
+    console.log('🔄 [Modern QuestionService] Reinitializing for language change...');
+    this.isInitialized = false;
+    this.questions = [];
+    this.usedQuestionIds.clear();
+    this.categoryCounts = {};
+    await this.initialize();
   }
 
   private parseQuestionsCSV(csvData: string): Question[] {

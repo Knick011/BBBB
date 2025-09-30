@@ -1,0 +1,3756 @@
+// Turkish Questions Data
+export const questionsTurkishCSV = `id,category,question,optionA,optionB,optionC,optionD,correctAnswer,explanation,level
+1,Science,Glikozun pirüvata dönüşmesi hangi işlemle gerçekleşir?,Glikoliz,Krebs döngüsü,Elektron taşınması,Fotosentez,A,"Glikoliz, glikozu sitoplazmada pirüvata parçalar",Easy
+2,Math,7 × 8 nedir?,54,55,56,57,C,7'nin 8 ile çarpımı 56'ya eşittir,Easy
+3,Science,Bitkiler fotosentez sırasında atmosferden hangi gazı emerler?,Oksijen,Azot,Karbondioksit,Hidrojen,C,Bitkiler fotosentez sırasında karbondioksiti emer ve oksijen salar,Easy
+4,Sports,Bir basketbol takımında maç sırasında kaç oyuncu bulunur?,4,5,6,7,B,Her basketbol takımının aynı anda sahada 5 oyuncusu vardır,Easy
+5,Science,Sofra tuzunun kimyasal formülü nedir?,NaCl,KCl,CaCl2,MgCl2,A,"Sofra tuzu, NaCl formülüne sahip sodyum klorürdür",Easy
+6,Math,144 ÷ 12 kaçtır?,11,12,13,14,B,144'ü 12'ye bölersek 12 elde ederiz,Easy
+7,Science,Yetişkin bir insan vücudunda kaç kemik vardır?,196,206,216,226,B,Yetişkin bir insan iskeleti 206 kemikten oluşur,Medium
+8,Math,80'in %25'i kaçtır?,15,20,25,30,B,"80'in %25'i 0,25 × 80 = 20 olarak hesaplanır",Medium
+9,Science,Dünyanın en sert doğal maddesi nedir?,Altın,Elmas,Ütü,Kuvars,B,"Elmas, Mohs ölçeğinde 10 sertliğe sahip en sert doğal maddedir",Medium
+10,Science,Karbonun atom numarası nedir?,4,6,8,12,B,Karbonun 6 protonu vardır ve bu da ona 6 atom numarası verir,Medium
+11,Math,Bir üçgenin açıları 60° 60° ve 60° ise bu üçgen ne tür bir üçgendir?,Sağ,Scalene,İkizkenar,Eşkenar,D,Tüm açıları 60°'ye eşit olan bir üçgene eşkenar denir,Medium
+12,Science,Saf suyun pH değeri nedir?,5,6,7,8,C,Saf suyun pH değeri nötrdür (7),Medium
+13,Sports,Hangi spor dalında smaç basardınız?,Tenis,Basketbol,Voleybol,Futbol,B,"Slam dunk, basketbolda bir sayı yapma hareketidir",Medium
+14,Math,81 sayısının karekökü nedir?,7,8,9,10,C,81'in karekökü 9'dur çünkü 9 × 9 = 81,Medium
+15,Science,Hangi gezegenin en çok uydusu var?,Jüpiter,Satürn,Uranüs,Neptün,B,"Satürn, 80'den fazla uydusuyla en çok doğrulanmış uyduya sahip gezegendir",Medium
+16,Science,Bitkilerin yaprakları aracılığıyla su kaybetme süreci nedir?,Solunum,Terleme,Fotosentez,Çimlenme,B,"Terleme, bitki yapraklarından su kaybı sürecidir",Hard
+17,Math,x²'nin türevi nedir?,X,2x,x²,2x²,B,x²'nin x'e göre türevi 2x'tir,Hard
+18,Science,Dünya atmosferinde en bol bulunan gaz hangisidir?,Oksijen,Karbondioksit,Azot,Argon,C,"Azot, Dünya atmosferinin yaklaşık %78'ini oluşturur",Hard
+19,Math,Dirac delta fonksiyonunun Fourier dönüşümü nedir?,0,1,Devamlı,Tanımsız,C,δ(t)'nin Fourier dönüşümü sabit bir fonksiyondur,Hard
+20,Science,Katı bir maddenin doğrudan gaza dönüştüğü sürecin adı nedir?,Erime,Buharlaşma,Süblimasyon,Yoğunlaşma,C,"Süblimleşme, katıdan gaz fazına doğrudan geçiştir",Hard
+21,Math,f(z)=1/(z²+1) denkleminin z=i noktasındaki kalıntısı nedir?,1/2,1/2i,-1/2i,i/2,C,z=i'deki basit kutuplar için kalıntı formülünü kullanarak,Hard
+22,Science,Karbon-14'ün yarı ömrü nedir?,5730 yıl,1000 yıl,10000 yıl,50000 yıl,A,Karbon-14'ün yarı ömrü yaklaşık 5730 yıldır,Hard
+23,Science,Oda sıcaklığında havadaki sesin hızı nedir?,343 m/s,300 m/s,400 m/s,500 m/s,A,"Ses, 20°C'de havada saniyede yaklaşık 343 metre hızla hareket eder",Hard
+24,Math,Altıgenin açılarının toplamı kaçtır?,540°,720°,900°,1080°,B,Altıgenin iç açılarının toplamı 720°'dir,Hard
+25,Art,"""Yıldızlı Gece"" tablosunu kim çizmiştir?",Pablo Picasso,Vincent van Gogh,Claude Monet,Salvador Dali,B,"Vincent van Gogh, Yıldızlı Gece tablosunu 1889'da yaptı",Easy
+26,Technology,CPU ne anlama geliyor?,Merkezi İşlem Birimi,Bilgisayar Programlama Birimi,Merkezi Program Birimi,Bilgisayar İşlem Birimi,A,"CPU, Merkezi İşlem Birimi anlamına gelir",Easy
+27,Animals,Deniz yıldızları ne tür bir simetriye sahiptir?,İkili,Radyal,Asimetrik,Küresel,B,Deniz yıldızlarının beş parçalı radyal simetrisi vardır,Easy
+28,Science,Ribozomların hücrelerdeki temel işlevi nedir?,Protein sentezi,DNA replikasyonu,Enerji üretimi,Atık bertarafı,A,"Ribozomlar, protein sentezinden sorumlu hücresel yapılardır",Easy
+29,Math,9² nedir?,72,81,90,99,B,9'un karesi (9²) 81'e eşittir,Easy
+30,Science,Atomun merkezine ne ad verilir?,Elektron,Proton,Nötron,Çekirdek,D,"Çekirdek, proton ve nötronları içeren bir atomun yoğun merkezidir",Easy
+31,Math,Yarıçapı 5 olan bir dairenin alanı nedir?,25π,10π,5π,π,A,"Bir dairenin alanı πr²'dir, yani yarıçapı 5 ise 25π'dir.",Medium
+32,Science,Su moleküllerini bir arada tutan bağ türü nedir?,İyonik,Kovalent,Metalik,Hidrojen,D,Su molekülleri arasında polarite nedeniyle hidrojen bağları oluşur,Medium
+33,Technology,WWW ne anlama geliyor?,Dünya çapında Ağ,Dünya Çapında Web,Geniş Dünya Ağı,Web Dünya Çapında,A,"WWW, World Wide Web'in kısaltmasıdır",Medium
+34,Science,Hücre bölünme sürecine ne ad verilir?,Mitoz,Mayoz,Hem A hem de B,Ozmoz,C,"Hem mitoz hem de mayoz, hücre bölünmesinin bir türüdür",Medium
+35,Math,3! (3 faktöriyel) nedir?,3,6,9,12,B,3! = 3 × 2 × 1 = 6,Medium
+36,Art,Pablo Picasso hangi sanat akımının kurulmasına katkıda bulunmuştur?,İzlenimcilik,Kübizm,Gerçeküstücülük,Ekspresyonizm,B,"Pablo Picasso, Kübizm hareketinin kurucu ortaklarından biriydi",Medium
+37,Science,Depremleri inceleyen bilim dalına ne ad verilir?,Jeoloji,Sismoloji,Meteoroloji,Volkanoloji,B,"Sismoloji, depremlerin bilimsel çalışmasıdır",Medium
+38,Sports,Standart bir golf sahasında kaç delik vardır?,16,17,18,19,C,Standart bir golf sahasında 18 delik bulunur,Medium
+39,Animals,Aslanlardan oluşan bir topluluğa ne ad verilir?,Ambalaj,Sürü,Gurur,Sürü,C,Aslanlardan oluşan bir gruba gurur denir,Medium
+40,Technology,HTML ne anlama geliyor?,Hiper Metin İşaretleme Dili,Yüksek Teknoloji Modern Dil,Hipermetin Modern Dili,Yüksek Metin İşaretleme Dili,A,"HTML, HyperText Markup Language (Köprü Metni İşaretleme Dili) anlamına gelir",Medium
+41,Science,Kuantum mekaniğinde süperpozisyonun ardındaki mekanizma nedir?,Dalga girişimi,Parçacık çarpışması,Olasılık genliği,Manyetik rezonans,C,Kuantum süperpozisyonu dalga fonksiyonlarındaki olasılık genliklerinden kaynaklanır,Hard
+42,Math,x 0'a yaklaşırken sin(x)/x'in limiti nedir?,0,1,∞,tanımsız,B,x 0'a yaklaşırken sin(x)/x'in limiti 1'dir,Hard
+43,Science,Kara deliğin etrafındaki teorik sınırın adı nedir?,Olay Ufku,Schwarzschild Yarıçapı,Foton Küresi,Ergosfer,A,"Olay ufku, kara delikten hiçbir şeyin kaçamayacağı sınırdır",Hard
+44,Math,Fibonacci dizisinin 10. terimi nedir?,34,55,89,144,B,10. Fibonacci sayısı 55'tir (1 1 2 3 5 8 13 21 34 55),Hard
+45,Science,Kanda oksijen taşıyan proteinin adı nedir?,Hemoglobin,Miyoglobin,Albümin,İnsülin,A,"Hemoglobin, kırmızı kan hücrelerinde oksijen taşıyan demir içeren bir proteindir",Hard
+46,Art,Boyayı küçük ve belirgin noktalar halinde uygulamayı içeren sanatsal teknik hangisidir?,Sfumato,Işık-gölge oyunu,Puantilizm,Pasto,C,"Puantilizm, Georges Seurat tarafından geliştirilen küçük, belirgin renk noktalarını kullanır",Hard
+47,Technology,SQL ne anlama geliyor?,Yapılandırılmış Sorgu Dili,Basit Sorgu Dili,Standart Sorgu Dili,Sistem Sorgu Dili,A,"SQL, Yapılandırılmış Sorgu Dili anlamına gelir",Hard
+48,Science,Kimyasal bağlanmanın kuantum mekaniksel açıklaması nedir?,Moleküler orbital teorisi,Lewis yapıları,VSEPR teorisi,Hibridizasyon teorisi,A,"Moleküler orbital teorisi, bağlanmayı açıklamak için kuantum mekaniğini kullanır",Hard
+49,Math,e^(iπ) + 1 neye eşittir?,0,1,e,π,A,Euler'in özdeşliği e^(iπ) + 1 = 0 olduğunu belirtir,Hard
+50,Animals,Gerçek anlamda uçma yeteneğine sahip tek memeli hayvan hangisidir?,Sincap,Yarasa,Uçan Lemur,Şeker Planörü,B,"Yarasalar, sürekli uçuş yeteneğine sahip tek memelilerdir",Easy
+51,Sports,Bir futbol takımında oyun sırasında kaç oyuncu bulunur?,9,10,11,12,C,Her futbol takımının oyun sırasında sahada 11 oyuncusu vardır,Easy
+52,Science,Mohs ölçeğine göre en sert mineral hangisidir?,Talk,Kuvars,Topaz,Elmas,D,"Elmas, Mohs sertlik ölçeğinde 10 olarak derecelendirilir",Easy
+53,Math,200'ün %50'si kaçtır?,50,75,100,150,C,200'ün %50'si 100'dür,Easy
+54,Science,Maddenin en küçük birimi nedir?,Atom,Molekül,Proton,Elektron,A,"Atom, kimyasal özelliklerini koruyan en küçük madde birimidir",Easy
+55,Art,Hangi renkler ana renklerdir?,Kırmızı Sarı Mavi,Kırmızı Yeşil Mavi,Mavi Sarı Turuncu,Yeşil Sarı Mor,A,"Kırmızı, sarı ve mavi geleneksel ana renklerdir",Easy
+56,Technology,USB ne anlama geliyor?,Evrensel Seri Veri Yolu,Birleşik Sistem Otobüsü,Evrensel Sistem Veri Yolu,Birleşik Seri Otobüs,A,"USB, Evrensel Seri Veri Yolu anlamına gelir",Medium
+57,Science,Hem ot hem et yiyen hayvanlara ne ad verilir?,Otçul,Etobur,Hepçil,Böcekçil,C,Hepçiller hem bitkisel hem de hayvansal maddeleri yerler,Medium
+58,Math,İlk 10 pozitif tam sayının toplamı kaçtır?,45,50,55,60,C,1+2+3+...+10 = 55'in toplamı,Medium
+59,Animals,En hızlı kara hayvanı hangisidir?,Çita,Aslan,Leopar,Jaguar,A,"Çita, saatte 70 mil hıza ulaşan en hızlı kara hayvanıdır",Medium
+60,Science,Metanın kimyasal formülü nedir?,CH4,C2H6,C3H8,C4H10,A,Metanın kimyasal formülü CH4'tür,Medium
+61,Sports,Stanley Kupası hangi spor dalında verilir?,Basketbol,Futbol,Hokey,Beyzbol,C,Stanley Kupası NHL hokey şampiyonuna verilir,Medium
+62,Math,Kenar uzunluğu 3 olan bir küpün hacmi nedir?,9,18,27,36,C,Bir küpün hacmi s³ olduğundan 3³ = 27,Medium
+63,Science,Mantarları inceleyen bilim dalına ne ad verilir?,Botanik,Mikoloji,Zooloji,Ekoloji,B,"Mikoloji, mantarları inceleyen biyoloji dalıdır",Medium
+64,Technology,PDF ne anlama geliyor?,Taşınabilir Belge Biçimi,Kişisel Belge Formatı,Kamu Belgesi Formatı,Korunan Belge Biçimi,A,"PDF, Taşınabilir Belge Biçimi anlamına gelir",Medium
+65,Art,"""Belleğin Azmi"" tablosunu kim çizmiştir?",Pablo Picasso,Salvador Dali,René Magritte,Max Ernst,B,"Salvador Dali, 1931 yılında Belleğin Azmi adlı tablosunu çizdi",Medium
+66,Science,Evrenin oluşumunu açıklayan teorinin adı nedir?,Büyük Patlama Teorisi,Sabit Durum Teorisi,Enflasyon Teorisi,Sicim Teorisi,A,"Büyük Patlama Teorisi, hakim kozmolojik modeldir",Hard
+67,Math,e^x'in x=0 etrafındaki Taylor serisi açılımı nedir?,1+x+x²/2!+x³/3!+...,x+x²+x³+...,1+x+x²+x³+...,x+x²/2+x³/3+...,A,e^x için Taylor serisi 1+x+x²/2!+x³/3!+... şeklindedir.,Hard
+68,Science,DNA'nın kendi kopyasını oluşturma sürecine ne ad verilir?,Transkripsiyon,Çeviri,Çoğaltma,Dönüşüm,C,"DNA replikasyonu, DNA'nın kendini kopyalama sürecidir",Hard
+69,Math,n köşeli tam bir grafiğin kromatik sayısı nedir?,n-1,N,n+1,2n,B,Tam bir grafiğin kromatik sayısı Kn'dir,Hard
+70,Science,Atmosferdeki sınır tabakasının adı nedir?,Troposfer,Stratosfer,Mezosfer,Termosfer,A,"Troposfer, Dünya atmosferinin en alt tabakasıdır",Hard
+71,Technology,API ne anlama geliyor?,Uygulama Programlama Arayüzü,Otomatik Programlama Arayüzü,Gelişmiş Programlama Arayüzü,Uygulamalı Programlama Arayüzü,A,"API, Uygulama Programlama Arayüzü anlamına gelir",Hard
+72,Art,Gerçekçi temsil yerine duygusal ifadeyi öne çıkaran sanat akımı hangisidir?,Gerçekçilik,İzlenimcilik,Ekspresyonizm,Kübizm,C,Gerçekçi tasvirden ziyade duygusal ifadeye odaklanan Ekspresyonizm,Hard
+73,Science,Güçlü nükleer kuvveti ileten parçacığın adı nedir?,Foton,Gluon,W bozonu,Z bozonu,B,Gluonlar güçlü nükleer kuvvetin kuvvet taşıyıcılarıdır,Hard
+74,Math,2x2 matrisinin [[a b] [c d]] determinantı nedir?,reklam-bc,ac-bd,ab-cd,reklam+bc,A,2x2 matrisinin determinantı ad-bc'dir,Hard
+75,Animals,Amfibiler hangi sınıfa aittir?,Memeliler,Sürüngenler,Amfibiler,Aves,C,Amfibiler Amfibi sınıfına aittir,Easy
+76,Science,Demirin kimyasal sembolü nedir?,İr,Fe,İçinde,Fr,B,Demirin kimyasal sembolü Latince ferrum kelimesinden gelen Fe'dir.,Easy
+77,Sports,Amerikan futbolunda bir touchdown kaç puan değerindedir?,5,6,7,8,B,Amerikan futbolunda bir gol 6 puan değerindedir,Easy
+78,Math,15 × 4 nedir?,45,50,55,60,D,15'in 4 ile çarpımı 60'a eşittir,Easy
+79,Science,Deniz seviyesinde suyun kaynama noktası nedir?,90°C,95°C,100°C,105°C,C,Su deniz seviyesinde 100°C'de (212°F) kaynar,Easy
+80,Art,"""Son Akşam Yemeği"" tablosunu kim çizmiştir?",Michelangelo,Leonardo da Vinci,Raphael,Donatello,B,"Leonardo da Vinci, Son Akşam Yemeği'ni 1495 ile 1498 yılları arasında resmetti.",Easy
+81,Technology,RAM ne anlama geliyor?,Rastgele Erişimli Bellek,Hızlı Erişim Belleği,Okuma Erişim Belleği,Gerçek Erişim Belleği,A,"RAM, Rastgele Erişimli Bellek anlamına gelir",Medium
+82,Science,Hava olaylarını inceleyen bilim dalına ne ad verilir?,Jeoloji,Meteoroloji,İklimbilim,Astronomi,B,"Meteoroloji, hava ve atmosfer koşullarının incelenmesidir",Medium
+83,Animals,Bir filin gebelik süresi ne kadardır?,12 ay,18 ay,22 ay,24 ay,C,Fillerin gebelik süresi yaklaşık 22 aydır,Medium
+84,Science,Oksijenin atom numarası nedir?,6,7,8,9,C,Oksijenin atom numarası 8'dir,Medium
+85,Sports,"Teniste ""aşk"" terimi ne anlama gelir?",Sıfır,Bir,İki,Üç,A,Teniste puanlamada aşk sıfır puan demektir,Medium
+86,Math,Yarıçapı 7 olan bir çemberin çevresi kaçtır?,7π,14π,21π,49π,B,Çevre = 2πr = 2π(7) = 14π,Medium
+87,Science,Bitkilerin kendi besinlerini üretme sürecine ne ad verilir?,Solunum,Fotosentez,Terleme,Döllenme,B,"Fotosentez, bitkilerin güneş ışığını kullanarak yiyecek ürettiği süreçtir",Medium
+88,Technology,GPS ne anlama geliyor?,Küresel Konumlandırma Sistemi,Genel Konumlandırma Sistemi,Küresel Konum Sistemi,Coğrafi Konumlandırma Sistemi,A,"GPS, Küresel Konumlandırma Sistemi anlamına gelir",Medium
+89,Art,"""İnci Küpeli Kız"" tablosunu hangi sanatçı yapmıştır?",Jan Vermeer,Rembrandt,Van Gogh,Monet,A,"Johannes Vermeer, İnci Küpeli Kız tablosunu 1665 civarında çizdi",Medium
+90,Science,Işığın büyük kütleli cisimlerin etrafından dolanmasıyla oluşan etkinin adı nedir?,Doppler Etkisi,Fotoelektrik Etki,Yerçekimsel Merceklenme,Compton Etkisi,C,"Kütle çekimsel merceklenme, ışığın büyük kütleli nesnelerin etrafında bükülmesidir",Hard
+91,Math,3+4i'nin karmaşık eşleniği nedir?,3-4i,3+4i,-3-4i,-3+4i,A,"a+bi'nin karmaşık eşleniği a-bi'dir, dolayısıyla 3+4i, 3-4i olur",Hard
+92,Science,Evrende en bol bulunan element hangisidir?,Hidrojen,Helyum,Karbon,Oksijen,A,"Hidrojen, gözlemlenebilir evrenin kütlesinin yaklaşık %75'ini oluşturuyor",Easy
+93,Math,3 × 3 × 3 nedir?,9,18,27,36,C,3'ün küpü (3³) 27'ye eşittir,Easy
+94,Science,Penguen ne tür bir hayvandır?,Memeli,Kuş,Sürüngen,Balık,B,Penguenler soğuk iklimlerde yaşayan uçamayan kuşlardır,Easy
+95,Sports,Bowling'de mükemmel bir oyun kaç vuruşla olur?,10,11,12,13,C,Bowling'de mükemmel bir oyun 12 ardışık vuruştan oluşur,Easy
+96,Animals,Denizatları hangi üreme türünü sergiler?,Yumurtlayan,Canlı doğuran,Ovovivipar,Partenogenez,C,Denizatları yumurta taşıyan erkeklerden oluşan yumurtlayarak doğururlar,Easy
+97,Science,Sodyumun periyodik tablodaki simgesi nedir?,Bu yüzden,SD,Na,S,C,Sodyumun sembolü Latince natrium kelimesinden gelir.,Easy
+98,Technology,Wi-Fi ne anlama geliyor?,Kablosuz Sadakat,Geniş Sadakat,Web Sadakati,Kablolu Sadakat,A,"Wi-Fi, Kablosuz Bağlantı anlamına gelir",Medium
+99,Math,Uzunluğu 8 ve genişliği 5 olan bir dikdörtgenin alanı nedir?,13,35,40,45,C,Dikdörtgenin alanı = uzunluk × genişlik = 8 × 5 = 40,Medium
+100,Science,Böcekleri inceleyen bilim dalına ne ad verilir?,Entomoloji,Ornitoloji,Herpetoloji,İhtiyoloji,A,Entomoloji böceklerin bilimsel çalışmasıdır,Medium
+101,Art,"""Çığlık"" tablosunu hangi sanatçı çizmiştir?",Vincent van Gogh,Pablo Picasso,Edvard Munch,Claude Monet,C,"Edvard Munch, Çığlık tablosunu 1893'te çizdi",Medium
+102,Science,Karbondioksitin kimyasal formülü nedir?,CO,CO2,C2O,C2O2,B,Karbondioksitin kimyasal formülü CO2'dir,Medium
+103,Sports,Bir hokey maçında kaç periyot vardır?,2,3,4,5,B,Bir hokey oyunu üç periyottan oluşur,Medium
+104,Animals,En hızlı deniz hayvanı hangisidir?,Yunus,Köpek balığı,Yelken balığı,Ton balığı,C,"Yelken balığı, saatte 68 mil hıza ulaşan en hızlı deniz hayvanıdır",Medium
+105,Math,2⁴ nedir?,8,12,16,20,C,2'nin 4'üncü kuvveti 16'ya eşittir,Medium
+106,Science,İnsan vücudundaki en sert kemik hangisidir?,Uyluk kemiği,Kafatası,Çene kemiği,Kaval kemiği,C,"Çene kemiği (mandibula), insan vücudundaki en sert kemiktir",Medium
+107,Technology,HTTP ne anlama geliyor?,Hiper Metin Aktarım Protokolü,Yüksek Transfer Metni Protokolü,Hiper Metin Taşıma Protokolü,Yüksek Metin Aktarım Protokolü,A,"HTTP, HyperText Transfer Protocol'ün kısaltmasıdır",Medium
+108,Art,Claude Monet hangi sanat akımıyla ilişkilendirilmiştir?,Kübizm,İzlenimcilik,Ekspresyonizm,Gerçeküstücülük,B,"Claude Monet, Fransız Empresyonist resminin kurucularından biriydi",Medium
+109,Science,Işığın farklı ortamlardan geçerken yön değiştirmesi olayı nedir?,Refleks,Refraksiyon,Kırınım,Parazit yapmak,B,"Kırılma, ışığın farklı ortamlardan geçerken bükülmesidir",Hard
+110,Math,"İlk terimi a ve oranı r olan sonsuz bir geometrik serinin toplamı, |r| < 1 olmak üzere kaçtır?",a/(1-r),a/(1+r),a(1-r),a(1+r),A,"Sonsuz bir geometrik serinin toplamı, |r| < 1 olduğunda a/(1-r) olur",Hard
+111,Science,Kararsız atom çekirdeklerinin enerji açığa çıkardığı sürecin adı nedir?,Füzyon,Fisyon,Radyoaktif bozunma,İyonizasyon,C,"Radyoaktif bozunma, kararsız çekirdeklerin enerji açığa çıkardığı süreçtir",Hard
+112,Math,[[3 1] [0 3]] matrisinin özdeğeri nedir?,1,2,3,4,C,Bu üst üçgen matrisin özdeğerleri köşegen girişleridir: 3,Hard
+113,Science,Diğer parçacıklara kütle kazandıran teorik parçacığın adı nedir?,Bozon,Higgs bozonu,Lepton,Kuark,B,Higgs bozonunun diğer parçacıklara kütle kazandırdığı teorize ediliyor,Hard
+114,Art,"""Düşünen Adam"" heykelini kim yapmıştır?",Michelangelo,Auguste Rodin,Donatello,Bernini,B,"Auguste Rodin, Düşünen Adam heykelini ilk olarak 1880'de yaptı",Hard
+115,Technology,HTTPS ne anlama geliyor?,HyperText Transfer Protocol Güvenli,Yüksek Transfer Metin Protokolü Güvenli,HyperText Taşıma Protokolü Güvenli,Hiper Metin Aktarım Protokolü Standardı,A,"HTTPS, HyperText Transfer Protocol Secure'un kısaltmasıdır",Hard
+116,Science,Parçacıkların aynı anda birden fazla durumda bulunabildiği etkinin adı nedir?,Üst üste binme,Dolaşıklık,Belirsizlik,Tünelcilik,A,Kuantum süperpozisyonu parçacıkların aynı anda birden fazla durumda bulunmasına olanak tanır,Hard
+117,Math,Sin(at)'ın Laplace dönüşümü nedir?,a/(s²+a²),s/(s²+a²),1/(s²+a²),a²/(s²+a²),A,sin(at)'ın Laplace dönüşümü a/(s²+a²)'dır,Hard
+118,Science,Dünya'nın kabuğu ile manto arasındaki sınırın adı nedir?,Moho,Conrad süreksizliği,Gutenberg kopukluğu,Lehmann süreksizliği,A,"Mohorovičić süreksizliği (Moho), kabuğu ve mantoyu ayırır",Hard
+119,Art,Jackson Pollock hangi sanat akımına mensuptur?,Kübizm,Gerçeküstücülük,Soyut Ekspresyonizm,Pop art,C,"Jackson Pollock, Soyut Ekspresyonizm'in önemli bir figürüydü",Hard
+120,Animals,Uçabilen tek memeli hayvan hangisidir?,Yarasa,Uçan sincap,Şeker planörü,Uçan lemur,A,Yarasalar gerçek anlamda sürekli uçuş yeteneğine sahip tek memelilerdir,Easy
+121,Science,Soluduğumuz havanın çoğunluğunu hangi gaz oluşturur?,Oksijen,Karbondioksit,Azot,Argon,C,"Azot, soluduğumuz havanın yaklaşık %78'ini oluşturur",Easy
+122,Math,100 ÷ 4 kaçtır?,20,25,30,35,B,100 bölü 4 eşittir 25,Easy
+123,Sports,Standart bir beyzbol oyununda kaç vuruş vardır?,7,8,9,10,C,Standart bir beyzbol oyununda dokuz vuruş vardır,Easy
+124,Science,Güneş'e en yakın gezegen hangisidir?,Merkür,Venüs,Toprak,Mars,A,Merkür Güneş'e en yakın gezegendir,Easy
+125,Art,Kırmızı ve mavinin karışımıyla hangi renk elde edilir?,Mor,Yeşil,Turuncu,Sarı,A,Kırmızı ve mavi birleşerek moru oluşturur,Easy
+126,Technology,PC kısaltması neyi ifade ediyor?,Kişisel Bilgisayar,Kamu Bilgisayarı,Özel Bilgisayar,Taşınabilir Bilgisayar,A,"PC, Kişisel Bilgisayar anlamına gelir",Easy
+127,Animals,Dünyanın en uzun hayvanı hangisidir?,Fil,Zürafa,Devekuşu,Geyik,B,Zürafa dünyanın en uzun hayvanıdır,Easy
+128,Science,Gümüşün kimyasal sembolü nedir?,Si,Tarım,Sl,Sayın,B,Gümüşün kimyasal sembolü Latince argentum kelimesinden gelen Ag'dir.,Easy
+129,Math,6 × 7 nedir?,35,40,42,49,C,6 ile 7'nin çarpımı 42'ye eşittir,Easy
+130,Sports,Bir dart atışıyla alınabilecek en yüksek puan nedir?,15,20,25,30,B,Üçlü 20 bölümünde bir dartla alınabilecek maksimum puan 20'dir,Easy
+131,Science,Yıldızları ve gezegenleri inceleyen bilim dalına ne ad verilir?,Jeoloji,Biyoloji,Astronomi,Meteoroloji,C,Astronomi gök cisimlerinin ve fenomenlerinin incelenmesidir,Medium
+132,Math,Kenar uzunluğu 6 olan karenin çevresi kaçtır?,18,20,24,30,C,Karenin çevresi = 4 × kenar uzunluğu = 4 × 6 = 24,Medium
+133,Science,Bir tırtılın kelebeğe dönüşme sürecine ne ad verilir?,Evrim,Başkalaşım,Uyum,Mutasyon,B,"Metamorfoz, tırtıldan kelebeğe dönüşüm sürecidir",Medium
+134,Art,"""Guernica"" tablosunu hangi sanatçı yapmıştır?",Salvador Dali,Pablo Picasso,Joan Miró,Francisco Goya,B,"Pablo Picasso, Guernica'yı 1937'de resmetti",Medium
+135,Science,pH ölçeği neyi ölçmek için kullanılır?,Sıcaklık,Basınç,Asitlik,Yoğunluk,C,pH ölçeği bir çözeltinin asitliğini veya alkaliliğini ölçer,Medium
+136,Sports,Amerikan futbolunda bir saha golü kaç puan değerindedir?,1,2,3,6,C,Amerikan futbolunda bir saha golü 3 puan değerindedir,Medium
+137,Animals,Kanguru yavrusuna ne ad verilir?,Yavru,Buzağı,Joey,Kit,C,Yavru kanguruya joey denir,Medium
+138,Math,150'nin %20'si kaçtır?,25,30,35,40,B,"150'nin %20'si = 0,20 × 150 = 30",Medium
+139,Science,Protein katlama kalitesinin kontrolünden hangi organel sorumludur?,Ribozom,Endoplazmik retikulum,Golgi aygıtı,Lizozom,B,"ER, proteinin uygun şekilde katlanmasını sağlayan şaperonlara sahiptir",Medium
+140,Technology,DVD ne anlama geliyor?,Dijital Video Disk,Dijital Çok Yönlü Disk,Hem A hem de B,Dijital Görsel Disk,C,"DVD, Dijital Video Disk veya Dijital Çok Yönlü Disk anlamına gelebilir",Medium
+141,Art,Auguste Rodin hangi sanat türüyle ünlüdür?,Tablo,Heykel,Mimarlık,Fotoğrafçılık,B,Auguste Rodin ünlü bir Fransız heykeltıraştı,Medium
+142,Science,Güneş sistemimizin içinde bulunduğu galaksinin adı nedir?,Andromeda,Samanyolu,Girdap,Üçgen,B,Güneş sistemimiz Samanyolu galaksisinde yer almaktadır,Medium
+143,Math,Dizideki bir sonraki sayı nedir: 2 4 8 16 32?,48,56,64,72,C,"Bu, her terimin iki katına çıktığı geometrik bir dizidir: 32 × 2 = 64",Medium
+144,Science,Bitkilerin yaprakları aracılığıyla su buharını dışarı atma süreci nasıldır?,Fotosentez,Solunum,Terleme,Çimlenme,C,"Terleme, bitki yapraklarından su buharı salınımı sürecidir",Medium
+145,Technology,URL ne anlama geliyor?,Tekdüzen Kaynak Bulucu,Evrensel Kaynak Bulucu,Tekdüzen Referans Bulucu,Evrensel Referans Bulucu,A,"URL, Tekdüzen Kaynak Bulucu anlamına gelir",Medium
+146,Sports,Hangi spor dalında smaç basardınız?,Tenis,Basketbol,Voleybol,Badminton,B,Basketbolda smaç yapılır,Medium
+147,Animals,Penguenlerin doğal olarak yaşadığı tek kıta hangisidir?,Antarktika,Arktik,Avustralya,Güney Amerika,A,Penguenler doğal olarak yalnızca Antarktika ve çevresindeki bölgelerde yaşarlar,Medium
+148,Science,Yer çekiminin sonsuz şiddette olduğu teorik noktanın adı nedir?,Tekillik,Olay ufku,Solucan deliği,Kara delik,A,"Tekillik, kütle çekim kuvvetlerinin sonsuz hale geldiği bir noktadır",Hard
+149,Math,Muhafazakar bir vektör alanının rotasyoneli nedir?,Sıfır,Bir,Sonsuzluk,Tanımsız,A,Muhafazakar bir vektör alanının rotasyoneli her zaman sıfırdır,Hard
+150,Science,Işığın yarı iletkenlerde elektron-delik çiftleri oluşturması sürecinin adı nedir?,Fotoelektrik etki,Fotovoltaik etki,Fotoemisyon,Fotoiletkenlik,B,"Fotovoltaik etki, yarı iletkenlerde elektron-delik çiftleri oluşturan ışığı tanımlar",Hard
+151,Math,Gauss fonksiyonunun Fourier dönüşümü nedir?,Başka bir Gauss,Sinc fonksiyonu,Delta fonksiyonu,Üstel fonksiyon,A,Bir Gauss fonksiyonunun Fourier dönüşümü başka bir Gauss fonksiyonudur,Hard
+152,Science,Güçlü kütle çekim alanlarında zamanın genişlemesine neden olan etkinin adı nedir?,Özel görelilik,Genel görelilik,Yerçekimsel zaman genişlemesi,Lorentz dönüşümü,C,Yerçekimi zaman genişlemesi güçlü yerçekimi alanlarında meydana gelir,Hard
+153,Art,"""Las Meninas"" tablosunu kim çizmiştir?",Francisco Goya,Diego Velázquez,El Greco,Pablo Picasso,B,"Diego Velázquez, 1656'da Las Meninas'ı resmetti",Hard
+154,Technology,SSL ne anlama geliyor?,Güvenli Yuva Katmanı,Güvenli Yuva Katmanı,Güvenlik Soket Katmanı,Güvenli Sistem Katmanı,A,"SSL, Güvenli Yuva Katmanı anlamına gelir",Hard
+155,Science,Stratosfer ile mezosfer arasındaki sınırın adı nedir?,Tropopoz,Stratopoz,Mezopoz,Termopoz,B,"Stratopoz, stratosfer ile mezosfer arasındaki sınırdır",Hard
+156,Math,Tüm 3x3 matrislerin vektör uzayının boyutu nedir?,6,8,9,12,C,3×3 matrislerin uzayı 9 boyutludur (3×3 = 9 bileşen),Hard
+157,Science,Elektromanyetik kuvveti taşıyan parçacığın adı nedir?,Foton,Gluon,W bozonu,Graviton,A,Fotonlar elektromanyetik kuvvetin kuvvet taşıyıcılarıdır,Hard
+158,Art,Sivri kemerler ve uçan payandaların hakim olduğu mimari tarz hangisidir?,Romanesk,Gotik,Barok,Rönesans,B,Gotik mimaride sivri kemerler ve uçan payandalar bulunur,Hard
+159,Science,Ağır atom çekirdeklerinin daha hafif atom çekirdeklerine parçalanması olayına ne ad verilir?,Nükleer füzyon,Nükleer fisyon,Radyoaktif bozunma,Beta bozunumu,B,"Nükleer fisyon, ağır atom çekirdeklerinin daha hafif çekirdeklere bölünmesidir",Hard
+160,Math,dy/dx = y diferansiyel denkleminin çözümü nedir?,y = e^x + C,y = Ce^x,y = x + C,y = Cx,B,dy/dx = y denkleminin çözümü y = Ce^x'tir.,Hard
+161,Science,Kuantum mekaniği ile genel göreliliği birleştiren teorik çerçevenin adı nedir?,Sicim teorisi,Döngü kuantum yerçekimi,M-teorisi,Her şeyin teorisi,A,Sicim teorisi kuantum mekaniği ile genel göreliliği birleştirmeye çalışır,Hard
+162,Art,New York'taki Guggenheim Müzesi'ni kim tasarladı?,Frank Lloyd Wright,Le Corbusier,Mies van der Rohe,Frank Gehry,A,"Frank Lloyd Wright, New York'taki Guggenheim Müzesi'ni tasarladı",Hard
+163,Science,Yer çekimini sağlayan teorik parçacığın adı nedir?,Graviton,Higgs bozonu,Foton,Gluon,A,"Graviton, kütle çekim kuvvetini ileten teorik parçacıktır",Hard
+164,Math,[[1 2] [3 4]] matrisinin karakteristik polinomu nedir?,λ²-5λ-2,λ²-5λ+2,λ²+5λ-2,λ²+5λ+2,A,Karakteristik polinom det(A-λI) = λ²-5λ-2'dir,Hard
+165,Science,Kara deliğin etrafındaki uzay ve zamanın ciddi şekilde bozulduğu bölgenin adı nedir?,Foton küresi,Ergosfer,Olay ufku,Schwarzschild yarıçapı,B,"Ergosfer, uzay-zamanın dönen bir kara delik etrafında sürüklendiği bölgedir",Hard
+166,Art,"""Uzaydaki Kuş"" heykelini hangi sanatçı yapmıştır?",Henry Moore,Alberto Giacometti,Constantin Brâncuși,Alexander Calder,C,Constantin Brâncuși Uzaydaki Kuş heykelini yarattı,Hard
+167,Science,Parçacıkların enerji bariyerlerini aşarak tünelleme yapması olayına ne ad verilir?,Kuantum tünelleme,Dalga-parçacık ikiliği,Belirsizlik ilkesi,Kuantum dolanıklığı,A,"Kuantum tünelleme, parçacıkların enerji bariyerlerinden geçmesine olanak tanır",Hard
+168,Math,Torusun cinsi nedir?,0,1,2,3,B,Bir torusun cinsi 1'dir (bir delik),Hard
+169,Science,Dünya'nın dış çekirdeği ile iç çekirdeği arasındaki sınırın adı nedir?,Gutenberg kopukluğu,Mohorovičić kesintisi,Lehmann süreksizliği,Conrad süreksizliği,C,Lehmann süreksizliği dış ve iç çekirdeği ayırır,Hard
+170,Art,"""Venüs'ün Doğuşu"" tablosunu kim çizmiştir?",Leonardo da Vinci,Michelangelo,Sandro Botticelli,Raphael,C,"Sandro Botticelli, Venüs'ün Doğuşu tablosunu 1485 civarında çizdi",Hard
+171,Science,Teorik minimum sıcaklığın adı nedir?,Mutlak sıfır,Kelvin sıfır,Termal denge,Kritik nokta,A,"Mutlak sıfır, 0 Kelvin'deki teorik minimum sıcaklıktır",Hard
+172,Math,Cantor kümesinin Hausdorff boyutu nedir?,0,1,günlük(2)/günlük(3),2,C,Cantor kümesinin Hausdorff boyutu log(2)/log(3)'tür,Hard
+173,Science,Işığın kütleli cisimlerin çekim alanı tarafından bükülmesiyle oluşan etkinin adı nedir?,Yerçekimi merceklenmesi,Kırmızıya kayma,Maviye dönüş,Paralaks,A,"Kütle çekimsel merceklenme, ışığın büyük kütleli nesneler tarafından bükülmesidir",Hard
+174,Art,Sidney Opera Binası'nı kim tasarladı?,Frank Lloyd Wright,Le Corbusier,Jørn Utzon,Frank Gehry,C,Jørn Utzon Sidney Opera Binası'nı tasarladı,Hard
+175,Technology,Web geliştirmede kullanımıyla bilinen ve Brendan Eich tarafından yaratılan programlama dili hangisidir?,Python,JavaScript,Yakut,PHP,B,"JavaScript, 1995 yılında Brendan Eich tarafından oluşturuldu ve web geliştirme için olmazsa olmazdır",Easy
+176,Science,Işığın boşluktaki hızı nedir?,Saniyede 186000 mil,Saniyede 299792 kilometre,Saniyede 300000 kilometre,Saniyede 186282 mil,D,Işığın vakumdaki hızı yaklaşık olarak saniyede 186282 mil veya saniyede 299792458 metredir,Medium
+177,Math,x²'nin türevi nedir?,X,2x,x²,2,B,x²'nin x'e göre türevi kuvvet kuralı kullanılarak 2x'tir,Easy
+178,Technology,API ne anlama geliyor?,Gelişmiş Programlama Arayüzü,Uygulama Programlama Arayüzü,Otomatik Süreç Entegrasyonu,Uygulama Süreci Arayüzü,B,"API, farklı yazılımların birbirleriyle iletişim kurmasını sağlayan Uygulama Programlama Arayüzü anlamına gelir",Easy
+179,Science,Hücrenin enerji santrali nedir?,Çekirdek,Ribozom,Mitokondri,Golgi aygıtı,C,Mitokondriler hücrenin ATP enerjisinin çoğunu üretir,Easy
+180,Sports,Oyun sırasında her takımda basketbol sahasında kaç oyuncu bulunur?,4,5,6,7,B,"Basketbol, ​​sahada her takımda 5 oyuncuyla oynanır",Easy
+181,Technology,TikTok uluslararası olarak hangi yıl piyasaya sürüldü?,2016,2017,2018,2019,C,"TikTok, 2018 yılında Musical.ly ile birleşerek uluslararası alanda faaliyete geçti",Easy
+182,Science,Sofra tuzunun kimyasal formülü nedir?,NaCl,KCl,CaCl₂,MgCl₂,A,"Sofra tuzu, NaCl formülüne sahip sodyum klorürdür",Easy
+183,Math,Karmaşık sayılarda i² nedir?,-1,1,0,Ben,A,"Karmaşık sayılarda i, i² = -1 olan sanal birimdir",Medium
+184,Technology,GPU ne anlama geliyor?,Genel İşlem Birimi,Grafik İşlem Birimi,Grafik Performans Birimi,Oyun İşleme Birimi,B,"GPU, grafikleri işlemek için kullanılan Grafik İşleme Birimi anlamına gelir",Easy
+185,Science,Dünya atmosferinde en bol bulunan gaz hangisidir?,Oksijen,Karbondioksit,Azot,Argon,C,"Azot, Dünya atmosferinin yaklaşık %78'ini oluşturur",Easy
+186,Math,e (Euler sayısı)'nın değeri yaklaşık olarak nedir?,2.618,2.718,3.142,1.618,B,Euler sayısı e yaklaşık olarak 2.71828'dir,Medium
+187,Science,DNA ne anlama geliyor?,Deoksiribonükleik asit,Dioksiribonükleik asit,Deoksinükleik asit,Deoksiriboz nükleik asit,A,"DNA, genetik bilgiyi taşıyan Deoksiribonükleik asit anlamına gelir",Easy
+188,Technology,Instagram'ın sahibi hangi şirkettir?,Twitter,Meta,Google,Microsoft,B,Meta (eski adıyla Facebook) 2012 yılında Instagram'ı satın aldı,Easy
+189,Sports,Amerikan futbolunda bir touchdown kaç puan değerindedir?,3,6,7,9,B,Amerikan futbolunda bir gol 6 puan değerindedir,Easy
+190,Science,25°C'deki saf suyun pH değeri nedir?,6,6.5,7,7.5,C,Saf suyun 25°C'de nötr pH'ı 7'dir,Easy
+191,Math,Bir üçgenin açılarının toplamı kaçtır?,90 derece,180 derece,270 derece,360 derece,B,Herhangi bir üçgenin tüm açılarının toplamı her zaman 180 derecedir,Easy
+192,Technology,HTML ne anlama geliyor?,Hiper Metin İşaretleme Dili,Yüksek Teknoloji Modern Dil,Hyper Transfer İşaretleme Dili,Ana Araç İşaretleme Dili,A,"HTML, web sayfaları oluşturmak için kullanılan Hiper Metin İşaretleme Dili anlamına gelir",Easy
+193,Science,Kızıl Gezegen olarak bilinen gezegen hangisidir?,Venüs,Mars,Jüpiter,Satürn,B,"Mars, yüzeyindeki demir oksit nedeniyle Kızıl Gezegen olarak adlandırılır",Easy
+194,Math,2'nin 10'uncu kuvveti kaçtır?,512,1024,2048,4096,B,2¹⁰ 1024'e eşittir,Easy
+195,Technology,Makine öğrenimi ve veri bilimi alanında bilinen programlama dili hangisidir?,JavaScript,Python,C++,Cava,B,"Python, makine öğrenimi ve veri bilimi için en popüler dildir",Easy
+196,Science,Maddenin en küçük birimi nedir?,Molekül,Atom,Kuark,Elektron,C,"Kuarklar, protonları ve nötronları oluşturan bilinen en küçük parçacıklardır",Hard
+197,Sports,Bir maraton kaç mil uzunluğundadır?,20.1,22.5,26.2,30.0,C,"Bir maraton 26,2 mil veya 42,195 kilometredir",Easy
+198,Technology,iPhone ilk olarak hangi yıl piyasaya sürüldü?,2005,2006,2007,2008,C,"İlk iPhone, Apple tarafından 2007 yılında piyasaya sürüldü",Easy
+199,Science,Suyun deniz seviyesinde kaynama noktası kaç santigrat derecedir?,90°C,95°C,100°C,105°C,C,Su deniz seviyesinde 100°C veya 212°F'de kaynar,Easy
+200,Math,İkinci dereceden denklemin diskriminant formülü nedir?,b² - 4ac,b² + 4ac,-b ± √(b² - 4ac),2a,A,"Ayırıcı b² - 4ac, ikinci dereceden denklem köklerinin doğasını belirler",Medium
+201,Technology,Twitter/X'te bir Tweet'in maksimum karakter sınırı nedir?,140,280,500,1000,B,"Twitter, 2017 yılında karakter sınırını 140'tan 280'e çıkardı",Easy
+202,Science,Komodo ejderi ne tür bir hayvandır?,Yılan,Kertenkele,Timsah,Dinozor,B,"Komodo ejderi, yaşayan en büyük kertenkele türüdür",Easy
+203,Math,π (pi) sayısının iki ondalık basamağa kadar değeri nedir?,3.12,3.14,3.16,3.18,B,Pi sayısı yaklaşık olarak 3.14159'dur... 3.14'e yuvarlanır,Easy
+204,Technology,VPN ne anlama geliyor?,Sanal Özel Ağ,Sanal Kamu Ağı,Doğrulanmış Özel Ağ,Sanal Korumalı Ağ,A,"VPN, güvenli internet bağlantıları sağlayan Sanal Özel Ağ anlamına gelir",Easy
+205,Science,İnsan kalbi kaç odacıklıdır?,2,3,4,5,C,İnsan kalbinin dört odası vardır: iki kulakçık ve iki karıncık,Easy
+206,Sports,Olimpiyat bayrağında kaç halka vardır?,3,4,5,6,C,Olimpiyat bayrağında kıtaları temsil eden 5 adet iç içe geçmiş halka bulunmaktadır.,Easy
+207,Technology,Web geliştirmede CSS ne anlama gelir?,Bilgisayar Stil Sayfaları,Basamaklı Stil Sayfaları,Yaratıcı Stil Sayfaları,Kodlanmış Stil Sayfaları,B,"CSS, web sayfalarını biçimlendirmek için kullanılan Basamaklı Stil Sayfaları anlamına gelir",Easy
+208,Science,Bir yıldızın rengini ne belirler?,Sıcaklık,Boyut,Yaş,Mesafe,A,Bir yıldızın yüzey sıcaklığı onun renk spektrumunu belirler,Easy
+209,Math,144 sayısının karekökü nedir?,10,11,12,13,C,144'ün karekökü 12'dir çünkü 12 × 12 = 144,Easy
+210,Technology,YouTube hangi yıl kuruldu?,2004,2005,2006,2007,B,"YouTube, Şubat 2005'te üç eski PayPal çalışanı tarafından kuruldu",Easy
+211,Science,Bitkilerin kendi besinlerini üretme süreci nasıldır?,Solunum,Fotosentez,Fermantasyon,Sindirim,B,"Fotosentez, bitkilerde ışık enerjisini kimyasal enerjiye dönüştürür",Easy
+212,Math,8 kenarı olan çokgenin adı nedir?,Altıgen,Yedigen,Sekizgen,Nonagon,C,"Sekizgen, 8 kenarı olan bir çokgendir",Easy
+213,Technology,Android işletim sistemini hangi şirket geliştirdi?,Elma,Google,Microsoft,SAMSUNG,B,"Android, başlangıçta Android Inc tarafından yaratılmış olsa da Google tarafından geliştirilmiştir.",Easy
+214,Science,Mantarları inceleyen bilim dalına ne ad verilir?,Mantar bilimi,Mikoloji,Biyoloji,Botanik,B,"Mikoloji, mantarların incelenmesiyle ilgilenen biyoloji dalıdır",Medium
+215,Sports,Bir futbol takımında sahada kaç oyuncu bulunur?,9,10,11,12,C,Futbol takımlarında kaleci dahil sahada 11 oyuncu bulunur,Easy
+216,Technology,IoT ne anlama geliyor?,Teknolojinin İnterneti,Nesnelerin İnterneti,Entegre Çevrimiçi Teknoloji,Dahili İşletim Teknolojisi,B,"IoT, bağlı akıllı cihazları ifade eden Nesnelerin İnterneti anlamına gelir",Easy
+217,Science,Güneş ışığına maruz kalındığında cilt hangi vitamini üretir?,A vitamini,C vitamini,D vitamini,E vitamini,C,Cilt UV ışığına maruz kaldığında vücut D vitamini üretir,Easy
+218,Math,200'ün %15'i kaçtır?,15,20,25,30,D,"200'ün %15'i 30'dur (0,15 × 200 = 30)",Easy
+219,Technology,Bilgisayarlarda RAM ne anlama gelir?,Rastgele Erişimli Bellek,Okuma Erişim Belleği,Hızlı Erişim Belleği,Gerçek Aktif Bellek,A,"RAM, geçici veri depolama için kullanılan Rastgele Erişimli Bellek anlamına gelir",Easy
+220,Science,Kimyasal sembolü Fe olan element hangisidir?,Florin,Ütü,Fermium,Fransiyum,B,"Fe, Latince adı ferrum olan Demir'in kimyasal sembolüdür",Easy
+221,Math,5'in (5!) faktöriyeli nedir?,60,100,120,150,C,5! = 5 × 4 × 3 × 2 × 1 = 120,Medium
+222,Technology,Hangi sosyal medya platformu kaybolan mesajlarla tanınıyor?,Instagram,Snapchat,TikTok,WhatsApp,B,"Snapchat, kaybolan mesajlar ve hikayeler konseptine öncülük etti",Easy
+223,Science,Yetişkin bir insan vücudunda kaç kemik vardır?,186,206,226,246,B,Yetişkin bir insanda büyüme sırasında oluşan bir kaynaşmadan sonra 206 kemik bulunur,Easy
+224,Sports,Hangi spor dalında smaç basardınız?,Futbol,Beyzbol,Basketbol,Voleybol,C,"Slam dunk, topun çemberin içinden geçirilerek atıldığı bir basketbol vuruşudur",Easy
+225,Technology,Sun Microsystems hangi programlama dilini geliştirdi?,Python,Cava,C#,Yakut,B,"Java, 1995 yılında Sun Microsystems tarafından geliştirildi",Easy
+226,Science,Dünya atmosferinin yaklaşık %21'ini hangi gaz oluşturur?,Azot,Oksijen,Karbondioksit,Argon,B,"Oksijen, Dünya atmosferinin yaklaşık %21'ini oluşturur",Easy
+227,Math,Fibonacci dizisindeki bir sonraki sayı nedir: 0 1 1 2 3 5 8?,11,12,13,14,C,Fibonacci dizisi önceki iki sayıyı toplar: 5 + 8 = 13,Medium
+228,Technology,HTTPS ne anlama geliyor?,Hiper Metin Aktarım Protokolü Güvenli,Yüksek Transfer Teknolojisi Protokolü Güvenli,Hiper Metin Teknik Protokolü Güvenli,Ana Sayfa Metin Aktarım Protokolü Güvenli,A,"HTTPS, Hyper Text Transfer Protocol Secure'un kısaltmasıdır",Easy
+229,Science,Dünyanın en sert doğal maddesi nedir?,Grafit,Kuvars,Elmas,Titanyum,C,"Elmas, doğada bulunan en sert maddedir",Easy
+230,Math,Yarıçapı 5 olan bir dairenin alanı nedir?,15.7,25π,31.4,78.5,B,"Bir dairenin alanı πr²'dir, yani yarıçapı 5 olduğunda 25π veya yaklaşık 78,5'tir.",Medium
+231,Technology,Go programlama dilini hangi şirket yarattı?,Facebook,Google,Microsoft,Amazon,B,"Google, Go programlama dilini 2009 yılında oluşturdu",Medium
+232,Science,Gezegenleri Güneş'in yörüngesinde tutan kuvvet nedir?,Manyetik kuvvet,Merkezkaç kuvveti,Yer çekimi,Nükleer kuvvet,C,"Yerçekimi, gezegenlerin Güneş etrafında dönmesini sağlayan kuvvettir",Easy
+233,Sports,Yılda kaç Grand Slam tenis turnuvası düzenleniyor?,3,4,5,6,B,"4 Grand Slam turnuvası vardır: Avustralya Açık, Fransa Açık, Wimbledon ve ABD Açık",Easy
+234,Technology,Yapay zeka ne anlama geliyor?,Otomatik Zeka,Yapay Zeka,Gelişmiş Zeka,Uygulamalı Zeka,B,"AI, Yapay Zeka anlamına gelir",Easy
+235,Science,Suyun kimyasal sembolü nedir?,HO,H₂O,OH₂,H₂O₂,B,"Suyun kimyasal formülü H₂O'dur, yani iki hidrojen atomu ve bir oksijen atomu",Easy
+236,Math,Günah(90°) nedir?,0,"0,5",1,-1,C,90 derecenin sinüsü 1'e eşittir,Medium
+237,Technology,İlk kripto para hangisiydi?,Ethereum,Bitcoin,Litecoin,Dogecoin,B,"Bitcoin, 2009 yılında yaratılan ilk kripto para birimiydi",Easy
+238,Science,Hücresel solunumdan sorumlu organel hangisidir?,Kloroplast,Mitokondri,Çekirdek,Ribozom,B,Mitokondriler ATP enerjisi üretmek için hücresel solunum gerçekleştirir,Easy
+239,Math,1000'in 10 tabanındaki logaritması nedir?,2,3,4,5,B,log₁₀(1000) = 3 çünkü 10³ = 1000,Medium
+240,Technology,LinkedIn hangi şirkete aittir?,Google,Microsoft,Facebook,Amazon,B,"Microsoft, 2016 yılında LinkedIn'i 26,2 milyar dolara satın aldı",Easy
+241,Science,Fahrenheit cinsinden su kaç derecede donar?,0°F,32°F,100°F,212°F,B,Su 32°F veya 0°C'de donar,Easy
+242,Sports,On pin bowling oyununda en yüksek puan kaçtır?,200,250,300,350,C,Bowling'de mükemmel bir oyun 300 puandır (12 strike),Easy
+243,Technology,PDF ne anlama geliyor?,Taşınabilir Belge Biçimi,Kişisel Belge Dosyası,Belge Formatını Yazdır,Kamu Belgesi Dosyası,A,"PDF, Adobe tarafından oluşturulan Taşınabilir Belge Biçimi anlamına gelir",Easy
+244,Science,Hangi gezegenin en çok uydusu vardır?,Toprak,Mars,Jüpiter,Satürn,D,Satürn'ün 2023 itibarıyla 146 bilinen uydusu var,Medium
+245,Math,Altıgenin tüm açılarının toplamı kaçtır?,540°,720°,900°,1080°,B,Altıgenin açılarının toplamı (6-2) × 180° = 720°'dir,Medium
+246,Technology,Hangi programlama dili parantez yerine girinti kullanır?,Cava,Python,JavaScript,C++,B,"Python, parantez yerine kod bloklarını tanımlamak için girinti kullanır",Easy
+247,Science,En yaygın kan grubu hangisidir?,A+,B+,O+,AB+,C,"0 pozitif, dünya çapında en yaygın kan grubudur",Medium
+248,Math,Altın oranın değeri yaklaşık olarak nedir?,1.414,1.618,2.718,3.142,B,"Altın oran (phi) yaklaşık olarak 1,618'dir",Medium
+249,Technology,WhatsApp hangi yıl kuruldu?,2007,2008,2009,2010,C,"WhatsApp, 2009 yılında eski Yahoo çalışanları tarafından kuruldu",Medium
+250,Science,İnsanlarda genellikle kaç kromozom bulunur?,23,46,48,92,B,İnsanlarda genellikle 23 çift halinde 46 kromozom bulunur,Easy
+251,Sports,Standart bir golf turunda kaç delik oynanır?,9,12,18,36,C,Standart bir golf turu 18 delikten oluşur,Easy
+252,Technology,URL ne anlama geliyor?,Evrensel Kaynak Bulucu,Tekdüzen Kaynak Bulucu,Birleşik Kaynak Bağlantısı,Tekdüzen Kaynak Bağlantısı,B,"URL, Tekdüzen Kaynak Bulucu anlamına gelir",Easy
+253,Science,Güneş'ten sonra Dünya'ya en yakın yıldız hangisidir?,Alfa Centauri,Proxima Centauri,Sirius,Betelgeuse,B,"Proxima Centauri, 4,24 ışık yılı uzaklıktaki en yakın yıldızdır",Medium
+254,Math,3³ + 4³ kaçtır?,75,81,91,125,C,3³ + 4³ = 27 + 64 = 91,Medium
+255,Technology,VR ne anlama geliyor?,Sanal Gerçeklik,Video Kaydı,Görsel İşleme,Sanal Yarış,A,"VR, Sanal Gerçeklik anlamına gelir",Easy
+256,Science,Hangi elektromanyetik radyasyon türünün dalga boyu en kısadır?,Radyo dalgaları,Mikrodalgalar,X-ışınları,Gama ışınları,D,Gama ışınları elektromanyetik spektrumdaki en kısa dalga boyuna sahiptir,Medium
+257,Math,Kenar uzunluğu 7 olan karenin çevresi kaçtır?,21,28,35,49,B,Bir karenin çevresi kenar uzunluğunun 4 katıdır: 4 × 7 = 28,Easy
+258,Technology,"Hangi teknoloji şirketinin sloganı ""Kötü olma""dır?",Elma,Google,Microsoft,Facebook,B,"Google'ın sloganı ""Kötü olma"" idi",Easy
+259,Science,Daha basit moleküllerden karmaşık moleküller oluşturan kimyasal tepkime türü hangisidir?,Katabolizma,Anabolizma,Hidroliz,Oksidasyon,B,"Anabolizma, enerji girişi gerektiren karmaşık moleküller oluşturur",Easy
+260,Technology,Blockchain teknolojisi ne yaratıyor?,Merkezi veritabanı,Dağıtılmış defter,Bulut depolama,E-posta sistemi,B,"Blockchain, işlemlerin dağıtılmış bir defterini oluşturur",Medium
+261,Science,Benzer yapıların ilgisiz türlerde ortaya çıkmasını açıklayan mekanizma nedir?,Homoloji,Yakınsak evrim,Iraksak evrim,Genetik sürüklenme,B,"Yakınsak evrim, ilgisiz soylarda benzer özellikler üretir",Easy
+262,Math,Cos(180°)'nin değeri nedir?,-1,0,1,Tanımsız,A,cos(180°) = -1,Medium
+263,Sports,Basketbolda serbest atış kaç sayı değerindedir?,1,2,3,4,A,Basketbolda serbest atış 1 sayı değerindedir,Easy
+264,Technology,Yazılım geliştirmede MVP ne anlama geliyor?,En Değerli Oyuncu,Minimum Uygulanabilir Ürün,Maksimum Değer Protokolü,Ana Sanal Platform,B,"MVP, yazılım geliştirmede Minimum Uygulanabilir Ürün anlamına gelir",Easy
+265,Technology,"Başlangıçta ""Facebook"" olarak adlandırılan sosyal medya platformu hangisidir?",Instagram,Facebook,Twitter,LinkedIn,B,"Facebook, 2004 yılında Harvard'da piyasaya sürüldüğünde başlangıçta ""Facebook"" olarak adlandırılıyordu",Easy
+266,Science,En nadir bulunan kan grubu hangisidir?,O negatif,AB negatif,Rh-sıfır,B negatif,C,"Rh-null kan, dünya çapında 50'den az kişide bulunan en nadir kan türüdür",Hard
+267,Math,27 sayısının küp kökü nedir?,3,4,5,9,A,27'nin küp kökü 3'tür çünkü 3³ = 27,Easy
+268,Technology,NFT ne anlama geliyor?,Değiştirilemez Token,Yeni Finansal Teknoloji,Ağ Dosya Aktarımı,Finansal Olmayan İşlem,A,"NFT, dijital mülkiyette kullanılan Değiştirilemez Token anlamına gelir",Easy
+269,Science,Bir ahtapotun kaç kalbi vardır?,1,2,3,4,C,"Bir ahtapotun üç kalbi vardır - ikisi solungaçlara, biri de vücuda kan pompalar",Medium
+270,Sports,Basketbol potasının çapı kaç inçtir?,16,18,20,22,B,Bir basketbol potasının çapı 18 inçtir,Medium
+271,Math,İkinci dereceden bir denklemin standart biçimi nedir?,balta + b = 0,ax² + bx + c = 0,ax³ + bx² + cx + d = 0,a/x + b = 0,B,İkinci dereceden bir denklemin standart biçimi ax² + bx + c = 0'dır,Easy
+272,Technology,WhatsApp'ın sahibi hangi şirkettir?,Amazon,Meta,Google,Microsoft,B,Meta (eski adıyla Facebook) 2014 yılında WhatsApp'ı satın aldı,Easy
+273,Science,İnsan vücudunun yüzde kaçı sudur?,%50,%60,%70,%80,B,İnsan vücudunun yaklaşık %60'ı sudur,Easy
+274,Math,80'in %25'i kaçtır?,15,20,25,30,B,"80'in %25'i 20'dir (0,25 × 80 = 20)",Easy
+275,Technology,Hangi programlama dili adını bir kahve türünden almaktadır?,Cava,Python,Yakut,İnci,A,"Java programlama dili, adını Java kahvesinden almaktadır",Easy
+276,Science,Suyun donma noktası santigrat derece olarak kaçtır?,0°C,32°C,100°C,212°C,A,Su 0 santigrat derecede donar,Easy
+277,Sports,Uzatmalar olmadan bir futbol maçı kaç dakikadır?,60,80,90,120,C,Standart bir futbol maçı 45 dakikalık iki yarıya bölünmüş 90 dakikadır,Easy
+278,Technology,5G ne anlama geliyor?,Beşinci Nesil,Beş Gigabayt,Hızlı Nesil,Beş Gigahertz,A,"5G, Beşinci Nesil kablosuz teknolojisi anlamına gelir",Easy
+279,Science,İnsülin hangi organ tarafından üretilir?,Karaciğer,Pankreas,Böbrek,Karın,B,Pankreas kan şekerini düzenlemek için insülin üretir,Easy
+280,Math,1/4'ün tersi nedir?,4,1/4,2,1/2,A,1/4'ün tersi 4'tür (kesri çevirin),Easy
+281,Technology,SSS ne anlama geliyor?,Sıkça Sorulan Sorular,Hızlı Erişim Kuyruğu,Dosya Erişim Sorgusu,İlk Sorulan Sorular,A,"SSS, Sıkça Sorulan Sorular anlamına gelir",Easy
+282,Science,Ortalama bir insanın kaç tane tat tomurcuğu vardır?,1000,5000,10000,20000,C,Ortalama bir insanın yaklaşık 10.000 tat tomurcuğu vardır,Medium
+283,Math,Yatay bir doğrunun eğimi nedir?,1,0,-1,Tanımsız,B,Yatay bir çizginin eğimi 0'dır,Easy
+284,Technology,Safari için varsayılan arama motoru hangisidir?,Google,Bing,Yahoo,ÖrdekÖrdekGo,A,"Google, Safari tarayıcıları için varsayılan arama motorudur",Easy
+285,Science,Güneş'in büyük kısmını hangi element oluşturur?,Helyum,Hidrojen,Oksijen,Karbon,B,Güneşin kütlesi yaklaşık %73 oranında hidrojendir,Easy
+286,Sports,Beyzbolda kaç üs vardır?,3,4,5,6,B,Beyzbolda ev vuruşu dahil 4 üs vardır,Easy
+287,Technology,Twitter'ın orijinal karakter sınırı neydi?,100,140,200,280,B,Twitter'ın başlangıçta tweetler için 140 karakter sınırı vardı,Easy
+288,Science,Oda sıcaklığında havadaki sesin hızı nedir?,243 m/s,343 m/s,443 m/s,543 m/s,B,Oda sıcaklığında havadaki ses hızı saniyede yaklaşık 343 metredir,Medium
+289,Math,x'in integrali nedir?,X,x²,x²/2,2x,C,x'in integrali x²/2 + C'dir,Medium
+290,Technology,Ryzen işlemcileri hangi şirket üretiyor?,Intel,AMD,NVIDIA,Qualcomm,B,"AMD, Ryzen işlemci serisini üretiyor",Easy
+291,Science,Gümüşün kimyasal sembolü nedir?,Si,Tarım,Au,Al,B,"Ag, Latince adı argentum olan gümüşün kimyasal sembolüdür.",Easy
+292,Math,7 faktöriyel (7!) nedir?,720,2520,5040,10080,C,7! = 7×6×5×4×3×2×1 = 5040,Medium
+293,Technology,USB-C ne anlama geliyor?,Evrensel Seri Veri Yolu Tip-C,Birleşik Sistem Otobüs-C,Evrensel Depolama Veri Yolu-C,Birleşik Seri Veri Yolu-C,A,"USB-C, Evrensel Seri Veri Yolu Tip-C anlamına gelir",Easy
+294,Science,Güneş ışığının Dünya'ya ulaşması ne kadar sürer?,8 saniye,8 dakika,8 saat,8 gün,B,Güneş ışığının Dünya'ya ulaşması yaklaşık 8 dakika 20 saniye sürer,Easy
+295,Math,0 derecenin kosinüsü nedir?,0,"0,5",1,-1,C,cos(0°) = 1,Medium
+296,Technology,Java programlama dilini hangi şirket yarattı?,Kehanet,Sun Microsystems,Microsoft,IBM,B,"Sun Microsystems, daha sonra Oracle tarafından satın alınan Java'yı yarattı",Medium
+297,Science,Soğumuş lavdan hangi kaya türü oluşur?,Tortul,Metamorfik,Magmatik,Kireçtaşı,C,Magmatik kayaçlar soğuyup katılaşmış magma veya lavdan oluşur,Easy
+298,Sports,Wimbledon'da hangi spor oynanır?,Golf,Kriket,Tenis,Futbol,C,"Wimbledon, dört Grand Slam tenis turnuvasından biridir",Easy
+299,Technology,Netflix hangi yıl kuruldu?,1995,1997,1999,2001,B,"Netflix, 1997 yılında bir DVD kiralama hizmeti olarak kuruldu",Medium
+300,Science,İnsanlar hangi gazı dışarı verir?,Oksijen,Azot,Karbondioksit,Hidrojen,C,İnsanlar solunumun atık ürünü olarak karbondioksit verirler,Easy
+301,Math,Tabanı 10 ve yüksekliği 6 olan bir üçgenin alanı nedir?,30,60,15,45,A,Üçgenin alanı = (1/2) × taban × yükseklik = (1/2) × 10 × 6 = 30,Easy
+302,Technology,ASMR ne anlama geliyor?,Otonom Duyusal Meridyen Tepkisi,İşitsel Duyusal Meridyen Tepkisi,Otonom Ses Meridyen Tepkisi,Otomatik Duyusal Motor Tepkisi,A,"ASMR, Otonom Duyusal Meridyen Tepkisi anlamına gelir",Medium
+303,Science,Mars'ın kaç uydusu var?,0,1,2,4,C,Mars'ın Phobos ve Deimos adında iki küçük uydusu var,Easy
+304,Math,log₂(8) nedir?,2,3,4,8,B,log₂(8) = 3 çünkü 2³ = 8,Medium
+305,Technology,Twitch'in sahibi hangi şirkettir?,Google,Amazon,Microsoft,Facebook,B,"Amazon, Twitch'i 2014 yılında yaklaşık 1 milyar dolara satın aldı",Easy
+306,Science,İnsan vücudundaki en küçük kemik hangisidir?,Uyluk kemiği,Üzengi kemiği,Yarıçap,Falanks,B,Orta kulaktaki üzengi kemiği insan vücudundaki en küçük kemiktir,Medium
+307,Sports,Bir buz hokeyi takımında buzda kaç oyuncu bulunur?,5,6,7,8,B,Buz hokeyi takımlarında kaleci dahil 6 oyuncu bulunur,Easy
+308,Technology,Bilgisayarlarda SSD ne anlama gelir?,Katı Hal Sürücüsü,Süper Hızlı Sürüş,Sistem Depolama Aygıtı,Katı Hal Diski,A,"SSD, Katı Hal Sürücüsü anlamına gelir",Easy
+309,Science,Limon suyunun pH değeri nedir?,2,5,7,9,A,Limon suyunun pH değeri yaklaşık 2'dir ve bu onu çok asidik yapar,Medium
+310,Math,Yarıçapı 10 olan bir çemberin çevresi kaçtır?,10π,20π,30π,40π,B,Çevre = 2πr = 2π(10) = 20π,Easy
+311,Technology,Ekranlarda RGB ne anlama geliyor?,Kırmızı Yeşil Mavi,Gerçek Grafik Tabanı,Rastgele Üretilen Baytlar,Kırmızı Gri Siyah,A,"RGB, ışığın temel renkleri olan Kırmızı Yeşil Mavi anlamına gelir",Easy
+312,Science,Enzimlerin substratlarına özgü olmasının sebebi hangi prensiple açıklanabilir?,İndüklenen uyum,Kilit ve anahtar,Rekabetçi inhibisyon,Allosterik düzenleme,A,İndüklenen uyum modeli enzim-substrat özgüllüğünü açıklar,Medium
+313,Math,Sin(x)'in türevi nedir?,cos(x),-cos(x),günah(x),-günah(x),A,Sin(x)'in türevi cos(x)'tir,Medium
+314,Technology,Hangi mesajlaşma uygulaması varsayılan olarak uçtan uca şifrelemeyi kullanır?,Facebook Messenger,WhatsApp,Instagram DM,Twitter DM,B,"WhatsApp, tüm mesajlar için varsayılan olarak uçtan uca şifreleme kullanır",Easy
+315,Science,Dünya'da gelgitlerin nedeni nedir?,Rüzgâr,Dünya'nın dönüşü,Ay'ın yerçekimi,Okyanus akıntıları,C,"Ay'ın çekim gücü, Dünya'nın gelgitlerine öncelikle neden olur",Easy
+316,Sports,Futbolda hangi renk kart anında oyundan atılmaya neden olur?,Sarı,Kırmızı,Mavi,Siyah,B,"Kırmızı kart, futbol maçından anında atılmaya neden olur",Easy
+317,Technology,Sosyal medyada DM ne anlama geliyor?,Doğrudan Mesaj,Dijital Posta,Veri Mesajı,Doğrudan Posta,A,"DM, sosyal medya platformlarında Doğrudan Mesaj anlamına gelir",Easy
+318,Science,Dünya kabuğunda en bol bulunan metal hangisidir?,Ütü,Alüminyum,Bakır,Gümüş,B,"Alüminyum, Dünya kabuğunda en bol bulunan metaldir",Medium
+319,Math,2⁸ nedir?,128,256,512,1024,B,2⁸ = 256,Easy
+320,Technology,iPhone'u hangi şirket üretti?,SAMSUNG,Elma,Google,Microsoft,B,Apple Inc. iPhone'u yarattı ve üretti,Easy
+321,Science,Karbonun kaç değerlik elektronu vardır?,2,4,6,8,B,Karbonun dış kabuğunda 4 değerlik elektronu vardır,Medium
+322,Math,Kenar uzunluğu 5 olan bir küpün hacmi nedir?,25,75,125,150,C,Bir küpün hacmi = kenar³ = 5³ = 125,Easy
+323,Technology,"Hangi sosyal medya platformunda 24 saat süren ""Hikayeler"" var?",Twitter,LinkedIn,Instagram,Reddit,C,"Instagram, 24 saat sonra kaybolan Hikayeleri popülerleştirdi",Easy
+324,Science,Oksijenin atom numarası nedir?,6,7,8,9,C,Oksijenin atom numarası 8'dir,Easy
+325,Sports,Amerikan futbolunda bir saha golü kaç puan değerindedir?,1,2,3,6,C,Amerikan futbolunda bir saha golü 3 puan değerindedir,Easy
+326,Technology,Animasyonlu resimler için genellikle hangi dosya biçimi kullanılır?,JPG,PNG,GIF,BMP,C,GIF dosyaları animasyonu destekler ve genellikle kısa animasyonlar için kullanılır,Easy
+327,Science,Gerilmiş bir lastik bant ne tür bir enerjiye sahiptir?,Kinetik,Potansiyel,Termal,Kimyasal,B,Gerilmiş bir lastik bant elastik potansiyel enerjiye sahiptir,Easy
+328,Math,10 15 20 25 30'un ortalaması nedir?,18,20,22,25,B,Ortalama = (10+15+20+25+30)/5 = 100/5 = 20,Easy
+329,Technology,Windows'ta metni kopyalayan klavye kısayolu hangisidir?,Ctrl+X,Ctrl+C,Ctrl+V,Ctrl+A,B,"Ctrl+C, Windows'ta kopyalama için klavye kısayoludur",Easy
+330,Science,Güneşe en yakın gezegen hangisidir?,Venüs,Merkür,Toprak,Mars,B,"Merkür, Güneş'e en yakın gezegendir",Easy
+331,Math,45 derecenin tanjantı kaçtır?,0,"0,5",1,2,C,tan(45°) = 1,Medium
+332,Technology,YouTube'un sahibi hangi şirkettir?,Amazon,Google,Microsoft,Facebook,B,"Google, 2006 yılında YouTube'u satın aldı",Easy
+333,Science,İnsan vücudunda kanı hangi organ süzer?,Kalp,Karaciğer,Böbrek,Dalak,C,"Böbrekler, atıkları ve fazla suyu uzaklaştırmak için kanı filtreler",Easy
+334,Sports,Bir golf çantasında bulunmasına izin verilen en fazla sopa sayısı nedir?,12,14,16,18,B,Golfçülerin çantalarında en fazla 14 sopa bulundurmalarına izin verilir,Medium
+335,Technology,QR kodu ne anlama geliyor?,Hızlı Yanıt kodu,Kalite Derecelendirme kodu,Kuantum Okuma kodu,Hızlı Okuma kodu,A,"QR, Hızlı Yanıt Kodu anlamına gelir",Easy
+336,Science,Dünya'da mevsimlerin oluşumuna ne sebep olur?,Güneşe uzaklık,Dünya'nın eğimi,Güneş parlamaları,Ay evreleri,B,"Dünya'nın 23,5 derecelik eksen eğikliği mevsimlerin oluşmasına neden oluyor",Easy
+337,Math,-15'in mutlak değeri nedir?,15,-15,0,30,A,-15'in mutlak değeri 15'tir,Easy
+338,Technology,YouTube'a yüklenen ilk videonun başlığı neydi?,Ben hayvanat bahçesindeyim,Charlie parmağımı ısırdı,Dansın Evrimi,Çikolata Yağmuru,A,"Hayvanat Bahçesinde Ben, 2005 yılında YouTube'a yüklenen ilk videoydu",Medium
+339,Science,Güneş sistemimizde kaç gezegen var?,7,8,9,10,B,Plüton yeniden sınıflandırıldıktan sonra Güneş Sistemimiz 8 gezegene sahip oldu,Easy
+340,Math,23'ten sonraki asal sayı nedir?,25,27,29,31,C,23'ten sonraki asal sayı 29'dur,Medium
+341,Technology,"""BeReal"" bildirimleriyle bilinen uygulama hangisidir?",Gerçek Ol,Snapchat,Instagram,TikTok,A,"BeReal, gerçek fotoğraflar yayınlamak için günlük bildirimler gönderiyor",Easy
+342,Science,Periyodik tablodaki en yoğun element hangisidir?,Yol göstermek,Altın,Osmiyum,Uranyum,C,"Osmiyum, doğada bulunan en yoğun elementtir",Hard
+343,Sports,Standart bir beyzbol oyununda kaç vuruş vardır?,7,8,9,10,C,Standart bir beyzbol oyunu 9 vuruştan oluşur,Easy
+344,Technology,IoT cihazı genellikle nereye bağlanır?,Yalnızca Bluetooth,İnternet,Elektrik şebekesi,Uydu,B,IoT (Nesnelerin İnterneti) cihazları internete bağlanır,Easy
+345,Science,İnsan vücudu hangi vitamini üretebilir?,A vitamini,C vitamini,D vitamini,E vitamini,C,Vücut güneş ışığına maruz kaldığında D vitamini üretebilir,Easy
+346,Math,250'nin %40'ı kaçtır?,80,90,100,110,C,"250'nin %40'ı = 0,40 × 250 = 100",Easy
+347,Technology,PNG'nin açılımı nedir?,Taşınabilir Ağ Grafikleri,Resim Ağ Grafikleri,Genel Ağ Grafikleri,Taşınabilir Yeni Grafikler,A,"PNG, Taşınabilir Ağ Grafikleri anlamına gelir",Medium
+348,Science,Bir kuşun kalbi genellikle kaç odacıklıdır?,2,3,4,5,C,"Kuşların, memeliler gibi dört odacıklı kalpleri vardır",Medium
+349,Math,İlk 10 pozitif tam sayının toplamı kaçtır?,45,50,55,60,C,Toplam = (10 × 11) / 2 = 55,Medium
+350,Technology,Gmail'i hangi şirket yarattı?,Yahoo,Microsoft,Google,Elma,C,"Google, 2004 yılında Gmail'i piyasaya sürerek yarattı",Easy
+351,Science,Nöronların sinaptik bağlantıları güçlendirmesini sağlayan süreç hangisidir?,Apoptozis,Uzun vadeli güçlendirme,Miyelinizasyon,Nörogenez,B,"Uzun vadeli güçlendirme, sık kullanılan sinapsları güçlendirir",Medium
+352,Sports,Hokey diski hangi şekle sahiptir?,Kare,Daire,Oval,Altıgen,B,Bir hokey diski daireseldir (3B'de silindiriktir),Easy
+353,Technology,Instagram'ın orijinal adı neydi?,Fotogram,Burbn,InstaFotoğraf,PicShare,B,"Instagram, fotoğraf paylaşımına geçmeden önce başlangıçta Burbn olarak adlandırılıyordu",Hard
+354,Technology,CPU ne anlama geliyor?,Merkezi İşlem Birimi,Bilgisayar İşlem Birimi,Merkezi Program Birimi,Çekirdek İşlem Birimi,A,"CPU, bilgisayarın beyni olan Merkezi İşlem Birimi anlamına gelir",Easy
+355,Science,İnsan vücudundaki en sert madde hangisidir?,Kemik,Diş minesi,Kıkırdak,Tırnaklar,B,Diş minesi insan vücudundaki en sert maddedir,Easy
+356,Math,2x + 6 = 14 ise x'in değeri nedir?,3,4,5,6,B,2x + 6 = 14 yani 2x = 8 dolayısıyla x = 4,Easy
+357,Technology,CAPTCHA ne anlama geliyor?,Bilgisayar Otomatik Kamu Turing testi,Bilgisayarları ve İnsanları Ayırmak İçin Tamamen Otomatik Kamu Turing Testi,Halkın Bilgisayara Erişimine İzin Verilemez,Bilgisayar ve Kişi Testi Kimlik Doğrulaması,B,"CAPTCHA, insanları botlardan ayırt etmek için kullanılan bir testtir",Hard
+358,Science,Periyodik tabloda kaç element vardır?,108,118,128,138,B,Periyodik tabloda şu anda 118 element bulunmaktadır,Medium
+359,Sports,Bowling'de üst üste üç strike'a ne ad verilir?,Çarpmak,Türkiye,Kartal,Kıyamamak,B,Bowlingde üst üste üç strike'a turkey denir,Medium
+360,Math,3 7 9 15 20 sayısının medyanı nedir?,7,9,11,15,B,"Ortanca, 9 olarak sıralandığında ortadaki değerdir.",Easy
+361,Technology,GeForce ekran kartlarını hangi şirket üretiyor?,AMD,Intel,NVIDIA,ASUS,C,"NVIDIA, GeForce grafik kartı serisini üretiyor",Easy
+362,Science,Hangi kan hücreleri enfeksiyonla savaşır?,Kırmızı kan hücreleri,Beyaz kan hücreleri,Trombositler,Plazma hücreleri,B,Beyaz kan hücreleri enfeksiyonlarla savaşan bağışıklık sisteminin bir parçasıdır,Easy
+363,Math,Bir dairenin alan formülü nedir?,2πr,πr²,πr,2πr²,B,"Bir dairenin alanı πr²'dir, burada r yarıçaptır",Easy
+364,Technology,Mobil ağlarda LTE ne anlama geliyor?,Uzun Vadeli Evrim,Sınırlı Süreli Değişim,Yerel İletim Geliştirme,Düşük İletim Enerjisi,A,"LTE, 4G ağlarında Uzun Vadeli Evrim anlamına gelir",Medium
+365,Science,Gazozun köpürmesini sağlayan gaz hangisidir?,Oksijen,Azot,Karbondioksit,Helyum,C,Sıvıda çözünen karbondioksit karbonatlaşmaya neden olur,Easy
+366,Sports,Bir voleybol takımında sahada kaç oyuncu bulunur?,4,5,6,7,C,Voleybol takımlarında aynı anda sahada 6 oyuncu bulunur,Easy
+367,Technology,Kahve fincanı logosu hangi programlama dilini temsil eder?,Python,Cava,JavaScript,C++,B,Java logosu olarak bir kahve fincanı kullanıyor,Easy
+368,Science,Atomun merkezine ne ad verilir?,Elektron,Çekirdek,Proton,Çekirdek,B,"Çekirdek, proton ve nötronları içeren bir atomun merkezidir",Easy
+369,Math,15² nedir?,200,215,225,250,C,15² = 15 × 15 = 225,Easy
+370,Technology,AR teknolojide ne anlama geliyor?,Artırılmış Gerçeklik,Yapay Gerçeklik,Gelişmiş Gerçeklik,Otomatik Gerçeklik,A,"AR, gerçek dünya üzerine dijital unsurların bindirildiği Artırılmış Gerçeklik anlamına gelir",Easy
+371,Science,İnsan sperm veya yumurta hücresinde kaç kromozom bulunur?,23,46,22,44,A,İnsan cinsiyet hücreleri (gametleri) normal miktarının yarısı kadar 23 kromozom içerir,Medium
+372,Math,Doğrusal bir denklemin eğim-kesişim formu nedir?,ax + by = c,y = mx + b,x = benim + b,y² = mx + b,B,Eğim-kesişim formu y = mx + b'dir; burada m eğimdir ve b y-kesişimidir.,Easy
+373,Technology,Oculus VR'ı hangi şirket satın aldı?,Google,Meta,Microsoft,Elma,B,"Meta (o zamanki adıyla Facebook), 2014 yılında Oculus VR'ı satın aldı",Easy
+374,Science,Güneş sistemimizdeki en küçük gezegen hangisidir?,Plüton,Merkür,Mars,Venüs,B,"Merkür, güneş sistemimizdeki en küçük gezegendir",Easy
+375,Sports,On pin bowling oyununda elde edilebilecek en yüksek skor nedir?,200,250,300,350,C,Bowlingde mükemmel bir oyun 300 puan alır (12 ardışık strike),Easy
+376,Technology,İlk seri üretim elektrikli otomobil hangisiydi?,Nissan Leaf,Tesla Roadster,Chevrolet Volt,Toyota Prius,A,"Nissan Leaf, seri üretilen ilk tamamen elektrikli otomobildi",Medium
+377,Science,İnsanlar hangi tür elektromanyetik radyasyonu görebilir?,Ultraviyole,Görünür ışık,Kızılötesi,X-ışınları,B,İnsanlar yalnızca elektromanyetik spektrumdaki görünür ışığı görebilirler,Easy
+378,Math,Beşgenin tüm açılarının toplamı kaçtır?,360°,450°,540°,720°,C,Beşgenin açılarının toplamı = (5-2) × 180° = 540°,Medium
+379,Technology,HTTP ne anlama geliyor?,Hiper Metin Aktarım Protokolü,Yüksek Teknoloji Transfer Protokolü,Hiper Transfer Metin Protokolü,Ana Sayfa Metin Aktarım Protokolü,A,"HTTP, Hiper Metin Aktarım Protokolü anlamına gelir",Easy
+380,Science,Hangi gezegen yan döner?,Venüs,Uranüs,Neptün,Satürn,B,Uranüs yaklaşık 98 derecelik bir açıyla yan tarafına doğru döner,Medium
+381,Math,log₁₀(1) değeri nedir?,0,1,10,tanımsız,A,1'in herhangi bir tabandaki logaritması her zaman 0'dır,Medium
+382,Technology,Slack'i hangi şirket kurdu?,Microsoft,Slack Teknolojileri,Google,Amazon,B,"Slack Technologies, Salesforce tarafından satın alınmadan önce Slack'i yarattı",Easy
+383,Science,Hücre bölünme sürecine ne ad verilir?,Mitoz,Mayoz,Hem A hem de B,Sentez,C,"Hem mitoz hem de mayoz, hücre bölünmesinin bir türüdür",Medium
+384,Sports,NBA şut saati ne kadardır?,20 saniye,24 saniye,30 saniye,35 saniye,B,NBA şut saati 24 saniyedir,Easy
+385,Technology,Windows'ta ekran görüntüsü almak için hangi klavye tuşu kullanılır?,Ekran Görüntüsü,F12,Kaydırma Kilidi,Duraklat,A,"Ekran Görüntüsü Alma (PrtScn), Windows'ta ekran görüntüleri yakalar",Easy
+386,Science,Safra hangi organda depolanır?,Karın,Karaciğer,Safra kesesi,Pankreas,C,Safra kesesi karaciğer tarafından üretilen safrayı depolar,Medium
+387,Math,Karmaşık sayılarda i⁴ nedir?,Ben,-Ben,1,-1,C,i⁴ = (i²)² = (-1)² = 1,Medium
+388,Technology,İlk kısa mesaj hangi yıl gönderildi?,1989,1992,1995,1998,B,İlk SMS mesajı 1992'de gönderildi,Medium
+389,Science,Bitkilerin yerçekimine tepki vermesini sağlayan süreç nedir?,Fototropizm,Jeotropizm,Tigmotropizm,Kemotropizm,B,"Jeotropizm, bitkilerin yer çekimini algılamasını ve buna tepki vermesini sağlar",Easy
+390,Math,Veri setindeki mod nedir: 2 3 3 4 5 5 5 6?,3,4,5,6,C,"Mod, en sık görüldüğü için 5'tir (3 kez)",Easy
+391,Technology,Mozilla'nın geliştirdiği tarayıcı hangisidir?,Krom,Firefox,Safari,Kenar,B,"Mozilla Firefox, Mozilla Vakfı tarafından geliştirilmiştir",Easy
+392,Science,Ortası kenarlarından daha kalın olan lens türü hangisidir?,İçbükey,Dışbükey,Bifokal,Silindirik,B,"Dışbükey mercek, ortada daha kalındır ve ışığı bir araya toplar",Easy
+393,Sports,"Hangi sporda ""love"" ve ""deuce"" terimleri kullanılır?",Badminton,Tenis,Kabak,Masa tenisi,B,"Tenis sıfır için sevgiyi, 40-40 için deuce'u kullanır",Easy
+394,Technology,P2P ne anlama geliyor?,Oynamak İçin Öde,Eşler arası,Noktadan Noktaya,Kişiden Kişiye,B,"P2P, Peer to Peer ağ oluşturma anlamına gelir",Easy
+395,Science,Hava olaylarını inceleyen bilim dalına ne ad verilir?,Jeoloji,Meteoroloji,İklimbilim,Hidroloji,B,"Meteoroloji, hava olaylarının bilimsel çalışmasıdır",Easy
+396,Math,%30 kesir olarak ifade edildiğinde kaçtır?,1/3,3/10,1/30,3/100,B,%30 = 30/100 = 3/10,Easy
+397,Technology,NFC ne anlama geliyor?,Yakın Alan İletişimi,Yeni Dosya Sıkıştırma,Ağ Dosya Denetimi,Yakın Frekans Bağlantısı,A,"NFC, temassız ödemelerde kullanılan Yakın Alan İletişimi anlamına gelir",Easy
+398,Science,İnsan kalbinde kaç tane ventrikül vardır?,1,2,3,4,B,İnsan kalbinin iki ventrikülü vardır (sol ve sağ),Easy
+399,Math,y = 3x + 7'nin y eksenini kestiği nokta nedir?,3,7,10,21,B,Y = mx + b formunda y-kesişimi b'dir ve bu da 7'dir.,Easy
+400,Technology,Zoom'u hangi şirket geliştirdi?,Cisco,Microsoft,Zoom Video İletişim,Google,C,"Zoom Video Communications, Zoom platformunu geliştirdi",Easy
+401,Science,Hem ot hem et yiyen hayvanlara ne ad verilir?,Etobur,Otçul,Hepçil,Böcekçil,C,Hepçiller hem bitkisel hem de hayvansal maddeleri yerler,Easy
+402,Sports,Bir buz hokeyi maçında kaç periyot vardır?,2,3,4,5,B,Buz hokeyi maçlarında üç adet 20 dakikalık periyot vardır,Easy
+403,Technology,4K çözünürlük ne anlama geliyor?,4000 piksel yükseklik,4000 piksel genişlik,4096 piksel genişlik,4 bin renk,C,4K genellikle yaklaşık 4000 piksel yatay çözünürlüğü ifade eder,Medium
+404,Science,Kuvvetin SI birimi nedir?,Joule,Newton,Pascal,Watt,B,"Newton (N), kuvvetin SI birimidir",Easy
+405,Math,12 ve 18'in en büyük ortak böleni nedir?,2,3,6,9,C,12 ve 18'in EBOB'u 6'dır,Medium
+406,Technology,GUI ne anlama geliyor?,Grafiksel Kullanıcı Arayüzü,Genel Kullanıcı Arayüzü,Grafiksel Evrensel Arayüz,Küresel Kullanıcı Arayüzü,A,"GUI, Grafiksel Kullanıcı Arayüzü anlamına gelir",Easy
+407,Science,Suyun kaynama noktası Fahrenheit cinsinden nedir?,100°F,180°F,212°F,220°F,C,Su deniz seviyesinde 212°F'de kaynar,Easy
+408,Math,Cos(90°) nedir?,0,"0,5",1,-1,A,90 derecenin kosinüsü 0'dır,Medium
+409,Technology,TikTok'un sahibi hangi şirkettir?,Tencent,ByteDance,Alibaba,Baidu,B,"ByteDance, TikTok'un sahibi olan Çinli şirkettir",Easy
+410,Science,Okyanus gelgitlerine ne sebep olur?,Rüzgar desenleri,Dünya dönüşü,Ay'ın yerçekimi,Sıcaklık değişiklikleri,C,Ay'ın çekim gücü okyanus gelgitlerinin temel nedenidir,Easy
+411,Sports,Karatede hangi renk kemer en yüksektir?,Kahverengi,Kırmızı,Siyah,Beyaz,C,Siyah kuşak geleneksel olarak karatedeki en yüksek rütbedir,Easy
+412,Technology,Yaygın olarak kullanılan ilk web tarayıcısı hangisiydi?,İnternet Explorer,Netscape,Mozaik,Firefox,C,"Mosaic, yaygın olarak kullanılan ilk grafiksel web tarayıcısıydı",Hard
+413,Science,İnsanlarla şempanzeler arasında DNA'nın yüzde kaçı ortaktır?,%85,%90,%95,%98,D,"İnsanlar, şempanzelerle DNA'larının yaklaşık %98'ini paylaşıyor",Medium
+414,Math,e^x'in türevi nedir?,e^x,xe^(x-1),e^(x-1),ln(x),A,e^x'in türevi e^x'tir,Medium
+415,Technology,BIOS ne anlama geliyor?,Temel Giriş Çıkış Sistemi,İkili Giriş Çıkış Sistemi,Önyükleme Giriş Çıkış Sistemi,Temel Giriş Çıkış Sistemi,A,"BIOS, Temel Giriş/Çıkış Sistemi anlamına gelir",Medium
+416,Science,Dünya'da doğal olarak bulunan en nadir element hangisidir?,Fransiyum,Astatin,Teknesyum,Prometyum,B,"Astatin, Dünya'da doğal olarak bulunan en nadir elementtir",Hard
+417,Math,x sonsuza yaklaşırken 1/x'in limiti nedir?,1,0,Sonsuzluk,Tanımsız,B,x sonsuza yaklaşırken 1/x 0'a yaklaşır,Medium
+418,Technology,Güvenli web gezintisi için hangi protokol kullanılır?,HTTP,HTTPS,FTP,SMTP,B,"HTTPS, web'de gezinme için şifreli iletişim sağlar",Easy
+419,Science,İnsanların genellikle kaç çift kaburgası vardır?,10,11,12,13,C,İnsanların genellikle 12 çift kaburgası vardır,Easy
+420,Sports,Golfte bir par altı skoruna ne ad verilir?,Kartal,Kuş,Korkutucu,Albatros,B,"Birdie, bir delikte parın bir vuruş altında vuruş yapmaktır",Easy
+421,Technology,Raspberry Pi'yi hangi şirket üretti?,Elma,Raspberry Pi Vakfı,Arduino,Intel,B,"Raspberry Pi Vakfı, Raspberry Pi bilgisayarını yarattı",Medium
+422,Science,Hangi elementin erime noktası en yüksektir?,Karbon,Tungsten,Ütü,Titanyum,B,Tungsten tüm elementler arasında en yüksek erime noktasına sahiptir,Medium
+423,Math,Veri setinin standart sapması nedir: 2 2 2 2?,0,1,2,4,A,Tüm değerler aynı olduğunda standart sapma 0'dır,Medium
+424,Technology,OLED ne anlama geliyor?,Organik Işık Yayan Diyot,Optik LED,Orijinal LED,Optimize edilmiş LED,A,"OLED, Organik Işık Yayan Diyot anlamına gelir",Easy
+425,Science,Yükseklik korkusuna ne ad verilir?,Klostrofobi,Akrofobi,Agorafobi,Araknofobi,B,Akrofobi yükseklik korkusudur,Easy
+426,Math,Dizideki bir sonraki sayı nedir: 1 4 9 16 25?,30,36,42,49,B,"Bu, mükemmel karelerin dizisidir: 6² = 36",Easy
+427,Technology,GitHub'ın sahibi hangi şirkettir?,Microsoft,Google,Amazon,GitLab,A,"Microsoft, GitHub'ı 2018'de satın aldı",Easy
+428,Science,Yunus ne tür bir hayvandır?,Balık,Memeli,Amfibi,Sürüngen,B,Yunuslar balık değil deniz memelileridir,Easy
+429,Sports,Bir ragbi maçı kaç dakikadır?,60,70,80,90,C,Bir ragbi birliği maçı 80 dakika uzunluğundadır,Medium
+430,Technology,CDN ne anlama geliyor?,İçerik Dağıtım Ağı,Merkezi Veri Ağı,Bilgisayar Ekran Ağı,İçerik Dijital Ağı,A,"CDN, İçerik Dağıtım Ağı anlamına gelir",Medium
+431,Science,İnsan vücudunda en bol bulunan protein hangisidir?,Hemoglobin,Kolajen,Keratin,Albümin,B,Kolajen insan vücudundaki en bol proteindir,Medium
+432,Math,2^10 kaçtır?,512,1024,2048,4096,B,2^10 = 1024,Easy
+433,Technology,SDK ne anlama geliyor?,Yazılım Geliştirme Kiti,Sistem Geliştirme Kiti,Yazılım Tasarım Kiti,Sistem Veri Kiti,A,"SDK, Yazılım Geliştirme Kiti anlamına gelir",Easy
+434,Science,Bitkiler fotosentez sırasında hangi gazı açığa çıkarır?,Karbondioksit,Azot,Oksijen,Hidrojen,C,Bitkiler fotosentezin bir yan ürünü olarak oksijen salarlar,Easy
+435,Math,Uzunluğu 8 ve genişliği 5 olan bir dikdörtgenin alanı nedir?,13,20,40,80,C,Dikdörtgenin alanı = uzunluk × genişlik = 8 × 5 = 40,Easy
+436,Technology,Node.js'i hangi şirket geliştirdi?,Google,Mozilla,Neşeli,Microsoft,C,"Node.js, Joyent'ta Ryan Dahl tarafından oluşturuldu",Hard
+437,Science,Bir saatte kaç saniye vardır?,360,3600,36000,1800,B,Bir saatte 3600 saniye vardır (60 × 60),Easy
+438,Sports,Masters Turnuvasında hangi spor oynanır?,Tenis,Golf,Satranç,Yüzme,B,"Masters, golfün dört büyük şampiyonasından biridir",Easy
+439,Technology,1 milyar kullanıcıya ulaşan ilk sosyal medya platformu hangisiydi?,MySpace,Facebook,Twitter,Instagram,B,"Facebook, 1 milyar kullanıcıya ulaşan ilk sosyal platform oldu",Medium
+440,Science,Adrenalin hangi organ tarafından üretilir?,Kalp,Beyin,Böbreküstü bezleri,Tiroid,C,Böbreküstü bezleri adrenalin (epinefrin) üretir,Easy
+441,Math,0!'ın değeri nedir?,0,1,Tanımsız,Sonsuzluk,B,Tanım gereği 0! 1'e eşittir,Medium
+442,Technology,Programlamada IDE ne anlama gelir?,Entegre Geliştirme Ortamı,İnternet Geliştirme Motoru,Dahili Hata Ayıklama Ortamı,Etkileşimli Tasarım Ortamı,A,"IDE, Entegre Geliştirme Ortamı anlamına gelir",Easy
+443,Technology,SQL enjeksiyonu neyi ifade eder?,Veritabanı tasarımı,Güvenlik açığı,Programlama dili,Sunucu türü,B,"SQL enjeksiyonu, veritabanlarına saldırmak için kullanılan bir kod enjeksiyon tekniğidir",Medium
+444,Science,Akü asidinin pH değeri nedir?,1,3,5,7,A,Akü asidinin pH değeri 1 civarındadır ve bu onu oldukça asidik yapar,Medium
+445,Math,İlk 5 asal sayının toplamı kaçtır?,18,26,28,30,C,2 + 3 + 5 + 7 + 11 = 28,Medium
+446,Technology,VoIP ne anlama geliyor?,İnternet Protokolü Üzerinden Ses,IP üzerinden video,Sanal çevrimiçi IP,Yalnızca ses IP'si,A,"VoIP, İnternet Protokolü Üzerinden Ses anlamına gelir",Easy
+447,Science,Örümceğin kaç bacağı vardır?,6,8,10,12,B,Tüm örümceklerin 8 bacağı vardır,Easy
+448,Sports,Snooker'da maksimum break kaçtır?,147,150,155,160,A,Snooker'da maksimum kırılma noktası 147 puandır,Medium
+449,Math,15'in ikili sistemdeki gösterimi nedir?,1111,1011,1101,1001,A,"15, ikili sistemde 1111'dir (8+4+2+1)",Medium
+450,Technology,Kubernetes'i hangi şirket geliştirdi?,Google,Amazon,Microsoft,Liman işçisi,A,"Google, konteyner orkestrasyonu için Kubernetes'i geliştirdi",Medium
+451,Science,Mantarları inceleyen bilim dalına ne ad verilir?,Mikoloji,Mantar bilimi,Botanik,Biyoloji,A,"Mikoloji, mantarlar da dahil olmak üzere mantarların incelenmesidir",Medium
+452,Math,tan(0°) nedir?,0,1,Tanımsız,Sonsuzluk,A,0 derecenin tanjantı 0'dır,Medium
+453,Technology,DMCA ne anlama geliyor?,Dijital Medya Telif Hakkı Yasası,Dijital Milenyum Telif Hakkı Yasası,Veri Yönetimi Denetim Yasası,Dijital Müzik Telif Hakkı Yasası,B,"DMCA, Dijital Milenyum Telif Hakkı Yasası anlamına gelir",Medium
+454,Science,Oda sıcaklığında sıvı halde bulunan metal hangisidir?,Galyum,Merkür,Sezyum,Sodyum,B,"Civa, oda sıcaklığında sıvı halde bulunan tek metaldir",Easy
+455,Sports,Bir dekatlonda kaç etkinlik vardır?,5,8,10,12,C,Bir dekatlon 10 atletizm etkinliğinden oluşur,Easy
+456,Technology,CLI ne anlama geliyor?,Komut Satırı Arayüzü,Bilgisayar Dil Arayüzü,Kod Satırı Entegrasyonu,Merkezi Mantık Arayüzü,A,"CLI, Komut Satırı Arayüzü anlamına gelir",Easy
+457,Science,İskorbüt hastalığı hangi vitamin eksikliğinden kaynaklanır?,A vitamini,B12 vitamini,C vitamini,D vitamini,C,"İskorbüt, C vitamini eksikliğinden kaynaklanır",Easy
+458,Math,Çarpımsal özdeşlik nedir?,0,1,2,-1,B,Çarpımsal özdeşlik 1'dir (herhangi bir sayı × 1 = o sayı),Easy
+459,Technology,Google'ın orijinal adı neydi?,Arama Motoru,Sırt masajı,Web Tarayıcısı,Sayfa Sıralaması,B,Google'ın adı başlangıçta BackRub'dı,Medium
+460,Science,Bir ineğin kaç midesi vardır?,1,2,3,4,D,İneklerin otları sindirmek için 4 mide bölmesi vardır,Easy
+461,Math,45°'nin kotanjantı nedir?,0,1,√2,Tanımsız,B,cot(45°) = 1,Medium
+462,Technology,OAuth ne anlama geliyor?,Açık Kimlik Doğrulama,Açık Yetkilendirme,Çevrimiçi Kimlik Doğrulama,Optimum Yetkilendirme,B,"OAuth, Açık Yetkilendirme anlamına gelir",Hard
+463,Science,Elmas hangi elementten oluşur?,Silikon,Karbon,Oksijen,Hidrojen,B,Elmaslar saf karbon atomlarından oluşur,Easy
+464,Sports,Basketbol potasının yüksekliği ne kadardır?,8 fit,9 fit,10 fit,11 fit,C,"Bir basketbol potası 10 fit (3,05 metre) yüksekliğindedir",Easy
+465,Technology,PWA ne anlama geliyor?,Progresif Web Uygulaması,Kişisel Web Asistanı,Genel Web Erişimi,Korunan Web Uygulaması,A,"PWA, Progressive Web App'in kısaltmasıdır",Medium
+466,Science,Hücresel hangi işlemle hasarlı organeller yok edilir?,Otofaji,Apoptozis,Mitoz,Mayoz,A,"Otofaji, hasarlı hücresel bileşenleri parçalayıp geri dönüştürür",Easy
+467,Math,Sin(30°)'un değeri nedir?,"0,5","0,707","0,866",1,A,"sin(30°) = 0,5 veya 1/2",Medium
+468,Technology,Bitcoin hangi yılda ortaya çıktı?,2007,2008,2009,2010,C,"Bitcoin, 2009 yılında Satoshi Nakamoto tarafından yaratıldı",Medium
+469,Science,Kuzey Işıkları'nın sebebi nedir?,Güneş rüzgarı,Dünya'nın çekirdeği,Okyanus akıntıları,Volkanik aktivite,A,Güneş rüzgarı parçacıkları Dünya atmosferiyle etkileşime girerek kutup ışıklarına neden oluyor,Medium
+470,Math,Bir dairenin çevresine ne denir?,Çap,Yarıçap,Çevre,Yay,C,Bir dairenin çevresine çevresi denir,Easy
+471,Technology,Photoshop'u hangi şirket yarattı?,Elma,Adobe,Microsoft,Corel,B,"Adobe, Photoshop'u 1988'de yarattı",Easy
+472,Science,Güneş sistemimizdeki en sıcak gezegen hangisidir?,Merkür,Venüs,Mars,Jüpiter,B,"Venüs, kalın atmosferi nedeniyle en sıcak gezegendir",Easy
+473,Sports,Bir kriket takımında kaç oyuncu vardır?,9,10,11,12,C,Bir kriket takımı 11 oyuncudan oluşur,Easy
+474,Technology,JSON ne anlama geliyor?,JavaScript Nesne Gösterimi,Java Script Çevrimiçi Ağı,JavaScript Sıralı Sayılar,Java Sistem Nesne Gösterimi,A,"JSON, JavaScript Nesne Gösterimi anlamına gelir",Easy
+475,Science,Bir pilde ne tür enerji depolanır?,Kinetik,Kimyasal,Nükleer,Termal,B,Piller kimyasal enerjiyi elektrik enerjisine dönüştürerek depolar,Easy
+476,Math,11'in karesi kaçtır?,111,121,131,141,B,11² = 121,Easy
+477,Technology,ISP ne anlama geliyor?,İnternet Servis Sağlayıcısı,Dahili Sistem Protokolü,İnternet Güvenlik Protokolü,Entegre Hizmet Platformu,A,"İSS, İnternet Servis Sağlayıcısı anlamına gelir",Easy
+478,Science,İnsan vücudunda kaç kas vardır?,206,450,639,1000,C,İnsan vücudunda yaklaşık 639 kas vardır,Medium
+479,Math,169 sayısının karekökü nedir?,11,12,13,14,C,√169 = 13,Easy
+480,Technology,Venmo'nun sahibi hangi şirkettir?,Kare,PayPal,Elma,Google,B,"PayPal, Venmo'nun sahibi",Easy
+481,Science,Jüpiter'in büyük kısmını hangi gaz oluşturur?,Metan,Hidrojen,Helyum,Azot,B,Jüpiter esas olarak hidrojen gazından oluşur,Medium
+482,Sports,Hangi sporda tüy topu kullanılır?,Tenis,Badminton,Kabak,Masa tenisi,B,Badmintonda tüy topu (kuş) kullanılır,Easy
+483,Technology,Regex ne anlama geliyor?,Düzenli İfade,Kayıtlı Uzantı,Bölgesel Değişim,Sicil Yöneticisi,A,"Regex, Düzenli İfade'nin kısaltmasıdır",Medium
+484,Science,Yaşamın en küçük birimi nedir?,Atom,Molekül,Hücre,Organ,C,"Hücre, yaşamın en küçük birimidir",Easy
+485,Math,60'ın %25'i kaçtır?,12,15,18,20,B,"60'ın %25'i = 0,25 × 60 = 15",Easy
+486,Technology,UDP ne anlama geliyor?,Kullanıcı Datagram Protokolü,Evrensel Veri Protokolü,Birleşik Dijital Protokol,Kullanıcı Veri Paketi,A,"UDP, Kullanıcı Datagram Protokolü anlamına gelir",Medium
+487,Science,Gözyaşı hangi organ tarafından üretilir?,Gözler,Gözyaşı bezleri,Beyin,Sinüsler,B,Gözyaşı bezleri gözyaşı üretir,Easy
+488,Math,Aritmetik dizilerin n'inci terim formülü nedir?,bir = a1 + (n-1)d,bir = a1 × r^n,bir = n²,bir = 2n,A,Aritmetik dizinin n'inci terimi a₁ + (n-1)d'dir,Medium
+489,Technology,Excel'i hangi şirket yarattı?,IBM,Microsoft,Elma,Kehanet,B,"Microsoft, Excel'i Office paketinin bir parçası olarak oluşturdu",Easy
+490,Science,Şekerin (sükroz) kimyasal formülü nedir?,C6H12O6,C12H22O11,C6H10O5,C12H24O12,B,Sükrozun formülü C12H22O11'dir,Hard
+491,Sports,Su topu takımında suda kaç oyuncu bulunur?,5,6,7,8,C,Su topu takımlarında aynı anda 7 oyuncu suda bulunur,Medium
+492,Technology,Programlamada CRUD ne anlama geliyor?,Oluştur Oku Güncelle Sil,Bilgisayar Kullanıcı Verilerini Okur,Çekirdek Çalışma Zamanı Güncelleme Tasarımı,Merkezi Kaynak Birimi Veritabanı,A,"CRUD, Oluşturma, Okuma, Güncelleme, Silme işlemleri anlamına gelir",Medium
+493,Science,Omuz eklemi hangi eklem türüdür?,Menteşe eklemi,Bilyalı ve yuvalı mafsal,Pivot eklemi,Sabit eklem,B,"Omuz, bir bilye ve yuva eklemidir",Easy
+494,Math,x² + 4x + 4'ün diskriminantı nedir?,0,4,8,16,A,Ayırıcı = b² - 4ac = 16 - 16 = 0,Medium
+495,Technology,SaaS ne anlama geliyor?,Hizmet Olarak Yazılım,Hizmet Olarak Sistem,Hizmet Olarak Depolama,Hizmet Olarak Güvenlik,A,"SaaS, Hizmet Olarak Yazılım anlamına gelir",Easy
+496,Science,İnsanın kaç adet boyun omuru vardır?,5,7,12,33,B,İnsanların 7 adet boyun omuru vardır,Medium
+497,Math,1/x'in integrali nedir?,X,ln|x|,e^x,1/x²,B,1/x'in integrali ln|x| + C'dir,Medium
+498,Technology,Django hangi dilde yazılmıştır?,Yakut,Python,JavaScript,PHP,B,"Django, Python'da yazılmış bir web çerçevesidir",Easy
+499,Science,Dünyadaki en yoğun doğal element hangisidir?,Yol göstermek,Altın,Osmiyum,Uranyum,C,"Osmiyum, doğada bulunan en yoğun elementtir",Hard
+500,Sports,Jimnastikte mükemmel puan nedir?,9.0,10.0,100,Değişir,B,Jimnastikte mükemmel puan 10.0'dır,Easy
+501,Technology,Güvenlik alanında MFA ne anlama geliyor?,Çok Faktörlü Kimlik Doğrulama,Ana Dosya Erişimi,Mobil Öncelikli Uygulama,Yönetilen Güvenlik Duvarı Erişimi,A,"MFA, Çok Faktörlü Kimlik Doğrulama anlamına gelir",Easy
+502,Science,Hangi radyasyon türünün dalga boyu en uzundur?,Gama ışınları,X-ışınları,Radyo dalgaları,Mikrodalgalar,C,"Radyo dalgaları, EM spektrumunda en uzun dalga boyuna sahiptir",Medium
+503,Math,Phi (altın oran) değeri nedir?,1.414,1.618,2.718,3.142,B,"Altın oran φ yaklaşık olarak 1,618'dir",Medium
+504,Technology,Git neyin kısaltmasıdır?,Küresel Bilgi Takipçisi,Belirli bir şey yok,Genel Entegrasyon Aracı,Gruplanmış Bilgi Teknolojileri,B,"Git, yaratıcısına göre belirli bir şeyi temsil etmiyor",Hard
+505,Science,İnsan beyninde kaç lob vardır?,2,3,4,5,C,"Beyin 4 lobdan oluşur: frontal, parietal, temporal ve oksipital",Medium
+506,Math,log₂(32) nedir?,4,5,6,7,B,log₂(32) = 5 çünkü 2⁵ = 32,Medium
+507,Technology,Minecraft'ın şu anki sahibi hangi şirkettir?,Mojang,Microsoft,Sony,Nintendo,B,"Microsoft, 2014 yılında Mojang ve Minecraft'ı satın aldı",Easy
+508,Science,Hangi gezegende elmas yağar?,Toprak,Jüpiter,Neptün,Merkür,C,Neptün ve Uranüs'ün atmosferlerinde elmas yağmuru olması muhtemeldir,Medium
+509,Sports,Dart oyununda bullseye'ın puan değeri kaçtır?,25,50,100,150,B,Dart oyunundaki hedef 50 puan değerindedir,Easy
+510,Technology,TCP ne anlama geliyor?,Transfer Kontrol Protokolü,İletim Kontrol Protokolü,Teknik Hesaplama Protokolü,Terminal Bağlantı Protokolü,B,"TCP, İletim Kontrol Protokolü anlamına gelir",Medium
+511,Science,Mohs ölçeğine göre en sert mineral hangisidir?,Kuvars,Korindon,Elmas,Topaz,C,"Elmas, Mohs sertlik ölçeğinde 10. sırada yer almaktadır",Easy
+512,Math,17 sayısının 5'e bölümünden kalan kaçtır?,1,2,3,4,B,17 ÷ 5 = 3 kalan 2,Easy
+513,Technology,LAN ne anlama geliyor?,Yerel Alan Ağı,Geniş Alan Ağı,Doğrusal Erişim Ağı,Sınırlı Alan Ağı,A,"LAN, Yerel Alan Ağı anlamına gelir",Easy
+514,Science,Meyve sineklerinin kaç çift kromozomu vardır?,4,8,23,46,A,Meyve sineklerinin (Drosophila) 4 çift kromozomu vardır,Hard
+515,Math,3x² + 5x - 2 denkleminde x'in katsayısı nedir?,3,5,-2,2,B,x'in katsayısı (x² değil) 5'tir,Easy
+516,Technology,TypeScript'i hangi şirket yarattı?,Google,Microsoft,Facebook,Mozilla,B,"Microsoft, TypeScript'i JavaScript'in bir üst kümesi olarak oluşturdu",Medium
+517,Science,K sembolü hangi elementtir?,Kripton,Potasyum,Kalsiyum,Karbon,B,"K, Potasyum'un Latince adı olan Kalium'dan gelen sembolüdür",Easy
+518,Sports,Buz hokeyinde oyun alanına ne ad verilir?,Mahkeme,Buz pateni pisti,Alan,Saha,B,Buz hokeyi bir pistte oynanır,Easy
+519,Technology,RSS ne anlama geliyor?,Gerçekten Basit Sendikasyon,Uzak Sunucu Sistemi,Hızlı Site Araması,Kaynak Paylaşım Sistemi,A,"RSS, Really Simple Syndication veya Rich Site Summary anlamına gelir",Medium
+520,Science,Proteinin üçüncül yapısını hangi bağ türü stabilize eder?,İyonik bağlar,Hidrojen bağları,Disülfür bağları,Yukarıdakilerin hepsi,D,Çoklu bağ tipleri proteinin üçüncül yapısını stabilize eder,Easy
+521,Math,3! (3 faktöriyel) nedir?,3,6,9,27,B,3! = 3 × 2 × 1 = 6,Easy
+522,Technology,HTTPS genellikle hangi portu kullanır?,80,443,8080,3000,B,HTTPS genellikle 443 portunu kullanır,Medium
+523,Science,Hıçkırığın sebebi nedir?,Mide asidi,Diyafram spazmları,Akciğer tahrişi,Boğaz kasları,B,Hıçkırık istemsiz diyafram spazmlarından kaynaklanır,Easy
+524,Math,y = x² - 4x + 3 köşesinin y-koordinatı nedir?,-1,0,1,3,A,Tepe noktası x = 2'de olduğundan y = 4 - 8 + 3 = -1,Hard
+525,Technology,Slack hangi şirkete aittir?,Satış gücü,Microsoft,Google,Amazon,A,"Salesforce, 2021'de Slack'i satın aldı",Easy
+526,Science,Samanyolu ne tür bir galaksidir?,Eliptik,Sarmal,Düzensiz,Merceksi,B,Samanyolu sarmal bir galaksidir,Easy
+527,Sports,Satranç tahtasında kaç kare vardır?,32,64,128,256,B,Bir satranç tahtasında 64 kare (8×8) vardır,Easy
+528,Technology,BSD'nin açılımı nedir?,Berkeley Yazılım Dağıtımı,Temel Sistem Tasarımı,İkili Sistem Verileri,Yedekleme Depolama Aygıtı,A,"BSD, Berkeley Yazılım Dağıtımı anlamına gelir",Hard
+529,Science,Beyaz kan hücrelerinin işlevi nedir?,Oksijen taşımak,Enfeksiyonla mücadele,Pıhtılaşmış kan,Yiyecekleri sindirmek,B,Beyaz kan hücreleri bağışıklık sisteminin bir parçası olarak enfeksiyonla savaşır,Easy
+530,Math,Günah(x) süresi nedir?,π,2π,π/2,4π,B,Sin(x) periyodu 2π'dir,Medium
+531,Technology,eBay'in orijinal adı neydi?,MüzayedeWeb,BuyWeb,Pazar Yeri,TradeNet,A,"eBay, 1995 yılında kurulduğunda başlangıçta AuctionWeb olarak adlandırılıyordu",Medium
+532,Technology,PWM ne anlama geliyor?,Darbe Genişliği Modülasyonu,Güç Dalgası Yönetimi,Genel WiFi Modu,Kişisel Web Yöneticisi,A,"PWM, elektronikte kullanılan Darbe Genişlik Modülasyonu anlamına gelir",Medium
+533,Science,Ortalama insan vücut sıcaklığı Fahrenheit cinsinden kaçtır?,36°C,37°C,98.6°F,"99,6°F",C,"Normal insan vücut sıcaklığı yaklaşık 98,6°F'dir",Easy
+534,Math,cos(x)'in türevi nedir?,-günah(x),günah(x),-cos(x),cos(x),A,cos(x)'in türevi -sin(x)'tir,Medium
+535,Technology,YAML ne anlama geliyor?,Başka Bir İşaretleme Dili,"YAML, İşaretleme Dili Değildir",Ortalama İşaretleme Diliniz,Evet Başka Bir Meta Dil,B,"YAML, yinelemeli olarak YAML Ain't Markup Language'ın kısaltmasıdır",Hard
+536,Science,Yetişkin bir insanın genellikle kaç dişi vardır?,28,30,32,36,C,Yetişkin insanlarda genellikle yirmi yaş dişleri de dahil olmak üzere 32 diş bulunur,Easy
+537,Sports,Bowlingde tek bir frame'de alınabilecek en yüksek skor nedir?,20,30,40,50,B,Bir karede alınabilecek en yüksek puan 30'dur (vuruş artı iki vuruş daha),Medium
+538,Math,e⁰'nin değeri nedir?,0,1,e,Tanımsız,B,Herhangi bir sayının 0'ıncı kuvveti 1'e eşittir,Easy
+539,Technology,M1 çipini hangi firma üretiyor?,Intel,Elma,AMD,Qualcomm,B,"Apple, M1 çipini tasarlıyor ve üretiyor",Easy
+540,Science,Büyük Kırmızı Leke hangi gezegende bulunur?,Mars,Jüpiter,Satürn,Neptün,B,Jüpiter'de Büyük Kırmızı Leke fırtınası var,Easy
+541,Math,-25'in mutlak değeri nedir?,25,-25,0,50,A,-25'in mutlak değeri 25'tir,Easy
+542,Technology,DDoS ne anlama geliyor?,Dağıtılmış Hizmet Reddi,Doğrudan Hizmet Reddi,Veri Hizmet Reddi,Dijital Hizmet Reddi,A,"DDoS, Dağıtılmış Hizmet Reddi saldırısı anlamına gelir",Easy
+543,Science,Samanyolu'na en yakın galaksi hangisidir?,Kentaurus A,Andromeda,Üçgen,Büyük Macellan Bulutu,B,"Andromeda, Samanyolu'na en yakın büyük galaksidir",Medium
+544,Sports,NBA basketbolunda bir çeyrek kaç dakikadır?,10,12,15,20,B,NBA basketbolunda her çeyrek 12 dakikadır,Easy
+545,Technology,Webhook ne anlama geliyor?,Ağ kancası balıkçılığı,HTTP geri araması,Web sitesi yer imi,Web barındırma kancası,B,"Webhook, başka bir uygulamaya yapılan bir HTTP geri aramasıdır",Medium
+546,Science,Evrensel bağışçı hangi kan grubuna sahiptir?,A,B,AB,O negatif,D,0 negatif kan her kan grubuna verilebilir,Easy
+547,Math,16'nın 1/2'nci kuvveti kaçtır?,2,4,8,256,B,16^(1/2) 16'nın kareköküdür ve 4'e eşittir,Medium
+548,Technology,Windows'ta BSOD ne anlama geliyor?,Ölümün Mavi Ekranı,Karanlığın Siyah Ekranı,Temel Sistem Çalışması Aşağı,Önyükleme Sistemi İşlemi Reddedildi,A,"BSOD, Mavi Ekran Ölüm hatası ekranı anlamına gelir",Easy
+549,Science,Kanın pıhtılaşması için hangi vitamin gereklidir?,A vitamini,C vitamini,K vitamini,E vitamini,C,K vitamini kanın pıhtılaşması için gereklidir,Medium
+550,Math,Herhangi bir çokgenin dış açılarının toplamı kaçtır?,180°,360°,540°,720°,B,Herhangi bir çokgenin dış açılarının toplamı her zaman 360°'dir,Medium
+551,Technology,Vimeo'yu hangi şirket kurdu?,Yahoo,IAC,Google,Facebook,B,"Vimeo, IAC (InterActiveCorp) tarafından oluşturuldu",Hard
+552,Science,Atom numarası 79 olan element hangisidir?,Gümüş,Altın,Platin,Merkür,B,Altının (Au) atom numarası 79'dur,Medium
+553,Sports,En uzun tenis maçı formatı hangisidir?,3'ün En İyisi,5'in En İyisi,7'nin En İyisi,İlk 10'a kadar,B,Erkekler Grand Slam maçları 5 set üzerinden oynanır,Easy
+554,Technology,Programlamada ORM ne anlama gelir?,Nesne İlişkisel Eşleme,Çevrimiçi Kaynak Yönetimi,Operasyonel Risk Yönetimi,Nesne Kaynak Modeli,A,"ORM, Nesne-İlişkisel Eşleme anlamına gelir",Medium
+555,Science,Kaç tane kranial sinir vardır?,8,10,12,14,C,12 çift kranial sinir vardır,Medium
+556,Math,ln(1) nedir?,0,1,e,Tanımsız,A,1'in doğal logaritması 0'dır,Medium
+557,Technology,Beats Electronics hangi şirkete aittir?,Sony,Elma,Bose,SAMSUNG,B,"Apple, 2014 yılında Beats Electronics'i satın aldı",Easy
+558,Science,Güneş sistemimizdeki en küçük gezegen hangisidir?,Mars,Merkür,Plüton,Venüs,B,"Merkür, güneş sistemimizdeki en küçük gezegendir",Easy
+559,Technology,NoSQL ne anlama geliyor?,SQL yok,Sadece SQL değil,Sıralı Olmayan Sorgu Dili,Yeni SQL,B,"NoSQL, Yalnızca SQL Değil anlamına gelir",Medium
+560,Science,Sirke ve karbonatı karıştırdığınızda hangi gaz açığa çıkar?,Oksijen,Hidrojen,Karbondioksit,Azot,C,Sirke ve karbonatı karıştırmak karbondioksit üretir,Easy
+561,Sports,Beyzbolda bir vuruş kaç strike ile yapılır?,2,3,4,5,B,Beyzbolda üç vuruş bir dışarı atılmayı oluşturur,Easy
+562,Technology,JWT'nin açılımı nedir?,Java Web Simgesi,JSON Web Simgesi,JavaScript Web Simgesi,Sadece Web Token,B,"JWT, JSON Web Token'ın kısaltmasıdır",Medium
+563,Science,Safra hangi organ tarafından üretilir?,Karın,Karaciğer,Pankreas,Böbrek,B,Karaciğer sindirim için safra üretir,Easy
+564,Math,y = x² fonksiyonunun değer kümesi nedir?,y ≥ 0,y ≤ 0,Tüm gerçek sayılar,y > 0,A,y = x² aralığı tüm negatif olmayan reel sayılardır,Medium
+565,Technology,Windows'ta bir eylemi geri alan klavye kısayolu hangisidir?,Ctrl+Y,Ctrl+Z,Ctrl+X,Ctrl+U,B,"Ctrl+Z, Windows'taki son eylemi geri alır",Easy
+566,Science,Bir balığın kalbinde kaç odacık vardır?,1,2,3,4,B,Balıkların genellikle iki odacıklı kalpleri vardır,Medium
+567,Math,Karmaşık sayılarda i³ nedir?,-Ben,Ben,-1,1,A,i³ = i² × i = -1 × i = -i,Medium
+568,Technology,Web geliştirmede DOM ne anlama geliyor?,Belge Nesne Modeli,Veri Nesnesi Yönetimi,Doğrudan Nesne Manipülasyonu,Belge Odaklı İşaretleme,A,"DOM, Belge Nesne Modeli anlamına gelir",Easy
+569,Science,İnsan vücudundaki en sert doku hangisidir?,Kemik,Diş minesi,Kıkırdak,Tendon,B,Diş minesi insan vücudundaki en sert dokudur,Easy
+570,Sports,Elmas üzerinde hangi spor oynanır?,Basketbol,Beyzbol,Tenis,Hokey,B,"Beyzbol, elmas şeklindeki bir sahada oynanır",Easy
+571,Technology,CDN ne işe yarar?,Veri depolama,İçerik teslim hızı,Kod geliştirme,Müşteri verileri,B,CDN (İçerik Dağıtım Ağı) içerik dağıtımını hızlandırır,Easy
+572,Science,Güneş ne ​​tür bir yıldızdır?,Kırmızı dev,Beyaz cüce,Sarı cüce,Mavi dev,C,Güneş sarı cüce yıldız olarak sınıflandırılır,Easy
+573,Math,150'nin %20'si kaçtır?,20,25,30,35,C,"150'nin %20'si = 0,20 × 150 = 30",Easy
+574,Technology,GPU hızlandırma ne işe yarar?,İnternet hızı,Grafiksel görüntüleme,Depolama kapasitesi,RAM kullanımı,B,"GPU hızlandırma, grafikleri ve paralel işlemeyi hızlandırır",Easy
+575,Science,İnsan kanının pH değeri nedir?,6.5,7.0,7.4,8.0,C,"Normal insan kanının pH değeri 7,4 civarındadır",Medium
+576,Math,30°'lik açının tümleyeni nedir?,30°,60°,90°,150°,B,"Tamamlayıcı açıların toplamı 90°'dir, yani 90° - 30° = 60°",Easy
+577,Technology,Google hangi yıl kuruldu?,1996,1998,2000,2002,B,"Google, 1998 yılında Larry Page ve Sergey Brin tarafından kuruldu",Easy
+578,Science,Paslanmaya ne sebep olur?,Sadece su,Sadece oksijen,Su ve oksijen,Sıcaklık,C,"Pas, demirin su ve oksijenle reaksiyona girmesiyle oluşur",Easy
+579,Sports,Futbolda hat-trick kaç gol eder?,2,3,4,5,B,"Üç gol atmak, bir maçta 3 gol atmaktır",Easy
+580,Technology,Regex ne işe yarar?,Grafikler,Desen eşleştirme,Ağ yönlendirme,Veritabanı sorguları,B,"Regex (düzenli ifadeler), metinde desen eşleştirmesi için kullanılır",Easy
+581,Science,Miyelinli nöronlarda sinir sinyallerinin daha hızlı iletilmesini sağlayan süreç hangisidir?,Sıçrayıcı iletim,Sürekli iletim,Sinaptik iletim,Aksiyon potansiyeli,A,"Sıçrayıcı iletim, sinyallerin Ranvier düğümleri arasında sıçramasına izin verir",Medium
+582,Math,Bir parabolün tepe noktası nasıldır?,y = ax² + bx + c,y = a(x-h)² + k,y = mx + b,x² + y² = r²,B,"Tepe noktası biçimi y = a(x-h)² + k'dir, burada (h",k) is the vertex
+583,Technology,Kriptografide SHA ne anlama geliyor?,Güvenli Karma Algoritması,Sistem Karma Uygulaması,Standart Karma Mimarisi,Güvenlik Karma Kimlik Doğrulaması,A,"SHA, Güvenli Karma Algoritması anlamına gelir",Medium
+584,Science,Kaç çeşit damar vardır?,2,3,4,5,B,"3 çeşidi vardır: atardamarlar, toplardamarlar ve kılcal damarlar",Easy
+585,Math,1 + 2 + 3 + ... + 100'ün toplamı kaçtır?,4950,5000,5050,5100,C,Toplam = n(n+1)/2 = 100(101)/2 = 5050,Medium
+586,Technology,React Native'i hangi şirket geliştirdi?,Google,Facebook,Microsoft,Twitter,B,Facebook (şimdi Meta) React Native'i geliştirdi,Easy
+587,Science,Sıvı azotun kaynama noktası nedir?,-196°C,-173°C,-96°C,-273°C,A,Sıvı nitrojen -196°C veya -321°F'de kaynar,Hard
+588,Sports,Okçulukta hedefin ortasındaki daire ne renktir?,Kırmızı,Sarı,Siyah,Altın,D,Okçuluk hedefinin merkezi altındır (veya sarıdır),Easy
+589,Technology,P ve NP neyi ifade eder?,Programlama dilleri,Karmaşıklık teorisi problemi,Ağ protokolleri,Veritabanı türleri,B,"P ve NP, bilgisayar bilimlerinde çözülememiş büyük bir sorundur",Hard
+590,Science,Evrenin yüzde kaçı karanlık maddeden oluşuyor?,%5,%27,%68,%95,B,Karanlık madde evrenin yaklaşık %27'sini oluşturuyor,Medium
+591,Math,Bileşik faizin formülü nedir?,A = P(1 + rt),A = P(1 + r)^t,A = P(1 + r/n)^(nt),A = Prt,C,Bileşik faiz formülü A = P(1 + r/n)^(nt)'dir,Medium
+592,Technology,Web güvenliğinde XSS ne anlama geliyor?,Siteler Arası Komut Dosyası Çalıştırma,Ekstra Güvenli Site,XML Site Güvenliği,Genişletilmiş Sunucu Komut Dosyası,A,"XSS, Cross-Site Scripting güvenlik açığı anlamına gelir",Medium
+593,Science,En reaktif metal hangisidir?,Altın,Sodyum,Fransiyum,Ütü,C,Fransiyum periyodik tablodaki en reaktif metaldir,Hard
+594,Math,sec(x) cos(x) cinsinden nedir?,cos(x),1/cos(x),-cos(x),cos²(x),B,"Sekant, kosinüsün tersidir: sec(x) = 1/cos(x)",Medium
+595,Technology,MongoDB'yi hangi şirket kurdu?,Kehanet,MongoDB A.Ş.,Amazon,Google,B,"MongoDB Inc., MongoDB veritabanını oluşturdu",Easy
+596,Science,Hangi gezegenin günü en kısadır?,Merkür,Venüs,Jüpiter,Mars,C,Jüpiter'in günü yaklaşık 10 saatle en kısadır,Medium
+597,Sports,Bir ragbi ligi takımında kaç oyuncu vardır?,13,15,11,9,A,Ragbi liginde her takımda sahada 13 oyuncu bulunur,Medium
+598,Technology,MIME türü neyi ifade eder?,E-posta türü,Dosya türü,Bellek türü,Modül tipi,B,MIME türü bir dosyanın niteliğini ve biçimini belirtir,Medium
+599,Science,Aurora borealis'e ne sebep olur?,Ay yansıması,Güneş parçacıkları,Dünya'nın çekirdeği,Okyanus akıntıları,B,Güneş parçacıklarının Dünya'nın manyetik alanıyla etkileşimi auroralara neden oluyor,Easy
+600,Math,Mesafe formülü nedir?,d = √((x₂-x₁)² + (y₂-y₁)²),d = (x₂-x₁) + (y₂-y₁),d = |x₂-x₁| + |y₂-y₁|,d = (x₂+x₁)² + (y₂+y₁)²,A,Uzaklık = √((x₂-x₁)² + (y₂-y₁)²),Medium
+601,Technology,CI/CD ne anlama geliyor?,Sürekli Entegrasyon/Sürekli Dağıtım,Bilgisayar Arayüzü/Kontrol Tasarımı,Kod Entegrasyonu/Kod Geliştirme,Merkezi İstihbarat/Merkezi Veritabanı,A,"CI/CD, Sürekli Entegrasyon/Sürekli Dağıtım anlamına gelir",Medium
+602,Science,İnsanların çoğunun kaç kaburgası vardır?,20,22,24,26,C,Çoğu insanın 24 kaburgası (12 çift) vardır,Easy
+603,Math,5'in çarpmaya göre tersi nedir?,0.2,"0,5",5,-5,A,"5'in çarpımsal tersi 1/5 = 0,2'dir",Easy
+604,Technology,Hangi programlama dilinin logosunda yılan vardır?,Yakut,Python,Kobra,Perl,B,Python programlama dili logosunda bir yılan kullanıyor,Easy
+605,Science,Hangi kan hücreleri oksijen taşır?,Beyaz kan hücreleri,Kırmızı kan hücreleri,Trombositler,Plazma,B,Kırmızı kan hücreleri vücudun her yerine oksijen taşır,Easy
+606,Sports,Ragbi topunun şekli nedir?,Yuvarlak,Oval,Kare,Üçgen,B,Bir ragbi topu oval/eliptik bir şekle sahiptir,Easy
+607,Technology,Programlamada FIFO ne anlama gelir?,İlk Giren İlk Çıkar,Dosya Girişi Dosya Çıkışı,Hızlı Giriş Hızlı Çıkış,Son Giriş Son Çıkış,A,"FIFO, İlk Giren İlk Çıkar kuyruk ilkesi anlamına gelir",Easy
+608,Science,Dünya kabuğunda en çok bulunan element hangisidir?,Ütü,Silikon,Oksijen,Alüminyum,C,"Oksijen, Dünya kabuğunun yaklaşık %46'sını oluşturur",Medium
+609,Math,x 0'a yaklaşırken sin(x)/x'in limiti nedir?,0,1,∞,Tanımsız,B,x→0 iken sin(x)/x'in limiti 1'dir,Hard
+610,Technology,UAT ne anlama geliyor?,Kullanıcı Kabul Testi,Evrensel Uygulama Testi,Birleşik Erişim Terminali,Kullanıcı Hesap Türü,A,"UAT, Kullanıcı Kabul Testi anlamına gelir",Medium
+611,Science,Dünya ekvatorda ne kadar hızlı döner?,500 mil/saat,1000 mil/saat,1500 mil/saat,2000 mil/saat,B,Dünya ekvatorda yaklaşık 1000 mil hızla döner,Medium
+612,Math,Çarpma işleminin birim elemanı nedir?,0,1,-1,∞,B,"1, çarpma işleminin birim elemanıdır (n × 1 = n)",Easy
+613,Technology,Figma hangi şirket tarafından yaratıldı?,Adobe,Figma A.Ş.,Taslak,InVision,B,"Figma Inc., Figma tasarım aracını yarattı",Easy
+614,Science,Oda sıcaklığında sıvı halde bulunan tek metal hangisidir?,Galyum,Merkür,Sezyum,Brom,B,"Civa, oda sıcaklığında sıvı olan tek metaldir",Easy
+615,Sports,Michael Phelps toplamda kaç madalya kazandı?,23,25,28,30,C,Michael Phelps toplamda 28 Olimpiyat madalyası kazandı,Medium
+616,Technology,Veri işlemede ETL ne anlama geliyor?,Çıkarma Dönüştürme Yükleme,Transfer Bağlantısını Çalıştır,Harici Tablo Arama,Şifrelenmiş Aktarım Katmanı,A,"ETL, Çıkarma, Dönüştürme, Yükleme anlamına gelir",Medium
+617,Science,Havanın yüzde kaçı azottur?,%21,%50,%78,%95,C,"Azot, Dünya atmosferinin yaklaşık %78'ini oluşturur",Easy
+618,Math,2 6 18 54 geometrik dizisinin ortak oranı nedir?,2,3,4,6,B,Her terim 3 ile çarpıldığından ortak oran 3'tür,Easy
+619,Technology,SSH genellikle hangi portu kullanır?,21,22,80,443,B,SSH (Güvenli Kabuk) genellikle 22 numaralı portu kullanır,Medium
+620,Science,Sodyumun kimyasal sembolü nedir?,Na,Bu yüzden,SD,S,A,Na (Latince natrium'dan) sodyumun kimyasal sembolüdür,Easy
+621,Math,15'in karesi kaçtır?,200,215,225,250,C,15'in karesi 15 × 15 = 225'e eşittir,Easy
+622,Science,Gerilmiş bir yayda ne tür enerji depolanır?,Kinetik,Potansiyel,Termal,Kimyasal,B,Gerilmiş bir yay elastik potansiyel enerjiyi depolar,Easy
+623,Sports,Bir kriket takımında kaç oyuncu vardır?,9,10,11,12,C,Bir kriket takımının sahada 11 oyuncusu vardır,Easy
+624,Science,Kuvvetin SI birimi nedir?,Joule,Newton,Pascal,Watt,B,"Newton (N), kuvvetin SI birimidir",Easy
+625,Math,Pi sayısının 3 ondalık basamağa yuvarlanmış değeri kaçtır?,3.141,3.142,3.143,3.144,B,Pi sayısı 3 ondalık basamağa yuvarlandığında 3.142 olur,Easy
+626,Science,Mermer hangi kayaç türüdür?,Magmatik,Tortul,Metamorfik,Volkanik,C,"Mermer, kireçtaşından oluşan metamorfik bir kayadır",Easy
+627,Technology,Bilgisayarlarda ROM ne anlama gelir?,Rastgele İşletim Belleği,Salt Okunur Bellek,Hafızada Çalıştır,Gerçek İşletim Belleği,B,"ROM, Salt Okunur Bellek anlamına gelir",Easy
+628,Science,Büyük Kırmızı Leke hangi gezegende bulunur?,Mars,Jüpiter,Satürn,Neptün,B,Jüpiter'in Büyük Kırmızı Lekesi dev bir fırtınadır,Easy
+629,Math,Bir dörtgenin açılarının toplamı kaçtır?,180°,270°,360°,450°,C,Herhangi bir dörtgenin açılarının toplamı 360 derecedir,Easy
+630,Science,Balonların uçmasını sağlamak için hangi gaz kullanılır?,Oksijen,Azot,Helyum,Hidrojen,C,Helyum genellikle yüzen balonları doldurmak için kullanılır,Easy
+631,Animals,Hangi memelinin hamileliği en uzun sürer?,Fil,Balina,Zürafa,Gergedan,A,Afrika fillerinin hamilelik süresi yaklaşık 22 aydır,Easy
+632,Sports,Standart bir basketbol topunun çapı nedir?,8 inç,9 inç,"9,43 inç",10 inç,C,"Standart bir basketbol topunun çapı 9,43 inçtir",Medium
+633,Science,Mantarları inceleyen bilim dalına ne ad verilir?,Mikoloji,Briyoloji,Psikoloji,Likenoloji,A,"Mikoloji, mantarlar da dahil olmak üzere mantarların incelenmesidir",Medium
+634,Math,3/4 ondalık sayı olarak nedir?,"0,25","0,50","0,75",1.00,C,"3/4 ondalık sayı olarak 0,75'e eşittir",Easy
+635,Science,pH ölçek aralığı nedir?,0-7,0-10,0-14,0-20,C,pH ölçeği 0 ile 14 arasında değişir,Easy
+636,Technology,JPEG ne anlama geliyor?,Ortak Fotoğraf Uzmanları Grubu,Java Resim Uzantısı Grubu,Ortak Resim Uzatma Grubu,Java Fotoğraf Uzmanları Grubu,A,"JPEG, Ortak Fotoğraf Uzmanları Grubu anlamına gelir",Medium
+637,Science,İnsan ayağında kaç kemik vardır?,26,27,28,29,A,İnsan ayağı 26 kemikten oluşur,Medium
+638,Math,Sıradaki sayı nedir: 1 1 2 3 5 8?,11,12,13,14,C,Bu Fibonacci dizisidir; sonraki 8+5=13'tür,Easy
+639,Science,Kanın pıhtılaşması için hangi vitamin gereklidir?,A vitamini,C vitamini,K vitamini,E vitamini,C,K vitamini kanın pıhtılaşması için gereklidir,Medium
+640,Animals,Bir solucanın kaç kalbi vardır?,1,3,5,7,C,Solucanların 5 çift kalbi vardır (toplam 10),Hard
+641,Sports,Jimnastikte en yüksek puan kaçtır?,9.0,9.5,10.0,Maksimum yok,D,Modern jimnastiğin mevcut kurallar altında maksimum puanı yoktur,Medium
+642,Science,Hangi elementin erime noktası en yüksektir?,Ütü,Tungsten,Karbon,Titanyum,B,Tungsten tüm elementler arasında en yüksek erime noktasına sahiptir,Hard
+643,Math,64 sayısının küp kökü nedir?,2,3,4,5,C,64'ün küp kökü 4'tür (4×4×4=64),Easy
+644,Science,Evrende en bol bulunan element hangisidir?,Oksijen,Helyum,Hidrojen,Karbon,C,Hidrojen evrendeki en bol bulunan elementtir,Easy
+645,Technology,DNS ne anlama geliyor?,Alan Adı Sistemi,Dijital Ağ Hizmeti,Veri Ağı Sistemi,Doğrudan İsim Hizmeti,A,"DNS, Alan Adı Sistemi anlamına gelir",Medium
+646,Science,Kaç tane soy gaz vardır?,4,5,6,7,C,Periyodik tabloda 6 adet soy gaz vardır,Medium
+647,Math,2'nin 8'inci kuvveti kaçtır?,128,256,512,1024,B,2'nin 8'inci kuvveti 256'ya eşittir,Easy
+648,Science,Hangi elektromanyetik radyasyon türünün dalga boyu en uzundur?,Gama ışınları,X-ışınları,Mikrodalgalar,Radyo dalgaları,D,Radyo dalgaları elektromanyetik spektrumdaki en uzun dalga boyuna sahiptir,Medium
+649,Animals,Hangi hayvanın kanı mavidir?,Ahtapot,Fil,Zürafa,Köpek balığı,A,Ahtapotların kanı bakır bazlı hemosiyanin nedeniyle mavidir,Medium
+650,Sports,Satranç tahtasında kaç kare vardır?,32,48,64,81,C,Bir satranç tahtasında 64 kare (8×8) vardır,Easy
+651,Science,Karbonun atom numarası nedir?,4,6,8,12,B,Karbonun atom numarası 6'dır,Easy
+652,Math,Kenar uzunluğu 7 olan karenin çevresi kaçtır?,14,21,28,49,C,Çevre = 4 × kenar uzunluğu = 4 × 7 = 28,Easy
+653,Science,Suyun donma noktası Fahrenheit cinsinden nedir?,0°F,32°F,100°F,212°F,B,Su 32 Fahrenheit derecede donar,Easy
+654,Technology,HTTP ne anlama geliyor?,Hiper Metin Aktarım Protokolü,Yüksek Teknoloji Transfer Protokolü,Hiper Tip Transfer Protokolü,Ana Sayfa Metin Aktarım Protokolü,A,"HTTP, Hiper Metin Aktarım Protokolü anlamına gelir",Easy
+655,Science,Evrensel bağışçı hangi kan grubuna aittir?,A,B,AB,O,D,0 negatif tipi evrensel kan bağışçısı türüdür,Easy
+656,Math,7 faktöriyel (7!) nedir?,720,2520,5040,10080,C,7! = 7×6×5×4×3×2×1 = 5040,Medium
+657,Science,Oda sıcaklığında havadaki sesin hızı nedir?,243 m/s,343 m/s,443 m/s,543 m/s,B,Ses havada saniyede yaklaşık 343 metre hızla hareket eder,Medium
+658,Animals,En büyük yuvayı hangi kuş yapar?,Kartal,Leylek,Albatros,Kel kartal,D,Kel kartallar en büyük ağaç yuvalarını yaparlar,Medium
+659,Sports,Basketbolda serbest atış kaç sayı değerindedir?,1,2,3,4,A,Basketbolda serbest atış 1 sayı değerindedir,Easy
+660,Science,Midenizde hangi tür asit var?,Sülfürik asit,Nitrik asit,Hidroklorik asit,Asetik asit,C,Mide sindirim için hidroklorik asit üretir,Easy
+661,Math,2 5 7 9 12 sayısının medyanı kaçtır?,5,7,9,12,B,2 5 7 9 12'nin medyanı 7'dir (orta değer),Easy
+662,Science,Elektriği en iyi ileten metal hangisidir?,Altın,Gümüş,Bakır,Alüminyum,B,"Gümüş, metaller arasında en iyi elektrik iletkenidir",Medium
+663,Technology,API ne anlama geliyor?,Uygulama Programlama Arayüzü,Gelişmiş Programlama Arayüzü,Uygulama Süreci Arayüzü,Otomatik Programlama Arayüzü,A,"API, Uygulama Programlama Arayüzü anlamına gelir",Easy
+664,Science,İnsanın kaç çift kaburgası vardır?,10,11,12,13,C,İnsanların 12 çift kaburgası vardır,Easy
+665,Math,Tabanı 10 ve yüksekliği 6 olan bir üçgenin alanı nedir?,30,40,50,60,A,Alan = (taban × yükseklik)/2 = (10 × 6)/2 = 30,Easy
+666,Science,Kırmızı kan hücreleri hangi organ tarafından üretilir?,Kalp,Karaciğer,Kemik iliği,Dalak,C,Kemik iliği kırmızı kan hücreleri üretir,Easy
+667,Animals,Hangi hayvan kopan uzuvlarını yeniden oluşturabilir?,Yılan,Kertenkele,Denizyıldızı,Kaplumbağa,C,Denizyıldızı kaybolan kollarını yenileyebilir,Easy
+668,Sports,Ragbi topunun şekli nedir?,Küre,Oval,Silindir,Küp,B,Bir ragbi topu oval (dikey küresel) bir şekle sahiptir,Easy
+669,Science,Metanın kimyasal formülü nedir?,CH2,CH3,CH4,C2H4,C,Metanın kimyasal formülü CH4'tür,Easy
+670,Math,0.25 kesir olarak kaçtır?,1/2,1/3,1/4,1/5,C,"0,25 kesir olarak 1/4'e eşittir",Easy
+671,Science,Miyopluğu düzeltmek için hangi tip mercek kullanılır?,Dışbükey,İçbükey,Bifokal,İlerici,B,İçbükey mercekler miyopiyi (yakın görüşlülüğü) düzeltir,Medium
+672,Technology,GPU ne anlama geliyor?,Genel İşlem Birimi,Grafik İşlem Birimi,Küresel İşlem Birimi,Grafik Program Birimi,B,"GPU, Grafik İşlem Birimi anlamına gelir",Easy
+673,Science,Adrenalin hangi organ tarafından üretilir?,Tiroid,Böbreküstü bezleri,Hipofiz,Pankreas,B,Böbreküstü bezleri adrenalin (epinefrin) üretir,Easy
+674,Math,x'in değeri nedir: 3x + 9 = 21?,2,3,4,5,C,"3x + 9 = 21, 3x = 12 anlamına gelir, dolayısıyla x = 4",Easy
+675,Science,Karbon-14'ün yarı ömrü nedir?,573 yıl,5730 yıl,57300 yıl,573000 yıl,B,Karbon-14'ün yarı ömrü yaklaşık 5730 yıldır,Medium
+676,Animals,Dünyanın en uzun yılanı hangisidir?,Kral kobra,Anakonda,Ağsı piton,Boa yılanı,C,Ağsı piton en uzun yılan türüdür,Medium
+677,Sports,Olimpik yüzme havuzunda kaç kulvar vardır?,6,8,10,12,B,Olimpik yüzme havuzları 8 kulvarlıdır,Easy
+678,Science,Paslanmaya ne sebep olur?,su,Oksijen,Hem su hem oksijen,Karbondioksit,C,"Pas, demirin hem su hem de oksijenle reaksiyona girmesiyle oluşur",Easy
+679,Math,Yarıçapı 5 olan bir çemberin çevresi kaçtır?,5π,10π,15π,20π,B,Çevre = 2πr = 2π(5) = 10π,Easy
+680,Science,Dünya'nın çekirdeğinin büyük kısmını hangi element oluşturur?,Alüminyum,Ütü,Nikel,Silikon,B,Dünya'nın çekirdeği esas olarak demirden oluşur,Easy
+681,Technology,LCD ne anlama geliyor?,Işık Kristal Ekranı,Sıvı Kristal Ekran,Işık Akımı Göstergesi,Sıvı Karbon Ekranı,B,"LCD, Sıvı Kristal Ekran anlamına gelir",Easy
+682,Science,Bir gram proteinde kaç kalori vardır?,2,4,7,9,B,Bir gram protein 4 kalori içerir,Easy
+683,Math,Tam olarak 90 derece hangi açı çeşididir?,Akut,Sağ,Geniş,Dümdüz,B,Dik açı tam olarak 90 derecedir,Easy
+684,Science,En yaygın kan grubu hangisidir?,A+,B+,O+,AB+,C,0 pozitif en yaygın kan grubudur,Easy
+685,Animals,Bir arının kaç gözü vardır?,2,3,4,5,D,Arıların 5 gözü vardır: 2 bileşik ve 3 basit göz,Medium
+686,Sports,Golfte par nedir?,Ortalama puan,Mükemmel puan,Beklenen puan,Maksimum puan,C,"Par, bir delik için beklenen vuruş sayısıdır",Easy
+687,Science,Mayanın fermantasyonu sırasında hangi gaz üretilir?,Oksijen,Azot,Karbondioksit,Metan,C,"Maya, fermantasyon sırasında karbondioksit üretir",Easy
+688,Math,log₁₀(100) nedir?,1,2,3,10,B,log₁₀(100) = 2 çünkü 10² = 100,Easy
+689,Science,Sütte hangi şeker türü bulunur?,Glikoz,Fruktoz,Laktoz,Sakaroz,C,"Laktoz, sütte bulunan doğal şekerdir",Easy
+690,Technology,VR ne anlama geliyor?,Sanal Gerçeklik,Görsel Gerçeklik,Sanal Müdahale,Video Gerçekliği,A,"VR, Sanal Gerçeklik anlamına gelir",Easy
+691,Science,İnsan beyninde kaç tane ventrikül vardır?,2,3,4,5,C,İnsan beyninde 4 ventrikül vardır,Medium
+692,Math,80'in %15'i kaçtır?,8,10,12,14,C,"80'in %15'i = 0,15 × 80 = 12",Easy
+693,Science,Virüsleri inceleyen bilim dalına ne ad verilir?,Viroloji,Bakteriyoloji,Patoloji,İmmünoloji,A,Viroloji virüslerin incelenmesidir,Easy
+694,Animals,Hangi büyük kedi kükreyemez?,Çita,Aslan,Kaplan,Leopar,A,Çitalar kükreyemez ama mırıldanabilir,Easy
+695,Sports,Su topu takımında suda kaç oyuncu bulunur?,5,6,7,8,C,Su topu takımlarında aynı anda 7 oyuncu suda bulunur,Medium
+696,Science,Çeliğin temel bileşeni hangi elementtir?,Karbon,Ütü,Krom,Nikel,B,"Çelik, esas olarak az miktarda karbon içeren demirdir",Easy
+697,Math,2 3 3 4 5 5 5 6'nın modu nedir?,3,4,5,6,C,Mod 5'tir (en sık görünen),Easy
+698,Science,Ne tür elektromanyetik radyasyon görüyoruz?,Kızılötesi,Görünür ışık,Ultraviyole,X-ışınları,B,Görünür ışık görebildiğimiz tek elektromanyetik radyasyondur,Easy
+699,Technology,IoT ne anlama geliyor?,Nesnelerin İnterneti,Entegre Çevrimiçi Teknoloji,Teknolojinin İnterneti,Dahili İşletim Şeyleri,A,"IoT, Nesnelerin İnterneti anlamına gelir",Easy
+700,Science,Meyve sineklerinin kaç kromozomu vardır?,4,8,16,32,B,Meyve sineklerinin (Drosophila) 8 kromozomu vardır,Hard
+701,Math,Kenarları 3 ve 4 olan bir dik üçgenin hipotenüsü nedir?,5,6,7,8,A,Pisagor teoremini kullanarak: √(3²+4²) = √25 = 5,Easy
+702,Science,Hepatit hangi organı etkiler?,Kalp,Karaciğer,Böbrek,Pankreas,B,Hepatit karaciğerin iltihaplanmasıdır,Easy
+703,Animals,Baykuş grubuna ne ad verilir?,Sürü,Parlamento,Cinayet,Koloni,B,Bir grup baykuşa parlamento denir,Medium
+704,Sports,Basketbol maçında kaç periyot vardır?,2,3,4,5,C,Basketbol oyunları 4 periyottan oluşur,Easy
+705,Science,Dünyadaki en yoğun doğal element hangisidir?,Altın,Yol göstermek,Osmiyum,Platin,C,"Osmiyum, doğada bulunan en yoğun elementtir",Hard
+706,Math,5⁴ nedir?,125,525,625,1025,C,5⁴ = 5×5×5×5 = 625,Medium
+707,Science,Gök gürültüsü ne tür bir enerjidir?,Işık,Ses,Sıcaklık,Elektrik,B,"Gök gürültüsü, şimşek tarafından üretilen sestir",Easy
+708,Technology,İlk seri üretim otomobil modeli hangisiydi?,Model A,Model T,Model S,Böcek,B,"Ford Model T, seri üretilen ilk otomobildi",Easy
+709,Science,İnsan karaciğeri kaç lobdan oluşur?,2,3,4,5,C,İnsan karaciğeri 4 lobdan oluşur,Medium
+710,Math,169 sayısının karekökü nedir?,11,12,13,14,C,169'un karekökü 13'tür,Easy
+711,Science,Sıcaklığın SI birimi nedir?,Santigrat derece,Fahrenheit,Kelvin,Rankine,C,"Kelvin, SI sıcaklık birimidir",Easy
+712,Animals,Hangi hayvanın kan basıncı en yüksektir?,Fil,Zürafa,Mavi balina,Gergedan,B,Zürafalar boyları nedeniyle en yüksek kan basıncına sahiptir,Medium
+713,Sports,Standart bir golf sahasında kaç delik vardır?,9,12,18,36,C,Standart bir golf sahasında 18 delik bulunur,Easy
+714,Science,Fe sembolü hangi elementtir?,Florin,Ütü,Fermium,Fransiyum,B,"Fe, demirin kimyasal sembolüdür (Latince ferrum'dan)",Easy
+715,Science,Atomun merkezine ne ad verilir?,Elektron,Proton,Çekirdek,Nötron,C,"Çekirdek, proton ve nötronları içeren bir atomun merkezi çekirdeğidir",Easy
+716,Science,İnsanlar hangi gazı dışarı verir?,Oksijen,Azot,Karbondioksit,Hidrojen,C,İnsanlar solunumun atık ürünü olarak karbondioksit verirler,Easy
+717,Science,Su neyden oluşur?,Hidrojen ve oksijen,Karbon ve oksijen,Azot ve hidrojen,Helyum ve oksijen,A,Su (H2O) iki hidrojen atomu ve bir oksijen atomundan oluşur,Easy
+718,Science,Vücuda kan pompalayan organ hangisidir?,Beyin,Karaciğer,Kalp,Akciğerler,C,"Kalp, dolaşım sistemi boyunca kan pompalar",Easy
+719,Science,Dünya'ya en yakın yıldız hangisidir?,Proxima Centauri,Alfa Centauri,Sirius,Güneş,D,"Güneş, yaklaşık 93 milyon mil uzaklıktaki en yakın yıldızımızdır",Easy
+720,Science,Yavru kurbağaya ne ad veririz?,İribaş,Larvalar,Yavru köpek,Yavru,A,Yavru kurbağaya iribaş denir,Easy
+721,Science,Yetişkin bir insan vücudunda kaç kemik vardır?,106,206,306,406,B,Yetişkin bir insanın 206 kemiği vardır,Easy
+722,Science,Bakteriler genetik materyali değiştirmek için hangi süreci kullanırlar?,Hücrenin ikiye bölünerek üremesi,Çekim,Dönüşüm,Transdüksiyon,B,"Bakteriyel konjugasyon, genetik materyali hücreler arasında aktarır",Easy
+723,Science,Bitkileri yeşil yapan nedir?,Karoten,Klorofil,Melanin,Hemoglobin,B,"Klorofil, bitkilerde fotosentez için kullanılan yeşil pigmenttir",Easy
+724,Science,Yaşamın en küçük birimi nedir?,Atom,Molekül,Hücre,Organ,C,"Hücre, yaşamın en küçük birimidir",Easy
+725,Science,Bir böceğin kaç bacağı vardır?,4,6,8,10,B,Tüm böceklerin 6 bacağı vardır,Easy
+726,Science,Donmuş suya ne denir?,Buhar,Buz,Buhar,Don,B,"Buz, suyun katı halidir",Easy
+727,Science,Dünya'nın ikizi olarak bilinen gezegen hangisidir?,Mars,Venüs,Merkür,Jüpiter,B,"Venüs, benzer boyutları nedeniyle genellikle Dünya'nın ikizi olarak adlandırılır",Easy
+728,Science,Nefes almanıza hangi organ yardımcı olur?,Kalp,Karın,Akciğerler,Böbrek,C,Akciğerler solunumun birincil organlarıdır,Easy
+729,Science,Arılar çiçeklerden ne toplar?,Yapraklar,Nektar,Tohumlar,Yapraklar,B,Arılar bal yapmak için çiçeklerden nektar toplarlar,Easy
+730,Science,Yetişkin bir insanın genellikle kaç dişi vardır?,28,30,32,36,C,Yetişkinlerde genellikle yirmi yaş dişleri de dahil olmak üzere 32 diş bulunur,Easy
+731,Science,İnsan vücudundaki en sert madde hangisidir?,Kemik,Kıkırdak,Diş minesi,Tırnaklar,C,Diş minesi insan vücudundaki en sert maddedir,Easy
+732,Science,Güneşten hangi vitamini alırız?,A vitamini,B vitamini,C vitamini,D vitamini,D,Cildiniz güneş ışığına maruz kaldığında D vitamini üretir,Easy
+733,Science,Yıldız gruplarına ne ad verilir?,Gökada,Takımyıldız,Güneş sistemi,Evren,B,"Bir takımyıldız, bir desen oluşturan bir grup yıldızdır",Easy
+734,Science,Yunus ne tür bir hayvandır?,Balık,Memeli,Amfibi,Sürüngen,B,Yunuslar balık değil deniz memelileridir,Easy
+735,Science,İnsan kalbi kaç odacıklıdır?,2,3,4,5,C,İnsan kalbinin 4 odası vardır: 2 kulakçık ve 2 karıncık,Easy
+736,Science,Suyun buhara dönüşme sürecine ne ad verilir?,Yoğunlaşma,Buharlaşma,Yağış,Süblimasyon,B,"Buharlaşma, sıvı suyun su buharına dönüşmesidir",Easy
+737,Science,Kandaki atıkları hangi organ süzer?,Kalp,Karaciğer,Böbrek,Karın,C,Böbrekler kandaki atık ürünleri filtreler,Easy
+738,Science,Kana kırmızı rengini veren nedir?,Ütü,Hemoglobin,Oksijen,Plazma,B,Kırmızı kan hücrelerindeki hemoglobin kana kırmızı rengini verir,Easy
+739,Science,Güneş ışığının Dünya'ya ulaşması kaç dakika sürer?,4,8,12,16,B,Güneş ışığının Dünya'ya ulaşması yaklaşık 8 dakika sürer,Easy
+740,Science,Canlıları inceleyen bilim dalına ne ad verilir?,Kimya,Biyoloji,Fizik,Jeoloji,B,Biyoloji canlı organizmaların incelenmesidir,Easy
+741,Science,Güneşten hangi enerji türü gelir?,Nükleer,Güneş,Rüzgâr,Jeotermal,B,Güneş enerjisi güneşten gelir,Easy
+742,Science,Hücre çekirdeğine neyin girdiğini düzenleyen yapı hangisidir?,Nükleer zar,Nükleer gözenekler,Çekirdekçik,Kromatin,B,"Nükleer gözenekler, çekirdeğe moleküler taşımayı kontrol eder",Easy
+743,Science,Sadece bitkilerle beslenen hayvanlara ne ad verilir?,Etçiller,Otçullar,Hepçiller,Böcekçiller,B,Otçullar yalnızca bitki yiyen hayvanlardır,Easy
+744,Science,Dünya'nın dış katmanına ne ad verilir?,Çekirdek,Manto,Kabuk,Atmosfer,C,"Kabuk, Dünya'nın en dıştaki katı tabakasıdır",Easy
+745,Science,Bir örümceğin genellikle kaç gözü vardır?,2,4,6,8,D,Çoğu örümceğin 8 gözü vardır,Easy
+746,Science,Bitkiler fotosentez sırasında hangi gazı üretir?,Karbondioksit,Azot,Oksijen,Hidrojen,C,Bitkiler fotosentez sırasında oksijen üretirler,Easy
+747,Science,İnsan vücudundaki en hızlı hareket eden kas hangisidir?,Kalp,Dil,Göz,Parmak,C,Göz kasları insan vücudundaki en hızlı hareket eden kaslardır,Easy
+748,Science,Dünya yüzeyinin yüzde kaçı sularla kaplıdır?,%50,%60,%70,%80,C,Dünya yüzeyinin yaklaşık %70'i suyla kaplıdır,Easy
+749,Science,Kayaçları inceleyen bilim adamına ne denir?,Biyolog,Jeolog,Meteorolog,Arkeolog,B,Bir jeolog kayaları ve Dünya'nın yapısını inceler,Easy
+750,Science,Güneş sistemimizde kaç gezegenin halkası var?,1,2,3,4,D,"Dört gezegenin halkası var: Jüpiter, Satürn, Uranüs ve Neptün",Easy
+751,Science,Soluduğumuz başlıca gaz hangisidir?,Oksijen,Azot,Karbondioksit,Argon,B,"Azot, soluduğumuz havanın yaklaşık %78'ini oluşturur",Easy
+752,Science,Hava olaylarını inceleyen bilim insanına ne denir?,Jeolog,Biyolog,Meteorolog,Astronom,C,Bir meteorolog hava ve atmosfer koşullarını inceler,Easy
+753,Science,Güneş sistemimizdeki en küçük gezegen hangisidir?,Mars,Merkür,Venüs,Plüton,B,"Merkür, güneş sistemimizdeki en küçük gezegendir",Easy
+754,Science,İnsanların kaç duyusu vardır?,3,4,5,6,C,"İnsanların geleneksel olarak 5 duyusu vardır: görme, işitme, koku alma, tat alma ve dokunma",Easy
+755,Science,Tuzun kimyasal formülü nedir?,H2O,NaCl,CO2,O2,B,Sofra tuzunun kimyasal formülü NaCl'dir (sodyum klorür),Easy
+756,Science,Hangi kan hücreleri enfeksiyonla savaşır?,Kırmızı kan hücreleri,Beyaz kan hücreleri,Trombositler,Plazma hücreleri,B,Beyaz kan hücreleri vücuttaki enfeksiyonlarla savaşır,Easy
+757,Science,Uzayın incelenmesine ne ad verilir?,Jeoloji,Biyoloji,Astronomi,Meteoroloji,C,Astronomi gök cisimlerinin ve uzayın incelenmesidir,Easy
+758,Science,Bir arının kaç kanadı vardır?,2,4,6,8,B,Arıların 4 kanadı vardır (2 çift),Easy
+759,Science,Hücrelerin ozmotik dengeyi korumasını sağlayan süreç hangisidir?,Difüzyon,Ozmoregülasyon,Aktif taşıma,Kolaylaştırılmış difüzyon,B,Ozmoregülasyon uygun su ve çözünen madde dengesini korur,Easy
+760,Science,Dünyanın Güneş etrafındaki yörüngesine ne ad veriyoruz?,Rotasyon,Devrim,Yörünge,Döngü,C,Dünya'nın Güneş etrafındaki yoluna yörünge denir,Easy
+761,Science,Maddenin temel birimi nedir?,Hücre,Atom,Molekül,Elektron,B,"Atom, maddenin temel birimidir",Easy
+762,Science,Dünya atmosferinde en bol bulunan gaz hangisidir?,Oksijen,Karbondioksit,Azot,Hidrojen,C,"Azot, Dünya atmosferinin yaklaşık %78'ini oluşturur",Easy
+763,Science,Tırtılların kelebeğe dönüşme süreci nasıl gerçekleşir?,Evrim,Başkalaşım,Mutasyon,Uyum,B,"Metamorfoz, tırtılın kelebeğe dönüşmesidir",Easy
+764,Science,Bir gün kaç saattir?,12,24,36,48,B,Bir günde 24 saat vardır,Easy
+765,Science,Safra hangi organ tarafından üretilir?,Karın,Pankreas,Karaciğer,Böbrek,C,Karaciğer sindirim için safra üretir,Easy
+766,Science,Hayvanları inceleyen bilim dalına ne ad verilir?,Botanik,Zooloji,Jeoloji,Ekoloji,B,Zooloji hayvanların incelenmesidir,Easy
+767,Science,Nesneleri Dünya'ya doğru çeken kuvvet nedir?,Manyetizma,Yer çekimi,Sürtünme,Basınç,B,"Yerçekimi, nesneleri Dünya'nın merkezine doğru çeker",Easy
+768,Science,Kaç kıta var?,5,6,7,8,C,Dünya'da 7 kıta var,Easy
+769,Science,Suyun kimyasal sembolü nedir?,H2O,O2,CO2,NaCl,A,"H2O, suyun kimyasal formülüdür",Easy
+770,Science,Volkanik lavlardan hangi kaya türü oluşur?,Tortul,Metamorfik,Magmatik,Granit,C,Magmatik kayaçlar soğumuş lav veya magmadan oluşur,Easy
+771,Science,İnsan vücudundaki en küçük kemik hangisidir?,Üzengi kemiği,Uyluk kemiği,Diz kapağı kemiği,Yarıçap,A,Kulaktaki üzengi kemiği en küçük insan kemiğidir,Easy
+772,Science,Dünya'nın Güneş etrafındaki dönüşü kaç gün sürer?,30,100,365,500,C,Dünya'nın Güneş etrafındaki dönüşü yaklaşık 365 gün sürer,Easy
+773,Science,Hayvanları tedavi eden doktora ne denir?,Çocuk doktoru,Veteriner,Hekim,Cerrah,B,"Veteriner, hayvanları tedavi eden bir doktordur",Easy
+774,Science,Köklerin temel işlevi nedir?,Fotosentez,Su emilimi,Üreme,Solunum,B,Kökler esas olarak topraktan su ve besinleri emer,Easy
+775,Science,Düşünceyi hangi organ kontrol eder?,Kalp,Karaciğer,Beyin,Karın,C,Beyin düşünmeyi ve diğer zihinsel süreçleri kontrol eder,Easy
+776,Science,Sıvının katı hale geçme sürecine ne ad verilir?,Erime,Donmak,Kaynama,Buharlaşma,B,"Donma, bir sıvının katı hale gelmesidir",Easy
+777,Science,İnsanlarda kaç kromozom vardır?,23,46,69,92,B,İnsanlarda 46 kromozom (23 çift) vardır,Easy
+778,Science,Dinozorları inceleyen bilim insanı hangisidir?,Arkeolog,Paleontolog,Jeolog,Biyolog,B,Paleontologlar dinozorları ve fosilleri inceler,Easy
+779,Science,Güneş sistemimizdeki en sıcak gezegen hangisidir?,Merkür,Venüs,Mars,Jüpiter,B,"Venüs, kalın atmosferi nedeniyle en sıcak gezegendir",Easy
+780,Science,Bitkinin hangi kısmı güneş ışığını emer?,Kökler,Kök,Yapraklar,Çiçekler,C,Yapraklar fotosentez için güneş ışığını emer,Easy
+781,Science,Bir insanın kaç böbreği vardır?,1,2,3,4,B,İnsanlarda genellikle 2 böbrek bulunur,Easy
+782,Science,Bitkileri inceleyen bilim dalına ne ad verilir?,Zooloji,Botanik,Jeoloji,Ekoloji,B,Botanik bitkilerin incelenmesidir,Easy
+783,Science,Oda sıcaklığında sıvı halde bulunan metal hangisidir?,Altın,Gümüş,Merkür,Yol göstermek,C,"Civa, oda sıcaklığında sıvı halde bulunan tek metaldir",Easy
+784,Science,Yavru kedilere ne ad verilir?,Yavru köpekler,Yavru kediler,Yavrular,Civcivler,B,Yavru kedilere yavru kedi denir,Easy
+785,Science,Bir kuşun kalbi kaç odacıklıdır?,2,3,4,5,C,"Kuşların, memeliler gibi 4 odacıklı kalpleri vardır",Easy
+786,Science,Güneş'in ana gazı nedir?,Oksijen,Helyum,Hidrojen,Azot,C,Güneş esas olarak hidrojen gazından oluşur,Easy
+787,Science,Meşe palamudu hangi ağaç türünden elde edilir?,Akçaağaç,Meşe,Çam,Huş ağacı,B,Meşe ağaçları meşe palamudu üretir,Easy
+788,Science,İnsan vücudundaki en uzun kemik hangisidir?,Omurga,Uyluk kemiği,Kaval kemiği,Kol kemiği,B,Uyluk kemiği (femur) en uzun kemiktir,Easy
+789,Science,Bir insanın kaç midesi vardır?,1,2,3,4,A,İnsanların tek midesi vardır,Easy
+790,Science,Gelgitlere ne sebep olur?,Rüzgâr,Ay,Sıcaklık,Basınç,B,Ay'ın yerçekimi okyanus gelgitlerine neden oluyor,Easy
+791,Science,Derinin en dış tabakasına ne ad verilir?,Dermis,Epidermis,Hipodermis,Alt deri,B,"Epidermis, cildin dış tabakasıdır",Easy
+792,Science,Bir insanın kaç akciğeri vardır?,1,2,3,4,B,İnsanların 2 akciğeri vardır,Easy
+793,Science,Yılan ne tür bir hayvandır?,Memeli,Kuş,Sürüngen,Amfibi,C,Yılanlar sürüngenlerdir,Easy
+794,Science,Depremleri inceleyen bilim dalına ne ad verilir?,Volkanoloji,Sismoloji,Meteoroloji,Jeoloji,B,Sismoloji depremlerin incelenmesidir,Easy
+795,Science,Gözün hangi kısmı ne kadar ışığın içeri gireceğini kontrol eder?,Öğrenci,İris,Retina,Kornea,A,Göz bebeği göze giren ışık miktarını kontrol eder,Easy
+796,Science,İnsan kalbinde kaç tane ventrikül vardır?,1,2,3,4,B,İnsan kalbinde 2 ventrikül vardır,Easy
+797,Science,Besinlerde hangi tür enerji depolanır?,Kinetik,Potansiyel,Kimyasal,Nükleer,C,Yiyecekler kimyasal enerji içerir,Easy
+798,Science,Gündüzleri aktif olan hayvanlara ne ad verilir?,Geceleyin,Günlük,Alacakaranlık,Kış uykusunda,B,Gündüz hayvanları gün boyunca aktiftir,Easy
+799,Science,Safra hangi organda depolanır?,Karın,Safra kesesi,Pankreas,Karaciğer,B,Safra kesesi karaciğer tarafından üretilen safrayı depolar,Easy
+800,Science,Dünya'nın kaç uydusu var?,0,1,2,3,B,Dünya'nın 1 ayı var,Easy
+801,Science,Oksijenin kimyasal sembolü nedir?,O,O2,Öküz,Og,A,"O, oksijenin kimyasal sembolüdür",Easy
+802,Science,Balina ne tür bir hayvandır?,Balık,Memeli,Amfibi,Sürüngen,B,Balinalar deniz memelileridir,Easy
+803,Science,Katı bir maddenin gaz haline geçme sürecine ne ad verilir?,Buharlaşma,Yoğunlaşma,Süblimasyon,İfade,C,"Süblimleşme, katı bir maddenin doğrudan gaza dönüşmesidir",Easy
+804,Science,İnsanların genellikle kaç kaburgası vardır?,20,22,24,26,C,İnsanlarda genellikle 24 kaburga (12 çift) bulunur,Easy
+805,Science,Bal ne üretir?,Eşek arıları,Arılar,Karıncalar,Kelebekler,B,Arılar çiçek nektarından bal üretirler,Easy
+806,Science,Kasların kasılmasını sağlayan mekanizma nedir?,Kayan filament teorisi,Köprü üstü bisiklet sürme,Hem A hem de B,Kalsiyum bağlayıcı,C,Hem kayan filamentler hem de çapraz köprü döngüsü kas kasılmasını açıklar,Easy
+807,Science,Güneşe en yakın gezegen hangisidir?,Venüs,Merkür,Toprak,Mars,B,"Merkür, Güneş'e en yakın gezegendir",Easy
+808,Science,Gözün renkli kısmına ne ad verilir?,Öğrenci,İris,Retina,Kornea,B,"İris, gözün renkli kısmıdır",Easy
+809,Science,İnsan elinde kaç kemik vardır?,14,19,22,27,D,İnsan elinin 27 kemiği vardır,Easy
+810,Science,Hangi damar türü kanı kalpten uzaklaştırır?,Damar,Arter,Kılcal,Vana,B,Atardamarlar kanı kalpten uzaklaştırır,Easy
+811,Science,Suyun bitki gövdelerinde yukarı doğru hareket etmesini sağlayan süreç hangisidir?,Yer çekimi,Kılcal etki,Ozmoz,Aktif taşıma,B,"Kılcal etki ve terleme, suyu bitki gövdelerine doğru hareket ettirir",Easy
+812,Science,Bir insanın tipik olarak kaç omuru vardır?,24,26,33,40,C,İnsanların tipik olarak 33 omurları vardır,Easy
+813,Science,Hangi organ besinlerin sindirimine yardımcı olur?,Kalp,Beyin,Karın,Akciğerler,C,"Mide, yiyeceklerin sindirimine yardımcı olur",Easy
+814,Science,İnsan vücudunu inceleyen bilim dalına ne ad verilir?,Biyoloji,Anatomi,Psikoloji,Kimya,B,"Anatomi, insan vücudunun yapısını inceleyen bilim dalıdır",Easy
+815,Math,12×12 nedir?,120,132,144,156,C,12 × 12 = 144,Easy
+816,Science,Penguen ne tür bir hayvandır?,Memeli,Kuş,Balık,Sürüngen,B,Penguenler uçamayan kuşlardır,Easy
+817,Science,Soluduğumuz havanın çoğunluğunu hangi gaz oluşturur?,Oksijen,Azot,Karbondioksit,Hidrojen,B,Azot havanın yaklaşık %78'ini oluşturur,Easy
+818,Science,Kelebeğin kaç bacağı vardır?,4,6,8,10,B,Kelebeklerin tüm böcekler gibi 6 bacağı vardır,Easy
+819,Science,Hücrenin enerji santrali nedir?,Çekirdek,Mitokondri,Ribozom,Kloroplast,B,Mitokondriler hücrenin enerji santrali olarak adlandırılır,Easy
+820,Science,Görmemizi hangi organ sağlar?,Beyin,Göz,Burun,Kulak,B,Gözler görme organlarıdır,Easy
+821,Science,Bir yılda kaç mevsim vardır?,2,3,4,5,C,Bir yılda 4 mevsim vardır,Easy
+822,Science,Donmuş yağmura ne ad verilir?,Kar,Sulu kar,Dolu,Don,C,"Dolu, buz parçaları halinde düşen donmuş yağmurdur",Easy
+823,Science,Kurbağa ne tür bir hayvandır?,Memeli,Sürüngen,Amfibi,Balık,C,Kurbağalar amfibilerdir,Easy
+824,Science,Bitkilerin topraktan mineralleri emmesini sağlayan süreç hangisidir?,Ozmoz,Aktif taşıma,Difüzyon,Terleme,B,"Aktif taşıma, mineralleri konsantrasyon gradyanlarına karşı hareket ettirir",Easy
+825,Science,Dünya ile Güneş arasında kaç gezegen var?,0,1,2,3,C,"Merkür ve Venüs, Dünya ile Güneş arasındadır",Easy
+826,Science,Hangi organ duymanıza yardımcı olur?,Göz,Kulak,Burun,Dil,B,Kulaklar işitme organlarıdır,Easy
+827,Science,Fosilleri inceleyen bilim dalına ne ad verilir?,Arkeoloji,Paleontoloji,Jeoloji,Biyoloji,B,Paleontoloji fosillerin incelenmesidir,Easy
+828,Science,Yengecin kaç bacağı vardır?,6,8,10,12,C,Yengeçlerin pençeleri dahil 10 bacağı vardır,Easy
+829,Science,Bir pil ne tür enerji depolar?,Sıcaklık,Işık,Kimyasal,Ses,C,Piller kimyasal enerjiyi depolar,Easy
+830,Science,Bir elementin en küçük parçacığı nedir?,Molekül,Atom,Elektron,Proton,B,"Bir atom, bir elementin en küçük parçacığıdır",Easy
+831,Science,Petek hücresinin kaç kenarı vardır?,4,5,6,8,C,Petek hücreleri 6 kenarlı altıgendir,Easy
+832,Science,Tat almamızı sağlayan organımız hangisidir?,Burun,Dil,Boğaz,Dudaklar,B,"Dil, tatma duyusuna yarayan tat tomurcuklarını içerir",Easy
+833,Science,Yıldızları inceleyen bilim dalına ne ad verilir?,Jeoloji,Meteoroloji,Astronomi,Biyoloji,C,Astronomi yıldızların incelenmesini içerir,Easy
+834,Science,Ahtapotun kaç bacağı vardır?,6,8,10,12,B,Bir ahtapotun 8 dokunaç (kol) vardır,Easy
+835,Science,Katmanlardan oluşan kaya türü hangisidir?,Magmatik,Metamorfik,Tortul,Volkanik,C,Tortul kayaçlar katmanlar halinde oluşur,Easy
+836,Science,Karbonun kimyasal sembolü nedir?,C,Yaklaşık,Ortak,Cr,A,"C, karbonun kimyasal sembolüdür",Easy
+837,Science,İnsan omurgasında kaç kemik vardır?,24,26,33,40,C,İnsan omurgasında 33 omur vardır,Easy
+838,Science,Ciltte D vitamini ne üretir?,su,Güneş ışığı,Hava,Yiyecek,B,Güneş ışığı ciltte D vitamini üretimini tetikliyor,Easy
+839,Science,Yarasa ne tür bir hayvandır?,Kuş,Memeli,Sürüngen,Amfibi,B,Yarasalar uçan tek memelilerdir,Easy
+840,Science,Dinlenme halinde kalp dakikada kaç kez atar?,40-60,60-100,100-120,120-140,B,Normal dinlenme kalp atış hızı dakikada 60-100 atımdır,Easy
+841,Science,Böcekleri inceleyen bilim dalına ne ad verilir?,Ornitoloji,Entomoloji,Herpetoloji,İhtiyoloji,B,Entomoloji böceklerin incelenmesidir,Easy
+842,Science,Hangi gazı solumamız gerekiyor?,Azot,Karbondioksit,Oksijen,Hidrojen,C,Nefes almak ve hayatta kalmak için oksijene ihtiyacımız var,Easy
+843,Science,Hidrojenin kaç elektronu vardır?,0,1,2,3,B,Hidrojenin 1 elektronu vardır,Easy
+844,Science,Hangi mercek türü nesneleri daha büyük gösterir?,İçbükey,Dışbükey,Düz,Ayna,B,Dışbükey mercekler nesneleri büyütür,Easy
+845,Science,Kalıtım bilimine ne ad verilir?,Jeoloji,Genetik,Coğrafya,Geometri,B,"Genetik, kalıtım ve genlerin incelenmesidir",Easy
+846,Science,Ay'ın kaç evresi vardır?,4,6,8,10,C,Ayın 8 evresi vardır,Easy
+847,Science,Kandaki atık maddeleri hangi organ temizler?,Kalp,Karaciğer,Böbrek,Karın,C,Böbrekler kandaki atıkları filtreler,Easy
+848,Science,Hangi hayvan türü yumurtlar?,Canlı doğuran,Yumurtlayan,Otçul,Etçil,B,Yumurtlayan hayvanlar yumurta bırakır,Easy
+849,Science,Bir su molekülünde kaç atom vardır?,1,2,3,4,C,Su (H2O) 3 atomdan oluşur: 2 hidrojen ve 1 oksijen,Easy
+850,Science,Gökkuşağının oluşumuna ne sebep olur?,Rüzgâr,Yağmur,Su damlacıkları arasından geçen güneş ışığı,Sıcaklık,C,Güneş ışığının su damlacıklarından geçmesiyle gökkuşağı oluşur,Easy
+851,Science,Hücreleri inceleyen bilim dalına ne ad verilir?,Sitoloji,Psikoloji,Sosyoloji,İlahiyat,A,"Sitoloji, hücrelerin incelenmesidir",Easy
+852,Science,İnsanın kaç çeşit dişi vardır?,2,3,4,5,C,"İnsanlarda 4 tip diş vardır: kesici dişler, köpek dişleri, küçük azı dişleri ve azı dişleri",Easy
+853,Science,Su buharının sıvı hale gelme süreci nedir?,Buharlaşma,Yoğunlaşma,Yağış,Süblimasyon,B,"Yoğunlaşma, su buharının sıvı hale gelmesidir",Easy
+854,Science,Diz hangi eklem türüdür?,Top ve yuva,Menteşe,Pivot,Sabit,B,Diz bir menteşe eklemidir,Easy
+855,Science,Periyodik tabloda kaç element vardır?,100,108,118,128,C,Şu anda 118 bilinen element var,Easy
+856,Science,İnsülin hangi organ tarafından üretilir?,Karaciğer,Pankreas,Böbrek,Karın,B,Pankreas kan şekerini düzenlemek için insülin üretir,Easy
+857,Science,Mantarları inceleyen bilim dalına ne ad verilir?,Mikoloji,Biyoloji,Botanik,Zooloji,A,Mikoloji mantarların incelenmesidir,Easy
+858,Science,Bir gram yağda kaç kalori vardır?,4,6,9,12,C,Bir gram yağ 9 kalori içerir,Easy
+859,Science,Ses hangi dalga türüdür?,Elektromanyetik,Mekanik,Işık,Radyo,B,"Ses, bir ortama ihtiyaç duyan mekanik bir dalgadır",Easy
+860,Science,Saf suyun pH değeri nedir?,5,6,7,8,C,Saf suyun pH değeri nötrdür (7),Easy
+861,Science,İnsan kalbinde kaç kapakçık vardır?,2,3,4,5,C,İnsan kalbinde 4 kapakçık vardır,Easy
+862,Science,Hemoglobin yapımında hangi element gereklidir?,Kalsiyum,Ütü,Çinko,Magnezyum,B,"Demir, kırmızı kan hücrelerinde hemoglobin yapımı için gereklidir",Easy
+863,Science,Sıvı bir maddenin katı hale dönüşme süreci nedir?,Erime,Donmak,Yoğunlaşma,Buharlaşma,B,"Donma, sıvının katı hale gelme sürecidir",Easy
+864,Math,18 × 17 kaçtır?,296,306,316,326,B,18 × 17 = 306,Medium
+865,Science,Oda sıcaklığında sıvı olan metal hangisidir?,Altın,Gümüş,Merkür,Galyum,C,"Civa, oda sıcaklığında sıvı halde bulunan tek metaldir",Easy
+866,Sports,Bir polo takımında kaç oyuncu vardır?,3,4,5,6,B,Bir polo takımı sahada 4 oyuncudan oluşur,Medium
+867,Science,Kalıtım bilimine ne ad verilir?,Genetik,Biyoloji,Kimya,Fizik,A,"Genetik, kalıtım ve çeşitliliğin incelenmesidir",Easy
+868,Math,9³'ün değeri nedir?,729,819,909,999,A,9³ = 9 × 9 × 9 = 729,Easy
+869,Science,Hangi ayna türü içe doğru kıvrılır?,Dışbükey,İçbükey,Uçak,Parabolik,B,İçbükey bir ayna içe doğru kıvrılır,Easy
+870,Technology,TCP ne anlama geliyor?,Transfer Kontrol Protokolü,İletim Kontrol Protokolü,Teknik İletişim Protokolü,Terminal Kontrol Protokolü,B,"TCP, İletim Kontrol Protokolü anlamına gelir",Medium
+871,Science,Hangi gezegen yan döner?,Venüs,Uranüs,Neptün,Satürn,B,Uranüs yaklaşık 98 derecelik bir açıyla yan tarafına doğru döner,Medium
+872,Math,24 ve 36 sayılarının en büyük ortak böleni nedir?,6,8,12,18,C,24 ve 36'nın EBOB'u 12'dir,Medium
+873,Science,Dünya atmosferinin yaklaşık %1'ini hangi gaz oluşturur?,Oksijen,Karbondioksit,Argon,Neon,C,"Argon, Dünya atmosferinin yaklaşık %0,93'ünü oluşturur",Medium
+874,Animals,Uçarken uyuyabilen hayvan hangisidir?,Yarasa,Albatros,Kartal,Baykuş,B,Albatroslar uçarken beyinlerinin yarısını kullanarak uyuyabiliyorlar,Hard
+875,Sports,Bir kriket sahasının uzunluğu ne kadardır?,20 yarda,22 yarda,24 yarda,26 yarda,B,"Bir kriket sahası 22 yarda (20,12 metre) uzunluğundadır",Medium
+876,Science,Basıncın SI birimi nedir?,Newton,Pascal,Çubuk,Torr,B,"Pascal (Pa), basıncın SI birimidir",Easy
+877,Math,200 sayısının %45'i kaçtır?,80,85,90,95,C,"200'ün %45'i = 0,45 × 200 = 90",Easy
+878,Science,Vücuttaki zararlı maddelerin detoks edilmesi hangi işlemle gerçekleşir?,Filtrasyon,Metabolizma,Boşaltım,Biyotransformasyon,D,Karaciğerdeki biyotransformasyon toksinleri daha güvenli bileşiklere dönüştürüyor,Easy
+879,Technology,World Wide Web hangi yıl icat edildi?,1989,1991,1993,1995,A,"Tim Berners-Lee, 1989'da WWW'yi icat etti",Medium
+880,Science,Mars'ın kaç uydusu var?,0,1,2,3,C,Mars'ın 2 uydusu vardır: Phobos ve Deimos,Easy
+881,Math,10. üçgensel sayı nedir?,45,50,55,60,C,10. üçgen sayı 1+2+3+...+10 = 55'tir.,Medium
+882,Science,İskorbüt hastalığını önleyen vitamin hangisidir?,A vitamini,B vitamini,C vitamini,D vitamini,C,C vitamini eksikliği iskorbüt hastalığına neden olur,Easy
+883,Animals,Bir lamanın kaç midesi vardır?,1,2,3,4,C,Lamaların 3 mide bölmesi vardır,Medium
+884,Sports,Bir futbol kalesinin genişliği ne kadardır?,6 yarda,7 yarda,8 yarda,9 yarda,C,Bir futbol kalesi 8 yarda (24 fit) genişliğindedir,Medium
+885,Science,Au sembolü hangi elementtir?,Gümüş,Altın,Alüminyum,Argon,B,Au (Latince aurum'dan) altının simgesidir,Easy
+886,Math,Karmaşık sayılarda i⁴ nedir?,1,-1,Ben,-Ben,A,i⁴ = (i²)² = (-1)² = 1,Medium
+887,Science,Kanı inceleyen bilim dalına ne ad verilir?,Hematoloji,Kardiyoloji,Nöroloji,Dermatoloji,A,"Hematoloji, kan ve kan hastalıklarının incelenmesidir",Medium
+888,Technology,BIOS ne anlama geliyor?,Temel Giriş Çıkış Sistemi,İkili Giriş Çıkış Sistemi,Temel Entegre İşletim Sistemi,İkili Entegre İşletim Sistemi,A,"BIOS, Temel Giriş Çıkış Sistemi anlamına gelir",Easy
+889,Science,Dünyanın en kalın katmanı hangisidir?,Kabuk,Manto,Dış çekirdek,İç çekirdek,B,"Manto, Dünya'nın en kalın tabakasıdır",Easy
+890,Math,Altıgenin iç açılarının toplamı kaçtır?,540°,600°,720°,900°,C,Toplam = (n-2) × 180° = (6-2) × 180° = 720°,Medium
+891,Science,DNA'da hangi şeker türü bulunur?,Glikoz,Fruktoz,Riboz,Deoksiriboz,D,DNA deoksiriboz şekeri içerir,Medium
+892,Animals,Hangi memelinin ses telleri yoktur?,Fil,Zürafa,Su aygırı,Gergedan,B,Zürafaların ses telleri yoktur,Medium
+893,Sports,Bir ragbi birliği devresi kaç dakikadır?,35,40,45,50,B,Ragbi birliği yarıları her biri 40 dakikadır,Easy
+894,Science,Hidrojenin atom numarası nedir?,0,1,2,3,B,Hidrojenin atom numarası 1'dir,Easy
+895,Math,ln(e) nedir?,0,1,e,tanımsız,B,e'nin doğal logaritması 1'e eşittir,Medium
+896,Science,Hangi radyasyon türünün dalga boyu en kısadır?,Radyo dalgaları,Mikrodalgalar,X-ışınları,Gama ışınları,D,Gama ışınları en kısa dalga boyuna sahiptir,Medium
+897,Technology,SIM kartta SIM ne anlama geliyor?,Abone Kimlik Modülü,Sistem Kimlik Modülü,Abone Bilgi Modülü,Sistem Bilgi Modülü,A,"SIM, Abone Kimlik Modülü anlamına gelir",Medium
+898,Science,Ortalama bir yetişkinin kaç tane tat tomurcuğu vardır?,5000,10000,15000,20000,B,Yetişkinlerde yaklaşık 10.000 tat tomurcuğu vardır,Medium
+899,Math,7. Fibonacci sayısı nedir?,8,13,21,34,B,7. Fibonacci sayısı 13'tür (1 1 2 3 5 8 13),Easy
+900,Science,Glukagon hangi organ tarafından üretilir?,Karaciğer,Pankreas,Böbrek,Tiroid,B,Pankreas kan şekerini yükseltmek için glukagon üretir,Medium
+901,Animals,Hangi balina en derine dalar?,Mavi balina,İspermeçet balinası,Kambur balina,Gri balina,B,İspermeçet balinaları 2000 metreden daha derinlere dalabilirler,Medium
+902,Sports,Amerikan futbolunda bir güvenlik oyuncusu kaç puan değerindedir?,1,2,3,6,B,Amerikan futbolunda bir güvenlik 2 puan değerindedir,Easy
+903,Science,En reaktif metal hangisidir?,Sodyum,Potasyum,Fransiyum,Sezyum,C,Fransiyum en reaktif metaldir,Hard
+904,Math,16² nedir?,196,226,256,286,C,16² = 16 × 16 = 256,Easy
+905,Science,Omuz eklemi hangi eklem türüdür?,Menteşe,Top ve yuva,Pivot,Süzülme,B,"Omuz, bir bilye ve yuva eklemidir",Easy
+906,Technology,URL ne anlama geliyor?,Evrensel Kaynak Bulucu,Tekdüzen Kaynak Bulucu,Evrensel Referans Bağlantısı,Tekdüzen Referans Bağlantısı,B,"URL, Tekdüzen Kaynak Bulucu anlamına gelir",Easy
+907,Science,İnsanın kaç adet boyun omuru vardır?,5,6,7,8,C,İnsanların 7 adet boyun omuru vardır,Medium
+908,Math,x³'ün türevi nedir?,x²,2x²,3x²,3x,C,x³'ün türevi 3x²'dir,Medium
+909,Science,Hangi elementin kaynama noktası en yüksektir?,Karbon,Tungsten,Renyum,Tantal,C,"Renyum, tüm elementler arasında en yüksek kaynama noktasına sahiptir",Hard
+910,Animals,Hangi hayvanın en çok bacağı vardır?,Örümcek,Kırkayak,Kırkayak,Akrep,C,Kırkayakların 750'ye kadar bacağı olabilir,Medium
+911,Sports,Bir tenis ağının merkez yüksekliği ne kadardır?,2 ayak,3 fit,"3,5 fit",4 ayak,B,Bir tenis ağının merkezi 3 fit yüksekliğindedir,Medium
+912,Science,Limon suyunun pH değeri nedir?,2,4,6,8,A,Limon suyunun pH değeri yaklaşık 2'dir,Medium
+913,Math,Çapı 10 olan bir dairenin alanı nedir?,25π,50π,75π,100π,A,Alan = πr² = π(5)² = 25π,Easy
+914,Science,Hangi bulut türü gök gürültülü fırtınalara neden olur?,Cirrus,Stratus,Kümülüs,Kümülonimbus,D,Kümülonimbus bulutları gök gürültülü fırtınalara neden olur,Easy
+915,Technology,İlk bilgisayar faresi hangi maddeden yapılmıştır?,Plastik,Metal,Odun,Bardak,C,İlk bilgisayar faresi tahtadan yapılmıştı,Medium
+916,Science,Langerhans adacıkları hangi organda bulunur?,Karaciğer,Pankreas,Böbrek,Dalak,B,"Pankreas, Langerhans adacıklarını içerir",Medium
+917,Math,log₂(32) nedir?,4,5,6,7,B,log₂(32) = 5 çünkü 2⁵ = 32,Medium
+918,Science,İnsanlarda kaç çift kromozom bulunur?,20,21,22,23,D,İnsanların 23 çift kromozomu vardır,Easy
+919,Animals,Hangi balık geriye doğru yüzebilir?,Somon,Ton balığı,Yılanbalığı,Tetik balığı,D,Tetik balığı geriye doğru yüzebilir,Hard
+920,Sports,Bir lakros takımında kaç oyuncu vardır?,8,9,10,11,C,Bir lakros takımının sahada 10 oyuncusu vardır,Medium
+921,Science,Neon tabelalarda hangi gaz kullanılır?,Helyum,Neon,Argon,Ksenon,B,"Neon gazı, neon tabelalardaki turuncu-kırmızı parıltıyı üretir",Easy
+922,Math,45°'nin kotanjantı nedir?,0,1,√2,tanımsız,B,cot(45°) = 1,Medium
+923,Science,En küçük damar hangisidir?,Arter,Damar,Kılcal,Arteriyol,C,Kılcal damarlar en küçük kan damarlarıdır,Easy
+924,Technology,Bilgisayarda RAID ne anlama geliyor?,Rastgele Erişimli Bağımsız Diskler,Bağımsız Disklerin Yedekli Dizisi,Hızlı Erişim Dahili Sürücü,Dahili Disklerin Uzak Dizisi,B,"RAID, Bağımsız Disklerin Yedekli Dizisi anlamına gelir",Medium
+925,Science,İnsanın kaç tane torasik omuru vardır?,10,11,12,13,C,İnsanların 12 torasik (göğüs) omurları vardır,Medium
+926,Math,13 × 13 nedir?,159,169,179,189,B,13 × 13 = 169,Easy
+927,Science,Kalp hangi kas türüdür?,Düz,İskelet,Kardiyak,Gönüllü,C,"Kalp, kalp kasından oluşur",Easy
+928,Animals,Bir kedinin kaç parmağı vardır?,16,18,20,22,B,"Kedilerin genellikle 18 parmağı vardır (pati başına 5 ön, 4 arka)",Medium
+929,Sports,10 pinli bowlingde en yüksek skor kaçtır?,200,250,300,350,C,Bowlingde mükemmel bir oyun 300 puan alır,Easy
+930,Science,Çeliği paslanmaz yapan element hangisidir?,Krom,Nikel,Manganez,Karbon,A,Krom çeliği paslanmaz yapar,Medium
+931,Math,2x'in integrali nedir?,X,x²,2x²,x² + C,D,2x'in integrali x² + C'dir,Medium
+932,Science,Uykuyu hangi hormon düzenler?,Melatonin,Serotonin,Dopamin,Kortizol,A,Melatonin uyku-uyanıklık döngülerini düzenler,Easy
+933,Technology,CSS ne anlama geliyor?,Bilgisayar Stil Sayfaları,Basamaklı Stil Sayfaları,Yaratıcı Stil Sayfaları,Kodlanmış Stil Sayfaları,B,"CSS, Basamaklı Stil Sayfaları anlamına gelir",Easy
+934,Science,İnsanda kaç adet bel omuru vardır?,3,4,5,6,C,İnsanların 5 bel (alt sırt) omuru vardır,Medium
+935,Math,0°'nin kosinüsü nedir?,0,1,-1,tanımsız,B,cos(0°) = 1,Easy
+936,Science,En sert mineral hangisidir?,Kuvars,Korindon,Elmas,Topaz,C,Elmas en sert doğal mineraldir,Easy
+937,Animals,Hangi kuşun kanat açıklığı en büyüktür?,Albatros,Kondor,Kartal,Pelikan,A,Gezgin albatros en büyük kanat açıklığına sahiptir,Easy
+938,Sports,Bir tenis raketinin genellikle kaç teli vardır?,12,14,16,18,C,Tenis raketleri genellikle 16 ana tele sahiptir,Hard
+939,Science,Glikojen hangi organda depolanır?,Kalp,Karaciğer,Böbrek,Pankreas,B,Karaciğer enerji için glikojen depolar,Easy
+940,Math,250'nin %30'u kaçtır?,65,70,75,80,C,"250'nin %30'u = 0,30 × 250 = 75",Easy
+941,Science,Mikrodalga fırınlarda hangi tür radyasyon kullanılır?,Radyo dalgaları,Mikrodalgalar,Kızılötesi,Ultraviyole,B,Mikrodalga fırınlar mikrodalga radyasyonunu kullanır,Easy
+942,Technology,PNG'nin açılımı nedir?,Taşınabilir Ağ Grafikleri,Resim Ağ Grafikleri,Taşınabilir Yeni Grafikler,Resim Yeni Grafikler,A,"PNG, Taşınabilir Ağ Grafikleri anlamına gelir",Medium
+943,Science,İnsanların kaç tane gerçek kaburgası vardır?,6,7,8,9,B,İnsanların 7 çift gerçek kaburgası vardır,Medium
+944,Math,2 2 2 2'nin standart sapması nedir?,0,1,2,4,A,Tüm değerler aynı olduğunda standart sapma 0'dır,Medium
+945,Science,İnsan vücudundaki en uzun kas hangisidir?,Gluteus maximus,Sartorius,Dört başlı kas,Latissimus dorsi,B,"Sartorius, insan vücudundaki en uzun kastır",Hard
+946,Animals,Zürafanın kaç boyun omuru vardır?,7,14,21,28,A,Zürafaların çoğu memeli gibi 7 boyun omurları vardır,Medium
+947,Sports,Golf topunun çapı nedir?,"1,58 inç","1,68 inç","1,78 inç","1,88 inç",B,"Bir golf topunun çapı en az 1,68 inç olmalıdır",Medium
+948,Science,Doğal gazın temel bileşeni hangi elementtir?,Hidrojen,Metan,Propan,Bütan,B,Doğal gaz öncelikle metandır (CH4),Easy
+949,Math,30°'nin sinüsü nedir?,"0,25","0,5","0,75",1,B,"sin(30°) = 0,5",Easy
+950,Science,İnsanlarda kaç tane kranial sinir vardır?,10,12,14,16,B,İnsanların 12 çift kranial siniri vardır,Medium
+951,Technology,Ticari olarak başarılı olan ilk video oyunu hangisiydi?,Pong,Uzay İstilacıları,Pac-Man,Tetris,A,"Pong, ticari olarak başarılı olan ilk video oyunuydu",Medium
+952,Science,Bağırsak bakterileri hangi vitamini üretir?,A vitamini,C vitamini,K vitamini,D vitamini,C,Bağırsak bakterileri K vitamini üretir,Medium
+953,Math,7! (7 faktöriyel) kaçtır?,720,2520,5040,10080,C,7! = 7×6×5×4×3×2×1 = 5040,Medium
+954,Science,Dünya'da doğal olarak bulunan en nadir element hangisidir?,Fransiyum,Astatin,Teknesyum,Prometyum,B,"Astatin, doğada bulunan en nadir elementtir",Hard
+955,Animals,Hangi memelinin en çok dişi vardır?,Yunus,Opossum,Dev armadillo,İspermeçet balinası,C,Dev armadillonun 100'e kadar dişi olabilir,Hard
+956,Sports,Olimpiyat maratonunun uzunluğu ne kadardır?,"40,2 km","41,2 km",42.195 km,"43,2 km",C,Bir Olimpiyat maratonu tam olarak 42.195 kilometredir,Easy
+957,Science,Hipermetropiyi hangi tip mercek düzeltir?,Dışbükey,İçbükey,Silindirik,Bifokal,A,Dışbükey mercekler hipermetropiyi düzeltir,Medium
+958,Science,Ses bilimine ne ad verilir?,Odyoloji,Akustik,Fonetik,Harmonikler,B,"Akustik, sesin ve özelliklerinin incelenmesidir",Easy
+959,Math,19'un karesi kaçtır?,341,351,361,371,C,19² = 19 × 19 = 361,Easy
+960,Science,Patates cipsi hangi gazla muhafaza edilir?,Oksijen,Azot,Karbondioksit,Helyum,B,"Azot, talaşları korumak ve oksidasyonu önlemek için kullanılır",Medium
+961,Sports,Hentbol takımında kaç oyuncu vardır?,5,6,7,8,C,Bir hentbol takımı sahada 7 oyuncudan oluşur,Medium
+962,Science,Elektrik yükünün SI birimi nedir?,Volt,Amper,Coulomb,Ohm,C,"Coulomb, elektrik yükünün SI birimidir",Medium
+963,Math,e (Euler sayısı)'nın virgülden sonraki 2 basamağına kadar değeri nedir?,2.17,2.52,2.72,3.14,C,e ≈ 2.72 (daha doğrusu 2.71828...),Medium
+964,Science,Obsidyen ne tür bir kayadır?,Tortul,Metamorfik,Magmatik,Mineral,C,Obsidyen volkanik camdır (magmatik kaya),Easy
+965,Technology,SMTP ne anlama geliyor?,Basit Posta Aktarım Protokolü,Güvenli Posta Aktarım Protokolü,Sistem Posta Aktarım Protokolü,Standart Posta Aktarım Protokolü,A,"SMTP, Basit Posta Aktarım Protokolü anlamına gelir",Medium
+966,Science,Hangi gezegenin günü en kısadır?,Merkür,Venüs,Jüpiter,Satürn,C,Jüpiter'in günü yaklaşık 10 saatle en kısadır,Medium
+967,Math,İlk 10 pozitif tam sayının toplamı kaçtır?,45,50,55,60,C,1+2+3+...+10 = 55,Easy
+968,Science,Amonyağın kimyasal formülü nedir?,NH2,NH3,NH4,N2H4,B,Amonyağın kimyasal formülü NH3'tür,Easy
+969,Animals,Hangi böceğin ömrü en kısadır?,Mayıs sineği,Meyve sineği,Sivrisinek,Karasinek,A,Mayıs sinekleri sadece birkaç saat yaşayabilir,Medium
+970,Sports,Badminton filesi yüksekliği ne kadardır?,4 ayak,5 fit,5.5 fit,6 fit,B,Bir badminton ağının ortasında 5 fit yüksekliğindedir,Medium
+971,Science,Okyanusları inceleyen bilim dalına ne ad verilir?,Oşinografi,Deniz biyolojisi,Hidroloji,Limnoloji,A,Oşinografi okyanus bilimidir,Easy
+972,Math,140'ın %35'i kaçtır?,42,45,49,52,C,"140'ın %35'i = 0,35 × 140 = 49",Easy
+973,Science,Bir pilde ne tür enerji depolanır?,Kinetik,Kimyasal,Nükleer,Termal,B,Piller kimyasal enerjiyi depolar,Easy
+974,Technology,Google hangi yıl kuruldu?,1996,1997,1998,1999,C,Google 1998 yılında kuruldu,Easy
+975,Science,Karbonun kaç değerlik elektronu vardır?,2,4,6,8,B,Karbonun 4 değerlik elektronu vardır,Medium
+976,Math,2 4 6 8... sayısının 20. terimi nedir?,36,38,40,42,C,20. terim = 2 × 20 = 40,Easy
+977,Science,Askorbik asit olarak da bilinen vitamin hangisidir?,A vitamini,B vitamini,C vitamini,D vitamini,C,C vitamini aynı zamanda askorbik asit olarak da adlandırılır,Easy
+978,Animals,Kaç tür penguen vardır?,12,15,17,20,C,17 tanınmış penguen türü vardır,Medium
+979,Sports,Masa tenisi masasının uzunluğu ne kadardır?,8 fit,9 fit,10 fit,11 fit,B,Bir masa tenisi masası 9 fit uzunluğundadır,Medium
+980,Science,Pb sembolü hangi elementtir?,Fosfor,Yol göstermek,Platin,Paladyum,B,Pb (Latince plumbum'dan) kurşunun simgesidir,Easy
+981,Math,45°'nin tanjantı nedir?,0,1,√2,tanımsız,B,tan(45°) = 1,Easy
+982,Science,İnsan vücudundaki en büyük atardamar hangisidir?,Karotis,Femoral,Aort,Akciğer,C,"Aort, insan vücudundaki en büyük atardamardır",Easy
+983,Technology,RAM ne anlama geliyor?,Rastgele Erişimli Bellek,Okuma Erişim Belleği,Hızlı Erişim Belleği,Rastgele Dizi Belleği,A,"RAM, Rastgele Erişimli Bellek anlamına gelir",Easy
+984,Science,İlk elektron kabuğu kaç elektron tutabilir?,1,2,4,8,B,İlk elektron kabuğu en fazla 2 elektron tutabilir,Easy
+985,Math,11 × 13 kaçtır?,133,143,153,163,B,11 × 13 = 143,Easy
+986,Science,Hücre bölünme sürecine ne ad verilir?,Mitoz,Mayoz,Hücrenin ikiye bölünerek üremesi,Yukarıdakilerin hepsi,D,Hepsi hücre bölünmesinin türleridir,Easy
+987,Animals,Hangi deniz canlısının üç kalbi vardır?,Kalamar,Ahtapot,Denizanası,Denizyıldızı,B,Ahtapotların üç kalbi vardır,Easy
+988,Sports,Softbol oyununda kaç vuruş vardır?,5,6,7,9,C,Standart bir softbol oyununda 7 vuruş vardır,Medium
+989,Science,Elektriksel direncin birimi nedir?,Volt,Amper,Ohm,Watt,C,"Ohm, elektrik direncinin birimidir",Easy
+990,Math,log₁₀(1) nedir?,0,1,10,tanımsız,A,log₁₀(1) = 0 çünkü 10⁰ = 1,Easy
+991,Science,Hangi tür bağ elektron paylaşımına sahiptir?,İyonik,Kovalent,Metalik,Hidrojen,B,Kovalent bağlar elektronların paylaşılmasını içerir,Easy
+992,Technology,PDF ne anlama geliyor?,Taşınabilir Belge Biçimi,Kişisel Belge Dosyası,Belge Formatını Yazdır,Kamu Belgesi Dosyası,A,"PDF, Taşınabilir Belge Biçimi anlamına gelir",Easy
+993,Science,Muzun kaç kromozomu vardır?,11,22,33,44,C,Muzların 33 kromozomu vardır,Hard
+994,Math,5'in çarpmaya göre tersi nedir?,0.1,0.2,"0,25","0,5",B,"5'in tersi 1/5 = 0,2'dir",Easy
+995,Science,Bitkiler geceleri hangi gazı açığa çıkarır?,Oksijen,Karbondioksit,Azot,Metan,B,Bitkiler geceleri solunum sırasında karbondioksit salarlar,Medium
+996,Animals,Hangi hayvanın dişleri hiç çıkmaz?,Köpek balığı,Timsah,Fil,Kemirgen,D,Kemirgenlerin dişleri asla büyümeyi durdurmaz,Medium
+997,Sports,Bir hokey kalesinin genişliği nedir?,4 ayak,5 fit,6 fit,7 fit,C,Bir hokey kalesi 6 fit genişliğindedir,Medium
+998,Science,Mide asidinin pH değeri nedir?,1-2,3-4,5-6,7-8,A,Mide asidinin pH değeri 1 ile 2 arasındadır,Medium
+999,Math,8³ nedir?,412,512,612,712,B,8³ = 8 × 8 × 8 = 512,Easy
+1000,Science,Hangi tür elektromanyetik radyasyonu ısı olarak hissedebiliriz?,Görünür ışık,Kızılötesi,Ultraviyole,Mikrodalgalar,B,Kızılötesi radyasyonu ısı olarak hissederiz,Easy
+1001,Technology,HTML ne anlama geliyor?,Hiper Metin İşaretleme Dili,Yüksek Teknoloji Modern Dil,Ana Araç İşaretleme Dili,Hyper Transfer İşaretleme Dili,A,"HTML, Hyper Text Markup Language (Köprü Metni İşaretleme Dili) anlamına gelir",Easy
+1002,Science,Bir köpekbalığının kaç kemiği vardır?,0,50,100,200,A,Köpekbalıklarının kemikleri yoktur; iskeletleri kıkırdaktan oluşur,Medium
+1003,Math,10 15 20 25 30'un anlamı nedir?,18,20,22,25,B,Ortalama = (10+15+20+25+30)/5 = 100/5 = 20,Easy
+1004,Science,Zatürre hangi organı etkiler?,Kalp,Akciğerler,Karaciğer,Böbrek,B,Zatürre akciğerlerin bir enfeksiyonudur,Easy
+1005,Animals,Hangi hayvanın beyni en büyüktür?,Fil,Mavi balina,İspermeçet balinası,İnsan,C,İspermeçet balinaları tüm hayvanlar arasında en büyük beyne sahiptir,Medium
+1006,Sports,Bir çim hokeyi takımında kaç oyuncu vardır?,9,10,11,12,C,Çim hokeyi takımlarında 11 oyuncu bulunur,Easy
+1007,Science,Kalayın kimyasal sembolü nedir?,Ti,Tennessee,Sn,Aziz,C,Sn (Latince stannum'dan) kalayın simgesidir,Easy
+1008,Math,2⁹ nedir?,256,384,512,1024,C,2⁹ = 512,Easy
+1009,Science,Basınç ve ısı altında hangi kaya türü oluşur?,Magmatik,Tortul,Metamorfik,Volkanik,C,Başkalaşım kayaçları basınç ve ısı altında oluşur,Easy
+1010,Technology,USB ne anlama geliyor?,Evrensel Seri Veri Yolu,Birleşik Sistem Otobüsü,Evrensel Sistem Köprüsü,Birleşik Seri Köprü,A,"USB, Evrensel Seri Veri Yolu anlamına gelir",Easy
+1011,Science,İnsanlarda kaç çift tükürük bezi vardır?,2,3,4,5,B,İnsanların 3 çift büyük tükürük bezi vardır,Medium
+1012,Math,En küçük mükemmel sayı nedir?,4,6,8,12,B,6 en küçük mükemmel sayıdır (1+2+3=6),Medium
+1013,Science,Kalsiyum emilimi için hangi vitamine ihtiyaç vardır?,A vitamini,C vitamini,D vitamini,K vitamini,C,D vitamini kalsiyum emilimi için gereklidir,Easy
+1014,Animals,Hangi sürüngen deri rengini değiştirebilir?,Yılan,Bukalemun,Kertenkele,İguana,B,Bukalemunlar cilt rengini değiştirmeleriyle ünlüdür,Easy
+1015,Sports,Basketbol potasının çapı kaç cm'dir?,16 inç,17 inç,18 inç,19 inç,C,Bir basketbol potasının çapı 18 inçtir,Easy
+1016,Science,İnsan vücudunda en bol bulunan protein hangisidir?,Hemoglobin,Albümin,Kolajen,Keratin,C,"Kolajen, insanlarda en bol bulunan proteindir",Medium
+1017,Math,Sin²x + cos²x nedir?,0,1,2,X,B,sin²x + cos²x = 1 (Pisagor özdeşliği),Medium
+1018,Science,Sirkede hangi asit türü bulunur?,Sitrik asit,Asetik asit,Laktik asit,Formik asit,B,Sirke asetik asit içerir,Easy
+1019,Technology,İlk iPhone ne zaman piyasaya sürüldü?,2005,2006,2007,2008,C,İlk iPhone 2007'de piyasaya sürüldü,Easy
+1020,Science,İnsanların kaç yüz kemiği vardır?,12,14,16,18,B,İnsanların 14 yüz kemiği vardır,Medium
+1021,Math,14 × 15 nedir?,200,210,220,230,B,14 × 15 = 210,Easy
+1022,Science,Atom numarası 79 olan element hangisidir?,Gümüş,Altın,Platin,Merkür,B,Altının atom numarası 79'dur,Easy
+1023,Animals,Vücut büyüklüğüne göre en uzun dile sahip memeli hayvan hangisidir?,Karıncayiyen,Zürafa,Pangolin,Bukalemun,C,"Pangolin, vücut boyutuna göre en uzun dile sahiptir",Hard
+1024,Sports,Ragbi'de bir saha golü kaç puan değerindedir?,2,3,4,5,B,Ragbi'de bir saha golü (drop goal) 3 puan değerindedir,Medium
+1025,Science,Alkolün (etanolün) kaynama noktası nedir?,68°C,78°C,88°C,98°C,B,Etanol yaklaşık 78°C'de kaynar,Medium
+1026,Math,Kenar uzunluğu 4 olan bir küpün hacmi nedir?,16,32,48,64,D,Hacim = 4³ = 64,Easy
+1027,Science,Kan şekerini hangi hormon kontrol eder?,İnsülin,Glukagon,Hem A hem de B,Adrenalin,C,Hem insülin hem de glukagon kan şekerini düzenler,Medium
+1028,Technology,IoT ne anlama geliyor?,Nesnelerin İnterneti,Entegre Çevrimiçi Teknoloji,Teknolojinin İnterneti,Dahili İşletim Teknolojisi,A,"IoT, Nesnelerin İnterneti anlamına gelir",Easy
+1029,Science,Kaç çeşit kan hücresi vardır?,2,3,4,5,B,"3 çeşidi vardır: kırmızı, beyaz ve trombositler",Easy
+1030,Math,5. asal sayı nedir?,7,9,11,13,C,5. asal sayı 11'dir (2 3 5 7 11),Easy
+1031,Science,Dirsek hangi eklem çeşididir?,Top ve yuva,Menteşe,Pivot,Süzülme,B,Dirsek bir menteşe eklemidir,Easy
+1032,Animals,Hangi memelinin ısırığı en güçlüdür?,Aslan,Sırtlan,Jaguar,Su aygırı,D,Su aygırı kara memelileri arasında en güçlü ısırığa sahiptir,Medium
+1033,Sports,Bir ragbi ligi takımında kaç oyuncu vardır?,11,12,13,15,C,Ragbi ligi takımlarında 13 oyuncu var,Medium
+1034,Science,Glikozun kimyasal formülü nedir?,C6H10O5,C6H11O6,C6H12O6,C12H22O11,C,Glikozun formülü C6H12O6'dır,Medium
+1035,Math,250'nin %40'ı kaçtır?,80,90,100,110,C,"250'nin %40'ı = 0,40 × 250 = 100",Easy
+1036,Science,Gözyaşı hangi organ tarafından üretilir?,Göz,Gözyaşı bezi,Göz kapağı,Kornea,B,Gözyaşı bezleri gözyaşı üretir,Medium
+1037,Technology,GUI ne anlama geliyor?,Genel Kullanıcı Arayüzü,Grafiksel Kullanıcı Arayüzü,Küresel Kullanıcı Entegrasyonu,Grafiksel Birim Arayüzü,B,"GUI, Grafiksel Kullanıcı Arayüzü anlamına gelir",Easy
+1038,Science,İnsanların kaç tane gerçek kaburgası vardır?,5 çift,6 çift,7 çift,8 çift,C,İnsanların 7 çift gerçek kaburgası vardır,Medium
+1039,Math,cos(x)'in türevi nedir?,günah(x),-günah(x),cos(x),-cos(x),B,cos(x)'in türevi -sin(x)'tir,Medium
+1040,Science,Sofra şekeri hangi şeker türüdür?,Glikoz,Fruktoz,Sakaroz,Laktoz,C,Sofra şekeri sakarozdur,Easy
+1041,Animals,Hangi kuş en hızlı koşandır?,Emu,Devekuşu,Kazuvar kuşu,Rhea,B,Devekuşu en hızlı koşan kuştur,Easy
+1042,Sports,Bir netbol takımında kaç oyuncu vardır?,5,6,7,8,C,Bir netbol takımının sahada 7 oyuncusu vardır,Medium
+1043,Science,Tiroid fonksiyonu için hangi element gereklidir?,Ütü,İyot,Çinko,Selenyum,B,"İyot, tiroid hormonu üretimi için gereklidir",Easy
+1044,Math,17 + 28 + 35 kaçtır?,70,75,80,85,C,17 + 28 + 35 = 80,Easy
+1045,Science,Ağırlığa göre en güçlü kas hangisidir?,Masseter,Dil,Kalp,Gluteus maximus,A,Masseter (çene kası) ağırlıkça en güçlü olanıdır,Medium
+1046,Technology,CPU ne anlama geliyor?,Merkezi İşlem Birimi,Bilgisayar İşlem Birimi,Merkezi Program Birimi,Bilgisayar Programlama Birimi,A,"CPU, Merkezi İşlem Birimi anlamına gelir",Easy
+1047,Science,Yetişkin bir insanın kaç dişi olmalıdır?,28,30,32,34,C,Yetişkinlerde yirmi yaş dişleri dahil 32 diş olması gerekir,Easy
+1048,Math,Sıradaki sayı nedir: 1 4 9 16 25?,30,36,42,49,B,Bunlar tam karelerdir; bir sonraki 6² = 36,Easy
+1049,Science,Raşitizm hangi vitamin eksikliğinden kaynaklanır?,A vitamini,C vitamini,D vitamini,K vitamini,C,D vitamini eksikliği raşitizme neden olur,Easy
+1050,Animals,Kaç çeşit ayı türü vardır?,6,7,8,9,C,8 tür ayı vardır,Medium
+1051,Sports,Hafif bir boksörün kaldırabileceği maksimum kilo nedir?,130 kilo,135 kilo,140 kilo,145 kilo,B,Boks sporunda hafif sıklet sınırı 135 pound'dur,Medium
+1052,Science,Işığın boşluktaki hızı nedir?,186000 mil/saniye,200000 mil/saniye,220000 mil/saniye,250000 mil/saniye,A,Işık saniyede yaklaşık 186.000 mil hızla hareket eder,Easy
+1053,Science,Bitkilerin azot gazını kullanılabilir bileşiklere dönüştürdüğü sürecin adı nedir?,Fotosentez,Azot fiksasyonu,Solunum,Terleme,B,"Azot fiksasyonu, atmosferik azotu amonyağa veya ilgili bileşiklere dönüştürür",Easy
+1054,Science,İnsan vücudunda kırmızı kan hücrelerini hangi organ üretir?,Kalp,Karaciğer,Kemik iliği,Dalak,C,Kırmızı kan hücreleri kemik iliğinde üretilir,Easy
+1055,Science,Hidrojen peroksitin kimyasal formülü nedir?,H2O,H2O2,HO2,H3O,B,Hidrojen peroksitin kimyasal formülü H2O2'dir,Easy
+1056,Science,Karbonat sirke ile tepkimeye girdiğinde hangi gaz açığa çıkar?,Oksijen,Hidrojen,Karbondioksit,Azot,C,"Tepkime, köpürmeye neden olan karbondioksit gazı üretir",Easy
+1057,Science,Semender ne tür bir hayvandır?,Sürüngen,Amfibi,Balık,Memeli,B,Semenderler hem suda hem de karada yaşayabilen amfibilerdir,Easy
+1058,Science,Bir kurbağanın kalbi kaç odacıklıdır?,2,3,4,5,B,Kurbağaların üç odacıklı kalpleri vardır,Easy
+1059,Science,Elmastan sonra yeryüzündeki en sert doğal madde hangisidir?,Kuvars,Korindon,Grafit,Talk,B,Korindon (yakut ve safir dahil) en sert ikinci doğal maddedir,Easy
+1060,Science,Hangi gezegen belirgin halka sistemiyle bilinir?,Jüpiter,Satürn,Uranüs,Neptün,B,"Satürn, görünür halka sistemiyle ünlüdür",Easy
+1061,Science,Doğal gazın ana bileşeni nedir?,Metan,Etan,Propan,Bütan,A,Doğal gaz esas olarak metandan oluşur,Easy
+1062,Science,Beynimizin hangi kısmı dengeyi kontrol eder?,Beyin,Beyincik,Beyin sapı,Ön lob,B,Beyincik denge ve koordinasyonu kontrol eder,Easy
+1063,Science,Fosilleri inceleyen bilim dalına ne ad verilir?,Arkeoloji,Paleontoloji,Jeoloji,Antropoloji,B,"Paleontoloji, fosillerin bilimsel çalışmasıdır",Easy
+1064,Science,Evrensel alıcı olarak bilinen kan grubu hangisidir?,O,A,B,AB,D,AB kan grubu herhangi bir diğer kan grubundan kan alabilir,Easy
+1065,Science,İnsan vücudunda en çok bulunan element hangisidir?,Karbon,Hidrojen,Oksijen,Azot,C,"Oksijen, insan vücudunun kütlece yaklaşık %65'ini oluşturur",Easy
+1066,Science,Hücrenin enerji santrali olarak bilinen organel hangisidir?,Çekirdek,Ribozom,Mitokondri,Golgi aygıtı,C,Mitokondriler hücre için ATP enerjisi üretir,Easy
+1067,Science,Magmanın soğuyarak yer yüzüne çıkmasıyla hangi kaya türü oluşur?,Tortul,Metamorfik,Magmatik,Kireçtaşı,C,Magma veya lav soğuyup katılaştığında magmatik kayaçlar oluşur,Easy
+1068,Science,Güneş ışığına maruz kalındığında cilt hangi vitamini üretir?,A vitamini,C vitamini,D vitamini,K vitamini,C,"Cilt, UV ışığına maruz kaldığında D vitamini üretir",Easy
+1069,Science,Hücrelerin kimyasal sinyaller aracılığıyla iletişim kurmasını sağlayan süreç hangisidir?,Ozmoz,Hücre sinyallemesi,Difüzyon,Aktif taşıma,B,"Hücre sinyalizasyonu, kimyasal haberciler aracılığıyla hücresel iletişime olanak tanır",Easy
+1070,Science,Bitkiler fotosentez sırasında hangi gazı emerler?,Oksijen,Karbondioksit,Azot,Hidrojen,B,Bitkiler fotosentez sırasında karbondioksiti emer,Easy
+1071,Science,Depremleri inceleyen bilim dalına ne ad verilir?,Volkanoloji,Sismoloji,Meteoroloji,Oşinografi,B,Sismoloji depremlerin incelenmesidir,Easy
+1072,Science,Yetişkin bir insan vücudunda kaç kemik vardır?,196,206,216,226,B,Yetişkin bir insan iskeletinde 206 kemik vardır,Easy
+1073,Science,Dünya'ya en yakın gezegen hangisidir?,Venüs,Mars,Merkür,Jüpiter,A,"Venüs, Dünya'nın en yakın gezegen komşusudur",Easy
+1074,Science,Kandaki karbondioksit hangi işlemle temizlenir?,Solunum,Dolaşım,Filtrasyon,Boşaltım,A,"Solunum, akciğerler aracılığıyla kan dolaşımından CO2'yi uzaklaştırır",Easy
+1075,Science,Gözün hangi kısmı ne kadar ışığın içeri gireceğini kontrol eder?,İris,Öğrenci,Retina,Kornea,B,Göz bebeği ışık girişini kontrol etmek için genişler ve daralır,Easy
+1076,Science,Suyun sıvı halden gaz haline dönüşme süreci nedir?,Yoğunlaşma,Buharlaşma,Yağış,Süblimasyon,B,"Buharlaşma, sıvıdan gaz fazına geçiştir",Easy
+1077,Science,Hangi damarlar kanı kalpten uzaklaştırır?,Damarlar,Atardamarlar,Kılcal damarlar,Vanalar,B,Atardamarlar oksijenli kanı kalpten uzaklaştırır,Easy
+1078,Science,Maddenin en küçük birimi nedir?,Atom,Molekül,Proton,Elektron,A,"Atom, özelliklerini koruyan en küçük madde birimidir",Easy
+1079,Science,Dünya atmosferinin yaklaşık %78'ini oluşturan gaz hangisidir?,Oksijen,Karbondioksit,Azot,Argon,C,Azot atmosferimizin yaklaşık %78'ini oluşturur,Easy
+1080,Science,Semender ne tür bir hayvandır?,Sürüngen,Amfibi,Balık,Memeli,B,Semenderler kurbağalar ve kara kurbağaları gibi amfibilerdir,Easy
+1081,Science,İnsülin hangi organ tarafından üretilir?,Karaciğer,Pankreas,Böbrek,Karın,B,Pankreas kan şekerini düzenlemek için insülin üretir,Easy
+1082,Science,Bitkileri inceleyen bilim dalına ne ad verilir?,Zooloji,Botanik,Ekoloji,Biyoloji,B,"Botanik, bitkilerin bilimsel çalışmasıdır",Easy
+1083,Science,Tipik bir böceğin kaç bacağı vardır?,4,6,8,10,B,Tüm böceklerin altı bacağı vardır,Easy
+1084,Science,Hangi gezegenin en çok uydusu var?,Toprak,Mars,Jüpiter,Satürn,D,Satürn'ün 140'tan fazla bilinen uydusu var,Easy
+1085,Science,Sofra tuzunun kimyasal formülü nedir?,NaCl,KCl,CaCl2,MgCl2,A,"Sofra tuzu, NaCl formülüne sahip sodyum klorürdür",Easy
+1086,Science,Bitkinin hangi kısmı fotosentez yapar?,Kökler,Kök,Yapraklar,Çiçekler,C,Yapraklar klorofil içerir ve fotosentez yapar,Easy
+1087,Science,Kalıtım bilimine ne ad verilir?,Genetik,Evrim,Ekoloji,Taksonomi,A,"Genetik, özelliklerin ebeveynlerden yavrulara nasıl aktarıldığını inceler",Easy
+1088,Science,Bitkiler fotosentez sırasında hangi gazı üretir?,Karbondioksit,Azot,Oksijen,Hidrojen,C,Bitkiler fotosentezin bir yan ürünü olarak oksijen salarlar,Easy
+1089,Science,İnsan vücudundaki en sert doku hangisidir?,Kemik,Kıkırdak,Diş minesi,Kas,C,Diş minesi insan vücudundaki en sert maddedir,Easy
+1090,Science,Kızıl Gezegen olarak bilinen gezegen hangisidir?,Venüs,Mars,Jüpiter,Satürn,B,"Mars, yüzeyindeki demir oksit nedeniyle kırmızı görünüyor",Easy
+1091,Science,Hücre bölünme sürecine ne ad verilir?,Mitoz,Mayoz,Hem A hem de B,Ozmoz,C,"Hem mitoz hem de mayoz, hücre bölünmesinin bir türüdür",Easy
+1092,Science,İnsan vücudunda kanı hangi organ süzer?,Kalp,Karaciğer,Böbrek,Akciğerler,C,Böbrekler kandaki atık ürünleri filtreler,Easy
+1093,Science,Besinlerde hangi tür enerji depolanır?,Kinetik,Potansiyel,Kimyasal,Nükleer,C,"Gıda, moleküler bağlarında kimyasal enerji içerir",Easy
+1094,Science,Yanma için hangi gaz gereklidir?,Azot,Oksijen,Karbondioksit,Helyum,B,Yanmanın gerçekleşmesi için oksijene ihtiyaç vardır,Easy
+1095,Science,Hava olaylarını inceleyen bilim dalına ne ad verilir?,Jeoloji,Meteoroloji,İklimbilim,Astronomi,B,Meteoroloji hava modellerinin incelenmesidir,Easy
+1096,Science,İnsan kalbi kaç odacıklıdır?,2,3,4,5,C,İnsan kalbi dört odacıktan oluşur,Easy
+1097,Science,Hangi elementin simgesi Fe'dir?,Florin,Ütü,Fransiyum,Fermium,B,"Fe, demirin kimyasal sembolüdür",Easy
+1098,Science,Maddenin fazını ne belirler?,Sıcaklık ve basınç,Kütle ve hacim,Yoğunluk ve ağırlık,Renk ve doku,A,"Sıcaklık ve basınç, maddenin katı, sıvı veya gaz olup olmadığını belirler",Easy
+1099,Science,Beynin hangi kısmı hafızayı kontrol eder?,Beyincik,Hipokampüs,Medulla,Pons,B,Hipokampüs hafıza oluşumu için çok önemlidir,Easy
+1100,Science,Karbondioksitin kimyasal formülü nedir?,CO,CO2,C2O,C2O2,B,Karbondioksitin formülü CO2'dir,Easy
+1101,Science,Hangi kan hücresi türü enfeksiyonla savaşır?,Kırmızı kan hücreleri,Beyaz kan hücreleri,Trombositler,Plazma,B,Beyaz kan hücreleri bağışıklık sisteminin bir parçasıdır,Easy
+1102,Science,Böcekleri inceleyen bilim dalına ne ad verilir?,Ornitoloji,Entomoloji,Herpetoloji,İhtiyoloji,B,Entomoloji böceklerin bilimsel çalışmasıdır,Easy
+1103,Science,Hangi gezegenin bir günü bir yılından daha uzundur?,Merkür,Venüs,Mars,Jüpiter,B,"Venüs çok yavaş döner, bu nedenle günü yılından daha uzundur",Easy
+1104,Science,Dünya atmosferindeki ana gaz hangisidir?,Oksijen,Azot,Karbondioksit,Argon,B,"Azot, Dünya atmosferinin yaklaşık %78'ini oluşturur",Easy
+1105,Science,Hücrenin genetik materyalini barındıran organel hangisidir?,Mitokondri,Çekirdek,Ribozom,Vakuol,B,Çekirdek DNA'yı içerir ve hücre aktivitelerini kontrol eder,Easy
+1106,Science,Kaplumbağa ne tür bir hayvandır?,Amfibi,Sürüngen,Balık,Memeli,B,Kaplumbağalar sert kabuklu sürüngenlerdir,Easy
+1107,Science,Bitkiler fotosentez sırasında hangi gazı kullanır?,Oksijen,Karbondioksit,Azot,Hidrojen,B,Bitkiler fotosentez için havadaki karbondioksiti kullanır,Easy
+1108,Science,Okyanusları inceleyen bilim dalına ne ad verilir?,Limnoloji,Oşinografi,Hidroloji,Deniz biyolojisi,B,Oşinografi okyanusu ve özelliklerini inceler,Easy
+1109,Science,İnsan kafatasında kaç kemik vardır?,14,22,28,32,B,İnsan kafatası 22 kemikten oluşur,Easy
+1110,Science,Güneşe en uzak gezegen hangisidir?,Uranüs,Neptün,Plüton,Satürn,B,"Neptün, Güneş'ten en uzak gezegendir",Easy
+1111,Science,Atomlar elektronlarını paylaştıklarında hangi tür bağ oluşur?,İyonik,Kovalent,Metalik,Hidrojen,B,Kovalent bağlar atomlar arasında elektronların paylaşılmasını içerir,Easy
+1112,Science,Sindirim sisteminin hangi bölümü en fazla besin emilimini sağlar?,Karın,İnce bağırsak,Kalın bağırsak,Yemek borusu,B,İnce bağırsak besinlerden çoğu besini emer,Easy
+1113,Science,Hareket halindeki bir arabanın ne tür enerjisi vardır?,Potansiyel,Kinetik,Kimyasal,Nükleer,B,Hareket eden nesneler kinetik enerjiye sahiptir,Easy
+1114,Science,Havadan daha hafif olan gaz hangisidir?,Karbondioksit,Azot,Helyum,Oksijen,C,Helyum havadan daha hafiftir ve balonların uçmasını sağlar,Easy
+1115,Science,Kuşları inceleyen bilim dalına ne ad verilir?,Entomoloji,Ornitoloji,Memeli bilimi,Herpetoloji,B,"Ornitoloji, kuşların bilimsel çalışmasıdır",Easy
+1116,Science,İnsanlarda kaç çift kromozom bulunur?,21,22,23,24,C,İnsanların 23 çift kromozomu vardır,Easy
+1117,Science,Safra hangi organ tarafından üretilir?,Karaciğer,Safra kesesi,Pankreas,Karın,A,Karaciğer yağların sindirimine yardımcı olmak için safra üretir,Easy
+1118,Science,En hızlı kara hayvanı hangisidir?,Aslan,Çita,Leopar,Kaplan,B,Çita saatte 70 mil hıza ulaşabilir,Easy
+1119,Science,Hangi element tüm organik bileşikler için gereklidir?,Hidrojen,Karbon,Oksijen,Azot,B,Karbon tüm organik moleküllerin omurgasıdır,Easy
+1120,Science,Mermer hangi kayaç türüdür?,Magmatik,Tortul,Metamorfik,Volkanik,C,"Mermer, kireçtaşından oluşan metamorfik bir kayadır",Easy
+1121,Science,Hangi gezegenin günü en kısadır?,Merkür,Venüs,Jüpiter,Mars,C,Jüpiter'in günü yaklaşık 10 saatle en kısadır,Easy
+1122,Science,Mantarları inceleyen bilim dalına ne ad verilir?,Mikoloji,Botanik,Zooloji,Ekoloji,A,"Mikoloji, mantarlar da dahil olmak üzere mantarların incelenmesidir",Easy
+1123,Science,İnsanların genellikle kaç kaburgası vardır?,20,22,24,26,C,İnsanlarda genellikle 12 çift halinde düzenlenmiş 24 kaburga bulunur,Easy
+1124,Science,Hücresel solunum sırasında hangi gaz üretilir?,Oksijen,Karbondioksit,Azot,Hidrojen,B,Hücreler solunum sırasında karbondioksit üretir,Easy
+1125,Science,Hangi üreme türü genetik olarak aynı yavruların oluşmasını sağlar?,Cinsel üreme,Eşeysiz üreme,Hücrenin ikiye bölünerek üremesi,Parçalanma,B,Eşeysiz üreme genetik olarak özdeş klonlar yaratır,Easy
+1126,Science,Bitkinin hangi kısmı onu toprağa bağlar?,Kök,Yapraklar,Kökler,Çiçekler,C,Kökler bitkileri sabitler ve su ve besinleri emer,Easy
+1127,Science,Su moleküllerini bir arada tutan bağ türü nedir?,İyonik,Kovalent,Metalik,Hidrojen,D,Su molekülleri arasında hidrojen bağları oluşur,Easy
+1128,Science,Mevsimleri bilinen gezegen hangisidir?,Toprak,Mars,Hem A hem de B,Jüpiter,C,Hem Dünya'nın hem de Mars'ın eksen eğikliği nedeniyle mevsimleri vardır,Easy
+1129,Science,Kayaçları inceleyen bilim dalına ne ad verilir?,Biyoloji,Jeoloji,Meteoroloji,Astronomi,B,"Jeoloji, kayaların ve Dünya'nın yapısının incelenmesidir",Easy
+1130,Science,Ortalama bir insanın kaç tane tat tomurcuğu vardır?,5000,10000,15000,20000,B,İnsanların yaklaşık 10.000 tat tomurcuğu vardır,Easy
+1131,Science,Vücut ısısını hangi organımız düzenler?,Beyin,Kalp,Deri,Karaciğer,A,Beynin hipotalamusu vücut sıcaklığını düzenler,Easy
+1132,Science,Hangi üreme türü iki ebeveyni içerir?,Aseksüel,Cinsel,Hücrenin ikiye bölünerek üremesi,Tomurcuklanan,B,Cinsel üreme için iki ebeveynden gelen genetik materyale ihtiyaç vardır,Easy
+1133,Science,Hangi gaz gazlı içeceklerin köpürmesini sağlar?,Oksijen,Azot,Karbondioksit,Helyum,C,Sıvıda çözünen karbondioksit karbonatlaşmaya neden olur,Easy
+1134,Science,Yıldızları ve uzayı inceleyen bilim dalına ne ad verilir?,Jeoloji,Astronomi,Meteoroloji,Oşinografi,B,Astronomi gök cisimlerini ve uzayı inceler,Easy
+1135,Science,Bir kuşun kalbi kaç odacıklıdır?,2,3,4,5,C,"Kuşların, memeliler gibi dört odacıklı kalpleri vardır",Easy
+1136,Science,Evrende en bol bulunan element hangisidir?,Hidrojen,Helyum,Karbon,Oksijen,A,Hidrojen evrenin kütlesinin yaklaşık %75'ini oluşturur,Easy
+1137,Science,Köpek balığı ne tür bir hayvandır?,Balık,Memeli,Sürüngen,Amfibi,A,Köpekbalıkları kıkırdaklı balıklardır,Easy
+1138,Science,Gözün hangi kısmı ışığı algılar?,İris,Öğrenci,Retina,Kornea,C,"Retina, ışığı algılayan fotoreseptörler içerir",Easy
+1139,Science,Suyun kimyasal formülü nedir?,H2O,HO2,H2O2,AH,A,Su iki hidrojen atomu ve bir oksijen atomundan oluşur,Easy
+1140,Science,Hangi gezegen yan döner?,Venüs,Uranüs,Neptün,Satürn,B,Uranüs dikey olarak yaklaşık 98 derecelik bir açıyla döner,Easy
+1141,Science,İnsan vücudunu inceleyen bilim dalına ne ad verilir?,Fizyoloji,Anatomi,Hem A hem de B,Psikoloji,C,Hem fizyoloji hem de anatomi insan vücudunu inceler,Easy
+1142,Science,İnsan elinde kaç kemik vardır?,19,22,27,30,C,Her insan elinde 27 kemik bulunur,Easy
+1143,Science,İnsanlar hangi gazı dışarı verir?,Oksijen,Karbondioksit,Azot,Argon,B,İnsanlar atık ürün olarak karbondioksiti dışarı verirler,Easy
+1144,Science,Bir pilde ne tür enerji depolanır?,Elektrik,Kimyasal,Mekanik,Nükleer,B,Piller enerjiyi kimyasal formda depolar,Easy
+1145,Science,Vücuda kan pompalayan organ hangisidir?,Beyin,Kalp,Akciğerler,Karaciğer,B,"Kalp, kan dolaşımı için kaslı bir pompadır",Easy
+1146,Science,İnsan vücudundaki en küçük kemik hangisidir?,Uyluk kemiği,Üzengi kemiği,Yarıçap,Kaval kemiği,B,Kulaktaki üzengi kemiği en küçük insan kemiğidir,Easy
+1147,Science,Hangi gezegenin her üç halinde de su vardır?,Toprak,Mars,Jüpiter,Venüs,A,"Dünya, katı, sıvı ve gaz halinde su bulunan bilinen tek gezegendir",Easy
+1148,Science,Yunus ne tür bir hayvandır?,Balık,Memeli,Sürüngen,Amfibi,B,Yunuslar hava soluyan deniz memelileridir,Easy
+1149,Science,Bitkinin hangi kısmı tohum üretir?,Kökler,Kök,Yapraklar,Çiçekler,D,"Çiçekler, tohum üreten üreme organlarını içerir",Easy
+1150,Science,Yaşamı inceleyen bilim dalına ne ad verilir?,Fizik,Kimya,Biyoloji,Jeoloji,C,"Biyoloji, canlı organizmaların bilimsel çalışmasıdır",Easy
+1151,Science,İnsanın kaç akciğeri vardır?,1,2,3,4,B,İnsanların gaz alışverişi için iki akciğeri vardır,Easy
+1152,Science,Atom numarası 1 olan element hangisidir?,Hidrojen,Helyum,Lityum,Karbon,A,Hidrojenin bir protonu vardır ve bu ona atom numarası 1'i verir,Easy
+1153,Science,Dünya'da gelgitlerin nedeni nedir?,Rüzgâr,Ay'ın yerçekimi,Güneşin ısısı,Dünya'nın dönüşü,B,Ay'ın çekim gücü öncelikle gelgitlere neden olur,Easy
+1154,Science,Kalpte hangi kas türü bulunur?,Düz,İskelet,Kardiyak,Gönüllü,C,Kalp kası kalp için özelleşmiştir,Easy
+1155,Science,Mohs ölçeğine göre en sert mineral hangisidir?,Talk,Kuvars,Korindon,Elmas,D,"Elmas, Mohs sertlik ölçeğinde 10 olarak derecelendirilir",Easy
+1156,Science,Hangi gezegen bazen Dünya'nın ikizi olarak anılır?,Merkür,Venüs,Mars,Jüpiter,B,"Venüs, boyut ve yapı olarak Dünya'ya benzer",Easy
+1157,Science,Hangi üreme türü aynı yavruların oluşmasını sağlar?,Cinsel,Aseksüel,Hücrenin ikiye bölünerek üremesi,Hem B hem de C,D,Hem eşeysiz üreme hem de ikili bölünme klonlar üretir,Easy
+1158,Science,Fotosentezde hangi gaz kullanılır?,Oksijen,Karbondioksit,Azot,Hidrojen,B,Bitkiler atmosferdeki karbondioksiti kullanır,Easy
+1159,Science,Depremleri inceleyen bilim dalına ne ad verilir?,Volkanoloji,Sismoloji,Meteoroloji,Jeoloji,B,Sismoloji özellikle depremleri inceler,Easy
+1160,Science,İnsan omurgasında kaç omur vardır?,26,33,45,52,B,İnsan omurgasında 33 omur vardır,Easy
+1161,Science,Glikojen hangi organda depolanır?,Kalp,Karaciğer,Böbrek,Dalak,B,Karaciğer enerji için glikojen depolar,Easy
+1162,Science,Penguen ne tür bir hayvandır?,Balık,Kuş,Memeli,Sürüngen,B,Penguenler uçamayan su kuşlarıdır,Easy
+1163,Science,Araba motorları hangi gazı üretir?,Oksijen,Karbondioksit,Azot,Helyum,B,Araba motorları egzoz olarak karbondioksit üretir,Easy
+1164,Science,Madde ve enerjiyi inceleyen bilim dalına ne ad verilir?,Biyoloji,Kimya,Fizik,Jeoloji,C,"Fizik, madde, enerji ve bunların etkileşimlerini inceler",Easy
+1165,Science,Balık kalbi kaç odacıklıdır?,1,2,3,4,B,Balıkların iki odacıklı kalpleri vardır,Easy
+1166,Science,Güneş sistemindeki en büyük yanardağa sahip gezegen hangisidir?,Toprak,Mars,Venüs,Jüpiter,B,Mars'ta Olympus Mons bilinen en büyük yanardağdır,Easy
+1167,Science,Kumtaşı hangi kayaç türüdür?,Magmatik,Tortul,Metamorfik,Volkanik,B,Kumtaşı sıkıştırılmış kum parçacıklarından oluşur,Easy
+1168,Science,Beynimizin hangi kısmı nefes almayı kontrol eder?,Beyin,Beyincik,Medulla,Hipokampüs,C,Omurilik soğanı nefes alma gibi hayati fonksiyonları kontrol eder,Easy
+1169,Science,Bir elementin kimyasal özelliklerini ne belirler?,kütle numarası,Atom numarası,Nötron sayısı,Atom ağırlığı,B,Atom numarası bir elementin kimyasal davranışını belirler,Easy
+1170,Science,Güneş'in büyük kısmını hangi gaz oluşturur?,Hidrojen,Helyum,Karbon,Oksijen,A,Güneş esas olarak hidrojenden oluşur,Easy
+1171,Science,Kurbağa ne tür bir hayvandır?,Balık,Sürüngen,Amfibi,Memeli,C,Kurbağalar hem suda hem de karada yaşayan amfibilerdir,Easy
+1172,Science,Hangi organ hormon üretir?,Beyin,Kalp,Bezler,Akciğerler,C,Vücuttaki çeşitli bezler hormon üretir,Easy
+1173,Science,Bitkilerin besin üretme sürecine ne ad verilir?,Solunum,Fotosentez,Sindirim,Emilim,B,"Fotosentez, güneş ışığını kimyasal enerjiye dönüştürür",Easy
+1174,Science,Yetişkin insanların genellikle kaç dişi vardır?,28,30,32,36,C,Yetişkinlerde genellikle yirmi yaş dişleri de dahil olmak üzere 32 diş bulunur,Easy
+1175,Science,Hangi gezegende Büyük Kırmızı Leke bulunur?,Mars,Jüpiter,Satürn,Neptün,B,Jüpiter'in Büyük Kırmızı Lekesi devasa bir fırtınadır,Easy
+1176,Science,Güneş ne ​​tür enerji üretir?,Kimyasal,Nükleer,Elektrik,Mekanik,B,Güneş nükleer füzyon yoluyla enerji üretir,Easy
+1177,Science,Hücrenin hangi kısmı neyin girip çıktığını kontrol eder?,Hücre duvarı,Hücre zarı,Çekirdek,Sitoplazma,B,"Hücre zarı, içinden geçenleri düzenler",Easy
+1178,Science,Hayvanları inceleyen bilim dalına ne ad verilir?,Botanik,Zooloji,Ekoloji,Taksonomi,B,Zooloji hayvanların bilimsel çalışmasıdır,Easy
+1179,Science,İnsan ayağında kaç kemik vardır?,14,19,26,33,C,Her insan ayağı 26 kemik içerir,Easy
+1180,Science,Bitkiler gece solunum yaptığında hangi gaz açığa çıkar?,Oksijen,Karbondioksit,Azot,Su buharı,B,Bitkiler gece solunumu sırasında karbondioksit salarlar,Easy
+1181,Science,Hangi üreme türünde sadece bir ebeveyn bulunur?,Cinsel,Aseksüel,Genetik,Hücresel,B,Eşeysiz üreme yalnızca bir ana organizma gerektirir,Easy
+1182,Science,Güneşe en yakın gezegen hangisidir?,Merkür,Venüs,Toprak,Mars,A,"Merkür, Güneş Sistemimizin en içteki gezegenidir",Easy
+1183,Science,Kanın sıvı kısmına ne ad verilir?,Serum,Plazma,Lenf,Sitoplazma,B,Plazma kanın sıvı bileşenidir,Easy
+1184,Science,Basınç ve ısının etkisiyle oluşan kaya türü hangisidir?,Magmatik,Tortul,Metamorfik,Volkanik,C,Başkalaşım kayaçları basınç ve ısı altında oluşur,Easy
+1185,Science,Sınıflandırma bilimine ne ad verilir?,Taksonomi,Ekoloji,Genetik,Evrim,A,Taksonomi canlı organizmaları sınıflandırır ve adlandırır,Easy
+1186,Science,İnsanın kaç çift kaburgası vardır?,10,11,12,13,C,İnsanların 12 çift kaburgası vardır,Easy
+1187,Science,Hayvanların soluyabilmesi için hangi gaza ihtiyaç vardır?,Karbondioksit,Oksijen,Azot,Hidrojen,B,Hayvanların hücresel solunum için oksijene ihtiyacı vardır,Easy
+1188,Science,Balina ne tür bir hayvandır?,Balık,Memeli,Sürüngen,Amfibi,B,Balinalar hava soluyan deniz memelileridir,Easy
+1189,Science,Bitkinin hangi kısmı suyu taşır?,Kökler,Kök,Yapraklar,Çiçekler,B,"Gövde, suyu taşıyan damar dokusu içerir",Easy
+1190,Science,Metanın kimyasal formülü nedir?,CH3,CH4,C2H4,C2H6,B,Metan CH4 formülüne sahiptir,Easy
+1191,Science,İnsanlarda genellikle kaç böbrek bulunur?,1,2,3,4,B,İnsanların normalde iki böbreği vardır,Easy
+1192,Science,Hangi gezegenin kutuplarında buzullar var?,Toprak,Mars,Hem A hem de B,Jüpiter,C,Hem Dünya'nın hem de Mars'ın kutuplarda buzulları var,Easy
+1193,Science,Ses ne tür bir enerjidir?,Mekanik,Elektrik,Kimyasal,Nükleer,A,"Ses, bir ortama ihtiyaç duyan mekanik bir dalgadır.",Easy
+1194,Science,Kan şekerini hangi organ kontrol eder?,Kalp,Pankreas,Karaciğer,Böbrek,B,Pankreas kan şekerini kontrol etmek için insülin üretir,Easy
+1195,Science,Kalıtım ve genleri inceleyen bilim dalına ne ad verilir?,Evrim,Genetik,Ekoloji,Taksonomi,B,"Genetik, kalıtım ve gen ifadesini inceler",Easy
+1196,Science,Bir böceğin kalbi kaç odacıklıdır?,1,2,Birçok,Hiçbiri,C,Böceklerin ostia adı verilen birden fazla kalp odası vardır,Easy
+1197,Science,Uçan balonları doldurmak için hangi gaz kullanılır?,Helyum,Hidrojen,Oksijen,Azot,A,Helyum balonlar için güvenlidir ve havadan daha hafiftir,Easy
+1198,Science,Yılan ne tür bir hayvandır?,Memeli,Sürüngen,Amfibi,Balık,B,Yılanlar uzuvsuz sürüngenlerdir,Easy
+1199,Science,Atomun hangi kısmı pozitif yüke sahiptir?,Elektron,Proton,Nötron,Çekirdek,B,Protonlar pozitif elektrik yükü taşır,Easy
+1200,Science,Suyun bitkilerde hareket etme sürecine ne ad verilir?,Fotosentez,Terleme,Solunum,Ozmoz,B,"Terleme, suyun bitkiler arasında hareket etmesidir",Easy
+1201,Science,Kelebeklerin kaç kanadı vardır?,2,3,4,6,C,Kelebeklerin dört kanadı vardır,Easy
+1202,Science,Sabah Yıldızı olarak bilinen gezegen hangisidir?,Merkür,Venüs,Mars,Jüpiter,B,Venüs parlaklığı nedeniyle sabah yıldızı olarak görünür,Easy
+1203,Science,Gerilmiş lastik bantta ne tür enerji depolanır?,Kinetik,Potansiyel,Kimyasal,Elektrik,B,Gerilmiş nesneler elastik potansiyel enerjiyi depolar,Easy
+1204,Science,Hangi kan hücreleri pıhtılaşmaya yardımcı olur?,Kırmızı kan hücreleri,Beyaz kan hücreleri,Trombositler,Plazma hücreleri,C,Trombositler kanın pıhtılaşması için gereklidir,Easy
+1205,Science,Bağışıklık sistemini inceleyen bilim dalına ne ad verilir?,İmmünoloji,Patoloji,Mikrobiyoloji,Viroloji,A,İmmünoloji vücudun savunma mekanizmalarını inceler,Easy
+1206,Science,Çoğu örümceğin kaç gözü vardır?,2,4,6,8,D,Çoğu örümceğin sekiz gözü vardır,Easy
+1207,Science,Volkanlar hangi gazı üretir?,Oksijen,Karbondioksit,Azot,Helyum,B,Volkanlar diğer gazlarla birlikte karbondioksit de salarlar,Easy
+1208,Science,Kertenkele ne tür bir hayvandır?,Memeli,Kuş,Sürüngen,Amfibi,C,Kertenkeleler soğukkanlı sürüngenlerdir,Easy
+1209,Science,Çiçeğin hangi kısmı tozlayıcıları çeker?,Kök,Yapraklar,Kökler,Tohumlar,B,Renkli yaprakları arıları ve diğer polinatörleri cezbeder,Easy
+1210,Science,Hücrelerin büyük parçacıkları almasını sağlayan süreç hangisidir?,Ozmoz,Endositoz,Difüzyon,Aktif taşıma,B,"Endositoz, hücrelerin büyük parçacıkları yutmasına olanak tanır",Easy
+1211,Science,İnsan bacağında kaç kemik vardır?,3,4,5,6,B,İnsan bacağının dört ana kemiği vardır,Easy
+1212,Science,Hangi gezegenin yörüngesi en eksantriktir?,Merkür,Mars,Plüton,Neptün,A,Merkür gezegenler arasında en eliptik yörüngeye sahip olanıdır,Easy
+1213,Science,Bakteriler genellikle hangi üreme türünü kullanırlar?,Cinsel,Aseksüel,Spor oluşumu,Hücrenin ikiye bölünerek üremesi,D,Bakteriler ikili bölünme yoluyla çoğalır,Easy
+1214,Science,Bitki büyümesi için hangi gaz gereklidir?,Karbondioksit,Oksijen,Azot,Helyum,A,Bitkilerin fotosentez için karbondioksite ihtiyacı vardır,Easy
+1215,Science,Toprak bilimine ne ad verilir?,Pedoloji,Jeoloji,Botanik,Ekoloji,A,"Pedoloji, toprakların bilimsel çalışmasıdır",Easy
+1216,Science,Memeli kalbi kaç odacıklıdır?,2,3,4,5,C,İnsanlar da dahil olmak üzere memelilerin kalpleri dört odacıklıdır,Easy
+1217,Science,Kemik oluşumu için hangi element gereklidir?,Ütü,Kalsiyum,Sodyum,Potasyum,B,Kalsiyum kemiklerdeki birincil mineraldir,Easy
+1218,Science,Yarasa ne tür bir hayvandır?,Kuş,Memeli,Sürüngen,Uçan kemirgen,B,Yarasalar gerçek uçuş yeteneğine sahip tek memelilerdir,Easy
+1219,Science,Hücrenin hangi kısmı protein üretir?,Çekirdek,Ribozom,Mitokondri,Vakuol,B,Ribozomlar amino asitlerden protein sentezler,Easy
+1220,Science,Sıvının gaza dönüşme sürecine ne ad verilir?,Yoğunlaşma,Buharlaşma,Yağış,Süblimasyon,B,Buharlaşma sıvıyı buhara dönüştürür,Easy
+1221,Science,Böceklerin kaç çift bacağı vardır?,2,3,4,5,B,Tüm böceklerin üç çift bacağı vardır,Easy
+1222,Science,Hangi gezegen diğerlerine göre ters yönde döner?,Merkür,Venüs,Uranüs,Neptün,B,Venüs çoğu gezegenin ters yönünde döner,Easy
+1223,Science,Hareket eden suda ne tür bir enerji vardır?,Potansiyel,Kinetik,Kimyasal,Nükleer,B,Hareket eden su kinetik enerjiye sahiptir,Easy
+1224,Science,Sindirim enzimlerini hangi organ üretir?,Karın,Pankreas,Karaciğer,Safra kesesi,B,Pankreas birçok sindirim enzimi üretir,Easy
+1225,Science,Hücreleri inceleyen bilim dalına ne ad verilir?,Histoloji,Sitoloji,Patoloji,Anatomi,B,"Sitoloji, hücre yapısı ve işlevini inceleyen bilim dalıdır",Easy
+1226,Science,Bir bebeğin kafatasında kaç kemik vardır?,14,22,45,52,C,Bir bebeğin kafatasında yaklaşık 45 ayrı kemik bulunur,Easy
+1227,Science,Hangi gaz oksijenden daha hafiftir?,Helyum,Karbondioksit,Azot,Argon,A,Helyum oksijenden çok daha hafiftir,Easy
+1228,Science,Fok balığı hangi hayvan türüdür?,Balık,Memeli,Amfibi,Sürüngen,B,Foklar yüzgeçleri olan deniz memelileridir,Easy
+1229,Science,Bitkinin hangi kısmı besin depolar?,Kökler,Kök,Yapraklar,Yukarıdakilerin hepsi,D,Bitkinin farklı kısımları besin depolayabilir,Easy
+1230,Science,Ozonun kimyasal formülü nedir?,O,O2,O3,O4,C,Ozon üç oksijen atomundan oluşur,Easy
+1231,Science,İnsan kolunda kaç kemik vardır?,2,3,4,5,B,İnsan kolunun üç ana kemiği vardır,Easy
+1232,Science,Hangi gezegenin manyetik alanı en güçlüdür?,Toprak,Jüpiter,Satürn,Neptün,B,"Jüpiter, Güneş Sistemimizdeki en güçlü manyetik alana sahiptir",Easy
+1233,Science,Hangi üreme türü genetik çeşitliliğe neden olur?,Cinsel,Aseksüel,Hücrenin ikiye bölünerek üremesi,Tomurcuklanan,A,Cinsel üreme genetik çeşitlilik yaratır,Easy
+1234,Science,Organik maddelerin ayrışması sonucu hangi gaz ortaya çıkar?,Oksijen,Metan,Azot,Helyum,B,Ayrışma sonucu metan gazı oluşur,Easy
+1235,Science,Virüsleri inceleyen bilim dalına ne ad verilir?,Bakteriyoloji,Viroloji,İmmünoloji,Patoloji,B,"Viroloji, virüsleri ve viral hastalıkları inceler",Easy
+1236,Science,Bir sürüngenin kalbi genellikle kaç odacıklıdır?,2,3,4,5,B,Çoğu sürüngenin üç odacıklı kalbi vardır,Easy
+1237,Science,Dünya'nın çekirdeğinin büyük kısmını hangi element oluşturur?,Ütü,Nikel,Silikon,Alüminyum,A,Dünya'nın çekirdeği öncelikle demirden oluşur,Easy
+1238,Science,Timsah ne tür bir hayvandır?,Memeli,Kuş,Sürüngen,Amfibi,C,Timsahlar büyük su sürüngenleridir,Easy
+1239,Science,Gözün hangi kısmı ışığı odaklar?,İris,Mercek,Retina,Kornea,B,Mercek ışığı retinaya odaklar,Easy
+1240,Science,Gazın sıvı hale geçme sürecine ne ad verilir?,Buharlaşma,Yoğunlaşma,Süblimasyon,İfade,B,Yoğuşma gazı sıvıya dönüştürür,Easy
+1241,Science,Sineklerin kaç kanadı vardır?,1,2,3,4,B,Sinekler iki kanatlı dipteranlardır,Easy
+1242,Science,Hangi gezegenin rüzgarları en hızlıdır?,Toprak,Neptün,Jüpiter,Satürn,B,"Neptün, Güneş sisteminde kaydedilen en hızlı rüzgarlara sahiptir",Easy
+1243,Science,Gıda moleküllerinde hangi tür enerji depolanır?,Kinetik,Potansiyel,Kimyasal,Elektrik,C,"Gıda, moleküler bağlarda kimyasal enerji içerir",Easy
+1244,Science,Hangi damarın duvarları en kalındır?,Arter,Damar,Kılcal,Arteriyol,A,Atardamarların basıncı idare etmek için kalın kas duvarları vardır,Easy
+1245,Science,Bakterileri inceleyen bilim dalına ne ad verilir?,Viroloji,Bakteriyoloji,İmmünoloji,Patoloji,B,"Bakteriyoloji, bakterileri ve bakteriyel enfeksiyonları inceler",Easy
+1246,Science,İnsan kafatasında çene dahil kaç kemik vardır?,20,22,28,32,B,Tam kafatası 22 kemikten oluşur,Easy
+1247,Science,Dalgıçların solunum cihazlarında hangi gaz kullanılır?,Oksijen,Azot,Helyum,Argon,A,Dalgıçlar oksijenle zenginleştirilmiş solunum karışımları kullanırlar,Easy
+1248,Science,Kaplumbağa ne tür bir hayvandır?,Balık,Memeli,Sürüngen,Amfibi,C,Kaplumbağalar koruyucu kabuklara sahip sürüngenlerdir,Easy
+1249,Science,Bitkinin hangi kısmı suyu emer?,Kökler,Kök,Yapraklar,Çiçekler,A,Kökler topraktan su ve besinleri emer,Easy
+1250,Science,Bitkiler fotosentez sırasında hangi gazı açığa çıkarır?,Karbondioksit,Oksijen,Azot,Hidrojen,B,Bitkiler fotosentezin bir yan ürünü olarak oksijen salarlar,Easy
+1251,Science,Timsahın kalbi kaç odacıklıdır?,2,3,4,5,C,Timsahlar sürüngenler arasında benzersiz bir şekilde dört odacıklı kalbe sahiptir,Easy
+1252,Science,Güneş sistemimizde en yoğun gezegen hangisidir?,Merkür,Toprak,Venüs,Mars,B,"Dünya, tüm gezegenler arasında en yüksek yoğunluğa sahiptir",Easy
+1253,Science,Nesneleri Dünya'nın merkezine doğru çeken kuvvet hangisidir?,Manyetizma,Yer çekimi,Sürtünme,Basınç,B,"Yerçekimi, Dünya'nın merkezine doğru olan çekici kuvvettir",Medium
+1254,Science,Bitkilerin karbondioksitten glikoz üretmesini sağlayan süreç hangisidir?,Solunum,Fotosentez,Terleme,Ozmoz,B,"Fotosentez, güneş ışığını kullanarak CO2 ve suyu glikoza dönüştürür",Medium
+1255,Science,Asitlerin pH aralığı nedir?,0-7,7-14,0-14,1-6,A,Asitler pH ölçeğinde 7'nin altında pH değerlerine sahiptir,Medium
+1256,Science,Atardamarları toplardamarlara bağlayan damar türü hangisidir?,Arteriyoller,Venüller,Kılcal damarlar,Lenfatikler,C,Kılcal damarlar atardamar ve toplardamar sistemleri arasındaki bağlantıyı oluşturur,Medium
+1257,Science,Kıtaların kaymasını açıklayan teorinin adı nedir?,Levha tektoniği,Kıta teorisi,Sürüklenme hipotezi,Pangea teorisi,A,"Levha tektoniği, Dünya'nın kabuk levhalarının hareketini açıklar",Medium
+1258,Science,Sabit sıcaklıkta basınç ve hacim arasındaki ilişkiyi açıklayan gaz yasası hangisidir?,Boyle Yasası,Charles Yasası,Gay-Lussac Yasası,Avogadro Yasası,A,"Boyle Yasası, basınç ve hacmin ters orantılı olduğunu belirtir",Medium
+1259,Science,Böbreğin fonksiyonel birimi nedir?,Glomerulus,Nefron,Tübül,Üreter,B,Nefron böbreğin temel fonksiyonel birimidir,Medium
+1260,Science,Hücresel solunumdan sorumlu hücre organeli hangisidir?,Çekirdek,Mitokondri,Kloroplast,Ribozom,B,Mitokondriler hücresel solunumun gerçekleştiği yerlerdir,Medium
+1261,Science,Dokuların yapı ve işlevlerini inceleyen bilim dalına ne ad verilir?,Histoloji,Sitoloji,Patoloji,Anatomi,A,"Histoloji, dokuları mikroskop altında inceler",Medium
+1262,Science,Kan kalsiyum düzeyini hangi hormon düzenler?,İnsülin,Paratiroid hormonu,Tiroksin,Kortizol,B,Paratiroid hormonu kan kalsiyum konsantrasyonunu artırır,Medium
+1263,Science,Hangi kimyasal reaksiyon enerji açığa çıkarır?,Endotermik,Ekzotermik,Katalitik,Denge,B,Ekzotermik reaksiyonlar genellikle ısı olarak enerji açığa çıkarır,Medium
+1264,Science,Elektromanyetik spektrumun hangi bölümünün dalga boyu en kısadır?,Radyo dalgaları,Görünür ışık,X-ışınları,Gama ışınları,D,Gama ışınları en kısa dalga boylarına sahiptir,Medium
+1265,Science,Hücrelerin parçacıkları yutma işlemine ne ad verilir?,Ozmoz,Difüzyon,Endositoz,Ekzositoz,C,"Endositoz, hücrelerin büyük parçacıkları almasına olanak tanır",Medium
+1266,Science,Hangi gezegenin yüzey sıcaklığı en yüksektir?,Merkür,Venüs,Mars,Jüpiter,B,"Venüs, sera etkisi nedeniyle en yüksek yüzey sıcaklığına sahiptir",Medium
+1267,Science,Organizmalar ile çevre arasındaki etkileşimleri inceleyen bilim dalı nedir?,Ekoloji,Evrim,Genetik,Taksonomi,A,"Ekoloji, canlılar ile çevreleri arasındaki ilişkileri inceler",Medium
+1268,Science,DNA'dan genetik bilgiyi taşıyan RNA türü hangisidir?,mRNA,tRNA,rRNA,siRNA,A,"Haberci RNA, genetik kodu çekirdekten ribozomlara taşır",Medium
+1269,Science,Yüzeyler arasındaki harekete karşı koyan kuvvet nedir?,Yer çekimi,Sürtünme,Manyetizma,Tansiyon,B,"Sürtünme, temas eden yüzeyler arasındaki harekete direnç gösterir",Medium
+1270,Science,Hangi bez ana bez olarak bilinir?,Tiroid,Böbreküstü bezi,Hipofiz,Pankreas,C,Hipofiz bezi diğer endokrin bezlerini kontrol eder,Medium
+1271,Science,Programlanmış hücre ölümü sürecine ne ad verilir?,Nekroz,Apoptozis,Mitoz,Mayoz,B,"Apoptoz, gelişim ve sağlık için kontrollü hücre ölümüdür",Medium
+1272,Science,Klorofil üretimi için hangi element gereklidir?,Ütü,Magnezyum,Kalsiyum,Potasyum,B,Magnezyum her klorofil molekülünün merkezindedir,Medium
+1273,Science,Aşılama ile hangi tip bağışıklık kazanılır?,Doğal,Yapay,Pasif,Aktif,B,Aşılama yapay aktif bağışıklık sağlar,Medium
+1274,Science,Azot gazının amonyağa dönüştürülmesi işlemi hangisidir?,Azot döngüsü,Azot fiksasyonu,Denitrifikasyon,Nitrifikasyon,B,Azot fiksasyonu atmosferik N2'yi amonyağa dönüştürür,Medium
+1275,Science,Sinir sistemini inceleyen bilim dalına ne ad verilir?,Nöroloji,Psikoloji,Psikiyatri,Fizyoloji,A,"Nöroloji, sinir sisteminin yapısı ve hastalıklarıyla ilgilenir",Medium
+1276,Science,Metal ve ametal atomları arasında hangi bağ türü oluşur?,Kovalent,İyonik,Metalik,Hidrojen,B,"İyonik bağlar, metallerin elektronlarını ametallere transfer etmesiyle oluşur",Medium
+1277,Science,Hem ot hem et yiyen hayvanlara ne ad verilir?,Otçullar,Etçiller,Hepçiller,Ayrıştırıcılar,C,Hepçiller hem bitkisel hem de hayvansal maddeleri tüketirler,Medium
+1278,Science,Ozon tabakası atmosferin hangi katmanında bulunur?,Troposfer,Stratosfer,Mezosfer,Termosfer,B,Ozon tabakası stratosferde bulunur,Medium
+1279,Science,Suyun hücre zarlarından geçiş süreci nasıldır?,Difüzyon,Ozmoz,Aktif taşıma,Kolaylaştırılmış difüzyon,B,"Ozmoz, suyun yarı geçirgen zarlar boyunca hareketidir",Medium
+1280,Science,Hangi dalga türünün yayılması için bir ortama ihtiyaç vardır?,Ses,Işık,Radyo,X-ışını,A,Ses dalgaları mekaniktir ve yayılmak için bir ortama ihtiyaç duyarlar.,Medium
+1281,Science,Fosilleri inceleyen bilim dalına ne ad verilir?,Arkeoloji,Paleontoloji,Jeoloji,Antropoloji,B,"Paleontoloji, fosil kalıntıları aracılığıyla antik yaşamı inceler",Medium
+1282,Science,Hangi süreç yeni okyanus kabuğunun oluşmasına neden olur?,Subdüksiyon,Deniz tabanının yayılması,Kıtaların kayması,Volkanik aktivite,B,Deniz tabanının yayılmasıyla okyanus ortası sırtlarında yeni okyanus kabuğu oluşur,Medium
+1283,Science,Kalıtımın işlevsel birimi nedir?,Gen,Kromozom,DNA,Alel,A,"Genler, kalıtsal özellikleri kontrol eden temel birimlerdir",Medium
+1284,Science,Hangi kas tipi istemsiz olarak kasılır?,İskelet,Düz,Kardiyak,Hem B hem de C,D,Hem düz kaslar hem de kalp kasları bilinçli kontrol olmaksızın kasılır,Medium
+1285,Science,Bitkiler su buharını nasıl kaybederler?,Fotosentez,Solunum,Terleme,Ozmoz,C,"Terleme, bitki yapraklarından su kaybıdır",Medium
+1286,Science,Kimyasal bağları açıklayan kuantum mekaniksel ilke nedir?,Pauli'nin dışlanması,Heisenberg belirsizliği,Dalga fonksiyonu örtüşmesi,Yukarıdakilerin hepsi,D,Yörünge örtüşmesi de dahil olmak üzere çoklu kuantum prensipleri kimyasal bağları açıklar,Medium
+1287,Science,Hangi üreme türü genetik olarak aynı yavruların oluşmasını sağlar?,Cinsel,Aseksüel,Çapraz döllenme,Çekim,B,Eşeysiz üreme genetik klonlar yaratır,Medium
+1288,Science,Hangi organel proteinleri değiştirir ve paketler?,Ribozom,Golgi aygıtı,Endoplazmik retikulum,Lizozom,B,Golgi aygıtı ER'den gelen proteinleri işler,Medium
+1289,Science,Depremleri ve sismik dalgaları inceleyen bilim dalına ne ad verilir?,Volkanoloji,Sismoloji,Jeoloji,Meteoroloji,B,Sismoloji depremleri ve Dünya'nın iç yapısını inceler,Medium
+1290,Science,Atmosferdeki karbondioksiti uzaklaştıran işlem hangisidir?,Yanma,Fotosentez,Solunum,Ayrışma,B,Fotosentez atmosferden CO2'yi uzaklaştırır,Medium
+1291,Science,Popülasyonlarda alel frekansındaki değişime ne ad verilir?,Evrim,Mutasyon,Seçim,Sürüklenme,A,"Evrim, zaman içinde alel frekanslarındaki değişimdir",Medium
+1292,Science,Hangi radyasyon türünün nüfuz etme gücü en fazladır?,Alfa,Beta,Gama,X-ışını,C,Gama radyasyonu en yüksek nüfuz etme yeteneğine sahiptir,Medium
+1293,Science,Sıvının doğrudan gaza dönüşme sürecine ne ad verilir?,Buharlaşma,Kaynama,Süblimasyon,Buharlaşma,D,Buharlaşma hem buharlaşmayı hem de kaynamayı içerir,Medium
+1294,Science,Büyüme hormonunu hangi bez üretir?,Tiroid,Böbreküstü bezi,Hipofiz,Pankreas,C,Hipofiz bezi büyüme hormonu üretir,Medium
+1295,Science,Canlı organizmalardaki kimyasal süreçleri inceleyen bilim dalı hangisidir?,Biyokimya,Organik kimya,Fiziksel kimya,Analitik kimya,A,"Biyokimya, biyolojik sistemlerdeki kimyasal reaksiyonları inceler",Medium
+1296,Science,Hangi süreç organizmaların istikrarlı iç koşullarını korumasını sağlar?,Homeostaz,Metabolizma,Üreme,Büyüme,A,"Homeostaz, dış değişikliklere rağmen iç dengeyi korur",Medium
+1297,Science,Gametlerin oluşmasını sağlayan hücre bölünmesi türü hangisidir?,Mitoz,Mayoz,Hücrenin ikiye bölünerek üremesi,Tomurcuklanan,B,"Mayoz, kromozom sayısının yarısı kadar olan seks hücreleri üretir",Medium
+1298,Science,Bir atomun çekirdeğini bir arada tutan kuvvet hangisidir?,Elektromanyetik,Yerçekimi,Güçlü nükleer,Zayıf nükleer,C,Güçlü nükleer kuvvet protonları ve nötronları birbirine bağlar,Medium
+1299,Science,Kayaçların parçalanma süreci nasıldır?,Erozyon,Aşınma,Sedimentasyon,Başkalaşım,B,Aşınma kayaları daha küçük parçalara ayırır,Medium
+1300,Science,Deniz yıldızları hangi simetri türüne sahiptir?,İkili,Radyal,Asimetrik,Küresel,B,Deniz yıldızları merkezi bir eksen etrafında radyal simetri gösterir,Medium
+1301,Science,Bağışıklık sistemini inceleyen bilim dalına ne ad verilir?,İmmünoloji,Patoloji,Mikrobiyoloji,Hematoloji,A,"İmmünoloji, bağışıklık tepkilerini ve bozukluklarını inceler",Medium
+1302,Science,Şeker hangi işlemle alkole dönüştürülür?,Fermantasyon,Solunum,Fotosentez,Sindirim,A,Mayanın fermantasyonu şekerleri alkole dönüştürür,Medium
+1303,Math,17 × 19 kaçtır?,313,323,333,343,B,17 × 19 = 323,Easy
+1304,Sports,Hangi sporda tüylü top kullanılır?,Tenis,Badminton,Kabak,Masa tenisi,B,"Badminton, tüylü bir topla oynanır",Easy
+1305,Technology,Wi-Fi ne anlama geliyor?,Kablosuz Sadakat,Geniş Sadakat,Web Sadakati,Kablosuz Arayüz,A,"Wi-Fi, Kablosuz Bağlantı anlamına gelir",Easy
+1306,Animals,Hangi hayvan başını 270 derece döndürebilir?,Kartal,Şahin,Baykuş,Akbaba,C,Baykuşlar başlarını 270 dereceye kadar döndürebilirler,Easy
+1307,Art,Claude Monet hangi sanat akımına mensuptur?,Kübizm,İzlenimcilik,Gerçeküstücülük,Ekspresyonizm,B,"Claude Monet, Empresyonizm akımının kurucu üyelerinden biriydi",Easy
+1308,Math,80'in %25'i kaçtır?,15,20,25,30,B,"80'in %25'i = 0,25 × 80 = 20",Easy
+1309,Sports,Bir voleybol takımında sahada kaç oyuncu bulunur?,4,5,6,7,C,Voleybol takımlarında aynı anda sahada 6 oyuncu bulunur,Easy
+1310,Technology,URL ne anlama geliyor?,Evrensel Kaynak Bulucu,Tekdüzen Kaynak Bulucu,Birleşik Kaynak Bağlantısı,Evrensel Referans Bağlantısı,B,"URL, Tekdüzen Kaynak Bulucu anlamına gelir",Easy
+1311,Animals,Flamingo sürüsüne ne ad verilir?,Sürü,Koloni,Gösteriş,Gurur,C,Bir grup flamingoya gösterişlilik denir,Easy
+1312,Art,"""Çığlık"" tablosunu kim çizmiştir?",Vincent van Gogh,Edvard Munch,Pablo Picasso,Salvador Dali,B,"Edvard Munch, Çığlık tablosunu 1893'te çizdi",Easy
+1313,Math,144 sayısının karekökü nedir?,10,11,12,13,C,144'ün karekökü 12'dir,Easy
+1314,Sports,Bowling oyununda en yüksek skor kaçtır?,200,250,300,350,C,Bowlingde mükemmel bir oyun 300 puan alır,Easy
+1315,Technology,PDF ne anlama geliyor?,Taşınabilir Belge Biçimi,Kişisel Belge Dosyası,Belge Formatını Yazdır,Kamu Belgesi Formatı,A,"PDF, Taşınabilir Belge Biçimi anlamına gelir",Easy
+1316,Animals,Hangi memeli hayvan yumurtlar?,Kanguru,Ornitorenk,Koala,Opossum,B,"Ornitorenk, yumurta bırakan birkaç memeliden biridir",Easy
+1317,Art,Mona Lisa hangi müzede sergileniyor?,Britanya Müzesi,Louvre,Metropolitan Müzesi,Uffizi,B,"Mona Lisa, Louvre Müzesi'nde sergileniyor",Easy
+1318,Math,15 × 8 nedir?,110,115,120,125,C,15 × 8 = 120,Easy
+1319,Sports,Standart bir golf turunda kaç delik oynanır?,16,17,18,19,C,Standart bir golf sahasında 18 delik bulunur,Easy
+1320,Technology,HTTP ne anlama geliyor?,Hiper Metin Aktarım Protokolü,Yüksek Transfer Metni Protokolü,Hiper Metin Taşıma Protokolü,Ana Sayfa Metin Aktarım Protokolü,A,"HTTP, HyperText Transfer Protocol'ün kısaltmasıdır",Easy
+1321,Animals,En hızlı deniz hayvanı hangisidir?,Yunus,Ton balığı,Yelken balığı,Baraküda,C,Yelken balığı saatte 68 mil hıza kadar yüzebilir,Easy
+1322,Art,Rönesans'tan sonra hangi dönem geldi?,Barok,Romantik,Modern,Modern,A,Rönesans'ı Barok dönemi izledi,Easy
+1323,Math,9 × 11 kaçtır?,98,99,100,101,B,9 × 11 = 99,Easy
+1324,Sports,Wimbledon'da hangi spor oynanır?,Kriket,Tenis,Golf,Rugby,B,Wimbledon tenis şampiyonalarıyla ünlüdür,Easy
+1325,Technology,CPU ne anlama geliyor?,Merkezi İşlem Birimi,Bilgisayar İşlem Birimi,Merkezi Program Birimi,Bilgisayar Programlama Birimi,A,"CPU, Merkezi İşlem Birimi anlamına gelir",Easy
+1326,Animals,Uçamayan ama çok iyi yüzen kuş hangisidir?,Devekuşu,Emu,Penguen,Kivi,C,Penguenler uçamazlar ama mükemmel yüzücülerdir,Easy
+1327,Art,"""Davut"" heykelini kim yaptı?",Donatello,Michelangelo,Bernini,Rodin,B,"Michelangelo, ünlü Davut heykelini yaptı",Easy
+1328,Math,7² nedir?,42,49,56,63,B,7'nin karesi 49'a eşittir,Easy
+1329,Sports,Bir basketbol takımında sahada kaç oyuncu bulunur?,4,5,6,7,B,Basketbol takımlarının sahada 5 oyuncusu vardır,Easy
+1330,Technology,GPS ne anlama geliyor?,Küresel Konumlandırma Sistemi,Genel Pozisyon Sistemi,Coğrafi Konum Sistemi,Küresel Konum Uydusu,A,"GPS, Küresel Konumlandırma Sistemi anlamına gelir",Easy
+1331,Animals,Çöl hayvanlarının suyu korumasına yardımcı olan adaptasyon hangisidir?,Kalın kürk,Büyük kulaklar,Yoğun idrar,Hızlı koşu,C,Çöl hayvanları su tasarrufu için oldukça yoğun idrar üretirler,Easy
+1332,Art,Geometrik şekillerin ön planda olduğu sanat türü hangisidir?,İzlenimcilik,Kübizm,Gerçeküstücülük,Gerçekçilik,B,Kübizm geometrik formlar ve şekiller kullanır,Easy
+1333,Math,13 + 17 kaçtır?,28,29,30,31,C,13 + 17 = 30,Easy
+1334,Sports,Teniste sıfır puan terimi nedir?,Aşk,Sıfır,Sıfır,Hiç bir şey,A,Teniste sıfır puana aşk denir,Easy
+1335,Technology,RAM ne anlama geliyor?,Rastgele Erişimli Bellek,Hızlı Erişim Belleği,Gerçek Erişim Belleği,Okuma Erişim Belleği,A,"RAM, Rastgele Erişimli Bellek anlamına gelir",Easy
+1336,Animals,Hangi hayvan renk değiştirmesiyle bilinir?,Bukalemun,İguana,Kertenkele,Monitör kertenkelesi,A,Bukalemunlar renk değiştirme yetenekleriyle ünlüdür,Easy
+1337,Art,"""Yıldızlı Gece"" tablosunu kim çizmiştir?",Claude Monet,Vincent van Gogh,Paul Cezanne,Henri Matisse,B,Vincent van Gogh Yıldızlı Gece'yi resmetti,Easy
+1338,Math,100 ÷ 4 kaçtır?,20,25,30,35,B,100 bölü 4 eşittir 25,Easy
+1339,Sports,Bir hokey maçında kaç periyot vardır?,2,3,4,5,B,Hokey oyunlarında üç periyot vardır,Easy
+1340,Technology,WWW ne anlama geliyor?,Dünya çapında Ağ,Dünya Çapında Web,Geniş Dünya Ağı,Web Dünya Çapında,A,"WWW, World Wide Web'in kısaltmasıdır",Easy
+1341,Animals,Örümceğin kaç bacağı vardır?,6,7,8,10,C,Tüm örümceklerin sekiz bacağı vardır,Easy
+1342,Art,Kırmızı ve mavinin karışımıyla hangi renk elde edilir?,Mor,Turuncu,Yeşil,Sarı,A,Kırmızı ve mavinin karışımı moru oluşturur,Easy
+1343,Math,6 × 9 kaçtır?,52,54,56,58,B,6 × 9 = 54,Easy
+1344,Sports,Dolu üslerle yapılan home run'a ne ad verilir?,Büyük slam,Mükemmel oyun,El çabukluğu,Döngü,A,"Grand slam, tüm üslerin işgal edildiği bir home run'dur",Easy
+1345,Technology,USB ne anlama geliyor?,Evrensel Seri Veri Yolu,Birleşik Sistem Otobüsü,Evrensel Sistem Veri Yolu,Birleşik Seri Otobüs,A,"USB, Evrensel Seri Veri Yolu anlamına gelir",Easy
+1346,Animals,Yavru kanguruya ne denir?,Yavru,Yavru,Joey,Kit,C,Yavru kanguruya joey denir,Easy
+1347,Art,New York şehrinde hangi müze bulunmaktadır?,Louvre,Britanya Müzesi,Metropolitan Müzesi,Prado,C,Metropolitan Sanat Müzesi New York'tadır,Easy
+1348,Science,Hücrelerin bölünerek özdeş kopyalar oluşturma sürecine ne ad verilir?,Mayoz,Mitoz,Hücrenin ikiye bölünerek üremesi,Tomurcuklanan,B,"Mitoz, bir ana hücreden iki özdeş diploid hücre oluşturur",Medium
+1349,Science,Doğada bulunan en yüksek atom numarasına sahip element hangisidir?,Uranyum,Plütonyum,Radyum,Toryum,A,Atom numarası 92 olan Uranyum doğada bulunan en yüksek elementtir,Medium
+1350,Science,Cilde sağlamlığını ve esnekliğini veren proteinin adı nedir?,Keratin,Kolajen,Elastin,Fibrin,B,"Kolajen, cilde ve diğer dokulara yapısal destek sağlar",Medium
+1351,Science,Beynimizin hangi bölümü hormonları düzenlemekle görevlidir?,Beyin,Beyincik,Hipotalamus,Medulla,C,Hipotalamus hormon üretimini ve salınımını kontrol eder,Medium
+1352,Science,Canlı organizmalar ile çevreleri arasındaki ilişkiyi inceleyen bilim dalına ne ad verilir?,Ekoloji,Biyoloji,Zooloji,Botanik,A,"Ekoloji, organizmalar ile çevreleri arasındaki etkileşimleri inceler",Medium
+1353,Science,Elektron çiftlerinin paylaşıldığı kimyasal bağ türü hangisidir?,İyonik,Kovalent,Metalik,Hidrojen,B,Kovalent bağlar atomlar elektronları paylaştığında oluşur,Medium
+1354,Science,Kayaçların ısı ve basınç etkisiyle şekil değiştirmesine ne ad verilir?,Erozyon,Aşınma,Başkalaşım,Sedimentasyon,C,"Metamorfizma, kayaları ısı ve basınç altında dönüştürür",Medium
+1355,Science,Besin ve oksijenin taşınmasından sorumlu organ sistemi hangisidir?,Solunum,Sindirim,Dolaşım,Gergin,C,"Dolaşım sistemi, maddeleri vücut boyunca taşır",Medium
+1356,Science,Şafak vakti ve gün batımında aktif olan hayvanlara ne ad verilir?,Günlük,Geceleyin,Alacakaranlık,Katemeral,C,Alacakaranlık hayvanları alacakaranlık saatlerinde en aktiftir,Medium
+1357,Science,Mars atmosferinin en büyük yüzdesini hangi gaz oluşturur?,Oksijen,Azot,Karbondioksit,Argon,C,Mars'ın atmosferi yaklaşık %95 oranında karbondioksitten oluşuyor,Medium
+1358,Science,Bağışıklık sistemini inceleyen bilim dalına ne ad verilir?,İmmünoloji,Hematoloji,Patoloji,Mikrobiyoloji,A,İmmünoloji vücudun savunma mekanizmalarını inceler,Medium
+1359,Science,Atmosferdeki azotu bitkilerin kullanabileceği bileşiklere dönüştüren süreç hangisidir?,Azot fiksasyonu,Denitrifikasyon,Nitrifikasyon,Amonifikasyon,A,Azot fiksasyonu N2 gazını amonyağa veya nitratlara dönüştürür,Medium
+1360,Science,İki tektonik plaka arasındaki sınırın terimi nedir?,Fay hattı,Sırt,Siper,Dönüşüm sınırı,A,Fay hatları tektonik plakalar arasındaki sınırları belirler,Medium
+1361,Science,Damar duvarlarında hangi kas dokusu türü bulunur?,İskelet,Kardiyak,Düz,Çizgili,C,Düz kaslar kan damarlarını ve organları kaplar,Medium
+1362,Science,Hareket eden yüklerin manyetik alan oluşturduğu etkinin adı nedir?,Elektromanyetik indüksiyon,Faraday etkisi,Lorentz kuvveti,Hall etkisi,A,"Hareket eden elektrik yükleri, elektromanyetik indüksiyon yoluyla manyetik alanlar üretir",Medium
+1363,Science,Hücre döngüsünün hangi kısmında DNA replikasyonu gerçekleşir?,G1 aşaması,S fazı,G2 fazı,M fazı,B,DNA replikasyonu S sentez fazı sırasında meydana gelir,Medium
+1364,Science,Aşırı ortamlarda yaşayabilen organizmalara ne ad verilir?,Ekstremofiller,Mezofiller,Termofiller,Halofiller,A,Ekstremofiller çoğu yaşam için ölümcül koşullarda gelişirler,Medium
+1365,Science,Uyku-uyanıklık döngüsünü düzenlemekten sorumlu hormon hangisidir?,Melatonin,Serotonin,Dopamin,Kortizol,A,Melatonin sirkadiyen ritimleri ve uyku düzenini düzenler,Medium
+1366,Science,Bitkilerin suyu köklerinden yapraklarına taşıma süreci nedir?,Terleme,Ozmoz,Difüzyon,Aktif taşıma,A,"Terleme, suyu bitkinin damar sistemi aracılığıyla yukarı çeker",Medium
+1367,Science,Hangi üreme türü genetik çeşitliliğe sahip yavruların oluşmasına neden olur?,Aseksüel,Cinsel,Vejetatif,Klonal,B,"Cinsel üreme, iki ebeveynden gelen genetik materyali birleştirir",Medium
+1368,Science,Proteinlerin yapı ve işlevlerini inceleyen bilim dalına ne ad verilir?,Genomik,Proteomik,Metabolomik,Transkriptomik,B,"Proteomik, protein yapısını, işlevini ve etkileşimlerini inceler",Medium
+1369,Science,Hangi işlem metabolik atıkları kandan uzaklaştırır?,Filtrasyon,Salgılama,Boşaltım,Yukarıdakilerin hepsi,D,Böbrekler atıkların uzaklaştırılması için filtrasyon salgılama ve yeniden emilim kullanır,Medium
+1370,Science,Bir kimyasal reaksiyonun başlaması için gereken enerjiye ne ad verilir?,Aktivasyon enerjisi,Kinetik enerji,Potansiyel enerji,Termal enerji,A,"Aktivasyon enerjisi, reaksiyonları başlatmak için gereken minimum enerjidir",Medium
+1371,Science,Tıbbi görüntülemede elektromanyetik spektrumun hangi bölümü kullanılır?,Görünür ışık,Kızılötesi,X-ışınları,Radyo dalgaları,C,X ışınları dokuya nüfuz eder ve tıbbi görüntüleme için kullanılır,Medium
+1372,Science,Organizmaların istikrarlı iç koşullarını koruduğu süreç nedir?,Homeostaz,Metabolizma,Üreme,Büyüme,A,"Homeostaz, dış değişikliklere rağmen iç dengeyi korur",Medium
+1373,Science,Hangi hücre bölünmesi türü kromozom sayısının yarısı kadar olan gametlerin oluşmasını sağlar?,Mitoz,Mayoz,Hücrenin ikiye bölünerek üremesi,Parçalanma,B,"Mayoz, eşeyli üreme için haploid gametler üretir",Medium
+1374,Science,Genlerin nasıl ifade edildiğini inceleyen bilim dalına ne ad verilir?,Genetik,Genomik,Epigenetik,Proteomik,C,"Epigenetik, DNA diziliminde değişiklik olmadan gen ifadesini inceler",Medium
+1375,Science,Hangi işlem malzemelerin konsantrasyon gradyanlarına karşı hareket etmesini sağlar?,Pasif taşıma,Aktif taşıma,Difüzyon,Ozmoz,B,"Aktif taşıma, maddeleri eğimlere karşı hareket ettirmek için enerji kullanır",Medium
+1376,Science,Türlerin zaman içinde nasıl değiştiğini açıklayan teorinin adı nedir?,Yaratılışçılık,Evrim,Akıllı tasarım,Lamarckizm,B,"Evrim, türlerin doğal seçilim yoluyla nasıl değiştiğini açıklar",Medium
+1377,Science,Çevreden enerji alan kimyasal tepkime türü hangisidir?,Ekzotermik,Endotermik,Katalitik,Spontan,B,Endotermik reaksiyonlar çevrelerinden ısı emerler,Medium
+1378,Math,Bir üçgenin alan formülü nedir?,taban × yükseklik,½ × taban × yükseklik,taban + yükseklik ÷ 2,2 × taban × yükseklik,B,Üçgenin alanı taban yüksekliğinin yarısına eşittir,Medium
+1379,Sports,Hangi spor dalında smaç basardınız?,Voleybol,Basketbol,Tenis,Badminton,B,Basketbolda smaçlar yapılır,Medium
+1380,Technology,HTML ne anlama geliyor?,Hiper Metin İşaretleme Dili,Yüksek Teknoloji İşaretleme Dili,Hipermetin Modern Dili,Ana Araç İşaretleme Dili,A,"HTML, HyperText Markup Language (Köprü Metni İşaretleme Dili) anlamına gelir",Medium
+1381,Animals,Afrika filinin gebelik süresi ne kadardır?,12 ay,18 ay,22 ay,24 ay,C,Afrika fillerinin gebelik süresi 22 aydır,Medium
+1382,Art,Işığı ve onun değişen niteliklerini betimlemeye odaklanan sanat akımı hangisidir?,Romantizm,İzlenimcilik,Ekspresyonizm,Gerçeküstücülük,B,Empresyonizm ışığı ve renk üzerindeki etkilerini vurguladı,Medium
+1383,Math,Beşgenin iç açılarının toplamı kaçtır?,360°,540°,720°,900°,B,Bir beşgenin iç açıları 540 dereceye kadardır,Medium
+1384,Sports,Bir maratonun standart mesafesi nedir?,"24,2 mil","25,2 mil","26,2 mil","27,2 mil",C,"Bir maraton 26,2 mil veya 42,195 kilometredir",Medium
+1385,Technology,Web geliştirmede CSS ne anlama gelir?,Bilgisayar Stil Sayfaları,Basamaklı Stil Sayfaları,Yaratıcı Stil Sayfaları,Kodlanmış Stil Sayfaları,B,"CSS, Basamaklı Stil Sayfaları anlamına gelir",Medium
+1386,Animals,Hangi memelinin göç yolu en uzundur?,Gri balina,Ren geyiği,Antilop,Arktik sumru,D,Arktik sumruları her yıl Arktik'ten Antarktika'ya göç eder,Medium
+1387,Art,"""Venüs'ün Doğuşu"" tablosunu kim çizmiştir?",Leonardo da Vinci,Michelangelo,Sandro Botticelli,Raphael,C,"Sandro Botticelli, Venüs'ün Doğuşu tablosunu 1485 civarında çizdi",Medium
+1388,Math,Yarıçapı 7 olan bir çemberin çevresi kaçtır?,14π,7π,21π,49π,A,Çevre = 2πr = 2π(7) = 14π,Medium
+1389,Sports,Golfte kartal nedir?,Bir alt par,İki par altı,Üç alt par,Bir vuruşta delik,B,"Bir kartal, bir delik için par vuruşunun iki vuruş altındadır",Medium
+1390,Technology,VPN ne anlama geliyor?,Sanal Özel Ağ,Çok Özel Ağ,Görsel Özel Ağ,Doğrulanmış Özel Ağ,A,"VPN, Sanal Özel Ağ anlamına gelir",Medium
+1391,Animals,Sürekli uçma yeteneğine sahip tek memeli hayvan hangisidir?,Uçan sincap,Şeker planörü,Yarasa,Uçan lemur,C,"Yarasalar, motorlu uçuş yeteneğine sahip tek memelilerdir",Medium
+1392,Art,Düz bir yüzeyde derinlik yanılsaması yaratan teknik hangisidir?,Işık-gölge oyunu,Sfumato,Perspektif,Pasto,C,"Perspektif, üç boyutlu uzayın görünümünü yaratır",Medium
+1393,Math,π (pi) sayısının virgülden sonraki üç basamağa kadar değeri nedir?,3.141,3.142,3.143,3.144,B,"Pi sayısı yaklaşık olarak 3,142'ye eşittir ve üç ondalık basamağa eşittir",Medium
+1394,Sports,Havuzda su topu takımında kaç oyuncu vardır?,6,7,8,9,B,Su topu takımlarında aynı anda 7 oyuncu suda bulunur,Medium
+1395,Technology,API ne anlama geliyor?,Uygulama Programlama Arayüzü,Gelişmiş Programlama Arayüzü,Otomatik Programlama Arayüzü,Uygulamalı Programlama Arayüzü,A,"API, Uygulama Programlama Arayüzü anlamına gelir",Medium
+1396,Animals,Hangi kuşun kanat açıklığı en büyüktür?,Kondor,Albatros,Kartal,Pelikan,B,Gezgin albatros en büyük kanat açıklığına sahiptir,Medium
+1397,Art,Pablo Picasso hangi sanat akımının kurucularındandır?,İzlenimcilik,Kübizm,Gerçeküstücülük,Ekspresyonizm,B,"Pablo Picasso, Kübizm hareketinin kurucu ortağıdır",Medium
+1398,Math,x³'ün türevi nedir?,3x,3x²,x²,x³,B,x³'ün türevi kuvvet kuralı kullanılarak 3x²'dir,Medium
+1399,Sports,Erkekler tenis Grand Slam maçında en fazla kaç set oynanabilir?,3,4,5,6,C,Erkekler Grand Slam maçları 5 set üzerinden oynanır,Medium
+1400,Technology,SQL ne anlama geliyor?,Yapılandırılmış Sorgu Dili,Basit Sorgu Dili,Standart Sorgu Dili,Sistem Sorgu Dili,A,"SQL, Yapılandırılmış Sorgu Dili anlamına gelir",Medium
+1401,Animals,Bir ahtapotun kaç kalbi vardır?,1,2,3,4,C,Ahtapotların kan pompalamak için üç kalbi vardır,Medium
+1402,Art,Sistine Şapeli'nin tavanını hangi Rönesans sanatçısı çizmiştir?,Leonardo da Vinci,Michelangelo,Raphael,Donatello,B,"Michelangelo, Sistine Şapeli'nin tavanını boyadı",Medium
+1403,Math,200'ün %35'i kaçtır?,60,65,70,75,C,"200'ün %35'i = 0,35 × 200 = 70",Medium
+1404,Sports,Bir futbol devresi kaç dakikadır?,40,45,50,60,B,Bir futbol maçının her yarısı 45 dakikadır,Medium
+1405,Technology,HTTPS ne anlama geliyor?,HyperText Transfer Protocol Güvenli,Yüksek Teknoloji Transfer Protokolü Güvenli,HyperText Taşıma Protokolü Güvenli,Ana Sayfa Metin Aktarım Protokolü Güvenli,A,"HTTPS, HyperText Transfer Protocol Secure'un kısaltmasıdır",Medium
+1406,Animals,En büyük penguen türü hangisidir?,İmparator penguen,Kral penguen,Adelie pengueni,Çene kayışlı penguen,A,İmparator penguenler en büyük penguen türüdür,Medium
+1407,Art,Puantilist ressamlar hangi tekniği kullanmışlardır?,Büyük fırça darbeleri,Küçük renkli noktalar,Suluboya yıkamaları,Palet bıçağı,B,"Puantilistler boyayı küçük, belirgin noktalar halinde uyguladılar",Medium
+1408,Math,Yarıçapı 5 olan bir dairenin alanı nedir?,25π,10π,5π,π,A,Dairenin alanı = πr² = π(5)² = 25π,Medium
+1409,Science,Evrenin kökeni ve evrimini inceleyen bilim dalına ne ad verilir?,Kozmoloji,Astronomi,Astrofizik,Astrobiyoloji,A,"Kozmoloji, evrenin kökenini, yapısını ve evrimini inceler",Hard
+1410,Science,Kararsız atom çekirdeklerinin kendiliğinden bozunmasını açıklayan süreç hangisidir?,Nükleer fisyon,Nükleer füzyon,Radyoaktif bozunma,Beta bozunumu,C,"Radyoaktif bozunma, kararsız çekirdeklerin kendiliğinden parçalanmasıdır",Hard
+1411,Science,"Kara deliğin etrafındaki, ötesine hiçbir şeyin kaçamadığı sınırın adı nedir?",Olay ufku,Foton küresi,Ergosfer,Schwarzschild yarıçapı,A,"Olay ufku, kara deliklerin etrafında geri dönüşü olmayan noktayı işaret ediyor",Hard
+1412,Science,Bir parçacığın hem konumunu hem de momentumunu aynı anda bilmenin imkansız olduğunu belirten ilke hangisidir?,Pauli dışlama ilkesi,Heisenberg belirsizlik ilkesi,Schrödinger denklemi,Dalga-parçacık ikiliği,B,Heisenberg'in belirsizlik ilkesi eş zamanlı ölçüm hassasiyetini sınırlar,Hard
+1413,Science,Sadece iki kopyası mevcut olduğunda ifade edilen genler için kullanılan terim nedir?,Baskın,Resesif,Kodominant,Eksik baskın,B,Resesif genlerin fenotipte ifade edilebilmesi için iki kopyaya ihtiyaç vardır,Hard
+1414,Science,Amino asitleri ribozoma getirmekten sorumlu RNA türü hangisidir?,mRNA,tRNA,rRNA,snRNA,B,"Transfer RNA, protein sentezi sırasında amino asitleri ribozomlara taşır.",Hard
+1415,Science,Daha güçlü yer çekimi alanlarında zamanın daha yavaş akmasına neden olan etkinin adı nedir?,Zaman genişlemesi,Yerçekimi merceklenmesi,Kırmızıya kayma,Doppler etkisi,A,Yerçekimi zaman genişlemesi güçlü yerçekimi alanlarında meydana gelir,Hard
+1416,Science,Hücrelerde otofajiden hangi organel sorumludur?,Lizozom,Peroksisom,Golgi aygıtı,Endoplazmik retikulum,A,Lizozomlar hücresel atıkları sindirir ve otofaji gerçekleştirir,Hard
+1417,Science,Canlı organizmalardaki kimyasal süreçleri inceleyen bilim dalına ne ad verilir?,Biyokimya,Moleküler biyoloji,Hücre biyolojisi,Biyofizik,A,"Biyokimya, biyolojik sistemlerdeki kimyasal reaksiyonlara odaklanır",Hard
+1418,Science,"Gaz basıncı, sıcaklığı ve hacmi arasındaki ilişkiyi açıklayan yasa hangisidir?",Boyle yasası,Charles yasası,İdeal gaz yasası,Gay-Lussac yasası,C,"İdeal gaz yasası basınç, hacim ve sıcaklık ilişkilerini birleştirir",Hard
+1419,Science,Işık enerjisinin kimyasal enerjiye dönüştürüldüğü sürecin adı nedir?,Fotosentez,Kemosentez,Hücresel solunum,Fermantasyon,A,"Fotosentez, ışık enerjisini glikozdaki kimyasal enerjiye dönüştürür",Hard
+1420,Science,Kulakta dengeyi sağlayan yapı hangisidir?,Koklea,Yarım daire kanalları,Östaki borusu,Timpanik membran,B,Yarım daire kanalları dönme hareketini ve dengeyi algılar,Hard
+1421,Science,Bağışıklık sisteminin yabancı maddelere karşı verdiği yanıtı inceleyen bilim dalına ne ad verilir?,İmmünoloji,Alerji,Seroloji,Hematoloji,A,"İmmünoloji, alerjik reaksiyonlar da dahil olmak üzere bağışıklık tepkilerini inceler",Hard
+1422,Science,Hangi kimyasal bağ türü en güçlüdür?,İyonik bağ,Kovalent bağ,Metalik bağ,Hidrojen bağı,B,Kovalent bağlar genellikle en yüksek bağ enerjisine sahiptir,Hard
+1423,Science,Hücrelerin kendi bileşenlerini tükettiği sürecin adı nedir?,Otofaji,Apoptozis,Fagositoz,Endositoz,A,"Otofaji, hücrelerin kendi hasarlı bileşenlerini geri dönüştürmesine olanak tanır",Hard
+1424,Science,Atomların kararlı elektron konfigürasyonlarına ulaşmak için bağ yapmasını açıklayan ilke hangisidir?,Oktet kuralı,Aufbau ilkesi,Hund kuralı,Pauli dışlama ilkesi,A,Oktet kuralı atomların sekiz değerlik elektronuna ulaşmasını sağlar,Hard
+1425,Science,Organizmaların çevreleriyle nasıl etkileşim kurduğunu inceleyen bilim dalı hangisidir?,Ekoloji,Etoloji,Davranışsal ekoloji,Çevre biyolojisi,A,"Ekoloji, organizmalar ile çevreleri arasındaki ilişkileri inceler",Hard
+1426,Science,Bakterilerin genetik materyal alışverişinde bulunmasını sağlayan süreç hangisidir?,Hücrenin ikiye bölünerek üremesi,Çekim,Dönüşüm,Transdüksiyon,B,"Bakteriyel konjugasyon, genetik materyali hücreler arasında aktarır",Hard
+1427,Science,Parçacıkların aynı anda birden fazla durumda bulunabildiği etkinin adı nedir?,Üst üste binme,Dolaşıklık,Tünelcilik,Parazit yapmak,A,Kuantum süperpozisyonu parçacıkların birden fazla durumda var olmasına olanak tanır,Hard
+1428,Science,DNA'nın replikasyon sırasında açılmasından hangi enzim sorumludur?,DNA polimeraz,Helikaz,Ligaz,Primase,B,"Helikaz, DNA replikasyonu sırasında çift sarmalı çözer",Hard
+1429,Science,Dünya'nın manyetik alanını inceleyen bilim dalına ne ad verilir?,Paleomanyetizma,Yerçekimi,Manyetostratigrafi,Manyetik sapma,B,"Jeomanyetizma, Dünya'nın manyetik alanını ve onun değişimlerini inceler",Hard
+1430,Science,"Hangi süreç, bir iletken içerisinde elektronların hareketini tanımlar?",Elektrik akımı,Elektrik potansiyeli,Elektrik alanı,Elektrik yükü,A,"Elektrik akımı, elektronların bir iletkenden akışıdır",Hard
+1431,Science,Maddenin atom düzeyindeki davranışını açıklayan teorinin adı nedir?,Klasik mekanik,Kuantum mekaniği,Termodinamik,İstatistiksel mekanik,B,"Kuantum mekaniği, atomik ve atom altı parçacık davranışını açıklar",Hard
+1432,Science,Kromozom sayısının yarıya inmesine neden olan hücre bölünmesi türü hangisidir?,Mitoz,Mayoz,Hücrenin ikiye bölünerek üremesi,Sitokinez,B,"Mayoz, kromozom sayısının yarısı kadar haploid gametler üretir",Hard
+1433,Science,Sinir sisteminin yapısını ve işlevini inceleyen bilim dalı hangisidir?,Sinirbilim,Psikoloji,Psikiyatri,Nöroloji,A,"Sinirbilim, tüm sinir sisteminin incelenmesini kapsar",Hard
+1434,Science,Yeni türlerin oluşumunu hangi süreç tanımlar?,Türleşme,Evrim,Doğal seçilim,Genetik sürüklenme,A,"Türleşme, yeni türlerin oluşmasını sağlayan evrimsel bir süreçtir",Hard
+1435,Science,Enerjinin yaratılamayacağı veya yok edilemeyeceği ilkesinin adı nedir?,Enerjinin korunumu,Momentumun korunumu,kütle korunumu,Termodinamik denge,A,Termodinamiğin birinci yasası enerjinin korunumunu belirtir,Hard
+1436,Science,Bitkilerde gaz alışverişini sağlayan yapı hangisidir?,Stomata,Kloroplastlar,Ksilem,Floem,A,Stomalar bitki yapraklarında gaz alışverişini sağlayan gözeneklerdir,Hard
+1437,Science,İlaçların canlı organizmaları nasıl etkilediğini inceleyen bilim dalına ne ad verilir?,Farmakoloji,Toksikoloji,Patoloji,Fizyoloji,A,"Farmakoloji, ilaçların etkilerini ve organizmalar üzerindeki etkilerini inceler",Hard
+1438,Science,Bir atomun elektron kaybetmesini anlatan süreç hangisidir?,Kesinti,Oksidasyon,İyonizasyon,Nötralizasyon,B,"Oksidasyon, atomlardan veya moleküllerden elektron kaybını içerir",Hard
+1439,Math,sin(x) dx'in integrali nedir?,cos(x) + C,-cos(x) + C,sin(x) + C,-sin(x) + C,B,Sin(x)'in integrali -cos(x) + C'dir,Hard
+1440,Sports,Bir hokey maçında üç gol atmaya ne ad verilir?,El çabukluğu,Üçlü oyun,Mükemmel oyun,Büyük slam,A,"Hat-trick, bir oyuncunun bir maçta üç gol atmasıdır",Hard
+1441,Technology,TCP ağ iletişiminde ne anlama gelir?,Transfer Kontrol Protokolü,İletim Kontrol Protokolü,Taşıma Kontrol Protokolü,Terminal Kontrol Protokolü,B,"TCP, İletim Kontrol Protokolü anlamına gelir",Hard
+1442,Animals,Hangi memelinin kan basıncı en yüksektir?,Fil,Zürafa,Mavi balina,Gergedan,B,Zürafalar boyları nedeniyle en yüksek kan basıncına sahiptir,Hard
+1443,Art,Rüya benzeri imgeler ve bilinçaltının öne çıktığı sanat akımı hangisidir?,Dadaizm,Gerçeküstücülük,Soyut Ekspresyonizm,Fütürizm,B,Gerçeküstücülük rüyaları ve bilinçaltını araştırdı,Hard
+1444,Math,1 + 1/2 + 1/4 + 1/8 + ... serisinin sonsuza kadar toplamı kaçtır?,1,1.5,2,Sonsuzluk,C,Bu geometrik seri 2'ye yakınsar,Hard
+1445,Sports,İlk modern olimpiyat oyunları hangi yılda düzenlendi?,1892,1894,1896,1898,C,İlk modern Olimpiyatlar 1896 yılında Atina'da düzenlendi,Hard
+1446,Technology,JSON ne anlama geliyor?,JavaScript Nesne Gösterimi,Java Standart Nesne Gösterimi,JavaScript Sıralı Gösterim,Java Serileştirilmiş Nesne Gösterimi,A,"JSON, JavaScript Nesne Gösterimi anlamına gelir",Hard
+1447,Animals,Hangi kuş geriye doğru uçabilir?,Sinek kuşu,Yalıçapkını,Yutmak,Süratli,A,Sinek kuşları geriye doğru uçabilen tek kuşlardır,Hard
+1448,Art,"""Las Meninas"" tablosunu kim çizmiştir?",El Greco,Diego Velázquez,Francisco Goya,Pablo Picasso,B,"Diego Velázquez, 1656'da Las Meninas'ı resmetti",Hard
+1449,Math,e (Euler sayısı)'nın dört ondalık basamağına kadar değeri nedir?,2.7182,2.7183,2.7184,2.7185,A,Euler sayısı e yaklaşık olarak 2.7182818...'e eşittir.,Hard
+1450,Sports,Basketbol potasının standart yüksekliği kaç cm'dir?,9 fit,"9,5 fit",10 fit,"10,5 fit",C,"Basketbol potaları 10 fit (3,05 metre) yüksekliğindedir",Hard
+1451,Technology,Web geliştirmede AJAX ne anlama geliyor?,Eşzamansız JavaScript ve XML,Gelişmiş JavaScript ve XML,Otomatik JavaScript ve XML,Aktif JavaScript ve XML,A,"AJAX, Asenkron JavaScript ve XML anlamına gelir",Hard
+1452,Animals,Hangi hayvanın gebelik süresi en uzundur?,Fil,Zürafa,Gergedan,Su aygırı,A,Afrika fillerinin gebelik süresi 22 aydır,Hard
+1453,Art,Resimde doku yanılsaması yaratan teknik hangisidir?,Sfumato,Işık-gölge oyunu,Pasto,Trompe-l'oeil,C,Pasto tekniği kalın boya ile dokusal efektler yaratır,Hard
+1454,Math,e^x'in türevi nedir?,e^x,xe^(x-1),ln(x),1/x,A,e^x'in türevi e^x'in kendisidir,Hard
+1455,Sports,Davis Kupası hangi spor dalında verilir?,Golf,Tenis,Kriket,Rugby,B,Davis Kupası erkekler tenisinde veriliyor,Hard
+1456,Technology,Web servislerinde REST ne anlama geliyor?,Temsili Devlet Transferi,Uzaktan Durum Transferi,Kaynak Durumu Transferi,İlişkisel Durum Transferi,A,"REST, Temsili Durum Transferi anlamına gelir",Hard
+1457,Animals,Hangi balık yaşayan fosil olarak kabul edilir?,Köpek balığı,Coelacanth,Mersin balığı,Gar,B,Coelacanth'ın 1938'de yeniden keşfedilene kadar neslinin tükendiği düşünülüyordu,Hard
+1458,Art,"""Düşünen Adam"" heykelini kim yapmıştır?",Michelangelo,Auguste Rodin,Donatello,Bernini,B,Auguste Rodin Düşünen Adam'ı heykelleştirdi,Hard
+1459,Math,n sonsuza yaklaşırken (1 + 1/n)^n'nin limiti nedir?,1,e,π,∞,B,Bu limit e'ye (Euler sayısı) eşittir,Hard
+1460,Sports,Snooker'da mümkün olan en yüksek kırılma sayısı nedir?,147,150,155,160,A,Snooker'da maksimum kırılma noktası 147 puandır,Hard
+1461,Technology,Veritabanı işlemlerinde CRUD ne anlama gelir?,Oluştur Oku Güncelle Sil,Oluştur Al Güncelle Sil,Kopyala Oku Güncelle Sil,Oluştur Oku Yükle Sil,A,"CRUD, Oluştur Oku Güncelle Sil anlamına gelir",Hard
+1462,Science,Gezegenleri Güneş etrafındaki yörüngede tutan kuvvete ne ad verilir?,Manyetik kuvvet,Yerçekimi kuvveti,Nükleer kuvvet,Elektromanyetik kuvvet,B,"Yerçekimi kuvveti, yörünge hareketi için gerekli merkezcil kuvveti sağlar",Easy
+1463,Science,Metaller asitlerle tepkimeye girdiğinde hangi gaz açığa çıkar?,Oksijen,Hidrojen,Karbondioksit,Azot,B,Metaller asitlerle reaksiyona girdiğinde genellikle hidrojen gazı üretirler,Easy
+1464,Science,Elektrik akımının temel birimi nedir?,Volt,Amper,Ohm,Watt,B,"Amper, saniyedeki elektrik yükünün akışını ölçer",Easy
+1465,Science,Sporlarla gerçekleşen üreme türü hangisidir?,Cinsel,Aseksüel,Hücrenin ikiye bölünerek üremesi,Parçalanma,B,Birçok mantar ve bitki sporlar aracılığıyla eşeysiz olarak çoğalır,Easy
+1466,Science,Balıkları inceleyen bilim dalına ne ad verilir?,Ornitoloji,İhtiyoloji,Herpetoloji,Entomoloji,B,"İhtiyoloji, balıkları inceleyen zooloji dalıdır",Easy
+1467,Science,Yetişkinlerde kırmızı kan hücreleri hangi organ tarafından üretilir?,Karaciğer,Dalak,Kemik iliği,Böbrekler,C,"Kemik iliği, kırmızı kan hücresi üretiminin birincil yeridir",Easy
+1468,Science,Raftaki bir kitap ne tür bir enerjiye sahiptir?,Kinetik,Potansiyel,Kimyasal,Nükleer,B,Yükseklikteki nesneler yer çekimi potansiyel enerjisine sahiptir,Easy
+1469,Science,Yangın söndürücülerde hangi gaz kullanılır?,Oksijen,Karbondioksit,Azot,Helyum,B,Karbondioksit oksijenin yerini alır ve yangınları bastırır,Easy
+1470,Science,Su buharının sıvıya dönüşme sürecine ne ad verilir?,Buharlaşma,Yoğunlaşma,Süblimasyon,Yağış,B,"Yoğunlaşma, su buharının soğuyup sıvı hale gelmesiyle meydana gelir",Easy
+1471,Science,Hangi gezegenin yörüngesi en daireseldir?,Toprak,Mars,Venüs,Merkür,C,"Venüs, tüm gezegenler arasında en dairesel yörüngeye sahip olanıdır",Easy
+1472,Science,Sadece et yiyen hayvanlara ne ad verilir?,Otçullar,Etçiller,Hepçiller,Detritivorlar,B,"Etoburlar, yalnızca etle beslenen hayvanlardır",Easy
+1473,Science,Bitkinin hangi kısmı üremeyi sağlar?,Kökler,Kök,Yapraklar,Çiçekler,D,Çiçekler çiçekli bitkilerin üreme organlarını içerir,Easy
+1474,Science,Hangi süreç organizmaların istikrarlı iç koşullarını korumasını sağlar?,Evrim,Homeostaz,Uyum,Metabolizma,B,"Homeostaz, iç çevre koşullarının istikrarlı kalmasını sağlar",Easy
+1475,Science,Lavların soğuyarak erimesiyle hangi kaya türü oluşur?,Tortul,Metamorfik,Magmatik,Kireçtaşı,C,Erimiş kaya soğuduğunda ve katılaştığında magmatik kayaçlar oluşur,Easy
+1476,Science,Beyaz kan hücrelerinin başlıca işlevi nedir?,Oksijen taşımak,Enfeksiyonla mücadele,Pıhtılaşmış kan,Besin maddelerini taşımak,B,Beyaz kan hücreleri bağışıklık sisteminin bir parçasıdır,Easy
+1477,Science,Dünya atmosferinin ikinci büyük kısmını hangi gaz oluşturur?,Oksijen,Karbondioksit,Argon,Azot,A,"Oksijen, Dünya atmosferinin yaklaşık %21'ini oluşturur",Easy
+1478,Science,Canlıların yapısını inceleyen bilim dalına ne ad verilir?,Fizyoloji,Anatomi,Biyoloji,Zooloji,B,"Anatomi, organizmaların yapısını ve organizasyonunu inceler",Easy
+1479,Science,Hava içerisinde hareket eden cisimlere karşı koyan kuvvet hangisidir?,Sürtünme,Yer çekimi,Hava direnci,Manyetizma,C,Hava direnci atmosferdeki harekete karşı koyar,Easy
+1480,Science,İş yapabilme yeteneğinin terimi nedir?,Güç,Enerji,Güç,Momentum,B,"Enerji, iş yapma kapasitesi olarak tanımlanır",Easy
+1481,Science,İnsanlarda vücut sıcaklığını hangi organ kontrol eder?,Kalp,Beyin,Karaciğer,Akciğerler,B,Beynin hipotalamusu vücut sıcaklığını düzenler,Easy
+1482,Science,Denizanası ne tür bir hayvandır?,Balık,Yumuşakça,Knidli,Kabuklu,C,Denizanası Cnidaria şubesine aittir,Easy
+1483,Science,Hücrelerde besinlerin enerjiye dönüştürülmesi hangi işlemle gerçekleşir?,Fotosentez,Hücresel solunum,Sindirim,Emilim,B,"Hücresel solunum, ATP üretmek için glikozu parçalar",Easy
+1484,Science,Canlı organizmaların ürettiği en sert madde nedir?,Kemik,Diş minesi,Keratin,Kitin,B,Diş minesi en sert biyolojik maddedir,Easy
+1485,Science,Eğik halka sistemine sahip olduğu bilinen gezegen hangisidir?,Satürn,Jüpiter,Uranüs,Neptün,C,Uranüs'ün halkaları 90 derece eğimlidir,Easy
+1486,Science,Bitki yapraklarından su kaybına ne ad verilir?,Terleme,Fotosentez,Solunum,Ozmoz,A,"Terleme, yaprak gözeneklerinden su kaybıdır",Easy
+1487,Science,Hangi hücre tipinin çekirdeği yoktur?,Prokaryotik,Ökaryotik,Bitki hücresi,Hayvan hücresi,A,Bakteriler gibi prokaryotik hücrelerin zarla çevrili bir çekirdeği yoktur,Easy
+1488,Science,Hayvanların davranışlarını inceleyen bilim dalına ne ad verilir?,Etoloji,Ekoloji,Zooloji,Psikoloji,A,"Etoloji, hayvan davranışlarının bilimsel çalışmasıdır",Easy
+1489,Science,Hücresel solunum için hangi gaz gereklidir?,Karbondioksit,Oksijen,Azot,Hidrojen,B,Oksijen çoğu organizmada hücresel solunum için gereklidir,Easy
+1490,Science,Katıdan gaza hal değişimine ne ad verilir?,Erime,Buharlaşma,Süblimasyon,Yoğunlaşma,C,Süblimleşme katıdan gaza doğrudan geçiştir,Easy
+1491,Science,Balıklarda sudan oksijeni çeken organ hangisidir?,Akciğerler,Solungaçlar,Kalp,Karaciğer,B,Solungaçlar balıkların sudan çözünmüş oksijeni çıkarmasını sağlar,Easy
+1492,Science,Miyopluğu düzeltmek için hangi tip mercek kullanılır?,Dışbükey,İçbükey,Bifokal,İlerici,B,İçbükey mercekler miyopiyi düzeltmek için ışık ışınlarını dağıtır,Easy
+1493,Science,Fotosentez için hangi element gereklidir?,Ütü,Magnezyum,Kalsiyum,Potasyum,B,Magnezyum klorofil moleküllerinin merkezindedir,Easy
+1494,Science,Bir çözeltinin ne kadar asidik veya bazik olduğunun ölçüsüne ne ad verilir?,pH,Sıcaklık,Yoğunluk,Viskozite,A,"pH, hidrojen iyon konsantrasyonunu ölçer",Easy
+1495,Science,Hangi damar tipinin duvarları en incedir?,Arter,Damar,Kılcal,Arteriyol,C,Kılcal damarların duvarları sadece bir hücre kalınlığındadır,Easy
+1496,Science,Bitkilerin ışığa doğru eğilme sürecine ne ad verilir?,Fototropizm,Jeotropizm,Tigmotropizm,Kemotropizm,A,"Fototropizm, ışık yönüne tepki olarak büyümedir",Easy
+1497,Science,Hangi gezegende en aşırı sıcaklık değişimleri yaşanıyor?,Merkür,Venüs,Mars,Jüpiter,A,Merkür en büyük sıcaklık aralığını yaşıyor,Easy
+1498,Science,Dünya'nın etrafındaki koruyucu tabakaya ne ad verilir?,Atmosfer,Manyetosfer,Ozon tabakası,İyonosfer,A,"Atmosfer, Dünya'yı uzay radyasyonundan korur",Easy
+1499,Science,Hangi kas tipi istemli çalışır?,Düz,Kardiyak,İskelet,İstemsiz,C,İskelet kasları bilinçli kontrol altındadır,Easy
+1500,Science,Kalıtım ve çeşitliliği inceleyen bilim dalına ne ad verilir?,Evrim,Genetik,Ekoloji,Taksonomi,B,"Genetik, kalıtsal özellikleri ve bunların varyasyonlarını inceler",Easy
+1501,Science,Bitkiler geceleri hangi gazı üretir?,Oksijen,Karbondioksit,Azot,Su buharı,B,Bitkiler gece solunumu sırasında CO2 salarlar,Easy
+1502,Science,Işığın farklı maddelerden geçerken bükülmesine ne ad verilir?,Refleks,Refraksiyon,Kırınım,Parazit yapmak,B,"Kırılma, ışığın farklı ortamlarda hızını değiştirmesiyle meydana gelir",Easy
+1503,Science,Kandaki atık maddeleri hangi organ sistemi temizler?,Solunum,Sindirim,Boşaltım,Dolaşım,C,Boşaltım sistemi metabolik atıkları ortadan kaldırır,Easy
+1504,Science,Deniz yıldızı ne tür bir hayvandır?,Balık,Yumuşakça,Derisidikenliler,Knidli,C,"Denizyıldızı, Echinodermata şubesine aittir",Easy
+1505,Science,Hangi süreç organizmaların çevrelerini algılamasını sağlar?,Fotosentez,Solunum,Duygu,Üreme,C,"Duyu, organizmaların çevresel değişiklikleri tespit etmesini sağlar",Easy
+1506,Science,Mantarları inceleyen bilim dalına ne ad verilir?,Mikoloji,Viroloji,Bakteriyoloji,Patoloji,A,"Mikoloji, mantarları inceleyen biyoloji dalıdır",Easy
+1507,Science,Fotosentez sırasında hangi gaz açığa çıkar?,Karbondioksit,Azot,Oksijen,Hidrojen,C,Fotosentez yan ürün olarak oksijen üretir,Easy
+1508,Science,Bir bileşiğin en küçük parçacığı nedir?,Atom,İyon,Molekül,Element,C,Moleküller kimyasal bileşiklerin en küçük birimleridir,Easy
+1509,Science,Hangi üreme türü genetik çeşitliliğe neden olur?,Aseksüel,Cinsel,Hücrenin ikiye bölünerek üremesi,Tomurcuklanan,B,Cinsel üreme genetik çeşitliliğe yol açar,Easy
+1510,Science,Okyanus tabanını inceleyen bilim dalına ne ad verilir?,Oşinografi,Deniz jeolojisi,Batimetri,Hidroloji,C,Batimetri çalışmaları su altı topografyasını inceler,Easy
+1511,Science,İnsanda sindirim suları hangi organ tarafından üretilir?,Kalp,Pankreas,Böbrek,Dalak,B,Pankreas sindirim için enzimler üretir,Easy
+1512,Science,Sıkıştırılmış bir yayda ne tür enerji depolanır?,Kinetik,Potansiyel,Kimyasal,Termal,B,Sıkıştırılmış yaylar elastik potansiyel enerjiyi depolar,Easy
+1513,Science,Hangi gezegenin yer çekimi en güçlüdür?,Toprak,Jüpiter,Satürn,Neptün,B,Jüpiter en güçlü kütle çekim alanına sahiptir,Easy
+1514,Science,Hava kütlelerinin hareketine ne ad verilir?,Hava durumu,İklim,Rüzgâr,Basınç,C,"Rüzgar, havanın yüksek basınçtan alçak basınca doğru hareketidir",Easy
+1515,Science,Hangi hücre bölünmesi türü birbirinin aynısı olan hücreler üretir?,Mitoz,Mayoz,Hücrenin ikiye bölünerek üremesi,Hem A hem de C,D,Hem mitoz hem de ikili fisyon aynı hücreleri üretir,Easy
+1516,Science,Dünya'nın fiziksel özelliklerini inceleyen bilim dalına ne ad verilir?,Coğrafya,Jeoloji,Topografya,Kartografya,C,"Topografya, Dünya'nın yüzey özelliklerini inceler",Easy
+1517,Science,Bitkiler fotosentez sırasında hangi gazı kullanır?,Oksijen,Azot,Karbondioksit,Hidrojen,C,Bitkiler fotosentez için atmosferdeki CO2'yi kullanır,Easy
+1518,Science,Beynin koruyucu kılıfına ne ad verilir?,Kafatası,Beyin zarları,Kafatası,Korteks,B,Menenjler beynin etrafındaki koruyucu zarlardır,Easy
+1519,Science,Ölü maddeyi parçalayan organizma türü hangisidir?,Yapımcı,Tüketici,Ayrıştırıcı,Yırtıcı,C,Ayrıştırıcılar ölü organik maddeleri parçalar,Easy
+1520,Science,Canlıların sınıflandırılmasını inceleyen bilim dalına ne ad verilir?,Ekoloji,Taksonomi,Evrim,Genetik,B,Taksonomi organizmaları sınıflandırır ve adlandırır,Easy
+1521,Science,Kütlesi olan tüm cisimlere etki eden kuvvet hangisidir?,Elektromanyetik,Nükleer,Yerçekimi,Sürtünme,C,Yerçekimi kütleye sahip tüm nesneleri etkiler,Easy
+1522,Science,Kaynama noktasında sıvıdan gaza geçişe ne ad verilir?,Buharlaşma,Buharlaşma,Süblimasyon,Yoğunlaşma,B,Buharlaşma kaynama noktasında meydana gelir,Easy
+1523,Science,Vücutta maddeleri taşıyan organ sistemi hangisidir?,Gergin,Solunum,Dolaşım,Sindirim,C,Dolaşım sistemi kan ve besinleri taşır,Easy
+1524,Science,Deniz kestanesi ne tür bir hayvandır?,Yumuşakça,Kabuklu,Derisidikenliler,Knidli,C,Deniz kestaneleri deniz yıldızı gibi derisidikenlilerdir,Easy
+1525,Science,Bitkilerin kendi besinlerini üretmesini sağlayan süreç hangisidir?,Solunum,Fotosentez,Sindirim,Emilim,B,Fotosentez ışık enerjisini kimyasal enerjiye dönüştürür,Easy
+1526,Science,Hareketi inceleyen bilim dalına ne ad verilir?,Kinematik,Dinamikler,Statik,Mekanik,A,"Kinematik, kuvvetleri hesaba katmadan hareketi tanımlar",Easy
+1527,Science,Organik maddeler ayrıştığında hangi gaz ortaya çıkar?,Oksijen,Metan,Azot,Helyum,B,Ayrışma sonucu metan ve diğer gazlar oluşur,Easy
+1528,Science,Yaşamın temel birimi nedir?,Atom,Hücre,Doku,Organ,B,Hücreler canlı organizmaların temel birimleridir,Easy
+1529,Science,Boşlukta hareket edebilen dalga türü hangisidir?,Ses,su,Işık,Sismik,C,Işık dalgaları elektromanyetiktir ve herhangi bir ortama ihtiyaç duymaz,Easy
+1530,Science,Depremleri inceleyen bilim dalına ne ad verilir?,Volkanoloji,Sismoloji,Meteoroloji,Hidroloji,B,Sismoloji depremleri ve sismik dalgaları inceler,Easy
+1531,Science,İstemli hareketleri hangi organ kontrol eder?,Beyin,Kalp,Akciğerler,Karaciğer,A,Beyin bilinçli kas hareketlerini kontrol eder,Easy
+1532,Science,Besinler ne tür enerji sağlar?,Kinetik,Termal,Kimyasal,Nükleer,C,"Gıda, bağlarında kimyasal enerji içerir",Easy
+1533,Science,Hangi gezegenin yörüngesi en eksantrik eliptiktir?,Toprak,Mars,Merkür,Venüs,C,Merkür en eliptik yörüngeye sahiptir,Easy
+1534,Science,Atmosferi inceleyen bilim dalına ne ad verilir?,Meteoroloji,İklimbilim,Atmosfer bilimi,Yukarıdakilerin hepsi,D,Tüm bu alanlar atmosferik olayları inceler,Easy
+1535,Science,Hangi üreme türünde sadece bir ata birey bulunur?,Cinsel,Aseksüel,Çapraz döllenme,Çekim,B,Eşeysiz üreme yalnızca bir ana organizma gerektirir,Easy
+1536,Science,Canlılar arasındaki ilişkileri inceleyen bilim dalına ne ad verilir?,Ekoloji,Evrim,Genetik,Taksonomi,A,"Ekoloji, canlılar arasındaki etkileşimleri inceler",Easy
+1537,Science,Yanmanın gerçekleşmesi için hangi gaz gereklidir?,Azot,Oksijen,Karbondioksit,Hidrojen,B,Yanma reaksiyonları için oksijene ihtiyaç vardır,Easy
+1538,Science,Dünya'nın dış katmanına ne ad verilir?,Kabuk,Manto,Çekirdek,Atmosfer,A,"Kabuk, Dünya'nın en dıştaki katı tabakasıdır",Easy
+1539,Science,Hücre duvarı hangi hücre tipinde bulunur?,Hayvan hücresi,Bitki hücresi,İkisi birden,Hiç biri,B,Bitki hücreleri destek için sert hücre duvarlarına sahiptir,Easy
+1540,Science,Maddenin özelliklerini inceleyen bilim dalına ne ad verilir?,Fizik,Kimya,Biyoloji,Jeoloji,B,"Kimya, maddenin özelliklerini ve davranışını inceler",Easy
+1541,Science,Metabolizmayı düzenleyen hormonları hangi organ üretir?,Pankreas,Tiroid,Böbreküstü bezi,Hipofiz,B,Tiroid bezi metabolizma hızını düzenler,Easy
+1542,Science,Yengeç ne tür bir hayvandır?,Balık,Yumuşakça,Kabuklu,Derisidikenliler,C,"Yengeçler, kabuklular grubundaki eklem bacaklılardır",Easy
+1543,Science,Azot gazını kullanılabilir hale dönüştüren işlem hangisidir?,Azot fiksasyonu,Denitrifikasyon,Nitrifikasyon,Amonifikasyon,A,Azot fiksasyonu atmosferik N2'yi amonyağa dönüştürür,Easy
+1544,Science,Geçmişteki yaşamı inceleyen bilim dalına ne ad verilir?,Paleontoloji,Arkeoloji,Tarih,Antropoloji,A,"Paleontoloji, fosiller aracılığıyla antik yaşamı inceler",Easy
+1545,Science,Araba egzozlarından çıkan gaz hangisidir?,Oksijen,Karbon monoksit,Azot,Helyum,B,Araba motorları diğer kirleticilerin yanı sıra karbon monoksit üretir,Easy
+1546,Science,Kalıtımın temel birimi nedir?,Gen,Kromozom,DNA,Alel,A,Genler kalıtımın işlevsel birimleridir,Easy
+1547,Science,Hangi mercek türü nesneleri daha büyük gösterir?,İçbükey,Dışbükey,Düz,Silindirik,B,Dışbükey mercekler ışığı bir araya getirir ve görüntüleri büyütür,Easy
+1548,Science,Evrenin incelenmesine ne ad verilir?,Astronomi,Astroloji,Kozmoloji,Astrofizik,C,Kozmoloji evreni bir bütün olarak inceler,Easy
+1549,Science,Kandaki atıkları hangi organ süzer?,Kalp,Karaciğer,Böbrek,Dalak,C,Böbrekler kandaki metabolik atıkları filtreler,Easy
+1550,Science,Sıcaklıkla ilişkili enerji türü nedir?,Kinetik,Potansiyel,Termal,Kimyasal,C,Termal enerji moleküler hareketle ilişkilidir,Easy
+1551,Science,Hangi gezegen kendi ekseni etrafında en hızlı döner?,Toprak,Mars,Jüpiter,Satürn,C,"Jüpiter, yaklaşık 10 saatte bir dönüşünü tamamlar",Easy
+1552,Science,Bitki hastalıklarını inceleyen bilim dalına ne ad verilir?,Bitki patolojisi,Botanik,Bahçecilik,Ziraat Mühendisliği,A,Bitki patolojisi bitkileri etkileyen hastalıkları inceler,Easy
+1553,Science,Hangi üreme türü klon üretir?,Cinsel,Aseksüel,Melezleme,Hibridizasyon,B,Eşeysiz üreme genetik olarak özdeş yavrular yaratır,Easy
+1554,Science,Bağışıklık sistemini inceleyen bilim dalına ne ad verilir?,İmmünoloji,Patoloji,Mikrobiyoloji,Viroloji,A,"İmmünoloji, bağışıklık tepkilerini ve bozukluklarını inceler",Easy
+1555,Science,Havadan daha hafif olan ve balonlarda kullanılan gaz hangisidir?,Oksijen,Karbondioksit,Helyum,Azot,C,Helyum havadan daha az yoğundur,Easy
+1556,Science,Kayaçların hava koşulları nedeniyle parçalanmasına ne ad verilir?,Erozyon,Aşınma,Sedimentasyon,Başkalaşım,B,"Aşınma, fiziksel ve kimyasal süreçler yoluyla kayaları parçalar",Easy
+1557,Science,Vücut fonksiyonlarını hangi organ sistemi kontrol eder?,Dolaşım,Gergin,Solunum,Sindirim,B,Sinir sistemi vücut aktivitelerini koordine eder,Easy
+1558,Science,Istakoz ne tür bir hayvandır?,Balık,Yumuşakça,Kabuklu,Derisidikenliler,C,Istakozlar deniz kabuklularıdır,Easy
+1559,Science,Suyun bitki gövdelerinde yukarı doğru hareket etmesini sağlayan süreç hangisidir?,Terleme,Ozmoz,Difüzyon,Aktif taşıma,A,"Terleme, suyu yukarı çeken bir emme yaratır",Easy
+1560,Science,Örümcekleri inceleyen bilim dalına ne ad verilir?,Araknoloji,Entomoloji,Artropodoloji,Zooloji,A,Araknoloji özellikle örümcekleri ve ilgili araknidleri inceler,Easy
+1561,Science,Güneş'in kütlesinin çoğunu hangi gaz oluşturur?,Oksijen,Helyum,Hidrojen,Karbon,C,Güneş esas olarak hidrojenden oluşur,Easy
+1562,Science,Elektrik yükünün temel birimi nedir?,Coulomb,Amper,Volt,Ohm,A,Coulomb elektrik yükünün miktarını ölçer,Easy
+1563,Science,Kloroplast hangi hücre tipinde bulunur?,Hayvan hücresi,Bitki hücresi,Bakteri hücresi,Mantar hücresi,B,Bitki hücreleri fotosentez için kloroplast içerir,Easy
+1564,Science,Volkanları inceleyen bilim dalına ne ad verilir?,Volkanoloji,Jeoloji,Sismoloji,Petroloji,A,"Volkanoloji, volkanik süreçleri ve olayları inceler.",Easy
+1565,Science,Yağların sindirimi için safra üreten organ hangisidir?,Karın,Karaciğer,Pankreas,Safra kesesi,B,Karaciğer yağ sindirimi için safra üretir,Easy
+1566,Science,Hareket eden cisimler ne tür enerjiye sahiptir?,Potansiyel,Kinetik,Kimyasal,Nükleer,B,Kinetik enerji hareket enerjisidir,Easy
+1567,Science,Güneş sistemimizde en çok uyduya sahip gezegen hangisidir?,Jüpiter,Satürn,Uranüs,Neptün,B,Satürn'ün 140'tan fazla doğrulanmış uydusu var,Easy
+1568,Science,Kuşları inceleyen bilim dalına ne ad verilir?,Ornitoloji,Entomoloji,Herpetoloji,İhtiyoloji,A,"Ornitoloji, kuşların bilimsel çalışmasıdır",Easy
+1569,Science,Bitki büyümesi için hangi gaz gereklidir?,Karbondioksit,Oksijen,Azot,Hidrojen,A,Bitkilerin fotosentez ve büyüme için CO2'ye ihtiyacı vardır,Easy
+1570,Science,Bir elementin en küçük birimi nedir?,Atom,Molekül,İyon,Birleştirmek,A,"Atomlar, temel özellikleri koruyan en küçük birimlerdir",Easy
+1571,Science,Hangi üreme türü döllenme ile gerçekleşir?,Aseksüel,Cinsel,Hücrenin ikiye bölünerek üremesi,Tomurcuklanan,B,"Eşeyli üreme, gametlerin birleşmesini içerir",Easy
+1572,Science,Sinir sistemini inceleyen bilim dalına ne ad verilir?,Sinirbilim,Psikoloji,Psikiyatri,Fizyoloji,A,"Sinir bilimi, sinir sisteminin incelenmesini kapsar",Easy
+1573,Science,Kan şekeri seviyesini hangi organımız düzenler?,Kalp,Pankreas,Karaciğer,Böbrek,B,"Pankreas, kan şekerini kontrol etmek için insülin üretir",Easy
+1574,Science,Karides ne tür bir hayvandır?,Balık,Yumuşakça,Kabuklu,Derisidikenliler,C,Karidesler küçük deniz kabuklularıdır,Easy
+1575,Science,Gazların bitki yapraklarına girip çıkmasını sağlayan süreç hangisidir?,Terleme,Fotosentez,Gaz değişimi,Solunum,C,Gaz değişimi stoma adı verilen yaprak gözenekleri aracılığıyla gerçekleşir,Easy
+1576,Science,Sürüngenleri ve amfibileri inceleyen bilim dalına ne ad verilir?,Herpetoloji,Ornitoloji,Memeli bilimi,İhtiyoloji,A,Herpetoloji sürüngenleri ve amfibileri inceler,Easy
+1577,Science,Yıldırım sonucu hangi gaz oluşur?,Ozon,Oksijen,Azot oksitleri,Karbondioksit,A,"Yıldırım, atmosferik oksijenden ozon oluşturur",Easy
+1578,Science,Frekansın temel birimi nedir?,Hertz,Joule,Watt,Newton,A,"Hertz, saniye başına döngüleri ölçer",Easy
+1579,Science,Kalpte hangi kas türü bulunur?,Düz,İskelet,Kardiyak,Gönüllü,C,"Kalp kası, kalp fonksiyonu için uzmanlaşmıştır",Easy
+1580,Science,Toprak biliminin terimi nedir?,Pedoloji,Jeoloji,Botanik,Ziraat Mühendisliği,A,"Pedoloji, toprakların bilimsel çalışmasıdır",Easy
+1581,Science,İdrar hangi organda depolanır?,Böbrek,Mesane,Üreter,Üretra,B,"Mesane, idrar atılana kadar idrarı depolar",Easy
+1582,Science,Genetik bilginin yavrulara aktarılması sürecine ne ad verilir?,Kalıtım,Evrim,Mutasyon,Seçim,A,"Kalıtım, ebeveynlerden yavrulara özelliklerin aktarılmasıdır",Medium
+1583,Science,Elektrik ve manyetik alanlar arasındaki ilişkiyi açıklayan ilke hangisidir?,Faraday yasası,Ohm yasası,Coulomb yasası,Maxwell denklemleri,D,Maxwell denklemleri elektromanyetik alan etkileşimlerini tanımlar,Medium
+1584,Science,Gök cisimlerinin kimyasal yapılarını inceleyen bilim dalına ne ad verilir?,Astrobiyoloji,Astrokimya,Kozmokimya,Astrofizik,C,"Kozmokimya, uzay nesnelerinin kimyasal yapısını inceler",Medium
+1585,Science,Işık enerjisinin elektrik enerjisine dönüştüğü süreç hangisidir?,Fotosentez,Fotovoltaik etki,Fotoelektrik etki,Floresans,B,Fotovoltaik etki ışığı doğrudan elektriğe dönüştürür,Medium
+1586,Science,Troposfer ile stratosfer arasındaki sınır tabakasının adı nedir?,Tropopoz,Stratopoz,Mezopoz,Termopoz,A,"Tropopoz, troposferi stratosferden ayırır",Medium
+1587,Science,Uyku-uyanıklık döngüsünü hangi hormon düzenler?,İnsülin,Melatonin,Kortizol,Adrenalin,B,"Melatonin, sirkadiyen ritimleri düzenlemek için epifiz bezi tarafından üretilir",Medium
+1588,Science,Biyolojik malzemelerin mekanik özelliklerini inceleyen bilim dalına ne ad verilir?,Biyomekanik,Biyofizik,Biyomühendislik,Biyoteknoloji,A,"Biyomekanik, mekanik prensipleri biyolojik sistemlere uygular",Medium
+1589,Science,Suyun toprak ve kaya içerisinde hareketini açıklayan süreç hangisidir?,Süzülme,Süzülme,Akıntı,Buharlaşma,B,"Sızma, gözenekli malzemelerden su hareketidir",Medium
+1590,Science,Işığın engellerin etrafından dolanarak kırılması olayına ne ad verilir?,Refleks,Refraksiyon,Kırınım,Parazit yapmak,C,"Kırınım, dalgalar engellerle veya açıklıklarla karşılaştığında meydana gelir",Medium
+1591,Science,Hangi kimyasal tepkime türü elementlerin bir araya gelmesiyle oluşur?,Sentez,Ayrışma,Tek değiştirme,Çift değiştirme,A,Sentez tepkimeleri daha basit maddeleri daha karmaşık maddelere birleştirir,Medium
+1592,Science,Dünya'nın içini inceleyen bilim dalına ne ad verilir?,Jeofizik,Jeoloji,Sismoloji,Jeokimya,A,"Jeofizik, Dünya'nın iç yapısını incelemek için fiziksel yöntemler kullanır",Medium
+1593,Science,Hücrelerin şekillerini ve iç basınçlarını korumasını sağlayan süreç hangisidir?,Ozmotik basınç,Turgor basıncı,Hidrostatik basınç,Atmosfer basıncı,B,Turgor basıncı bitkilerde hücre sertliğini korur,Medium
+1594,Science,Dünya'nın manyetosferini çevreleyen koruyucu bariyerin adı nedir?,Van Allen kemerleri,Manyetopoz,Yay şoku,Güneş rüzgarı,B,"Manyetopoz, Dünya'nın manyetik alanının sınırıdır",Medium
+1595,Science,Hücrelerdeki hidrojen peroksidi parçalayan enzim hangisidir?,Katalaz,Pepsin,Amilaz,Lipaz,A,"Katalaz, hidrojen peroksidi su ve oksijene ayrıştırır",Medium
+1596,Science,Bireysel organizmaların kökeni ve gelişimini inceleyen bilim dalına ne ad verilir?,Embriyoloji,Filogeni,Ontojeni,Morfoloji,A,"Embriyoloji, organizmaların döllenmeden itibaren gelişimini inceler",Medium
+1597,Science,Yeni kan damarlarının oluşumunu açıklayan süreç hangisidir?,Anjiyogenez,Hematopoez,Hemostaz,Fagositoz,A,"Anjiyogenez, mevcut olanlardan yeni kan damarlarının oluşmasıdır",Medium
+1598,Science,Kıtaların nasıl hareket ettiğini açıklayan teorinin adı nedir?,Kıtaların kayması,Levha tektoniği,Deniz tabanının yayılması,Pangea teorisi,B,"Levha tektoniği, kıtaların kabuk levhaları boyunca hareketini açıklar",Medium
+1599,Science,Kandaki kalsiyum düzeyini düzenlemekten sorumlu hormon hangisidir?,İnsülin,Paratiroid hormonu,Kalsitonin,Hem B hem de C,D,Hem PTH hem de kalsitonin kan kalsiyumunu düzenler,Medium
+1600,Science,Organizmalar ile genleri arasındaki etkileşimi inceleyen bilim dalına ne ad verilir?,Moleküler ekoloji,Popülasyon genetiği,Ekolojik genetik,Genomik ekoloji,C,"Ekolojik genetik, gen-çevre etkileşimlerini inceler",Medium
+1601,Science,Atmosferdeki azotun bakteriler tarafından amonyağa dönüştürülmesi sürecini açıklayan süreç hangisidir?,Azot fiksasyonu,Nitrifikasyon,Denitrifikasyon,Amonifikasyon,A,Azot fiksasyonu N2 gazını amonyağa dönüştürür,Medium
+1602,Science,Atmosferin hava olaylarının çoğunun meydana geldiği katmanının adı nedir?,Troposfer,Stratosfer,Mezosfer,Termosfer,A,"Troposfer, hava olaylarının çoğunun meydana geldiği yerdir",Medium
+1603,Science,Kas boyu kısaldığında hangi kas kasılma türü meydana gelir?,İzometrik,İzotonik,Eksantrik,Eşmerkezli,D,Konsantrik kasılmalar kas liflerini kısaltır,Medium
+1604,Science,Organizmalarda yapı ile işlev arasındaki ilişkiyi inceleyen bilim dalına ne ad verilir?,Morfoloji,Fizyoloji,Anatomi,Fonksiyonel anatomi,D,"Fonksiyonel anatomi, yapıyı biyolojik fonksiyonla ilişkilendirir",Medium
+1605,Science,Hangi süreç organizmaların çevresel uyaranları algılamasını ve bunlara tepki vermesini sağlar?,Duygu,Algı,Bilişsellik,Uyum,A,"Duyum, çevresel değişikliklerin tespitidir",Medium
+1606,Science,Hareketli yüklerin manyetik alanda kuvvete maruz kalmasıyla oluşan etkinin adı nedir?,Lorentz kuvveti,Elektromanyetik indüksiyon,Hall etkisi,Faraday etkisi,A,Lorentz kuvveti manyetik alanlardaki hareket eden yükler üzerinde etki eder,Medium
+1607,Science,Kan basıncını ve sıvı dengesini düzenleyen hormon hangisidir?,İnsülin,Aldosteron,Kortizol,Tiroksin,B,Aldosteron sodyum ve su tutulumunu düzenler,Medium
+1608,Science,Kayaçlardaki kimyasal süreçleri inceleyen bilim dalına ne ad verilir?,Jeokimya,Petroloji,Mineraloji,Kristalografi,A,"Jeokimya, kayalardaki kimyasal bileşimi ve süreçleri inceler",Medium
+1609,Science,Karmaşık moleküllerin daha basit moleküllere parçalanmasını açıklayan süreç hangisidir?,Anabolizma,Katabolizma,Metabolizma,Homeostaz,B,"Katabolizma, enerjiyi serbest bırakmak için molekülleri parçalar",Medium
+1610,Science,Farklı sıcaklıklardaki iki hava kütlesi arasındaki sınırın adı nedir?,Soğuk cephe,Sıcak cephe,Kapalı ön,Yukarıdakilerin hepsi,D,Bunların hepsi farklı hava kütleleri arasındaki sınırlardır,Medium
+1611,Science,Protein sentezi sırasında aminoasitleri ribozoma taşıyan RNA çeşidi hangisidir?,mRNA,tRNA,rRNA,snRNA,B,"Transfer RNA, amino asitleri ribozoma iletir",Medium
+1612,Science,Akışkanların mekanik özelliklerini inceleyen bilim dalına ne ad verilir?,Akışkanlar mekaniği,Hidrodinamik,Hidrolik,Pnömatik,A,Akışkanlar mekaniği sıvıların ve gazların davranışlarını inceler,Medium
+1613,Science,Üreme izolasyonu yoluyla yeni türlerin oluşumunu açıklayan süreç hangisidir?,Türleşme,Evrim,Doğal seçilim,Genetik sürüklenme,A,"Türleşme, popülasyonlar üreme açısından izole hale geldiğinde meydana gelir",Medium
+1614,Science,Işık şiddetinin mesafeye bağlı olarak azaldığı etkinin adı nedir?,Ters kare yasası,Bira yasası,Lambert yasası,Rayleigh saçılması,A,Işık yoğunluğu mesafeye göre ters kare yasasını takip eder,Medium
+1615,Science,Memelilerde süt üretimini hangi hormon uyarır?,Oksitosin,Prolaktin,Estrojen,Progesteron,B,"Prolaktin, meme bezlerinde süt üretimini uyarır",Medium
+1616,Science,Akışkanların hareketini inceleyen bilim dalına ne ad verilir?,Kinematik,Dinamikler,Akışkanlar dinamiği,Termodinamik,C,Akışkanlar dinamiği sıvıların ve gazların hareketini inceler,Medium
+1617,Science,Bitkilerin yerçekimine tepki vermesini sağlayan süreç hangisidir?,Fototropizm,Gravitropizm,Tigmotropizm,Kemotropizm,B,"Gravitropizm, bitkinin yerçekimine tepki olarak büyümesidir",Medium
+1618,Science,Gelişen yumurtaları çevreleyen ve besleyen hücre tabakasının adı nedir?,Folikül,Sarı cisim,Endometriyum,Miyometriyum,A,"Folikül, gelişmekte olan yumurta hücrelerini çevreler ve destekler",Medium
+1619,Science,Benzer elektronegatifliğe sahip atomlar arasında hangi kimyasal bağ türü oluşur?,İyonik,Kovalent,Metalik,Hidrojen,B,"Kovalent bağlar, atomlar elektronları eşit olarak paylaştıklarında oluşur",Medium
+1620,Science,Biyolojik sistemlerin elektriksel özelliklerini inceleyen bilim dalına ne ad verilir?,Biyoelektrik,Elektrofizyoloji,Biyoelektronik,Nörofizyoloji,B,"Elektrofizyoloji, biyolojideki elektriksel olayları inceler",Medium
+1621,Science,Bitki köklerinin besin maddelerini almasını sağlayan süreç hangisidir?,Emilim,Adsorpsiyon,Ozmoz,Difüzyon,A,"Emilim, köklerin su ve besinleri almasıdır",Medium
+1622,Science,Parçacıkların hem dalga hem de parçacık özellikleri gösterdiği etkinin adı nedir?,Dalga-parçacık ikiliği,Fotoelektrik etki,Compton etkisi,De Broglie etkisi,A,"Dalga-parçacık ikiliği, madde ve enerjinin ikili doğasını tanımlar",Medium
+1623,Science,Vücudun strese verdiği tepkiyi hangi hormon düzenler?,İnsülin,Kortizol,Adrenalin,Hem B hem de C,D,Hem kortizol hem de adrenalin stres hormonlarıdır,Medium
+1624,Science,Kristallerin oluşumunu ve yapısını inceleyen bilim dalına ne ad verilir?,Kristalografi,Mineraloji,Petroloji,Jeokimya,A,"Kristalografi, kristal yapısını ve oluşumunu inceler",Medium
+1625,Science,Hücrelerin büyük parçacıkları yutup sindirmesini sağlayan süreç hangisidir?,Endositoz,Ekzositoz,Pinositoz,Fagositoz,D,"Fagositoz, büyük parçacıkların hücreler tarafından yutulmasıdır",Medium
+1626,Science,Dünya'nın kabuğu ile manto arasındaki sınırın adı nedir?,Mohorovičić kesintisi,Gutenberg kopukluğu,Conrad süreksizliği,Lehmann süreksizliği,A,"Moho, kabuk-manto sınırını işaretler",Medium
+1627,Science,Bir patojene maruz kalındıktan sonra hangi tip bağışıklık gelişir?,Doğuştan gelen bağışıklık,Uyarlanabilir bağışıklık,Pasif bağışıklık,Doğal bağışıklık,B,"Uyarlanabilir bağışıklık, patojene maruz kaldıktan sonra gelişir",Medium
+1628,Science,Işık ile madde arasındaki etkileşimi inceleyen bilim dalına ne ad verilir?,Optik,Fotonik,Spektroskopi,Fotofizik,C,"Spektroskopi, ışığın maddeyle nasıl etkileşime girdiğini inceler",Medium
+1629,Science,Hangi süreç nitritlerin bakteriler tarafından nitratlara dönüştürülmesini açıklar?,Azot fiksasyonu,Nitrifikasyon,Denitrifikasyon,Amonifikasyon,B,Nitrifikasyon amonyağı nitritlere ve ardından nitratlara oksitler,Medium
+1630,Science,Isıtıldığında maddelerin genleşmesine neden olan etkinin adı nedir?,Termal genleşme,Isıl iletkenlik,Termal difüzyon,Termal konveksiyon,A,"Isıl genleşme, sıcaklıkla birlikte boyut artışını tanımlar",Medium
+1631,Science,İkincil cinsiyet özelliklerinin gelişimini hangi hormon düzenler?,Büyüme hormonu,Testosteron,İnsülin,Kortizol,B,Testosteron erkek ikincil cinsel özelliklerini düzenler,Medium
+1632,Math,Kürenin hacim formülü nedir?,4πr²,4/3πr³,2πr³,πr³,B,"Bir kürenin hacmi, yarıçapın küpünün dörtte üçüyle çarpımı pi'ye eşittir",Medium
+1633,Sports,Stanley Kupası hangi spor dalında verilir?,Basketbol,Hokey,Beyzbol,Futbol,B,Stanley Kupası NHL hokey şampiyonuna verilir,Medium
+1634,Technology,Web güvenliğinde SSL ne anlama geliyor?,Güvenli Yuva Katmanı,Güvenli Soket Bağlantısı,Güvenli Sistem Katmanı,Güvenli Sistem Bağlantısı,A,"SSL, Güvenli Yuva Katmanı anlamına gelir",Medium
+1635,Animals,Hangi memelinin ısırma kuvveti en güçlüdür?,Aslan,Timsah,Su aygırı,Boz ayı,C,Su aygırları memeliler arasında en güçlü ısırma kuvvetine sahip olanlardan biridir,Medium
+1636,Art,Gerçekçi temsil yerine duygusal ifadeyi öne çıkaran sanat akımı hangisidir?,İzlenimcilik,Ekspresyonizm,Kübizm,Gerçeküstücülük,B,Duyguların sanat yoluyla aktarılmasına odaklanan dışavurumculuk,Medium
+1637,Math,Altıgenin iç açılarının toplamı kaçtır?,540°,720°,900°,1080°,B,Bir altıgenin iç açıları 720 dereceye kadar toplanır,Medium
+1638,Sports,Basketbol sahasının standart ölçüleri nedir?,84 x 50 feet,94 x 50 feet,104 x 50 feet,84 x 60 fit,B,Standart bir basketbol sahası 94 fit x 50 fittir,Medium
+1639,Technology,Web geliştirmede AJAX ne anlama geliyor?,Eşzamansız JavaScript ve XML,Gelişmiş JavaScript ve XML,Otomatik JavaScript ve XML,Aktif JavaScript ve XML,A,"AJAX, Asenkron JavaScript ve XML anlamına gelir",Medium
+1640,Animals,"Hangi kuş, gösterişli kur dansıyla bilinir?",Tavus kuşu,Kuğu,Vinç,Kardinal,A,Erkek tavus kuşları eşlerini çekmek için ayrıntılı gösteriler yaparlar,Medium
+1641,Art,"""Amerikan Gotiği"" tablosunu kim çizmiştir?",Edward Hopper,Grant Wood,Norman Rockwell,Andrew Wyeth,B,"Grant Wood, 1930'da Amerikan Gotik tablosunu çizdi",Medium
+1642,Math,ln(x)'in türevi nedir?,X,1/x,e^x,ln(x),B,x'in doğal logaritmasının türevi 1/x'tir,Medium
+1643,Sports,Bir ragbi takımında kaç oyuncu vardır?,13,15,17,19,B,Ragbi birliği takımlarının sahada 15 oyuncusu vardır,Medium
+1644,Technology,VPN ne anlama geliyor?,Sanal Özel Ağ,Çok Özel Ağ,Görsel Özel Ağ,Doğrulanmış Özel Ağ,A,"VPN, Sanal Özel Ağ anlamına gelir",Medium
+1645,Animals,Hangi deniz hayvanı sadece bir kolundan tüm vücudunu yenileyebilir?,Denizyıldızı,Ahtapot,Deniz hıyarı,Denizanası,A,Bazı denizyıldızı türleri tek bir koldan yeniden üretilebilir,Medium
+1646,Art,"Hangi teknik, bir heykel yaratmak için malzemeyi oymayı içerir?",Modelleme,Döküm,Oyma,Montaj,C,"Oyma, çıkarmalı bir heykel tekniğidir",Medium
+1647,Math,Kenar uzunlukları 3-4-5 olan bir üçgenin alanı nedir?,6,7,8,12,A,3-4-5 üçgeni için Heron formülünü kullanarak alanı 6'ya çıkarırız,Medium
+1648,Sports,Beyzbolda üsler arasındaki mesafe nedir?,80 fit,85 fit,90 fit,95 fit,C,Beyzbol üsleri birbirinden 90 fit uzaktadır,Medium
+1649,Technology,Programlamada IDE ne anlama gelir?,Entegre Geliştirme Ortamı,Etkileşimli Geliştirme Ortamı,İç Geliştirme Ortamı,Bağımsız Kalkınma Ortamı,A,"IDE, Entegre Geliştirme Ortamı anlamına gelir",Medium
+1650,Animals,Hangi penguen türü en küçüktür?,İmparator,Kral,Adelie,Küçük mavi,D,Küçük mavi penguen en küçük türdür,Medium
+1651,Art,Pablo Picasso hangi sanat akımıyla ilişkilendirilmiştir?,İzlenimcilik,Kübizm,Gerçeküstücülük,Fovizm,B,"Picasso, Kübizm hareketinin kurucu ortağıdır",Medium
+1652,Math,160'ın %25'i kaçtır?,35,40,45,50,B,160'ın %25'i 40'a eşittir,Medium
+1653,Sports,Teniste 40-40 berabere kalındığında skor kaç olur?,Deuce,Avantaj,Maç puanı,Oyun noktası,A,Teniste 40-40'a deuce denir,Medium
+1654,Technology,API ne anlama geliyor?,Uygulama Programlama Arayüzü,Gelişmiş Programlama Arayüzü,Otomatik Programlama Arayüzü,Uygulamalı Programlama Arayüzü,A,"API, Uygulama Programlama Arayüzü anlamına gelir",Medium
+1655,Science,İlaçların moleküler düzeyde canlı organizmalarla nasıl etkileşime girdiğini inceleyen bilim dalına ne ad verilir?,Farmakokinetik,Farmakodinamik,Farmakoloji,Toksikoloji,B,"Farmakodinamik, ilaç mekanizmalarını moleküler düzeyde inceler",Hard
+1656,Science,Parçacıkların dalga boyu ile momentumu arasındaki ilişkiyi açıklayan ilke hangisidir?,Heisenberg belirsizlik ilkesi,De Broglie dalga boyu,Pauli dışlama ilkesi,Dalga-parçacık ikiliği,B,De Broglie ilkesi parçacık momentumunu dalga boyuyla ilişkilendirir,Hard
+1657,Science,Hücrelerin organizmanın yararına kendilerini feda ettiği sürecin adı nedir?,Apoptozis,Nekroz,Otofaji,Yaşlılık,A,"Apoptoz, organizmanın yararına programlanmış hücre ölümüdür",Hard
+1658,Science,Kaynak ile gözlemci arasındaki bağıl hareket nedeniyle dalgaların frekansında meydana gelen değişimi açıklayan etki hangisidir?,Doppler etkisi,Kırmızıya kayma,Mavi kayma,Fotoelektrik etki,A,"Doppler etkisi, dalga frekansını göreceli hareketle değiştirir",Hard
+1659,Science,Proteinlerin üç boyutlu yapısını inceleyen bilim dalına ne ad verilir?,Proteomik,Yapısal biyoloji,Kristalografi,Moleküler biyoloji,B,"Yapısal biyoloji, proteinin üç boyutlu yapılarını inceler",Hard
+1660,Science,Canlı organizmalarda daha basit moleküllerden karmaşık yapılı organik moleküllerin oluşumunu açıklayan süreç hangisidir?,Katabolizma,Anabolizma,Metabolizma,Biyosentez,B,"Anabolizma, daha basit öncüllerden karmaşık moleküller oluşturur",Hard
+1661,Science,Güneş rüzgarını yıldızlararası ortamdan ayıran sınırın adı nedir?,Heliopoz,Heliosfer,Fesih şoku,Yay şoku,A,"Heliopoz, güneş rüzgarının yıldızlararası ortamla buluştuğu noktayı işaret ediyor",Hard
+1662,Science,Hangi genetik mutasyon türü nükleotidlerin eklenmesini veya silinmesini içerir?,Nokta mutasyonu,Çerçeve kayması mutasyonu,Saçma mutasyon,Anlamsız mutasyon,B,Çerçeve kayması mutasyonları eklemeleri veya silmeleri içerir,Hard
+1663,Science,Uzayda meydana gelen kimyasal süreçleri inceleyen bilim dalına ne ad verilir?,Astrokimya,Astrobiyoloji,Kozmokimya,Astrofizik,A,"Astrokimya, uzay ortamlarındaki kimyasal reaksiyonları inceler",Hard
+1664,Science,"Hangi olgu, kütleli cisimlerin etrafındaki uzay-zamanın bükülmesini tanımlar?",Yerçekimi merceklenmesi,Zaman genişlemesi,Çerçeve sürükleme,Jeodezik presesyon,A,Yerçekimi merceklenmesi uzay-zamanı ve ışık yollarını büker,Hard
+1665,Science,Işık bir maddeye çarptığında maddeden elektronların yayılması olayına ne ad verilir?,Fotoelektrik etki,Compton etkisi,Fotoiletken etki,Fotovoltaik etki,A,"Fotoelektrik etki, fotonlar maddeye çarptığında elektronları serbest bırakır",Hard
+1666,Science,Atmosferdeki azotun mikroorganizmalar tarafından organik azot bileşiklerine dönüştürülmesini açıklayan süreç hangisidir?,Azot fiksasyonu,Nitrifikasyon,Denitrifikasyon,Mineralizasyon,A,"Azot fiksasyonu, atmosferik N2'yi organik bileşiklere dönüştürür",Hard
+1667,Science,Biyolojik dokuların mekanik özelliklerini ve davranışlarını inceleyen bilim dalına ne ad verilir?,Biyomekanik,Mekanobiyoloji,Biyofizik,Biyomühendislik,B,"Mekanobiyoloji, mekanik kuvvetlerin dokuları nasıl etkilediğini inceler",Hard
+1668,Science,Atomlardaki enerji düzeylerinin kuantumlu olduğunu belirten ilke hangisidir?,Pauli dışlama ilkesi,Heisenberg belirsizlik ilkesi,Kuantum mekanik prensibi,Bohr'un postülası,D,"Bohr, atom enerji seviyelerinin kuantumlu olduğunu öne sürdü",Hard
+1669,Science,DNA şablonundan RNA sentezlenmesi işleminin adı nedir?,Çoğaltma,Transkripsiyon,Çeviri,Ters transkripsiyon,B,"Transkripsiyon, DNA şablonlarından RNA sentezler",Hard
+1670,Science,Yüksek enerjili fotonların bir yüzeyden elektron yayılımını açıklayan etki hangisidir?,Fotoelektrik etki,Burgu etkisi,İkincil elektron emisyonu,X-ışını fotoelektron spektroskopisi,A,Yüksek enerjili fotonlar fotoelektrik emisyona neden olur,Hard
+1671,Science,Türler arasındaki evrimsel ilişkileri inceleyen bilim dalına ne ad verilir?,Filogenetik,Sistematik,Taksonomi,Kladistik,A,Filogenetik evrimsel ilişkileri yeniden yapılandırır,Hard
+1672,Science,"Hangi süreç, maddelerin hücre zarları boyunca konsantrasyon gradyanlarına karşı taşınmasını tanımlar?",Pasif taşıma,Aktif taşıma,Kolaylaştırılmış difüzyon,Basit difüzyon,B,"Aktif taşıma, enerji kullanarak maddeleri eğimlere karşı hareket ettirir",Hard
+1673,Science,Evrenin bir tekillikten doğduğunu açıklayan teorinin adı nedir?,Büyük Patlama teorisi,Sabit Durum Teorisi,Enflasyon teorisi,Çoklu evren teorisi,A,"Büyük Patlama teorisi, tekillikten evrensel genişlemeyi tanımlar",Hard
+1674,Science,DNA parçalarının replikasyon sırasında birleştirilmesinden hangi enzim sorumludur?,DNA polimeraz,DNA helikaz,DNA ligazı,DNA primazı,C,DNA ligazı replikasyon sırasında Okazaki parçalarını birleştirir,Hard
+1675,Science,Elektromanyetik radyasyon ile madde arasındaki etkileşimi inceleyen bilim dalına ne ad verilir?,Spektroskopi,Fotonik,Optik,Fotofizik,A,"Spektroskopi, elektromanyetik radyasyon-madde etkileşimlerini analiz eder",Hard
+1676,Science,Oksijen yokluğunda glikozun parçalanmasını açıklayan süreç hangisidir?,Aerobik solunum,Anaerobik solunum,Fermantasyon,Glikoliz,C,"Fermantasyon, glikozu oksijensiz parçalar",Hard
+1677,Science,Parçacıkların enerji bariyerlerini aşarak tünelleme yapabildiği etkinin adı nedir?,Kuantum tünelleme,Dalga-parçacık ikiliği,Kuantum dolanıklığı,Kuantum süperpozisyonu,A,"Kuantum tünelleme, parçacıkların enerji bariyerlerini aşmasına olanak tanır",Hard
+1678,Science,Bir atom orbitalinde bulunabilecek maksimum elektron sayısını tanımlayan ilke hangisidir?,Aufbau ilkesi,Hund kuralı,Pauli dışlama ilkesi,Orbital hibridizasyon,C,Pauli dışlama ilkesi orbital başına elektron sayısını sınırlar,Hard
+1679,Science,Genomun yapısı ve işlevini inceleyen bilim dalına ne ad verilir?,Genomik,Proteomik,Transkriptomik,Metabolomik,A,"Genomik, genomun yapısını ve işlevini inceler",Hard
+1680,Science,Yetişkin beyninde yeni nöronların oluşumunu açıklayan süreç hangisidir?,Nörogenez,Nöroplastisite,Sinaptogenez,Miyelinizasyon,A,"Nörogenez, yeni nöronların oluşumudur",Hard
+1681,Science,Farklı manyetik alan yönelimlerine sahip bölgeler arasındaki sınırın adı nedir?,Manyetik yeniden bağlantı,Manyetik alan çizgileri,Mevcut sayfa,Nötr sayfa,C,Akım tabakaları zıt manyetik alanların bölgelerini ayırır,Hard
+1682,Science,Aşağıdaki kimyasal tepkimelerden hangisi türler arasında elektron transferini içerir?,Asit-baz reaksiyonu,Oksidasyon-redüksiyon reaksiyonu,Çökelme reaksiyonu,Nötralizasyon reaksiyonu,B,Redoks reaksiyonları elektron transferini içerir,Hard
+1683,Science,Hücre ve dokuların mekanik özelliklerini inceleyen bilim dalına ne ad verilir?,Hücre mekaniği,Mekanobiyoloji,Biyomekanik,Biyofizik,B,"Mekanobiyoloji, hücresel tepkilerin mekanik kuvvetlere nasıl tepki verdiğini inceler",Hard
+1684,Science,Kararsız atom çekirdeklerinin kendiliğinden radyasyon yaymasını açıklayan olgu hangisidir?,Radyoaktif bozunma,Nükleer fisyon,Nükleer füzyon,Beta bozunumu,A,"Radyoaktif bozunma, kendiliğinden gerçekleşen nükleer parçalanmadır",Hard
+1685,Math,1/x dx'in integrali nedir?,ln(x) + C,x + C,1/x² + C,e^x + C,A,"1/x'in integrali, x'in doğal logaritması artı sabittir",Hard
+1686,Sports,İlk FIFA Dünya Kupası hangi yılda düzenlenmiştir?,1928,1930,1932,1934,B,İlk FIFA Dünya Kupası 1930 yılında Uruguay'da düzenlendi,Hard
+1687,Technology,HTTPS ne anlama geliyor?,HyperText Transfer Protocol Güvenli,Yüksek Teknoloji Transfer Protokolü Güvenli,HyperText Taşıma Protokolü Güvenli,Ana Sayfa Metin Aktarım Protokolü Güvenli,A,"HTTPS, HyperText Transfer Protocol Secure'un kısaltmasıdır",Hard
+1688,Animals,Memeli hayvanlar arasında en uzun göçü yapan hayvan hangisidir?,Gri balina,Kambur balina,Ren geyiği,Arktik sumru,A,Gri balinalar her yıl 14.000 mil kadar göç ederler,Hard
+1689,Art,"Eriyen saatleri konu alan ""Belleğin Azmi"" adlı tabloyu kim çizmiştir?",Pablo Picasso,Salvador Dali,René Magritte,Joan Miró,B,"Salvador Dali, 1931 yılında Belleğin Azmi adlı tablosunu çizdi",Hard
+1690,Math,1 + 1/2 + 1/4 + 1/8 + ... sonsuz geometrik serisinin toplamı kaçtır?,1,1.5,2,Sonsuzluk,C,Bu geometrik seri 2'ye yakınsar,Hard
+1691,Sports,On pinli bowlingde elde edilebilecek en yüksek skor nedir?,250,280,300,350,C,"Kusursuz bir oyun, 12 ardışık vuruşla 300 puan alır",Hard
+1692,Technology,Web mimarisinde REST ne anlama geliyor?,Temsili Devlet Transferi,Uzaktan Durum Transferi,Kaynak Durumu Transferi,İlişkisel Durum Transferi,A,"REST, Temsili Durum Transferi anlamına gelir",Hard
+1693,Animals,Geriye doğru uçma yeteneğine sahip olan kuş hangisidir?,Sinek kuşu,Yalıçapkını,Ağaçkakan,Süratli,A,Sinek kuşları geriye doğru uçabilen tek kuşlardır,Hard
+1694,Art,"""Öpücük"" heykelini kim yaptı?",Michelangelo,Auguste Rodin,Donatello,Bernini,B,Auguste Rodin Öpücük heykelini yaptı,Hard
+1695,Math,Sin(x)'in türevi nedir?,cos(x),-cos(x),günah(x),-günah(x),A,Sinüs x'in türevi kosinüs x'tir,Hard
+1696,Sports,Satrançta diğerlerinin üzerinden atlayabilen tek taş hangisidir?,Kale,Piskopos,Şövalye,Kraliçe,C,"At, diğerlerinin üzerinden atlayabilen tek taştır",Hard
+1697,Technology,TCP/IP ne anlama geliyor?,Transfer Kontrol Protokolü/İnternet Protokolü,İletim Kontrol Protokolü/İnternet Protokolü,Taşıma Kontrol Protokolü/İnternet Protokolü,Terminal Kontrol Protokolü/İnternet Protokolü,B,"TCP/IP, İletim Kontrol Protokolü/İnternet Protokolü anlamına gelir",Hard
+1698,Animals,Hangi memelinin kan basıncı en yüksektir?,Fil,Zürafa,Mavi balina,Gergedan,B,Zürafaların beyinlerine kan pompalamak için yüksek tansiyona ihtiyaçları vardır,Hard
+1699,Art,Andy Warhol hangi sanat akımını temsil ediyordu?,Soyut Ekspresyonizm,Pop art,Minimalizm,Kavramsal Sanat,B,"Andy Warhol, Pop Art'ın önde gelen isimlerinden biriydi",Hard
+1700,Math,n sonsuza yaklaşırken (1 + 1/n)^n'nin limiti nedir?,1,e,π,∞,B,Bu sınır Euler'in e sayısına eşittir,Hard
+1701,Sports,Erkekler voleybol müsabakalarında file yüksekliği kaç cm olmalıdır?,"2,24 metre","2,43 metre","2,64 metre","2,84 metre",B,"Erkekler voleybol ağları 2,43 metre yüksekliğindedir",Hard
+1702,Technology,JSON ne anlama geliyor?,JavaScript Nesne Gösterimi,Java Standart Nesne Gösterimi,JavaScript Sıralı Gösterim,Java Serileştirilmiş Nesne Gösterimi,A,"JSON, JavaScript Nesne Gösterimi anlamına gelir",Hard
+1703,Animals,Hangi balık yaşayan fosil olarak kabul edilir?,Coelacanth,Mersin balığı,Köpek balığı,Akciğerli balık,A,Coelacanth'ın 1938'de yeniden keşfedilene kadar neslinin tükendiği düşünülüyordu,Hard
+1704,Art,"""Las Meninas"" tablosunu kim çizmiştir?",El Greco,Diego Velázquez,Francisco Goya,Pablo Picasso,B,"Diego Velázquez, 1656'da Las Meninas'ı resmetti",Hard
+1705,Math,Sanal birim i olduğunda i^4'ün değeri nedir?,1,-1,Ben,-Ben,A,Karmaşık sayı matematiğinde i^4 1'e eşittir,Hard
+1706,Sports,Ryder Kupası müsabakaları hangi spor dalında düzenleniyor?,Tenis,Golf,Kriket,Rugby,B,Ryder Kupası prestijli bir golf turnuvasıdır,Hard
+1707,Technology,Veritabanı işlemlerinde CRUD ne anlama gelir?,Oluştur Oku Güncelle Sil,Kopyala Oku Güncelle Sil,Oluştur Al Güncelle Sil,Oluştur Oku Yükle Sil,A,"CRUD, Oluşturma, Okuma, Güncelleme, Silme işlemleri anlamına gelir",Hard
+1708,Science,Hücre döngüsünü düzenleyen protein kompleksinin adı nedir?,Siklin-CDK kompleksi,p53 protein,Rb protein,E2F transkripsiyon faktörü,A,Siklin-CDK kompleksleri hücre döngüsü ilerlemesini kontrol eder,Hard
+1709,Science,Parçacıkların aynı anda birden fazla durumda bulunabildiği kuantum mekaniksel özelliği tanımlayan olgu hangisidir?,Kuantum dolanıklığı,Kuantum süperpozisyonu,Kuantum tünelleme,Kuantum dekoheransı,B,Kuantum süperpozisyonu parçacıkların birden fazla durumda var olmasına olanak tanır,Hard
+1710,Science,Mekanik kuvvetlerin biyolojik süreçleri nasıl etkilediğini inceleyen bilim dalına ne ad verilir?,Mekanobiyoloji,Biyomekanik,Mekanofizik,Biyofizik,A,"Mekanobiyoloji, biyolojik sistemler üzerindeki mekanik etkileri inceler",Hard
+1711,Science,Aşağıdaki süreçlerden hangisi mRNA tarafından yönetilen aminoasitlerden protein sentezini tanımlar?,Transkripsiyon,Çeviri,Çoğaltma,Ters transkripsiyon,B,"Çeviri, mRNA'yı şablon olarak kullanarak proteinleri sentezler",Hard
+1712,Science,Dünya'nın kabuğu ile manto arasındaki sınır tabakasının adı nedir?,Mohorovičić kesintisi,Gutenberg kopukluğu,Lehmann süreksizliği,Conrad süreksizliği,A,"Moho, kabuğu mantodan ayırır",Hard
+1713,Science,Bir parçacığın hem kesin konumunun hem de momentumunun aynı anda belirlenemeyeceğini belirten ilke hangisidir?,Pauli dışlama ilkesi,Heisenberg belirsizlik ilkesi,Enerjinin korunumu,Dalga-parçacık ikiliği,B,Heisenberg'in belirsizlik ilkesi eş zamanlı ölçüm hassasiyetini sınırlar,Hard
+1714,Science,Canlı organizmalardaki kimyasal yapı ve süreçleri inceleyen bilim dalı hangisidir?,Biyokimya,Moleküler biyoloji,Hücre biyolojisi,Biyofizik,A,"Biyokimya, biyolojik sistemlerdeki kimyasal süreçlere odaklanır",Hard
+1715,Science,Elektromanyetik radyasyonu emen bir maddenin ışık yaymasını açıklayan etki hangisidir?,Fosforesans,Floresans,Kemilüminesans,Biyolüminesans,B,"Floresans, emilimden hemen sonra ışık emisyonudur",Hard
+1716,Science,Hücrelerin oksijen varlığında glikozdan enerji üretme sürecine ne ad verilir?,Glikoliz,Fermantasyon,Aerobik solunum,Anaerobik solunum,C,"Aerobik solunum, oksijen kullanarak glikozdan ATP üretir",Hard
+1717,Science,Elektronlar atomlar arasında eşit olmayan bir şekilde paylaşıldığında hangi bağ türü oluşur?,İyonik bağ,Polar kovalent bağ,Polar olmayan kovalent bağ,Metalik bağ,B,Polar kovalent bağlar eşit olmayan elektron paylaşımına sahiptir,Hard
+1718,Science,Enzimlerin yapı ve işlevlerini inceleyen bilim dalına ne ad verilir?,Enzimoloji,Protein kimyası,Biyokimya,Moleküler biyoloji,A,Enzimoloji özellikle enzim yapısını ve işlevini inceler,Hard
+1719,Science,Mevcut kan damarlarından yeni kan damarlarının oluşumunu anlatan süreç hangisidir?,Anjiyogenez,Vaskülogenez,Arteriogenez,Kılcallaşma,A,"Anjiyogenez, önceden var olan damarlardan yeni damarlar oluşturur",Hard
+1720,Science,Türlerin doğal seçilim yoluyla zaman içinde nasıl değiştiğini açıklayan teorinin adı nedir?,Evrim teorisi,Doğal seçilim teorisi,Darwinci teori,Modern sentez,D,Modern sentez evrimi genetikle birleştiriyor,Hard
+1721,Science,Işığın engellerin etrafından veya dar açıklıklardan geçmesini tanımlayan olgu hangisidir?,Refleks,Refraksiyon,Kırınım,Parazit yapmak,C,"Kırınım, ışık engellerle veya açıklıklarla karşılaştığında meydana gelir",Hard
+1722,Science,Bağışıklık sistemi ve bağışıklık tepkilerini inceleyen bilim dalına ne ad verilir?,İmmünoloji,Hematoloji,Patoloji,Mikrobiyoloji,A,"İmmünoloji, bağışıklık sisteminin yapısını ve işlevini inceler",Hard
+1723,Science,Fotosentezde ışık enerjisinin kimyasal enerjiye dönüşümünü anlatan süreç hangisidir?,Işık reaksiyonları,Karanlık tepkiler,Calvin döngüsü,Fotofosforilasyon,A,Işık reaksiyonları foton enerjisini kimyasal enerjiye dönüştürür,Hard
+1724,Science,Güçlü yer çekimi alanlarında zamanın daha yavaş geçiyormuş gibi görünmesine neden olan etkinin adı nedir?,Yerçekimsel zaman genişlemesi,Özel görelilik zaman genişlemesi,Çerçeve sürükleme,Yerçekimsel kırmızıya kayma,A,"Yerçekimsel zaman genişlemesi, güçlü yerçekiminde zamanı yavaşlatır",Hard
+1725,Science,Sistemlerin maksimum entropiye doğru hareket etme eğilimini tanımlayan ilke hangisidir?,Termodinamiğin birinci yasası,Termodinamiğin ikinci yasası,Termodinamiğin üçüncü yasası,Termodinamiğin sıfırıncı yasası,B,"İkinci yasa, entropinin artma eğiliminde olduğunu belirtir",Hard
+1726,Science,Evrendeki yaşamın kökeni ve evrimini inceleyen bilim dalına ne ad verilir?,Astrobiyoloji,Ekzobiyoloji,Ksenobiyoloji,Kozmobiyoloji,A,"Astrobiyoloji, evrendeki yaşam potansiyelini inceler",Hard
+1727,Science,"Hangi süreç, üreme dışındaki mekanizmalar aracılığıyla organizmalar arasında genetik materyalin hareketini tanımlar?",Yatay gen aktarımı,Dikey gen aktarımı,Genetik rekombinasyon,Gen akışı,A,"Yatay gen transferi, genleri ilgisiz organizmalar arasında taşır",Hard
+1728,Animals,Hangi böcek tam başkalaşım geçirir?,Çekirge,Yusufçuk,Kelebek,Kriket,C,"Kelebekler yumurta, larva, pupa ve yetişkin aşamalarından geçerler",Medium
+1729,Art,Saf renklerin küçük noktalar halinde kullanıldığı resim tekniği hangisidir?,Puantilizm,İzlenimcilik,Fovizm,Ekspresyonizm,A,"Puantilizm, boyayı küçük, belirgin noktalar halinde uygular",Medium
+1730,Math,240'ın %15'i kaçtır?,32,36,40,44,B,240'ın %15'i 36'ya eşittir,Medium
+1731,Sports,Bir kriket takımında kaç oyuncu vardır?,9,10,11,12,C,Kriket takımlarının sahada 11 oyuncusu vardır,Medium
+1732,Technology,FTP ne anlama geliyor?,Dosya Aktarım Protokolü,Hızlı Transfer Protokolü,Dosya Taşıma Protokolü,Hızlı Taşıma Protokolü,A,"FTP, Dosya Aktarım Protokolü anlamına gelir",Medium
+1733,Animals,Hangi memeli yankıyla yer belirleme yeteneğine sahiptir?,Fil,Yunus,Fok,Balina,B,Yunuslar yön bulmak ve avlanmak için ekolokasyon kullanırlar,Medium
+1734,Art,"""Gece Devriyesi"" tablosunu kim çizmiştir?",Van Gogh,Rembrandt,Vermeer,Rubens,B,Rembrandt van Rijn Gece Nöbeti tablosunu yaptı,Medium
+1735,Math,13'ün karesi kaçtır?,156,169,182,195,B,13'ün karesi 169'a eşittir,Medium
+1736,Sports,Bowling'de üç vuruşa ne ad verilir?,Türkiye,Kıyamamak,Bölmek,Çarpmak,A,Üç ardışık vuruşa hindi denir,Medium
+1737,Technology,SMTP ne anlama geliyor?,Basit Posta Aktarım Protokolü,Güvenli Posta Aktarım Protokolü,Standart Posta Aktarım Protokolü,Sistem Posta Aktarım Protokolü,A,"SMTP, Basit Posta Aktarım Protokolü anlamına gelir",Medium
+1738,Animals,Hangi kuş renkli kuyruk tüyleriyle bilinir?,Kardinal,Mavi alakarga,Tavus kuşu,Papağan,C,Erkek tavus kuşlarının kuyrukları göz alıcı ve renklidir,Medium
+1739,Art,Rönesans'ı izleyen sanat dönemi hangisidir?,Barok,Romantik,Neoklasik,Modern,A,Barok dönemi Rönesans'tan sonra geldi,Medium
+1740,Math,7 × 8 nedir?,54,55,56,57,C,7'nin 8 ile çarpımı 56'ya eşittir,Medium
+1741,Sports,Golfte genellikle kaç delik oynanır?,16,17,18,19,C,Standart bir golf turu 18 delikten oluşur,Medium
+1742,Technology,GUI ne anlama geliyor?,Genel Kullanıcı Arayüzü,Grafiksel Kullanıcı Arayüzü,Küresel Kullanıcı Entegrasyonu,Grafiksel Birim Arayüzü,B,"GUI, Grafiksel Kullanıcı Arayüzü anlamına gelir",Medium
+1743,Animals,Hangi hayvan savunma mekanizması olarak ölü taklidi yapmasıyla bilinir?,Kokarca,Opossum,Rakun,Porsuk,B,"Opossumlar ""possum oynamalarıyla"" ünlüdür",Medium
+1744,Art,"""İnci Küpeli Kız"" tablosunu kim çizmiştir?",Rembrandt,Vermeer,Van Gogh,Monet,B,"Johannes Vermeer, İnci Küpeli Kız tablosunu çizdi",Medium
+1745,Math,150'nin %20'si kaçtır?,25,30,35,40,B,150'nin %20'si 30'a eşittir,Medium
+1746,Sports,Bowlingde tek bir frame'de alınabilecek en yüksek skor nedir?,30,25,20,15,A,10. karede yapılan bir vuruş 30 puana kadar puan kazandırabilir,Medium
+1747,Technology,DNS ne anlama geliyor?,Alan Adı Sistemi,Dijital Ağ Hizmeti,Veri Ağı Sistemi,Doğrudan İsim Hizmeti,A,"DNS, Alan Adı Sistemi anlamına gelir",Medium
+1748,Animals,İnsanın yaşayan en yakın akrabası hangi primattır?,Goril,Orangutan,Şempanze,Babun,C,Şempanzeler insan DNA'sının yaklaşık %98'ini paylaşıyor,Medium
+1749,Art,Hangi heykel Rio de Janeiro'da bulunmaktadır?,Kurtarıcı İsa,Özgürlük Heykeli,Davut,Düşünen Adam,A,Kurtarıcı İsa heykeli Rio de Janeiro'ya bakmaktadır,Medium
+1750,Math,4'ün küpü kaçtır?,48,64,72,81,B,4'ün küpü (4³) 64'e eşittir,Medium
+1751,Sports,Hangi sporda disk kullanılır?,Futbol,Hokey,Basketbol,Tenis,B,"Hokey, top yerine diskle oynanır",Medium
+1752,Technology,HTTP ne anlama geliyor?,Hiper Metin Aktarım Protokolü,Yüksek Teknoloji Transfer Protokolü,Ana Sayfa Metin Aktarım Protokolü,Hiper Metin Taşıma Protokolü,A,"HTTP, HyperText Transfer Protocol'ün kısaltmasıdır",Medium
+1753,Animals,Hangi büyük kedi kükreyemez?,Aslan,Kaplan,Leopar,Çita,D,Çitalar kükreyemez ama mırıldanabilir,Medium
+1754,Art,"""Yıldızlı Gece"" tablosunu kim çizmiştir?",Monet,Van Gogh,Picasso,Renoir,B,Vincent van Gogh Yıldızlı Gece'yi resmetti,Medium
+1755,Math,12 × 15 nedir?,170,175,180,185,C,12'yi 15 ile çarparsak 180'e eşit olur,Medium
+1756,Sports,Teniste sıfırın terimi nedir?,Sıfır,Hiç bir şey,Aşk,Sıfır,C,"Tenis puanlamasında sıfır puana ""aşk"" denir",Medium
+1757,Technology,XML ne anlama geliyor?,Genişletilebilir İşaretleme Dili,eXtra İşaretleme Dili,eXternal İşaretleme Dili,Yürütülebilir İşaretleme Dili,A,"XML, Genişletilebilir İşaretleme Dili anlamına gelir",Medium
+1758,Animals,Hangi deniz memelisi dişleriyle tanınır?,Yunus,Mors,Fok,Deniz ineği,B,Morsların belirgin fildişi dişleri vardır,Medium
+1759,Art,Milo Venüsü hangi müzede bulunmaktadır?,Britanya Müzesi,Louvre,Metropolitan Müzesi,Uffizi,B,Milo Venüsü Louvre Müzesi'ndedir,Medium
+1760,Math,80'in %30'u kaçtır?,20,22,24,26,C,80'in %30'u 24'e eşittir,Medium
+1761,Sports,Bir basketbol maçında takım başına kaç oyuncu başlar?,4,5,6,7,B,Her basketbol takımı sahada 5 oyuncuyla başlar,Medium
+1762,Technology,USB ne anlama geliyor?,Evrensel Seri Veri Yolu,Birleşik Sistem Otobüsü,Evrensel Sistem Veri Yolu,Birleşik Seri Otobüs,A,"USB, Evrensel Seri Veri Yolu anlamına gelir",Medium
+1763,Animals,Hangi kuş barışın simgesidir?,Güvercin,Kuğu,Kartal,Şahin,A,Güvercin evrensel olarak bir barış sembolü olarak kabul edilir,Medium
+1764,Art,Davut heykelini kim yaptı?,Donatello,Michelangelo,Bernini,Rodin,B,Michelangelo ünlü mermer Davut heykelini yaptı,Medium
+1765,Math,9² nedir?,72,81,90,99,B,9'un karesi 81'e eşittir,Medium
+1766,Sports,Bir bowling topunun standart ağırlığı nedir?,12-16 pound,10-14 pound,8-12 pound,14-18 pound,A,Bowling topları genellikle 12 ila 16 pound arasında değişir,Medium
+1767,Technology,LAN ne anlama geliyor?,Yerel Alan Ağı,Geniş Alan Ağı,Doğrusal Erişim Ağı,Sınırlı Erişim Ağı,A,"LAN, Yerel Alan Ağı anlamına gelir",Medium
+1768,Animals,"""Çöl gemisi"" olarak bilinen hayvan hangisidir?",Atış,Eşek,Deve,Lama,C,Develere çöl gemileri denir,Medium
+1769,Art,Geometrik şekilleri ve çoklu perspektifleri kullanan sanat tarzı hangisidir?,İzlenimcilik,Kübizm,Gerçeküstücülük,Soyut Ekspresyonizm,B,Kübizm geometrik formlar ve çoklu bakış açıları kullanır,Medium
+1770,Math,Kenar uzunluğu 8 olan bir karenin çevresi kaçtır?,24,28,32,36,C,Karenin çevresi = 4 × kenar uzunluğu = 32,Medium
+1771,Sports,Amerikan futbolunda bir touchdown kaç puan değerindedir?,4,5,6,7,C,Bir gol 6 puan değerindedir,Medium
+1772,Technology,ISP ne anlama geliyor?,İnternet Servis Sağlayıcısı,Uluslararası Hizmet Protokolü,İç Sistem Süreci,İnternet Güvenlik Protokolü,A,"İSS, İnternet Servis Sağlayıcısı anlamına gelir",Medium
+1773,Science,Popülasyonların kalıtsal özelliklerinde zaman içinde meydana gelen değişime ne ad verilir?,Evrim,Doğal seçilim,Genetik sürüklenme,Türleşme,A,"Evrim, nesiller boyunca kalıtsal özelliklerde meydana gelen değişiklikleri tanımlar",Easy
+1774,Science,Gülme gazı olarak bilinen gaz hangisidir?,Oksijen,Azot oksit,Karbondioksit,Helyum,B,"Azot oksit, öforik etkileri nedeniyle güldürücü gaz olarak bilinir",Easy
+1775,Science,Böbreğin temel fonksiyonel birimi nedir?,Glomerulus,Nefron,Tübül,Korteks,B,Nefronlar böbreklerde kanı filtreleyen fonksiyonel birimlerdir,Easy
+1776,Science,Hangi hücre bölünmesi sonucunda genetik olarak farklı dört hücre oluşur?,Mitoz,Mayoz,Hücrenin ikiye bölünerek üremesi,Tomurcuklanan,B,"Mayoz, genetik olarak farklı dört gamet üretir",Easy
+1777,Science,Isı ile diğer enerji türleri arasındaki ilişkiyi inceleyen bilim dalı nedir?,Termodinamik,Kinetik,Mekanik,Optik,A,Termodinamik ısı ve enerji dönüşümlerini inceler,Easy
+1778,Science,İnsan vücudunda hangi organ adrenalin üretir?,Kalp,Karaciğer,Böbreküstü bezleri,Pankreas,C,Böbreküstü bezleri strese yanıt olarak adrenalin salgılar,Easy
+1779,Science,Geceleri aktif olan hayvanlara ne ad verilir?,Günlük,Geceleyin,Alacakaranlık,Aritmik,B,Gececil hayvanlar gece saatlerinde en aktiftirler,Easy
+1780,Science,Bitkilerin topraktan su ve besinleri emmesini sağlayan süreç hangisidir?,Fotosentez,Terleme,Emilim,Ozmoz,C,"Emilim, köklerin su ve besinleri almasını sağlar",Easy
+1781,Science,Sülfürik asidin kimyasal formülü nedir?,H2SO3,H2SO4,HSO4,SO4,B,Sülfürik asidin kimyasal formülü H2SO4'tür,Easy
+1782,Science,Elektromanyetik spektrumun hangi bölümünün dalga boyu en uzundur?,Gama ışınları,X-ışınları,Radyo dalgaları,Görünür ışık,C,Radyo dalgaları spektrumdaki en uzun dalga boylarına sahiptir,Easy
+1783,Science,Atmosfer ve hava olaylarını inceleyen bilim dalına ne ad verilir?,Meteoroloji,İklimbilim,Atmosfer fiziği,Hava durumu bilimi,A,"Meteoroloji, hava ve atmosfer koşullarının bilimidir",Easy
+1784,Science,Sıkıştırılmış ve çimentolanmış tortulardan hangi kaya türü oluşur?,Magmatik,Metamorfik,Tortul,Volkanik,C,"Tortul kayaçlar, sıkıştırılmış tortu katmanlarından oluşur",Easy
+1785,Science,Hemoglobinin kandaki başlıca görevi nedir?,Enfeksiyonla mücadele,Pıhtılaşmış kan,Oksijen taşımak,Besin maddelerini taşımak,C,"Kırmızı kan hücrelerindeki hemoglobin, oksijeni tüm vücuda taşır",Easy
+1786,Science,Güneş sistemimizde hangi gezegen yan yatmış şekilde döner?,Venüs,Mars,Uranüs,Neptün,C,Uranüs yörünge düzlemine göre yaklaşık 90 derecelik bir açıyla döner,Easy
+1787,Science,İki farklı kaya tabakası arasındaki sınırın adı nedir?,Arayüz,Temas etmek,Uyumsuzluk,Yatak düzlemi,C,Bir uyumsuzluk jeolojik zamandaki bir boşluğu temsil eder,Easy
+1788,Science,Kireç taşı asitle tepkimeye girdiğinde hangi gaz ortaya çıkar?,Oksijen,Hidrojen,Karbondioksit,Azot,C,Kireç taşı asitlerle reaksiyona girdiğinde CO2 üretir,Easy
+1789,Science,Fosil ve antik yaşamı inceleyen bilim dalına ne ad verilir?,Arkeoloji,Paleontoloji,Antropoloji,Jeoloji,B,"Paleontoloji, antik organizmaların fosilleşmiş kalıntılarını inceler",Easy
+1790,Science,İç organların duvarlarında hangi kas türü bulunur?,İskelet,Kardiyak,Düz,Gönüllü,C,Düz kaslar mide ve bağırsaklar gibi iç organları kaplar,Easy
+1791,Science,Bir gazın doğrudan katıya dönüşmesine ne ad verilir?,Yoğunlaşma,Süblimasyon,İfade,Donmak,C,"Biriktirme, gazdan katı faza doğrudan geçiştir",Easy
+1792,Science,Hücrelerde protein sentezinden sorumlu organel hangisidir?,Çekirdek,Ribozom,Mitokondri,Lizozom,B,Ribozomlar hücrelerde protein sentezinin gerçekleştiği yerlerdir,Easy
+1793,Science,Canlıların yapılarını ve sınıflandırılmasını inceleyen bilim dalına ne ad verilir?,Taksonomi,Ekoloji,Evrim,Genetik,A,"Taksonomi, canlı organizmaları adlandırmayı ve sınıflandırmayı içerir",Easy
+1794,Science,Uyduların yörüngede kalmasını hangi kuvvet sağlar?,Manyetik,Yerçekimi,Nükleer,Elektromanyetik,B,Yerçekimi kuvveti yörünge hareketi için merkezcil ivme sağlar,Easy
+1795,Science,Kayaçların kimyasal reaksiyonlarla parçalanma sürecine ne ad verilir?,Fiziksel aşınma,Kimyasal ayrışma,Erozyon,Sedimentasyon,B,"Kimyasal ayrışma, kimyasal reaksiyonlar yoluyla kaya bileşimini değiştirir",Easy
+1796,Science,"Beynimizin hangi kısmı nefes alma, kalp atış hızı gibi temel yaşam fonksiyonlarını kontrol eder?",Beyin,Beyincik,Beyin sapı,Hipokampüs,C,Beyin sapı hayati otonomik fonksiyonları kontrol eder,Easy
+1797,Science,Karmaşık molekülleri enerjiye dönüştürmek için hangi süreç gerçekleştirilir?,Sentez,Katabolizma,Anabolizma,Difüzyon,B,"Katabolizma, enerjiyi serbest bırakmak için karmaşık molekülleri parçalar",Easy
+1798,Science,Hangi üreme türü erkek ve dişi gametlerin birleşmesiyle oluşur?,Aseksüel,Cinsel,Hücrenin ikiye bölünerek üremesi,Vejetatif,B,"Cinsel üreme, sperm ve yumurta hücrelerinin birleşmesini gerektirir",Easy
+1799,Science,Mermilerin hareketini ve davranışını inceleyen bilim dalına ne ad verilir?,Balistik,Dinamikler,Kinematik,Mekanik,A,"Balistik, mermilerin uçuş yolunu ve davranışını inceler",Easy
+1800,Science,Hormon üretimi ve düzenlenmesinden hangi organ sistemi sorumludur?,Gergin,Endokrin,Dolaşım,Solunum,B,Endokrin sistemi hormon üretir ve düzenler,Easy
+1801,Science,Ebeveynlerden çocuklara aktarılan temel kalıtım birimi nedir?,Kromozom,Gen,DNA,Alel,B,"Genler, özellikleri belirleyen kalıtımın temel birimleridir",Easy
+1802,Science,Suyun bitki dokuları arasında hareketini açıklayan süreç hangisidir?,Ozmoz,Difüzyon,Terleme,Aktif taşıma,C,"Terleme, suyun bitkiler arasında hareketidir",Easy
+1803,Science,Organizmalar ile çevreleri arasındaki etkileşimleri inceleyen bilim dalına ne ad verilir?,Biyoloji,Ekoloji,Zooloji,Botanik,B,"Ekoloji, canlılar ile çevreleri arasındaki ilişkileri inceler",Easy
+1804,Science,Madde içindeki parçacıkların hareketiyle ilişkili olan enerji türü hangisidir?,Kinetik,Potansiyel,Kimyasal,Nükleer,A,"Kinetik enerji, moleküler düzeydeki hareket enerjisidir",Easy
+1805,Science,Dünya'nın oluşumunu ve yapısını inceleyen bilim dalına ne ad verilir?,Coğrafya,Jeoloji,Meteoroloji,Astronomi,B,"Jeoloji, Dünya'nın bileşimini, yapısını ve süreçlerini inceler",Easy
+1806,Science,Çoğu organizmada hücresel solunum süreci için gerekli olan gaz hangisidir?,Karbondioksit,Oksijen,Azot,Hidrojen,B,Çoğu organizmanın enerji üretmek için hücresel solunumda oksijene ihtiyacı vardır,Easy
+1807,Science,Tohumun koruyucu dış kabuğuna ne ad verilir?,Gövde,Kabuk,Kaban,Kabuk,C,"Tohum kabuğu, içinde gelişen embriyonun korunmasını sağlar",Easy
+1808,Science,Güneş sistemimizde en eliptik yörüngeye sahip gezegen hangisidir?,Toprak,Mars,Merkür,Venüs,C,"Merkür, tüm gezegenler arasında en eksantrik eliptik yörüngeye sahiptir",Easy
+1809,Science,Karbon bileşiklerinin kimyasal özelliklerini ve davranışlarını inceleyen bilim dalına ne ad verilir?,İnorganik kimya,Organik kimya,Fiziksel kimya,Analitik kimya,B,Organik kimya karbon içeren bileşiklere odaklanır,Easy
+1810,Science,Hangi dalga türünün iletilmesi için bir ortama ihtiyaç vardır?,Işık dalgası,Radyo dalgası,Ses dalgası,X-ışını,C,Ses dalgaları yayılmak için bir ortama ihtiyaç duyan mekanik dalgalardır,Easy
+1811,Science,Bitkilerin yaprakları aracılığıyla su kaybetme sürecine ne ad verilir?,Fotosentez,Terleme,Solunum,Emilim,B,"Terleme, bitki yüzeylerinden suyun buharlaşmasıdır",Easy
+1812,Science,Sindirim sisteminde safra hangi organ tarafından üretilir?,Karaciğer,Safra kesesi,Pankreas,Karın,A,"Karaciğer, yağların sindirimine yardımcı olan safra üretir",Easy
+1813,Science,Elektriksel direncin temel birimi nedir?,Volt,Amper,Ohm,Watt,C,"Ohm, elektrik direncinin birimidir",Easy
+1814,Science,Zarla çevrili organelleri bulunmayan hücre tipi hangisidir?,Prokaryotik,Ökaryotik,Bitki hücresi,Hayvan hücresi,A,Bakteriler gibi prokaryotik hücrelerde zarla çevrili organeller yoktur,Easy
+1815,Science,Evrenin başlangıcını ve gelişimini inceleyen bilim dalına ne ad verilir?,Astronomi,Kozmoloji,Astrofizik,Astrobiyoloji,B,"Kozmoloji, evrenin kökenini, yapısını ve evrimini inceler",Easy
+1816,Science,"Hangi süreç, maddelerin enerji kullanılmadan hücre zarlarından geçmesini sağlar?",Aktif taşıma,Kolaylaştırılmış difüzyon,Ozmoz,Hem B hem de C,D,Hem kolaylaştırılmış difüzyon hem de ozmoz pasif taşıma süreçleridir,Easy
+1817,Science,Maddenin fiziksel ve kimyasal özelliklerini inceleyen bilim dalına ne ad verilir?,Biyoloji,Fizik,Kimya,Jeoloji,C,"Kimya maddeyi, özelliklerini ve dönüşümlerini inceler",Easy
+1818,Science,Mars atmosferinin çoğunluğunu hangi gaz oluşturur?,Oksijen,Azot,Karbondioksit,Metan,C,Mars atmosferinin yaklaşık %95'i karbondioksittir,Easy
+1819,Science,"Sıvıların, sıvıların içine daldırılmış cisimlere uyguladıkları kuvvete ne ad verilir?",Yüzdürme,Yoğunluk,Basınç,Viskozite,A,"Kaldırma kuvveti, sıvıların su altındaki nesnelere uyguladığı yukarı doğru kuvvettir",Easy
+1820,Science,Metabolik atıkları vücuttan uzaklaştıran organ sistemi hangisidir?,Sindirim,Solunum,Boşaltım,Dolaşım,C,Boşaltım sistemi metabolizmadan kaynaklanan atık ürünleri ortadan kaldırır,Easy
+1821,Science,Frekans ölçümünün temel birimi nedir?,Hertz,Joule,Watt,Newton,A,"Hertz, saniyedeki döngü sayısını ölçer",Easy
+1822,Science,Hangi üreme türünde yavrular ana canlıyla genetik olarak aynıdır?,Cinsel,Aseksüel,Çapraz döllenme,Hibridizasyon,B,Eşeysiz üreme genetik olarak özdeş klonlar yaratır,Easy
+1823,Science,Işığın davranışını ve özelliklerini inceleyen bilim dalına ne ad verilir?,Akustik,Optik,Mekanik,Termodinamik,B,"Optik, ışığı inceleyen fizik dalıdır",Easy
+1824,Science,Hücrenin hangi kısmı madde giriş ve çıkışını kontrol eder?,Hücre duvarı,Hücre zarı,Çekirdek,Sitoplazma,B,Hücre zarı hücreye neyin girip çıktığını düzenler,Easy
+1825,Science,Canlıların sınıflandırılması ve isimlendirilmesini inceleyen bilim dalına ne ad verilir?,Evrim,Taksonomi,Ekoloji,Genetik,B,"Taksonomi, canlıların sınıflandırılması ve isimlendirilmesini içerir",Easy
+1826,Science,Fotosentez sürecinde hangi gaz üretilir?,Karbondioksit,Azot,Oksijen,Su buharı,C,Fotosentez yan ürün olarak oksijen üretir,Easy
+1827,Science,Bir maddedeki parçacıkların ortalama kinetik enerjisinin ölçüsüne ne ad verilir?,Sıcaklık,Sıcaklık,Termal enerji,Özgül ısı,A,Sıcaklık parçacıkların ortalama kinetik enerjisini ölçer,Easy
+1828,Science,Atomlar elektron alışverişinde bulunduğunda hangi bağ türü oluşur?,Kovalent,İyonik,Metalik,Hidrojen,B,"İyonik bağlar, elektronlar atomlar arasında transfer edildiğinde oluşur",Easy
+1829,Science,Canlı dokuların mekanik özelliklerini inceleyen bilim dalına ne ad verilir?,Biyomekanik,Biyofizik,Fizyoloji,Anatomi,A,"Biyomekanik, mekanik prensipleri biyolojik sistemlere uygular",Easy
+1830,Science,Güneşe yakınlığı nedeniyle hangi gezegenin yılı en kısadır?,Merkür,Venüs,Toprak,Mars,A,"Merkür, 88 Dünya günü ile en kısa yörünge periyoduna sahiptir",Easy
+1831,Science,Organizmaların ışık üretme sürecini tanımlayan terim nedir?,Fosforesans,Floresans,Biyolüminesans,Kemilüminesans,C,"Biyolüminesans, canlı organizmalar tarafından ışık üretimidir",Easy
+1832,Science,İnsülin hormonunu hangi organ üretir?,Karaciğer,Pankreas,Böbrek,Tiroid,B,"Pankreas, kan şekeri seviyelerini düzenlemek için insülin üretir",Easy
+1833,Science,Bağımsız olarak varlığını sürdürebilen yaşamın temel birimi nedir?,Atom,Molekül,Hücre,Doku,C,Hücreler yaşamın en küçük bağımsız birimleridir,Easy
+1834,Science,Atom çekirdeğinde hangi enerji türü depolanır?,Kimyasal,Kinetik,Nükleer,Termal,C,Nükleer enerji atom çekirdeklerinde depolanır,Easy
+1835,Science,Dünya'nın manyetik alanını inceleyen bilim dalına ne ad verilir?,Yerçekimi,Elektromanyetizma,Manyetizma,Jeofizik,A,"Jeomanyetizma, Dünya'nın manyetik alanını ve onun değişimlerini inceler",Easy
+1836,Science,Hangi süreç organizmaların çevrelerindeki değişiklikleri algılamasını sağlar?,Uyum,Cevap,Duygu,Homeostaz,C,"Duyu, organizmaların çevresel uyaranları algılamasını sağlar",Easy
+1837,Science,Yeraltı sularının dağılımını ve hareketini inceleyen bilim dalına ne ad verilir?,Hidroloji,Hidrojeoloji,Oşinografi,Limnoloji,B,Hidrojeoloji özellikle yeraltı suyuna odaklanır,Easy
+1838,Science,Ampullerde filamanın yanmasını önlemek için genellikle hangi gaz kullanılır?,Oksijen,Azot,Argon,Helyum,C,"Argon, akkor ampullerdeki filamanları korumak için kullanılan inert bir gazdır",Easy
+1839,Science,Dünya'nın kabuğu ile atmosfer arasındaki sınırın adı nedir?,Yüzey,Arayüz,Troposfer,Zemin seviyesi,A,"Yüzey, katı Dünya'nın atmosferle buluştuğu yerdir",Easy
+1840,Science,Hangi üreme türü hızlı nüfus artışına olanak tanır?,Cinsel,Aseksüel,Melezleme,Döllenme,B,"Eşeysiz üreme, üstel nüfus artışına yol açabilir",Easy
+1841,Science,İnsan vücudunun yapısını ve işlevini inceleyen bilim dalına ne ad verilir?,Psikoloji,Fizyoloji,Anatomi,İlaç,C,Anatomi insan vücudunun yapısını inceler,Easy
+1842,Science,Temas halindeki yüzeyler arasındaki harekete karşı koyan kuvvet hangisidir?,Yer çekimi,Sürtünme,Manyetizma,Tansiyon,B,"Sürtünme, temas eden yüzeyler arasındaki harekete karşı koyar",Easy
+1843,Science,Sıvı suyun su buharına dönüşmesine ne ad verilir?,Yoğunlaşma,Buharlaşma,Süblimasyon,Yağış,B,"Buharlaşma, sıvı suyu buhar fazına dönüştürür",Easy
+1844,Science,Vücut aktivitelerini hangi organ sistemi koordine eder ve kontrol eder?,Endokrin,Gergin,Dolaşım,Solunum,B,Sinir sistemi vücut fonksiyonlarını koordine eder ve kontrol eder,Easy
+1845,Science,Elektrik akımının temel birimi nedir?,Coulomb,Amper,Volt,Ohm,B,Amper elektrik yükünün akışını ölçer,Easy
+1846,Science,Hangi organizma türü ölü organik maddeleri parçalayarak enerji elde eder?,Yapımcı,Birincil tüketici,İkincil tüketici,Ayrıştırıcı,D,Ayrıştırıcılar ölü maddeyi parçalar ve besinleri geri dönüştürür,Easy
+1847,Science,Kayaçların ve minerallerin kimyasal yapılarını inceleyen bilim dalına ne ad verilir?,Petroloji,Mineraloji,Jeokimya,Kristalografi,C,"Jeokimya, Dünya malzemelerinin kimyasal yapısını inceler",Easy
+1848,Science,Organik madde fermantasyona uğradığında hangi gaz açığa çıkar?,Oksijen,Karbondioksit,Azot,Metan,B,Fermantasyon genellikle karbondioksit ve diğer gazları üretir,Easy
+1849,Science,"Hareketi oluşturan kuvvetleri dikkate almadan, cisimlerin hareketini inceleyen bilim dalı hangisidir?",Dinamikler,Statik,Kinematik,Mekanik,C,"Kinematik, hareketi kuvvetlere başvurmadan açıklar",Easy
+1850,Science,Atomun hangi kısmı negatif elektrik yükü taşır?,Proton,Nötron,Elektron,Çekirdek,C,Elektronlar negatif elektrik yükü taşır,Easy
+1851,Science,Bitkilerin güneş ışığını kimyasal enerjiye dönüştürme sürecine ne ad verilir?,Solunum,Fotosentez,Terleme,Emilim,B,"Fotosentez, ışık enerjisini glikozdaki kimyasal enerjiye dönüştürür",Easy
+1852,Science,Dolaşım sisteminde kanı vücuda pompalayan organ hangisidir?,Beyin,Kalp,Akciğerler,Karaciğer,B,"Kalp, dolaşım sisteminin kas pompasıdır",Easy
+1853,Science,Organizmaların çevrelerine nasıl uyum sağladığını inceleyen bilim dalına ne ad verilir?,Ekoloji,Evrimsel biyoloji,Uyum bilimi,Çevre biyolojisi,B,"Evrimsel biyoloji, organizmaların çevrelerine uyum sağlamak için nasıl değiştiğini inceler",Easy
+1854,Science,Metaller korozyona uğradığında hangi gaz ortaya çıkar?,Oksijen,Hidrojen,Karbondioksit,Azot,B,Metal korozyonu genellikle hidrojen gazı üretir,Easy
+1855,Science,Genetik bilginin temel birimi nedir?,Gen,Kromozom,DNA,Alel,A,"Genler, genetik talimatları taşıyan temel birimlerdir",Easy
+1856,Science,Suyun yüksek konsantrasyonlu alanlardan düşük konsantrasyonlu alanlara hareket etmesini sağlayan süreç hangisidir?,Difüzyon,Ozmoz,Aktif taşıma,Filtrasyon,B,"Ozmoz, suyun zarlar boyunca hareketidir",Easy
+1857,Science,Kristallerin oluşumunu ve özelliklerini inceleyen bilim dalına ne ad verilir?,Mineraloji,Kristalografi,Petroloji,Jeokimya,B,"Kristalografi, kristal yapısını ve oluşumunu inceler",Easy
+1858,Science,Kimyasal tepkimeler sırasında hangi tür enerji açığa çıkar?,Kinetik,Potansiyel,Kimyasal,Termal,C,Kimyasal enerji moleküler bağlarda depolanır,Easy
+1859,Science,Kendi besinini üreten canlılara ne ad verilir?,Tüketiciler,Üreticiler,Ayrıştırıcılar,Otçullar,B,Bitkiler gibi üreticiler fotosentez yoluyla kendi besinlerini üretirler,Easy
+1860,Science,Bitki hücresinin hangi kısmı yapısal destek sağlar?,Sitoplazma,Hücre zarı,Hücre duvarı,Çekirdek,C,Hücre duvarı bitki hücrelerine sert yapılarını verir,Easy
+1861,Science,Dünya'nın su sistemlerini inceleyen bilim dalına ne ad verilir?,Jeoloji,Hidroloji,Meteoroloji,Oşinografi,B,"Hidroloji, suyun hareketini ve dağılımını inceler",Easy
+1862,Science,Ozon tabakasının korunması için hangi gaz gereklidir?,Oksijen,Azot,Kloroflorokarbon,Ozon,D,Ozon molekülleri koruyucu ozon tabakasını oluşturur,Easy
+1863,Science,Sıvı halden katı hale geçme olayına ne ad verilir?,Erime,Donmak,Yoğunlaşma,Süblimasyon,B,"Dondurma, sıvı fazı katı faza dönüştürür",Easy
+1864,Science,Vücudu patojenlerden koruyan organ sistemi hangisidir?,Solunum,Bağışıklık,Sindirim,Dolaşım,B,Bağışıklık sistemi hastalığa neden olan organizmalara karşı savunma sağlar,Easy
+1865,Science,Kimyasal özelliklerini koruyan maddenin temel birimi nedir?,Atom,Molekül,İyon,Birleştirmek,B,Moleküller kimyasal özelliklere sahip en küçük birimlerdir,Easy
+1866,Science,"Hangi süreç, hareket eden suyun kayaları aşındırmasını anlatır?",Aşınma,Erozyon,Sedimentasyon,İfade,B,"Erozyon, aşınmış malzemeyi kaynağından uzaklaştırır",Easy
+1867,Science,Canlı organizmalardaki kimyasal süreçleri inceleyen bilim dalı hangisidir?,Biyokimya,Kimya,Biyoloji,Fizyoloji,A,"Biyokimya, biyolojik sistemlerdeki kimyasal reaksiyonlara odaklanır",Easy
+1868,Science,Spor ve gametlerin birlikte kullanıldığı üreme türü hangisidir?,Aseksüel,Cinsel,Vejetatif,Hücrenin ikiye bölünerek üremesi,B,Bitkilerde eşeyli üreme genellikle hem sporları hem de gametleri içerir,Easy
+1869,Science,Hareket halindeki değişimlere karşı koyan kuvvete ne ad verilir?,Atalet,Momentum,Sürtünme,Yer çekimi,A,"Eylemsizlik, bir nesnenin hareket durumundaki değişikliklere karşı direncidir",Easy
+1870,Science,Gazlı içeceklerde sıklıkla bulunan gaz hangisidir?,Oksijen,Karbondioksit,Azot,Helyum,B,Karbondioksit gazlı içeceklerdeki köpürmeyi sağlar,Easy
+1871,Science,Genlerin yapı ve işlevlerini inceleyen bilim dalına ne ad verilir?,Genetik,Genomik,Moleküler biyoloji,Hücre biyolojisi,A,"Genetik, kalıtım ve genetik çeşitliliği inceler",Easy
+1872,Science,Sinir sisteminin hangi bölümü beyin ve omuriliği içerir?,Çevresel,Merkez,Otonom,Somatik,B,Merkezi sinir sistemi beyin ve omurilikten oluşur,Easy
+1873,Science,Toprak oluşumu ve özelliklerini inceleyen bilim dalına ne ad verilir?,Pedoloji,Jeoloji,Ziraat Mühendisliği,Dünya bilimi,A,"Pedoloji, toprağın bilimsel çalışmasıdır",Easy
+1874,Science,Bitkilerin dokunmaya tepki vermesini sağlayan süreç hangisidir?,Fototropizm,Jeotropizm,Tigmotropizm,Kemotropizm,C,"Tigmotropizm, mekanik uyaranlara karşı büyüme tepkisidir",Easy
+1875,Science,Elektrik gücünün temel birimi nedir?,Watt,Joule,Volt,Amper,A,"Watt, elektrik enerjisi tüketimini ölçer",Easy
+1876,Science,Çekirdeği zarla çevrili olan hücre tipi hangisidir?,Prokaryotik,Ökaryotik,Bakteriyel,Viral,B,Ökaryotik hücrelerin zarla çevrili çekirdekleri vardır,Easy
+1877,Science,Canlı ve cansız bileşenler arasındaki etkileşimi inceleyen bilim dalı nedir?,Ekoloji,Biyoloji,Çevre bilimi,Dünya bilimi,A,"Ekoloji, organizmalar ile çevreleri arasındaki ilişkileri inceler",Easy
+1878,Science,Hücresel solunum sırasında hangi gaz üretilir?,Oksijen,Karbondioksit,Azot,Su buharı,B,Hücresel solunum atık olarak karbondioksit üretir,Easy
+1879,Science,Yaşamın kökenini inceleyen bilim dalına ne ad verilir?,Abiogenez,Evrim,Biyokimya,Astrobiyoloji,A,"Abiogenez, yaşamın cansız maddeden nasıl ortaya çıktığını inceler",Easy
+1880,Science,Atomun hangi kısmında elektrik yükü yoktur?,Proton,Elektron,Nötron,İyon,C,Nötronlar çekirdekteki elektriksel olarak nötr parçacıklardır,Easy
+1881,Science,Biyolojik sistemlerin mekanik özelliklerini inceleyen bilim dalına ne ad verilir?,Biyomekanik,Biyofizik,Fizyoloji,Anatomi,A,"Biyomekanik, mekaniği biyolojik sistemlere uygular",Easy
+1882,Science,Hangisi besinlerin daha küçük moleküllere parçalanmasını anlatan süreçtir?,Sindirim,Emilim,Metabolizma,Boşaltım,A,Sindirim karmaşık gıda moleküllerini parçalar,Easy
+1883,Science,Özelliklerin ebeveynlerden yavrulara nasıl aktarıldığını inceleyen bilim dalına ne ad verilir?,Kalıtım,Genetik,Evrim,Gelişim,B,"Genetik, özelliklerin kalıtımını inceler",Easy
+1884,Science,Fotosentez sürecinde hangi gaz kullanılır?,Oksijen,Karbondioksit,Azot,Hidrojen,B,Bitkiler fotosentez sırasında havadaki karbondioksiti kullanırlar,Easy
+1885,Science,Manyetik alan şiddetinin temel birimi nedir?,Tesla,Gauss,Weber,Henry,A,"Tesla, manyetik alan kuvvetinin SI birimidir",Easy
+1886,Science,Hangi organizma türü aşırı ortamlarda hayatta kalabilir?,Ekstremofil,Mezofil,Psikrofil,Termofil,A,Ekstremofiller zorlu çevre koşullarında gelişirler,Easy
+1887,Science,Türlerin coğrafi alanlara göre dağılımını inceleyen bilim dalı nedir?,Biyocoğrafya,Ekoloji,Evrim,Taksonomi,A,"Biyocoğrafya, organizmaların nerede ve neden yaşadığını inceler",Easy
+1888,Science,Hücrelerin iç ortamlarını korumasını sağlayan süreç hangisidir?,Homeostaz,Metabolizma,Büyüme,Üreme,A,"Homeostaz, iç koşulların stabil kalmasını sağlar",Easy
+1889,Science,Yıldızların kimyasal yapılarını inceleyen bilim dalına ne ad verilir?,Astrokimya,Astrofizik,Astronomi,Kozmoloji,A,"Astrokimya, gök cisimlerinin kimyasal yapısını analiz eder",Easy
+1890,Science,Odun yandığında hangi gaz açığa çıkar?,Oksijen,Karbondioksit,Azot,Su buharı,B,Organik maddelerin yanması karbondioksit üretir,Easy
+1891,Science,Radyoaktivitenin temel birimi nedir?,Curie,Becquerel,Röntgen,Gri,B,"Becquerel, saniyedeki radyoaktif bozunmayı ölçer",Easy
+1892,Science,Bitkinin hangi kısmı fotosentez için güneş ışığını emer?,Kökler,Kök,Yapraklar,Çiçekler,C,Yapraklar güneş ışığını yakalamak için klorofil içerir,Easy
+1893,Science,Evrenin oluşumunu ve evrimini inceleyen bilim dalına ne ad verilir?,Astronomi,Kozmoloji,Astrofizik,Astrobiyoloji,B,"Kozmoloji, evrenin kökenini ve gelişimini inceler",Easy
+1894,Science,Parçacıkların yüksek konsantrasyondan düşük konsantrasyona doğru hareketini tanımlayan süreç hangisidir?,Aktif taşıma,Pasif taşıma,Ozmoz,Difüzyon,D,"Difüzyon, parçacıkları konsantrasyon gradyanları boyunca hareket ettirir",Easy
+1895,Science,Organizmaların birbirleriyle nasıl etkileşim kurduğunu inceleyen bilim dalına ne ad verilir?,Ekoloji,Etoloji,Sosyoloji,Simbiyoz,A,"Ekoloji, organizma etkileşimlerinin incelenmesini içerir",Easy
+1896,Science,Fosil yakıtların yanması için hangi gaz gereklidir?,Karbondioksit,Oksijen,Azot,Metan,B,Fosil yakıtların yanması için oksijene ihtiyaç vardır,Easy
+1897,Science,Işık şiddetinin temel birimi nedir?,Şamdan,Lümen,Lüks,Watt,A,Kandela ışık yoğunluğunu ölçer,Easy
+1898,Science,Hangi üreme türü genetik olarak çeşitli yavrular üretir?,Aseksüel,Cinsel,Klonal,Vejetatif,B,Cinsel üreme genetik çeşitliliğe yol açar,Easy
+1899,Science,Canlı organizmaların elektriksel özelliklerini inceleyen bilim dalına ne ad verilir?,Biyoelektrik,Elektrofizyoloji,Nörofizyoloji,Biyofizik,B,"Elektrofizyoloji, biyolojideki elektriksel olayları inceler",Easy
+1900,Science,Hangi süreç organizmaların güneş ışığından enerji elde etmesini sağlar?,Fotosentez,Kemosentez,Hücresel solunum,Fermantasyon,A,"Fotosentez, güneş enerjisini kimyasal enerjiye dönüştürür",Easy
+1901,Science,Dünya'nın yapısını inceleyen bilim dalına ne ad verilir?,Jeoloji,Coğrafya,Jeofizik,Jeokimya,A,"Jeoloji, Dünya'nın bileşimini ve yapısını inceler",Easy
+1902,Science,Organik maddelerin çürümesi sırasında hangi gaz oluşur?,Oksijen,Metan,Azot,Helyum,B,Organik maddelerin ayrışması metan gazının açığa çıkmasına neden olur,Easy
+1903,Science,Elektrik yükünün temel birimi nedir?,Coulomb,Amper,Volt,Ohm,A,Coulomb elektrik yükü miktarını ölçer,Easy
+1904,Science,Hücrenin hangi kısmı hücresel faaliyetleri kontrol eder?,Hücre zarı,Sitoplazma,Çekirdek,Ribozom,C,Çekirdek hücre fonksiyonlarını kontrol eder ve DNA içerir,Easy
+1905,Science,Canlı sistemlerdeki kimyasal reaksiyonları inceleyen bilim dalına ne ad verilir?,Biyokimya,Kimya,Biyoloji,Moleküler biyoloji,A,"Biyokimya, organizmalardaki kimyasal süreçleri inceler",Easy
+1906,Science,Mevcut bireylerden yeni bireylerin oluşmasını anlatan süreç hangisidir?,Büyüme,Gelişim,Üreme,Metabolizma,C,"Üreme, ebeveynlerden yeni organizmalar yaratır",Easy
+1907,Science,Organizmaların döllenmeden olgunluğa kadar nasıl geliştiğini inceleyen bilim dalı hangisidir?,Embriyoloji,Gelişim biyolojisi,Üreme biyolojisi,Genetik,B,Gelişim biyolojisi organizma gelişimini inceler,Easy
+1908,Science,Gıdaları muhafaza etmek için yaygın olarak kullanılan gaz hangisidir?,Karbondioksit,Azot,Oksijen,Argon,B,"Azot, paketlenmiş gıdalarda oksidasyonu ve bozulmayı önler",Easy
+1909,Science,İş ve enerjinin temel birimi nedir?,Joule,Watt,Newton,Kalori,A,Joule iş ve enerjiyi ölçer,Easy
+1910,Science,Gametlerin oluşmasını sağlayan hücre bölünmesi türü hangisidir?,Mitoz,Mayoz,Hücrenin ikiye bölünerek üremesi,Tomurcuklanan,B,"Mayoz, kromozom sayısının yarısına sahip üreme hücreleri üretir",Easy
+1911,Science,Atmosferin fiziksel ve kimyasal özelliklerini inceleyen bilim dalına ne ad verilir?,Meteoroloji,İklimbilim,Atmosfer bilimi,Hava durumu bilimi,C,Atmosfer bilimi atmosferin tüm yönlerini inceler,Easy
+1912,Science,Hangi süreç maddelerin hücrelere girip çıkmasını sağlar?,Taşımacılık,Metabolizma,Solunum,Fotosentez,A,Taşıma süreçleri maddeleri hücre zarları boyunca hareket ettirir,Easy
+1913,Science,Organizmaların çevrelerini nasıl algıladıklarını inceleyen bilim dalına ne ad verilir?,Duyusal biyoloji,Nörobiyoloji,Fizyoloji,Etoloji,A,"Duyusal biyoloji, organizmaların uyaranları nasıl algıladığını inceler",Easy
+1914,Science,Bitkilerin büyümesi ve gelişmesi için gerekli olan gaz hangisidir?,Oksijen,Karbondioksit,Azot,Fosfor,B,Bitkilerin fotosentez ve büyüme için karbondioksite ihtiyacı vardır,Easy
+1915,Science,Aydınlatmanın temel birimi nedir?,Şamdan,Lümen,Lüks,Ayak mumu,C,"Lüks, birim alan başına aydınlatmayı ölçer",Easy
+1916,Science,Bitkinin hangi kısmı besin ve suyu taşır?,Kökler,Kök,Yapraklar,Çiçekler,B,"Gövde, taşıma için damar dokusu içerir",Easy
+1917,Science,Biyolojik malzemelerin mekanik davranışlarını inceleyen bilim dalına ne ad verilir?,Biyomekanik,Mekanobiyoloji,Biyofizik,Malzeme bilimi,B,"Mekanobiyoloji, mekanik kuvvetlerin biyolojiyi nasıl etkilediğini inceler",Easy
+1918,Science,Azot gazının amonyağa dönüşümünü açıklayan süreç hangisidir?,Azot fiksasyonu,Nitrifikasyon,Denitrifikasyon,Mineralizasyon,A,"Azot fiksasyonu, atmosferik azotu kullanılabilir formlara dönüştürür",Easy
+1919,Science,Genlerin nasıl ifade edildiğini inceleyen bilim dalına ne ad verilir?,Gen ifadesi,Transkripsiyon,Çeviri,Epigenetik,D,"Epigenetik, gen ifadesinin düzenlenmesini inceler",Easy
+1920,Science,Yıldırım sonucu atmosferde oluşan gaz hangisidir?,Ozon,Oksijen,Azot oksitleri,Karbondioksit,A,"Yıldırım, atmosferik oksijenden ozon oluşturur",Easy
+1921,Science,Momentumun temel birimi nedir?,Newton saniye,Kilogram-metre/saniye,Joule-saniye,Watt-saniye,B,Momentum kilogram-metre/saniye cinsinden ölçülür,Easy
+1922,Science,Hangi organizma türü diğer organizmaları tüketerek enerji elde eder?,Yapımcı,Birincil tüketici,İkincil tüketici,Tüm tüketiciler,D,Tüm tüketici tipleri diğer organizmaları yiyerek enerji elde eder,Easy
+1923,Science,Dünya'daki yaşamın kökenini ve tarihini inceleyen bilime ne ad verilir?,Paleobiyoloji,Evrim,Doğa tarihi,Yaşam bilimi,A,"Paleobiyoloji, antik yaşamı ve onun evrimini inceler",Easy
+1924,Science,Hücrelerin çevrelerine tepki vermesini sağlayan süreç hangisidir?,Homeostaz,Cevap,Uyum,Uyarıcı tespiti,B,"Tepki, hücrelerin çevresel değişikliklere tepki vermesini sağlar",Easy
+1925,Science,Organizmaların enerjiyi nasıl elde ettiklerini ve kullandıklarını inceleyen bilim dalı hangisidir?,Biyoenerji,Metabolizma,Fizyoloji,Biyokimya,A,"Biyoenerji, biyolojik sistemlerdeki enerji akışını inceler",Easy
+1926,Science,Proteinlerin oluşumu için gerekli olan gaz hangisidir?,Azot,Karbon,Oksijen,Hidrojen,A,"Azot, amino asitlerin ve proteinlerin önemli bir bileşenidir",Easy
+1927,Science,Basıncın temel birimi nedir?,Pascal,Çubuk,Atmosfer,Torr,A,"Pascal, basıncın SI birimidir",Easy
+1928,Science,Hücrenin hangi kısmında genetik materyal bulunur?,Sitoplazma,Çekirdek,Ribozom,Mitokondri,B,Çekirdek hücrenin DNA'sını barındırır,Easy
+1929,Science,Organizmaların iç koşullarını nasıl istikrarlı bir şekilde koruduklarını inceleyen bilim dalına ne ad verilir?,Homeostaz,Fizyoloji,Düzenleme,Kontrol teorisi,A,"Homeostaz, iç dengenin korunmasıdır",Easy
+1930,Science,Aşağıdaki süreçlerden hangisi daha basit moleküllerden karmaşık moleküllerin oluşumunu açıklar?,Katabolizma,Anabolizma,Metabolizma,Sentez,B,"Anabolizma, basit öncüllerden karmaşık moleküller oluşturur",Easy
+1931,Science,Organizmaların nasıl hareket ettiğini inceleyen bilim dalına ne ad verilir?,Hareket,Biyomekanik,Kinezyoloji,Hareket bilimi,C,Kinezyoloji hareketi ve motor fonksiyonunu inceler,Easy
+1932,Science,Alkollü fermantasyon sırasında hangi gaz oluşur?,Oksijen,Karbondioksit,Azot,Metan,B,Fermantasyon karbondioksit ve etanol üretir,Easy
+1933,Science,Katalitik aktivitenin temel birimi nedir?,Katal,Enzim ünitesi,Etkinlik birimi,Ciro sayısı,A,Katal enzim aktivitesini ölçer,Easy
+1934,Science,Hangi hücre tipinin hücre duvarı serttir?,Hayvan hücresi,Bitki hücresi,Bakteri hücresi,Hem B hem de C,D,Hem bitki hem de bakteri hücrelerinin hücre duvarları vardır,Easy
+1935,Science,Organizmaların bilgiyi nasıl işlediğini inceleyen bilim dalına ne ad verilir?,Sinirbilim,Bilişsel bilim,Bilgi işleme,Sibernetik,B,"Bilişsel bilim, organizmalarda bilgi işlemeyi inceler",Easy
+1936,Science,Hangi süreç organizmaların uyarıları algılamasını ve onlara tepki vermesini sağlar?,Duygu,Algı,Cevap,Yukarıdakilerin hepsi,D,Tüm bu süreçler uyarıcı algılama ve tepkisinde rol oynar,Easy
+1937,Science,Organizmaların nasıl çoğaldığını inceleyen bilim dalına ne ad verilir?,Üreme biyolojisi,Embriyoloji,Genetik,Gelişim,A,Üreme biyolojisi üreme mekanizmalarını inceler,Easy
+1938,Science,Hücresel enerji üretimi için hangi gaz gereklidir?,Oksijen,Karbondioksit,Azot,Hidrojen,A,"Oksijen, aerobik hücresel solunum için gereklidir",Easy
+1939,Science,Manyetik akının temel birimi nedir?,Tesla,Weber,Gauss,Henry,B,Weber manyetik akıyı ölçer,Easy
+1940,Science,Bitkinin hangi kısmında üreme organları bulunur?,Kökler,Kök,Yapraklar,Çiçekler,D,Çiçekler bitkilerin üreme yapılarını barındırır,Easy
+1941,Science,Organizmaların nasıl büyüyüp geliştiğini inceleyen bilim dalına ne ad verilir?,Büyüme biyolojisi,Gelişim biyolojisi,Embriyoloji,Morfogenez,B,Gelişim biyolojisi organizma gelişimini inceler,Easy
+1942,Science,Karmaşık moleküllerin parçalanmasını açıklayan süreç hangisidir?,Anabolizma,Katabolizma,Metabolizma,Sindirim,B,"Katabolizma, enerji için karmaşık molekülleri parçalar",Easy
+1943,Science,Organizmaların çevresel değişikliklere nasıl uyum sağladığını inceleyen bilim dalına ne ad verilir?,Adaptasyon biyolojisi,Evrimsel biyoloji,Çevre biyolojisi,Ekoloji,B,Evrimsel biyoloji adaptasyon mekanizmalarını inceler,Easy
+1944,Science,Hücresel metabolizma sonucu hangi gaz üretilir?,Oksijen,Karbondioksit,Su buharı,Azot,B,Hücresel metabolizma atık olarak karbondioksit üretir,Easy
+1945,Science,Elektrik kapasitansın temel birimi nedir?,Farad,Henry,Ohm,Siemens,A,Farad elektrik kapasitansını ölçer,Easy
+1946,Science,Hangi tür organizma fotosentez yapabilir?,Bitkiler,Yosun,Bazı bakteriler,Yukarıdakilerin hepsi,D,Birçok organizma türü fotosentez yapabilir,Easy
+1947,Science,Organizmaların fiziksel çevreleriyle nasıl etkileşimde bulunduklarını inceleyen bilim dalına ne ad verilir?,Fiziksel ekoloji,Çevre biyolojisi,Ekofizyoloji,Habitat bilimi,C,"Ekofizyoloji, organizma-çevre etkileşimlerini inceler",Easy
+1948,Science,Hücrelerin bölünüp çoğalmasını sağlayan süreç hangisidir?,Hücre bölünmesi,Mitoz,Sitokinez,Yukarıdakilerin hepsi,D,Tüm bu süreçler hücre çoğalmasında rol oynar,Easy
+1949,Science,Organizmaların şekil ve yapılarını nasıl koruduklarını inceleyen bilim dalı hangisidir?,Morfoloji,Anatomi,Yapısal biyoloji,Form ve işlev,C,Yapısal biyoloji biyolojik yapıyı inceler,Easy
+1950,Science,Fosil yakıtların yanması sırasında hangi gaz açığa çıkar?,Oksijen,Karbondioksit,Kükürt dioksit,Yukarıdakilerin hepsi,D,Fosil yakıtların yanması CO2 ve SO2 dahil olmak üzere çok sayıda gazın salınmasına neden olur,Easy
+1951,Science,Endüktansın temel birimi nedir?,Henry,Farad,Weber,Tesla,A,Henry elektriksel endüktansı ölçer,Easy
+1952,Science,Hücrenin hangi kısmı enerji üretir?,Çekirdek,Mitokondri,Ribozom,Lizozom,B,Mitokondriler ATP üreten enerji santralleridir,Easy
+1953,Science,Organizmaların besinleri kullanılabilir enerjiye dönüştürme sürecine ne ad verilir?,Metabolizma,Sindirim,Solunum,Beslenme,A,Metabolizma tüm enerji dönüşüm süreçlerini kapsar,Medium
+1954,Science,Gazların değişen sıcaklık ve basınç koşullarındaki davranışlarını açıklayan ilke hangisidir?,Boyle Yasası,Charles Yasası,Gay-Lussac Yasası,Kombine Gaz Yasası,D,"Birleşik Gaz Yasası sıcaklık, basınç ve hacim ilişkilerini bütünleştirir",Medium
+1955,Science,Hücresel düzeyde mekanik kuvvetlerin biyolojik süreçleri nasıl etkilediğini inceleyen bilim dalına ne ad verilir?,Mekanobiyoloji,Hücre mekaniği,Biyomekanik,Hücresel biyofizik,A,"Mekanobiyoloji, hücreler üzerindeki mekanik etkileri inceler",Medium
+1956,Science,Hangi süreç DNA şablonundan RNA sentezini tanımlar?,Çoğaltma,Transkripsiyon,Çeviri,Ters transkripsiyon,B,"Transkripsiyon, DNA şablonlarından RNA kopyaları oluşturur",Medium
+1957,Science,"Elektromanyetik radyasyonun frekansının, kaynağın hareketine bağlı olarak değiştiği etkinin adı nedir?",Doppler etkisi,Kırmızıya kayma,Maviye dönüş,Görelilik etkisi,A,"Doppler etkisi, bağıl hareket nedeniyle frekansı değiştirir",Medium
+1958,Science,Sirkadiyen ritimleri düzenlemekten sorumlu hormon hangisidir?,Kortizol,Melatonin,Büyüme hormonu,İnsülin,B,Melatonin uyku-uyanıklık döngülerini düzenler,Medium
+1959,Science,Organizmaların çevresel stres faktörlerine nasıl tepki verdiğini inceleyen bilim dalı hangisidir?,Stres biyolojisi,Çevresel fizyoloji,Ekofizyoloji,Uyum bilimi,C,"Ekofizyoloji, çevreye verilen fizyolojik tepkileri inceler",Medium
+1960,Science,Bakteriler arasında genetik materyalin hareketini tanımlayan süreç hangisidir?,Çekim,Dönüşüm,Transdüksiyon,Yukarıdakilerin hepsi,D,Her üç süreç de bakterilerdeki genetik materyali aktarır,Medium
+1961,Science,Freudyen psikolojide bilinçli ve bilinçdışı arasındaki sınırın adı nedir?,Ego,Süperego,Bilinç öncesi,Eşik,C,"Bilinç öncesi, bilinçli ve bilinçdışı arasında yer alır",Medium
+1962,Science,Süt ürünlerindeki laktozun parçalanmasından sorumlu enzim hangisidir?,Laktaz,Sükraz,Maltaca,Amilaz,A,"Laktaz, laktozu glikoz ve galaktoza parçalar",Medium
+1963,Science,Organizmaların bilgiyi nasıl işlediği ve depoladığını inceleyen bilim dalı hangisidir?,Bilişsel biyoloji,Nöroinformatik,Biyobilgisayar,Bilgi biyolojisi,A,"Bilişsel biyoloji, organizmalarda bilgi işlemeyi inceler",Medium
+1964,Science,Hangi süreç coğrafi izolasyon yoluyla yeni türlerin oluşumunu tanımlar?,Allopatrik türleşme,Simpatrik türleşme,Parapatrik türleşme,Peripatrik türleşme,A,Allopatrik türleşme coğrafi ayrım yoluyla gerçekleşir,Medium
+1965,Science,Elektrik ve manyetik alanlar arasındaki ilişkiyi açıklayan ilkenin adı nedir?,Maxwell denklemleri,Faraday yasası,Ampere yasası,Gauss yasası,A,Maxwell denklemleri elektromanyetik alan ilişkilerini tanımlar,Medium
+1966,Science,Sıvı ve elektrolit dengesinin sağlanmasından hangi organ sistemi sorumludur?,Dolaşım sistemi,Böbrek sistemi,Endokrin sistemi,Solunum sistemi,B,Böbrek sistemi sıvı ve elektrolit homeostazını korur,Medium
+1967,Science,Organizmaların kimyasal sinyalleri nasıl algılayıp tepki verdiğini inceleyen bilim dalı hangisidir?,Kimyasal ekoloji,Kemoresepsiyon,Duyusal biyoloji,Sinyal iletimi,A,Kimyasal ekoloji kimyasal iletişimi inceler,Medium
+1968,Science,Hücrelerin hasarlı DNA'yı onarmasını sağlayan süreç hangisidir?,DNA onarımı,Düzeltme,Eksizyon onarımı,Yukarıdakilerin hepsi,D,DNA onarımı için birden fazla mekanizma mevcuttur,Medium
+1969,Science,Parçacıkların aynı anda birden fazla kuantum durumunda bulunabildiği etkinin adı nedir?,Kuantum süperpozisyonu,Kuantum dolanıklığı,Dalga-parçacık ikiliği,Belirsizlik ilkesi,A,Kuantum süperpozisyonu birden fazla eş zamanlı duruma izin verir,Medium
+1970,Science,Hangi hormon glikoz alımını artırarak kan glikoz düzeylerini düzenler?,İnsülin,Glukagon,Kortizol,Büyüme hormonu,A,"İnsülin, hücresel alımı teşvik ederek kan şekerini düşürür",Medium
+1971,Science,Organizmaların zamanla nasıl yaşlandığını ve bozulduğunu inceleyen bilim dalı hangisidir?,Gerontoloji,Yaşlılık biyolojisi,Yaşlanma araştırması,Uzun ömür bilimi,B,Yaşlılık biyolojisi yaşlanma sürecini inceler,Medium
+1972,Science,Aşağıdaki işlemlerden hangisi atmosferdeki azotun organik bileşiklere dönüşümünü açıklar?,Azot asimilasyonu,Azot fiksasyonu,Nitrifikasyon,Mineralizasyon,B,Azot fiksasyonu N2'yi organik azot bileşiklerine dönüştürür,Medium
+1973,Science,Ökaryotik hücrelerin kökenini açıklayan teorinin adı nedir?,Endosimbiyotik teori,Hücre teorisi,Evrim teorisi,Organel teorisi,A,Endosimbiyotik teori ökaryotik hücre evrimini açıklıyor,Medium
+1974,Science,Hücresel solunumda ATP sentezlenmesinden sorumlu enzim kompleksi hangisidir?,ATP sentaz,Sitokrom oksidaz,NADH dehidrogenaz,Süksinat dehidrogenaz,A,"ATP sentaz, proton gradyanlarını kullanarak ATP üretir",Medium
+1975,Science,Organizmaların iç ortamlarını nasıl koruduklarını inceleyen bilim dalı hangisidir?,Homeostaz,Düzenleyici biyoloji,Fizyolojik düzenleme,İç kontrol,A,"Homeostaz, iç koşulların stabil kalmasını sağlar",Medium
+1976,Science,Antigenler ve antikorlar arasındaki etkileşimi tanımlayan süreç hangisidir?,Bağışıklık tanıma,Antijen-antikor bağlanması,İmmünolojik yanıt,Hümoral bağışıklık,B,Antijen-antikor bağlanması bağışıklık tanımanın temelidir,Medium
+1977,Science,Enzimlerin substrata bağlanması sonucu şekil değiştirmesine ne ad verilir?,Allosterik düzenleme,İndüklenen uyum,Rekabetçi inhibisyon,Kooperatif bağlama,B,"İndüklenen uyum, enzim konformasyonel değişikliklerini tanımlar",Medium
+1978,Science,Çevresel değişikliklere karşı uzun vadeli tepkileri düzenleyen sistem hangisidir?,Sinir sistemi,Endokrin sistemi,Bağışıklık sistemi,Dolaşım sistemi,B,Endokrin sistemi uzun vadeli düzenleme sağlar,Medium
+1979,Science,Genlerin nasıl açılıp kapandığını inceleyen bilim dalına ne ad verilir?,Gen düzenlemesi,Transkripsiyonel kontrol,Epigenetik,İfade kontrolü,C,"Epigenetik, gen ifadesinin düzenlenmesini inceler",Medium
+1980,Science,Hangi süreç hücre bölünmesiyle gamet oluşumunu açıklar?,Mitoz,Mayoz,Gametogenez,Cinsel üreme,C,"Gametogenez, üreme hücrelerinin oluşumudur",Medium
+1981,Science,Enerjinin yaratılamayacağı veya yok edilemeyeceği ilkesinin adı nedir?,Enerjinin korunumu,Termodinamiğin birinci yasası,Enerji tasarrufu,Hem A hem de B,D,Her iki terim de enerji tasarrufunu tanımlar,Medium
+1982,Science,Hücrelerde evrensel enerji birimi olarak görev yapan molekül hangisidir?,ATP,ADP,AMP,NADH,A,ATP (adenozin trifosfat) hücresel enerji para birimidir,Medium
+1983,Science,Organizmaların ışığa nasıl tepki verdiğini inceleyen bilim dalı hangisidir?,Fotobiyoloji,Işık biyolojisi,Optik biyoloji,Fotofizyoloji,A,"Fotobiyoloji, ışığa karşı biyolojik tepkileri inceler",Medium
+1984,Science,Hücre bölünmesi sırasında kromozomların hareketini tanımlayan süreç hangisidir?,Kromozom ayrımı,Mitotik bölünme,Nükleer bölüm,Kromozom ayrımı,A,Kromozom ayrımı kromozomları yavru hücrelere dağıtır,Medium
+1985,Science,Bir sistemin özelliklerinin geçmişine bağlı olduğu etkinin adı nedir?,Histerezis,Yol bağımlılığı,Tarihsel etki,Hafıza etkisi,A,"Histerezis, geçmişe bağlı davranışı tanımlar",Medium
+1986,Science,Zararlı maddelerin detoksundan öncelikli olarak hangi organ sorumludur?,Karaciğer,Böbrek,Akciğer,Deri,A,Karaciğer zararlı bileşikleri metabolize eder ve detoksifiye eder,Medium
+1987,Science,Organizmaların biyolojik süreçlerini nasıl koordine ettiklerini inceleyen bilim dalı hangisidir?,Kronobiyoloji,Biyolojik zamanlama,Sirkadiyen biyoloji,Zamansal biyoloji,A,Kronobiyoloji biyolojik zamanlama mekanizmalarını inceler,Medium
+1988,Science,Hangisi organizmaların vücut sıcaklığını sabit tutmasını sağlayan süreçtir?,Termoregülasyon,Homeostaz,Sıcaklık kontrolü,Metabolik düzenleme,A,Termoregülasyon vücut sıcaklığının sabit kalmasını sağlar,Medium
+1989,Science,Yapı ile fonksiyon arasındaki ilişkiyi tanımlayan ilkenin adı nedir?,Form işlevi takip eder,Yapı-fonksiyon ilişkisi,Morfolojik ilke,Tasarım ilkesi,B,Yapı-fonksiyon ilişkisi biyolojide temeldir,Medium
+1990,Science,Çevresel değişimlere hızlı tepki vermeyi hangi sistem koordine eder?,Endokrin sistemi,Sinir sistemi,Bağışıklık sistemi,Kas sistemi,B,Sinir sistemi hızlı koordinasyon sağlar,Medium
+1991,Science,Organizmaların sesleri nasıl ürettiğini ve algıladığını inceleyen bilim dalı hangisidir?,Biyoakustik,Ses biyolojisi,Akustik ekoloji,İşitsel biyoloji,A,"Biyoakustik, biyolojik ses üretimi ve tespitini inceler",Medium
+1992,Science,Amino asitlerden protein sentezini açıklayan süreç hangisidir?,Çeviri,Transkripsiyon,Protein sentezi,Ribozomal sentez,A,"Çeviri, mRNA şablonlarından proteinleri sentezler",Medium
+1993,Math,Kürenin yüzey alanının formülü nedir?,4πr²,πr²,2πr²,πr³,A,"Bir kürenin yüzey alanı, pi sayısının karesinin 4 katına eşittir",Medium
+1994,Sports,Hangi olimpik sporda yarışmacılar halka üzerinde yarışırlar?,Jimnastik,Güreş,Boks,Halter,A,"Halkalar, erkek artistik jimnastikte kullanılan bir alettir.",Medium
+1995,Technology,XML ne anlama geliyor?,Genişletilebilir İşaretleme Dili,eXtra İşaretleme Dili,eXternal İşaretleme Dili,Yürütülebilir İşaretleme Dili,A,"XML, Genişletilebilir İşaretleme Dili anlamına gelir",Medium
+1996,Animals,Hangi memeli hayvanın kalp atış hızı dakikada 2 atışa kadar düşebilir?,Yunus,Balina,Fok,Tembellik,C,Foklar dalış sırasında kalp atış hızlarını önemli ölçüde yavaşlatabilirler,Medium
+1997,Art,Hangi sanat akımı spontane fırça darbeleri ve saf renklerle karakterize edilmiştir?,İzlenimcilik,Post-Empresyonizm,Fovizm,Ekspresyonizm,C,"Fovizm, cesur, spontane fırça darbeleri ve canlı renkleri vurguluyordu",Medium
+1998,Math,Cos(90°)'nin değeri nedir?,0,1,-1,tanımsız,A,90 derecenin kosinüsü sıfıra eşittir,Medium
+1999,Sports,Tenis filesi yüksekliği kaç cm'dir?,"2,5 fit",3 fit,"3,5 fit",4 ayak,B,Bir tenis ağının merkezi 3 fit yüksekliğindedir,Medium
+2000,Technology,Bilgisayarda RAID ne anlama geliyor?,Bağımsız Disklerin Yedekli Dizisi,Rastgele Erişim Dahili Sürücü,Hızlı Bilgi Diskleri Dizisi,Uzaktan Erişim Arayüz Cihazı,A,"RAID, Bağımsız Disklerin Yedekli Dizisi anlamına gelir",Medium
+2001,Animals,Hangi kuş esaret altında en uzun ömre sahiptir?,Kartal,Papağan,Baykuş,Şahin,B,Bazı papağan türleri esaret altında 100 yıldan fazla yaşayabilir,Medium
+2002,Art,"""Nilüferler"" tablosunu kim çizmiştir?",Van Gogh,Monet,Renoir,Degas,B,"Claude Monet, birden fazla Nilüfer serisi çizdi",Medium
+2003,Math,cos(x) dx'in integrali nedir?,sin(x) + C,-sin(x) + C,cos(x) + C,-cos(x) + C,A,Kosinüs x'in integrali sinüs x artı sabittir,Medium
+2004,Sports,Bir çim hokeyi takımında kaç oyuncu vardır?,9,10,11,12,C,Çim hokeyi takımları kaleci dahil 11 oyuncudan oluşur,Medium
+2005,Technology,SaaS ne anlama geliyor?,Hizmet Olarak Yazılım,Hizmet Olarak Sistem,Hizmet Olarak Sunucu,Hizmet Olarak Güvenlik,A,"SaaS, Hizmet Olarak Yazılım anlamına gelir",Medium
+2006,Animals,Hangi yılan türü en zehirlidir?,Kral kobra,Kara mamba,İç bölge taypanı,Russell'ın engereği,C,İç taypan en güçlü zehre sahiptir,Medium
+2007,Art,Hangi teknik boya tabakasının çizilerek açılmasını içerir?,Sgraffito,Pasto,Cam,Karmakarışık,A,"Sgraffito, boya katmanlarının çizilmesini içerir",Medium
+2008,Math,180'in %45'i kaçtır?,81,90,99,108,A,180'in %45'i 81'e eşittir,Medium
+2009,Sports,Pistte engelli koşunun standart mesafesi nedir?,2000 metre,3000 metre,5000 metre,10000 metre,B,Standart engelli koşu mesafesi 3000 metredir,Medium
+2010,Technology,Web teknolojisinde CDN ne anlama geliyor?,İçerik Dağıtım Ağı,Merkezi Veri Ağı,Bilgisayar Dağıtım Ağı,Bulut Veritabanı Ağı,A,"CDN, İçerik Dağıtım Ağı anlamına gelir",Medium
+2011,Animals,Hangi primat türü alet kullanmasıyla bilinir?,Şempanze,Goril,Orangutan,Yukarıdakilerin hepsi,D,Tüm büyük maymunların alet kullandığı gözlemlendi,Medium
+2012,Art,"""Cehennemin Kapıları""nı kim yontmuştur?",Michelangelo,Rodin,Donatello,Bernini,B,Auguste Rodin Cehennemin Kapıları'nı yonttu,Medium
+2013,Math,İlk 20 doğal sayının toplamı kaçtır?,190,200,210,220,C,Toplam = n(n+1)/2 = 20(21)/2 = 210,Medium
+2014,Sports,Golfte parın iki vuruş altında kalmasına ne ad verilir?,Kartal,Kuş,Albatros,Kondor,A,"Bir kartal, bir delik için par vuruşunun iki vuruş altındadır",Medium
+2015,Technology,IoT ne anlama geliyor?,Nesnelerin İnterneti,Entegre Çevrimiçi Teknoloji,Teknolojinin İnterneti,Dahili İşletim Teknolojisi,A,"IoT, Nesnelerin İnterneti anlamına gelir",Medium
+2016,Animals,Hangi kuş türü en uzun mesafeyi göç ederek geçirir?,Arktik sumru,Kuyruklu çamurcun,Yakut boğazlı sinek kuşu,Kır kırlangıcı,A,Arktik sumruları her yıl Arktik'ten Antarktika'ya göç eder,Medium
+2017,Art,Hangi sanat döneminde görkem ve dramatik etki ön plandadır?,Rönesans,Barok,Neoklasik,Romantik,B,"Barok sanatı, dramatik ihtişamı ve duygusal yoğunluğu vurguladı",Medium
+2018,Math,(2-1) ve (4-3) noktalarından geçen bir doğrunun eğimi nedir?,1,2,3,4,A,Eğim = (y2-y1)/(x2-x1) = (3-1)/(4-2) = 1,Medium
+2019,Sports,Havuzda su topu takımında kaç oyuncu vardır?,6,7,8,9,B,Su topu takımlarında aynı anda havuzda 7 oyuncu bulunur,Medium
+2020,Technology,VR ne anlama geliyor?,Sanal Gerçeklik,Görsel Gerçeklik,Sanal Müdahale,Video Gerçekliği,A,"VR, Sanal Gerçeklik anlamına gelir",Medium
+2021,Animals,Hangi memelinin kürkü en kalındır?,Kutup ayısı,Deniz samuru,Kutup tilkisi,Misk öküzü,B,Deniz samurları memeliler arasında en yoğun kürke sahip olanlardır,Medium
+2022,Art,"""Halkı Yöneten Özgürlük"" tablosunu kim çizmiştir?",Jacques-Louis David,Eugène Delacroix,Theodore Gericault,Jean-Auguste-Dominique Ingres,B,"Eugène Delacroix, Halkı Yöneten Özgürlük tablosunu çizdi",Medium
+2023,Math,8! (8 faktöriyel) kaçtır?,5040,10080,20160,40320,D,8! = 8×7×6×5×4×3×2×1 = 40320,Medium
+2024,Sports,Olimpik halterde maksimum ağırlık kategorisi nedir?,105 kg,109 kg,+109kg,sınırsız,C,En ağır olimpiyat halter kategorisi +109kg'dır,Medium
+2025,Technology,SQL ne anlama geliyor?,Yapılandırılmış Sorgu Dili,Standart Sorgu Dili,Basit Sorgu Dili,Sistem Sorgu Dili,A,"SQL, Yapılandırılmış Sorgu Dili anlamına gelir",Medium
+2026,Animals,Hangi büyük kedinin ısırma kuvveti en güçlüdür?,Aslan,Kaplan,Jaguar,Leopar,C,Jaguarlar büyük kediler arasında en güçlü ısırma gücüne sahiptir,Medium
+2027,Art,"""Düşünen Adam"" hangi müzede sergileniyor?",Louvre,Rodin Müzesi,Metropolitan Müzesi,Britanya Müzesi,B,"Orijinal ""Düşünen Adam"" Paris'teki Rodin Müzesi'ndedir",Medium
+2028,Math,Çapı 10 olan bir dairenin alanı nedir?,25π,50π,75π,100π,A,Alan = πr² = π(5)² = 25π,Medium
+2029,Science,Çok gövdeli sistemlerin kuantum mekaniksel davranışlarını inceleyen bilim dalına ne ad verilir?,Kuantum çok gövdeli teori,İstatistiksel mekanik,Yoğun madde fiziği,Katı hal fiziği,A,Kuantum çok gövdeli teori karmaşık kuantum sistemlerini inceler,Hard
+2030,Science,Aşağıdaki olgulardan hangisi düzensiz sistemlerden kendiliğinden düzenli yapıların oluşmasını açıklar?,Kendi kendini örgütleme,Kendi kendine montaj,Ortaya Çıkış,Faz geçişi,B,"Kendi kendine montaj, bileşenlerin kendiliğinden düzenlenmesini içerir",Hard
+2031,Science,Bazı kuantum mekaniksel ölçümlerin neden uyumsuz olduğunu açıklayan ilkenin adı nedir?,Heisenberg belirsizlik ilkesi,Pauli dışlama ilkesi,Tamamlayıcılık ilkesi,Yazışma ilkesi,C,Tamamlayıcılık ilkesi uyumsuz kuantum ölçümlerini tanımlar,Hard
+2032,Science,Elektromanyetik indüksiyon yoluyla mekanik enerjinin elektrik enerjisine dönüşümünü açıklayan süreç hangisidir?,Elektromotor kuvveti,Elektromanyetik indüksiyon,Faraday yasası,Lenz yasası,C,Faraday yasası mekanik enerjinin elektrik enerjisine dönüşümünü açıklar,Hard
+2033,Science,Biyolojik sistemlerin bilgiyi nasıl işlediği ve ilettiğini inceleyen bilim dalı hangisidir?,Sistem biyolojisi,Hesaplamalı biyoloji,Biyoenformatik,Sibernetik,A,"Sistem biyolojisi, biyolojik ağlarda bilgi işlemeyi inceler",Hard
+2034,Science,Işık dalga boyunun kütle çekim alanı nedeniyle değişmesini açıklayan etki hangisidir?,Yerçekimsel kırmızıya kayma,Doppler kayması,Compton saçılması,Rayleigh saçılması,A,"Yerçekimsel kırmızıya kayma, güçlü yerçekimi alanlarında meydana gelir",Hard
+2035,Science,Ribozomların haberci RNA kullanarak protein sentezlediği sürecin adı nedir?,Çeviri,Transkripsiyon,Transdüksiyon,Dönüşüm,A,"Çeviri, mRNA şablonlarından proteinleri sentezler",Hard
+2036,Science,İzole bir sistemin entropisinin her zaman artacağını belirten ilke hangisidir?,Termodinamiğin birinci yasası,Termodinamiğin ikinci yasası,Termodinamiğin üçüncü yasası,Termodinamiğin sıfırıncı yasası,B,"İkinci yasa, izole sistemlerdeki entropi artışını açıklar",Hard
+2037,Science,Makromoleküllerin yapısı ile işlevi arasındaki ilişkiyi inceleyen bilim dalına ne ad verilir?,Yapısal biyoloji,Moleküler biyofizik,Protein kimyası,Makromoleküler bilim,A,"Yapısal biyoloji, büyük moleküllerde yapıyı işlevle ilişkilendirir",Hard
+2038,Science,"Hangi olgu, plazma halindeki parçacıkların kolektif davranışını tanımlar?",Plazma fiziği,Manyetohidrodinamik,Toplu salınımlar,Plazma dinamikleri,B,"Manyetohidrodinamik, plazma kolektif davranışını inceler",Hard
+2039,Science,Vakumun kendisinin parçacık çiftleri yaratabildiği etkinin adı nedir?,Vakum polarizasyonu,Casimir etkisi,Hawking radyasyonu,Sanal parçacık oluşturma,A,Vakum polarizasyonu parçacık-antiparçacık çiftleri oluşturur,Hard
+2040,Science,DNA'nın kimyasal modifikasyonları yoluyla gen ifadesinin düzenlenmesini açıklayan süreç hangisidir?,DNA metilasyonu,Histon modifikasyonu,Epigenetik düzenleme,Kromatin yeniden şekillenmesi,C,"Epigenetik düzenleme, DNA dizisinde değişiklik olmadan gen ifadesini kontrol eder",Hard
+2041,Science,Sinir ağlarında bilginin nasıl kodlandığı ve işlendiğini inceleyen bilim dalına ne ad verilir?,Hesaplamalı sinirbilim,Nöroinformatik,Sinirsel kodlama,Beyin hesaplaması,C,"Sinir kodlama, sinir sistemlerindeki bilgi temsilini inceler",Hard
+2042,Science,Fiziksel sistemlerde simetrinin kendiliğinden kırılmasını açıklayan olgu hangisidir?,Simetri kırılması,Faz geçişi,Kritik fenomenler,Sipariş parametresi,A,"Simetri kırılması, simetrik olanlardan düzenli durumlara yol açar",Hard
+2043,Science,Kuantum sistemlerinde fermiyonların davranışını tanımlayan ilkenin adı nedir?,Fermi-Dirac istatistikleri,Pauli dışlama ilkesi,Kuantum istatistikleri,Antisimetrikleştirme ilkesi,B,Pauli dışlama ilkesi fermiyon davranışını yönetir,Hard
+2044,Science,Hangi süreç reaksiyon ve difüzyon yoluyla karmaşık desenlerin oluşumunu tanımlar?,Turing desenleri,Tepkime-difüzyon,Desen oluşumu,Morfogenez,B,Tepkime-difüzyon sistemleri karmaşık mekansal desenler oluşturur,Hard
+2045,Science,Kuantum sistemlerinin nasıl uyumsuzlaşıp klasik hale geldiğini inceleyen bilim dalı hangisidir?,Kuantum dekoheransı,Kuantumdan klasiğe geçiş,Dekoherans teorisi,Kuantum ölçümü,C,Dekoherans teorisi kuantumdan klasik geçişleri açıklıyor,Hard
+2046,Science,Gözlemcinin kuantum mekanik sistemler üzerindeki etkisini açıklayan etki hangisidir?,Gözlemci etkisi,Ölçüm problemi,Dalga fonksiyonu çöküşü,Kuantum ölçümü,A,"Gözlemci etkisi, ölçümün kuantum sistemlerini nasıl etkilediğini açıklar",Hard
+2047,Science,Proteinlerin fonksiyonel konformasyonlarına katlanma sürecinin adı nedir?,Protein katlanması,Konformasyonel değişim,Yapısal montaj,Moleküler tanıma,A,Protein katlanması işlevsel üç boyutlu yapıyı belirler,Hard
+2048,Science,Süperiletkenlerdeki elektronların kolektif davranışını açıklayan olgu hangisidir?,Cooper çiftleri,BCS teorisi,Süperiletkenlik,Kuantum tutarlılığı,B,BCS teorisi süperiletkenliği Cooper çifti oluşumu yoluyla açıklar,Hard
+2049,Science,Karmaşık sistemlerin nasıl ortaya çıkan özellikler gösterdiğini inceleyen bilim dalı hangisidir?,Karmaşıklık bilimi,Ortaya çıkış teorisi,Sistem teorisi,Doğrusal olmayan dinamikler,A,"Karmaşıklık bilimi, karmaşık sistemlerdeki ortaya çıkan özellikleri inceler",Hard
+2050,Science,Hangi süreç elektromanyetik radyasyon yoluyla enerjinin transferini açıklar?,Radyatif transfer,Elektromanyetik yayılım,Foton taşınması,Radyasyon taşınması,A,"Radyasyon transferi, elektromanyetik dalgalar tarafından enerji taşınmasını tanımlar",Hard
+2051,Science,Sistemlerin minimum enerji konfigürasyonunu tanımlayan ilkenin adı nedir?,Varyasyonel prensip,Enerji minimizasyonu,Temel durum ilkesi,Kararlılık ilkesi,A,Varyasyonel ilke minimum enerji konfigürasyonlarını bulur,Hard
+2052,Science,Kuantum sistemleri ile çevreleri arasındaki etkileşimi açıklayan olgu hangisidir?,Kuantum dekoheransı,Çevresel bağlantı,Sistem-banyo etkileşimi,Kuantum dağılımı,C,Sistem-banyo etkileşimi kuantum-çevre bağlantısını tanımlar,Hard
+2053,Science,Biyolojik sistemlerin kolektif zekayı nasıl sergilediğini inceleyen bilim dalına ne ad verilir?,Sürü zekası,Toplu davranış,Ortaya çıkan biliş,Dağıtılmış zeka,A,Sürü zekası kolektif problem çözmeyi inceler,Hard
+2054,Science,Moleküler sistemlerin kendi kendini kopyalamasını tanımlayan süreç hangisidir?,Otokataliz,Kendi kendini yeniden üretme,Moleküler replikasyon,Kimyasal evrim,A,"Otokataliz, kendi kendini kopyalayan kimyasal sistemleri mümkün kılar",Hard
+2055,Science,Kuantum dalgalanmalarının makroskobik sistemleri etkilediği etkinin adı nedir?,Kuantum gürültüsü,Sıfır noktası dalgalanmaları,Vakum dalgalanmaları,Kuantum etkileri,C,Vakum dalgalanmalarının makroskobik sonuçları olabilir,Hard
+2056,Science,Bilgi ile termodinamik arasındaki ilişkiyi açıklayan ilke hangisidir?,Landauer ilkesi,Maxwell'in şeytanı,Bilgi termodinamiği,Entropi ilkesi,A,"Landauer ilkesi, bilginin silinmesini enerji kaybına bağlıyor",Hard
+2057,Science,Ağların zaman içinde nasıl evrimleştiğini ve uyum sağladığını inceleyen bilim dalı hangisidir?,Ağ dinamikleri,Karmaşık ağlar,Uyarlanabilir ağlar,Ağ evrimi,C,"Uyarlanabilir ağlar, gelişen ağ yapılarını inceler",Hard
+2058,Science,Kuantum çok-cisimli sistemlerdeki faz geçişlerini tanımlayan olgu hangisidir?,Kuantum faz geçişi,Kritik fenomenler,Kuantum kritikliği,Faz dönüşümü,A,Kuantum faz geçişleri mutlak sıfır sıcaklığında meydana gelir,Hard
+2059,Math,dy/dx = y diferansiyel denkleminin çözümü nedir?,y = e^x + C,y = Ce^x,y = x + C,y = Cx,B,dy/dx = y denkleminin çözümü y = Ce^x'tir.,Hard
+2060,Sports,Snooker'da mümkün olan en yüksek kırılma sayısı nedir?,144,147,150,155,B,Snooker'da maksimum kırılma noktası 147 puandır,Hard
+2061,Technology,Programlamada LISP ne anlama gelir?,Liste İşleme,Akıllı Sistem Programlama Dili,Mantık ve Çıkarım Sistemi Programlama,Doğrusal Komut Seti İşlemcisi,A,"LISP, Liste İşleme anlamına gelir",Hard
+2062,Animals,Hangi memelinin yankı konumlama sistemi en karmaşıktır?,Yunus,Yarasa,Balina,Yunus balığı,A,Yunuslar en gelişmiş yankı konumlama yeteneklerine sahiptir,Hard
+2063,Art,"""Las Meninas"" tablosunu kim çizmiştir?",El Greco,Velázquez,Goya,Murillo,B,"Diego Velázquez, 1656'da Las Meninas'ı resmetti",Hard
+2064,Math,e^x'in Maclaurin serisi açılımı nedir?,1 + x + x²/2! + x³/3! + ...,x + x²/2 + x³/3 + ...,1 + x + x² + x³ + ...,x + x³/3! + x⁵/5! + ...,A,e^x'in Maclaurin serisi üstel seridir,Hard
+2065,Sports,Thomas Kupası hangi spor dalında verilir?,Tenis,Badminton,Masa tenisi,Kabak,B,Thomas Kupası erkekler badmintonunda verilir,Hard
+2066,Technology,Web servislerinde SOAP ne anlama geliyor?,Basit Nesne Erişim Protokolü,Standart Nesne Erişim Protokolü,Güvenli Nesne Erişim Protokolü,Sistem Nesne Erişim Protokolü,A,"SOAP, Basit Nesne Erişim Protokolü anlamına gelir",Hard
+2067,Animals,Vücut ağırlığına göre kanat açıklığı en uzun olan kuş hangisidir?,Gezginci albatros,And kondoru,Trompetçi kuğu,Büyük beyaz pelikan,A,"Gezgin albatros, ağırlık oranına göre en büyük kanat açıklığına sahip kuştur",Hard
+2068,Art,Jackson Pollock hangi sanat akımını temsil ediyordu?,Soyut Ekspresyonizm,Pop art,Minimalizm,Kavramsal Sanat,A,"Jackson Pollock, Soyut Ekspresyonizm'in kilit isimlerinden biriydi",Hard
+2069,Math,x⁵'nin dördüncü türevi nedir?,120x,60x²,20x³,5x⁴,A,x⁵'nin dördüncü türevi 120x'tir,Hard
+2070,Sports,Satranç tahtasının standart boyutu nedir?,6x6,7x7,8x8,9x9,C,Bir satranç tahtasında 8 kareye 8 kare vardır,Hard
+2071,Technology,WSDL ne anlama geliyor?,Web Hizmetleri Açıklama Dili,Web Sistemi Açıklama Dili,Web Hizmeti Tanımlama Dili,Web Yazılım Açıklama Dili,A,"WSDL, Web Hizmetleri Açıklama Dili anlamına gelir",Hard
+2072,Animals,Hangi yılan türü en hızlı saldırı yeteneğine sahiptir?,Gaboon engereği,Kara mamba,Şişen engerek,Testere pullu engerek,B,Kara mamba en hızlı vuruş hızına sahiptir,Hard
+2073,Art,"""Dünyevi Zevkler Bahçesi"" tablosunu kim çizmiştir?",Hieronymus Bosch,Jan van Eyck,Rogier van der Weyden,Hans Memling,A,"Hieronymus Bosch, Dünyevi Zevkler Bahçesi'ni resmetti",Hard
+2074,Math,x 0'a yaklaşırken (1 - cos(x))/x²'nin limiti nedir?,0,1/2,1,∞,B,L'Hôpital kuralına göre limit 1/2'ye eşittir,Hard
+2075,Sports,Standart bir dart tahtasının çapı nedir?,"17,77 inç",18 inç,"18,5 inç",19 inç,A,"Standart bir dart tahtasının çapı 17,77 inçtir",Hard
+2076,Technology,CORBA'nın açılımı nedir?,Ortak Nesne İstek Aracısı Mimarisi,Bilgisayar Nesnesi İstek Aracısı Mimarisi,Merkezi Nesne İstek Aracısı Mimarisi,Kurumsal Nesne İstek Aracısı Mimarisi,A,"CORBA, Ortak Nesne İstek Broker Mimarisi anlamına gelir",Hard
+2077,Animals,Vücut büyüklüğüne göre en büyük beyne sahip primat türü hangisidir?,İnsan,Şempanze,Orangutan,Bonobo,A,İnsanlar primatlar arasında en büyük beyin-vücut oranına sahip canlılardır,Hard
+2078,Art,"""Calais Burjuvaları"" heykelini kim yaptı?",Auguste Rodin,Antoine Bourdelle,Camille Claudel,Constantin Meunier,A,"Auguste Rodin, Calais Burjuvaları'nı heykelleştirdi",Hard
+2079,Math,Σ(x^n/n!) serisinin yakınsaklık yarıçapı nedir?,0,1,e,∞,D,Σ(x^n/n!) serisi tüm x (sonsuz yarıçap) için yakınsar,Hard
+2080,Sports,Standart bir bowling pininin ağırlığı ne kadardır?,"3,5 pound","3,6 pound","3,7 pound","3,8 pound",B,Standart bir bowling pimi 3 pound 6 ons ile 3 pound 10 ons arasında ağırlığa sahiptir,Hard
+2081,Technology,Yazılım mühendisliğinde UML ne anlama geliyor?,Birleşik Modelleme Dili,Evrensel Modelleme Dili,Tekdüze Modelleme Dili,Benzersiz Modelleme Dili,A,"UML, Birleşik Modelleme Dili anlamına gelir",Hard
+2082,Animals,Hangi balina türü en derin dalış rekoruna sahiptir?,İspermeçet balinası,Gagalı balina,Mavi balina,Gri balina,B,Cuvier'in gagalı balinası en derin dalış rekorunu elinde tutuyor,Hard
+2083,Art,"""Açık Pencerede Mektup Okuyan Kız"" tablosunu kim çizmiştir?",Rembrandt,Vermeer,Ter Borch,de Hooch,B,Johannes Vermeer bu samimi ev sahnesini resmetti,Hard
+2084,Math,ln(sin(x))'in türevi nedir?,cos(x)/sin(x),karyola(x),tan(x),sin(x)/cos(x),B,ln(sin(x))'in türevi cot(x)'tir,Hard
+2085,Sports,Kriket sahasının düzenleme genişliği nedir?,8 fit,9 fit,10 fit,12 fit,C,Bir kriket sahası 10 feet genişliğindedir,Hard
+2086,Technology,XHTML ne anlama geliyor?,Genişletilmiş Hiper Metin İşaretleme Dili,Genişletilebilir Hiper Metin İşaretleme Dili,eXtra HyperText İşaretleme Dili,Yürütülebilir Hiper Metin İşaretleme Dili,B,"XHTML, Genişletilebilir Hiper Metin İşaretleme Dili anlamına gelir",Hard
+2087,Animals,Hangi balık türleri en uzun yaşar?,Köpek balığı,Mersin balığı,Grönland köpekbalığı,Coelacanth,C,Grönland köpekbalıkları 400 yıldan fazla yaşayabilir,Hard
+2088,Art,"""Elçiler"" tablosunu kim çizmiştir?",Genç Hans Holbein,Albrecht Dürer,Lucas Cranach,Hans Memling,A,"Hans Holbein Genç, Elçiler tablosunu çizdi",Hard
+2089,Math,[[2 1] [0 2]] matrisinin özdeğeri nedir?,1 ve 2,2 (çift),1 (çift),0 ve 2,B,Matrisin öz değeri 2'dir ve cebirsel çokluğu 2'dir,Hard
+2090,Science,Kuantum parçacıklarının mesafeye bakılmaksızın birbirleriyle ilişkili hale geldiği olgu nedir?,Kuantum dolanıklığı,Kuantum süperpozisyonu,Dalga-parçacık ikiliği,Kuantum tünelleme,A,Kuantum dolanıklığı uzak parçacıklar arasında anında korelasyonlar yaratıyor,Easy
+2091,Science,Karbonat sirke ile tepkimeye girdiğinde hangi gaz açığa çıkar?,Oksijen,Karbondioksit,Hidrojen,Azot,B,Bu asit-baz reaksiyonu karbondioksit gazı üretir,Easy
+2092,Science,Organizmaların aşırı ortamlara nasıl uyum sağladığını inceleyen bilim dalına ne ad verilir?,Ekstremofil biyoloji,Astrobiyoloji,Çevre biyolojisi,Uyum bilimi,A,Ekstremofil biyoloji zorlu koşullarda yaşamı inceliyor,Easy
+2093,Science,Bitki hücresinin hangi kısmı suyu depolar ve turgor basıncını korur?,Çekirdek,Vakuol,Kloroplast,Hücre duvarı,B,Bitki vakuolleri suyu depolar ve hücre basıncını korur,Easy
+2094,Science,Işık enerjisinin kimyasal enerjiye dönüşmesine ne ad verilir?,Fotosentez,Kemosentez,Fotofosforilasyon,Hafif hasat,A,"Fotosentez, bitkilerde ışığı kimyasal enerjiye dönüştürür",Easy
+2095,Science,Anaerobik fermantasyon sırasında hangi gaz üretilir?,Oksijen,Karbondioksit,Metan,Azot,B,Anaerobik fermantasyon genellikle karbondioksit üretir,Easy
+2096,Science,Evrimsel değişimin temel birimi nedir?,Bireysel,Nüfus,Türler,Gen,D,Genler evrimsel değişimin temel birimleridir,Easy
+2097,Science,Hangi süreç organizmaların çevresel değişiklikleri tespit etmesini sağlar?,Homeostaz,Cevap,Duygu,Uyum,C,"Duyu, çevresel uyaranların algılanmasını sağlar",Easy
+2098,Science,Canlı sistemlerin enerjiyi nasıl kullandığını inceleyen bilim dalına ne ad verilir?,Biyoenerji,Termodinamik,Enerji biyolojisi,Metabolomik,A,"Biyoenerji, canlı sistemlerdeki enerji dönüşümünü inceler",Easy
+2099,Science,Hangi üreme türü genetik çeşitliliği yaratır?,Cinsel,Aseksüel,Hücrenin ikiye bölünerek üremesi,Vejetatif,A,"Cinsel üreme, iki ebeveynden gelen genetik materyali birleştirir",Easy
+2100,Science,Güneş ışığını kullanarak kendi besinini üreten organizmalara ne ad verilir?,Ototroflar,Heterotroflar,Üreticiler,Fototroflar,A,Ototroflar bitkiler gibi kendi kendine beslenen organizmalardır,Easy
+2101,Science,Aerobik hücresel solunum için hangi gaz gereklidir?,Karbondioksit,Oksijen,Azot,Hidrojen,B,Oksijen aerobik enerji üretimi için gereklidir,Easy
+2102,Science,Organizmaların fiziksel çevreleriyle nasıl etkileşim kurduğunu inceleyen bilim dalı hangisidir?,Ekoloji,Çevre bilimi,Habitat biyolojisi,Ekosistem bilimi,A,"Ekoloji, organizma-çevre ilişkilerini inceler",Easy
+2103,Science,Bitkilerde suyun hareketini açıklayan süreç hangisidir?,Terleme,Fotosentez,Emilim,Taşımacılık,A,"Terleme, suyu köklerden yapraklara taşır",Easy
+2104,Science,Özelliklerin nasıl kalıtıldığını inceleyen bilim dalına ne ad verilir?,Kalıtım,Genetik,Miras,Aile çalışmaları,B,"Genetik, özelliklerin kalıtımını inceler",Easy
+2105,Science,Meyveleri olgunlaştırmak için genellikle hangi gaz kullanılır?,Etilen,Metan,Karbondioksit,Oksijen,A,Etilen gazı meyve olgunlaşmasını tetikliyor,Easy
+2106,Science,Bir ekosistemin temel işlevsel birimi nedir?,Organizma,Nüfus,Toplum,Doğal ortam,A,Bireysel organizmalar temel işlevsel birimlerdir,Easy
+2107,Science,"Hangi süreç, maddelerin enerjiye ihtiyaç duymadan hücre zarlarından geçmesini sağlar?",Pasif taşıma,Aktif taşıma,Endositoz,Ekzositoz,A,"Pasif taşıma, enerji olmadan malzemeleri eğimler boyunca hareket ettirir",Easy
+2108,Science,Organizmaların embriyodan nasıl geliştiğini inceleyen bilim dalına ne ad verilir?,Embriyoloji,Gelişim biyolojisi,Büyüme biyolojisi,Morfogenez,B,Gelişim biyolojisi organizma gelişimini inceler,Easy
+2109,Science,Bitkisel atıkların ayrışması sonucu hangi gaz oluşur?,Oksijen,Metan,Karbondioksit,Azot,B,Organik maddelerin ayrışması metan üretir,Easy
+2110,Science,Ölü maddeyi parçalayan organizmalara ne ad verilir?,Ayrıştırıcılar,Detrivorlar,Saprofitler,Yukarıdakilerin hepsi,D,Tüm bu terimler ölü maddeyi parçalayan organizmaları tanımlar,Easy
+2111,Science,Hücrelerin şekillerini korumasını sağlayan süreç hangisidir?,Turgor basıncı,Hücre duvarı desteği,Hücre iskeleti,Yukarıdakilerin hepsi,D,Hücre şeklini koruyan birden fazla mekanizma vardır,Easy
+2112,Science,Organizmaların mevsimsel değişikliklere nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Fenoloji,Mevsimsel biyoloji,Kronobiyoloji,Sirkadiyen biyoloji,A,Fenoloji mevsimsel biyolojik olayları inceler,Easy
+2113,Science,Bitkilerde fotosentez için gerekli olan gaz hangisidir?,Oksijen,Karbondioksit,Azot,Su buharı,B,Bitkiler fotosentez için karbondioksit kullanır,Easy
+2114,Science,Organizmaların nasıl hareket ettiğini inceleyen bilim dalına ne ad verilir?,Hareket,Biyomekanik,Hareket bilimi,Motor biyolojisi,A,"Hareket, organizmaların nasıl hareket ettiğini inceleyen bilim dalıdır",Easy
+2115,Science,Yeni hücrelerin oluşumunu hangi süreç tanımlar?,Hücre bölünmesi,Mitoz,Sitokinez,Yukarıdakilerin hepsi,D,Tüm bu süreçler yeni hücrelerin oluşturulmasında rol oynar,Easy
+2116,Science,Organizmaların besinleri nasıl elde ettiklerini ve işlediklerini inceleyen bilim dalına ne ad verilir?,Beslenme,Sindirim biyolojisi,Metabolik bilim,Beslenme biyolojisi,A,Beslenme çalışmaları besin edinimi ve işlenmesi,Easy
+2117,Science,Hücresel solunum sırasında hangi gaz açığa çıkar?,Oksijen,Karbondioksit,Su buharı,Azot,B,Hücresel solunum karbondioksiti atık olarak serbest bırakır,Easy
+2118,Science,Kendi besinini üretebilen canlılara ne ad verilir?,Üreticiler,Ototroflar,Birincil üreticiler,Yukarıdakilerin hepsi,D,Tüm bu terimler kendi kendini besleyen organizmaları tanımlar,Easy
+2119,Science,Hangi süreç canlıların eş olmadan üremesini sağlar?,Cinsel üreme,Eşeysiz üreme,Hücrenin ikiye bölünerek üremesi,Tomurcuklanan,B,Eşeysiz üreme bir eş gerektirmez,Easy
+2120,Science,Organizmaların vücut fonksiyonlarını nasıl koordine ettiklerini inceleyen bilim dalına ne ad verilir?,Fizyoloji,Koordinasyon biyolojisi,Düzenleyici biyoloji,Kontrol sistemleri,A,"Fizyoloji, vücut fonksiyonlarının nasıl koordine edildiğini inceler",Easy
+2121,Science,Venüs'ün atmosferinde yaygın olarak bulunan gaz hangisidir?,Oksijen,Karbondioksit,Azot,Metan,B,Venüs'ün yoğun bir karbondioksit atmosferi var,Easy
+2122,Science,Organizmaların nasıl büyüdüğünü inceleyen bilim dalına ne ad verilir?,Büyüme biyolojisi,Gelişim biyolojisi,Boyut biyolojisi,Morfoloji,A,"Büyüme biyolojisi çalışmaları, boyut ve kütledeki artışları inceler",Easy
+2123,Science,Azot gazının amonyağa dönüşümünü açıklayan süreç hangisidir?,Azot fiksasyonu,Nitrifikasyon,Denitrifikasyon,Amonifikasyon,A,"Azot fiksasyonu, atmosferik azotu amonyağa dönüştürür",Easy
+2124,Science,Organizmaların ışığı nasıl algıladığını ve ışığa nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Fotobiyoloji,Işık biyolojisi,Görme bilimi,Optik biyoloji,A,"Fotobiyoloji, ışığa karşı biyolojik tepkileri inceler",Easy
+2125,Science,Bitkiler gün içerisinde hangi gazı üretir?,Karbondioksit,Oksijen,Su buharı,Azot,B,Bitkiler fotosentez sırasında oksijen üretirler,Easy
+2126,Science,Hem bitki hem de hayvan yiyen organizmalara ne ad verilir?,Hepçiller,Etçiller,Otçullar,Karma besleyiciler,A,Hepçiller hem bitkisel hem de hayvansal maddeleri tüketirler,Easy
+2127,Science,Hangi süreç organizmaların istikrarlı iç koşullarını korumasını sağlar?,Homeostaz,Düzenleme,Denge,Denge,A,Homeostaz iç dengeyi korur,Easy
+2128,Science,Canlıların ses üretme biçimlerini inceleyen bilim dalına ne ad verilir?,Biyoakustik,Ses biyolojisi,Ses biyolojisi,Akustik ekoloji,A,"Biyoakustik, biyolojik ses üretimini inceler",Easy
+2129,Science,Protein sentezi için hangi gaz gereklidir?,Azot,Karbon,Oksijen,Hidrojen,A,Amino asitler ve proteinler için azot gereklidir,Easy
+2130,Science,Organizmaların nasıl yaşlandığını inceleyen bilim dalına ne ad verilir?,Gerontoloji,Yaşlanma biyolojisi,Yaşlılık,Yaşam süresi biyolojisi,C,"Yaşlılık, yaşlanma sürecini inceler",Easy
+2131,Science,Glikozun enerjiye dönüştürülmesi sürecini hangi süreç tanımlar?,Glikoliz,Hücresel solunum,Metabolizma,Enerji üretimi,B,Hücresel solunum glikozu enerji için parçalar,Easy
+2132,Science,Organizmaların gruplar halinde nasıl etkileşimde bulunduğunu inceleyen bilim dalına ne ad verilir?,Sosyal biyoloji,Grup dinamikleri,Davranışsal ekoloji,Popülasyon biyolojisi,A,Sosyal biyoloji çalışmaları grup etkileşimlerini inceler,Easy
+2133,Science,Fotosentez sırasında atık ürün olarak hangi gaz açığa çıkar?,Karbondioksit,Oksijen,Su buharı,Azot,B,"Oksijen, fotosentezin bir yan ürünü olarak salınır",Easy
+2134,Science,Başka organizmaların içinde veya üzerinde yaşayan organizmalara ne ad verilir?,Parazitler,Simbiyontlar,Ortak içkiler,Yukarıdakilerin hepsi,D,Tüm bunlar başkalarıyla yaşayan organizmaları tanımlar,Easy
+2135,Science,Hangi süreç organizmaların dokunmaya tepki vermesini sağlar?,Mekanoreseptör,Tigmotropizm,Dokunma tepkisi,Dokunsal algılama,B,"Tigmotropizm, mekanik uyaranlara karşı büyüme tepkisidir",Easy
+2136,Science,Organizmaların nasıl hareket ettiğini inceleyen bilim dalına ne ad verilir?,Navigasyon biyolojisi,Oryantasyon bilimi,Mekansal biyoloji,Hareket ekolojisi,A,"Navigasyon biyolojisi, organizmaların yollarını nasıl bulduklarını inceler",Easy
+2137,Science,Volkanik faaliyetler sonucu hangi gaz oluşur?,Karbondioksit,Kükürt dioksit,Su buharı,Yukarıdakilerin hepsi,D,Volkanlar CO2 ve SO2 dahil olmak üzere çok sayıda gaz salar,Easy
+2138,Science,Organizmaların nasıl iletişim kurduğunu inceleyen bilim dalı hangisidir?,İletişim biyolojisi,Sinyalizasyon,Biyoiletişim,Bilgi aktarımı,C,"Biyoiletişim, biyolojik iletişimi inceler",Easy
+2139,Science,Gametlerin oluşumunu açıklayan süreç hangisidir?,Gametogenez,Mayoz,Cinsel üreme,Üreme biyolojisi,A,"Gametogenez, üreme hücrelerinin oluşumudur",Easy
+2140,Science,Canlıların kendilerini nasıl savunduklarını inceleyen bilim dalına ne ad verilir?,Savunma biyolojisi,Koruma mekanizmaları,Hayatta kalma stratejileri,Yırtıcı hayvanlara karşı davranış,A,Savunma biyolojisi koruyucu mekanizmaları inceler,Easy
+2141,Science,Deniz bitkileri fotosentezde genellikle hangi gazı kullanır?,Oksijen,Karbondioksit,Çözünmüş CO2,Su buharı,C,Deniz bitkileri çözünmüş karbondioksiti kullanır,Easy
+2142,Science,Ölü organik maddelerle beslenen organizmalara ne ad verilir?,Saprofitler,Ayrıştırıcılar,Detritivorlar,Yukarıdakilerin hepsi,D,Tüm bu terimler ölü madde tüketen organizmaları tanımlar,Easy
+2143,Science,Hangi süreç organizmaların hasarlı dokuları onarmasını sağlar?,Yenilenme,İyileştirme,Doku onarımı,İyileşmek,A,"Rejenerasyon, doku onarımının biyolojik sürecidir",Easy
+2144,Science,Organizmaların bilgiyi nasıl depoladığını ve kullandığını inceleyen bilim dalına ne ad verilir?,Bilgi biyolojisi,Veri biyolojisi,Biyolojik bilişim,Biyoenformatik,A,Bilgi biyolojisi biyolojik bilgi işlemeyi inceler,Easy
+2145,Science,Çoğu organizmada hücresel enerji üretimi için gerekli olan gaz hangisidir?,Oksijen,Karbondioksit,Azot,Hidrojen,A,Çoğu organizma hücresel solunum için oksijene ihtiyaç duyar,Easy
+2146,Science,Organizmaların kaynaklar için nasıl rekabet ettiğini inceleyen bilim dalı hangisidir?,Rekabet biyolojisi,Kaynak ekolojisi,Rekabetçi etkileşimler,Hayatta kalma biyolojisi,A,Rekabet biyoloji çalışmaları kaynak yarışması,Easy
+2147,Science,Aşağıdaki işlemlerden hangisi atmosferdeki azotun organik formlara dönüşümünü açıklar?,Azot asimilasyonu,Azot fiksasyonu,Biyolojik azot dönüşümü,Organik azot sentezi,B,"Azot fiksasyonu, atmosferik N2'yi organik bileşiklere dönüştürür",Easy
+2148,Science,Organizmaların çevresel strese nasıl dayandığını inceleyen bilim dalına ne ad verilir?,Stres biyolojisi,Tolerans biyolojisi,Çevresel fizyoloji,Stres fizyolojisi,D,"Stres fizyolojisi, çevresel zorluklara verilen tepkileri inceler",Easy
+2149,Science,Oksijen yokluğunda kas kasılması sırasında hangi gaz üretilir?,Karbondioksit,Laktik asit buharı,Oksijen,Azot,A,Anaerobik kas aktivitesi karbondioksit üretir,Easy
+2150,Animals,Hangi kuş türü en yüksek irtifada uçabilir?,Altın kartal,Bar başlı kaz,Rüppell'in akbabası,Alp dağ kargası,C,Rüppell akbabası 37.000 fitin üzerinde kaydedildi,Medium
+2151,Art,"""Saman Arabası"" tablosunu kim çizdi?",Turner,Polis memuru,Gainsborough,Reynolds,B,"John Constable, 1821'de Hay Wain'i resmetti",Medium
+2152,Math,tan(x)'in türevi nedir?,sn²(x),cos²(x),sin(x)/cos(x),karyola(x),A,Tanjant x'in türevi sekant kare x'tir,Medium
+2153,Sports,Hentbol sahasının düzenlemeye uygun büyüklüğü nedir?,40m x 20m,42m x 22m,44m x 24m,38m x 18m,A,Bir hentbol sahasının ölçüleri 40 metreye 20 metredir,Medium
+2154,Technology,RFID ne anlama geliyor?,Radyo Frekansı Tanımlama,Uzak Dosya Tanımlama,Hızlı Frekans Arayüz Cihazı,Radyo Alanı Tanımlaması,A,"RFID, Radyo Frekansı Tanımlaması anlamına gelir",Medium
+2155,Animals,Hangi memelinin metabolizma hızı en yavaştır?,Tembellik,Koala,Dev panda,Kış uykusuna yatan ayı,A,Tembel hayvanların metabolizma hızları son derece yavaştır,Medium
+2156,Art,Georges Seurat hangi sanat akımını kurdu?,Puantilizm,İzlenimcilik,Post-Empresyonizm,Neo-Empresyonizm,D,"Georges Seurat, Neo-Empresyonizm'i (Puantilizm dahil) kurdu",Medium
+2157,Math,Doğrusal bir denklemin eğim-kesişim formu nedir?,ax + by = c,y = mx + b,x = ay + b,y = ax² + bx + c,B,y = mx + b eğim-kesişim biçimidir,Medium
+2158,Sports,Bir lakros takımında sahada kaç oyuncu bulunur?,8,9,10,12,C,Lacrosse takımlarının sahada 10 oyuncusu vardır,Medium
+2159,Technology,CAD ne anlama geliyor?,Bilgisayar Destekli Tasarım,Bilgisayar Otomatik Çizim,Bilgisayar Mimarisi Tasarımı,Merkezi Analiz Veritabanı,A,"CAD, Bilgisayar Destekli Tasarım anlamına gelir",Medium
+2160,Animals,Hangi balık su dışında en uzun süre yaşayabilir?,Akciğerli balık,Yürüyen yayın balığı,Çamur zıpzıpı,Yılanbalığı,A,Akciğerli balıklar aylarca su dışında yaşayabilir,Medium
+2161,Art,"""Amerikan Gotiği"" tablosunu kim çizmiştir?",Edward Hopper,Grant Wood,Thomas Hart Benton,Norman Rockwell,B,"Grant Wood, 1930'da Amerikan Gotik tablosunu çizdi",Medium
+2162,Math,İkinci dereceden denklem formülü nedir?,x = -b ± √(b² - 4ac) / 2a,x = b ± √(b² + 4ac) / 2a,x = -b ± √(b² + 4ac) / 2a,x = b ± √(b² - 4ac) / 2a,A,İkinci dereceden denklem formülü ax² + bx + c = 0'ı çözer,Medium
+2163,Sports,Badminton filesi standart yüksekliği nedir?,"4,5 fit",5 fit,5.1 fit,5.5 fit,C,Bir badminton ağı 5 fit 1 inç yüksekliğindedir,Medium
+2164,Technology,IDE ne anlama geliyor?,Entegre Geliştirme Ortamı,Etkileşimli Geliştirme Ortamı,İç Geliştirme Ortamı,Bağımsız Kalkınma Ortamı,A,"IDE, Entegre Geliştirme Ortamı anlamına gelir",Medium
+2165,Animals,Hangi hayvanın renk görüşü en iyidir?,İnsan,Kartal,Mantis karidesi,Kelebek,C,Mantis karidesi en karmaşık renk görüşüne sahiptir,Medium
+2166,Art,Van Gogh tablolarının en büyük koleksiyonuna sahip müze hangisidir?,Louvre,Van Gogh Müzesi,Metropolitan Müzesi,Rijks Müzesi,B,Amsterdam'daki Van Gogh Müzesi en büyük koleksiyona sahiptir,Medium
+2167,Math,Bir çember denkleminin standart biçimi nedir?,(x-h)² + (y-k)² = r²,x² + y² = r,ax² + by² = c,(x+h)² + (y+k)² = r²,A,Standart daire denklemi (x-h)² + (y-k)² = r²'dir,Medium
+2168,Science,Organizmaların elektromanyetik alanlarla nasıl etkileşime girdiğini inceleyen bilim dalı hangisidir?,Biyoelektromanyetik,Elektromanyetik biyoloji,Saha biyolojisi,Manyetik biyoloji,A,"Biyoelektromanyetik, organizmanın elektromanyetik alanlara verdiği tepkileri inceler",Hard
+2169,Science,Aşağıdaki olgulardan hangisi moleküllerin proteinlere kooperatif olarak bağlanmasını açıklar?,Allosterik düzenleme,Kooperatif bağlama,Tepe etkisi,Sigmoidal kinetik,B,"Kooperatif bağlanma, pozitif bağlanma kooperatifliğini tanımlar",Hard
+2170,Science,Hücrelerin kendi bileşenlerini yutup sindirme sürecine ne ad verilir?,Otofaji,Apoptozis,Fagositoz,Endositoz,A,"Otofaji, bileşenlerin geri dönüştürülmesi için hücresel kendi kendine sindirimdir",Hard
+2171,Science,Kuantum ölçümlerinde minimum belirsizliği tanımlayan ilke hangisidir?,Heisenberg belirsizlik ilkesi,Ölçüm belirsizliği,Kuantum belirsizliği,Gözlemci etkisi,A,Heisenberg ilkesi temel ölçüm sınırlarını belirler,Hard
+2172,Science,Mekanik kuvvetlerin gen ifadesini nasıl etkilediğini inceleyen bilim dalına ne ad verilir?,Mekanogenetik,Mekanobiyoloji,Kuvvet genetiği,Mekanik genomik,B,"Mekanobiyoloji, genler üzerindeki mekanik etkilerin incelenmesini içerir",Hard
+2173,Science,Biyolojik sistemlerin senkronize salınımını tanımlayan süreç hangisidir?,Biyolojik ritimler,Sirkadiyen bağlantı,Senkronizasyon,Entrainment,D,"Eşzamanlılık, biyolojik osilatörlerin senkronizasyonunu tanımlar",Hard
+2174,Science,Kuantum sistemlerinin tutarlılığını koruduğu etkinin adı nedir?,Kuantum tutarlılığı,Kuantum dekoheransı,Dalga fonksiyonunun kalıcılığı,Süperpozisyon bakımı,A,Kuantum tutarlılığı kuantum süperpozisyon durumlarını korur,Hard
+2175,Science,Hücrelerin toplu göç davranışını açıklayan olgu hangisidir?,Toplu hücre göçü,Hücre akışı,Kemotaksi,İletişim kılavuzu,A,Toplu hücre göçü koordineli hücre hareketini içerir,Hard
+2176,Science,Biyolojik ağlarda bilginin nasıl kodlandığını inceleyen bilim dalına ne ad verilir?,Ağ biyolojisi,Sistem biyolojisi,Bilgi teorisi,Biyolojik bilişim,A,"Ağ biyolojisi, biyolojik sistemlerdeki bilgi akışını inceler",Hard
+2177,Science,Hastalıklarda protein agregatlarının oluşumunu açıklayan süreç hangisidir?,Protein yanlış katlanması,Toplama,Amiloidoz,Protein denatürasyonu,C,Amiloidoz patolojik protein agregasyonunu içerir,Hard
+2178,Science,Malzemelerin nanometre ölçeğinde farklı özellikler gösterdiği olgunun adı nedir?,Nanometre ölçeğindeki etkiler,Boyut etkileri,Kuantum boyut etkileri,Ölçek bağımlılığı,C,Kuantum boyut etkileri nanometre ölçeğinde özellikleri değiştirir,Hard
+2179,Science,Enerji ile bilgi arasındaki ilişkiyi açıklayan ilke hangisidir?,Landauer ilkesi,Bilgi teorisi,Termodinamik hesaplama,Enerji-bilgi eşdeğerliği,A,"Landauer ilkesi, bilginin silinmesini enerjiye bağlar",Hard
+2180,Science,Organizmaların zamansal bilgiyi nasıl işlediğini inceleyen bilim dalı hangisidir?,Kronobiyoloji,Zamansal biyoloji,Zaman biyolojisi,Biyolojik zamanlama,A,Kronobiyoloji biyolojik zaman işlemeyi inceler,Hard
+2181,Science,Biyolojik sistemlerde düzensizlikten düzenin ortaya çıkışını açıklayan olgu hangisidir?,Kendi kendini örgütleme,Spontan düzen,Ortaya çıkan karmaşıklık,Desen oluşumu,A,"Kendi kendini örgütleme, kendiliğinden düzenli yapılar yaratır",Hard
+2182,Science,Hücrelerin mekanik uyarıları elektrik sinyallerine dönüştürme sürecine ne ad verilir?,Mekanotransdüksiyon,Sinyal iletimi,Duyusal transdüksiyon,Uyarıcı dönüşümü,A,Mekanotransdüksiyon mekanik kuvvetleri elektrik sinyallerine dönüştürür,Hard
+2183,Science,Kuantum dalgalanmalarının biyolojik süreçler üzerindeki etkisini açıklayan etki hangisidir?,Kuantum biyolojisinin etkileri,Biyolojik kuantum etkileri,Kuantum gürültüsü,Dalgalanma etkileri,A,"Kuantum biyolojisi etkileri, yaşam üzerindeki kuantum etkilerini tanımlar",Hard
+2184,Science,Karmaşık ağların zaman içinde nasıl evrimleştiğini inceleyen bilim dalına ne ad verilir?,Ağ evrimi,Dinamik ağlar,Zamansal ağlar,Gelişen sistemler,A,"Ağ evrimi, ağ yapısının nasıl değiştiğini inceler",Hard
+2185,Science,Biyolojik moleküllerin faz ayrımını açıklayan olgu hangisidir?,Sıvı-sıvı faz ayrımı,Biyomoleküler yoğunlaşma,Koaservasyon,Faz geçişi,A,Sıvı-sıvı faz ayrımı biyomoleküler bölmeler oluşturur,Hard
+2186,Science,Biyolojik polimerlerin katlanmasını yöneten ilkenin adı nedir?,Minimum serbest enerji ilkesi,Katlama prensibi,Kararlılık ilkesi,Konformasyonel ilke,A,Minimum serbest enerji ilkesi protein katlanmasını yönlendirir,Hard
+2187,Science,Hangi süreç moleküler motorların kolektif davranışını tanımlar?,Motor protein koordinasyonu,Toplu taşıma,Moleküler işbirliği,Sitoiskelet dinamikleri,A,Motor protein koordinasyonu kolektif hücresel taşımayı mümkün kılar,Hard
+2188,Math,e^(at)'nin Laplace dönüşümü nedir?,1/(s-a),a/(s-a),1/(s+a),s/(s-a),A,e^(at)'nin Laplace dönüşümü 1/(s-a)'dır,Hard
+2189,Sports,Maratonun resmi mesafesi nedir?,"26,2 mil",26.385 yarda,42.195 kilometre,Hem A hem de C,D,"Bir maraton 26,2 mil veya 42,195 kilometredir",Hard
+2190,Technology,Web geliştirmede AJAX ne anlama geliyor?,Eşzamansız JavaScript ve XML,Gelişmiş JavaScript ve XML,Otomatik JavaScript ve XML,Aktif JavaScript ve XML,A,"AJAX, Asenkron JavaScript ve XML anlamına gelir",Hard
+2191,Animals,Omurgasızlar arasında vücut büyüklüğüne göre en karmaşık beyne sahip hayvan hangisidir?,Ahtapot,Arı,Karınca,Örümcek,A,Ahtapotların omurgasızlara göre oldukça karmaşık beyinleri var,Hard
+2192,Art,"""Atina Okulu"" tablosunu kim çizmiştir?",Leonardo da Vinci,Michelangelo,Raphael,Donatello,C,Raphael Atina Okulu freskini çizdi,Hard
+2193,Math,y'' + y = 0 diferansiyel denkleminin genel çözümü nedir?,y = Ae^x + Be^(-x),y = A cos(x) + B sin(x),y = Ax + B,y = Ae^(ix) + Be^(-ix),B,Çözüm sinüs ve kosinüs fonksiyonlarını içerir,Hard
+2194,Sports,Olimpiyat müsabakalarında yüksek atlama barının yönetmelikteki yüksekliği nedir?,Değişken,"2,45 m'de sabitlendi",Hiçbir düzenleme yok,Sporcu başına ayarlandı,A,Yüksek atlama barları yarışma sırasında çeşitli yüksekliklere ayarlanır,Hard
+2195,Technology,Web servislerinde WSDL ne anlama geliyor?,Web Hizmetleri Açıklama Dili,Web Sistemi Açıklama Dili,Web Hizmeti Tanımlama Dili,Web Yazılım Açıklama Dili,A,"WSDL, Web Hizmetleri Açıklama Dili anlamına gelir",Hard
+2196,Animals,Hangi kuş türünün işitme duyusu en keskindir?,Baykuş,Kartal,Şahin,Şahin,A,Baykuşların yön bulma konusunda olağanüstü keskin bir işitme duyusu vardır,Hard
+2197,Art,"""Öpücük"" heykelini kim yaptı?",Michelangelo,Rodin,Donatello,Bernini,B,Auguste Rodin Öpücük heykelini yaptı,Hard
+2198,Math,Gauss fonksiyonunun Fourier dönüşümü nedir?,Başka bir Gauss,Sinc fonksiyonu,Delta fonksiyonu,Üstel fonksiyon,A,Bir Gauss'un Fourier dönüşümü başka bir Gauss'tur,Hard
+2199,Sports,Erkekler için disk atışının ayar çapı nedir?,218-222 mm,220-224 mm,219-221 mm,217-223 mm,C,Erkekler disk çapı 219-221 mm'dir,Hard
+2200,Technology,CORBA'nın açılımı nedir?,Ortak Nesne İstek Aracısı Mimarisi,Bilgisayar Nesnesi İstek Aracısı Mimarisi,Merkezi Nesne İstek Aracısı Mimarisi,Kurumsal Nesne İstek Aracısı Mimarisi,A,"CORBA, Ortak Nesne İstek Broker Mimarisi anlamına gelir",Hard
+2201,Animals,Yunuslardan sonra en gelişmiş ekolokasyon yeteneğine sahip memeli hangisidir?,Yarasa,Balina,Yunus balığı,Fok,A,Yarasaların son derece gelişmiş yankı konumlama sistemleri vardır,Hard
+2202,Art,"""Las Meninas"" tablosunu kim çizmiştir?",El Greco,Velázquez,Goya,Murillo,B,Diego Velázquez Las Meninas'ı boyadı,Hard
+2203,Math,3 + 4i'nin karmaşık eşleniği nedir?,3 - 4i,-3 + 4i,-3 - 4i,4 - 3i,A,"Karmaşık eşlenik, sanal kısmın işaretini değiştirir",Hard
+2204,Sports,Erkekler gülle atmada standart ağırlık nedir?,16 pound,16.01 pound,"7,26 kg",Hem A hem de C,D,"Erkekler gülle atma 16 pound veya 7,26 kg ağırlığındadır",Hard
+2205,Technology,Yazılım mühendisliğinde UML ne anlama geliyor?,Birleşik Modelleme Dili,Evrensel Modelleme Dili,Tekdüze Modelleme Dili,Benzersiz Modelleme Dili,A,"UML, Birleşik Modelleme Dili anlamına gelir",Hard
+2206,Animals,Hangi primat türü en gelişmiş alet kullanımını kullanır?,Şempanze,Orangutan,Bonobo,İnsan,D,İnsanlar primatlar arasında en gelişmiş alet kullanımına sahiptir,Hard
+2207,Art,"""Arnolfini Portresi"" tablosunu kim çizmiştir?",Van Eyck,Van der Weyden,Memling,Bosch,A,"Jan van Eyck, Arnolfini Portresi'ni çizdi",Hard
+2208,Math,2x2 matrisinin [[a b] [c d]] determinantı nedir?,reklam - bc,ac - bd,ab - cd,reklam + bc,A,Belirleyici ad - bc'dir,Hard
+2209,Sports,Masa tenisi masasının standart ölçüleri nelerdir?,9 fit x 5 fit,"2,74m x 1,525m",Hem A hem de B,Hiç biri,C,"Masa tenisi masaları 9 ft x 5 ft veya 2,74 m x 1,525 m'dir",Hard
+2210,Technology,YAML ne anlama geliyor?,Başka Bir İşaretleme Dili,"YAML, İşaretleme Dili Değildir",Genç Yetişkin İşaretleme Dili,Genç Uygulama İşaretleme Dili,B,"YAML başlangıçta ""Yet Another"" anlamına geliyordu ancak şimdi ""YAML Ain't"" anlamına geliyor",Hard
+2211,Animals,Hangi hayvanın kan basıncı en yüksektir?,Zürafa,Fil,Mavi balina,Gergedan,A,Zürafalar boyları nedeniyle en yüksek kan basıncına sahiptir,Hard
+2212,Art,"""Gece Kahvesi"" tablosunu kim çizmiştir?",Van Gogh,Cezanne,Gauguin,Toulouse-Lautrec,A,Vincent van Gogh Gece Kafesi'ni resmetti,Hard
+2213,Math,ln(1+x)'in Taylor serisi açılımı nedir?,x - x²/2 + x³/3 - ...,1 + x + x²/2 + x³/6 + ...,x + x²/2 + x³/3 + ...,1 - x + x² - x³ + ...,A,ln(1+x)'in Taylor serisi x - x²/2 + x³/3 - x⁴/4 + ... şeklindedir.,Hard
+2214,Sports,Bir kriket topunun düzenleme ağırlığı nedir?,5.5 ons,"5,75 ons","5,5-5,75 ons",6 ons,C,"Kriket toplarının ağırlığı 5,5 ila 5,75 ons arasındadır",Hard
+2215,Science,Organizmaların yerçekimine nasıl tepki verdiğini inceleyen bilim dalı hangisidir?,Yerçekimi biyolojisi,Gravitropizm,Jeobiyoloji,Yerçekimi algılama,B,"Gravitropizm, yerçekimine karşı yönlü büyüme tepkisidir",Easy
+2216,Science,Hidrojen oksijende yandığında hangi gaz ortaya çıkar?,Su buharı,Karbondioksit,Azot,Oksijen,A,Hidrojen yanması su buharı (H2O) üretir,Easy
+2217,Science,Popülasyonlardaki genetik çeşitliliğin temel birimi nedir?,Alel,Gen,Kromozom,DNA,A,"Aleller, çeşitliliği yaratan genlerin farklı versiyonlarıdır",Easy
+2218,Science,Bitkilerin güneşe doğru eğilmesini sağlayan süreç hangisidir?,Fototropizm,Heliotropizm,Güneş takibi,Işık tepkisi,A,"Fototropizm, ışık kaynaklarına doğru büyüme hareketidir",Easy
+2219,Science,Canlıların ışık üretmesini inceleyen bilim dalına ne ad verilir?,Biyolüminesans,Işık biyolojisi,Fotobiyoloji,Lüminesans biyolojisi,A,Biyolüminesans biyolojik ışık üretimini inceler,Easy
+2220,Science,Kireç taşı ısıtıldığında hangi gaz açığa çıkar?,Karbondioksit,Su buharı,Oksijen,Azot,A,Kireç taşının ısıtılması karbondioksit gazının açığa çıkmasına neden olur,Easy
+2221,Science,Aşırı sıcağa dayanabilen organizmalara ne ad verilir?,Termofiller,Isıya dayanıklı,Sıcaklığa dayanıklı,Termal organizmalar,A,Termofiller yüksek sıcaklık ortamlarında gelişirler,Easy
+2222,Science,Tohumların su almasını açıklayan süreç hangisidir?,İçim,Emilim,Hidrasyon,Su alımı,A,"Su emme, kuru tohumların suyu emmesidir",Easy
+2223,Science,Organizmaların kimyasalları nasıl algıladığını inceleyen bilim dalına ne ad verilir?,Kimyasal algılama,Kemoresepsiyon,Kimyasal biyoloji,Koku alma,B,"Kemoresepsiyon, kimyasal uyarıcıların algılanmasıdır",Easy
+2224,Science,Kaslarda hücresel metabolizma sonucu hangi gaz üretilir?,Karbondioksit,Oksijen,Laktik asit,Su buharı,A,Kas hücreleri metabolizma sırasında karbondioksit üretir,Easy
+2225,Science,Organizmaların su dengesini nasıl koruduğunu inceleyen bilim dalına ne ad verilir?,Ozmoregülasyon,Su dengesi,Sıvı düzenlemesi,Hidrobiyoloji,A,Ozmoregülasyon uygun su ve tuz dengesini korur,Easy
+2226,Science,Hangi süreç organizmaların manyetik alanları algılamasını sağlar?,Manyetoresepsiyon,Manyetik algılama,Pusula duygusu,Manyetik biyoloji,A,"Manyetoresepsiyon, Dünya'nın manyetik alanını kullanarak navigasyonu mümkün kılıyor",Easy
+2227,Science,Organizmaların elektrik alanlarına nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Elektroreseptör,Elektrik biyolojisi,Elektriksel algılama,Biyoelektrik,A,"Elektroreseptör, çevredeki elektrik alanlarını algılar",Easy
+2228,Science,Azot fiksasyon bakterileri için hangi gaz gereklidir?,Azot,Oksijen,Karbondioksit,Hidrojen,A,Azot sabitleyici bakteriler atmosferik azot gazını dönüştürür,Easy
+2229,Science,Metan üreten organizmalara ne ad verilir?,Metanojenler,Gaz üreticileri,Anaerobik bakteriler,Arkebakteriler,A,Metanojenler metan üreten mikroorganizmalardır,Easy
+2230,Science,Mayoz bölünme sırasında kromozomların hareketini açıklayan süreç hangisidir?,Kromozom ayrımı,Meiotik bölünme,Genetik rekombinasyon,Gamet oluşumu,A,"Kromozom ayrımı, mayoz sırasında genetik materyalin dağıtılmasını sağlar",Easy
+2231,Science,Organizmaların titreşimleri nasıl işlediğini inceleyen bilim dalına ne ad verilir?,Mekanoreseptör,Titreşim algılama,Sismik biyoloji,Mekanik biyoloji,A,"Mekanoresepsiyon, titreşimler de dahil olmak üzere mekanik uyaranları algılar",Easy
+2232,Science,Anaerobik bakteriler hangi gazı üretir?,Metan,Oksijen,Karbondioksit,Hidrojen sülfür,A,Anaerobik bakteriler genellikle metan gazı üretir,Easy
+2233,Science,Organizmaların nasıl yön bulduğunu inceleyen bilim dalı hangisidir?,Navigasyon biyolojisi,Oryantasyon biyolojisi,Mekansal biyoloji,Yön bulma,A,"Navigasyon biyolojisi, organizmaların yollarını nasıl bulduklarını inceler",Easy
+2234,Science,Hangi süreç organizmaların basınç değişimlerini tespit etmesini sağlar?,Baroreseptör,Basınç algılama,Mekanik alım,Derinlik algılama,A,Baroreseptör basınçtaki değişiklikleri algılar,Easy
+2235,Science,Organizmaların dokunmaya nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Dokunsal biyoloji,Dokunma algılama,Mekanoreseptör,İletişim biyolojisi,C,"Mekanoreseptör, dokunma uyaranlarına verilen tepkileri içerir",Easy
+2236,Science,Mayanın alkol fermantasyonu sırasında açığa çıkan gaz hangisidir?,Karbondioksit,Oksijen,Etanol buharı,Azot,A,Maya fermantasyonu karbondioksit ve etanol üretir,Easy
+2237,Science,Oksijensiz yaşayabilen organizmalara ne ad verilir?,Anaeroblar,Oksijensiz organizmalar,Havadan bağımsız yaşam,Anoksik organizmalar,A,Anaeroblar oksijen olmadan yaşar ve çoğalırlar,Easy
+2238,Science,Sporların oluşumunu açıklayan süreç hangisidir?,Sporülasyon,Spor oluşumu,Üreme döngüsü,Eşeysiz üreme,A,"Sporülasyon, spor oluşum sürecidir",Easy
+2239,Science,Canlıların sıcaklığı nasıl algıladığını inceleyen bilim dalına ne ad verilir?,Termoreseptör,Sıcaklık algılama,Termal biyoloji,Isı tespiti,A,"Termoreseptör, sıcaklığı algılama yeteneğidir",Easy
+2240,Science,Sulak alanlarda organik maddelerin ayrışması sonucu hangi gaz ortaya çıkar?,Metan,Karbondioksit,Hidrojen sülfür,Yukarıdakilerin hepsi,D,Sulak alan ayrışması birden fazla gaz üretir,Easy
+2241,Science,Organizmaların neme nasıl tepki verdiğini inceleyen bilim dalı hangisidir?,Higroreseptör,Nem algılama,Nem biyolojisi,Su buharı tespiti,A,"Higroreception, ortamdaki nem seviyelerini algılar",Easy
+2242,Science,Hangi süreç organizmaların dondurucu sıcaklıklarda hayatta kalmasını sağlar?,Kriyoproteksiyon,Donma toleransı,Antifriz üretimi,Soğuk adaptasyonu,B,Donma toleransı sıfırın altındaki sıcaklıklarda hayatta kalmayı mümkün kılar,Easy
+2243,Science,Canlıların hava basıncına nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Barometrik biyoloji,Basınç biyolojisi,Atmosferik algılama,Hava biyolojisi,A,"Barometrik biyoloji, hava basıncı değişikliklerine verilen tepkileri inceler",Easy
+2244,Science,Yanmanın gerçekleşmesi için hangi gaz gereklidir?,Oksijen,Karbondioksit,Azot,Hidrojen,A,Yanma reaksiyonları için oksijene ihtiyaç vardır,Easy
+2245,Science,Aşırı soğuğa dayanabilen organizmalara ne ad verilir?,Psikrofiller,Kriyofiller,Soğuğa adapte olmuş organizmalar,Donmaya dayanıklı yaşam,A,Psikrofiller aşırı soğuk ortamlarda gelişirler,Easy
+2246,Science,Işığın elektrik enerjisine dönüşümünü anlatan süreç hangisidir?,Fotoelektrik etki,Fotovoltaik dönüşüm,Hafif hasat,Güneş enerjisi dönüşümü,B,"Fotovoltaik dönüşüm, ışığı elektrik enerjisine dönüştürür",Easy
+2247,Science,Organizmaların ses dalgalarını nasıl algıladığını inceleyen bilim dalına ne ad verilir?,Akustik biyoloji,Ses algılama,İşitsel biyoloji,İşitme bilimi,A,"Akustik biyoloji, organizmalarda ses algılamayı inceler",Easy
+2248,Science,Organik bileşiklerin tam yanmaması sonucu hangi gaz ortaya çıkar?,Karbon monoksit,Karbondioksit,Su buharı,Duman,A,Eksik yanma zehirli karbon monoksit üretir,Easy
+2249,Science,Organizmaların rüzgara nasıl tepki verdiğini inceleyen bilim dalı hangisidir?,Anemotaksi,Rüzgar tepkisi,Hava akımı biyolojisi,Atmosferik etkileşim,A,"Anemotaksi, hava akımlarına tepki olarak ortaya çıkan harekettir",Easy
+2250,Science,Hangi süreç organizmaların kızılötesi radyasyonu algılamasını sağlar?,Kızılötesi algılama,Isı algılama,Termal görüntüleme,Termoreseptör,D,Termoreseptör kızılötesi ısı radyasyonunu algılayabilir,Easy
+2251,Science,Organizmaların ultraviyole ışığa nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,UV biyolojisi,Fotobiyoloji,Hafif hasar,Radyasyon biyolojisi,B,"Fotobiyoloji, ultraviyole radyasyona verilen tepkileri içerir",Easy
+2252,Science,Metaller paslandığında hangi gaz açığa çıkar?,Hidrojen,Oksijen,Karbondioksit,Su buharı,A,Metal korozyonu genellikle hidrojen gazı açığa çıkarır,Easy
+2253,Science,Yüksek tuz konsantrasyonuna ihtiyaç duyan organizmalar için kullanılan terim nedir?,Halofiller,Tuz seven organizmalar,Tuzlu suya adapte edilmiş yaşam,Ozmofiller,A,Halofiller yüksek tuzlu ortamlarda gelişirler,Easy
+2254,Science,Dünya'nın dönüşünün tespit edilmesini sağlayan süreç hangisidir?,Coriolis tespiti,Dönüş algılama,Jiroskopik biyoloji,Dönme algılama,A,Bazı organizmalar Dünya'nın dönüşünden kaynaklanan Coriolis kuvvetlerini algılayabilir,Easy
+2255,Science,Organizmaların radyasyona nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Radyasyon biyolojisi,Nükleer biyoloji,Radyoaktivite çalışmaları,Radyasyon etkileri,A,Radyasyon biyolojisi iyonlaştırıcı radyasyona karşı biyolojik tepkileri inceler,Easy
+2256,Science,Yıldırım sonucu atmosferde oluşan gaz hangisidir?,Azot oksitleri,Ozon,Karbondioksit,Su buharı,B,"Yıldırım, atmosferik oksijenden ozon oluşturur",Easy
+2257,Science,Organizmaların elektrik alanlarını nasıl algıladığını inceleyen bilim dalına ne ad verilir?,Elektroreseptör,Elektriksel algılama,Biyoelektriksel tespit,Elektrik alan biyolojisi,A,"Elektroreseptör, elektrik alanlarını algılama yeteneğidir",Easy
+2258,Science,Hangi süreç organizmaların yüksek basınçta hayatta kalmasını sağlar?,Barotolerans,Basınç adaptasyonu,Derin deniz adaptasyonu,Basınç direnci,A,"Barotolerans, yüksek basınç koşullarında hayatta kalmayı sağlar",Easy
+2259,Science,Organizmaların kozmik radyasyona nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Astrobiyoloji,Uzay biyolojisi,Kozmik biyoloji,Radyasyon astronomisi,A,"Astrobiyoloji, kozmik radyasyon etkilerinin incelenmesini içerir",Easy
+2260,Science,Fotosentetik bakteriler için hangi gaz gereklidir?,Karbondioksit,Oksijen,Azot,Hidrojen sülfür,A,Fotosentetik bakteriler bitkiler gibi karbondioksit kullanır,Easy
+2261,Science,Aşırı asitliğe dayanabilen organizmalar için kullanılan terim nedir?,Asidofiller,Asit dirençli organizmalar,pH toleranslı yaşam,Asit adaptasyonlu bakteriler,A,Asidofiller oldukça asidik ortamlarda gelişirler,Easy
+2262,Science,Polarize ışığın algılanmasını açıklayan işlem hangisidir?,Polarizasyon vizyonu,Işık polarizasyonu,Polarize algılama,Optik polarizasyon,A,Polarizasyon görüşü ışık dalgalarının açısını algılar,Easy
+2263,Science,Organizmaların mevsimsel değişikliklere nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Fenoloji,Mevsimsel biyoloji,Kronobiyoloji,Yılda bir kez yapılan biyoloji,A,"Fenoloji, mevsimsel biyolojik olayların zamanlamasını inceler",Easy
+2264,Science,Kükürt bakterileri hangi gazı üretir?,Hidrojen sülfür,Kükürt dioksit,Metan,Karbondioksit,A,Kükürt bakterileri hidrojen sülfür gazı üretir,Easy
+2265,Science,Organizmaların su buharını nasıl tespit ettiğini inceleyen bilim dalı hangisidir?,Higroreseptör,Nem tespiti,Nem algılama,Su buharı biyolojisi,A,Higroreception ortamdaki su buharını algılar,Easy
+2266,Science,Hangi süreç organizmaların aşırı alkali ortamda hayatta kalmasını sağlar?,Alkalifili,Temel tolerans,pH adaptasyonu,Alkali direnci,A,"Alkalifilik, oldukça temel ortamlarda hayatta kalmayı mümkün kılar",Easy
+2267,Science,Organizmaların toprak bileşimine nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Edafoloji,Toprak biyolojisi,Zemin algılama,Alt tabaka tespiti,A,Edafoloji organizma-toprak ilişkilerini inceler,Easy
+2268,Science,Bitkilerin gece solunumu sırasında hangi gaz açığa çıkar?,Oksijen,Karbondioksit,Su buharı,Azot,B,Bitkiler gece solunumu sırasında karbondioksit salarlar,Easy
+2269,Science,Su olmadan yaşayabilen organizmalara ne ad verilir?,Anhidrobiyotlar,Kurumaya dayanıklı yaşam,Suya bağımlı olmayan organizmalar,Kuraklığa dayanıklı türler,A,Anhidrobiyotlar tam susuzluğa dayanabilirler,Easy
+2270,Science,Biyofilmlerin oluşumunu açıklayan süreç hangisidir?,Biyofilm gelişimi,Mikrobiyal agregasyon,Bakteriyel kolonizasyon,Yüzey bağlantısı,A,Biyofilm gelişimi mikrobiyal topluluk oluşumunu içerir,Easy
+2271,Science,Organizmaların kimyasal gradyanları nasıl algıladığını inceleyen bilim dalına ne ad verilir?,Kemotaksi,Kimyasal gradyan algılama,Konsantrasyon tespiti,Kimyasal navigasyon,A,"Kemotaksi, kimyasal konsantrasyon gradyanları boyunca harekettir",Easy
+2272,Science,Termitlerin sindirimi sonucu hangi gaz ortaya çıkar?,Metan,Karbondioksit,Hidrojen,Yukarıdakilerin hepsi,A,Termitler sindirim süreçleri yoluyla metan üretirler,Easy
+2273,Science,Organizmaların dokuya nasıl tepki verdiğini inceleyen bilim dalı hangisidir?,Dokunsal biyoloji,Doku algılama,Yüzey tespiti,Mekanik algılama,A,"Dokunsal biyoloji, yüzey dokularına verilen tepkileri inceliyor",Easy
+2274,Science,Hangi süreç organizmaların uzay koşullarında hayatta kalmasını sağlar?,Kriptobiyoz,Uzay adaptasyonu,Vakum toleransı,Kozmik direnç,A,"Kriptobiyoz, uzayda hayatta kalabilen askıya alınmış bir canlıdır",Easy
+2275,Science,Organizmaların çözünmüş gazları nasıl tespit ettiğini inceleyen bilim dalına ne ad verilir?,Gaz algılama,Çözünmüş gaz tespiti,Su kimyası,Gaz kromatografisi,A,"Gaz algılama, çözünmüş atmosferik gazların tespitini içerir",Easy
+2276,Science,Kemosentetik bakteriler için hangi gaz gereklidir?,Hidrojen sülfür,Oksijen,Karbondioksit,Metan,A,Kemosentetik bakteriler enerji için sıklıkla hidrojen sülfür kullanırlar,Easy
+2277,Science,Birden fazla aşırı koşula dayanabilen organizmalara ne ad verilir?,Poliekstremofiller,Çoklu stres organizmaları,Aşırı genelciler,Strese dayanıklı yaşam,A,Poliekstremofiller birden fazla aşırı çevresel faktöre tolerans gösterirler,Easy
+2278,Science,Parçacık boyutunun tespitini açıklayan işlem hangisidir?,Mekanoreseptör,Boyut ayrımcılığı,Parçacık algılama,Granüler tespit,B,"Boyut ayrımı, organizmaların parçacık boyutlarını ayırt etmesine olanak tanır",Easy
+2279,Science,Organizmaların substrat sertliğine nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Sertlik algılama,Sertlik tespiti,Mekanik biyoloji,Substrat biyolojisi,A,"Sertlik algılama, yüzeylerin sertliğini algılar",Easy
+2280,Science,Ruminantların sindirimi sonucu hangi gaz oluşur?,Metan,Karbondioksit,Hidrojen,Yukarıdakilerin hepsi,A,Geviş getiren hayvanlar mikrobiyal sindirim yoluyla metan üretirler,Easy
+2281,Science,Organizmaların akış düzenlerini nasıl tespit ettiklerini inceleyen bilim dalı hangisidir?,Reotaksis,Akış algılama,Akım tespiti,Hidrodinamik biyoloji,A,"Reotaxis, akım akışına yanıt olarak yönelim veya harekettir",Easy
+2282,Science,Hangi süreç organizmaların hızlı sıcaklık değişimlerine dayanmasını sağlar?,Termal şok direnci,Sıcaklık tamponlaması,Termal adaptasyon,Isı şoku tepkisi,D,"Isı şoku tepkisi, hızlı sıcaklık değişimlerine karşı koruma sağlar",Easy
+2283,Science,Organizmaların yüzey kimyasına nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Kimyasal yüzey biyolojisi,Yüzey kimyası tespiti,Arayüz biyolojisi,Temas kimyası,C,Arayüz biyolojisi yüzeylerdeki etkileşimleri inceler,Easy
+2284,Science,Volkanik kaplıcalardan hangi gaz çıkar?,Hidrojen sülfür,Karbondioksit,Metan,Yukarıdakilerin hepsi,D,Volkanik kaynaklar H2S ve CO2 dahil olmak üzere çok sayıda gaz açığa çıkarır,Easy
+2285,Science,Yaşamak için yüksek basınca ihtiyaç duyan organizmalara ne ad verilir?,Piezofiller,Barofiller,Basınca bağlı yaşam,Derin deniz organizmaları,A,Piezofiller optimum büyüme için yüksek basınca ihtiyaç duyarlar,Easy
+2286,Science,Alt tabaka titreşimlerinin tespitini açıklayan işlem hangisidir?,Titreşimsel algılama,Sismik algılama,Substrat titremesi tespiti,Zemin titreşimi algılama,A,"Titreşimsel algılama, alt tabakalar aracılığıyla mekanik titreşimleri algılar",Easy
+2287,Science,Organizmaların mineral konsantrasyonlarına nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Mineral biyolojisi,Jeokimyasal algılama,Elemental algılama,Mineral beslenme,A,Mineral biyolojisi organizmaların mineral bulunabilirliğine verdiği tepkileri inceler,Easy
+2288,Science,Pirinç tarlaları hangi gazı üretir?,Metan,Karbondioksit,Azot oksit,Yukarıdakilerin hepsi,A,Pirinç tarlaları atmosferik metanın başlıca kaynaklarıdır,Easy
+2289,Science,Organizmaların tuzluluk derecelerini nasıl tespit ettiğini inceleyen bilim dalı hangisidir?,Haloklin tespiti,Tuzluluk algılama,Ozmotik gradyan tespiti,Tuz konsantrasyonu biyolojisi,B,"Tuzluluk algılama, tuz konsantrasyonundaki değişiklikleri tespit eder",Easy
+2290,Science,Hangi süreç organizmaların kozmik radyasyona karşı hayatta kalmasını sağlar?,Radyasyon direnci,DNA onarımı,Radyasyon kalkanı,Yukarıdakilerin hepsi,D,Kozmik radyasyon hasarına karşı birden fazla mekanizma koruma sağlıyor,Easy
+2291,Science,Organizmaların atmosferdeki bileşimlere nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Atmosfer biyolojisi,Gaz bileşimi algılama,Hava kimyası tespiti,Atmosferik algılama,A,"Atmosfer biyolojisi, hava bileşimindeki değişikliklere verilen tepkileri inceler",Easy
+2292,Science,Metan üreten arkeler için hangi gaz gereklidir?,Karbondioksit,Hidrojen,Metan,Yukarıdakilerin hepsi,B,Metan üreten arkeler metan üretmek için hidrojen ve CO2 kullanırlar,Easy
+2293,Science,Saf oksijende yaşayabilen organizmalara ne ad verilir?,Oksijene dayanıklı organizmalar,Aerotolerant yaşam,Hiperoksik organizmalar,Oksijene dayanıklı türler,A,Bazı organizmalar saf oksijen ortamlarına tolerans gösterebilir,Easy
+2294,Science,Hangi süreç simbiyotik ilişkilerin oluşumunu tanımlar?,Simbiyoz,Karşılıklılık,Kooperatif evrim,Biyolojik ortaklık,A,"Simbiyoz, çeşitli biyolojik ortaklık türlerini kapsar",Easy
+2295,Science,Organizmaların eser elementleri nasıl tespit ettiğini inceleyen bilim dalına ne ad verilir?,İz element biyolojisi,Mikro besin algılama,Temel element tespiti,İz metal biyolojisi,A,Eser element biyolojisi çalışmaları temel mikro besin maddelerinin tespitini sağlar,Easy
+2296,Science,Anaerobik atık su arıtımı sonucu hangi gaz ortaya çıkar?,Metan,Hidrojen sülfür,Karbondioksit,Yukarıdakilerin hepsi,D,Anaerobik atık su arıtımı çok sayıda gaz üretir,Easy
+2297,Science,Organizmaların substrat gözenekliliğine nasıl tepki verdiğini inceleyen bilim dalı hangisidir?,Gözeneklilik algılama,Gözenek tespiti,Yüzey doku biyolojisi,Alt tabaka yapı algılama,A,"Gözeneklilik algılama, alt tabakaların gözenek yapısını tespit eder",Easy
+2298,Science,Hangi süreç organizmaların sıfır yerçekiminde hayatta kalmasını sağlar?,Mikro yer çekimi adaptasyonu,Uzay fizyolojisi,Yerçekimsel bağımsızlık,Ağırlıksız hayatta kalma,A,"Mikro yerçekimi adaptasyonu, yerçekimi ipuçları olmadan işlev görmeyi mümkün kılar",Easy
+2299,Science,Organizmaların kristal yapıları nasıl tespit ettiğini inceleyen bilim dalına ne ad verilir?,Kristal biyolojisi,Mineral tespiti,Kristalografik algılama,Katı yapı biyolojisi,A,"Kristal biyolojisi, kristal malzemelerle etkileşimleri inceler",Easy
+2300,Science,Derin deniz hidrotermal bacalarından hangi gaz açığa çıkar?,Hidrojen sülfür,Metan,Karbondioksit,Yukarıdakilerin hepsi,D,Hidrotermal bacalar H2S dahil olmak üzere çok sayıda gaz açığa çıkarır,Easy
+2301,Science,Birden fazla donma-çözülme döngüsüne dayanabilen organizmalar için kullanılan terim nedir?,Donma-çözülmeye dayanıklı,Kriyosiklizasyon yapan organizmalar,Isıl döngüye dayanıklı,Donmaya dayanıklı türler,A,Donma-çözülmeye dayanıklı organizmalar tekrarlanan donma ve çözülmelere karşı dayanıklıdır,Easy
+2302,Science,Moleküler kiralitenin tespitini açıklayan işlem hangisidir?,Kiral tanıma,Stereokimyasal algılama,Moleküler el tercihi tespiti,Optik aktivite algılama,A,"Kiral tanıma, ayna görüntüsündeki moleküller arasında ayrım yapar",Easy
+2303,Science,Organizmaların izotopik bileşime nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,İzotop biyolojisi,İzotopik algılama,Nükleer bileşim tespiti,Atom kütlesi biyolojisi,A,"İzotop biyolojisi, izotopik varyasyonların biyolojik etkilerini inceler",Easy
+2304,Science,Çöplüklerde hangi gaz üretilir?,Metan,Karbondioksit,Hidrojen sülfür,Yukarıdakilerin hepsi,D,Çöp sahaları anaerobik ayrışma yoluyla çok sayıda gaz üretir,Easy
+2305,Science,Organizmaların yüzey gerilimini nasıl algıladıklarını inceleyen bilim dalı hangisidir?,Yüzey gerilimi biyolojisi,Arayüz biyolojisi,Kılcal algılama,Yüzey enerjisi tespiti,A,"Yüzey gerilimi biyolojisi, arayüz kuvvetlerine verilen tepkileri inceler",Easy
+2306,Science,Hangi süreç organizmaların aşırı doymuş çözeltilerde hayatta kalmasını sağlar?,Ozmotik adaptasyon,Hiperozmotik tolerans,Tuz kristalleşme direnci,Aşırı doygunlukta hayatta kalma,B,"Hiperozmotik tolerans, yoğun çözeltilerde hayatta kalmayı mümkün kılar",Easy
+2307,Science,Organizmaların mekanik strese nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Mekanobiyoloji,Stres biyolojisi,Kuvvet algılama,Mekanik adaptasyon,A,"Mekanobiyoloji, hücresel tepkilerin mekanik kuvvetlere nasıl tepki verdiğini inceler",Easy
+2308,Science,Azot döngüsünün tamamlanması için hangi gaz gereklidir?,Azot oksit,Azot,Amonyak,Yukarıdakilerin hepsi,D,"Azot döngüsü, birden fazla azot içeren gazı içerir",Easy
+2309,Science,Belirli mineral oranlarına ihtiyaç duyan organizmalar için kullanılan terim nedir?,Mineral-spesifik organizmalar,Stokiyometrik organizmalar,Elemental orana bağlı,Mineral denge türleri,B,Stokiyometrik organizmalar belirli element oranlarına ihtiyaç duyar,Easy
+2310,Science,Moleküler boyutun tespitini açıklayan işlem hangisidir?,Moleküler eleme,Boyut hariç tutma,Moleküler boyutlandırma,Gözenek seçiciliği,A,"Moleküler eleme, molekülleri boyutlarına göre ayırır",Easy
+2311,Science,Organizmaların elektromanyetik gürültüye nasıl tepki verdiğini inceleyen bilim dalına ne ad verilir?,Elektromanyetik biyoloji,EMF duyarlılığı,Elektriksel gürültü biyolojisi,Elektromanyetik girişim,A,"Elektromanyetik biyoloji, EM alanlara ve gürültüye verilen tepkileri inceler",Easy
+2312,Science,Kömür oluşumu sonucu hangi gaz ortaya çıkar?,Metan,Karbondioksit,Hidrojen,Kömür yatağı gazı,A,Kömür oluşumu ve madenciliği metan gazı salınımına neden olur,Easy
+2313,Science,Organizmaların faz sınırlarını nasıl tespit ettiğini inceleyen bilim dalı hangisidir?,Arayüz algılama,Faz sınırı algılama,Geçiş bölgesi biyolojisi,Sınır tabakası biyolojisi,A,Arayüz algılama çalışmaları faz sınırlarına verilen yanıtları inceler,Easy
+2314,Science,Hangi süreç organizmaların aşırı vakumda hayatta kalmasını sağlar?,Vakum toleransı,Uzayda hayatta kalma,Basınç bağımsızlığı,Atmosferik bağımsızlık,A,"Vakum toleransı, atmosfer basıncı olmadan hayatta kalmayı mümkün kılar",Easy
+2315,Science,Bazı malzemelerin çok düşük sıcaklıklarda sıfır elektrik direnci göstermesi olayı nedir?,Süperiletkenlik,Süperakışkanlık,Kuantum tünelleme,Bose-Einstein yoğunlaşması,A,"Süperiletkenlik, malzemeler tüm elektrik direncini kaybettiğinde ortaya çıkar",Medium
+2316,Science,Rastgele bileşenlerden kendiliğinden organize yapıların oluşumunu açıklayan süreç hangisidir?,Kendi kendine montaj,Kristalleşme,Polimerizasyon,Toplama,A,"Kendi kendine montaj, dışarıdan yönlendirme olmaksızın düzenli yapılar oluşturur",Medium
+2317,Science,Canlı sistemlerin bilgiyi birden fazla ölçekte nasıl işlediği ve ilettiğinin incelenmesine ne ad verilir?,Sistem biyolojisi,Hesaplamalı biyoloji,Bilgi teorisi,Ağ biyolojisi,A,"Sistem biyolojisi, biyolojik ölçeklerde bilgi işlemeyi bütünleştirir",Medium
+2318,Science,DNA dizisini değiştirmeden gen ifadesindeki değişimi açıklayan etki hangisidir?,Genetik sürüklenme,Epigenetik modifikasyon,Transkripsiyonel düzenleme,Çeviri sonrası modifikasyon,B,Epigenetik modifikasyonlar DNA'yı değiştirmeden gen ifadesini etkiler,Medium
+2319,Science,Hücrelerin mekanik sinyalleri biyokimyasal tepkilere dönüştürdüğü sürecin adı nedir?,Mekanotransdüksiyon,Sinyal iletimi,Hücresel iletişim,Mekanik sinyalizasyon,A,Mekanotransdüksiyon fiziksel kuvvetleri hücresel sinyallere dönüştürür,Medium
+2320,Science,Biyolojik sistemlerin iç koşullarını istikrarlı bir şekilde sürdürme eğilimini açıklayan ilke hangisidir?,Homeostaz,Denge,Kararlı hal,Dinamik denge,A,"Homeostaz, dış değişikliklere rağmen iç dengeyi korur",Medium
+2321,Science,Moleküler etkileşimlerin hücresel davranışa nasıl yol açtığını inceleyen bilim dalına ne ad verilir?,Moleküler biyoloji,Hücre biyolojisi,Moleküler sistem biyolojisi,Biyokimya,C,"Moleküler sistem biyolojisi, moleküler etkileşimleri hücresel işleve bağlar",Medium
+2322,Science,Gelişim sırasında hücrelerin toplu hareketini açıklayan olgu hangisidir?,Morfogenez,Hücre göçü,Gastrulasyon,Doku oluşumu,A,"Morfogenez, koordineli hücre hareketleri yoluyla dokuları şekillendirir",Medium
+2323,Science,Başlangıç ​​koşullarındaki küçük değişikliklerin çok farklı sonuçlara yol açtığı etkinin adı nedir?,Kelebek etkisi,Kaos teorisi,Doğrusal olmayan dinamikler,Hassas bağımlılık,A,Kelebek etkisi başlangıç ​​koşullarına hassas bir bağımlılık göstermektedir,Medium
+2324,Science,Protein aktivitesinin kimyasal modifikasyonlar yoluyla düzenlenmesini açıklayan süreç hangisidir?,Çeviri sonrası modifikasyon,Protein düzenlemesi,Enzim aktivasyonu,Moleküler modifikasyon,A,"Translasyon sonrası modifikasyonlar, sentezden sonra protein fonksiyonunu düzenler",Medium
+2325,Science,Biyolojik ağların nasıl evrimleştiğini ve uyum sağladığını inceleyen bilim dalına ne ad verilir?,Ağ evrimi,Uyarlanabilir ağlar,Evrimsel sistem biyolojisi,Dinamik ağlar,C,"Evrimsel sistem biyolojisi, evrimleşen biyolojik ağları inceler",Medium
+2326,Science,Hücrelerin mekanik çevrelerini algılamalarını ve buna tepki vermelerini sağlayan mekanizma hangisidir?,Mekanosensing,Mekanik algı,Kuvvet algılama,Fiziksel tespit,A,"Mekanosensing, hücresel ortamın mekanik özelliklerini algılar",Medium
+2327,Science,Organizmaların enerji kullanımını optimize ettiği sürecin adı nedir?,Metabolik optimizasyon,Enerji verimliliği,Termodinamik optimizasyon,Metabolik kontrol,A,Metabolik optimizasyon biyolojik sistemlerde enerji verimliliğini en üst düzeye çıkarır,Medium
+2328,Science,Basit etkileşim kurallarından karmaşık davranışların ortaya çıkmasını açıklayan olgu hangisidir?,Ortaya çıkan davranış,Toplu zeka,Sürü davranışı,Karmaşık sistemler,A,Ortaya çıkan davranış basit yerel etkileşimlerden kaynaklanır,Medium
+2329,Science,Biyolojik sistemlerde bilginin nasıl aktığını inceleyen bilim dalına ne ad verilir?,Bilgi biyolojisi,Biyolojik bilgi teorisi,Sistem bilgileri,Biyoenformatik,B,Biyolojik bilgi teorisi yaşamda bilgi işlemeyi inceler,Medium
+2330,Science,Birden fazla genin koordineli düzenlenmesini tanımlayan süreç hangisidir?,Gen düzenleyici ağlar,Transkripsiyonel kontrol,Koordineli ifade,Çok genli düzenleme,A,"Gen düzenleyici ağlar, birden fazla genin ifadesini koordine eder",Medium
+2331,Science,Hücrelerin kimliklerini korudukları mekanizmanın adı nedir?,Hücre kaderinin belirlenmesi,Kimlik bakımı,Hücresel hafıza,Epigenetik kalıtım,C,"Hücresel hafıza, moleküler mekanizmalar aracılığıyla hücre kimliğini korur",Medium
+2332,Science,Biyolojik sistemlerde yapı ile işlev arasındaki ilişkiyi tanımlayan ilke hangisidir?,Yapı-fonksiyon ilişkisi,Form işlevi takip eder,Moleküler mimari,Biyolojik tasarım,A,Yapı-fonksiyon ilişkileri biyolojik organizasyon için temeldir,Medium
+2333,Science,Biyolojik sistemlerin nasıl sağlamlık gösterdiğini inceleyen bilim dalına ne ad verilir?,Sağlamlık biyolojisi,Sistem kararlılığı,Biyolojik dayanıklılık,Ağ sağlamlığı,D,Ağ sağlamlığı çalışmaları biyolojik ağların kararlılığını inceler,Medium
+2334,Science,Çevresel sinyallerin hücresel tepkilere dönüştürülmesini açıklayan süreç hangisidir?,Çevresel algılama,Sinyal işleme,Uyarıcı tepkisi,Duyusal transdüksiyon,D,"Duyusal transdüksiyon, uyarıları hücresel sinyallere dönüştürür",Medium
+2335,Science,DNA'nın doğru şekilde replikasyonunu sağlayan mekanizmanın adı nedir?,Düzeltme,Hata düzeltme,Çoğaltma doğruluğu,DNA onarımı,C,Replikasyon sadakat mekanizmaları doğru DNA kopyalamasını sağlar,Medium
+2336,Science,Moleküler makinelerin koordineli davranışını açıklayan olgu hangisidir?,Moleküler işbirliği,Protein iş birliği,Makromoleküler montaj,Moleküler orkestrasyon,D,"Moleküler orkestrasyon, birden fazla moleküler makineyi koordine eder",Medium
+2337,Science,Biyolojik sistemlerin zamansal bilgiyi nasıl işlediğini inceleyen bilim dalına ne ad verilir?,Zamansal biyoloji,Kronobiyoloji,Zaman biyolojisi,Biyolojik zamanlama,B,"Kronobiyoloji, organizmaların zamanla ilgili bilgileri nasıl işlediğini inceler",Medium
+2338,Science,Hücrelerin çevrelerindeki değişikliklere yanıt vermesini sağlayan mekanizma hangisidir?,Çevresel adaptasyon,Hücresel plastisite,Uyarlanabilir tepki,Fenotipik esneklik,B,"Hücresel esneklik, çevresel değişikliklere uyum sağlayan tepkileri mümkün kılar",Medium
+2339,Science,Gen etkileşimleri sonucu karmaşık özelliklerin ortaya çıktığı sürecin adı nedir?,Epistaz,Gen etkileşimi,Poligenik kalıtım,Karmaşık genetik,A,"Epistaz, özellikleri etkileyen genler arasındaki etkileşimleri tanımlar",Medium
+2340,Science,Evrimsel süreçlerle biyolojik sistemlerin optimizasyonunu açıklayan ilke hangisidir?,Evrimsel optimizasyon,Doğal seçilim,Uyarlanabilir evrim,Biyolojik optimizasyon,A,Evrimsel optimizasyon zamanla biyolojik sistemleri şekillendirir,Medium
+2341,Science,Biyolojik ağların nasıl istikrar sağladığını inceleyen bilim dalına ne ad verilir?,Ağ kararlılığı,Sistem sağlamlığı,Biyolojik kararlılık,Dinamik denge,A,"Ağ kararlılığı, biyolojik ağların bozulmalara nasıl direndiğini inceler",Medium
+2342,Science,Birden fazla hücresel sinyalin bütünleşmesini açıklayan süreç hangisidir?,Sinyal entegrasyonu,Hücresel hesaplama,Bilgi işleme,Çoklu sinyal yanıtı,A,"Sinyal entegrasyonu, hücresel karar alma için birden fazla girdiyi birleştirir",Medium
+2343,Science,Biyolojik süreçlerin zamanlamasını kontrol eden mekanizmanın adı nedir?,Biyolojik saat,Sirkadiyen kontrol,Zamansal düzenleme,Kronolojik kontrol,C,Zamansal düzenleme biyolojik olayların zamanlamasını kontrol eder,Medium
+2344,Science,Biyolojik örüntülerin kendi kendini örgütlemesini açıklayan olgu hangisidir?,Desen oluşumu,Morfogenetik desenleme,Biyolojik simetri,Mekansal organizasyon,A,Desen oluşumu biyolojide organize mekansal yapılar yaratır,Medium
+2345,Science,Biyolojik sistemlerin hafızayı nasıl sergilediğini inceleyen bilim dalına ne ad verilir?,Biyolojik hafıza,Hücresel hafıza,Moleküler hafıza,Sistem belleği,A,"Biyolojik hafıza, sistemlerin geçmiş durumlara ilişkin bilgileri nasıl sakladığını inceler",Medium
+2346,Science,Hangi mekanizma organizmaların çevresel değişiklikleri tahmin etmesini sağlar?,Öngörülü düzenleme,Öngörücü kontrol,Çevresel tahmin,Uyarlanabilir tahmin,A,"Öngörülü düzenleme, çevresel değişiklikler meydana gelmeden önce yanıt verilmesini sağlar",Medium
+2347,Science,Hücrelerin bölünmelerini koordine ettiği sürecin adı nedir?,Hücre döngüsü kontrolü,Bölüm koordinasyonu,Mitotik düzenleme,Yayılma kontrolü,A,"Hücre döngüsü kontrolü, hücre bölünmesinin zamanlamasını ve ilerlemesini koordine eder",Medium
+2348,Science,Biyolojik enerji dönüşümünün verimliliğini açıklayan ilke hangisidir?,Termodinamik verimlilik,Enerji optimizasyonu,Biyolojik verimlilik,Metabolik verimlilik,D,"Metabolik verimlilik, organizmaların enerjiyi ne kadar etkili bir şekilde dönüştürdüğünü açıklar",Medium
+2349,Science,Biyolojik sistemlerin histerezis gösterme biçimlerini inceleyen bilim dalı hangisidir?,Biyolojik histerezis,Sistem belleği,Devlet bağımlılığı,Tarihsel etkiler,A,"Biyolojik histerezis, geçmişe bağlı biyolojik tepkileri inceler",Medium
+2350,Science,Hücresel organizasyonun sürdürülmesini açıklayan süreç hangisidir?,Hücresel organizasyon,Yapısal bakım,Örgütsel homeostaz,Sistem bütünlüğü,C,Organizasyonel homeostaz hücresel yapıyı ve işlevi korur,Medium
+2351,Science,Biyolojik çeşitliliği oluşturan mekanizmanın adı nedir?,Çeşitlendirme,Evrimsel farklılaşma,Biyolojik varyasyon,Fenotipik çeşitlilik,A,Çeşitlendirme süreçleri biyolojik çeşitliliği birden fazla düzeyde oluşturur,Medium
+2352,Science,Dokuların mekanik kuvvetlere karşı koordineli tepkisini açıklayan olgu hangisidir?,Mekanik olarak aracılık edilen koordinasyon,Doku mekaniği,Mekanik entegrasyon,Biyomekanik koordinasyon,D,"Biyomekanik koordinasyon, dokular arasında mekanik sinyalleri bütünleştirir",Medium
+2353,Science,Biyolojik sistemlerin kritiklik gösterme biçimlerini inceleyen bilim dalı hangisidir?,Kritik dinamikler,Biyolojik kritiklik,Sistem kritikliği,Kritik fenomenler,B,Kritik noktalara yakın çalışan biyolojik kritiklik çalışmaları sistemleri,Medium
+2354,Science,Biyolojik sistemlerin hem istikrar hem de esneklik göstermesini sağlayan mekanizma hangisidir?,Dinamik stabilite,Uyarlanabilir esneklik,Sağlam esneklik,İstikrarlı uyum yeteneği,C,"Sağlam esneklik, istikrarı uyum sağlama yeteneğiyle birleştirir",Medium
+2355,Math,4x³ + 3x² - 2x + 1'in ikinci türevi nedir?,12x + 6,24x + 6,8x + 3,12x² + 6x - 2,B,İkinci türev 24x + 6'dır,Medium
+2356,Sports,Hangi spor dalında smaç basardınız?,Voleybol,Basketbol,Tenis,Badminton,B,Basketbolda smaçlar yapılır,Medium
+2357,Technology,URL ne anlama geliyor?,Evrensel Kaynak Bulucu,Tekdüzen Kaynak Bulucu,Birleşik Kaynak Bağlantısı,Evrensel Referans Bağlantısı,B,"URL, Tekdüzen Kaynak Bulucu anlamına gelir",Medium
+2358,Animals,"Hangi deniz hayvanı, kaybolan uzuvlarını yenileme yeteneğiyle bilinir?",Denizanası,Denizyıldızı,Deniz kestanesi,Ahtapot,B,Denizyıldızı kaybolan kollarını yenileyebilir,Medium
+2359,Art,Işık ve atmosferin etkilerini yakalamaya odaklanan sanat akımı hangisidir?,Barok,İzlenimcilik,Gerçeküstücülük,Kübizm,B,Empresyonizm ışık ve atmosfer etkilerini vurguladı,Medium
+2360,Math,200 sayısının %65'i kaçtır?,120,125,130,135,C,200'ün %65'i 130'a eşittir,Medium
+2361,Sports,Maratonun standart mesafesi nedir?,"25,2 mil","26,2 mil","27,2 mil","28,2 mil",B,"Bir maraton 26,2 mil veya 42,195 kilometredir",Medium
+2362,Technology,VPN ne anlama geliyor?,Sanal Özel Ağ,Çok Özel Ağ,Görsel Özel Ağ,Doğrulanmış Özel Ağ,A,"VPN, Sanal Özel Ağ anlamına gelir",Medium
+2363,Animals,Hangi büyük kedinin ısırığı en güçlüdür?,Aslan,Kaplan,Leopar,Jaguar,D,Jaguarlar büyük kediler arasında en güçlü ısırma gücüne sahiptir,Medium
+2364,Art,"""Kanagawa Açıklarındaki Büyük Dalga"" tablosunu kim çizmiştir?",Hokusai,Hiroshige,Utamaro,Şaraku,A,Katsushika Hokusai bu ünlü Japon ahşap baskısını yarattı,Medium
+2365,Math,(3-2) ve (7-5) noktaları arasındaki mesafe nedir?,5,6,7,8,A,Mesafe = √[(7-3)² + (5-(-2))²] = √[16+49] = √65 ≈ 8.06,Medium
+2366,Sports,Bir voleybol takımında sahada kaç oyuncu bulunur?,4,5,6,7,C,Voleybol takımlarında aynı anda sahada 6 oyuncu bulunur,Medium
+2367,Technology,Web geliştirmede CSS ne anlama gelir?,Bilgisayar Stil Sayfaları,Basamaklı Stil Sayfaları,Yaratıcı Stil Sayfaları,Merkezi Stil Sayfaları,B,"CSS, Basamaklı Stil Sayfaları anlamına gelir",Medium
+2368,Animals,Hangi balina türü karmaşık şarkılarıyla bilinir?,Mavi balina,Kambur balina,İspermeçet balinası,Gri balina,B,"Kambur balinalar, ayrıntılı şarkılarıyla ünlüdür",Medium
+2369,Art,Hangi teknik kalın boya katmanları uygulamayı içerir?,Cam,Pasto,Karmakarışık,Sfumato,B,"Impasto tekniği, boyanın kalın bir şekilde uygulanmasını sağlar",Medium
+2370,Math,y = 2x + 3'e dik bir doğrunun eğimi nedir?,2,-2,1/2,-1/2,D,Dik çizgilerin eğimleri negatif karşılıklıdır,Medium
+2371,Sports,Basketbol potasının standart yüksekliği kaç cm'dir?,9 fit,"9,5 fit",10 fit,"10,5 fit",C,Basketbol potaları 10 feet yüksekliğindedir,Medium
+2372,Technology,HTML ne anlama geliyor?,Hiper Metin İşaretleme Dili,Yüksek Teknoloji İşaretleme Dili,Hipermetin Modern Dili,Ana Araç İşaretleme Dili,A,"HTML, HyperText Markup Language (Köprü Metni İşaretleme Dili) anlamına gelir",Medium
+2373,Animals,Hangi primat türü genetik olarak insana en yakındır?,Goril,Şempanze,Orangutan,Bonobo,B,"Şempanzeler insan DNA'sının yaklaşık %98,8'ini paylaşıyor",Medium
+2374,Art,Washington DC'deki Vietnam Gazileri Anıtı'nı kim tasarladı?,Maya Lin,Frank Gehry,I.M. Pei,Daniel Libeskind,A,"Maya Lin, Vietnam Gazileri Anıtı'nı tasarladı",Medium
+2375,Math,log₂(16) nedir?,3,4,5,6,B,log₂(16) = 4 çünkü 2⁴ = 16,Medium
+2376,Sports,"Teniste ""aşk"" ne anlama gelir?",Sıfır puan,Kazanma noktası,Maç puanı,Beraberlik skoru,A,"Aşk, tenis puanlamasında sıfır puan demektir",Medium
+2377,Technology,JPEG ne anlama geliyor?,Ortak Fotoğraf Uzmanları Grubu,Java Resim Uzantısı Grubu,Ortak Resim Uzatma Grubu,Java Fotoğraf Uzmanları Grubu,A,"JPEG, Ortak Fotoğraf Uzmanları Grubu anlamına gelir",Medium
+2378,Animals,Hangi kuşun kanat açıklığı en büyüktür?,Kondor,Kartal,Albatros,Pelikan,C,Gezgin albatros en büyük kanat açıklığına sahiptir,Medium
+2379,Art,Eriyen saatler ve rüya imgeleriyle karakterize edilen sanat tarzı hangisidir?,Kübizm,Gerçeküstücülük,Ekspresyonizm,Soyut Ekspresyonizm,B,"Gerçeküstücülük, rüya benzeri ve fantastik imgeler içeriyordu",Medium
+2380,Math,5 8 12 15 20 sayılarının medyanı kaçtır?,8,12,15,13.5,B,Ortanca değer orta değerdir: 12,Medium
+2381,Sports,Golfte genellikle kaç delik oynanır?,16,17,18,19,C,Standart bir golf turunda 18 delik bulunur,Medium
+2382,Science,Birbirleriyle etkileşen çok sayıda parçacığın kuantum davranışını tanımlayan teorik çerçevenin adı nedir?,Çok gövdeli kuantum teorisi,Kuantum alan teorisi,İstatistiksel kuantum mekaniği,Yoğun madde teorisi,A,"Çok gövdeli kuantum teorisi, birden fazla parçacığa sahip karmaşık kuantum sistemlerini tanımlar",Hard
+2383,Science,"Hangi olgu, maddenin kendiliğinden karmaşık hiyerarşik yapılar halinde örgütlenmesini tanımlar?",Kendi kendini örgütleme,Ortaya Çıkış,Karmaşıklık,Hiyerarşik meclis,A,"Kendi kendini örgütleme, dışarıdan yönlendirme olmaksızın karmaşık yapılar yaratır",Hard
+2384,Science,Biyolojik ağlarda bilgi işlemenin birden fazla ölçekte nasıl gerçekleştiğini inceleyen bilim dalı için kullanılan terim nedir?,Hesaplamalı sistem biyolojisi,Ağ biyolojisi,Biyoenformatik,Sistem nörobilimi,A,"Hesaplamalı sistem biyolojisi, biyolojik ölçeklerdeki bilgi akışını modeller",Hard
+2385,Science,Parçacıkların enerji bariyerlerinden kuantum mekaniksel tünelleme yoluyla geçmesini açıklayan etki hangisidir?,Kuantum tünelleme,Dalga-parçacık ikiliği,Kuantum süperpozisyonu,Sıfır noktası enerjisi,A,"Kuantum tünelleme, parçacıkların klasik olarak yasaklanmış bariyerleri aşmasına olanak tanır",Hard
+2386,Science,Canlı sistemlerinin termodinamik dengeye uzak bir yerde organizasyonlarını sürdürmelerini sağlayan sürece ne ad verilir?,Dağıtıcı yapılar,Denge dışı termodinamik,Yaşayan sistemler teorisi,Otopoiesis,D,"Otopoiesis, kendi kendini idame ettiren canlı sistemleri tanımlar",Hard
+2387,Science,Biyolojik sistemlerde entropi üretimi ile bilgi işleme arasındaki ilişkiyi hangi ilke yönetir?,Maksimum entropi üretimi,Bilgi termodinamiği,Landauer ilkesi,Termodinamiğin ikinci yasası,B,"Bilgi termodinamiği, bilgi işlemeyi entropiye bağlar",Hard
+2388,Science,Mekanik kuvvetlerin gen ifadesini ve hücresel davranışı moleküler düzeyde nasıl etkilediğini inceleyen bilim dalına ne ad verilir?,Mekanogenomik,Mekanobiyoloji,Kuvvet spektroskopisi,Moleküler mekanik,A,"Mekanogenomik, gen ifadesinin mekanik düzenlenmesini inceler",Hard
+2389,Science,Aktif madde sistemlerinin kolektif davranışını açıklayan olgu hangisidir?,Aktif madde dinamikleri,Toplu hareket,Sürü davranışı,Aktif akışkanlar dinamiği,A,"Aktif madde dinamiği, kendi kendine hareket eden parçacık sistemlerini tanımlar",Hard
+2390,Science,Karmaşık sistemlerin faz geçişlerini nasıl sergilediğini açıklayan teorik çerçevenin adı nedir?,Kritik fenomenler teorisi,Faz geçiş teorisi,İstatistiksel mekanik,Karmaşık sistemler teorisi,A,Kritik olaylar teorisi karmaşık sistemlerdeki faz geçişlerini açıklar,Hard
+2391,Science,Çevresel gürültünün yararlı biyolojik sinyallere dönüştürülmesini açıklayan süreç hangisidir?,Stokastik rezonans,Gürültü kaynaklı geçişler,Sinyal iyileştirme,Çevresel filtreleme,A,"Stokastik rezonans, sinyal algılamayı geliştirmek için gürültüyü kullanır",Hard
+2392,Science,Kuantum tutarlılığının biyolojik süreçleri nasıl etkilediğini inceleyen bilim dalına ne ad verilir?,Kuantum biyolojisi,Kuantum biyofiziği,Biyolojik kuantum mekaniği,Kuantum yaşam bilimleri,A,"Kuantum biyolojisi, biyolojik sistemlerdeki kuantum etkilerini araştırır",Hard
+2393,Science,Biyolojik sistemlerin hem sağlamlık hem de evrimleşebilirlik sergilemesini sağlayan mekanizma hangisidir?,Tarafsız ağlar,Fenotipik esneklik,Mutasyonel sağlamlık,Evrimsel kapasitans,D,Evrimsel kapasite hem kararlılığı hem de evrimsel potansiyeli mümkün kılar,Hard
+2394,Science,Hücrelerin karar almak için birden fazla mekanik ve kimyasal sinyali entegre ettiği sürecin adı nedir?,Hücresel karar verme,Sinyal entegrasyonu,Bilgi işleme,Mekanokimyasal kuplaj,B,"Sinyal entegrasyonu, hücresel yanıtlar için çeşitli girdileri birleştirir",Hard
+2395,Science,Biyolojik sistemlerde uzun menzilli korelasyonların ortaya çıkışını açıklayan olgu hangisidir?,Ölçeksiz ağlar,Güç yasası dağılımları,Kritik davranış,Uzun vadeli sipariş,C,Kritik davranış uzun menzilli korelasyonlar üretir,Hard
+2396,Science,Biyolojik sistemlerin hücresel düzeyde hafıza ve öğrenmeyi nasıl sergilediğini inceleyen bilim dalına ne ad verilir?,Hücresel biliş,Moleküler hafıza,Biyolojik hesaplama,Hücresel zeka,A,"Hücresel biliş, hücrelerdeki bilişsel benzeri süreçleri inceler",Hard
+2397,Science,Aşağıdaki süreçlerden hangisi daha basit bileşenlerden karmaşık moleküler makinelerin kendiliğinden bir araya gelmesini açıklar?,Moleküler öz-birleşim,Hiyerarşik meclis,Aşağıdan yukarıya montaj,Supramoleküler kimya,A,"Moleküler öz-birleşim, basit yapı taşlarından karmaşık yapılar oluşturur",Hard
+2398,Science,Karmaşık biyolojik ağlar içerisinde bilginin nasıl aktığını açıklayan teorik çerçevenin adı nedir?,Ağ bilgi teorisi,Biyolojik bilgi teorisi,Bilgi dinamikleri,Ağ iletişimi,B,"Biyolojik bilgi teorisi, canlı sistemlerdeki bilgi akışını inceler",Hard
+2399,Science,Biyolojik sistemlerin öngörülü davranış sergilemesini sağlayan mekanizma hangisidir?,Tahmine dayalı kodlama,Öngörülü düzenleme,İleri beslemeli kontrol,Zamansal tahmin,B,"Öngörülü düzenleme, öngörülen değişikliklere proaktif yanıtlar verilmesini sağlar",Hard
+2400,Science,Biyolojik sistemlerin kısıtlamalar altında performanslarını nasıl optimize ettiklerini inceleyen bilim dalı için kullanılan terim nedir?,Biyolojik optimizasyon,Evrimsel optimizasyon,Kısıtlı optimizasyon,Uyarlanabilir optimizasyon,A,"Biyolojik optimizasyon, organizmaların sınırlamalar altında uygunluğu nasıl en üst düzeye çıkardığını inceler",Hard
+2401,Science,Basit organizma gruplarının sergilediği kolektif zekayı tanımlayan olgu hangisidir?,Sürü zekası,Toplu davranış,Ortaya çıkan istihbarat,Grup bilişi,A,"Sürü zekası, basit ajanlar arasındaki etkileşimlerden ortaya çıkar",Hard
+2402,Science,Biyolojik sistemlerin histerezis ve hafıza etkileri gösterdiği sürecin adı nedir?,Biyolojik histerezis,Moleküler hafıza,Hücresel hafıza,Sistem belleği,A,Biyolojik histerezis geçmişe bağlı tepkiler gösterir,Hard
+2403,Science,Biyolojik sistemlerin karmaşıklığı ile bilgi işleme yetenekleri arasındaki ilişkiyi açıklayan ilke hangisidir?,Karmaşıklık-bilgi ilkesi,Bilgi karmaşıklığı teorisi,Biyolojik karmaşıklık,Hesaplama karmaşıklığı,A,Karmaşıklık-bilgi ilkesi sistem karmaşıklığını bilgi kapasitesine bağlar,Hard
+2404,Science,Biyolojik sistemlerin farklı durumlar arasında kritik geçişleri nasıl sergilediğini inceleyen bilim dalı hangisidir?,Kritik geçişler,Çatallanma teorisi,Dönüm noktaları,Devlet geçişleri,A,Kritik geçişler sistem durumları arasındaki ani değişimleri inceler,Hard
+2405,Science,Biyolojik ağların bileşen arızalarına rağmen işlevselliğini sürdürmesini sağlayan mekanizma hangisidir?,Ağ sağlamlığı,Hata toleransı,Yedeklilik,Hata düzeltme,A,"Ağ sağlamlığı, bozulmalara rağmen işlevini korur",Hard
+2406,Science,Biyolojik sistemlerin çevresel dalgalanmalara karşı uyumsal tepkiler gösterme sürecine ne ad verilir?,Çevresel adaptasyon,Fenotipik esneklik,Uyarlanabilir tepki,Çevresel tamponlama,B,"Fenotipik esneklik, çevresel değişikliklere uyum sağlayan tepkileri mümkün kılar",Hard
+2407,Science,"Hangi olgu, çiftli osilatör ağlarında tutarlı davranışın ortaya çıkışını tanımlar?",Senkronizasyon,Faz kilitleme,Entrainment,Toplu salınımlar,A,"Senkronizasyon, bağlı osilatörlerin dinamiklerini hizaladığında meydana gelir",Hard
+2408,Science,Biyolojik sistemlerin moleküler mekanizmalar kullanarak bilgiyi nasıl işlediği ve depoladığını inceleyen bilim dalı hangisidir?,Moleküler bilgi işleme,Biyokimyasal hesaplama,Moleküler hesaplama,Biyolojik bilgi depolama,A,"Moleküler bilgi işleme, hesaplama ve depolama için molekülleri kullanır",Hard
+2409,Science,Biyolojik karmaşıklığın zaman içindeki evrimini hangi ilke yönetir?,Karmaşıklık evrimi,İlerici evrim,Gelişimsel karmaşıklık,Evrimsel karmaşıklık,A,"Karmaşıklık evrimi, biyolojik sistemlerin nasıl daha karmaşık hale geldiğini açıklar",Hard
+2410,Science,Biyolojik sistemlerin çoklu kararlılık gösterdiği mekanizmanın adı nedir?,Bistabilite,Çok kararlı dinamikler,Alternatif sabit durumlar,Çoklu dengeler,B,"Çok kararlı dinamikler, sistemlerin birden fazla kararlı durumda var olmasına olanak tanır",Hard
+2411,Science,Biyolojik ağlar aracılığıyla bilginin yayılmasını açıklayan süreç hangisidir?,Bilgi yayılımı,Sinyal yayılımı,Ağ iletişimi,Biyolojik iletim,A,"Bilgi yayılımı, sinyallerin ağlar aracılığıyla nasıl yayıldığını inceler",Hard
+2412,Math,ln(1-x)'in x=0 etrafındaki Taylor serisi açılımı nedir?,−x − x²/2 − x³/3 − ...,x − x²/2 + x³/3 − ...,1 − x + x²/2 − x³/6 + ...,−x + x²/2 − x³/3 + ...,A,ln(1-x)'in Taylor serisi −x − x²/2 − x³/3 − x⁴/4 − ... şeklindedir.,Hard
+2413,Sports,Erkekler çekiç atma branşında standart ağırlık kaçtır?,16 pound,"17,5 pound",35 pound,16 kilo,A,"Erkeklerin çekici 16 pound veya 7,26 kg ağırlığındadır",Hard
+2414,Technology,Web güvenliğinde SAML ne anlama geliyor?,Güvenlik İddiası İşaretleme Dili,Güvenli Erişim Yönetim Dili,Sistem Kimlik Doğrulama İşaretleme Dili,Standart Erişim İşaretleme Dili,A,"SAML, Güvenlik İddiası İşaretleme Dili anlamına gelir",Hard
+2415,Animals,Hangi omurgasızın göz yapısı en karmaşıktır?,Ahtapot,Mantis karidesi,Yusufçuk,Tarak kabuğu,B,Mantis karidesi en karmaşık renk görme sistemine sahiptir,Hard
+2416,Art,"""Şarap Kadehli Kız"" tablosunu kim çizmiştir?",Vermeer,Rembrandt,Frans Hals,Pieter de Hooch,A,"Johannes Vermeer, Şarap Kadehli Kız tablosunu çizdi",Hard
+2417,Math,x sonsuza yaklaşırken (sin x)/x'in limiti nedir?,0,1,∞,Mevcut değil,A,(sin x)/x'in x→∞ iken limiti 0'dır,Hard
+2418,Sports,Kadınlar müsabakalarında disk atışı çapı kaç cm olmalıdır?,180-182 cm,181-182 mm,180-182 mm,181-183 mm,B,Kadınlarda disk çapı 181-182 mm'dir,Hard
+2419,Technology,LDAP ne anlama geliyor?,Hafif Dizin Erişim Protokolü,Yerel Dizin Erişim Protokolü,Sınırlı Dizin Erişim Protokolü,Doğrusal Dizin Erişim Protokolü,A,"LDAP, Hafif Dizin Erişim Protokolü anlamına gelir",Hard
+2420,Animals,Hangi balina türünün beyin yapısı en karmaşıktır?,Mavi balina,İspermeçet balinası,Kambur balina,Katil balina,D,Katil balinaların beyin yapıları oldukça gelişmiş ve karmaşıktır,Hard
+2421,Art,"""Arnolfini Portresi"" tablosunu kim çizmiştir?",Jan van Eyck,Rogier van der Weyden,Hans Memling,Petrus Christus,A,"Jan van Eyck, Arnolfini Portresi'ni 1434'te çizdi",Hard
+2422,Math,y₁ = e^x ve y₂ = xe^x'in Wronskian'ı nedir?,e^(2x),2xe^(2x),e^(2x)(1+x),e^(2x),A,Wronskian W(e^x xe^x) = e^(2x),Hard
+2423,Sports,Standart bir kriket topunun resmi ağırlığı nedir?,"5,5-5,75 ons","5,25-5,5 ons","5,75-6 ons",5-5.25 ons,A,"Kriket toplarının ağırlığı 5,5 ila 5,75 ons arasındadır",Hard
+2424,Technology,Web servislerinde WSDL ne anlama geliyor?,Web Hizmetleri Açıklama Dili,Web Sistemi Açıklama Dili,Web Hizmeti Tanımlama Dili,Web Yazılım Açıklama Dili,A,"WSDL, Web Hizmetleri Açıklama Dili anlamına gelir",Hard
+2425,Animals,Hangi kuş türü en uzun süre havada kalabilir?,Arktik sumru,Gezginci albatros,Sıradan ebabil,Kuyruklu çamurcun,C,Sıradan kırlangıçlar aylarca havada kalabilir,Hard
+2426,Art,"""Calais Burjuvaları"" heykelini kim yaptı?",Auguste Rodin,Camille Claudel,Antoine Bourdelle,Aristide Maillol,A,"Auguste Rodin, Calais Burjuvaları'nı heykelleştirdi",Hard
+2427,Math,n. dereceden Bessel denkleminin çözümünün genel biçimi nedir?,J_n(x) ve Y_n(x),I_n(x) ve K_n(x),P_n(x) ve Q_n(x),L_n(x) ve M_n(x),A,Bessel fonksiyonları J_n ve Y_n doğrusal olarak bağımsız çözümlerdir,Hard
+2428,Sports,Çim hokeyinde direkte bulunan direğin yüksekliği kaç cm'dir?,"2,14 metre","2,24 metre","2,34 metre","2,44 metre",A,"Çim hokeyi kalelerinin 2,14 metre yüksekliğinde çapraz direkleri vardır",Hard
+2429,Technology,OAuth ne anlama geliyor?,Açık Yetkilendirme,Açık Kimlik Doğrulama,Nesne Yetkilendirmesi,Çevrimiçi Kimlik Doğrulama,A,"OAuth, Açık Yetkilendirme anlamına gelir",Hard
+2430,Animals,Hangi memelinin en çok dişi vardır?,Dev armadillo,Opossum,Yunus,Sivri fare,A,Dev armadilloların 100'e kadar dişi olabilir,Hard
+2431,Art,"""Elçiler"" tablosundaki ünlü anamorfik kafatasını kim çizmiştir?",Genç Hans Holbein,Albrecht Dürer,Lucas Cranach,Hans Memling,A,"Hans Holbein Genç, Elçiler tablosunu çizdi",Hard
+2432,Math,f(z) = 1/(z²+1) denkleminin z = i noktasındaki kalıntısı nedir?,1/2i,-1/2i,i/2,-i/2,B,z = i'deki kalıntı -1/(2i)'dir,Hard
+2433,Sports,Su topu havuzunun yönetmeliğe uygun büyüklüğü nedir?,20m x 30m,25m x 30m,20m x 25m,25m x 35m,B,Su topu havuzları 30 m uzunluğunda ve 20 m genişliğindedir,Hard
+2434,Technology,XSLT'nin açılımı nedir?,Genişletilebilir Stil Sayfası Dil Dönüşümleri,eXtra Stil Sayfası Dil Dönüşümleri,eXternal Stil Sayfası Dil Dönüşümleri,Yürütülebilir Stil Sayfası Dil Dönüşümleri,A,"XSLT, Genişletilebilir Stil Sayfası Dil Dönüşümleri anlamına gelir",Hard
+2435,Animals,Hangi kafadan bacaklı hem rengini hem de dokusunu değiştirebilir?,Ahtapot,Kalamar,Mürekkepbalığı,Yukarıdakilerin hepsi,D,Tüm kafadanbacaklılar renk değiştirebilir ve birçoğunun dokusu değişebilir,Hard
+2436,Art,"""Las Meninas"" tablosunu kim çizmiştir?",El Greco,Diego Velázquez,Francisco Goya,Bartolomé Murillo,B,"Diego Velázquez, 1656'da Las Meninas'ı resmetti",Hard
+2437,Math,Tam grafiğin K₅ kromatik sayısı nedir?,3,4,5,6,C,Tam grafik K₅'nin kromatik numarası 5'tir,Hard
+2438,Sports,Erkekler gülle atma branşının düzenleme ağırlığı kaç kilogramdır?,"7,26 kg","7,5 kilo",8 kilo,"6,5 kilo",A,"Erkekler gülle atma tam 7,26 kg ağırlığındadır",Hard
+2439,Technology,SOAP ne anlama geliyor?,Basit Nesne Erişim Protokolü,Güvenli Nesne Erişim Protokolü,Standart Nesne Erişim Protokolü,Sistem Nesne Erişim Protokolü,A,"SOAP, Basit Nesne Erişim Protokolü anlamına gelir",Hard
+2440,Animals,Hangi yılan türünün zehri en güçlüdür?,Kral kobra,İç bölge taypanı,Kara mamba,Fer-de-lance,B,İç taypan en zehirli zehre sahiptir,Hard
+2441,Art,"""Dünyevi Zevkler Bahçesi"" tablosunu kim çizmiştir?",Jan van Eyck,Hieronymus Bosch,Pieter Bruegel,Rogier van der Weyden,B,"Hieronymus Bosch, Dünyevi Zevkler Bahçesi'ni resmetti",Hard
+2442,Math,Geometrik çokluğu 1 olan özdeğeri 2 olan 3×3'lük bir matrisin Jordan normal formu nedir?,[[2 1 0][0 2 1][0 0 2]],[[2 1 0][0 2 0][0 0 2]],[[2 0 0][0 2 1][0 0 2]],[[2 1 1][0 2 0][0 0 2]],A,Ürdün blokları geometrik çokluğa bağlıdır,Hard
+2443,Science,Gametlerin oluşmasını sağlayan hücre bölünmesi türü hangisidir?,Mitoz,Mayoz,Hücrenin ikiye bölünerek üremesi,Tomurcuklanan,B,"Mayoz, kromozom sayısının yarısı kadar olan gametler üretir",Easy
+2444,Science,Safra hangi organ tarafından üretilir?,Karaciğer,Pankreas,Safra kesesi,Karın,A,Karaciğer safra kesesinde depolanan safrayı üretir,Easy
+2445,Science,Kalıtımın temel birimi nedir?,Gen,Kromozom,DNA,RNA,A,"Gen, kalıtımın temel birimidir",Easy
+2446,Science,Balonların uçmasını sağlayan gaz hangisidir?,Helyum,Hidrojen,Oksijen,Azot,A,Helyum havadan daha az yoğun olduğundan balonlar uçar,Easy
+2447,Science,Yunus ne tür bir hayvandır?,Balık,Memeli,Sürüngen,Amfibi,B,Yunuslar balık değil deniz memelileridir,Easy
+2448,Science,Güneş'e en yakın gezegen hangisidir?,Merkür,Venüs,Toprak,Mars,A,"Merkür, Güneş Sistemimizin en içteki gezegenidir",Easy
+2449,Science,Buzun doğrudan su buharına dönüştüğü süreç nedir?,Erime,Buharlaşma,Süblimasyon,Yoğunlaşma,C,Süblimleşme katıdan gaza doğrudan değişimdir,Easy
+2450,Science,Altıgenin kaç kenarı vardır?,5,6,7,8,B,Altıgenin altı kenarı vardır,Easy
+2451,Science,Hangi vitamin iskorbüt hastalığını önler?,A vitamini,C vitamini,D vitamini,K vitamini,B,C vitamini eksikliği iskorbüt hastalığına neden olur,Easy
+2452,Science,Atomun merkezine ne ad verilir?,Elektron,Proton,Nötron,Çekirdek,D,"Çekirdek, atomun merkezinde proton ve nötronları içerir",Easy
+2453,Math,15 × 4 nedir?,45,50,60,65,C,15'in 4 ile çarpımı 60'a eşittir,Easy
+2454,Science,Bitkinin hangi kısmı su ve besinleri emer?,Yapraklar,Kök,Kökler,Çiçekler,C,Kökler topraktan su ve besinleri emer,Easy
+2455,Science,Böcekleri inceleyen bilim dalına ne ad verilir?,Botanik,Zooloji,Entomoloji,Ekoloji,C,Entomoloji böceklerin bilimsel çalışmasıdır,Easy
+2456,Sports,Amerikan futbolunda bir touchdown kaç puan değerindedir?,3,6,7,10,B,Bir gol 6 puan değerindedir,Easy
+2457,Science,Hangi kan grubu evrensel verici olarak kabul edilir?,O,A,B,AB,A,0 kan grubu herhangi bir kan grubuna bağışlanabilir,Easy
+2458,Art,Son Akşam Yemeği tablosunu kim çizmiştir?,Michelangelo,Leonardo da Vinci,Raphael,Van Gogh,B,Leonardo da Vinci Son Akşam Yemeği'ni resmetti,Easy
+2459,Technology,WWW ne anlama geliyor?,Dünya çapında Ağ,Dünya Web Ağı,Geniş Dünya Ağı,Web Dünya Çapında,A,"WWW, World Wide Web'in kısaltmasıdır",Easy
+2460,Animals,Aslanlardan oluşan bir topluluğa ne ad verilir?,Sürü,Ambalaj,Gurur,Sürü,C,Aslanlardan oluşan bir gruba gurur denir,Easy
+2461,Science,İnsan vücudundaki en küçük kemik hangisidir?,Uyluk kemiği,Üzengi kemiği,Yarıçap,Kaval kemiği,B,Kulaktaki üzengi kemiği en küçük kemiktir,Easy
+2462,Science,Hangi gazı dışarı veririz?,Oksijen,Karbondioksit,Azot,Hidrojen,B,Karbondioksiti atık ürün olarak dışarı veriyoruz,Easy
+2463,Science,Okyanusları inceleyen bilim dalına ne ad verilir?,Jeoloji,Oşinografi,Meteoroloji,Astronomi,B,Oşinografi okyanusu ve deniz yaşamını inceler,Easy
+2464,Math,100 ÷ 25 kaçtır?,3,4,5,6,B,100'ü 25'e bölersek 4 elde ederiz,Easy
+2465,Science,Karbondioksitin kimyasal formülü nedir?,CO,CO2,C2O,C2O2,B,Karbondioksitin formülü CO2'dir,Easy
+2466,Science,Kanı pompalamakla görevli organ hangisidir?,Beyin,Kalp,Karaciğer,Akciğerler,B,"Kalp, kanı tüm vücuda pompalar",Easy
+2467,Science,En hızlı kara hayvanı hangisidir?,Çita,Aslan,Ceylan,Leopar,A,Çitalar saatte 70 mil hıza kadar koşabilirler,Easy
+2468,Sports,Hangi sporda tüylü top kullanılır?,Tenis,Badminton,Kabak,Masa tenisi,B,Badmintonda top yerine tüylü top kullanılır,Easy
+2469,Science,Oksijen elementinin sembolü nedir?,O,Öküz,Hey,Operasyon,A,Oksijenin kimyasal sembolü O'dur,Easy
+2470,Art,Hangi sanatçı kendi kulağını kesmiştir?,Pablo Picasso,Vincent van Gogh,Claude Monet,Salvador Dali,B,Vincent van Gogh'un kulağının bir kısmını kestiği biliniyor,Easy
+2471,Technology,USB ne anlama geliyor?,Evrensel Seri Veri Yolu,Evrensel Sistem Veri Yolu,Birleşik Seri Otobüs,Birleşik Sistem Otobüsü,A,"USB, Evrensel Seri Veri Yolu anlamına gelir",Easy
+2472,Animals,Örümceğin kaç bacağı vardır?,6,8,10,12,B,Örümcekler eklembacaklılar sınıfındandır ve sekiz bacakları vardır,Easy
+2473,Science,En sert doğal madde hangisidir?,Elmas,Altın,Ütü,Gümüş,A,"Elmas, doğada bulunan en sert maddedir",Easy
+2474,Science,Hangi gezegenin etrafında halkalar vardır?,Mars,Jüpiter,Satürn,Uranüs,C,"Satürn, belirgin halka sistemiyle ünlüdür",Easy
+2475,Math,64'ün karekökü nedir?,6,7,8,9,C,64'ün karekökü 8'dir,Easy
+2476,Science,Bitkilerin besin üretmek için kullandıkları süreç nedir?,Solunum,Fotosentez,Sindirim,Terleme,B,Bitkiler güneş ışığını besine dönüştürmek için fotosentez kullanırlar,Easy
+2477,Science,Yetişkin bir insan vücudunda kaç kemik vardır?,196,206,216,226,B,Yetişkin bir insanın 206 kemiği vardır,Easy
+2478,Sports,Bir futbol takımında oyun sırasında kaç oyuncu bulunur?,9,10,11,12,C,Her futbol takımının sahada 11 oyuncusu vardır,Easy
+2479,Science,Dünya atmosferinin büyük kısmını hangi gaz oluşturur?,Oksijen,Karbondioksit,Azot,Argon,C,Azot atmosferin yaklaşık %78'ini oluşturur,Easy
+2480,Art,Sistine Şapeli'nin tavanını kim boyadı?,Leonardo da Vinci,Michelangelo,Raphael,Donatello,B,"Michelangelo, Sistine Şapeli'nin tavanını boyadı",Easy
+2481,Technology,GPS ne anlama geliyor?,Küresel Konumlandırma Sistemi,Küresel Konum Hizmeti,Genel Konumlandırma Sistemi,Genel Pozisyon Hizmeti,A,"GPS, Küresel Konumlandırma Sistemi anlamına gelir",Easy
+2482,Animals,Kuşların vücut ısısını korumasına yardımcı olan yapı hangisidir?,Teraziler,Tüyler,İçi boş kemikler,Gagalar,B,Tüyler yalıtım sağlar ve vücut ısısını düzenlemeye yardımcı olur,Easy
+2483,Science,Demirin kimyasal sembolü nedir?,BEN,İr,Fe,İçinde,C,Demirin kimyasal sembolü Latince ferrum'dan gelir,Easy
+2484,Science,Bizi yerde tutan kuvvet hangisidir?,Manyetizma,Yer çekimi,Sürtünme,Atalet,B,"Yerçekimi, nesneleri Dünya'nın merkezine doğru çeker",Easy
+2485,Math,12×12 nedir?,124,144,154,164,B,12'nin 12 ile çarpımı 144'e eşittir,Easy
+2486,Science,Yıldızları ve gezegenleri inceleyen bilim dalına ne ad verilir?,Biyoloji,Jeoloji,Astronomi,Kimya,C,Astronomi gök cisimlerini ve uzayı inceler,Easy
+2487,Science,Enfeksiyonla savaşan kan hücresi türü hangisidir?,Kırmızı kan hücreleri,Beyaz kan hücreleri,Trombositler,Plazma,B,Beyaz kan hücreleri enfeksiyonlara karşı savunma yapar,Easy
+2488,Sports,Bowling'de kaç pin vardır?,8,9,10,12,C,Bowling'de 10 pin vardır,Easy
+2489,Science,Vücutta insülin hangi organ tarafından üretilir?,Karaciğer,Pankreas,Böbrek,Kalp,B,Pankreas insülin üretir,Easy
+2490,Art,Pablo Picasso hangi akımın kurucularındandır?,İzlenimcilik,Kübizm,Gerçeküstücülük,Ekspresyonizm,B,"Picasso, Kübizm hareketinin kurucu ortağıdır",Easy
+2491,Technology,RAM ne anlama geliyor?,Rastgele Erişimli Bellek,Okuma Erişim Belleği,Rastgele Kullanılabilir Bellek,Kullanılabilir Belleği Oku,A,"RAM, Rastgele Erişimli Bellek anlamına gelir",Easy
+2492,Animals,En hızlı deniz hayvanı hangisidir?,Yunus,Köpek balığı,Ton balığı,Marlin,D,Marlin en hızlı deniz hayvanlarından biridir,Easy
+2493,Science,Depremleri inceleyen bilim dalına ne ad verilir?,Volkanoloji,Sismoloji,Meteoroloji,Hidroloji,B,Sismoloji depremlerin incelenmesidir,Easy
+2494,Science,Tiroid fonksiyonu için hangi element gereklidir?,Ütü,Kalsiyum,İyot,Magnezyum,C,"İyot, tiroid hormonu üretimi için gereklidir",Easy
+2495,Math,200'ün %75'i kaçtır?,125,150,175,200,B,200'ün %75'i 150'dir,Easy
+2496,Science,Sadece bitkilerle beslenen hayvanlara ne ad verilir?,Etçiller,Hepçiller,Otçullar,Böcekçiller,C,Otçullar yalnızca bitkisel materyal yerler,Easy
+2497,Science,Lipitleri ve steroidleri sentezleyen hücresel yapı hangisidir?,Ribozom,Kaba Acil Servis,Pürüzsüz Acil Servis,Golgi aygıtı,C,Pürüzsüz endoplazmik retikulum lipitleri ve steroidleri sentezler,Easy
+2498,Sports,Standart bir golf turunda kaç delik oynanır?,16,18,20,22,B,Standart bir golf turu 18 delikten oluşur,Easy
+2499,Science,Metanın kimyasal formülü nedir?,CH3,CH4,C2H4,C2H6,B,Metanın kimyasal formülü CH4'tür,Easy
+2500,Art,Çığlık tablosunu kim çizdi?,Vincent van Gogh,Pablo Picasso,Edvard Munch,Claude Monet,C,Edvard Munch Çığlık tablosunu çizdi,Easy
+2501,Technology,HTML ne anlama geliyor?,Hiper Metin İşaretleme Dili,Yüksek Teknoloji Modern Dil,Hipermetin Modern Dili,Yüksek Teknoloji İşaretleme Dili,A,"HTML, HyperText Markup Language (Köprü Metni İşaretleme Dili) anlamına gelir",Easy
+2502,Animals,Kanguru yavrusuna ne ad verilir?,Buzağı,Yavru,Joey,Kit,C,Yavru kanguruya joey denir,Easy
+2503,Science,Saf suyun pH değeri nedir?,6,7,8,9,B,Saf suyun pH değeri nötrdür (7),Easy
+2504,Science,Odun yandığında hangi gaz ortaya çıkar?,Karbon monoksit,Karbondioksit,Oksijen,Azot,B,Ahşabın yanması öncelikle karbondioksit üretir,Easy
+2505,Math,8 × 9 kaçtır?,64,72,80,81,B,8'in 9 ile çarpımı 72'ye eşittir,Easy
+2506,Science,Kırmızı kan hücrelerinin işlevi nedir?,Enfeksiyonla mücadele,Oksijen taşımak,Pıhtılaşmış kan,Yiyecekleri sindirmek,B,Kırmızı kan hücreleri oksijeni tüm vücuda taşır,Easy
+2507,Science,Güneş sistemimizdeki en küçük gezegen hangisidir?,Merkür,Mars,Venüs,Plüton,A,Merkür en küçük gezegendir,Easy
+2508,Sports,Hangi spor dalında smaç basardınız?,Tenis,Basketbol,Voleybol,Beyzbol,B,Basketbolda smaç yapılır,Easy
+2509,Science,Canlı organizmaları inceleyen bilim dalına ne ad verilir?,Fizik,Kimya,Biyoloji,Jeoloji,C,Biyoloji canlı organizmaların incelenmesidir,Easy
+2510,Art,Monet hangi sanat akımına mensuptur?,Kübizm,İzlenimcilik,Gerçeküstücülük,Pop art,B,Claude Monet önde gelen bir Empresyonistti,Easy
+2511,Technology,CPU ne anlama geliyor?,Merkezi İşlem Birimi,Bilgisayar İşlem Birimi,Merkezi Program Birimi,Bilgisayar Programlama Birimi,A,"CPU, Merkezi İşlem Birimi anlamına gelir",Easy
+2512,Animals,Bir kuşun kalbi kaç odacıklıdır?,2,3,4,5,C,Kuşların kalpleri dört odacıklıdır,Easy
+2513,Science,Evrende en bol bulunan element hangisidir?,Hidrojen,Helyum,Oksijen,Karbon,A,Hidrojen evrendeki en bol bulunan elementtir,Medium
+2514,Science,Hücrenin genetik materyalini barındıran organel hangisidir?,Mitokondri,Çekirdek,Ribozom,Endoplazmik retikulum,B,"Çekirdek, DNA ve genetik materyali içerir",Medium
+2515,Science,Bitkilerin yaprakları aracılığıyla su kaybetme süreci nedir?,Fotosentez,Terleme,Solunum,Çimlenme,B,"Terleme, bitki yapraklarından su kaybıdır",Medium
+2516,Math,x²'nin türevi nedir?,X,2x,x²,2x²,B,x²'nin türevi 2x'tir,Medium
+2517,Science,Karbon-14'ün yarı ömrü nedir?,1000 yıl,5730 yıl,10000 yıl,50000 yıl,B,Karbon-14'ün yarı ömrü yaklaşık 5730 yıldır,Medium
+2518,Science,Oda sıcaklığında havadaki sesin hızı nedir?,300 m/s,343 m/s,400 m/s,500 m/s,B,"Ses, 20°C'de havada yaklaşık 343 m/s hızla hareket eder",Medium
+2519,Sports,On pinli bowlingde alınabilecek en yüksek puan nedir?,200,250,300,350,C,Bowling'de mükemmel bir oyun 300 puan kazandırır,Medium
+2520,Science,Hangi damarların duvarları en kalındır?,Damarlar,Atardamarlar,Kılcal damarlar,Venüller,B,Atardamarların yüksek tansiyona dayanabilmesi için kalın duvarları vardır,Medium
+2521,Art,Guernica tablosunu hangi sanatçı çizmiştir?,Salvador Dali,Pablo Picasso,Joan Miro,Francisco Goya,B,"Pablo Picasso, Guernica'yı 1937'de resmetti",Medium
+2522,Technology,HTTPS ne anlama geliyor?,HyperText Transfer Protocol Güvenli,HyperText Transfer İşlemi Güvenli,HyperText Taşıma Protokolü Güvenli,Yüksek Aktarım Protokolü Güvenli,A,"HTTPS, HyperText Transfer Protocol Secure'un kısaltmasıdır",Medium
+2523,Animals,Bir filin gebelik süresi ne kadardır?,12 ay,18 ay,22 ay,24 ay,C,Fillerin gebelik süresi yaklaşık 22 aydır,Medium
+2524,Science,Karbonun atom numarası nedir?,4,6,8,12,B,Karbonun atom numarası 6'dır,Medium
+2525,Science,Beynimizin hangi kısmı istemli kas hareketlerini kontrol eder?,Beyincik,Beyin,Beyin sapı,Hipotalamus,B,"Beyin, istemli kas hareketlerini kontrol eder",Medium
+2526,Math,Beşgenin iç açılarının toplamı kaçtır?,450°,540°,630°,720°,B,Bir beşgenin iç açıları 540°'dir,Medium
+2527,Science,Su moleküllerini bir arada tutan bağ türü nedir?,İyonik bağ,Kovalent bağ,Hidrojen bağı,Metalik bağ,C,Hidrojen bağları su moleküllerini bir arada tutar,Medium
+2528,Science,Elektronların aynı anda birden fazla enerji durumunda bulunmasına olanak sağlayan olgu hangisidir?,Kuantum tünelleme,Üst üste binme,Dolaşıklık,Dalga-parçacık ikiliği,B,Kuantum süperpozisyonu elektronların birden fazla durumda var olmasına olanak tanır,Medium
+2529,Sports,Teniste 'aşk' terimi ne anlama gelir?,15 puan,30 puan,Sıfır puan,Oyun noktası,C,"Aşk, tenis puanlamasında sıfır demektir",Medium
+2530,Science,Sabit sıcaklıkta basınç ve hacim arasındaki ilişkiyi açıklayan gaz yasası hangisidir?,Boyle Yasası,Charles Yasası,Gay-Lussac Yasası,Avogadro Yasası,A,"Boyle Yasası, basınç ve hacim arasındaki ters ilişkiyi açıklar",Medium
+2531,Art,Rönesans'tan sonra hangi dönem geldi?,Barok,Romantik,Neoklasik,Modern,A,Rönesans'ı Barok dönemi izledi,Medium
+2532,Technology,API ne anlama geliyor?,Uygulama Programı Arayüzü,Uygulama Programlama Arayüzü,Uygulanan Program Arayüzü,Uygulamalı Programlama Arayüzü,B,"API, Uygulama Programlama Arayüzü anlamına gelir",Medium
+2533,Animals,Birçok hayvan kışın hangi davranışsal adaptasyonu kullanır?,Göç,Kış uykusu,Hem A hem de B,Kamuflaj,C,Birçok hayvan ya daha sıcak bölgelere göç eder ya da kış uykusuna yatar,Medium
+2534,Science,Kinetik enerjinin formülü nedir?,½mv,½mv²,mv²,2mv²,B,"Kinetik enerji, kütlenin yarısı ile hızın karesinin çarpımına eşittir",Medium
+2535,Science,Hangi elementin erime noktası en yüksektir?,Karbon,Tungsten,Ütü,Titanyum,B,Tungsten tüm elementler arasında en yüksek erime noktasına sahiptir,Medium
+2536,Math,log₁₀(1000) nedir?,2,3,4,10,B,log₁₀(1000) = 3 çünkü 10³ = 1000,Medium
+2537,Science,Mantarları inceleyen bilim dalına ne ad verilir?,Bakteriyoloji,Mikoloji,Viroloji,Parazitoloji,B,Mikoloji mantarların incelenmesidir,Medium
+2538,Science,Elektriksel direncin birimi nedir?,Amper,Volt,Ohm,Watt,C,Elektriksel direnç ohm cinsinden ölçülür,Medium
+2539,Sports,Bir maratonun standart mesafesi nedir?,"24,2 mil","25,2 mil","26,2 mil","27,2 mil",C,"Bir maraton 26,2 mil veya 42,195 kilometredir",Medium
+2540,Science,Protein sentezinden sorumlu organel hangisidir?,Çekirdek,Ribozom,Mitokondri,Golgi aygıtı,B,Ribozomlar protein sentezler,Medium
+2541,Art,Davut'u kim yaptı?,Leonardo da Vinci,Michelangelo,Donatello,Bernini,B,"Michelangelo, ünlü Davut heykelini yaptı",Medium
+2542,Technology,SQL ne anlama geliyor?,Yapılandırılmış Sorgu Dili,Standart Sorgu Dili,Sistem Sorgu Dili,Basit Sorgu Dili,A,"SQL, Yapılandırılmış Sorgu Dili anlamına gelir",Medium
+2543,Animals,Gerçek anlamda uçma yeteneğine sahip tek memeli hayvan hangisidir?,Uçan sincap,Şeker planörü,Yarasa,Pterodaktil,C,"Yarasalar, sürekli uçuş yeteneğine sahip tek memelilerdir",Medium
+2544,Science,Avogadro sayısı yaklaşık olarak kaçtır?,"6,02 × 10²²","6,02 × 10²³","6,02 × 10²⁴","6,02 × 10²⁵",B,"Avogadro sayısı yaklaşık olarak 6,02 × 10²³'tür",Medium
+2545,Science,Uyku-uyanıklık döngüsünü hangi hormon düzenler?,İnsülin,Melatonin,Adrenalin,Kortizol,B,Melatonin sirkadiyen ritimleri ve uykuyu düzenler,Medium
+2546,Math,Yarıçapı 5 olan bir dairenin alanı nedir?,25π,50π,75π,100π,A,Alan = πr² = π(5)² = 25π,Medium
+2547,Science,Uranyumun en yaygın izotopu nedir?,Uranyum-235,Uranyum-238,Uranyum-240,Uranyum-242,B,Uranyum-238 en bol izotoptur,Medium
+2548,Science,Işığın boşluktaki hızı nedir?,186000 mil/saniye,300000 km/saniye,Hem A hem de B,Ne A ne de B,C,Işık saniyede 186.000 mil veya saniyede 300.000 km hızla hareket eder,Medium
+2549,Sports,Golfte kartal nedir?,Bir alt par,İki par altı,Üç alt par,Dört par altı,B,"Kartal, par vuruşunun iki vuruş altındadır",Medium
+2550,Science,Atmosferdeki azot hangi işlemle amonyağa dönüştürülür?,Fotosentez,Azot fiksasyonu,Denitrifikasyon,Nitrifikasyon,B,Azot fiksasyonu N₂'yi amonyağa dönüştürür,Medium
+2551,Art,Belleğin Azmi adlı eseri hangi sanatçı çizmiştir?,Pablo Picasso,Salvador Dali,Joan Miro,Max Ernst,B,"Salvador Dali, Belleğin Azmi adlı eserini resmetti",Medium
+2552,Technology,VPN ne anlama geliyor?,Sanal Özel Ağ,Sanal Kamu Ağı,Çok Özel Ağ,Çok Kamusal Ağ,A,"VPN, Sanal Özel Ağ anlamına gelir",Medium
+2553,Animals,İnsanın bilimsel adı nedir?,Homo erectus,Homo neanderthalensis,Homo sapiens,Homo habilis,C,Modern insanın bilimsel adı Homo sapiens'tir,Medium
+2554,Science,Glikozun moleküler formülü nedir?,C6H12O6,C12H22O11,C6H10O5,C5H10O5,A,Glikozun moleküler formülü C6H12O6'dır,Medium
+2555,Science,Ozon tabakası atmosferin hangi katmanında bulunur?,Troposfer,Stratosfer,Mezosfer,Termosfer,B,Ozon tabakası stratosferde bulunur,Medium
+2556,Math,π sayısının 3 ondalık basamağa kadar değeri nedir?,3.141,3.142,3.143,3.144,B,Pi sayısı yaklaşık olarak 3.142'dir,Medium
+2557,Science,Işığın farklı ortamlardan geçerken bükülmesine ne ad verilir?,Refleks,Refraksiyon,Kırınım,Parazit yapmak,B,"Kırılma, ışığın farklı ortamlarda bükülmesidir",Medium
+2558,Science,Sülfürik asidin kimyasal formülü nedir?,H2SO3,H2SO4,HNO3,HCl,B,Sülfürik asitin formülü H2SO4'tür,Medium
+2559,Sports,Bir basketbol sahasında aynı anda en fazla kaç oyuncu bulunabilir?,8,10,12,14,B,Basketbolda her takımda 5 oyuncu vardır ve toplamda 10 oyuncu sahada yer alır,Medium
+2560,Science,Hücrelerin yapı ve işlevlerini inceleyen bilim dalına ne ad verilir?,Histoloji,Sitoloji,Embriyoloji,Fizyoloji,B,"Sitoloji, hücrelerin incelenmesidir",Hard
+2561,Science,Hangi parçacık J.J. Thomson tarafından keşfedilmiştir?,Proton,Nötron,Elektron,Pozitron,C,J.J. Thomson elektronu 1897'de keşfetti,Hard
+2562,Science,Asit ve bazın birbirini nötralize ettiği tepkimeye ne ad verilir?,Oksidasyon,Kesinti,Nötralizasyon,Hidroliz,C,"Nötralizasyon, asitler ve bazlar reaksiyona girdiğinde meydana gelir",Hard
+2563,Math,sin(x) dx'in integrali nedir?,-cos(x) + C,cos(x) + C,-sin(x) + C,sin(x) + C,A,Sin(x)'in integrali -cos(x) + C'dir,Hard
+2564,Science,Isıyı emen bir tepkimenin terimi nedir?,Ekzotermik,Endotermik,İzotermik,Adiabatik,B,Endotermik reaksiyonlar çevreden ısı emer,Hard
+2565,Science,Metanın moleküler geometrisi nedir?,Doğrusal,Üçgen düzlemsel,Dörtyüzlü,Sekiz yüzlü,C,Metan tetrahedral bir moleküler geometriye sahiptir,Hard
+2566,Sports,İlk modern olimpiyat oyunları hangi yılda düzenlendi?,1892,1896,1900,1904,B,İlk modern Olimpiyatlar 1896 yılında Atina'da düzenlendi,Hard
+2567,Science,DNA'nın replikasyon sırasında çözülmesini sağlayan enzim hangisidir?,DNA polimeraz,Helikaz,Ligaz,Primase,B,"Helikaz, DNA çift sarmalını çözer",Hard
+2568,Art,Jackson Pollock hangi sanat akımına mensuptur?,Kübizm,Gerçeküstücülük,Soyut Ekspresyonizm,Pop art,C,Jackson Pollock Soyut Ekspresyonistti,Hard
+2569,Technology,BIOS ne anlama geliyor?,Temel Giriş Çıkış Sistemi,İkili Giriş Çıkış Sistemi,Temel Dahili İşletim Sistemi,İkili Dahili İşletim Sistemi,A,"BIOS, Temel Giriş Çıkış Sistemi anlamına gelir",Hard
+2570,Animals,İki taraflı simetrinin evrimsel avantajı nedir?,Daha iyi denge,Yönsel hareket,Verimli organ yerleşimi,Yukarıdakilerin hepsi,D,"İki taraflı simetri, denge yönü ve etkili organ düzenlemesi sağlar",Hard
+2571,Science,Termodinamiğin birinci yasası nedir?,Enerji yaratılamaz veya yok edilemez,Entropi her zaman artar,Isı sıcaktan soğuğa doğru akar,PV = nRT,A,Birinci yasa enerjinin korunumunu belirtir,Hard
+2572,Science,Kıtaların kayması teorisini hangi bilim adamı ortaya attı?,Charles Darwin,Alfred Wegener,Gregor Mendel,Louis Pasteur,B,Alfred Wegener kıtaların kayması teorisini önerdi,Hard
+2573,Math,ln(x)'in türevi nedir?,1/x,X,ln(x),e^x,A,ln(x)'in türevi 1/x'tir,Hard
+2574,Science,Atomun kuantum mekaniksel modeli neye dayanmaktadır?,Bohr'un gezegen modeli,Dalga-parçacık ikiliği,Klasik mekanik,Elektromanyetik teori,B,Kuantum modeli dalga-parçacık ikiliğine dayanmaktadır,Hard
+2575,Science,"0,1 M HCl çözeltisinin pH'ı nedir?",0,1,2,3,B,"0,1 M HCl çözeltisinin pH'ı 1'dir",Hard
+2576,Sports,Dünyanın en eski tenis turnuvası hangisidir?,ABD Açık,Fransa Açık,Wimbledon,Avustralya Açık,C,Wimbledon en eski tenis şampiyonasıdır,Hard
+2577,Science,Karbonun en kararlı izotopu hangisidir?,Karbon-12,Karbon-13,Karbon-14,Karbon-15,A,Karbon-12 en kararlı ve bol izotoptur,Hard
+2578,Art,Las Meninas tablosunu kim çizdi?,Diego Velazquez,Francisco Goya,El Greco,Pablo Picasso,A,Diego Velazquez Las Meninas'ı boyadı,Hard
+2579,Technology,Bilgisayarda RAID ne anlama geliyor?,Bağımsız Disklerin Yedekli Dizisi,Bağımsız Verilere Rastgele Erişim,Dahili Sürücülerin Hızlı Dizisi,İnternet Verilerine Uzaktan Erişim,A,"RAID, Bağımsız Disklerin Yedekli Dizisi anlamına gelir",Hard
+2580,Animals,Evcil kedinin binom adı nedir?,Felis domesticus,Felis catus,Felis silvestris,Felis vaşağı,B,Evcil kedinin bilimsel adı Felis catus'tur,Hard
+2581,Science,Kuantum mekaniğinde belirsizlik ilkesi nedir?,Pozisyon ve momentum her ikisi de kesin olarak bilinemez,Enerji ve zaman ilişkilidir,Madde ve enerji eşdeğerdir,Parçacıklar dalga özellikleri sergiler,A,Heisenberg'in belirsizlik ilkesi konum ve momentumu ilişkilendirir,Hard
+2582,Science,Hangi elementin elektron dizilimi 1s² 2s² 2p⁶ 3s² 3p⁶ 4s²'dir?,Kalsiyum,Potasyum,Argon,İskandiyum,A,Bu elektron konfigürasyonu kalsiyuma karşılık gelir,Hard
+2583,Math,e^x için Maclaurin serisi nedir?,1 + x + x²/2! + x³/3! + ...,x - x³/3! + x⁵/5! - ...,1 - x²/2! + x⁴/4! - ...,1 + x²/2! + x⁴/4! + ...,A,e^x için Maclaurin serisi üstel seridir,Hard
+2584,Science,Enzim kinetiğinde hız belirleyici adım nedir?,Enzim-substrat bağlanması,Ürün oluşumu,Ürün lansmanı,Enzime bağlıdır,D,"Hızı belirleyen adım, belirli enzime bağlı olarak değişir",Hard
+2585,Science,Henderson-Hasselbalch denklemi ne için kullanılır?,Tampon çözeltilerin pH'ının hesaplanması,Tepkime hızlarının belirlenmesi,Denge sabitlerini bulma,Elektrot potansiyellerinin ölçülmesi,A,Henderson-Hasselbalch denklemi tampon pH'ını hesaplar,Hard
+2586,Sports,Snooker'da mümkün olan en yüksek kırılma sayısı nedir?,147,155,167,180,A,Snooker'da maksimum kırılma noktası 147 puandır,Hard
+2587,Science,DNA'dan RNA sentezlenmesi işleminin adı nedir?,Çoğaltma,Transkripsiyon,Çeviri,Dönüşüm,B,"Transkripsiyon, bir DNA şablonundan RNA sentezler",Hard
+2588,Art,Düşünen Adam heykelini hangi sanatçı yapmıştır?,Auguste Rodin,Alberto Giacometti,Henry Moore,Constantin Brancusi,A,Auguste Rodin Düşünen Adam heykelini yarattı,Hard
+2589,Technology,Ortalama durumda hızlı sıralamanın zaman karmaşıklığı nedir?,Açık),O(n log n),O(n²),O(log n),B,Quicksort'un ortalama zaman karmaşıklığı O(n log n)'dir,Hard
+2590,Animals,Bir grup kuzgunun toplu adı nedir?,Cinayet,Sürü,Komplo,Kabalık,D,"Bir grup kuzgun, kabalık olarak adlandırılır",Hard
+2591,Science,Elementlerin standart hallerindeki standart oluşum entalpisi nedir?,Olumlu,Negatif,Sıfır,Öğeye göre değişir,C,Standart hallerdeki elementlerin oluşum entalpisi sıfırdır,Hard
+2592,Science,Sadece bitki hücrelerinde bulunan ve fotosentezden sorumlu organel hangisidir?,Mitokondri,Kloroplast,Çekirdek,Vakuol,B,Kloroplastlar bitki hücrelerine özgüdür ve fotosentez gerçekleştirir,Hard
+2593,Math,n sonsuza yaklaşırken (1 + 1/n)^n'nin limiti nedir?,1,2,e,sonsuzluk,C,Bu sınır yaklaşık olarak 2.718'e eşittir,Hard
+2594,Science,Işığın engellerin etrafından dolanarak kırılması olayına ne ad verilir?,Refleks,Refraksiyon,Kırınım,Polarizasyon,C,"Kırınım, ışığın engellerin etrafında bükülmesidir",Hard
+2595,Science,A + B ⇌ C + D tepkimesi için denge sabiti ifadesi nedir?,[C][D]/[A][B],[A][B]/[C][D],[CD],[A][B],A,"Denge sabiti, ürünlerin tepkimeye giren maddelere oranıdır",Hard
+2596,Sports,Bowling'de üst üste üç strike'a ne ad verilir?,Türkiye,Kıyamamak,Bölmek,Çift,A,Üç ardışık vuruşa hindi denir,Hard
+2597,Science,Proteinlerdeki aminoasitler arasında oluşan bağın adı nedir?,İyonik bağ,Hidrojen bağı,Peptit bağı,Disülfür bağı,C,Peptit bağları proteinlerdeki amino asitleri birbirine bağlar,Hard
+2598,Art,Andy Warhol hangi akımın öncülüğünü yapmıştır?,Soyut Ekspresyonizm,Pop art,Minimalizm,Kavramsal Sanat,B,"Andy Warhol, Pop Art hareketinin öncülerinden biriydi",Hard
+2599,Technology,JSON ne anlama geliyor?,JavaScript Nesne Gösterimi,Java Standart Nesne Ağı,JavaScript Çevrimiçi Notasyonu,Java Script Nesne Ağı,A,"JSON, JavaScript Nesne Gösterimi anlamına gelir",Hard
+2600,Animals,Mavi balinanın gebelik süresi ne kadardır?,10 ay,11 ay,12 ay,13 ay,C,Mavi balinaların gebelik süresi yaklaşık 12 aydır,Hard
+2601,Science,Termodinamiğin ikinci yasası nedir?,Enerji korunur,Entropi her zaman artar,Isı sıcaktan soğuğa doğru akar,Yukarıdakilerin hepsi,B,İkinci yasa entropinin her zaman arttığını belirtir,Hard
+2602,Science,Periyodik tabloyu hangi bilim adamı geliştirmiştir?,Dmitri Mendeleyev,Antoine Lavoisier,John Dalton,Marie Curie,A,Dmitri Mendeleyev periyodik tabloyu geliştirdi,Hard
+2603,Math,cos(x)'in x = 0 etrafındaki Taylor serisi açılımı nedir?,1 - x²/2! + x⁴/4! - x⁶/6! + ...,x - x³/3! + x⁵/5! - x⁷/7! + ...,1 + x + x²/2! + x³/3! + ...,1 + x²/2! + x⁴/4! + x⁶/6! + ...,A,"Cos(x) için Taylor serisi, alternatif çift kuvvet serisidir",Hard
+2604,Science,Bir atomdan bir elektronu koparmak için gereken enerjiye ne ad verilir?,Elektron ilgisi,İyonlaşma enerjisi,Elektronegatiflik,Atom yarıçapı,B,Bir elektronu uzaklaştırmak için iyonlaşma enerjisine ihtiyaç vardır,Hard
+2605,Science,Moleküler orbital teorisi neyi açıklamak için kullanılır?,Kimyasal bağlanma,Atom yapısı,Radyoaktif bozunma,Faz geçişleri,A,Moleküler orbital teorisi kimyasal bağları açıklar,Hard
+2606,Sports,Ryder Kupası hangi spor dalında mücadele ediyor?,Tenis,Golf,Kriket,Rugby,B,Ryder Kupası prestijli bir golf turnuvasıdır,Hard
+2607,Science,Bitkilerin stomalarını açıp kapatma işlemine ne ad verilir?,Terleme,Fotosentez,Solunum,Damlama,A,"Terleme, stomaların açılıp kapanmasını içerir",Hard
+2608,Art,Venüs'ün Doğuşu tablosunu kim çizmiştir?,Leonardo da Vinci,Michelangelo,Sandro Botticelli,Raphael,C,Sandro Botticelli Venüs'ün Doğuşu tablosunu çizdi,Hard
+2609,Technology,TCP ile UDP arasındaki fark nedir?,"TCP güvenilirdir, UDP daha hızlıdır","TCP daha hızlıdır, UDP güvenilirdir","TCP durumsuzdur, UDP durumludur",Önemli bir fark yok,A,TCP güvenilir teslimat sağlarken UDP daha hızlıdır ancak güvenilir değildir,Hard
+2610,Animals,İlgisiz türlerde yakınsak evrimi yönlendiren mekanizma nedir?,Genetik sürüklenme,Doğal seçilim,Mutasyon,Gen akışı,B,Doğal seçilim benzer ortamlarda yakınsak evrimi yönlendirir,Hard
+2611,Science,Pauli dışlama ilkesi nedir?,Hiçbir iki elektron aynı kuantum sayısına sahip olamaz,Enerji nicelikseldir,Madde dalga özelliklerine sahiptir,Ölçümde belirsizlik,A,"Pauli dışlama ilkesi, iki elektronun aynı kuantum durumlarına sahip olamayacağını belirtir",Hard
+2612,Science,Hangi nükleer bozunma türü atom numarasını artırır?,Alfa bozunması,Beta eksi bozunma,Gama bozunması,Elektron yakalama,B,Beta eksi bozunması atom numarasını bir artırır,Hard
+2613,Math,Kalkülüsün temel teoremi nedir?,Entegrasyon ve türevlendirme ters işlemlerdir,Bir sabitin türevi sıfırdır,Sınırlar sürekliliği tanımlar,Bir eğrinin altındaki alan integrale eşittir,A,"Temel teorem, integrali ve türevi birbirine bağlar",Hard
+2614,Science,Le Chatelier ilkesi nedir?,Dengedeki sistemler değişime direnir,Tepkimelerde enerji korunur,Tepkime hızları konsantrasyona bağlıdır,Katalizörler aktivasyon enerjisini düşürür,A,"Le Chatelier ilkesi, denge tepkisinin değişikliklere nasıl tepki verdiğini açıklar",Hard
+2615,Science,Okyanusta fotosentezin gerçekleşebildiği bölgenin adı nedir?,Uçurum bölgesi,Batyal bölgesi,Fotik bölge,Afotik bölge,C,Fotik bölge fotosentez için yeterli ışık alır,Hard
+2616,Sports,Ağır sıklet bir boksörün kaldırabileceği maksimum kilo nedir?,Sınır yok,200 libre,220 lbs,250 lbs,A,Ağır sıklet boksun üst ağırlık sınırı yoktur,Hard
+2617,Science,Işık enerjisinin kimyasal enerjiye dönüştürüldüğü sürecin adı nedir?,Hücresel solunum,Fotosentez,Kemosentez,Fermantasyon,B,Fotosentez ışık enerjisini kimyasal enerjiye dönüştürür,Hard
+2618,Art,Dünyevi Zevkler Bahçesi adlı tabloyu hangi sanatçı çizmiştir?,Hieronymus Bosch,Pieter Bruegel,Jan van Eyck,Albrecht Dürer,A,"Hieronymus Bosch, Dünyevi Zevkler Bahçesi'ni resmetti",Hard
+2619,Technology,Bilgisayar mimarisinde RISC ne anlama gelir?,Azaltılmış Komut Seti Bilgisayarı,Rastgele Komut Seti Bilgisayarı,Hızlı Komut Seti Bilgisayarı,Uzaktan Komut Seti Bilgisayarı,A,"RISC, Azaltılmış Komut Seti Bilgisayarı anlamına gelir",Hard
+2620,Animals,Kuzey Amerika'ya özgü tek keseli hayvan hangisidir?,Koala,Kanguru,Opossum,Valabi,C,"Virginia keseli sıçanı, Kuzey Amerika'nın tek yerli keseli hayvanıdır",Hard
+2621,Science,Bazı maddelerin radyasyonu emdikten sonra ışık yayması olayına ne ad verilir?,Floresans,Fosforesans,Hem A hem de B,Parıltı,C,"Hem floresans hem de fosforesans, radyasyon emiliminden sonra ışık emisyonunu içerir",Hard
+2622,Science,Eşit hacimli gazların eşit sayıda molekül içerdiğini belirten gaz yasası hangisidir?,Boyle Yasası,Charles Yasası,Avogadro Yasası,Gay-Lussac Yasası,C,"Avogadro Yasası, hacmi molekül sayısıyla ilişkilendirir",Hard
+2623,Math,Sürekli fonksiyonun tanımı nedir?,Kesintisiz bir fonksiyon,Türevlenebilir bir fonksiyon,Sonlu limitleri olan bir fonksiyon,Her yerde tanımlanmış bir fonksiyon,A,Sürekli bir fonksiyonun kesintileri veya boşlukları yoktur,Hard
+2624,Science,Çekirdekte proton ve nötronları bir arada tutan kuvvetin adı nedir?,Elektromanyetik kuvvet,Güçlü nükleer kuvvet,Zayıf nükleer kuvvet,Yerçekimi kuvveti,B,Güçlü nükleer kuvvet nükleonları birbirine bağlar,Hard
+2625,Science,pH değişimlerine direnç gösteren çözeltiye ne ad verilir?,Tampon,Gösterge,Katalizör,Çözücü,A,Bir tampon çözelti pH değişikliklerine karşı direnç gösterir,Hard
+2626,Sports,Bowling'de mükemmel oyuna ne ad verilir?,Çarpmak,Kıyamamak,Türkiye,300,D,Mükemmel bir oyun 300 puan kazandırır,Hard
+2627,Science,Bir gazın sıvıya dönüşme sürecine ne ad verilir?,Süblimasyon,Yoğunlaşma,Buharlaşma,İfade,B,"Yoğunlaşma, gazdan sıvıya faz geçişidir",Hard
+2628,Art,Eyfel Kulesi'ni kim tasarladı?,Gustave Eiffel,Antoni Gaudi,Frank Lloyd Wright,Le Corbusier,A,Ünlü Paris kulesini Gustave Eiffel tasarladı,Hard
+2629,Technology,XML ne anlama geliyor?,Genişletilebilir İşaretleme Dili,Genişletilmiş İşaretleme Dili,eXternal İşaretleme Dili,Yürütülebilir İşaretleme Dili,A,"XML, Genişletilebilir İşaretleme Dili anlamına gelir",Hard
+2630,Animals,Alacakaranlıkta aktif olan hayvanlara ne ad verilir?,Günlük,Geceleyin,Alacakaranlık,Katemeral,C,Alacakaranlık hayvanları alacakaranlık saatlerinde aktiftir,Hard
+2631,Science,Tüm moleküler hareketin durduğu teorik sıcaklığın adı nedir?,Mutlak sıfır,Donma noktası,Kaynama noktası,Kritik nokta,A,Mutlak sıfır teorik minimum sıcaklıktır,Hard
+2632,Science,Işığın dalga teorisini hangi bilim adamı ortaya attı?,Isaac Newton,Christiaan Huygens,Thomas Young,Albert Einstein,B,Christiaan Huygens ışığın dalga teorisini ortaya attı,Hard
+2633,Math,İlk terimi a ve oranı r olan sonsuz bir geometrik serinin toplamı kaçtır? (|r| < 1),a/(1-r),a(1-r),a + r,ar,A,Sonsuz bir geometrik serinin toplamı a/(1-r)'dir,Hard
+2634,Science,Enerjinin yaratılamayacağını veya yok edilemeyeceğini belirten ilkenin adı nedir?,Enerjinin korunumu,Momentumun korunumu,kütle korunumu,Yükün korunumu,A,Enerjinin korunumu ilkesi termodinamiğin birinci yasasıdır,Hard
+2635,Science,Bir kimyasal reaksiyonun gerçekleşmesi için gereken minimum enerjiye ne ad verilir?,Aktivasyon enerjisi,İyonlaşma enerjisi,Bağlayıcı enerji,Kinetik enerji,A,"Aktivasyon enerjisi, reaksiyonlar için minimum enerji bariyeridir",Hard
+2636,Sports,Hangi sporda smaç vurabilirsin?,Basketbol,Voleybol,Tenis,Badminton,A,Basketbolda smaç yapılır,Hard
+2637,Science,Hücreye giren ve çıkan maddeleri kontrol eden yapının adı nedir?,Hücre duvarı,Hücre zarı,Çekirdek,Sitoplazma,B,Hücre zarı moleküler taşımayı kontrol eder,Hard
+2638,Art,Işığı ve onun değişen niteliklerini yakalamaya odaklanan sanat akımı hangisidir?,İzlenimcilik,Ekspresyonizm,Kübizm,Gerçeküstücülük,A,Empresyonizm ışığı ve onun etkilerini vurguladı,Hard
+2639,Technology,Ondalık sayı sistemi olan 10'un ikili sistemde gösterimi nedir?,1010,1100,1001,1110,A,"Ondalık 10, ikili 1010'a eşittir",Hard
+2640,Animals,Karmaşık gözlerin bağımsız olarak gelişmesini açıklayan evrimsel mekanizma hangisidir?,Genetik sürüklenme,Yakınsak evrim,Cinsel seçilim,Tarafsız evrim,B,"Yakınsak evrim, farklı soylarda karmaşık gözlerin bağımsız evrimini açıklar",Hard
+2641,Science,Bitkilerin oksijeni serbest bırakma sürecine ne ad verilir?,Fotosentez,Solunum,Terleme,Çimlenme,A,"Fotosentez, yan ürün olarak oksijen açığa çıkarır",Hard
+2642,Science,Dünya kabuğunda en bol bulunan element hangisidir?,Silikon,Oksijen,Alüminyum,Ütü,B,"Oksijen, Dünya'nın kabuğunda en bol bulunan elementtir",Hard
+2643,Math,e^x'in türevi nedir?,e^x,xe^(x-1),ln(x),1/x,A,e^x'in türevi e^x'tir,Hard
+2644,Science,Yüzeyler arasındaki harekete karşı koyan kuvvetin adı nedir?,Sürtünme,Tansiyon,Sıkıştırma,Burulma,A,"Sürtünme, temas eden yüzeyler arasındaki harekete karşı koyar",Hard
+2645,Science,Katı bir maddenin doğrudan gaza dönüşmesine ne ad verilir?,Erime,Süblimasyon,Buharlaşma,Yoğunlaşma,B,Süblimleşme katıdan gaza doğrudan geçiştir,Hard
+2646,Sports,Bowlingde tek bir frame'de alınabilecek en yüksek skor nedir?,10,20,30,Sınır yok,C,Bir karede maksimum 30 (vuruş artı iki vuruş),Hard
+2647,Science,Elektrik yükü olmayan atom altı parçacığın adı nedir?,Proton,Elektron,Nötron,Foton,C,Nötronların elektrik yükü yoktur,Hard
+2648,Art,İnci Küpeli Kız tablosunu kim çizmiştir?,Rembrandt,Vermeer,Van Dyck,Rubens,B,"Johannes Vermeer, İnci Küpeli Kız tablosunu çizdi",Hard
+2649,Technology,Programlamada IDE ne anlama gelir?,Entegre Geliştirme Ortamı,Etkileşimli Geliştirme Ortamı,İç Geliştirme Ortamı,Bağımsız Kalkınma Ortamı,A,"IDE, Entegre Geliştirme Ortamı anlamına gelir",Hard
+2650,Animals,Vücut ısısını sabit tutan hayvanlara ne ad verilir?,Soğukkanlı,Sıcakkanlı,Ektotermik,Endotermik,D,Endotermik hayvanlar vücut sıcaklıklarını sabit tutarlar,Hard
+2651,Science,Dünya'nın mantosu ile çekirdeği arasındaki sınırın adı nedir?,Moho süreksizliği,Gutenberg kopukluğu,Lehmann süreksizliği,Conrad süreksizliği,B,Gutenberg süreksizliği mantoyu ve çekirdeği ayırır,Hard
+2652,Science,Hangi bağ türünde elektron paylaşımı vardır?,İyonik,Kovalent,Metalik,Van der Waals,B,Kovalent bağlar elektron paylaşımını içerir,Hard
+2653,Math,x 0'a yaklaşırken sin(x)/x'in limiti nedir?,0,1,-1,sonsuzluk,B,x 0'a yaklaşırken sin(x)/x'in limiti 1'dir,Hard
+2654,Science,Parçacıkların hem dalga hem de parçacık özellikleri gösterdiği etkinin adı nedir?,Fotoelektrik etki,Compton etkisi,Dalga-parçacık ikiliği,Tünel etkisi,C,Dalga-parçacık ikiliği kuantum davranışını tanımlar,Hard
+2655,Science,Kimyasal bağlarda depolanan enerjiye ne ad verilir?,Kinetik enerji,Potansiyel enerji,Kimyasal enerji,Nükleer enerji,C,Kimyasal enerji moleküler bağlarda depolanır,Hard
+2656,Sports,Teniste sıfır puan terimi nedir?,Aşk,Deuce,Avantaj,Arıza,A,Teniste aşk sıfır puan demektir,Hard
+2657,Science,RNA'nın protein sentezini yönettiği sürecin adı nedir?,Çoğaltma,Transkripsiyon,Çeviri,Dönüşüm,C,"Çeviri, proteinleri sentezlemek için RNA'yı kullanır",Hard
+2658,Art,Mobil heykeli hangi sanatçı yapmıştır?,Alexander Calder,Henry Moore,Alberto Giacometti,Constantin Brancusi,A,Alexander Calder mobil heykeli icat etti,Hard
+2659,Technology,Web geliştirmede CSS ne anlama gelir?,Bilgisayar Stil Sayfaları,Basamaklı Stil Sayfaları,Yaratıcı Stil Sistemi,Kodlanmış Stil Sözdizimi,B,"CSS, Basamaklı Stil Sayfaları anlamına gelir",Hard
+2660,Animals,Tardigradların aşırı koşullarda hayatta kalmasını sağlayan hücresel mekanizma nedir?,Kriptobiyoz,Diyapoz,Yaz uykusu,Uyuşukluk,A,"Kriptobiyoz, tardigradların aşırı koşullarda metabolizmalarını askıya almalarına olanak tanır",Hard
+2661,Science,Belirsizlik ilkesini ortaya koyan bilim insanının adı nedir?,Niels Bohr,Werner Heisenberg,Max Planck,Albert Einstein,B,Werner Heisenberg belirsizlik ilkesini geliştirdi,Hard
+2662,Science,Hücresel solunumdan sorumlu organel hangisidir?,Çekirdek,Kloroplast,Mitokondri,Ribozom,C,Mitokondri hücresel solunumu gerçekleştirir,Hard
+2663,Math,Yarıçapı r olan bir kürenin hacmi nedir?,4πr²,4πr³/3,πr²,2πr,B,Bir kürenin hacmi 4πr³/3'tür,Hard
+2664,Science,Elektriği iletmeyen maddeye ne ad verilir?,Şef,Yarı iletken,Yalıtkan,Süperiletken,C,Yalıtkan elektriği iletmez,Hard
+2665,Science,Işığın tamamen emildiği sürecin adı nedir?,Refleks,Refraksiyon,Emilim,Emisyon,C,"Emilim, ışığın tamamen alınmasıdır",Hard
+2666,Sports,Golfte hole-in-one'a ne denir?,Kartal,Kuş,Albatros,As,D,Bir hole-in-one'a aynı zamanda as da denir,Hard
+2667,Science,Akciğerlerdeki küçük hava keseciklerinin adı nedir?,Bronşlar,Bronşiyoller,Alveoller,Trakea,C,"Alveoller, gaz değişiminin gerçekleştiği küçük hava keseleridir",Hard
+2668,Art,Amerikan Gotiği'ni kim çizdi?,Grant Wood,Edward Hopper,Andrew Wyeth,Norman Rockwell,A,Grant Wood Amerikan Gotik'i boyadı,Hard
+2669,Technology,Bilgisayarda en küçük veri birimi nedir?,Biraz,Bayt,Kilobayt,Megabayt,A,"Bir bit, verinin en küçük birimidir",Hard
+2670,Animals,Gerçekten uçabilen tek memeli hayvan hangisidir?,Uçan sincap,Şeker planörü,Yarasa,Uçan lemur,C,Yarasalar gerçek uçuş yeteneğine sahip tek memelilerdir,Hard
+2671,Science,Asitliği ölçmek için kullanılan ölçeğin adı nedir?,Richter ölçeği,Mohs ölçeği,pH ölçeği,Kelvin ölçeği,C,pH ölçeği asitliği ve bazlılığı ölçer,Hard
+2672,Science,Gezegenlerin hareket yasalarını hangi bilim adamı ortaya koymuştur?,Galileo Galilei,Johannes Kepler,Tycho Brahe,Nicolaus Copernicus,B,Johannes Kepler gezegensel hareket yasalarını formüle etti,Hard
+2673,Math,-1'in karekökü nedir?,Ben,1,-1,tanımsız,A,-1'in karekökü sanal birimdir,Hard
+2674,Science,Manyetik alanların değiştirilmesiyle elektrik akımının oluştuğu etkinin adı nedir?,Fotoelektrik etki,Hall etkisi,Elektromanyetik indüksiyon,Termoelektrik etki,C,"Elektromanyetik indüksiyon, değişen manyetik alanlardan akım üretir",Hard
+2675,Science,Bir cisimdeki madde miktarını ifade eden terim nedir?,Ağırlık,Yığın,Yoğunluk,Hacim,B,"Kütle, bir nesnedeki madde miktarıdır",Hard
+2676,Sports,Bir golf çantasında bulunmasına izin verilen en fazla sopa sayısı nedir?,12,14,16,18,B,Golfçülere en fazla 14 sopa kullanma izni verilir,Hard
+2677,Science,Bitkilerin kökleri aracılığıyla su emme işlemine ne ad verilir?,Ozmoz,Difüzyon,Aktif taşıma,Yukarıdakilerin hepsi,D,Bitkiler suyu emmek için ozmoz difüzyonunu ve aktif taşımayı kullanırlar,Hard
+2678,Art,Gerçekçi temsil yerine rengin psikolojik etkilerini vurgulayan sanat akımı hangisidir?,Fovizm,İzlenimcilik,Ekspresyonizm,Kübizm,A,"Fovizm, doğalcı temsil yerine cesur ve etkileyici renklere öncelik verdi",Hard
+2679,Technology,URL ne anlama geliyor?,Tekdüzen Kaynak Bulucu,Evrensel Kaynak Bağlantısı,Tekdüzen Referans Bulucu,Evrensel Referans Bağlantısı,A,"URL, Tekdüzen Kaynak Bulucu anlamına gelir",Hard
+2680,Animals,Bir filin gebelik süresi ne kadardır?,18 ay,22 ay,24 ay,28 ay,B,Fillerin gebelik süresi yaklaşık 22 aydır,Hard
+2681,Science,Diğer parçacıklara kütle kazandıran teorik parçacığın adı nedir?,Foton,Bozon,Higgs bozonu,Graviton,C,Higgs bozonu diğer parçacıklara kütle kazandırır,Hard
+2682,Science,Dünya atmosferinin yaklaşık %21'ini oluşturan gaz hangisidir?,Azot,Oksijen,Karbondioksit,Argon,B,Oksijen atmosferin yaklaşık %21'ini oluşturur,Hard
+2683,Math,1/x dx'in integrali nedir?,ln|x| + C,x + C,1/x + C,x²/2 + C,A,1/x'in integrali ln|x| + C'dir,Hard
+2684,Science,Bir kimyasal bağı koparmak için gereken enerjiye ne ad verilir?,Bağ enerjisi,Aktivasyon enerjisi,İyonlaşma enerjisi,Kafes enerjisi,A,Kimyasal bağları kırmak için bağ enerjisine ihtiyaç vardır,Hard
+2685,Science,Dairesel harekette hıza dik etki eden kuvvetin adı nedir?,Merkezcil kuvvet,Merkezkaç kuvveti,Yerçekimi kuvveti,Manyetik kuvvet,A,Merkezcil kuvvet dairesel harekette merkeze doğru etki eder,Hard
+2686,Sports,Golfte bir par altı skoruna ne ad verilir?,Kartal,Kuş,Korkutucu,Albatros,B,"Birdie, parın bir vuruş altıdır",Hard
+2687,Science,Kararsız atom çekirdeklerinin enerji açığa çıkardığı sürecin adı nedir?,Füzyon,Fisyon,Radyoaktif bozunma,Nükleer bombardıman,C,"Radyoaktif bozunma, kararsız çekirdeklerden enerji açığa çıkarır",Hard
+2688,Art,Floransa'daki Davut heykelini kim yaptı?,Leonardo da Vinci,Michelangelo,Donatello,Bernini,B,Michelangelo ünlü Davut heykelini yaptı,Hard
+2689,Technology,Kendini kopyalayan programa ne ad verilir?,Virüs,Solucan,Truva atı,Kötü amaçlı yazılım,B,Solucan kendini çoğaltan bir programdır,Hard
+2690,Animals,Omurgalı uzuvların benzer genetik programlardan nasıl oluştuğunu açıklayan gelişim süreci hangisidir?,Heteroz,Homeozis,Homeobox düzenlemesi,Hox gen ifadesi,D,"Hox genleri, uzuv oluşumu da dahil olmak üzere gelişimsel vücut planını kontrol eder",Hard
+2691,Science,Işığın prizmadan geçerken kırılması olayına ne ad verilir?,Refleks,Refraksiyon,Kırınım,Dağılım,D,"Dağılım, ışığın renklere ayrılmasına neden olur",Hard
+2692,Science,Atom numarası 1 olan element hangisidir?,Hidrojen,Helyum,Lityum,Karbon,A,Hidrojenin atom numarası 1'dir,Hard
+2693,Math,Altın oran φ'nin değeri nedir?,1.414,1.618,2.718,3.141,B,"Altın oran φ yaklaşık olarak 1,618'dir",Hard
+2694,Science,Bir nükleer zincir reaksiyonu için gereken minimum parçalanabilir madde miktarını ifade eden terim nedir?,Kritik kütle,Eşik kütlesi,Tepkime kütlesi,Atom kütlesi,A,Sürdürülebilir nükleer reaksiyon için kritik kütleye ihtiyaç vardır,Hard
+2695,Science,Troposfer ile stratosfer arasındaki sınır tabakasının adı nedir?,Tropopoz,Stratopoz,Mezopoz,Termopoz,A,"Tropopoz, troposfer ve stratosferi ayırır",Hard
+2696,Sports,Stanley Kupası hangi spor dalında verilir?,Basketbol,Hokey,Futbol,Beyzbol,B,Stanley Kupası buz hokeyinde verilir,Hard
+2697,Science,Hücrelerin bölünerek gamet oluşturması sürecinin adı nedir?,Mitoz,Mayoz,Hücrenin ikiye bölünerek üremesi,Tomurcuklanan,B,"Mayoz, gametleri (cinsiyet hücrelerini) üretir",Hard
+2698,Art,Yıldızlı Gece tablosunu kim çizmiştir?,Claude Monet,Vincent van Gogh,Paul Cezanne,Edgar Degas,B,Vincent van Gogh Yıldızlı Gece'yi resmetti,Hard
+2699,Technology,ASCII ne anlama geliyor?,Amerikan Bilgi Değişimi Standart Kodu,Amerikan Bilgi Entegrasyonu Sistem Kodu,Bilgi Entegrasyonu için Otomatik Standart Kod,Bilgi Değişimi için Otomatik Sistem Kodu,A,"ASCII, Amerikan Bilgi Değişimi Standart Kodu anlamına gelir",Hard
+2700,Animals,En hızlı kara hayvanı hangisidir?,Çita,Çatalboynuzlu antilop,Aslan,Tazı,A,Çita en hızlı kara hayvanıdır,Hard
+2701,Science,Bazı metallerin ışığa maruz kaldığında elektron yayması olayına ne ad verilir?,Compton etkisi,Fotoelektrik etki,Tünel etkisi,Hall etkisi,B,"Fotoelektrik etki, ışık kaynaklı elektron emisyonunu içerir",Hard
+2702,Science,Hangi radyasyon türünün enerjisi en yüksektir?,Alfa,Beta,Gama,X-ışını,C,Gama radyasyonu en yüksek enerjiye sahiptir,Hard
+2703,Math,İlk n doğal sayının toplamı kaçtır?,n(n+1)/2,n(n-1)/2,n²,n²+1,A,İlk n doğal sayının toplamı n(n+1)/2'dir,Hard
+2704,Science,Dört temel kuvvetten üçünü tanımlayan teorik çerçevenin adı nedir?,Standart Model,Her Şeyin Teorisi,Sicim Teorisi,Kuantum Alan Teorisi,A,Standart Model üç temel kuvveti tanımlar,Hard
+2705,Science,Bir atomun kimyasal bağdaki elektronları çekme yeteneği için kullanılan terim nedir?,Elektronegatiflik,İyonlaşma enerjisi,Elektron ilgisi,Atom yarıçapı,A,Elektronegatiflik elektron çekme yeteneğini ölçer,Hard
+2706,Sports,Snooker'da faul olmadan yapılabilecek maksimum seri kaçtır?,147,155,167,170,A,Snooker'da maksimum kırılma noktası 147 puandır,Hard
+2707,Science,Proteinleri paketleyen ve taşıyan organelin adı nedir?,Ribozom,Endoplazmik retikulum,Golgi aygıtı,Lizozom,C,Golgi aygıtı proteinleri paketler ve gönderir,Hard
+2708,Art,Geometrik şekiller ve çoklu bakış açılarının ön planda olduğu sanat akımı hangisidir?,İzlenimcilik,Ekspresyonizm,Kübizm,Gerçeküstücülük,C,Kübizm geometrik şekiller ve çoklu perspektifler içeriyordu,Hard
+2709,Technology,Analog sinyalleri dijital sinyallere dönüştürme işlemine ne ad verilir?,Modülasyon,Demodülasyon,Analogdan dijitale dönüştürme,Dijital-analog dönüştürme,C,ADC analog sinyalleri dijitale dönüştürür,Hard
+2710,Animals,Penguenlerin doğal olarak yaşadığı tek kıta hangisidir?,Avustralya,Güney Amerika,Afrika,Antarktika,D,Penguenler doğal olarak yalnızca Güney Yarımküre'de yaşarlar ve birincil olarak Antarktika'da yaşarlar.,Hard
+2711,Science,Radyoaktiviteyi keşfeden bilim insanının adı nedir?,Marie Curie,Henri Becquerel,Ernest Rutherford,Wilhelm Röntgen,B,Henri Becquerel radyoaktiviteyi keşfetti,Hard
+2712,Science,Güneş sistemimizde hangi gezegenin günü en kısadır?,Merkür,Venüs,Jüpiter,Satürn,C,Jüpiter'in günü yaklaşık 10 saatle en kısadır,Hard
+2713,Math,5'in faktöriyeli nedir?,60,100,120,140,C,5! = 5 × 4 × 3 × 2 × 1 = 120,Hard
+2714,Science,Tüketilmeden kimyasal reaksiyonları hızlandıran maddeye ne ad verilir?,Enzim,Katalizör,Hem A hem de B,İnhibitör,C,Hem enzimler hem de katalizörler tüketilmeden reaksiyonları hızlandırır,Hard
+2715,Science,Hücrelerin glikozu parçalamak için oksijeni kullandığı sürecin adı nedir?,Fotosentez,Hücresel solunum,Fermantasyon,Glikoliz,B,"Hücresel solunum, glikozu parçalamak için oksijen kullanır",Hard
+2716,Sports,Kriket'te bir topta altı sayı atılmasına ne ad verilir?,Altı,Sınır,Üzerinde,Maksimum,A,Bir topta altı koşuya basitçe altı denir,Hard
+2717,Science,CERN'deki parçacık hızlandırıcısının adı nedir?,Büyük Hadron Çarpıştırıcısı,Küçük Hadron Çarpıştırıcısı,Avrupa Parçacık Hızlandırıcısı,Cenevre Hızlandırıcı,A,Büyük Hadron Çarpıştırıcısı CERN'de,Hard
+2718,Art,Nilüferler serisini kim çizmiştir?,Claude Monet,Edgar Degas,Pierre-Auguste Renoir,Camille Pissarro,A,Claude Monet ünlü Nilüferler serisini çizdi,Hard
+2719,Technology,GPU ne anlama geliyor?,Genel İşlem Birimi,Grafik İşlem Birimi,Küresel İşlem Birimi,Oyun İşleme Birimi,B,"GPU, Grafik İşlem Birimi anlamına gelir",Hard
+2720,Animals,Bazı hayvanların biyolüminesans yoluyla kendi ışıklarını üretmelerini sağlayan mekanizma nedir?,Fotosentez,Kemilüminesans,Floresans,Fosforesans,B,"Biyolüminesans, genellikle lüsiferin içeren kemilüminesans reaksiyonları yoluyla meydana gelir",Hard
+2721,Science,Parçacıkların enerji bariyerlerini aşarak tünelleme yapabildiği etkinin adı nedir?,Fotoelektrik etki,Tünel etkisi,Compton etkisi,Hall etkisi,B,Tünel etkisi parçacıkların bariyerlerden geçmesine izin verir,Hard
+2722,Science,Hücresel solunum sırasında hangi gaz üretilir?,Oksijen,Karbondioksit,Azot,Hidrojen,B,Hücresel solunum sırasında karbondioksit üretilir,Hard
+2723,Math,e'nin doğal logaritması nedir?,0,1,e,tanımsız,B,e'nin doğal logaritması 1'e eşittir,Hard
+2724,Science,Bir cismin konumundan dolayı depoladığı enerjiye ne ad verilir?,Kinetik enerji,Potansiyel enerji,Termal enerji,Kimyasal enerji,B,"Potansiyel enerji, konuma bağlı olarak depolanan enerjidir",Hard
+2725,Science,Temas halindeki yüzeylerin birbirine göre hareketine direnç gösteren kuvvete ne ad verilir?,Sürtünme,Tansiyon,Normal kuvvet,Uygulanan kuvvet,A,"Sürtünme, temas eden yüzeyler arasındaki harekete direnç gösterir",Hard
+2726,Sports,Bowling'de üst üste üç strike'a ne ad verilir?,Türkiye,Çift,Üçlü,Kıyamamak,A,Üç ardışık vuruşa hindi denir,Hard
+2727,Science,Bir elementin özelliklerini koruyan en küçük birimine ne ad verilir?,Molekül,Atom,Proton,Elektron,B,"Atom, bir elementin en küçük birimidir",Hard
+2728,Art,Son Akşam Yemeği tablosunu kim çizmiştir?,Michelangelo,Leonardo da Vinci,Raphael,Caravaggio,B,Leonardo da Vinci Son Akşam Yemeği'ni resmetti,Hard
+2729,Technology,Meşru gibi görünen kötü amaçlı yazılımlara ne ad verilir?,Virüs,Truva atı,Solucan,Casus yazılım,B,Bir Truva atı meşru görünür ama kötü niyetlidir,Hard
+2730,Animals,Kuzey Amerika'da bulunan tek keseli hayvan hangisidir?,Kanguru,Koala,Opossum,Vombat,C,"Virginia keseli sıçanı, Kuzey Amerika'nın tek keseli hayvanıdır",Hard
+2731,Science,Yüklü parçacıkların manyetik alanlar tarafından saptırıldığı etkinin adı nedir?,Hall etkisi,Lorentz kuvveti,Doppler etkisi,Zeeman etkisi,B,Lorentz kuvveti yüklü parçacıkları manyetik alanlarda saptırır,Hard
+2732,Science,Bitki fotosentezi için hangi element gereklidir?,Karbon,Azot,Fosfor,Magnezyum,D,Magnezyum klorofil ve fotosentez için gereklidir,Hard
+2733,Math,Yatay bir doğrunun eğimi nedir?,0,1,-1,Tanımsız,A,Yatay bir çizginin eğimi 0'dır,Hard
+2734,Science,Işık enerjisinin elektrik enerjisine dönüştürüldüğü sürecin adı nedir?,Fotosentez,Fotoelektrik etki,Fotovoltaik etki,Floresans,C,Fotovoltaik etki ışığı elektriğe dönüştürür,Hard
+2735,Science,Bir akışkanın akmaya karşı gösterdiği direnç ne anlama gelir?,Viskozite,Yoğunluk,Basınç,Sıcaklık,A,"Viskozite, bir akışkanın akışa karşı direncidir",Hard
+2736,Sports,Basketbol potasının çapı kaç cm'dir?,16 inç,18 inç,20 inç,22 inç,B,Bir basketbol potası 18 inç çapındadır,Hard
+2737,Science,Sindirim enzimlerini barındıran organelin adı nedir?,Lizozom,Ribozom,Mitokondri,Çekirdek,A,Lizozomlar sindirim enzimleri içerir,Hard
+2738,Art,Mavi Süvari hareketini hangi sanatçı kurdu?,Wassily Kandinsky,Paul Klee,Franz Marc,Ağustos Macke,A,"Wassily Kandinsky, Mavi Süvari hareketini kurdu",Hard
+2739,Technology,E-postada SMTP ne anlama geliyor?,Basit Posta Aktarım Protokolü,Güvenli Posta Aktarım Protokolü,Standart Posta Aktarım Protokolü,Sistem Posta Aktarım Protokolü,A,"SMTP, Basit Posta Aktarım Protokolü anlamına gelir",Hard
+2740,Animals,Farenin gebelik süresi ne kadardır?,15 gün,19 gün,25 gün,30 gün,B,Farelerin gebelik süresi yaklaşık 19 gündür,Hard
+2741,Science,Periyodik yasayı geliştiren bilim insanının adı nedir?,Dmitri Mendeleyev,Antoine Lavoisier,John Dalton,Marie Curie,A,Dmitri Mendeleyev periyodik yasayı geliştirdi,Hard
+2742,Science,Hangi elektromanyetik radyasyon türünün dalga boyu en uzundur?,X-ışınları,Görünür ışık,Radyo dalgaları,Gama ışınları,C,Radyo dalgaları en uzun dalga boyuna sahiptir,Hard
+2743,Math,İkinci dereceden denklem formülü nedir?,x = -b ± √(b²-4ac)/2a,x = b ± √(b²+4ac)/2a,x = -b ± √(b²+4ac)/2a,x = b ± √(b²-4ac)/2a,A,İkinci dereceden denklem formülü x = [-b ± √(b²-4ac)]/2a'dır,Hard
+2744,Science,Bir atomdan bir elektronu koparmak için gereken enerjiye ne ad verilir?,İyonlaşma enerjisi,Elektron ilgisi,Elektronegatiflik,Bağ enerjisi,A,İyonlaşma enerjisi bir atomdan bir elektronu uzaklaştırır,Hard
+2745,Science,Bitkilerin ışığa doğru eğilmesi olayına ne ad verilir?,Fototropizm,Jeotropizm,Tigmotropizm,Kemotropizm,A,"Fototropizm, bitkinin ışığa doğru büyümesidir",Hard
+2746,Sports,Amerikan futbolunda bir güvenlik oyuncusu kaç puan değerindedir?,1,2,3,6,B,Futbolda bir güvenlik 2 puan değerindedir,Hard
+2747,Science,Güçlü nükleer kuvveti ileten atom altı parçacığın adı nedir?,Foton,W bozonu,Z bozonu,Gluon,D,Gluonlar güçlü nükleer kuvveti aracılık eder,Hard
+2748,Art,Guernica tablosunu kim çizdi?,Salvador Dali,Pablo Picasso,Joan Miro,Antoni Tapies,B,Pablo Picasso Guernica'yı resmetti,Hard
+2749,Technology,Ağların ağı terimi nedir?,İnternet,İntranet,Ekstranet,Dünya çapında Ağ,A,"İnternet, ağların bir ağıdır",Hard
+2750,Animals,Bazı hayvanların kayıp uzuvlarını yenilemesini sağlayan hücresel süreç nedir?,Dediferansiyasyon,Metaplazi,Transdiferansiyasyon,Blastema oluşumu,D,"Blastema oluşumu, uzuvları yenilemek için dediferansiyasyon ve proliferasyonu içerir",Hard
+2751,Science,Yüksek hızlarda hareket eden nesnelerin renk değiştiriyormuş gibi görünmesine neden olan etkinin adı nedir?,Doppler etkisi,Kırmızıya kayma,Mavi kayma,Görelilik etkisi,A,Doppler etkisi belirgin renk değişikliklerine neden olur,Hard
+2752,Science,Elektronu keşfeden bilim insanı kimdir?,J.J. Thomson,Ernest Rutherford,Niels Bohr,Max Planck,A,J.J. Thomson elektronu keşfetti,Hard
+2753,Math,Tabanı b ve yüksekliği h olan bir üçgenin alanı nedir?,bh,bh/2,2bh,b²h,B,Bir üçgenin alanı taban çarpı yükseklik bölü 2'dir,Hard
+2754,Science,Moleküler hareketin durduğu teorik sıcaklığın adı nedir?,Mutlak sıfır,Donma noktası,Üçlü nokta,Kritik nokta,A,"Mutlak sıfır, moleküler hareketin teorik olarak durduğu yerdir",Hard
+2755,Science,Sismik dalgaların Dünya'da seyahat ederken bükülmesine ne ad verilir?,Refraksiyon,Refleks,Kırınım,Emilim,A,Sismik dalga kırılması yoğunluk değişimlerinden dolayı meydana gelir,Hard
+2756,Sports,Basketbol potasının standart yüksekliği nedir?,9 fit,10 fit,11 fit,12 fit,B,Bir basketbol potası 10 feet yüksekliğindedir,Hard
+2757,Science,Hücrelerin büyük parçacıkları yuttuğu işlemin adı nedir?,Endositoz,Ekzositoz,Fagositoz,Pinositoz,C,"Fagositoz, büyük parçacıkların yutulmasını içerir",Hard
+2758,Art,Öpücük heykelini kim yaptı?,Auguste Rodin,Alberto Giacometti,Henry Moore,Constantin Brancusi,A,Auguste Rodin Öpücük heykelini yaptı,Hard
+2759,Technology,FTP ne anlama geliyor?,Dosya Aktarım Protokolü,Hızlı Transfer Protokolü,Sık Aktarım Protokolü,Son Transfer Protokolü,A,"FTP, Dosya Aktarım Protokolü anlamına gelir",Hard
+2760,Animals,Gri kurdun bilimsel adı nedir?,Köpek lupusu,Canis familiaris,Canis latrans,Kızıl köpek,A,Gri kurdun bilimsel adı Canis lupus'tur,Hard
+2761,Science,Elektrik akımının manyetik alan oluşturduğu etkinin adı nedir?,Elektromanyetik indüksiyon,Elektromanyetizma,Faraday etkisi,Amper etkisi,B,"Elektromanyetizma, akımın manyetik alanlar yarattığını açıklar",Hard
+2762,Science,Sabit basınçta hacim ve sıcaklık arasındaki ilişkiyi açıklayan gaz yasası hangisidir?,Boyle Yasası,Charles Yasası,Gay-Lussac Yasası,Avogadro Yasası,B,"Charles Yasası, sabit basınçta hacim ve sıcaklığı ilişkilendirir",Hard
+2763,Math,cos(x)'in türevi nedir?,-günah(x),günah(x),-cos(x),cos(x),A,cos(x)'in türevi -sin(x)'tir,Hard
+2764,Science,Işığın bir kısmını geçiren maddelere ne ad verilir?,Şeffaf,Opak,Yarı saydam,Yansıtıcı,C,Yarı saydam malzemeler ışığın bir kısmının geçmesine izin verir,Hard
+2765,Science,Suyun hücre zarlarından geçişine ne ad verilir?,Ozmoz,Difüzyon,Aktif taşıma,Kolaylaştırılmış difüzyon,A,"Ozmoz, suyun zarlar boyunca hareketidir",Hard
+2766,Sports,Bowling oyununda en yüksek skor kaçtır?,200,250,300,350,C,Bowling'de maksimum puan 300'dür,Hard
+2767,Science,ATP üreten organelin adı nedir?,Çekirdek,Ribozom,Mitokondri,Golgi aygıtı,C,Mitokondriler ATP enerjisi üretir,Hard
+2768,Art,Çığlık tablosunu hangi sanatçı çizmiştir?,Edvard Munch,Vincent van Gogh,Pablo Picasso,Salvador Dali,A,Edvard Munch Çığlık tablosunu çizdi,Hard
+2769,Technology,255 ondalık sayısının ikili sistemde gösterimi nedir?,11111111,10101010,11110000,10111111,A,255 ikili sistemde 11111111'dir,Hard
+2770,Animals,Düz uçuşta en hızlı kuş hangisidir?,Doğan,Altın kartal,Akdoğan,Omurgalı kuyruklu ebabil,D,"Diken kuyruklu kırlangıç, düz uçuşta en hızlısıdır",Hard
+2771,Science,Evrim teorisini ortaya atan bilim insanının adı nedir?,Charles Darwin,Gregor Mendel,Alfred Wallace,Jean-Baptiste Lamarck,A,Charles Darwin evrim teorisini ortaya attı,Hard
+2772,Science,Metal ile ametal arasında hangi bağ türü oluşur?,Kovalent,İyonik,Metalik,Hidrojen,B,İyonik bağlar metaller ve ametaller arasında oluşur,Hard
+2773,Math,Bir üçgenin açılarının toplamı kaçtır?,90°,180°,270°,360°,B,Bir üçgenin açılarının toplamı 180°'dir,Hard
+2774,Science,Bitkilerin su buharı saldığı sürecin adı nedir?,Terleme,Solunum,Fotosentez,Buharlaşma,A,"Terleme, bitkinin su buharı salınımıdır",Hard
+2775,Science,Bir çözeltinin elektriği iletme kabiliyetini ifade eden terim nedir?,İletkenlik,Direnç,Kapasitans,İndüktans,A,"İletkenlik, elektriksel iletim yeteneğini ölçer",Hard
+2776,Sports,Teniste 40-40 terimi ne anlama gelir?,Deuce,Avantaj,Aşk,Ayar noktası,A,Teniste 40-40'a deuce denir,Hard
+2777,Science,Temel parçacıkları açıklayan teorik çerçevenin adı nedir?,Standart Model,Sicim Teorisi,Döngü Kuantum Yerçekimi,Her Şeyin Teorisi,A,Standart Model temel parçacıkları tanımlar,Hard
+2778,Art,Arnolfini Portresi'ni kim çizdi?,Jan van Eyck,Hans Holbein,Albrecht Dürer,Lucas Cranach,A,"Jan van Eyck, Arnolfini Portresi'ni çizdi",Hard
+2779,Technology,HTTP ne anlama geliyor?,Hiper Metin Aktarım Protokolü,Yüksek Transfer Metni Protokolü,Hiper Metin Taşıma Protokolü,Yüksek Metin Aktarım Protokolü,A,"HTTP, HyperText Transfer Protocol'ün kısaltmasıdır",Hard
+2780,Science,Gıda moleküllerinde hangi tür enerji depolanır?,Kinetik,Potansiyel,Kimyasal,Nükleer,C,Gıda molekülleri kimyasal enerjiyi bağlarında depolar,Easy
+2781,Science,Güneş sistemimizdeki en sıcak gezegen hangisidir?,Merkür,Venüs,Toprak,Mars,B,"Venüs, kalın atmosferi nedeniyle en sıcak gezegendir",Easy
+2782,Science,Beyaz kan hücrelerinin başlıca işlevi nedir?,Oksijen taşımacılığı,Enfeksiyonlarla mücadele edin,Besinleri taşıyın,Hormon üretmek,B,Beyaz kan hücreleri enfeksiyonlara karşı savunma yapar,Easy
+2783,Math,13 × 7 nedir?,81,91,101,111,B,13'ün 7 ile çarpımı 91'e eşittir,Easy
+2784,Science,Yanma için hangi gaza ihtiyaç vardır?,Azot,Oksijen,Karbondioksit,Hidrojen,B,Bir şeylerin yanması için oksijene ihtiyaç vardır,Easy
+2785,Science,Mohs ölçeğine göre en sert mineral hangisidir?,Kuvars,Elmas,Korindon,Topaz,B,"Elmas, Mohs sertlik ölçeğinde 10 olarak derecelendirilir",Easy
+2786,Sports,Olimpiyat bayrağında kaç halka vardır?,3,4,5,6,C,Olimpiyat bayrağında beş adet iç içe geçmiş halka bulunur,Easy
+2787,Science,Atmosferi inceleyen bilim dalına ne ad verilir?,Jeoloji,Meteoroloji,Oşinografi,Astronomi,B,Meteoroloji atmosferi ve havayı inceler,Easy
+2788,Art,Mona Lisa'yı kim çizdi?,Leonardo da Vinci,Michelangelo,Raphael,Donatello,A,Leonardo da Vinci ünlü Mona Lisa'yı çizdi,Easy
+2789,Technology,Wi-Fi ne anlama geliyor?,Kablosuz Sadakat,Geniş Sadakat,Dünya Sadakati,Web Sadakati,A,"Wi-Fi, Kablosuz Bağlantı anlamına gelir",Easy
+2790,Animals,Böceklerin dolaşım sistemi nasıldır?,Kapalı,Açık,Çift,Üçlü,B,Böceklerin hemolenfli açık dolaşım sistemleri vardır,Easy
+2791,Science,İnsan kalbi kaç odacıklıdır?,2,3,4,5,C,İnsan kalbi dört odacıktan oluşur,Easy
+2792,Science,Suyun kimyasal formülü nedir?,H2O,CO2,O2,H2SO4,A,Suyun kimyasal formülü H2O'dur,Easy
+2793,Math,200'ün %50'si kaçtır?,50,75,100,150,C,200'ün %50'si 100'e eşittir,Easy
+2794,Science,Köpek balığı ne tür bir hayvandır?,Balık,Memeli,Sürüngen,Amfibi,A,Köpekbalıkları kıkırdaklı balıklardır,Easy
+2795,Science,Kandaki toksinleri hangi organ temizler?,Kalp,Karaciğer,Böbrek,Akciğerler,B,Karaciğer toksinleri filtreler ve uzaklaştırır,Easy
+2796,Sports,Hangi sporda tüy topuna vurulur?,Tenis,Badminton,Kabak,Masa tenisi,B,Badmintonda tüylü top kullanılır,Easy
+2797,Science,Bir elementin en küçük parçacığı nedir?,Molekül,Atom,Proton,Elektron,B,"Bir atom, bir elementin en küçük parçacığıdır",Easy
+2798,Art,Yıldızlı Gece tablosunu hangi sanatçı çizmiştir?,Vincent van Gogh,Pablo Picasso,Claude Monet,Salvador Dali,A,Vincent van Gogh Yıldızlı Gece'yi resmetti,Easy
+2799,Technology,DVD ne anlama geliyor?,Dijital Video Disk,Dijital Çok Yönlü Disk,Hem A hem de B,Dijital Sanal Disk,C,"DVD, Dijital Video Disk veya Dijital Çok Yönlü Disk anlamına gelebilir",Easy
+2800,Animals,Ahtapotun kaç bacağı vardır?,6,8,10,12,B,Bir ahtapotun sekiz kolu veya bacağı vardır,Easy
+2801,Science,Bitkiler fotosentez sırasında hangi gazı açığa çıkarır?,Karbondioksit,Oksijen,Azot,Hidrojen,B,Bitkiler fotosentez sırasında oksijen salarlar,Easy
+2802,Science,Halkalarıyla bilinen gezegen hangisidir?,Jüpiter,Satürn,Uranüs,Neptün,B,"Satürn, belirgin halkalarıyla ünlüdür",Easy
+2803,Math,9 × 6 nedir?,45,54,63,72,B,9'un 6 ile çarpımı 54'e eşittir,Easy
+2804,Science,Güneş sistemimizin merkezi neresidir?,Toprak,Ay,Güneş,Mars,C,"Güneş, güneş sistemimizin merkezindedir",Easy
+2805,Science,Hangi kan grubu evrensel bağışçıdır?,A,B,AB,O,D,0 kan grubu evrensel bağışçıdır,Easy
+2806,Sports,Voleybol takımında oyun sırasında kaç oyuncu bulunur?,4,5,6,7,C,Voleybol takımlarının sahada 6 oyuncusu vardır,Easy
+2807,Science,Suyun kaynama noktası nedir?,90°C,95°C,100°C,105°C,C,Su deniz seviyesinde 100°C'de kaynar,Easy
+2808,Art,Davut heykelini kim yaptı?,Leonardo da Vinci,Michelangelo,Donatello,Raphael,B,Michelangelo ünlü Davut heykelini yaptı,Easy
+2809,Technology,PDF ne anlama geliyor?,Taşınabilir Belge Biçimi,Kişisel Belge Dosyası,Basılı Belge Formatı,Kamu Belgesi Dosyası,A,"PDF, Taşınabilir Belge Biçimi anlamına gelir",Easy
+2810,Animals,Yavru ata ne denir?,Buzağı,Tay,Kuzu,Çocuk,B,Yavru atlara tay denir,Easy
+2811,Science,Yetişkin bir insan vücudunda kaç kemik vardır?,196,206,216,226,B,Yetişkin insanların 206 kemiği vardır,Easy
+2812,Science,Dünya atmosferinin büyük kısmını hangi gaz oluşturur?,Oksijen,Karbondioksit,Azot,Argon,C,Azot atmosferin yaklaşık %78'ini oluşturur,Easy
+2813,Math,36'nın karekökü nedir?,5,6,7,8,B,36'nın karekökü 6'dır,Easy
+2814,Science,Kayaçları inceleyen bilim dalına ne ad verilir?,Biyoloji,Jeoloji,Kimya,Fizik,B,"Jeoloji, kayaların ve Dünya'nın incelenmesidir",Easy
+2815,Science,İnsülin hangi organ tarafından üretilir?,Karaciğer,Pankreas,Böbrek,Kalp,B,Pankreas insülin üretir,Easy
+2816,Sports,Bowling'de kaç pin vardır?,8,9,10,12,C,Bowling'de 10 pin vardır,Easy
+2817,Science,Hangi hücresel organel proteinleri değiştirir ve paketler?,Ribozom,Endoplazmik retikulum,Golgi aygıtı,Lizozom,C,Golgi aygıtı proteinleri değiştirir ve paketler,Easy
+2818,Art,Son Akşam Yemeği tablosunu kim çizmiştir?,Leonardo da Vinci,Michelangelo,Raphael,Van Gogh,A,Leonardo da Vinci Son Akşam Yemeği'ni resmetti,Easy
+2819,Technology,URL ne anlama geliyor?,Tekdüzen Kaynak Bulucu,Evrensel Kaynak Bağlantısı,Tekdüze Referans Konumu,Evrensel Referans Bulucu,A,"URL, Tekdüzen Kaynak Bulucu anlamına gelir",Easy
+2820,Animals,En hızlı kara hayvanı hangisidir?,Çita,Aslan,Leopar,Jaguar,A,Çita en hızlı kara hayvanıdır,Easy
+2821,Science,Canlıları inceleyen bilim dalına ne ad verilir?,Fizik,Kimya,Biyoloji,Jeoloji,C,Biyoloji canlı organizmaların incelenmesidir,Easy
+2822,Science,Kızıl Gezegen olarak bilinen gezegen hangisidir?,Venüs,Mars,Jüpiter,Satürn,B,Mars'a Kızıl Gezegen denir,Easy
+2823,Math,7 + 8 kaçtır?,13,14,15,16,C,7 artı 8 eşittir 15,Easy
+2824,Science,Bizi yerde tutan kuvvet nedir?,Manyetizma,Yer çekimi,Sürtünme,Atalet,B,Yerçekimi bizi Dünya'nın yüzeyinde tutuyor,Easy
+2825,Science,Hangi damarlar kanı kalbe taşır?,Atardamarlar,Damarlar,Kılcal damarlar,Vanalar,B,Damarlar kanı kalbe geri taşır,Easy
+2826,Sports,Standart bir golf sahasında kaç delik vardır?,16,17,18,19,C,Standart bir golf sahasında 18 delik bulunur,Easy
+2827,Science,Atmosferdeki azotu kullanılabilir bileşiklere dönüştüren süreç hangisidir?,Fotosentez,Azot fiksasyonu,Solunum,Fermantasyon,B,Azot fiksasyonu atmosferik N2'yi amonyağa dönüştürür,Easy
+2828,Art,İnci Küpeli Kız tablosunu hangi sanatçı çizmiştir?,Rembrandt,Vermeer,Van Dyck,Rubens,B,Johannes Vermeer bu şaheseri resmetti,Easy
+2829,Technology,CD ne anlama geliyor?,Kompakt Disk,Bilgisayar Diski,Dairesel Disk,Merkezi Disk,A,"CD, Kompakt Disk anlamına gelir",Easy
+2830,Animals,Balık sürüsüne ne ad verilir?,Sürü,Sürü,Okul,Ambalaj,C,Bir balık grubuna okul denir,Easy
+2831,Science,Yetişkin bir insanın kaç dişi vardır?,28,30,32,34,C,Yetişkinlerde genellikle 32 diş bulunur,Easy
+2832,Science,Sirke ve karbonat karıştığında hangi gaz ortaya çıkar?,Oksijen,Hidrojen,Karbondioksit,Azot,C,Bu reaksiyon karbondioksit gazı üretir,Easy
+2833,Math,144 ÷ 12 kaçtır?,11,12,13,14,B,144'ü 12'ye bölersek 12 elde ederiz,Easy
+2834,Science,Yıldızları inceleyen bilim dalına ne ad verilir?,Biyoloji,Jeoloji,Astronomi,Kimya,C,Astronomi gök cisimlerinin incelenmesidir,Easy
+2835,Science,Gözün hangi kısmı göze giren ışık miktarını kontrol eder?,Öğrenci,İris,Retina,Kornea,A,Göz bebeği ışık girişini kontrol eder,Easy
+2836,Sports,Teniste 'aşk' ne anlama gelir?,15 puan,30 puan,Sıfır puan,Oyun noktası,C,Teniste aşk sıfır demektir,Easy
+2837,Science,Hücrelere hangi maddelerin girmesini hangi yapı kontrol eder?,Hücre duvarı,Hücre zarı,Çekirdek,Sitoplazma,B,"Hücre zarı, hücrelere moleküler taşımayı düzenler",Easy
+2838,Art,Çığlık tablosunu kim çizdi?,Edvard Munch,Vincent van Gogh,Pablo Picasso,Salvador Dali,A,Edvard Munch Çığlık tablosunu çizdi,Easy
+2839,Technology,JPEG ne anlama geliyor?,Ortak Fotoğraf Uzmanları Grubu,Sadece Fotoğraf Elektronik Grubu,Ortak Resim Elektronik Grubu,Sadece Fotoğraf Uzmanları Grubu,A,"JPEG, Ortak Fotoğraf Uzmanları Grubu anlamına gelir",Easy
+2840,Animals,Baktriya devesinin kaç hörgücü vardır?,1,2,3,4,B,Baktriya develerinin iki hörgücü vardır,Easy
+2841,Science,Suyun donma noktası nedir?,0°C,-5°C,5°C,10°C,A,Su 0°C'de donar,Easy
+2842,Science,Dünya'ya en yakın gezegen hangisidir?,Venüs,Mars,Merkür,Jüpiter,A,"Venüs, Dünya'nın en yakın komşusudur",Easy
+2843,Math,50'nin %20'si kaçtır?,5,10,15,20,B,50'nin %20'si 10'a eşittir,Easy
+2844,Science,Arılar ne üretir?,Bal,Süt,İpek,Balmumu,A,Arılar bal üretmeleriyle bilinirler,Easy
+2845,Science,İşitme duyusunu hangi organımız sağlar?,Göz,Kulak,Burun,Ağız,B,"Kulak, işitme organıdır",Easy
+2846,Sports,Amerikan futbolu oyununda kaç çeyrek vardır?,2,3,4,5,C,Amerikan futbolu dört çeyrekten oluşur,Easy
+2847,Science,Enzimlerin reaksiyonları hızlandırmasını sağlayan mekanizma hangisidir?,Artan sıcaklık,Aktivasyon enerjisini düşürmek,Daha fazla reaktan eklenmesi,Değişen basınç,B,Enzimler reaksiyonlar için gereken aktivasyon enerjisini düşürür,Easy
+2848,Art,Nilüferleri hangi sanatçı çizmiştir?,Claude Monet,Edgar Degas,Pierre Renoir,Paul Cezanne,A,"Claude Monet, Nilüferler serisini çizdi",Easy
+2849,Technology,Yapay zeka ne anlama geliyor?,Yapay Zeka,Otomatik Bilgi,Gelişmiş Zeka,Otomatik Zeka,A,"AI, Yapay Zeka anlamına gelir",Easy
+2850,Animals,Yavru koyuna ne denir?,Buzağı,Tay,Kuzu,Çocuk,C,Yavru koyuna kuzu denir,Easy
+2851,Science,Güneş sistemimizde kaç gezegen var?,7,8,9,10,B,Güneş sistemimizde sekiz gezegen var,Easy
+2852,Science,Atom numarası 1 olan element hangisidir?,Hidrojen,Helyum,Lityum,Berilyum,A,Hidrojenin atom numarası 1'dir,Easy
+2853,Math,3 × 11 nedir?,30,33,36,39,B,3'ün 11 ile çarpımı 33'e eşittir,Easy
+2854,Science,Böcekleri inceleyen bilim dalına ne ad verilir?,Botanik,Zooloji,Entomoloji,Ekoloji,C,Entomoloji böcekleri inceler,Easy
+2855,Science,Bitkinin hangi kısmı fotosentez yapar?,Kök,Kök,Yaprak,Çiçek,C,Yapraklar fotosentez yapar,Easy
+2856,Sports,Basketbolda serbest atış kaç sayı değerindedir?,1,2,3,4,A,Serbest atış 1 puan değerindedir,Easy
+2857,Science,Işık enerjisinin kimyasal enerjiye dönüşmesi hangi işlemle gerçekleşir?,Solunum,Fotosentez,Fermantasyon,Glikoliz,B,Fotosentez ışık enerjisini kimyasal enerjiye dönüştürür,Easy
+2858,Art,Amerikan Gotiği'ni kim çizdi?,Grant Wood,Edward Hopper,Andrew Wyeth,Norman Rockwell,A,Grant Wood Amerikan Gotik'i boyadı,Easy
+2859,Technology,VR ne anlama geliyor?,Sanal Gerçeklik,Görsel Gerçeklik,Video Gerçekliği,Çok Gerçek,A,"VR, Sanal Gerçeklik anlamına gelir",Easy
+2860,Animals,Gece hayvanlarının avlanmasına yardımcı olan duyusal adaptasyon hangisidir?,Daha iyi işitme,Geliştirilmiş koku,Geliştirilmiş gece görüşü,Yukarıdakilerin hepsi,D,Gececil hayvanların koku alma ve gece görme yetenekleri gelişmiştir,Easy
+2861,Science,İnsan vücudunun normal sıcaklığı kaç derecedir?,36°C,37°C,98.6°F,"99,6°F",C,Normal vücut sıcaklığı 98.6°F'dir,Easy
+2862,Science,Solunum için hangi gaz gereklidir?,Karbondioksit,Oksijen,Azot,Hidrojen,B,Oksijen nefes almak için gereklidir,Easy
+2863,Math,64 ÷ 8 kaçtır?,6,7,8,9,C,64 bölü 8 eşittir 8,Easy
+2864,Science,Dünya'ya en yakın yıldız hangisidir?,Proxima Centauri,Alfa Centauri,Güneş,Sirius,C,"Güneş, Dünya'ya en yakın yıldızdır",Easy
+2865,Science,Vücutta hastalıklarla savaşan sistem hangisidir?,Sindirim,Solunum,Bağışıklık,Dolaşım,C,Bağışıklık sistemi hastalıklarla savaşır,Easy
+2866,Sports,Bir beyzbol takımının ilk beşinde kaç oyuncu vardır?,8,9,10,11,B,Beyzbolun başlangıç ​​kadrosunda 9 oyuncu var,Easy
+2867,Science,Dünyanın en sert doğal maddesi nedir?,Altın,Elmas,Çelik,Kuvars,B,Elmas en sert doğal maddedir,Easy
+2868,Art,Mona Lisa hangi müzede sergileniyor?,Metropolitan Müzesi,Louvre,Britanya Müzesi,Uffizi,B,Mona Lisa Louvre Müzesi'ndedir,Easy
+2869,Technology,GPS ne anlama geliyor?,Küresel Konumlandırma Sistemi,Genel Konumlandırma Hizmeti,Küresel Konum Sistemi,Genel Pozisyon Hizmeti,A,"GPS, Küresel Konumlandırma Sistemi anlamına gelir",Easy
+2870,Animals,Bir inek hangi sesi çıkarır?,Havlamak,Miyav,İnek,Komşu,C,İnekler böğürme sesi çıkarır,Easy
+2871,Science,Bir üçgenin kaç kenarı vardır?,2,3,4,5,B,Bir üçgenin üç kenarı vardır,Easy
+2872,Science,Vücuda kan pompalayan organ hangisidir?,Beyin,Kalp,Karaciğer,Akciğerler,B,"Kalp, kanı tüm vücuda pompalar",Easy
+2873,Math,5 × 9 nedir?,40,45,50,55,B,5'in 9 ile çarpımı 45'e eşittir,Easy
+2874,Science,Hava olaylarını inceleyen bilim dalına ne ad verilir?,Jeoloji,Biyoloji,Meteoroloji,Astronomi,C,Meteoroloji hava olaylarının incelenmesidir,Easy
+2875,Science,Beynimizin hangi kısmı dengeyi kontrol eder?,Beyin,Beyincik,Medulla,Hipotalamus,B,Beyincik dengeyi kontrol eder,Easy
+2876,Sports,Futbolda topun kale çizgisini geçmesine ne ad verilir?,Korner vuruşu,Kale vuruşu,Taç atışı,Serbest vuruş,B,Buna kale vuruşu denir,Easy
+2877,Science,Bitkilere yeşil rengini veren yapı hangisidir?,Vakuol,Kloroplast,Hücre duvarı,Çekirdek,B,Kloroplastlar bitkileri yeşil yapan klorofil içerir,Easy
+2878,Art,Venüs'ün Doğuşu tablosunu hangi sanatçı yapmıştır?,Leonardo da Vinci,Michelangelo,Botticelli,Raphael,C,Sandro Botticelli Venüs'ün Doğuşu tablosunu çizdi,Easy
+2879,Technology,SSS ne anlama geliyor?,Sıkça Sorulan Sorular,Hızlı Sorulan Sorular,Sıkça Sorulan Sorular,Hızlı Cevaplanan Sorular,A,"SSS, Sıkça Sorulan Sorular anlamına gelir",Easy
+2880,Animals,Kelebeğin kaç kanadı vardır?,2,4,6,8,B,Kelebeklerin dört kanadı vardır,Easy
+2881,Science,Elektronları çekirdek etrafındaki yörüngede tutan kuvvet nedir?,Yer çekimi,Manyetik kuvvet,Elektromanyetik kuvvet,Nükleer kuvvet,C,Elektromanyetik çekim elektronları çekirdeğe bağlı tutar,Easy
+2882,Science,Bitkiler havadan hangi gazı emer?,Oksijen,Karbondioksit,Azot,Hidrojen,B,Bitkiler fotosentez için karbondioksiti emer,Easy
+2883,Math,100 - 37 kaçtır?,53,63,73,83,B,100 eksi 37 eşittir 63,Easy
+2884,Science,Sadece et yiyen hayvanlara ne denir?,Otçullar,Hepçiller,Etçiller,Vejetaryenler,C,Etoburlar sadece et yerler,Easy
+2885,Science,İnsanın kaç akciğeri vardır?,1,2,3,4,B,İnsanların iki akciğeri vardır,Easy
+2886,Sports,Bir futbol devresi kaç dakikadır?,40,45,50,60,B,Her futbol yarısı 45 dakikadır,Easy
+2887,Science,Yaşamın en küçük birimi nedir?,Hücre,Doku,Organ,Organizma,A,"Hücre, yaşamın en küçük birimidir",Easy
+2888,Art,Sistine Şapeli'nin tavanını kim boyadı?,Leonardo da Vinci,Michelangelo,Raphael,Donatello,B,"Michelangelo, Sistine Şapeli'nin tavanını boyadı",Easy
+2889,Technology,LED ne anlama geliyor?,Işık Yayan Diyot,Düşük Enerji Cihazı,Işık Enerjisi Diyotu,Düşük Emisyonlu Cihaz,A,"LED, Işık Yayan Diyot anlamına gelir",Easy
+2890,Animals,Yavru kediye ne denir?,Yavru köpek,Yavru kedi,Yavru,Joey,B,Yavru kediye yavru kedi denir,Easy
+2891,Science,Gökkuşağında kaç renk vardır?,5,6,7,8,C,Gökkuşağının yedi rengi vardır,Easy
+2892,Science,Dünya'nın ikizi olarak bilinen gezegen hangisidir?,Venüs,Mars,Merkür,Jüpiter,A,Venüs genellikle Dünya'nın ikizi olarak anılır,Easy
+2893,Math,6 × 7 nedir?,35,42,49,56,B,6 ile 7'nin çarpımı 42'ye eşittir,Easy
+2894,Science,Gezegenlerin Güneş etrafındaki yörüngelerine ne ad veriyoruz?,Daire,Yörünge,Rota,İzlemek,B,Gezegenler Güneş'in etrafında bir yörünge izlerler,Easy
+2895,Science,Koku alma duyusu hangi duyu organımızla sağlanır?,Göz,Kulak,Burun,Ağız,C,Burun koku almak için kullanılır,Easy
+2896,Sports,Hangi sporda raket kullanılır?,Yüzme,Koşma,Tenis,Bisikletçilik,C,Tenis raket kullanır,Easy
+2897,Science,Bakırın kimyasal sembolü nedir?,C,Ortak,Cu,Çp,C,Bakırın kimyasal sembolü Cu'dur,Easy
+2898,Art,Kırmızı ve sarıyı karıştırdığınızda hangi rengi elde edersiniz?,Turuncu,Mor,Yeşil,Kahverengi,A,Kırmızı ve sarı turuncuyu oluşturur,Easy
+2899,Technology,USB ne anlama geliyor?,Evrensel Seri Veri Yolu,Birleşik Seri Otobüs,Evrensel Sistem Veri Yolu,Birleşik Sistem Otobüsü,A,"USB, Evrensel Seri Veri Yolu anlamına gelir",Easy
+2900,Animals,Pandalar çoğunlukla neyle beslenirler?,Balık,Et,Bambu,Meyveler,C,Pandalar öncelikle bambu yerler,Easy
+2901,Science,İnsan kafatasında kaç kemik vardır?,15,22,28,33,B,İnsan kafatasında 22 kemik vardır,Easy
+2902,Science,Oda sıcaklığında sıvı olan metal hangisidir?,Ütü,Altın,Merkür,Gümüş,C,Civa oda sıcaklığında sıvıdır,Easy
+2903,Math,88'in yarısı kaçtır?,34,44,54,64,B,88'in yarısı 44'e eşittir,Easy
+2904,Science,Okyanuslardaki gelgitlerin sebebi nedir?,Güneş,Ay,Rüzgâr,Dünya'nın dönüşü,B,Ay'ın yerçekimi okyanus gelgitlerine neden oluyor,Easy
+2905,Science,Güneş ışığına maruz kalındığında cilt hangi vitamini üretir?,A vitamini,C vitamini,D vitamini,K vitamini,C,Güneş ışığı D vitamini üretimine yardımcı olur,Easy
+2906,Sports,Beyzbolda kaç üs vardır?,3,4,5,6,B,Beyzbolun dört üssü vardır,Easy
+2907,Science,Soluduğumuz havadaki başlıca gaz hangisidir?,Oksijen,Karbondioksit,Azot,Hidrojen,C,Azot havadaki en bol gazdır,Easy
+2908,Art,Yeşil rengi hangi ana renkler oluşturur?,Kırmızı ve mavi,Kırmızı ve sarı,Mavi ve sarı,Kırmızı ve yeşil,C,Mavi ve sarı yeşili oluşturur,Easy
+2909,Technology,WWW ne anlama geliyor?,Dünya çapında Ağ,Dünya Çapında Web,Geniş Dünya Ağı,Web Dünya Çapında,A,"WWW, World Wide Web'in kısaltmasıdır",Easy
+2910,Animals,Balık kalbi kaç odacıklıdır?,1,2,3,4,B,Balıkların iki odacıklı kalpleri vardır,Easy
+2911,Science,Galaksimizin adı nedir?,Samanyolu,Andromeda,Orion,Pegasus,A,Samanyolu galaksisinde yaşıyoruz,Easy
+2912,Science,Fe sembolü ile gösterilen element hangisidir?,Ütü,Florin,Fransiyum,Fermium,A,"Fe, Latince ferrum kelimesinden gelen demiri temsil eder",Easy
+2913,Math,80'in %25'i kaçtır?,15,20,25,30,B,80'in %25'i 20'ye eşittir,Easy
+2914,Science,Suyun sıvı halden gaz haline dönüşme süreci nedir?,Yoğunlaşma,Buharlaşma,Yağış,Süblimasyon,B,"Buharlaşma, suyu sıvıdan gaza dönüştürür",Easy
+2915,Science,İnsanın kaç kaburgası vardır?,20,22,24,26,C,İnsanların genellikle 24 kaburgası vardır,Easy
+2916,Sports,Hangi spor dalında sporcular kask ve koruyucu ekipman kullanır?,Futbol,Basketbol,Futbol,Tenis,C,Amerikan futbolu oyuncuları kask ve koruyucu pedler takıyor,Easy
+2917,Science,İnsan vücudunun en zor kısmı hangisidir?,Kemik,Diş minesi,Çivi,Deri,B,Diş minesi vücudun en sert kısmıdır,Easy
+2918,Art,Belleğin Azmi adlı eserini eriyen saatlerle resmeden sanatçı hangisidir?,Pablo Picasso,Vincent van Gogh,Salvador Dali,Claude Monet,C,Salvador Dali eriyen saatleri resmetti,Easy
+2919,Technology,WIFI aslen ne anlama geliyor?,Kablosuz Sadakat,Geniş Sadakat,Dünya İnterneti,Web Arayüzü,A,"WIFI, Kablosuz Bağlantı anlamına gelir",Easy
+2920,Animals,Dünyanın en uzun hayvanı hangisidir?,Fil,Zürafa,Atış,Deve,B,Zürafa en uzun hayvandır,Easy
+2921,Science,Dinozorları inceleyen bilim dalına ne ad verilir?,Arkeoloji,Paleontoloji,Jeoloji,Antropoloji,B,"Paleontoloji, dinozorların ve fosillerin incelenmesidir",Easy
+2922,Science,Güneş'e en uzak gezegen hangisidir?,Uranüs,Neptün,Plüton,Satürn,B,Neptün Güneş'ten en uzak gezegendir,Easy
+2923,Math,12 + 15 kaçtır?,25,26,27,28,C,12 artı 15 eşittir 27,Easy
+2924,Science,Yavru kurbağalara ne ad veriyoruz?,Kurbağa yavruları,Kurbağa yavruları,Yumurtlama,Yumurtalar,A,Bebek kurbağalara iribaş denir,Easy
+2925,Science,Penguen ne tür bir hayvandır?,Balık,Memeli,Kuş,Sürüngen,C,Penguenler uçamayan kuşlardır,Easy
+2926,Sports,Üç sayı çizgisinin gerisinden atılan bir basketbol şutu kaç sayı değerindedir?,1,2,3,4,C,Üç sayılık atış 3 puan değerindedir,Easy
+2927,Science,İnsan vücudunda kütlece en bol bulunan element hangisidir?,Karbon,Hidrojen,Oksijen,Azot,C,Oksijen insan vücut kütlesinin yaklaşık %65'ini oluşturur,Medium
+2928,Science,Hücrenin enerji santrali olarak bilinen organel hangisidir?,Çekirdek,Mitokondri,Ribozom,Endoplazmik retikulum,B,Mitokondriler hücreler için ATP enerjisi üretir,Medium
+2929,Science,Bitkilerin yaprakları aracılığıyla su kaybetme süreci nedir?,Fotosentez,Terleme,Solunum,Ozmoz,B,"Terleme, bitki yapraklarından su kaybıdır",Medium
+2930,Math,x³'ün türevi nedir?,3x²,x²,3x,x³,A,x³'ün türevi 3x²'dir,Medium
+2931,Science,Uranyum-235'in yarı ömrü nedir?,700 milyon yıl,"4,5 milyar yıl",24000 yıl,5730 yıl,A,Uranyum-235'in yarı ömrü yaklaşık 700 milyon yıldır,Medium
+2932,Science,Işığın boşluktaki hızı nedir?,300000 km/s,186000 mil/s,Hem A hem de B,299792458 m/s,D,Işık saniyede 299792458 metre hızla hareket eder,Medium
+2933,Sports,Basketbol potasının standart yüksekliği kaç cm'dir?,9 fit,10 fit,11 fit,12 fit,B,Basketbol potaları 10 feet yüksekliğindedir,Medium
+2934,Science,DNA'nın iki ipliğini bir arada tutan bağ türü hangisidir?,Kovalent bağlar,İyonik bağlar,Hidrojen bağları,Metalik bağlar,C,Hidrojen bağları DNA zincirlerini bir arada tutar,Medium
+2935,Art,Rhone Nehri Üzerinde Yıldızlı Gece tablosunu kim çizdi?,Vincent van Gogh,Paul Cezanne,Claude Monet,Edgar Degas,A,"Van Gogh, Rhone Nehri Üzerinde Yıldızlı Gece tablosunu çizdi",Medium
+2936,Technology,SQL ne anlama geliyor?,Yapılandırılmış Sorgu Dili,Standart Sorgu Dili,Sistem Sorgu Dili,Basit Sorgu Dili,A,"SQL, Yapılandırılmış Sorgu Dili anlamına gelir",Medium
+2937,Animals,Mavi balinanın gebelik süresi ne kadardır?,10 ay,11 ay,12 ay,13 ay,C,Mavi balinaların gebelik süresi 11-12 aydır,Medium
+2938,Science,Karbon-12'nin atom kütlesi nedir?,11,12,13,14,B,Karbon-12'nin atom kütlesi 12'dir,Medium
+2939,Science,Hafızanın oluşumundan beynin hangi bölümü sorumludur?,Beyincik,Hipokampüs,Medulla,Talamus,B,Hipokampüs hafıza oluşumu için çok önemlidir,Medium
+2940,Math,Altıgenin iç açılarının toplamı kaçtır?,540°,720°,900°,1080°,B,Bir altıgenin iç açıları toplamı 720°'dir,Medium
+2941,Science,Kütlesi ve yükü olmayan radyasyon türü hangisidir?,Alfa,Beta,Gama,Nötron,C,Gama radyasyonunun kütlesi veya yükü yoktur,Medium
+2942,Science,Moleküler orbitallerin oluşumunu açıklayan mekanizma hangisidir?,Atom orbitallerinin doğrusal birleşimi,Hibridizasyon teorisi,Kristal alan teorisi,Ligand alan teorisi,A,"LCAO teorisi, atomik orbitallerin moleküler orbitalleri oluşturmak üzere nasıl bir araya geldiğini açıklar",Medium
+2943,Sports,Golfte parın iki vuruş altında kalmasına ne ad verilir?,Kuş,Kartal,Albatros,Kondor,B,"Kartal, par vuruşunun iki vuruş altındadır",Medium
+2944,Science,Sabit hacimde basınç ve sıcaklık arasındaki ilişkiyi açıklayan gaz yasası hangisidir?,Boyle Yasası,Charles Yasası,Gay-Lussac Yasası,Avogadro Yasası,C,Gay-Lussac Yasası basınç ve sıcaklığı ilişkilendirir,Medium
+2945,Art,Pablo Picasso hangi sanat akımının kurucularındandır?,İzlenimcilik,Fovizm,Kübizm,Gerçeküstücülük,C,Picasso Kübizm'in kurucu ortağıdır,Medium
+2946,Technology,API ne anlama geliyor?,Uygulama Programlama Arayüzü,Gelişmiş Programlama Arayüzü,Otomatik Programlama Arayüzü,Uygulama Programı Arayüzü,A,"API, Uygulama Programlama Arayüzü anlamına gelir",Medium
+2947,Animals,Ayıların en büyük türü hangisidir?,Boz ayı,Kutup ayısı,Kara ayı,Boz ayı,B,Kutup ayısı en büyük ayı türüdür,Medium
+2948,Science,Kinetik enerjinin hesaplanmasında kullanılan formül nedir?,½mv²,mv²,½mv,2mv²,A,Kinetik enerji ½mv²'ye eşittir,Medium
+2949,Science,Hangi elementin erime noktası en yüksektir?,Karbon,Tungsten,Ütü,Platin,B,Tungsten en yüksek erime noktasına sahiptir,Medium
+2950,Math,log₁₀(10000) nedir?,3,4,5,10000,B,Log₁₀(10000) = 4 çünkü 10⁴ = 10000,Medium
+2951,Science,Mantarları ve mantarları inceleyen bilim dalına ne ad verilir?,Botanik,Mikoloji,Briyoloji,Psikoloji,B,Mikoloji mantarların incelenmesidir,Medium
+2952,Science,Elektriksel direncin birimi nedir?,Amper,Volt,Ohm,Watt,C,Elektriksel direnç ohm cinsinden ölçülür,Medium
+2953,Sports,Bir maratonun standart mesafesi kilometre cinsinden nedir?,"40,2 km","41,2 km","42,2 km","43,2 km",C,Bir maraton 42.195 kilometredir,Medium
+2954,Science,Hangi organel proteinleri değiştirir ve paketler?,Ribozom,Endoplazmik retikulum,Golgi aygıtı,Lizozom,C,Golgi aygıtı proteinleri paketler,Medium
+2955,Art,Düşünen Adam heykelini kim yaptı?,Auguste Rodin,Michelangelo,Donatello,Henry Moore,A,Auguste Rodin Düşünen Adam'ı heykelleştirdi,Medium
+2956,Technology,HTTPS ne anlama geliyor?,HyperText Transfer Protocol Güvenli,HyperText Taşıma Protokolü Güvenli,Yüksek Transfer Metin Protokolü Güvenli,HyperText Transfer İşlemi Güvenli,A,"HTTPS, HyperText Transfer Protocol Secure'un kısaltmasıdır",Medium
+2957,Animals,Gerçek anlamda uçma yeteneğine sahip tek memeli hayvan hangisidir?,Uçan sincap,Şeker planörü,Yarasa,Uçan lemur,C,Yarasalar gerçekten uçan tek memelilerdir,Medium
+2958,Science,Avogadro sayısı nedir?,"6,02 × 10²²","6,02 × 10²³","6,02 × 10²⁴","6,02 × 10²⁵",B,Avogadro sayısı 6.02 × 10²³'tür,Medium
+2959,Science,Kan şekeri seviyesini hangi hormon düzenler?,İnsülin,Adrenalin,Kortizol,Tiroksin,A,İnsülin kan şekerini düzenler,Medium
+2960,Math,Yarıçapı 5 olan bir çemberin çevresi kaçtır?,10π,25π,5π,15π,A,Çevre = 2πr = 2π(5) = 10π,Medium
+2961,Science,Karbonun en yaygın izotopu nedir?,Karbon-12,Karbon-13,Karbon-14,Karbon-11,A,Karbon-12 en bol izotoptur,Medium
+2962,Science,Glikozun moleküler formülü nedir?,C₆H₁₂O₆,C₁₂H₂₂O₁₁,C₆H₁₀O₅,C₅H₁₀O₅,A,Glikozun formülü C₆H₁₂O₆'dir,Medium
+2963,Sports,Ryder Kupası hangi spor dalında mücadele ediyor?,Tenis,Golf,Kriket,Rugby,B,Ryder Kupası bir golf yarışmasıdır,Medium
+2964,Science,Azot gazının amonyağa dönüştürülmesi işlemi hangisidir?,Fotosentez,Azot fiksasyonu,Denitrifikasyon,Nitrifikasyon,B,Azot fiksasyonu N₂'yi amonyağa dönüştürür,Medium
+2965,Art,İnci Küpeli Kız tablosunu hangi sanatçı çizmiştir?,Rembrandt,Johannes Vermeer,Frans Hals,Jan van Eyck,B,"Vermeer, İnci Küpeli Kız tablosunu çizdi",Medium
+2966,Technology,GPU ne anlama geliyor?,Genel İşlem Birimi,Grafik İşlem Birimi,Küresel İşlem Birimi,Oyun İşleme Birimi,B,"GPU, Grafik İşlem Birimi anlamına gelir",Medium
+2967,Animals,Modern insanın bilimsel adı nedir?,Homo erectus,Homo sapiens,Homo habilis,Homo neanderthalensis,B,Modern insanlar Homo sapiens'tir,Medium
+2968,Science,25°C'deki saf suyun pH değeri nedir?,6,7,8,9,B,Saf suyun pH değeri 7'dir,Medium
+2969,Science,Ozon tabakası atmosferin hangi katmanında bulunur?,Troposfer,Stratosfer,Mezosfer,Termosfer,B,Ozon tabakası stratosferdedir,Medium
+2970,Math,π sayısının virgülden sonraki dört basamağa kadar değeri nedir?,3.1415,3.1416,3.1417,3.1418,B,π ≈ 3.1416 dört ondalık basamağa kadar,Medium
+2971,Science,Kırılma nedir?,Işığın bükülmesi,Işığın yansıması,Işığın soğurulması,Işık emisyonu,A,Kırılma ışığın bükülmesidir,Medium
+2972,Science,Sülfürik asidin kimyasal formülü nedir?,H₂SO₃,H₂SO₄,HNO₃,HCl,B,Sülfürik asit H₂SO₄'dur,Medium
+2973,Sports,Basketbol sahasında oyun sırasında en fazla kaç oyuncu bulunur?,8,10,12,14,B,Basketbolda takım başına 5 oyuncu vardır (toplam 10),Medium
+2974,Science,Sitoloji neyi inceler?,Dokular,Hücreler,Organlar,Sistemler,B,"Sitoloji, hücrelerin incelenmesidir",Hard
+2975,Science,Nötronu hangi bilim adamı keşfetti?,Ernest Rutherford,James Chadwick,Niels Bohr,Marie Curie,B,James Chadwick nötronu keşfetti,Hard
+2976,Science,Bir asidin bir bazı nötralize ettiği tepkimenin adı nedir?,Oksidasyon,Kesinti,Nötralizasyon,Hidroliz,C,"Nötralizasyon, asitlerin bazlarla reaksiyona girmesiyle meydana gelir",Hard
+2977,Math,cos(x) dx'in integrali nedir?,sin(x) + C,-sin(x) + C,cos(x) + C,-cos(x) + C,A,cos(x)'in integrali sin(x) + C'dir,Hard
+2978,Science,Çevreden ısı alan tepkime türü hangisidir?,Ekzotermik,Endotermik,İzotermik,Adiabatik,B,Endotermik reaksiyonlar ısıyı emer,Hard
+2979,Science,Suyun moleküler geometrisi nedir?,Doğrusal,Bükülmüş,Dörtyüzlü,Üçgen düzlemsel,B,Suyun eğik bir moleküler geometrisi vardır,Hard
+2980,Sports,İlk modern olimpiyat oyunları hangi yılda düzenlendi?,1892,1896,1900,1904,B,İlk modern Olimpiyatlar 1896'da gerçekleşti,Hard
+2981,Science,DNA'nın replikasyonu sırasında hangi enzim DNA'yı çözer?,DNA polimeraz,Helikaz,Ligaz,Primase,B,Helikaz DNA'yı çözer,Hard
+2982,Art,Jackson Pollock hangi sanat akımını temsil ediyordu?,Soyut Ekspresyonizm,Pop art,Minimalizm,Kavramsal Sanat,A,Pollock Soyut Ekspresyonistti,Hard
+2983,Technology,BIOS ne anlama geliyor?,Temel Giriş Çıkış Sistemi,İkili Giriş Çıkış Sistemi,Temel Dahili İşletim Sistemi,İkili Dahili İşletim Sistemi,A,"BIOS, Temel Giriş Çıkış Sistemi anlamına gelir",Hard
+2984,Animals,Kafadanbacaklıların hızla renk ve desen değiştirmesini sağlayan mekanizma nedir?,Kromatoforlar,Fotoforlar,Lökoforlar,Yukarıdakilerin hepsi,D,"Kafadanbacaklılar karmaşık renk gösterimleri için kromatoforlar, lökoforlar ve fotoforlar kullanırlar",Hard
+2985,Science,Termodinamiğin birinci yasası nedir?,Enerji yaratılamaz veya yok edilemez,Entropi her zaman artar,Isı sıcaktan soğuğa doğru akar,Kuvvet kütle çarpı ivmeye eşittir,A,Birinci yasa enerjinin korunumunu belirtir,Hard
+2986,Science,Kıtaların kayması teorisini kim ortaya attı?,Charles Darwin,Alfred Wegener,Gregor Mendel,Louis Pasteur,B,Wegener'in önerdiği kıtasal sürüklenme,Hard
+2987,Math,e²'nin doğal logaritması nedir?,1,2,e,e²,B,ln(e²) = 2,Hard
+2988,Science,Dalga-parçacık ikiliğini tanımlayan ilke hangisidir?,Heisenberg belirsizlik ilkesi,Dalga-parçacık ikiliği ilkesi,Pauli dışlama ilkesi,Tamamlayıcılık ilkesi,D,Tamamlayıcılık dalga-parçacık ikiliğini tanımlar,Hard
+2989,Science,"0,01 M HCl çözeltisinin pH'ı nedir?",1,2,3,4,B,"0,01 M HCl çözeltisinin pH'ı = 2'dir",Hard
+2990,Sports,Dünyanın en eski tenis turnuvası hangisidir?,ABD Açık,Fransa Açık,Wimbledon,Avustralya Açık,C,Wimbledon en eski tenis şampiyonasıdır,Hard
+2991,Science,En kararlı çekirdek hangisidir?,Demir-56,Karbon-12,Helyum-4,Uranyum-238,A,Demir-56 en kararlı çekirdeğe sahiptir,Hard
+2992,Art,Las Meninas tablosunu kim çizdi?,Diego Velázquez,Francisco Goya,El Greco,Bartolomé Murillo,A,Velázquez Las Meninas'ı boyadı,Hard
+2993,Technology,Bilgisayarda RAID ne anlama geliyor?,Bağımsız Disklerin Yedekli Dizisi,Bağımsız Verilere Rastgele Erişim,Dahili Sürücülerin Hızlı Dizisi,İnternet Verilerine Uzaktan Erişim,A,"RAID, Bağımsız Disklerin Yedekli Dizisi anlamına gelir",Hard
+2994,Animals,Evcil köpekler için ikili isimlendirme nedir?,Canis familiaris,Köpek lupusu,Canis domesticus,Köpek köpek,A,Köpekler Canis familiaris olarak sınıflandırılır,Hard
+2995,Science,Kuantum mekaniğindeki belirsizliği ne tanımlar?,Konum ve momentum her ikisi de kesin olarak belirlenemez,Enerji ve zaman ilişkilidir,Madde ve enerji eşdeğerdir,Parçacıklar dalga özelliklerine sahiptir,A,Heisenberg'in belirsizlik ilkesi,Hard
+2996,Science,Hangi elementin elektron dizilimi [Ar] 4s² 3d¹⁰ 4p⁵'dir?,Klor,Brom,İyot,Florin,B,Bu yapılandırma brom'a karşılık gelir,Hard
+2997,Math,sin(x) için Maclaurin serisi nedir?,x - x³/3! + x⁵/5! - x⁷/7! + ...,1 + x + x²/2! + x³/3! + ...,1 - x²/2! + x⁴/4! - x⁶/6! + ...,x + x³/3! + x⁵/5! + x⁷/7! + ...,A,"Sin(x) için Maclaurin serisi, dönüşümlü tek seridir",Hard
+2998,Science,Enzim kinetiğinde hız sınırlayıcı adımı ne belirler?,Substrat konsantrasyonu,Enzim konsantrasyonu,Sıcaklık,Mekanizmanın en yavaş adımı,D,En yavaş adım genel hızı belirler,Hard
+2999,Science,pH ve pOH arasındaki ilişkiyi kuran denklem hangisidir?,pH + pOH = 14,pH - pOH = 7,pH × pOH = 14,pH ÷ pOH = 2,A,25°C'de pH + pOH = 14,Hard
+3000,Sports,Snooker'da maksimum break kaçtır?,147,155,167,170,A,Snooker'da maksimum kırılma 147'dir,Hard
+3001,Science,"RNA, DNA'dan hangi işlemle sentezlenir?",Çoğaltma,Transkripsiyon,Çeviri,Dönüşüm,B,"Transkripsiyon, DNA'dan RNA sentezler",Hard
+3002,Art,Öpücük heykelini kim yarattı?,Auguste Rodin,Michelangelo,Donatello,Henry Moore,A,Rodin Öpücük heykelini yarattı,Hard
+3003,Technology,Quicksort'un ortalama zaman karmaşıklığı nedir?,Açık),O(n log n),O(n²),O(log n),B,Hızlı sıralama ortalamaları O(n log n) zaman karmaşıklığını hesaplar,Hard
+3004,Animals,Karga sürüsüne ne ad verilir?,Cinayet,Sürü,Kaz sürüsü,Sürü,A,Bir grup kargaya cinayet denir,Hard
+3005,Science,Elementlerin standart oluşum entalpisi nedir?,Sıfır,Olumlu,Negatif,Değişken,A,Standart haldeki elementlerin oluşum entalpisi sıfırdır,Hard
+3006,Science,Klorofil hangi organelde bulunur?,Mitokondri,Çekirdek,Kloroplast,Ribozom,C,Kloroplastlar klorofil içerir,Hard
+3007,Math,lim(x→0) (sin x)/x nedir?,0,1,-1,∞,B,x 0'a yaklaşırken (sin x)/x'in limiti 1'dir,Hard
+3008,Science,Işığın engellerin etrafından dolanması olayı nedir?,Refleks,Refraksiyon,Kırınım,Dağılım,C,"Kırınım, ışığın engellerin etrafından bükülmesidir",Hard
+3009,Science,aA + bB ⇌ cC + dD için denge sabiti ifadesi nedir?,[C]^c[D]^d/[A]^a[B]^b,[A]^a[B]^b/[C]^c[D]^d,[C][D]/[A][B],[A][B]/[C][D],A,K = [ürünler]^katsayılar / [reaktanlar]^katsayılar,Hard
+3010,Sports,Bowling'de üst üste üç strike'a ne denir?,Türkiye,Çift,Üçlü,El çabukluğu,A,Üst üste üç vuruş hindidir,Hard
+3011,Science,Proteinlerdeki aminoasitleri birbirine bağlayan bağ hangisidir?,İyonik bağ,Kovalent bağ,Peptit bağı,Hidrojen bağı,C,Peptit bağları amino asitleri birbirine bağlar,Hard
+3012,Art,Pop Art akımının öncüsü kimdir?,Andy Warhol,Roy Lichtenstein,Hem A hem de B,Jackson Pollock,C,Hem Warhol hem de Lichtenstein Pop Art'ın öncüleriydi,Hard
+3013,Technology,JSON ne anlama geliyor?,JavaScript Nesne Gösterimi,Java Standart Nesne Ağı,JavaScript Çevrimiçi Notasyonu,Java Script Nesne Ağı,A,"JSON, JavaScript Nesne Gösterimi anlamına gelir",Hard
+3014,Animals,Afrika filinin gebelik süresi ne kadardır?,18 ay,20 ay,22 ay,24 ay,C,Afrika fillerinin gebelik süresi 22 aydır,Hard
+3015,Science,Entropinin her zaman arttığını belirten ifadeler hangileridir?,Termodinamiğin birinci yasası,Termodinamiğin ikinci yasası,Termodinamiğin üçüncü yasası,Termodinamiğin sıfırıncı yasası,B,İkinci yasa entropinin arttığını belirtir,Hard
+3016,Science,Modern periyodik tabloyu kim geliştirdi?,Dmitri Mendeleyev,Henry Moseley,Antoine Lavoisier,John Dalton,A,Mendeleyev periyodik tabloyu geliştirdi,Hard
+3017,Math,e^x için Taylor serisi nedir?,1 + x + x²/2! + x³/3! + ...,x - x³/3! + x⁵/5! - ...,1 - x²/2! + x⁴/4! - ...,1 + x²/2! + x⁴/4! + ...,A,e^x = 1 + x + x²/2! + x³/3! + ...,Hard
+3018,Science,Bir elektronu uzaklaştırmak için ne kadar enerjiye ihtiyaç vardır?,Elektron ilgisi,İyonlaşma enerjisi,Bağ enerjisi,Aktivasyon enerjisi,B,İyonlaşma enerjisi bir elektronu uzaklaştırır,Hard
+3019,Science,Kimyasal bağları açıklayan teori hangisidir?,Değerlik bağı teorisi,Moleküler orbital teorisi,Hem A hem de B,Lewis teorisi,C,Hem VB hem de MO teorileri bağlanmayı açıklar,Hard
+3020,Sports,Ryder Kupası hangi spor dalında yarışıyor?,Tenis,Golf,Kriket,Rugby,B,Ryder Kupası golfte yarışıyor,Hard
+3021,Science,Stoma açılıp kapanmasını ne kontrol eder?,Muhafız hücreleri,Palisade hücreleri,Süngerimsi hücreler,Epidermal hücreler,A,Koruyucu hücreler stoma açıklığını kontrol eder,Hard
+3022,Art,Venüs'ün Doğuşu tablosunu kim çizmiştir?,Sandro Botticelli,Leonardo da Vinci,Michelangelo,Raphael,A,Botticelli Venüs'ün Doğuşu tablosunu çizdi,Hard
+3023,Technology,TCP ile UDP arasındaki temel fark nedir?,Güvenilirlik,Hız,Hem A hem de B,Protokol türü,C,TCP güvenilirdir ancak daha yavaştır. UDP daha hızlıdır ancak güvenilmezdir.,Hard
+3024,Animals,Hiçbir omurgalının dörtten fazla uzvunun olmamasını açıklayan evrimsel kısıtlama nedir?,Gelişimsel kanalizasyon,Filogenetik atalet,Vücut planı kısıtlaması,Hox gen sınırlaması,C,Temel omurgalı vücut planı uzuv sayısını dörtle sınırlandırır,Hard
+3025,Science,"Hangi ilke, iki elektronun aynı kuantum sayısına sahip olamayacağını belirtir?",Pauli dışlama ilkesi,Hund kuralı,Aufbau ilkesi,Heisenberg belirsizlik ilkesi,A,Pauli dışlama ilkesi,Hard
+3026,Science,Hangi bozunma atom numarasını bir arttırır?,Alfa bozunması,Beta eksi bozunma,Gama bozunması,Elektron yakalama,B,Beta eksi bozunması atom numarasını artırır,Hard
+3027,Math,Farklılaşma ve bütünleşmeyi birbirine bağlayan nedir?,Kalkülüsün temel teoremi,Ortalama değer teoremi,Ara değer teoremi,Zincir kuralı,A,Temel teorem türevler ve integralleri birbirine bağlar,Hard
+3028,Science,Değişimlere karşı denge tepkisini tanımlayan ilke hangisidir?,Le Chatelier ilkesi,Henry yasası,Raoult yasası,Dalton yasası,A,Le Chatelier ilkesi denge değişimlerini tanımlar,Hard
+3029,Science,Hangi okyanus kuşağı fotosenteze olanak sağlar?,Öfotik bölge,Disfotik bölge,Afotik bölge,Uçurum bölgesi,A,Öfotik bölge fotosentez için yeterli ışığa sahiptir,Hard
+3030,Sports,Ağır sıklet boksta kilo sınırı nedir?,200 libre,Sınır yok,250 lbs,225 lbs,B,Ağır sıklet boksun üst ağırlık sınırı yoktur,Hard
+3031,Science,Işığı kimyasal enerjiye dönüştüren nedir?,Hücresel solunum,Fotosentez,Kemosentez,Fermantasyon,B,Fotosentez ışığı kimyasal enerjiye dönüştürür,Hard
+3032,Art,Dünyevi Zevkler Bahçesi tablosunu kim çizmiştir?,Hieronymus Bosch,Pieter Bruegel,Jan van Eyck,Rogier van der Weyden,A,"Bosch, Dünyevi Zevkler Bahçesi'ni resmetti",Hard
+3033,Technology,RISC'in açılımı nedir?,Azaltılmış Komut Seti Bilgisayarı,Rastgele Komut Seti Bilgisayarı,Hızlı Komut Seti Bilgisayarı,Uzaktan Komut Seti Bilgisayarı,A,"RISC, Azaltılmış Komut Seti Bilgisayarı anlamına gelir",Hard
+3034,Animals,Kuzey Amerika'nın tek yerli keseli hayvanı hangisidir?,Koala,Kanguru,Virginia keseli sıçanı,Şeker planörü,C,"Virginia keseli sıçanı, Kuzey Amerika'nın tek yerli keseli hayvanıdır",Hard
+3035,Science,Floresans ve fosforesansın sebebi nedir?,Radyasyon emiliminden sonra ışık emisyonu,Işık yansıması,Işık kırılması,Işık kırınımı,A,Her ikisi de radyasyonu emdikten sonra ışık emisyonunu içerir,Hard
+3036,Science,Gaz hacmini molekül sayısıyla ilişkilendiren yasa hangisidir?,Boyle yasası,Charles yasası,Avogadro yasası,Gay-Lussac yasası,C,"Avogadro yasası, hacmi parçacık sayısıyla ilişkilendirir",Hard
+3037,Math,Sürekli bir fonksiyonu ne tanımlar?,Hiçbir kopukluk veya boşluk yok,Her yerde farklılaştırılabilir,Sonlu limitleri vardır,Her yerde tanımlanmış,A,Sürekli fonksiyonların kesintisi yoktur,Hard
+3038,Science,Proton ve nötronları birbirine bağlayan kuvvet nedir?,Elektromanyetik kuvvet,Güçlü nükleer kuvvet,Zayıf nükleer kuvvet,Yerçekimi kuvveti,B,Güçlü nükleer kuvvet nükleonları birbirine bağlar,Hard
+3039,Science,pH değişimlerine ne direnç gösterir?,Tampon çözelti,Gösterge,Katalizör,Çözücü,A,Tampon çözeltiler pH değişikliklerine karşı direnç gösterir,Hard
+3040,Sports,Mükemmel bir bowling oyunu skoru nedir?,250,275,300,325,C,Mükemmel bir oyun 300 puan alır,Hard
+3041,Science,Gazın sıvı hale geçmesine ne ad verilir?,Süblimasyon,Yoğunlaşma,Buharlaşma,İfade,B,Yoğunlaşma gazdan sıvıya geçiştir,Hard
+3042,Art,Eyfel Kulesi'ni kim tasarladı?,Gustave Eiffel,Antoni Gaudí,Frank Lloyd Wright,Le Corbusier,A,Kuleyi Gustave Eiffel tasarladı,Hard
+3043,Technology,XML ne anlama geliyor?,Genişletilebilir İşaretleme Dili,Genişletilmiş İşaretleme Dili,eXternal İşaretleme Dili,Yürütülebilir İşaretleme Dili,A,"XML, Genişletilebilir İşaretleme Dili anlamına gelir",Hard
+3044,Animals,Alacakaranlıkta aktif olan hayvanlara ne ad verilir?,Günlük,Geceleyin,Alacakaranlık,Katemeral,C,Alacakaranlık hayvanları alacakaranlıkta aktiftir,Hard
+3045,Science,Teorik minimum sıcaklık nedir?,Mutlak sıfır,Donma noktası,Kaynama noktası,Üçlü nokta,A,Mutlak sıfır teorik minimum sıcaklıktır,Hard
+3046,Science,Işığın dalga teorisini kim ortaya attı?,Isaac Newton,Christiaan Huygens,Thomas Young,Albert Einstein,B,Huygens dalga teorisini önerdi,Hard
+3047,Math,|r| < 1 olan sonsuz geometrik seriler için toplam formülü nedir?,a/(1-r),a(1-r),a + r,ar,A,Toplam = a/(1-r) |r| < 1 için,Hard
+3048,Science,Enerji tasarrufu hangi eyaletlerde yapılır?,Enerjinin korunumu,Momentumun korunumu,kütle korunumu,Yükün korunumu,A,"Enerjinin korunumu, enerjinin yaratılamayacağını veya yok edilemeyeceğini belirtir",Hard
+3049,Science,Bir tepkimenin gerçekleşmesi için gereken minimum enerji nedir?,Aktivasyon enerjisi,İyonlaşma enerjisi,Bağ enerjisi,Kinetik enerji,A,Aktivasyon enerjisi ihtiyaç duyulan minimum enerjidir,Hard
+3050,Sports,Hangi sporda smaç vuruyorsun?,Basketbol,Voleybol,Tenis,Hentbol,A,Basketbolda smaçlar yapılır,Hard
+3051,Science,Hücresel giriş ve çıkışı ne kontrol eder?,Hücre duvarı,Hücre zarı,Çekirdek,Sitoplazma,B,Hücre zarı neyin girip çıktığını kontrol eder,Hard
+3052,Art,Hangi akım ışık efektlerini ön plana çıkarmıştır?,İzlenimcilik,Ekspresyonizm,Kübizm,Gerçeküstücülük,A,Empresyonizm ışığı ve onun etkilerini vurguladı,Hard
+3053,Technology,10 ikili sistemde kaçtır?,1010,1100,1001,1110,A,"Ondalık 10, ikili 1010'a eşittir",Hard
+3054,Animals,Çevresel adaptasyonları yavrulara aktarabilen epigenetik mekanizma hangisidir?,DNA metilasyonu,Histon modifikasyonu,Kodlamayan RNA,Yukarıdakilerin hepsi,D,Çoklu epigenetik mekanizmalar çevresel bilgiyi kuşaklar arası aktarabilir,Hard
+3055,Science,Bitkiler oksijeni nasıl serbest bırakır?,Fotosentez,Solunum,Terleme,Çimlenme,A,Bitkiler fotosentez sırasında oksijen salarlar,Hard
+3056,Science,Dünya kabuğunda en bol bulunan şey nedir?,Silikon,Oksijen,Alüminyum,Ütü,B,Oksijen Dünya'nın kabuğunda en bol miktarda bulunur,Hard
+3057,Math,e^x'in türevi nedir?,e^x,xe^(x-1),ln(x),1/x,A,e^x'in türevi kendisi e^x'tir,Hard
+3058,Science,Yüzeyler arasındaki harekete karşı koyan nedir?,Sürtünme,Tansiyon,Sıkıştırma,Burulma,A,"Sürtünme, yüzeyler arasındaki harekete karşı koyar",Hard
+3059,Science,Katı halden doğrudan gaz haline geçen şey nedir?,Erime,Süblimasyon,Buharlaşma,Yoğunlaşma,B,Süblimleşme katıdan gaza doğrudan geçiştir,Hard
+3060,Sports,Bowling karesi skoru maksimum kaçtır?,10,20,30,Sınır yok,C,Maksimum kare puanı 30'dur (vuruş artı iki vuruş),Hard
+3061,Science,Hangi parçacığın yükü yoktur?,Proton,Elektron,Nötron,Foton,C,Nötronların elektrik yükü yoktur,Hard
+3062,Art,İnci Küpeli Kız tablosunu kim çizmiştir?,Rembrandt,Johannes Vermeer,Anthony van Dyck,Peter Paul Rubens,B,"Vermeer, İnci Küpeli Kız tablosunu çizdi",Hard
+3063,Technology,IDE programlamanın açılımı nedir?,Entegre Geliştirme Ortamı,Etkileşimli Geliştirme Ortamı,İç Geliştirme Ortamı,Bağımsız Kalkınma Ortamı,A,"IDE, Entegre Geliştirme Ortamı anlamına gelir",Hard
+3064,Animals,Vücut ısısını sabit tutan şey nedir?,Soğukkanlı,Sıcakkanlı,Ektotermik,Endotermik,D,Endotermik hayvanlar sabit sıcaklığı korurlar,Hard
+3065,Science,Dünya'nın mantosunu ve çekirdeğini ayıran şey nedir?,Moho süreksizliği,Gutenberg kopukluğu,Lehmann süreksizliği,Conrad süreksizliği,B,Gutenberg süreksizliği mantoyu ve çekirdeği ayırır,Hard
+3066,Science,Hangi bağ elektron paylaşır?,İyonik,Kovalent,Metalik,Van der Waals,B,Kovalent bağlar elektronları paylaşır,Hard
+3067,Math,lim(x→0) sin(x)/x nedir?,0,1,-1,∞,B,Limit 1'e eşittir,Hard
+3068,Science,Kuantum dalga-parçacık davranışını ne tanımlar?,Fotoelektrik etki,Compton etkisi,Dalga-parçacık ikiliği,Tünel etkisi,C,Dalga-parçacık ikiliği kuantum davranışını tanımlar,Hard
+3069,Science,Kimyasal bağlarda hangi enerji vardır?,Kinetik enerji,Potansiyel enerji,Kimyasal enerji,Nükleer enerji,C,Kimyasal enerji bağlarda depolanır,Hard
+3070,Sports,Teniste sıfır nedir?,Aşk,Deuce,Avantaj,Arıza,A,Teniste aşk sıfır demektir,Hard
+3071,Science,Proteinleri oluşturmak için RNA'yı kullanan şey nedir?,Çoğaltma,Transkripsiyon,Çeviri,Dönüşüm,C,"Çeviri, proteinleri sentezlemek için RNA'yı kullanır",Hard
+3072,Art,Mobil heykelleri kim icat etti?,Alexander Calder,Henry Moore,Alberto Giacometti,Constantin Brâncuși,A,Calder mobil heykelleri icat etti,Hard
+3073,Technology,CSS ne anlama geliyor?,Bilgisayar Stil Sayfaları,Basamaklı Stil Sayfaları,Yaratıcı Stil Sistemi,Kodlanmış Stil Sözdizimi,B,"CSS, Basamaklı Stil Sayfaları anlamına gelir",Hard
+3074,Animals,Organizmaların yeni ortamlara hızla uyum sağlamasını açıklayan olgu hangisidir?,Fenotipik esneklik,Genetik asimilasyon,Kanalizasyon,Baldwin etkisi,A,"Fenotipik esneklik, çevresel değişime karşı hızlı genetik olmayan tepkilere olanak tanır",Hard
+3075,Science,Belirsizlik ilkesini kim geliştirdi?,Niels Bohr,Werner Heisenberg,Max Planck,Albert Einstein,B,Heisenberg belirsizlik ilkesini geliştirdi,Hard
+3076,Science,Hücresel solunum nerede gerçekleşir?,Çekirdek,Kloroplast,Mitokondri,Ribozom,C,Mitokondri hücresel solunumu gerçekleştirir,Hard
+3077,Math,Yarıçapı r olan bir kürenin hacmi nedir?,4πr²,4πr³/3,πr²,2πr,B,Hacim = 4πr³/3,Hard
+3078,Science,Elektriği iletmeyen şey nedir?,Şef,Yarı iletken,Yalıtkan,Süperiletken,C,Yalıtkanlar elektriği iletmez,Hard
+3079,Science,Tam ışık emilimine ne ad verilir?,Refleks,Refraksiyon,Emilim,Emisyon,C,"Emilim, ışığın tam olarak alınmasıdır",Hard
+3080,Sports,Golfte hole-in-one'a ne denir?,Kartal,Kuş,Albatros,As,D,Bir deliğe bir vuruşta atılan topa as denir,Hard
+3081,Science,Akciğer hava keselerine ne ad verilir?,Bronşlar,Bronşiyoller,Alveoller,Trakea,C,Alveoller akciğerlerdeki küçük hava keseleridir,Hard
+3082,Art,Amerikan Gotiği'ni kim çizdi?,Grant Wood,Edward Hopper,Andrew Wyeth,Norman Rockwell,A,Grant Wood Amerikan Gotik'i boyadı,Hard
+3083,Technology,En küçük veri birimi nedir?,Biraz,Bayt,Kilobayt,Megabayt,A,Bir bit en küçük veri birimidir,Hard
+3084,Animals,Hangi memeli gerçekten uçar?,Uçan sincap,Şeker planörü,Yarasa,Uçan lemur,C,Yarasalar gerçekten uçan tek memelilerdir,Hard
+3085,Science,Asitlik hangi ölçekle ölçülür?,Richter ölçeği,Mohs ölçeği,pH ölçeği,Kelvin ölçeği,C,pH ölçeği asitliği ölçer,Hard
+3086,Science,Gezegenlerin hareket yasalarını kim formüle etti?,Galileo Galilei,Johannes Kepler,Tycho Brahe,Nicolaus Copernicus,B,Kepler gezegen hareket yasalarını formüle etti,Hard
+3087,Math,-1'in karekökü nedir?,Ben,1,-1,tanımsız,A,√(-1) = i (sanal birim),Hard
+3088,Science,Değişen manyetik alanlarda akım üreten nedir?,Fotoelektrik etki,Hall etkisi,Elektromanyetik indüksiyon,Termoelektrik etki,C,"Elektromanyetik indüksiyon, değişen alanlardan akım üretir",Hard
+3089,Science,Bir cisimdeki madde miktarı ne kadardır?,Ağırlık,Yığın,Yoğunluk,Hacim,B,Kütle madde miktarıdır,Hard
+3090,Sports,Kaç tane golf sopasına izin veriliyor?,12,14,16,18,B,Golfçüler en fazla 14 sopa taşıyabilir,Hard
+3091,Science,Bitkiler suyu nasıl emer?,Ozmoz,Difüzyon,Aktif taşıma,Yukarıdakilerin hepsi,D,Bitkiler suyu emmek için tüm bu yöntemleri kullanırlar,Hard
+3092,Art,Alttaki katmanları ortaya çıkarmak için boyayı kazımayı içeren teknik hangisidir?,Karmakarışık,Sgraffito,Cam,Pasto,B,"Sgraffito, alttaki renkleri ortaya çıkarmak için boya katmanlarının çizilmesini içerir",Hard
+3093,Technology,URL ne anlama geliyor?,Tekdüzen Kaynak Bulucu,Evrensel Kaynak Bağlantısı,Tekdüzen Referans Bulucu,Evrensel Referans Bağlantısı,A,"URL, Tekdüzen Kaynak Bulucu anlamına gelir",Hard
+3094,Animals,Fil gebelik süresi nedir?,18 ay,22 ay,24 ay,28 ay,B,Fillerin gebelik süresi 22 aydır,Hard
+3095,Science,Başkalarına kütle kazandıran parçacık hangisidir?,Foton,Bozon,Higgs bozonu,Graviton,C,Higgs bozonu parçacıklara kütle kazandırır,Hard
+3096,Science,Atmosferin yüzde kaçı oksijendir?,%18,%21,%25,%28,B,Oksijen atmosferin %21'ini oluşturur,Hard
+3097,Math,1/x'in integrali nedir?,ln|x| + C,x + C,1/x + C,x²/2 + C,A,∫(1/x)dx = ln|x| + C,Hard
+3098,Science,Kimyasal bağları koparan enerji hangisidir?,Bağ enerjisi,Aktivasyon enerjisi,İyonlaşma enerjisi,Kafes enerjisi,A,Bağ enerjisi kimyasal bağları kırar,Hard
+3099,Science,Dairesel harekette merkeze doğru hangi kuvvet etki eder?,Merkezcil kuvvet,Merkezkaç kuvveti,Yerçekimi kuvveti,Manyetik kuvvet,A,Merkezcil kuvvet merkeze doğru etki eder,Hard
+3100,Sports,Golfte bir par altı ne demektir?,Kartal,Kuş,Korkutucu,Albatros,B,"Birdie, parın bir vuruş altıdır",Hard
+3101,Science,Kararsız çekirdeklerden enerji açığa çıkaran şey nedir?,Füzyon,Fisyon,Radyoaktif bozunma,Nükleer bombardıman,C,"Radyoaktif bozunma, kararsız çekirdeklerden enerji açığa çıkarır",Hard
+3102,Art,Floransa'da Davut heykelini kim yaptı?,Leonardo da Vinci,Michelangelo,Donatello,Gian Lorenzo Bernini,B,Michelangelo ünlü Davut heykelini yaptı,Hard
+3103,Technology,Hangi program kendini kopyalar?,Virüs,Solucan,Truva atı,Kötü amaçlı yazılım,B,Bir solucan kendini çoğaltır,Hard
+3104,Animals,Antibiyotik direncinin evriminin altında yatan moleküler mekanizma nedir?,Yatay gen aktarımı,Nokta mutasyonları,Gen çoğalması,Taşınabilir elemanlar,A,"Yatay gen aktarımı, bakteriler arasında direnç genlerini hızla yayar",Hard
+3105,Science,Prizma ışığının bükülmesine ne sebep olur?,Refleks,Refraksiyon,Kırınım,Dağılım,D,Dağılım ışığı renklere ayırır,Hard
+3106,Science,Atom numarası 1 olan element hangisidir?,Hidrojen,Helyum,Lityum,Karbon,A,Hidrojenin atom numarası 1'dir,Hard
+3107,Math,Altın oran değeri nedir?,1.414,1.618,2.718,3.141,B,Altın oran φ ≈ 1.618,Hard
+3108,Science,Nükleer zincirleme reaksiyon için ne gereklidir?,Kritik kütle,Eşik kütlesi,Tepkime kütlesi,Atom kütlesi,A,Kritik kütle nükleer zincirleme reaksiyonu sürdürür,Hard
+3109,Science,Troposfer ile stratosferi ayıran nedir?,Tropopoz,Stratopoz,Mezopoz,Termopoz,A,Tropopoz bu katmanları ayırır,Hard
+3110,Sports,Stanley Kupası hangi spor dalında verilir?,Basketbol,Hokey,Futbol,Beyzbol,B,Stanley Kupası hokeyde verilir,Hard
+3111,Science,Gametleri hangi hücre bölünmesi oluşturur?,Mitoz,Mayoz,Hücrenin ikiye bölünerek üremesi,Tomurcuklanan,B,"Mayoz, cinsiyet hücrelerini (gametleri) üretir",Hard
+3112,Art,Yıldızlı Gece tablosunu kim çizmiştir?,Claude Monet,Vincent van Gogh,Paul Cezanne,Edgar Degas,B,Van Gogh Yıldızlı Gece'yi resmetti,Hard
+3113,Technology,ASCII ne anlama geliyor?,Amerikan Bilgi Değişimi Standart Kodu,Amerikan Bilgi Entegrasyonu Sistem Kodu,Bilgi Entegrasyonu için Otomatik Standart Kod,Bilgi Değişimi için Otomatik Sistem Kodu,A,"ASCII, Amerikan Bilgi Değişimi Standart Kodu anlamına gelir",Hard
+3114,Science,Oksijenin atom numarası nedir?,6,7,8,9,C,Oksijenin 8 protonu vardır ve bu da ona atom numarası 8'i verir,Easy
+3115,Science,Bitkiler besinlerini üretmek için hangi süreci kullanırlar?,Solunum,Fotosentez,Sindirim,Fermantasyon,B,Bitkiler güneş ışığından besin üretmek için fotosentez kullanırlar,Easy
+3116,Science,Hücrede yıpranmış organellerin parçalanmasına neden olan hücresel süreç hangisidir?,Endositoz,Otofaji,Ekzositoz,Fagositoz,B,"Otofaji, hasarlı hücresel bileşenleri temizler ve geri dönüştürür",Easy
+3117,Math,14 × 5 nedir?,60,65,70,75,C,14'ün 5 ile çarpımı 70'e eşittir,Easy
+3118,Science,İnsanlar hangi gazı dışarı verir?,Oksijen,Karbondioksit,Azot,Hidrojen,B,İnsanlar karbondioksiti dışarı verirler,Easy
+3119,Science,Alüminyumun kimyasal sembolü nedir?,Al,Ben,Au,Tarım,A,Alüminyumun kimyasal sembolü Al'dir,Easy
+3120,Sports,Bir buz hokeyi takımında maç sırasında kaç oyuncu bulunur?,5,6,7,8,B,Hokey takımlarında kaleci dahil 6 oyuncu bulunur,Easy
+3121,Science,Depremleri inceleyen bilim dalına ne ad verilir?,Volkanoloji,Sismoloji,Meteoroloji,Jeoloji,B,Sismoloji depremleri inceler,Easy
+3122,Art,Ünlü Guernica tablosunu kim çizmiştir?,Pablo Picasso,Salvador Dali,Joan Miro,Diego Velazquez,A,Picasso Guernica'yı savaşa tepki olarak çizdi,Easy
+3123,Technology,Bluetooth teknolojisi nelere olanak sağlıyor?,Kablosuz iletişim,Daha hızlı internet,Daha iyi grafikler,Daha yüksek ses,A,"Bluetooth, kablosuz cihaz iletişimini mümkün kılar",Easy
+3124,Animals,Arı topluluğuna ne ad verilir?,Sürü,Kovan,Koloni,Küme,C,Birlikte yaşayan bir grup arıya koloni denir,Easy
+3125,Science,İnsan kalbi kaç odacıklıdır?,2,3,4,5,C,İnsan kalbi dört odacıktan oluşur,Easy
+3126,Science,Sabah yıldızı olarak bilinen gezegen hangisidir?,Mars,Venüs,Merkür,Jüpiter,B,Venüs genellikle sabah veya akşam yıldızı olarak adlandırılır,Easy
+3127,Math,81 ÷ 9 kaçtır?,7,8,9,10,C,81 bölü 9 eşittir 9,Easy
+3128,Science,Oksijenin atom numarası nedir?,6,7,8,9,C,Oksijenin 8 protonu vardır ve bu da ona atom numarası 8'i verir,Easy
+3129,Science,Bitkiler besinlerini üretmek için hangi süreci kullanırlar?,Solunum,Fotosentez,Sindirim,Fermantasyon,B,Bitkiler güneş ışığından besin üretmek için fotosentez kullanırlar,Easy
+3130,Science,İnsan vücudundaki en büyük iç organ hangisidir?,Kalp,Beyin,Karaciğer,Akciğerler,C,Karaciğer en büyük iç organdır,Easy
+3131,Math,14 × 5 nedir?,60,65,70,75,C,14'ün 5 ile çarpımı 70'e eşittir,Easy
+3132,Science,İnsanlar hangi gazı dışarı verir?,Oksijen,Karbondioksit,Azot,Hidrojen,B,İnsanlar karbondioksiti dışarı verirler,Easy
+3133,Science,Alüminyumun kimyasal sembolü nedir?,Al,Ben,Au,Tarım,A,Alüminyumun kimyasal sembolü Al'dir,Easy
+3134,Sports,Bir buz hokeyi takımında maç sırasında kaç oyuncu bulunur?,5,6,7,8,B,Hokey takımlarında kaleci dahil 6 oyuncu bulunur,Easy
+3135,Science,Depremleri inceleyen bilim dalına ne ad verilir?,Volkanoloji,Sismoloji,Meteoroloji,Jeoloji,B,Sismoloji depremleri inceler,Easy
+3136,Art,Ünlü Guernica tablosunu kim çizmiştir?,Pablo Picasso,Salvador Dali,Joan Miro,Diego Velazquez,A,Picasso Guernica'yı savaşa tepki olarak çizdi,Easy
+3137,Technology,Bluetooth teknolojisi nelere olanak sağlıyor?,Kablosuz iletişim,Daha hızlı internet,Daha iyi grafikler,Daha yüksek ses,A,"Bluetooth, kablosuz cihaz iletişimini mümkün kılar",Easy
+3138,Animals,Arı topluluğuna ne ad verilir?,Sürü,Kovan,Koloni,Küme,C,Birlikte yaşayan bir grup arıya koloni denir,Easy
+3139,Science,İnsan kalbi kaç odacıklıdır?,2,3,4,5,C,İnsan kalbi dört odacıktan oluşur,Easy
+3140,Science,Sabah yıldızı olarak bilinen gezegen hangisidir?,Mars,Venüs,Merkür,Jüpiter,B,Venüs genellikle sabah veya akşam yıldızı olarak adlandırılır,Easy
+3141,Math,81 ÷ 9 kaçtır?,7,8,9,10,C,81 bölü 9 eşittir 9,Easy
+3142,Science,Gök gürültülü fırtınalara hangi bulut türü neden olur?,Cirrus,Stratus,Kümülüs,Kümülonimbus,D,Kümülonimbus bulutları gök gürültülü fırtınalara neden olur,Easy
+3143,Math,7² nedir?,42,49,56,64,B,7'nin karesi 49'a eşittir,Easy
+3144,Science,Dünyanın en sert doğal maddesi nedir?,Altın,Elmas,Ütü,Kuvars,B,Elmas en sert doğal maddedir,Easy
+3145,Science,Dünya atmosferinin büyük kısmını hangi gaz oluşturur?,Oksijen,Karbondioksit,Azot,Argon,C,Azot atmosferin yaklaşık %78'ini oluşturur,Easy
+3146,Math,144 ÷ 12 kaçtır?,10,11,12,13,C,144'ü 12'ye bölersek 12 elde ederiz,Easy
+3147,Sports,Teniste 'aşk' ne anlama gelir?,Sıfır,Bir,Bağlamak,Avantaj,A,Teniste aşk sıfır puan demektir,Easy
+3148,Animals,Hangi memelinin en güçlü ısırığa sahip olduğu bilinmektedir?,Aslan,Kaplan,Su aygırı,Timsah,C,Su aygırları memeliler arasında son derece güçlü ısırıklara sahiptir,Easy
+3149,Science,Suyun sıvı halden gaz haline dönüşme süreci nedir?,Yoğunlaşma,Buharlaşma,Yağış,Süblimasyon,B,Buharlaşma sıvı suyu gaza dönüştürür,Easy
+3150,Math,200'ün %15'i kaçtır?,25,30,35,40,B,200'ün %15'i 30'a eşittir,Easy
+3151,Science,Sofra tuzunun kimyasal formülü nedir?,NaCl,KCl,CaCl2,MgCl2,A,Sofra tuzu sodyum klorürdür (NaCl),Easy
+3152,Animals,Örümceğin kaç bacağı vardır?,6,7,8,9,C,Örümceklerin sekiz bacağı vardır,Easy
+3153,Math,64'ün karekökü nedir?,6,7,8,9,C,64'ün karekökü 8'dir,Easy
+3154,Science,İnsan vücudunda insülin hangi organ tarafından üretilir?,Karaciğer,Böbrek,Pankreas,Karın,C,Pankreas insülin üretir,Easy
+3155,Science,Işığın boşluktaki hızı nedir?,186000 mil/saniye,186282 mil/saniye,299792458 metre/saniye,300000000 metre/saniye,C,Işık vakumda 299792458 m/s hızla hareket eder,Medium
+3156,Math,x³'ün türevi nedir?,2x,3x,x²,3x²,D,x³'ün türevi 3x²'dir,Medium
+3157,Science,Zamanın yüksek hızlarda genişlemesine neden olan etkinin adı nedir?,Doppler Etkisi,Fotoelektrik Etki,Özel Görelilik,Heisenberg İlkesi,C,Özel görelilik zaman genişlemesini tanımlar,Medium
+3158,Science,Evrende en bol bulunan element hangisidir?,Hidrojen,Helyum,Oksijen,Karbon,A,Hidrojen en bol bulunan elementtir,Medium
+3159,Math,Sin(x)'in integrali nedir?,cos(x),−cos(x),günah(x),−sin(x),B,Sin(x)'in integrali −cos(x)'tir,Medium
+3160,Science,Elektromanyetik kuvveti hangi parçacık taşır?,Foton,Elektron,Proton,Nötron,A,Fotonlar elektromanyetik kuvvet taşır,Medium
+3161,Art,Pablo Picasso hangi sanat akımının kurucularındandır?,İzlenimcilik,Kübizm,Gerçeküstücülük,Ekspresyonizm,B,Picasso Kübizm'in kurucu ortağıdır,Medium
+3162,Math,e^(ln(5)) nedir?,1,5,e,(5) in,B,"e^(ln(x)) x'e eşittir, dolayısıyla e^(ln(5)) 5'e eşittir",Medium
+3163,Science,25°C'deki saf suyun pH değeri nedir?,6,7,8,14,B,Saf suyun pH değeri 25°C'de 7'dir,Medium
+3164,Science,Kara deliğin etrafındaki sınırın adı nedir?,Olay ufku,Foton küresi,Ergosfer,Tekillik,A,"Olay ufku, kara deliklerin etrafındaki sınırdır",Medium
+3165,Math,n sonsuza yaklaşırken (1+1/n)^n'nin limiti nedir?,1,2,e,π,C,Bu limit e'ye (Euler sayısı) eşittir,Medium
+3166,Animals,Hangi hayvanın gebelik süresi en uzundur?,Fil,Balina,Zürafa,Gergedan,A,Fillerin gebelik süreleri 22 aydır,Medium
+3167,Science,DNA zincirlerini bir arada tutan bağ türü nedir?,Kovalent bağlar,İyonik bağlar,Hidrojen bağları,Van der Waals kuvvetleri,C,Hidrojen bağları DNA zincirlerini bir arada tutar,Medium
+3168,Science,Kuantum mekaniğinde Heisenberg'in keşfettiği belirsizlik ilkesi nedir?,Konum ve momentum her ikisi de kesin olarak belirlenemez,Enerji ve zaman nicemlenir,Dalga-parçacık ikiliği mevcuttur,Elektronlar kabuklarda yörüngede dönerler,A,"Heisenberg ilkesi, konum ve momentumun her ikisinin de kesin olarak bilinemeyeceğini belirtir",Hard
+3169,Math,Riemann hipotezi neyle ilgilidir?,Asal sayı dağılımı,Hesaplamanın temelleri,Geometrik kanıtlar,Cebirsel denklemler,A,Riemann hipotezi asal sayıların dağılımıyla ilgilidir,Hard
+3170,Science,Diğer parçacıklara kütle kazandıran teorik parçacığın adı nedir?,Foton,Higgs bozonu,Graviton,Takyon,B,Higgs bozonu diğer parçacıklara kütle kazandırır,Hard
+3171,Science,Bir atomdan bir elektronu koparmak için gereken minimum enerjiye ne ad verilir?,Elektronegatiflik,İyonlaşma enerjisi,Elektron ilgisi,Bağlayıcı enerji,B,Bir elektronu uzaklaştırmak için iyonlaşma enerjisine ihtiyaç vardır,Hard
+3172,Math,Kalkülüsün temel teoremi esas olarak neyi konu alır?,Türevler ve integraller ters işlemlerdir,Sınırlar sürekliliği tanımlar,Fonksiyonlar farklılaştırılabilir,Seriler koşullu olarak yakınsar,A,Temel teorem türevler ve integralleri birbirine bağlar,Hard
+3173,Science,Organik kimyada kiral molekül nedir?,Birden fazla halkaya sahip bir molekül,Ayna görüntüsüne yerleştirilemeyen bir molekül,Sadece tek bağlara sahip bir molekül,Aromatik özelliklere sahip bir molekül,B,Kiral moleküller ayna görüntülerine üst üste bindirilemezler,Hard
+3174,Art,Sfumato tekniğini hangi Rönesans sanatçısı yaratmıştır?,Michelangelo,Raphael,Leonardo da Vinci,Donatello,C,Leonardo da Vinci sfumato tekniğini geliştirdi,Hard
+3175,Math,Gödel'in eksiklik teoremi neyi ifade eder?,Her matematiksel sistem tamamdır,Bazı matematiksel gerçekler kendi sistemleri içinde kanıtlanamaz,Tüm matematiksel ifadeler kararlaştırılabilirdir,Matematik tamamen mantıksaldır,B,"Gödel, bazı gerçeklerin kendi sistemleri içinde kanıtlanamayacağını gösterdi",Hard
+3176,Science,Ağır elementlerin büyük kütleli yıldızlarda oluşma süreci nasıldır?,Nükleer fisyon,Nükleer füzyon,Radyoaktif bozunma,Alfa bozunması,B,Ağır elementler yıldızlarda nükleer füzyon yoluyla oluşur,Hard
+3177,Science,Işığın büyük kütleli cisimlerin etrafından dolanmasıyla oluşan etkinin adı nedir?,Fotoelektrik etki,Compton saçılması,Yerçekimi merceklenmesi,Rayleigh saçılması,C,"Yerçekimi merceklenmesi, ışığı büyük kütleli nesnelerin etrafında büker",Hard
+3178,Math,Topolojide bir torusun cinsi nedir?,0,1,2,3,B,Bir torusun cinsi 1'dir,Hard
+3179,Science,Genlerin nasıl açılıp kapandığını inceleyen bilim dalına ne ad verilir?,Genetik,Genomik,Epigenetik,Proteomik,C,Epigenetik gen düzenlemesini inceler,Hard
+3180,Science,Deniz seviyesinde suyun kaynama noktası nedir?,90°C,95°C,100°C,105°C,C,Su deniz seviyesinde 100°C'de kaynar,Easy
+3181,Math,80'in %25'i kaçtır?,15,20,25,30,B,80'in %25'i 20'ye eşittir,Easy
+3182,Science,Altının kimyasal sembolü nedir?,Gitmek,Au,Tanrım,Tarım,B,Altının kimyasal sembolü Au'dur,Easy
+3183,Animals,Hangi kuş renkli kuyruk tüyleriyle bilinir?,Kartal,Tavus kuşu,Kuğu,Flamingo,B,Tavus kuşları renkli kuyruk tüyleriyle ünlüdür,Easy
+3184,Math,8 × 7 nedir?,54,56,58,64,B,8'in 7 ile çarpımı 56'ya eşittir,Easy
+3185,Science,Evrensel verici olarak bilinen kan grubu hangisidir?,A,B,AB,O,D,O tipi evrensel donördür,Easy
+3186,Sports,Amerikan futbolunda bir touchdown kaç puan değerindedir?,3,6,7,8,B,Bir gol 6 puan değerindedir,Easy
+3187,Science,Gezegenleri Güneş'in yörüngesinde tutan kuvvet nedir?,Manyetik kuvvet,Yerçekimi kuvveti,Nükleer kuvvet,Elektrik kuvveti,B,Yerçekimi kuvveti gezegenleri yörüngede tutar,Easy
+3188,Math,100 - 37 kaçtır?,53,63,67,73,B,100 eksi 37 eşittir 63,Easy
+3189,Science,Soluduğumuz havada bulunan başlıca gaz hangisidir?,Oksijen,Azot,Karbondioksit,Argon,B,Azot havanın yaklaşık %78'ini oluşturur,Easy
+3190,Animals,Çöl gemisi olarak bilinen hayvan hangisidir?,Atış,Fil,Deve,Eşek,C,Develere çöl gemileri denir,Easy
+3191,Math,2 4 6 8... dizisindeki bir sonraki sayı nedir?,9,10,11,12,B,"Sıra 2'şer artar, dolayısıyla bir sonraki adım 10'dur",Easy
+3192,Science,Güneşe en yakın gezegen hangisidir?,Venüs,Toprak,Merkür,Mars,C,"Merkür, Güneş'e en yakın gezegendir",Easy
+3193,Science,Avogadro sayısı yaklaşık olarak kaçtır?,"6,02 × 10²¹","6,02 × 10²²","6,02 × 10²³","6,02 × 10²⁴",C,"Avogadro sayısı yaklaşık olarak 6,02 × 10²³'tür",Medium
+3194,Math,e^x'in x=0 etrafındaki Taylor serisi açılımı nedir?,1 + x + x²/2! + x³/3! + ...,x + x²/2 + x³/3 + ...,1 + x + x² + x³ + ...,x + x² + x³ + x⁴ + ...,A,e^x'in Taylor serisi 1 + x + x²/2! + x³/3! + ... şeklindedir.,Medium
+3195,Science,Katı bir maddenin doğrudan gaza dönüştüğü sürecin adı nedir?,Buharlaşma,Süblimasyon,Yoğunlaşma,İfade,B,Süblimleşme katıdan gaza geçiştir,Medium
+3196,Science,Termodinamiğin birinci yasası nedir?,Enerji yaratılamaz veya yok edilemez,Isı sıcaktan soğuğa doğru akar,Entropi her zaman artar,Sıcaklık mutlaktır,A,Birinci yasa enerjinin korunumunu belirtir,Medium
+3197,Math,2×2 matrisinin [[a b] [c d]] determinantı nedir?,reklam + bc,ac + bd,reklam - bc,ac - bd,C,Belirleyici ad - bc'dir,Medium
+3198,Science,Hangi radyasyon türünün enerjisi en yüksektir?,Alfa,Beta,Gama,X-ışını,C,Gama radyasyonu en yüksek enerjiye sahiptir,Medium
+3199,Art,'Mavi Dönem' ile tanınan ressam hangisidir?,Vincent van Gogh,Pablo Picasso,Claude Monet,Henri Matisse,B,Picasso'nun ünlü bir Mavi Dönemi vardı,Medium
+3200,Math,|r| < 1 için 1 + r + r² + r³ + ... geometrik seri toplamı nedir?,1/(1-r),r/(1-r),1/(1+r),(1-r)/r,A,"Toplam, |r| < 1 için 1/(1-r)'dir",Medium
+3201,Science,Bir kimyasal bağı koparmak için gereken enerjiye ne ad verilir?,Aktivasyon enerjisi,Bağ ayrışma enerjisi,Kafes enerjisi,İyonlaşma enerjisi,B,Bağ ayrışma enerjisi kimyasal bağları koparır,Medium
+3202,Science,Elektron bulutları ile atom yapısını tanımlayan modelin adı nedir?,Bohr modeli,Rutherford modeli,Kuantum mekanik modeli,Thomson modeli,C,Kuantum mekanik modeli elektron bulutlarını kullanır,Medium
+3203,Math,f(t) = e^(at) denkleminin Laplace dönüşümü nedir?,1/(s-a),1/(s+a),s/(s-a),a/(s-a),A,e^(at)'nin Laplace dönüşümü 1/(s-a)'dır,Medium
+3204,Animals,İnsanın yaşayan en yakın akrabası hangi primattır?,Goril,Şempanze,Orangutan,Bonobo,B,Şempanzeler insanların yaşayan en yakın akrabalarıdır,Medium
+3205,Science,Geleneksel süperiletkenlerde süperiletkenlik için kritik sıcaklık nedir?,Yaklaşık -196°C,Yaklaşık -269°C,Yaklaşık -253°C,Yaklaşık -183°C,B,Geleneksel süperiletkenler mutlak sıfıra (-269°C) yakın çalışır,Medium
+3206,Science,Kuantum mekaniğinde Schrödinger denklemi neyi tanımlamak için kullanılır?,Dalga fonksiyonu evrimi,Parçacık pozisyonları,Sadece enerji seviyeleri,Ölçüm sonuçları,A,Schrödinger denklemi dalga fonksiyonunun evrimini açıklar,Hard
+3207,Math,Banach-Tarski paradoksu neyle ilgilidir?,Sonsuz seri,Küme ayrıştırması,Asal sayılar,Karmaşık analiz,B,Banach-Tarski paradoksu küme ayrıştırmayı içerir,Hard
+3208,Science,Kuantum parçacıklarının birbiriyle ilişkiye girdiği olgu nedir?,Üst üste binme,Dolaşıklık,Dekoherans,Tünelcilik,B,"Kuantum dolanıklığı, ilişkili parçacıklar yaratır",Hard
+3209,Science,Tüm temel kuvvetlerin teorik olarak birleştirilmesine ne ad verilir?,Her Şeyin Teorisi,Sicim Teorisi,Büyük Birleşik Teori,Kuantum Yerçekimi,A,Her Şeyin Teorisi tüm kuvvetleri birleştirecek,Hard
+3210,Math,Süreklilik hipotezi neyi ilgilendiriyor?,Gerçek sayı kardinalitesi,Asal sayı boşlukları,Fonksiyon sürekliliği,Sonsuz seri,A,Süreklilik hipotezi gerçek sayı kardinalitesini ilgilendirir,Hard
+3211,Science,Prionların hastalığa neden olma mekanizması nedir?,Viral enfeksiyon,Protein yanlış katlanması,Bakteriyel toksinler,Genetik mutasyonlar,B,Prionlar proteinlerin yanlış katlanması yoluyla hastalığa neden olur,Hard
+3212,Art,'Mekanik Üretim Çağında Sanat Eseri' adlı eseri hangi sanat kuramcısı yazmıştır?,Theodor Adorno,Walter Benjamin,Max Horkheimer,Herbert Marcuse,B,Walter Benjamin bu etkili makaleyi yazdı,Hard
+3213,Math,Graf teorisinde Hamilton yolu nedir?,Her köşeyi tam olarak bir kez ziyaret eden bir yol,Tüm kenarlardan geçen bir döngü,Minimal bir yayılan ağaç,Maksimum akış yolu,A,Hamilton yolu her köşeyi tam olarak bir kez ziyaret eder,Hard
+3214,Science,Atomlardaki elektronik durumlar arasındaki minimum enerji farkının terimi nedir?,Bant aralığı,Çalışma fonksiyonu,Bağlayıcı enerji,Geçiş enerjisi,D,"Geçiş enerjisi, elektronik durumlar arasındaki farktır",Hard
+3215,Science,Sanal parçacıkların gerçek parçacıklara dönüştüğü teorik sürecin adı nedir?,Hawking radyasyonu,Casimir etkisi,Çift üretim,Vakum çürümesi,C,Çift üretim sanal parçacıkları gerçeğe dönüştürüyor,Hard
+3216,Math,Tam bir grafiğin (K_n) kromatik sayısı nedir?,n-1,N,n+1,2n,B,K_n'nin kromatik sayısı n'dir,Hard
+3217,Science,Moleküler yapının biyolojik aktiviteyi nasıl etkilediğini inceleyen bilim dalına ne ad verilir?,Farmakokinetik,Farmakodinamik,Yapı-aktivite ilişkileri,Moleküler farmakoloji,C,Yapı-aktivite ilişkileri moleküler etkileri inceler,Hard
+3218,Science,Suyun donma noktası Fahrenheit cinsinden nedir?,30°F,32°F,34°F,36°F,B,Su 32°F'de donar,Easy
+3219,Math,6 × 9 kaçtır?,52,54,56,58,B,6 ile 9'un çarpımı 54'e eşittir,Easy
+3220,Science,Sadece bitkilerle beslenen hayvanlara ne ad verilir?,Etçiller,Hepçiller,Otçullar,Böcekçiller,C,Sadece bitki yiyen hayvanlara otobur denir,Easy
+3221,Animals,En hızlı kara hayvanı hangisidir?,Aslan,Leopar,Çita,Kaplan,C,Çita en hızlı kara hayvanıdır,Easy
+3222,Math,45 ÷ 5 kaçtır?,7,8,9,10,C,45 bölü 5 eşittir 9,Easy
+3223,Science,Güneş ışığına maruz kalındığında cilt hangi vitamini üretir?,A vitamini,C vitamini,D vitamini,E vitamini,C,Güneş ışığı D vitamini üretimine yardımcı olur,Easy
+3224,Sports,Bir hokey maçında kaç periyot vardır?,2,3,4,5,B,Hokey oyunlarında 3 periyot vardır,Easy
+3225,Science,Atomun merkezine ne ad verilir?,Elektron,Proton,Nötron,Çekirdek,D,Çekirdek bir atomun merkezidir,Easy
+3226,Math,13 + 17 kaçtır?,28,29,30,31,C,13 artı 17 eşittir 30,Easy
+3227,Science,Dünya kabuğunda en çok bulunan element hangisidir?,Ütü,Silikon,Alüminyum,Oksijen,D,"Oksijen, Dünya'nın kabuğunda en bol bulunan elementtir",Easy
+3228,Animals,Kelebeğin kaç kanadı vardır?,2,3,4,6,C,Kelebeklerin 4 kanadı vardır,Easy
+3229,Math,72 ÷ 8 kaçtır?,8,9,10,11,B,72 bölü 8 eşittir 9,Easy
+3230,Science,Fotosentez için hangi gaz gereklidir?,Oksijen,Azot,Karbondioksit,Hidrojen,C,Bitkilerin fotosentez için karbondioksite ihtiyacı vardır,Easy
+3231,Science,Gibbs serbest enerji denklemi nedir?,G = H + TS,G = H - TS,G = U + PV,G = U - PV,B,Gibbs serbest enerjisi G = H - TS,Medium
+3232,Math,[3 4] ve [1 2] vektörlerinin nokta çarpımı nedir?,7,11,5,14,B,Nokta çarpımı (3×1) + (4×2) = 11'dir,Medium
+3233,Science,Işığın farklı ortamlardan geçerken bükülmesine ne ad verilir?,Refleks,Refraksiyon,Kırınım,Parazit yapmak,B,"Kırılma, ışığın ortamlar arasında bükülmesidir",Medium
+3234,Science,Bir kimyasal reaksiyonun başlaması için gereken minimum enerji miktarına ne ad verilir?,Aktivasyon enerjisi,Bağ enerjisi,Ücretsiz enerji,Kinetik enerji,A,Aktivasyon enerjisi kimyasal reaksiyonları başlatır,Medium
+3235,Math,Yarıçapı 5 olan bir dairenin alanı nedir?,15π,20π,25π,30π,C,Alan = πr² = π(5)² = 25π,Medium
+3236,Science,Kimyasal bağlarda depolanan enerjiye ne ad verilir?,Potansiyel enerji,Kinetik enerji,Kimyasal enerji,Termal enerji,C,Kimyasal bağlardaki enerji kimyasal enerjidir,Medium
+3237,Art,'Atina Okulu' tablosunu hangi Rönesans sanatçısı çizmiştir?,Leonardo da Vinci,Michelangelo,Raphael,Donatello,C,Raphael Atina Okulu'nu resmetti,Medium
+3238,Math,Üstel bozunmanın yarı ömür formülü nedir?,N(t) = N₀e^(-λt),N(t) = N₀(1/2)^(t/t₁/₂),N(t) = N₀ - λt,N(t) = N₀/t,B,Yarı ömür bozunması N(t) = N₀(1/2)^(t/t₁/₂)'yi takip eder,Medium
+3239,Science,Dünya atmosferinde sıcaklığın yükseklikle azalmayı bıraktığı sınır tabakasının adı nedir?,Troposfer,Stratosfer,Tropopoz,Stratopoz,C,"Tropopoz, sıcaklığın azalmaya devam ettiği yerdir",Medium
+3240,Science,İki veya daha fazla atomun elektron paylaşması durumuna ne ad verilir?,İyonik bağ,Metalik bağlama,Kovalent bağlanma,Hidrojen bağı,C,Kovalent bağ elektronların paylaşılmasını içerir,Medium
+3241,Math,[1 0 0] ve [0 1 0]'ın çarpımı nedir?,[ 0 0 1],[1 1 0],[0 0 -1],[1 0 1],A,i ve j vektörlerinin çarpım çarpımı k vektörüdür [0 0 1],Medium
+3242,Animals,Böceklerde başkalaşımı düzenleyen hormon hangisidir?,İnsülin,Ekdison,Adrenalin,Tiroksin,B,Ekdison hormonu böcek metamorfozunu kontrol eder,Medium
+3243,Science,Işık bir maddeye çarptığında maddeden elektronların yayılması olayı nedir?,Fotoelektrik etki,Compton etkisi,Çift üretim,Bremsstrahlung,A,"Fotoelektrik etki, ışıktan elektron yayar",Medium
+3244,Science,Epsilon-delta kullanılarak hesapta limitin resmi tanımı nedir?,"Her ε > 0 için, 0 < |x - a| < δ olduğunda |f(x) - L| < ε olacak şekilde δ > 0 vardır",Fonksiyon x arttıkça bir değere yaklaşır,Türev o noktada mevcuttur,Fonksiyon süreklidir,A,Epsilon-delta tanımı sınırları resmen tanımlar,Hard
+3245,Math,s = 2 olduğunda Riemann zeta fonksiyonu ζ(s) neye eşittir?,π²/4,π²/6,π²/8,π²/12,B,ζ(2) = π²/6 (Basel problem çözümü),Hard
+3246,Science,Elektromanyetik etkileşimleri açıklayan kuantum alan teorisinin adı nedir?,Kuantum elektrodinamiği,Kuantum kromodinamiği,Elektrozayıf teori,Standart Model,A,"Kuantum elektrodinamiği (QED), elektromanyetik etkileşimleri tanımlar",Hard
+3247,Science,Tüm moleküler hareketin durduğu teorik minimum sıcaklık nedir?,0 Kelvin,"-273,15°C",Mutlak sıfır,Yukarıdakilerin hepsi,D,Tüm terimler aynı teorik minimum sıcaklığa atıfta bulunur,Hard
+3248,Math,Fermat'ın Son Teoremi'nin çözümü nedir?,n > 2 olduğunda x^n + y^n = z^n için tam sayı çözümleri yoktur,Çözümler mevcuttur ancak aşkındırlar,Teorem kararsız,Çözümler yalnızca asal n için mevcuttur,A,Fermat'ın Son Teoremi'nin n > 2 için tam sayı çözümü yoktur,Hard
+3249,Science,Telomerlerin kromozomları koruma mekanizması nedir?,Temel proteinleri kodlarlar,Kromozom bozulmasını ve füzyonunu önlerler,Gen ifadesini düzenlerler,Hücre bölünme zamanlamasını kontrol ederler,B,Telomerler kromozom bozulmasını ve füzyonunu önler,Hard
+3250,Art,1920'lerde André Breton tarafından kurulan sanat akımı hangisidir?,Dadaizm,Gerçeküstücülük,Fütürizm,Yapılandırmacılık,B,André Breton Sürrealizm'i kurdu,Hard
+3251,Math,Bir torusun temel grubu nedir?,Z,Z²,S¹,π₁(T²) ≅ Z × Z,D,Bir torusun temel grubu Z × Z'ye izomorftur,Hard
+3252,Science,Atom çekirdeklerinin gama ışınlarını geri tepme olmaksızın emip yaydığı etkinin adı nedir?,Mössbauer etkisi,Zeeman etkisi,Sert etki,Compton etkisi,A,Mössbauer etkisi geri tepmesiz nükleer geçişleri içerir,Hard
+3253,Science,Yerçekimi hariç tüm temel etkileşimleri tanımlamaya çalışan teorik çerçeve nedir?,Standart Model,Sicim Teorisi,Döngü Kuantum Yerçekimi,M-Teorisi,A,"Standart Model, yerçekimi hariç tüm kuvvetleri tanımlar",Hard
+3254,Math,Bir matematikçinin Erdős sayısı nedir?,İşbirliğinin Paul Erdős'e uzaklığı,Yayımlanmış makale sayıları,Atıf endeksleri,Akademik sıralamaları,A,"Erdő'nin sayısı, Paul Erdős'e olan işbirliği mesafesini ölçer",Hard
+3255,Science,Biyolojik sistemlerin bilgiyi nasıl işlediğini inceleyen bilim dalına ne ad verilir?,Sistem biyolojisi,Biyoenformatik,Hesaplamalı biyoloji,Biyohesaplama,B,"Biyoenformatik, biyolojik bilgi işlemeyi inceler",Hard
+3256,Science,Yetişkin bir insan vücudunda kaç kemik vardır?,204,206,208,210,B,Yetişkinlerin 206 kemiği vardır,Easy
+3257,Math,9 × 8 nedir?,70,71,72,73,C,9'un 8 ile çarpımı 72'ye eşittir,Easy
+3258,Science,Karbonun kimyasal sembolü nedir?,C,Yaklaşık,Cl,Cr,A,Karbonun kimyasal sembolü C'dir,Easy
+3259,Animals,Gerçek anlamda uçma yeteneğine sahip tek memeli hayvan hangisidir?,Sincap,Uçan tilki,Yarasa,Şeker planörü,C,Yarasalar gerçek uçuş yeteneğine sahip tek memelilerdir,Easy
+3260,Math,56 ÷ 7 kaçtır?,6,7,8,9,C,56 bölü 7 eşittir 8,Easy
+3261,Science,Hangi gezegenin en çok uydusu var?,Toprak,Mars,Jüpiter,Satürn,D,Satürn'ün en çok bilinen uydusu var,Easy
+3262,Sports,Hangi spor dalında smaç basardınız?,Tenis,Basketbol,Voleybol,Futbol,B,Basketbolda smaçlar yapılır,Easy
+3263,Science,Bitkiler güneş ışığını enerjiye dönüştürmek için hangi süreci kullanırlar?,Solunum,Fotosentez,Terleme,Çimlenme,B,"Fotosentez, güneş ışığını enerjiye dönüştürür",Easy
+3264,Math,11 × 11 nedir?,111,121,131,141,B,11'in 11 ile çarpımı 121'e eşittir,Easy
+3265,Science,Güneş sistemimizdeki en büyük gezegen hangisidir?,Toprak,Satürn,Jüpiter,Neptün,C,Jüpiter en büyük gezegendir,Easy
+3266,Animals,Hangi hayvan renk değiştirmesiyle bilinir?,Ahtapot,Bukalemun,Hem A hem de B,Balık,C,Hem ahtapotlar hem de bukalemunlar renk değiştirir,Easy
+3267,Math,100'ün karekökü nedir?,8,9,10,11,C,100'ün karekökü 10'dur,Easy
+3268,Science,Balina ne tür bir hayvandır?,Balık,Memeli,Sürüngen,Amfibi,B,Balinalar memeli hayvanlardır,Easy
+3269,Science,Akışkanlar dinamiğinde Bernoulli denklemi ne için kullanılır?,Akışkan akış enerjisini tanımlamak,Viskozitenin hesaplanması,Yoğunluk ölçümü,Sadece basıncı belirleme,A,Bernoulli denklemi akışkan akışının enerji korunumunu açıklar,Medium
+3270,Math,F = [x² y z] vektör alanının diverjansı nedir?,2x,2xy,x² + y + 1,2x + 1,D,Diverjans ∂(x²)/∂x + ∂(y)/∂y + ∂(z)/∂z = 2x + 1,Medium
+3271,Science,DNA'dan RNA sentezlenmesi işleminin adı nedir?,Çoğaltma,Transkripsiyon,Çeviri,Ekleme,B,"Transkripsiyon, DNA'dan RNA sentezler",Medium
+3272,Science,Bir cisimdeki madde miktarını ifade eden terim nedir?,Ağırlık,Yığın,Hacim,Yoğunluk,B,"Kütle, bir nesnedeki madde miktarıdır",Medium
+3273,Math,Gauss fonksiyonunun Fourier dönüşümü nedir?,Başka bir Gauss,Bir sinüs dalgası,Bir kosinüs dalgası,Bir delta fonksiyonu,A,Bir Gauss'un Fourier dönüşümü başka bir Gauss'tur,Medium
+3274,Science,Tüketilmeden kimyasal reaksiyonları hızlandıran maddelere ne ad verilir?,Katalizörler,Enzimler,İnhibitörler,Reaktanlar,A,Katalizörler tüketilmeden reaksiyonları hızlandırır,Medium
+3275,Art,Düz bir yüzeyde derinlik yanılsaması yaratan sanatsal teknik hangisidir?,Işık-gölge oyunu,Perspektif,Sfumato,Pasto,B,Perspektif derinlik yanılsaması yaratır,Medium
+3276,Math,Karmaşık sayı i² neye eşittir?,-1,1,Ben,-Ben,A,i² tanımı gereği -1'e eşittir,Medium
+3277,Science,Yüzeyler arasındaki harekete karşı koyan kuvvetin adı nedir?,Sürtünme,Tansiyon,Sıkıştırma,Tork,A,"Sürtünme, yüzeyler arasındaki harekete karşı koyar",Medium
+3278,Science,pH ölçeği neyi ölçmek için kullanılır?,Sıcaklık,Basınç,Asitlik/Alkalinite,Yoğunluk,C,pH ölçeği asitlik ve alkaliniteyi ölçer,Medium
+3279,Math,Sinüs ve kosinüs fonksiyonları arasındaki ilişki nedir?,sin(x) = cos(x + π/2),cos(x) = sin(x + π/2),sin(x) = cos(x - π/2),Hem A hem de C,D,Hem sin(x) = cos(x - π/2) hem de cos(x) = sin(x + π/2) doğrudur,Medium
+3280,Animals,Bir filin gebelik süresi ne kadardır?,12 ay,18 ay,22 ay,24 ay,C,Fillerin gebelik süresi 22 aydır,Medium
+3281,Science,Kalıtım bilimine ne ad verilir?,Ekoloji,Genetik,Embriyoloji,Fizyoloji,B,"Genetik, kalıtım bilimidir",Medium
+3282,Science,Teorik fizikte Yang-Mills varoluş ve kütle boşluğu problemi nedir?,Kuantum alan teorilerinin matematiksel olarak varlığını kanıtlamak,Parçacık kütlelerinin hesaplanması,Kuantum mekaniğini birleştirmek,Elektromanyetik kuvvetlerin tanımlanması,A,"Yang-Mills problemi, kuantum alan teorilerinin matematiksel olarak var olduğunu kanıtlamayı içerir",Hard
+3283,Math,Poincaré varsayımı neyle ilgilidir?,"Her basit bağlı kapalı 3-manifold, 3-küreye homeomorftur",Asal sayı dağılımı,Sürekli fonksiyonlar,Cebirsel yapılar,A,Poincaré varsayımı 3 boyutlu topolojiyle ilgilidir,Hard
+3284,Science,Güçlü nükleer kuvveti ileten teorik parçacığın adı nedir?,Gluon,W bozonu,Z bozonu,Foton,A,Gluonlar güçlü nükleer kuvveti aracılık eder,Hard
+3285,Science,CRISPR-Cas9 gen düzenlemesinin etki mekanizması nedir?,RNA müdahalesi,DNA metilasyonu,Hedeflenen DNA kesimi ve onarımı,Protein inhibisyonu,C,"CRISPR-Cas9, hedeflenen DNA kesimi ve onarımı yoluyla çalışır",Hard
+3286,Math,Abel-Ruffini teoremi nedir?,5. derece ve üzeri polinom denklemleri genel olarak radikallerle çözülemez,Tüm denklemlerin çözümleri vardır,Hesaplamanın temelleri,Geometrik kanıtlar,A,Abel-Ruffini teoremi beşinci dereceden denklemlerin çözülemezliğiyle ilgilidir,Hard
+3287,Science,Uzay-zaman geometrisinin kütle çekim etkilerini nasıl belirlediğini açıklayan teorik çerçeve nedir?,Genel Görelilik,Özel Görelilik,Kuantum Mekaniği,Sicim Teorisi,A,Genel Görelilik uzay-zamanı ve yerçekimini tanımlar,Hard
+3288,Art,Küçük renkli çinilerin desenler halinde dizildiği Bizans sanatı hangisidir?,Fresk,Mozaik,Simge,Aydınlatma,B,Bizans mozaiklerinde küçük renkli fayanslar kullanılır,Hard
+3289,Math,Matematikte Canavar grubu nedir?,En büyük sporadik basit sonlu grup,Geometrik bir dönüşüm,Bir denklem türü,Bir hesaplama kavramı,A,"Canavar, en büyük sporadik basit sonlu gruptur",Hard
+3290,Science,Kara deliklerin radyasyon yaydığı teorik sürecin adı nedir?,Hawking radyasyonu,Çerenkov radyasyonu,Senkrotron radyasyonu,Bremsstrahlung,A,Hawking radyasyonu kara delikler tarafından yayılır,Hard
+3291,Science,İki termal rezervuar arasında çalışan herhangi bir ısı motorunun verimliliğinin teorik sınırı nedir?,Carnot verimliliği,Otto verimliliği,Dizel verimliliği,Brayton verimliliği,A,Carnot verimliliği ısı motorları için teorik maksimumdur,Hard
+3292,Math,Dört Renk Teoremi nedir?,Her düzlemsel grafik en fazla dört renkle renklendirilebilir,Asal sayı dağılımı,Hesaplama optimizasyonu,Cebirsel denklemler,A,Dört Renk Teoremi grafik renklendirmeyle ilgilidir,Hard
+3293,Science,Kuantum bilgisinin nasıl işlenip iletilebileceğini inceleyen bilim dalına ne ad verilir?,Kuantum hesaplama,Kuantum bilgi teorisi,Kuantum mekaniği,Kuantum alan teorisi,B,"Kuantum bilgi teorisi, kuantum bilgi işlemeyi inceler",Hard
+3294,Science,Kırmızı kan hücrelerinin başlıca işlevi nedir?,Enfeksiyonla mücadele,Pıhtılaşan kan,Oksijen taşımak,Hormon üretmek,C,Kırmızı kan hücreleri oksijen taşır,Easy
+3295,Math,40 ÷ 8 kaçtır?,4,5,6,7,B,40 bölü 8 eşittir 5,Easy
+3296,Science,Suyun kimyasal formülü nedir?,H2O,CO2,NaCl,CH4,A,Su H2O'dur,Easy
+3297,Animals,Ormanın kralı olarak bilinen hayvan hangisidir?,Kaplan,Fil,Aslan,Leopar,C,Aslan ormanın kralı olarak bilinir,Easy
+3298,Math,12×12 nedir?,144,154,164,174,A,12'nin 12 ile çarpımı 144'e eşittir,Easy
+3299,Science,Bitkinin hangi kısmı fotosentez yapar?,Kök,Kök,Yaprak,Çiçek,C,Yapraklar fotosentez yapar,Easy
+3300,Sports,Bir futbol takımında oyun sırasında kaç oyuncu bulunur?,9,10,11,12,C,Futbol takımlarının sahada 11 oyuncusu vardır,Easy
+3301,Science,Gece aktif olan hayvanlara ne ad verilir?,Günlük,Geceleyin,Alacakaranlık,Katemeral,B,Gececil hayvanlar geceleri aktiftir,Easy
+3302,Math,75 + 25 kaçtır?,90,95,100,105,C,75 artı 25 eşittir 100,Easy
+3303,Science,Yaşamın en küçük birimi nedir?,Hücre,Atom,Molekül,Organ,A,"Hücre, yaşamın en küçük birimidir",Easy
+3304,Animals,Uçamayan ama çok iyi yüzen kuş hangisidir?,Kartal,Devekuşu,Penguen,Flamingo,C,Penguenler uçamazlar ama mükemmel yüzücülerdir,Easy
+3305,Math,Uzunluğu 10 ve genişliği 5 olan bir dikdörtgenin çevresi nedir?,25,30,35,40,B,Çevre = 2(10 + 5) = 30,Easy
+3306,Science,Dünya atmosferinde en bol bulunan gaz hangisidir?,Oksijen,Karbondioksit,Azot,Argon,C,Azot atmosferin yaklaşık %78'ini oluşturur,Easy
+3307,Science,Elektronun manyetik momenti için standart model tahmini nedir?,Yaklaşık 1 Bohr magneton,Tam olarak 1 Bohr magneton,1.00115965 Bohr manyetonları,2 Bohr manyetonları,C,Elektron manyetik momenti yaklaşık 1.00115965 Bohr magnetonudur,Medium
+3308,Math,Çok değişkenli hesaplamalarda Jacobian determinantı ne için kullanılır?,Entegrasyonda değişkenlerin değişimi,Kritik noktaları bulma,Kısmi türevlerin hesaplanması,Diferansiyel denklemleri çözme,A,"Jacobian determinantı, integralde değişken değişimini ele alır",Medium
+3309,Science,Işık şiddetinin yayılan elektronların kinetik enerjisini etkilediği etkinin adı nedir?,Fotoelektrik etki,Compton etkisi,Çift üretim etkisi,Tünel etkisi,A,"Fotoelektrik etki, ışık yoğunluğunun elektron kinetik enerjisini etkilediğini gösteriyor",Medium
+3310,Science,Bir atomu kendisini oluşturan parçacıklara tamamen ayırmak için gereken enerjiye ne ad verilir?,Bağlayıcı enerji,İyonlaşma enerjisi,Aktivasyon enerjisi,Ayrışma enerjisi,A,Bağlanma enerjisi atomları bileşenlerine tamamen ayırır,Medium
+3311,Math,cos(x) için Maclaurin serisi nedir?,1 - x²/2! + x⁴/4! - ...,x - x³/3! + x⁵/5! - ...,1 + x + x²/2! + ...,1 - x + x²/2! - ...,A,Cos(x) için Maclaurin serisi 1 - x²/2! + x⁴/4! - ...,Medium
+3312,Science,Katı bir yüzeyden bir elektronu uzaklaştırmak için gereken minimum enerjiye ne ad verilir?,Çalışma fonksiyonu,Fermi enerjisi,Bağlayıcı enerji,Eşik enerjisi,A,"İşlevi, katıdan elektronu uzaklaştırmak için gereken minimum enerjidir",Medium
+3313,Art,Gerçekçi temsil yerine duygusal ifadeyi öne çıkaran sanat akımı hangisidir?,Gerçekçilik,İzlenimcilik,Ekspresyonizm,Neoklasizm,C,Ekspresyonizm duygusal ifadeyi vurguladı,Medium
+3314,Math,Bir gradyan alanının curl'ü nedir?,Her zaman sıfır,Her zaman pozitif,İşleve bağlıdır,Tanımsız,A,Herhangi bir gradyan alanının kıvrımı her zaman sıfırdır,Medium
+3315,Science,Entropinin minimuma ulaştığı teorik sıcaklığın adı nedir?,Mutlak sıfır,Kritik sıcaklık,Curie sıcaklığı,Néel sıcaklığı,A,Entropi mutlak sıfırda minimuma ulaşır,Medium
+3316,Science,Akışkanların hareketini inceleyen bilim dalına ne ad verilir?,Termodinamik,Akışkanlar dinamiği,Statik,Kinematik,B,Akışkanlar dinamiği akışkanların hareketini inceler,Medium
+3317,Math,Üstel ve logaritmik fonksiyonlar arasındaki ilişki nedir?,Bunlar ters fonksiyonlardır,Onlar aynıdır,Bunlar birbirleriyle alakasız,Onlar orantılıdır,A,Üstel ve logaritmik fonksiyonlar birbirinin tersidir,Medium
+3318,Animals,Evcil köpeğin bilimsel adı nedir?,Köpek lupusu,Canis familiaris,Canis domesticus,Yukarıdakilerin hepsi,D,Tüm isimler evcil köpekler için kullanılmıştır,Medium
+3319,Science,Canlı organizmalardaki kimyasal süreçleri inceleyen bilim dalına ne ad verilir?,Biyokimya,Organik kimya,Fiziksel kimya,Analitik kimya,A,"Biyokimya, canlı organizmalardaki kimyasal süreçleri inceler",Medium
+3320,Science,Akışkanlar mekaniğinde Navier-Stokes denklemi neyi tanımlamak için kullanılır?,Viskoz akışkan akışı,Mükemmel akışkan akışı,Sadece sıkıştırılabilir akış,Sadece türbülanslı akış,A,Navier-Stokes denklemleri viskoz akışkan akışını tanımlar,Hard
+3321,Math,Atiyah-Singer indeks teoremi neyle ilgilidir?,Topoloji ve manifoldlar üzerindeki analiz arasındaki ilişki,Asal sayılar teorisi,Cebirsel geometri,Karmaşık analiz,A,Atiyah-Singer teoremi topolojiyi ve analizi birbirine bağlar,Hard
+3322,Science,Hücresel solunumda ATP sentazın ATP üretme mekanizması nedir?,Kemiosmoz,Substrat düzeyinde fosforilasyon,Fotofosforilasyon,Doğrudan sentez,A,"ATP sentaz, ATP üretmek için kemiosmozu kullanır",Hard
+3323,Science,Kuantum mekaniği ile özel göreliliği birleştiren teorik çerçeve nedir?,Kuantum alan teorisi,Genel görelilik,Sicim teorisi,Döngü kuantum yerçekimi,A,"Kuantum alan teorisi, QM ve özel göreliliği birleştiriyor",Hard
+3324,Math,P vs NP olarak bilinen Milenyum Ödül Problemi neyle ilgilidir?,Çözümü hızlı bir şekilde doğrulanabilen her sorunun aynı zamanda hızlı bir şekilde çözülebileceği,Asal çarpanlara ayırma,Sürekli fonksiyonlar,Geometrik topoloji,A,"P vs NP, doğrulama ve çözümün aynı karmaşıklığa sahip olup olmadığını sorar",Hard
+3325,Science,Fizik hakkındaki mevcut anlayışımızın çöktüğü teorik noktanın adı nedir?,Tekillik,Olay ufku,Planck ölçeği,Kuantum sınırı,C,Fizik Planck ölçeğinde bozulur,Hard
+3326,Art,Mimarlıkla ilgili olarak 'postmodernizm' terimini hangi sanat eleştirmeni ortaya attı?,Charles Jencks,Clement Greenberg,Harold Rosenberg,Arthur Danto,A,Charles Jencks mimaride 'postmodernizm' kavramını ortaya attı,Hard
+3327,Math,Langlands matematik programı nedir?,Sayı teorisini ve temsil teorisini birbirine bağlayan bir dizi varsayım,Geometrik bir yapı yöntemi,Bir hesaplama tekniği,İstatistiksel bir çerçeve,A,Langlands programı sayılar teorisini ve temsil teorisini birbirine bağlıyor,Hard
+3328,Science,Kuantum parçacıklarının enerji bariyerlerini aşarak tünelleme yaptığı etkinin adı nedir?,Kuantum tünelleme,Dalga-parçacık ikiliği,Kuantum dolanıklığı,Üst üste binme,A,"Kuantum tünelleme, parçacıkların enerji bariyerlerinden geçmesine olanak tanır",Hard
+3329,Science,Isıyı doğrudan elektriğe dönüştürmenin teorik maksimum verimi nedir?,Carnot verimliliği,Seebeck verimliliği,Peltier verimliliği,Thomson verimliliği,A,"Carnot verimliliği, ısı dönüşümü için teorik maksimumdur",Hard
+3330,Math,Birch ve Swinnerton-Dyer varsayımı ne hakkındadır?,Eliptik eğriler ve L-fonksiyonları,Asal sayı boşlukları,Riemann yüzeyleri,Cebirsel topoloji,A,BSD varsayımı eliptik eğriler ve L-fonksiyonları ile ilgilidir,Hard
+3331,Science,Bilincin sinirsel aktiviteden nasıl ortaya çıktığını inceleyen bilim dalına ne ad verilir?,Bilişsel sinirbilim,Bilinç çalışmaları,Nöropsikoloji,Psikofizik,B,"Bilinç çalışmaları, bilincin sinirsel aktiviteden nasıl ortaya çıktığını inceler",Hard
+3332,Science,İnsan vücudunun normal sıcaklığı kaç santigrat derecedir?,36°C,37°C,38°C,39°C,B,Normal insan vücut sıcaklığı 37°C'dir,Easy
+3333,Math,84 ÷ 12 kaçtır?,6,7,8,9,B,84 bölü 12 eşittir 7,Easy
+3334,Science,Dünya'da doğal olarak bulunan en sert madde hangisidir?,Çelik,Elmas,Kuvars,Grafit,B,Elmas en sert doğal maddedir,Easy
+3335,Animals,Hangi memeli hayvan yumurtlar?,Ornitorenk,Kanguru,Koala,Vombat,A,"Ornitorenk, yumurta bırakan bir memelidir",Easy
+3336,Math,15 × 4 nedir?,58,60,62,64,B,15'in 4 ile çarpımı 60'a eşittir,Easy
+3337,Science,Hava olaylarını inceleyen bilim dalına ne ad verilir?,Jeoloji,Meteoroloji,Astronomi,Biyoloji,B,Meteoroloji hava olaylarının incelenmesidir,Easy
+3338,Sports,Hangi spor dalında oyuncular disk kullanır?,Basketbol,Hokey,Tenis,Futbol,B,Hokey oyuncuları disk kullanır,Easy
+3339,Science,İnsan vücudunda safra hangi organ tarafından üretilir?,Karaciğer,Böbrek,Kalp,Akciğer,A,Karaciğer safra üretir,Easy
+3340,Math,90'ın %50'si kaçtır?,40,45,50,55,B,90'ın %50'si 45'e eşittir,Easy
+3341,Science,Bitkilerin yaprakları aracılığıyla su kaybetme süreci nedir?,Fotosentez,Solunum,Terleme,Çimlenme,C,"Terleme, yapraklar yoluyla su kaybıdır",Easy
+3342,Animals,Hangi hayvanın siyah ve beyaz çizgileri vardır?,Kaplan,Leopar,Zebra,Çita,C,Zebraların siyah ve beyaz çizgileri vardır,Easy
+3343,Math,Kenar uzunluğu 6 olan karenin alanı kaçtır?,24,30,36,42,C,Karenin alanı = 6² = 36,Easy
+3344,Science,Gezegenlerin Güneş etrafında izlediği yola ne ad veriyoruz?,Rotasyon,Devrim,Yörünge,Eksen,C,Gezegenler Güneş'in etrafında bir yörünge izlerler,Easy
+3345,Science,Van der Waals denklemi neyi tanımlamak için kullanılır?,Gerçek gaz davranışı,İdeal gaz davranışı,Sıvı davranışı,Sağlam davranış,A,Van der Waals denklemi gerçek gaz davranışını tanımlar,Medium
+3346,Math,Green Teoremi neyi anlatıyor?,Çizgi integralleri ve çift katlı integraller,Üçlü integraller ve yüzey integralleri,Türevler ve integraller,Fonksiyonlar ve limitler,A,Green teoremi çizgi integrallerini çift katlı integrallere bağlar,Medium
+3347,Science,Bir gazın doğrudan katıya dönüştüğü sürecin adı nedir?,Süblimasyon,İfade,Yoğunlaşma,Donmak,B,"Biriktirme, gazın doğrudan katıya dönüşmesidir",Medium
+3348,Science,1 gram suyun sıcaklığını 1°C artırmak için gereken enerji miktarına ne ad verilir?,Kalori,Joule,BTU,Watt,A,Bir kalori 1 gram suyun sıcaklığını 1°C yükseltir,Medium
+3349,Math,Türevlerde ürün kuralı nedir?,d/dx[f(x)g(x)] = f'(x)g(x) + f(x)g'(x),d/dx[f(x)g(x)] = f'(x)g'(x),d/dx[f(x)g(x)] = f(x)g(x),d/dx[f(x)g(x)] = f'(x) + g'(x),A,Ürün kuralı f'g + fg'dir,Medium
+3350,Science,Sismik dalgaların Dünya'nın farklı katmanlarından geçerken bükülmesine ne ad verilir?,Refleks,Refraksiyon,Kırınım,Parazit yapmak,B,Sismik dalga kırılması Dünya katmanları boyunca meydana gelir,Medium
+3351,Art,Renkler ve tonlar arasında kademeli geçişi içeren Rönesans tekniği hangisidir?,Işık-gölge oyunu,Sfumato,Pasto,Karmakarışık,B,Sfumato kademeli renk geçişleri yaratır,Medium
+3352,Science,Uzayda iki cismin kütle çekim kuvvetlerinin dengelendiği noktaya ne ad verilir?,Lagrange noktası,Barycenter,Odak,Zirve,A,Lagrange noktaları dengeli yerçekimi kuvvetlerine sahiptir,Medium
+3353,Science,Proteinlerin yapı ve işlevlerini inceleyen bilim dalına ne ad verilir?,Proteomik,Genomik,Enzimoloji,Biyokimya,A,"Proteomik, protein yapısını ve işlevini inceler",Medium
+3354,Math,Türevler için zincir kuralı nedir?,d/dx[f(g(x))] = f'(g(x)) · g'(x),d/dx[f(g(x))] = f'(x) · g'(x),d/dx[f(g(x))] = f(g'(x)),d/dx[f(g(x))] = f'(g'(x)),A,Zincir kuralı f'(g(x)) · g'(x)'tir,Medium
+3355,Animals,En büyük penguen türü hangisidir?,Kral penguen,İmparator penguen,Adelie pengueni,Çene kayışlı penguen,B,İmparator penguenler en büyük penguen türüdür,Medium
+3356,Science,Bir cismin konumu veya yapısından dolayı sahip olduğu enerjiye ne ad verilir?,Kinetik enerji,Potansiyel enerji,Termal enerji,Kimyasal enerji,B,"Potansiyel enerji, konumdan veya yapılandırmadan gelir",Medium
+3357,Science,Teorik fizikte AdS/CFT ilişkisi nedir?,Yerçekimi ve kuantum alan teorileri arasında bir ikilik,Parçacık kütlelerini hesaplamak için bir yöntem,Diferansiyel denklemleri çözmek için bir teknik,Termodinamiğin bir ilkesi,A,"AdS/CFT, yerçekimi ve kuantum alan teorisi arasındaki bir ikiliktir",Hard
+3358,Math,Cebirsel geometride Hodge varsayımı nedir?,Bazı kohomoloji sınıfları cebirseldir,Tüm çokkatlılar izdüşümseldir,Karmaşık çeşitler pürüzsüzdür,Rasyonel noktalar yoğundur,A,"Hodge varsayımı, belirli kohomoloji sınıflarının cebirsel olduğunu belirtir",Hard
+3359,Science,Karanlık maddeyi açıklayabilecek teorik mekanizmanın adı nedir?,Zayıf Etkileşimli Büyük Parçacıklar (WIMP'ler),Güçlü Etkileşimli Işık Parçacıkları,Elektromanyetik Karanlık Fotonlar,Yerçekimsel Karanlık Enerji,A,WIMP'ler önde gelen bir karanlık madde adayıdır,Hard
+3360,Science,Uzay-zamanın kuantum özelliklerini açıklayan teorik çerçeve nedir?,Döngü kuantum yerçekimi,Sicim teorisi,Nedensel küme teorisi,Ortaya çıkan yerçekimi,A,Döngü kuantum yerçekimi kuantum uzay-zamanını tanımlar,Hard
+3361,Math,Erdős-Ko-Rado teoremi nedir?,Kesişen küme aileleri,Grafik renklendirmeleri,Asal sayı dağılımları,Geometrik yapılar,A,EKR teoremi kümelerin kesişen aileleriyle ilgilidir,Hard
+3362,Science,Kuantum vakum dalgalanmalarının ölçülebilir kuvvetler ürettiği etkinin adı nedir?,Casimir etkisi,Unruh etkisi,Hawking radyasyonu,Kuzu vardiyası,A,"Casimir etkisi, vakum dalgalanmalarından kuvvetler üretir",Hard
+3363,Art,Filippo Marinetti'nin 1909'da yayınladığı manifesto ile temellerini attığı sanat akımı hangisidir?,Kübizm,Fütürizm,Dadaizm,Yapılandırmacılık,B,"Filippo Marinetti, 1909 tarihli manifestosuyla Fütürizmi kurdu",Hard
+3364,Math,Sonlu basit grupların sınıflandırılmasına ne ad verilir?,Muazzam teorem,Büyük teorem,Canavar kanıtı,Sınıflandırma teoremi,A,Sonlu basit grupların sınıflandırılmasına muazzam teorem denir,Hard
+3365,Science,Evrenin 'Büyük Yırtılma' ile son bulabileceği teorik süreç nedir?,Karanlık enerji hızlanması tüm kuvvetlerin üstesinden geliyor,Yerçekimi çöküşü,Isı ölümü,Sahte vakum çürümesi,A,"Büyük Yırtılma, karanlık enerjinin tüm güçleri yenmesiyle meydana gelir",Hard
+3366,Science,Bilgi işlemenin teorik sınırı olan Landauer sınırı nedir?,Bir bit bilgiyi silmek için gereken minimum enerji,Hesaplamanın maksimum hızı,Gerekli minimum bellek,Maksimum bant genişliği,A,"Landauer limiti, bir biti silmek için gereken minimum enerjidir",Hard
+3367,Math,Goldbach varsayımı ne hakkındadır?,2'den büyük her çift tam sayı iki asal sayının toplamıdır,Asal sayılar sonsuzdur,Her tek sayının kendine özgü bir çarpanlara ayırması vardır,Mükemmel sayılar nadirdir,A,"Goldbach varsayımı, çift sayıların iki asal sayıya kadar toplandığını belirtir",Hard
+3368,Science,Biyolojik sistemlerin bilgiyi moleküler düzeyde nasıl işlediği ve depoladığını inceleyen bilim dalına ne ad verilir?,Moleküler bilişim,Sistem biyolojisi,Hesaplamalı biyoloji,Biyoenformatik,A,"Moleküler bilişim, biyolojik bilgi işlemeyi inceler",Hard
+3369,Science,Hangi kan hücreleri enfeksiyonlarla savaşmaya yardımcı olur?,Kırmızı kan hücreleri,Beyaz kan hücreleri,Trombositler,Plazma hücreleri,B,Beyaz kan hücreleri enfeksiyonlarla savaşır,Easy
+3370,Math,16 × 3 nedir?,46,48,50,52,B,16'nın 3 ile çarpımı 48'e eşittir,Easy
+3371,Science,Gümüşün kimyasal sembolü nedir?,Si,Tarım,S,Al,B,Gümüşün kimyasal sembolü Ag'dir,Easy
+3372,Animals,Uzun boynuyla bilinen hayvan hangisidir?,Fil,Zürafa,Atış,Geyik,B,Zürafalar uzun boyunlarıyla bilinirler,Easy
+3373,Math,90 - 27 kaçtır?,63,65,67,69,A,90 eksi 27 eşittir 63,Easy
+3374,Science,Bir tırtılın kelebeğe dönüşme sürecine ne ad verilir?,Evrim,Başkalaşım,Dönüşüm,Gelişim,B,Metamorfoz tırtılı kelebeğe dönüştürür,Easy
+3375,Sports,Hangi sporda topu kaleye sokarak gol atılır?,Basketbol,Tenis,Futbol,Beyzbol,C,"Futbol, ​​topları ağlara tekmelemekten ibarettir",Easy
+3376,Science,Kızıl Gezegen olarak bilinen gezegen hangisidir?,Venüs,Mars,Jüpiter,Satürn,B,"Mars, Kızıl Gezegen olarak bilinir",Easy
+3377,Math,8² nedir?,56,60,64,68,C,8'in karesi 64'e eşittir,Easy
+3378,Science,İnsan vücudunun en büyük organı hangisidir?,Beyin,Karaciğer,Akciğerler,Deri,D,Cilt en büyük organdır,Easy
+3379,Animals,Hangi hayvan süt üretir?,Balık,Kuş,Memeli,Sürüngen,C,Memeliler süt üretir,Easy
+3380,Math,21 ÷ 3 kaçtır?,6,7,8,9,B,21 bölü 3 eşittir 7,Easy
+3381,Science,Nesneleri Dünya'ya doğru çeken kuvvet nedir?,Manyetizma,Elektrik,Yer çekimi,Sürtünme,C,Yerçekimi nesneleri Dünya'ya doğru çeker,Easy
+3382,Science,Heisenberg belirsizlik ilkesinin matematiksel formülasyonu nedir?,Δx·Δp ≥ ℏ/2,Δx·Δp = ℏ,Δx + Δp ≥ ℏ,Δx/Δp ≥ ℏ,A,Belirsizlik ilkesi Δx·Δp ≥ ℏ/2'dir,Medium
+3383,Math,Stokes teoremi neyi anlatıyor?,Yüzey integralleri ve çizgi integralleri,Hacim integralleri ve yüzey integralleri,Çizgi integralleri ve nokta değerlendirmeleri,Çift katlı integraller ve üç katlı integraller,A,Stokes teoremi yüzey integrallerini çizgi integrallerine bağlar,Medium
+3384,Science,DNA'nın kopyalandığı sürecin adı nedir?,Transkripsiyon,Çeviri,Çoğaltma,Ekleme,C,DNA replikasyonu DNA'yı kopyalar,Medium
+3385,Science,Elektrik akımının SI birimi nedir?,Volt,Amper,Ohm,Watt,B,"Amper, elektrik akımının SI birimidir",Medium
+3386,Math,Türevlerde bölüm kuralı nedir?,d/dx[f/g] = (f'g - fg')/g²,d/dx[f/g] = f'/g',d/dx[f/g] = (f'g + fg')/g²,d/dx[f/g] = f'g - fg',A,Bölüm kuralı (f'g - fg')/g²'dir,Medium
+3387,Science,Bağışıklık sistemini inceleyen bilim dalının adı nedir?,İmmünoloji,Hematoloji,Endokrinoloji,Patoloji,A,İmmünoloji bağışıklık sistemini inceler,Medium
+3388,Art,Hangi resim tekniğinde küçük renk noktaları kullanılarak bir görüntü oluşturulur?,Puantilizm,İzlenimcilik,Fovizm,Kübizm,A,"Puantilizm, küçük renkli noktalar kullanır",Medium
+3389,Math,Diverjans teoremi neyi ifade eder?,Üçlü integraller ve yüzey integralleri,Çift katlı integraller ve çizgi integralleri,Yüzey integralleri ve çizgi integralleri,Hacim ve alan,A,"Diverjans teoremi, üçlü integralleri yüzey integrallerine bağlar",Medium
+3390,Science,Depremleri inceleyen bilim dalına ne ad verilir?,Sismoloji,Volkanoloji,Jeoloji,Meteoroloji,A,Sismoloji depremlerin incelenmesidir,Medium
+3391,Science,Bir akışkanın akmaya karşı gösterdiği direnç ne anlama gelir?,Viskozite,Yoğunluk,Yüzey gerilimi,Sıkıştırılabilirlik,A,Viskozite akışa karşı dirençtir,Medium
+3392,Math,Euler'in özdeşliği nedir?,e^(iπ) + 1 = 0,e^(iπ) = 1,e^(iπ) - 1 = 0,e^π = -1,A,Euler'in özdeşliği e^(iπ) + 1 = 0'dır,Medium
+3393,Animals,Canlıları gruplandıran bilimsel sınıflandırma sistemine ne ad verilir?,Taksonomi,Filogeni,Ekoloji,Evrim,A,Taksonomi sınıflandırma sistemidir,Medium
+3394,Science,Hızın değişim oranına ne ad verilir?,Hız,Hızlanma,Momentum,Güç,B,"İvme, hızın değişim oranıdır",Medium
+3395,Science,Teorik fizikte holografik prensip nedir?,"Bir hacimdeki bilgi, onun sınırında kodlanabilir",Hologramlar üç boyutlu bilgileri depolar,Işık hem dalga hem de parçacık olarak davranır,Kuantum durumları üst üste bindirilebilir,A,"Holografik ilke, hacim bilgisinin sınırda kodlandığını belirtir",Hard
+3396,Math,Navier-Stokes denklemleriyle ilgili Milenyum Ödül Problemi nedir?,Çözümlerin varlığını ve düzgünlüğünü kanıtlamak,Bunları analitik olarak çözmek,Kesin çözümlerin hesaplanması,Denklemlerin doğrusallaştırılması,A,Navier-Stokes problemi varoluş ve düzgünlük kanıtları istiyor,Hard
+3397,Science,Parçacıkları titreşen sicimler olarak tanımlayan teorik çerçeve nedir?,Sicim teorisi,Döngü kuantum yerçekimi,M-teorisi,Kuantum alan teorisi,A,Sicim teorisi parçacıkları titreşen sicimler olarak tanımlar,Hard
+3398,Science,Protonların bozunduğu teorik sürecin adı nedir?,Baryon bozunması,Proton bozunumu,Nükleon bozunması,Hadron bozunması,B,"Proton bozunması, protonların bozunduğu teorik bir süreçtir",Hard
+3399,Math,Collatz varsayımı ne hakkındadır?,Belirli bir işlem altında tüm pozitif tam sayılar sonunda 1'e ulaşır,Asal sayılar sonsuzdur,Mükemmel sayılar vardır,Rasyonel yaklaşımlar birleşiyor,A,"Collatz varsayımı, tüm tam sayıların 3n+1/2 işlemi altında 1'e ulaştığını belirtir",Hard
+3400,Science,Moleküler hareketin tamamen durduğu teorik sıcaklık kaçtır?,Mutlak sıfır,Kritik nokta,Üçlü nokta,Planck sıcaklığı,A,"Mutlak sıfır, moleküler hareketin durduğu yerdir",Hard
+3401,Art,Bilbao'daki Guggenheim Müzesi'ni hangi mimar tasarladı?,Frank Gehry,Zaha Hadid,Norman Foster,I.M. Pei,A,"Frank Gehry, Guggenheim Bilbao'yu tasarladı",Hard
+3402,Math,İkiz asal sayı varsayımı neyle ilgilidir?,2 farkla sonsuz sayıda asal sayı çifti vardır,Tüm çift sayılar asal sayıların toplamıdır,Mükemmel kareler bir deseni takip eder,Fibonacci sayıları asal sayılarla ilişkilidir,A,"İkiz asal sayı varsayımı, sonsuz sayıda asal sayı çiftinin 2 farklı olduğunu belirtir",Hard
+3403,Science,Karanlık enerjiyi açıklayabilecek teorik parçacığın adı nedir?,Öz,Axion,Steril nötrino,Graviton,A,Quintessence teorik bir karanlık enerji parçacığıdır,Hard
+3404,Science,Büyük Patlama'dan sonra evrenin hızla genişlemesinin teorik mekanizması nedir?,Kozmik enflasyon,Karanlık enerji genişlemesi,Özünde genişleme,Skaler alan genişlemesi,A,"Kozmik enflasyon, evrenin erken dönemdeki hızlı genişlemesini açıklıyor",Hard
+3405,Science,Kuantum mekaniğinin biyolojik süreçleri nasıl etkilediğini inceleyen bilim dalına ne ad verilir?,Kuantum biyolojisi,Moleküler biyoloji,Biyofizik,Sistem biyolojisi,A,Kuantum biyolojisi biyolojik sistemlerdeki kuantum etkilerini inceliyor,Hard
+3406,Science,Yetişkin bir insanın genellikle kaç dişi vardır?,30,32,34,36,B,Yetişkinlerde genellikle 32 diş bulunur,Easy
+3407,Math,77 ÷ 11 kaçtır?,6,7,8,9,B,77 bölü 11 eşittir 7,Easy
+3408,Science,Metanın kimyasal formülü nedir?,CH4,CO2,H2O,NH3,A,Metan CH4'tür,Easy
+3409,Animals,İnsan konuşmasını taklit etme yeteneğiyle bilinen kuş hangisidir?,Kartal,Papağan,Karga,Robin,B,Papağanlar konuşmayı taklit etmeleriyle bilinirler,Easy
+3410,Math,13 × 6 nedir?,76,78,80,82,B,13'ün 6 ile çarpımı 78'e eşittir,Easy
+3411,Science,Besinlerde hangi enerji türü depolanır?,Kinetik enerji,Potansiyel enerji,Kimyasal enerji,Termal enerji,C,Gıda kimyasal enerji depolar,Easy
+3412,Sports,Bir basketbol takımında maç sırasında kaç oyuncu bulunur?,4,5,6,7,B,Basketbol takımlarının sahada 5 oyuncusu vardır,Easy
+3413,Science,Bir elementin özelliklerini koruyan en küçük parçacığı nedir?,Molekül,Atom,Elektron,Proton,B,"Bir atom, bir elementin en küçük parçacığıdır",Easy
+3414,Math,50'nin %60'ı kaçtır?,25,30,35,40,B,50'nin %60'ı 30'a eşittir,Easy
+3415,Science,Bitkiler fotosentez sırasında hangi gazı açığa çıkarır?,Karbondioksit,Azot,Oksijen,Hidrojen,C,Bitkiler fotosentez sırasında oksijen salarlar,Easy
+3416,Animals,Kışın hangi hayvan kış uykusuna yatar?,Ayı,Aslan,Kaplan,Leopar,A,Ayılar kışın kış uykusuna yatarlar,Easy
+3417,Math,18 + 24 kaçtır?,40,42,44,46,B,18 artı 24 eşittir 42,Easy
+3418,Science,Ses şiddetini ölçmek için kullanılan birim nedir?,Desibel,Hertz,Watt,Pascal,A,Ses yoğunluğu desibel cinsinden ölçülür,Easy
+3419,Science,Fermi paradoksu neyle ilgilidir?,Dünya dışı medeniyetlerin görünürdeki yokluğu,Kuantum mekaniği yorumları,Kara delik bilgisi,Zaman yolculuğu olasılıkları,A,Fermi paradoksu neden uzaylılarla karşılaşmadığımızı sorguluyor,Medium
+3420,Math,Cauchy-Riemann denklemleri ne için kullanılır?,Karmaşık fonksiyonların analitik olup olmadığını belirleme,Diferansiyel denklemleri çözme,İntegrallerin hesaplanması,Sınırları bulmak,A,Cauchy-Riemann denklemleri karmaşık fonksiyon analitikliğini belirler,Medium
+3421,Science,Ribozomların protein sentezlediği sürecin adı nedir?,Çoğaltma,Transkripsiyon,Çeviri,Ekleme,C,"Çeviri, ribozomlarda proteinleri sentezler",Medium
+3422,Science,Frekansın SI birimi nedir?,Amper,Hertz,Pascal,Newton,B,"Hertz, frekansın SI birimidir",Medium
+3423,Science,Evrenin kökenini ve evrimini inceleyen bilim dalına ne ad verilir?,Kozmoloji,Astronomi,Astrofizik,Astrobiyoloji,A,"Kozmoloji, evrenin kökenini ve evrimini inceler",Medium
+3424,Art,Geometrik şekillerin ve çoklu perspektiflerin kullanımıyla karakterize edilen sanat akımı hangisidir?,İzlenimcilik,Ekspresyonizm,Kübizm,Gerçeküstücülük,C,Kübizm geometrik şekiller ve çoklu perspektifler kullandı,Medium
+3425,Math,L'Hôpital kuralı ne için kullanılır?,Belirsiz formların sınırlarının değerlendirilmesi,Türev bulma,İntegrallerin hesaplanması,Denklemleri çözmek,A,L'Hôpital kuralı belirsiz limitleri değerlendirir,Medium
+3426,Science,Bir kimyasal reaksiyonun gerçekleşmesi için gereken minimum enerjiye ne ad verilir?,Aktivasyon enerjisi,Tepkime enerjisi,Bağlayıcı enerji,İyonlaşma enerjisi,A,"Aktivasyon enerjisi, reaksiyonlar için gereken minimum enerjidir",Medium
+3427,Science,Dalgaların frekanslarının bağıl hareket nedeniyle değişmesine ne ad verilir?,Doppler etkisi,Parazit yapmak,Kırınım,Refraksiyon,A,Doppler etkisi hareket nedeniyle frekansı değiştirir,Medium
+3428,Animals,Kuşların daha sıcak iklimlere göç etmesine ne ad verilir?,Göçmenlik,Göç,Mevsimsel göç,Kış uykusu,C,"Mevsimsel göç, kuşların daha sıcak iklimlere göç etmesidir",Medium
+3429,Science,"Hareketi, harekete neden olan kuvvetleri dikkate almadan inceleyen bilim dalı hangisidir?",Dinamikler,Kinematik,Statik,Mekanik,B,"Kinematik, kuvvetleri dikkate almadan hareketi inceler",Medium
+3430,Science,Teorik fizikte kara delik bilgi paradoksu nedir?,Kara deliklere düşen bilginin kuantum mekaniğini ihlal ederek yok olduğu ortaya çıktı,Kara delikler radyasyon yaymaz,Bilgi ışıktan daha hızlı hareket eder,Kuantum mekaniği eksiktir,A,Bilgi paradoksu kara deliklerdeki bilginin yok edilmesiyle ilgilidir,Hard
+3431,Math,Clay Enstitüsü'nün Yang-Mills varoluş ve kütle farkı olarak bilinen Milenyum Ödül Problemi nedir?,Kuantum Yang-Mills teorisinin varlığını ve kütle boşluğuna sahip olduğunu kanıtlamak,Yang-Mills denklemlerini tam olarak çözmek,Parçacık etkileşimlerinin hesaplanması,Birleştirici güçler,A,Yang-Mills problemi teorinin varlığını ve kütle boşluğunu kanıtlamayı gerektirir,Hard
+3432,Science,Parçacık fiziğinde hiyerarşi problemini çözebilecek teorik mekanizma nedir?,Süpersimetri,Ekstra boyutlar,Hem A hem de B,Kuantum yerçekimi,C,Hem süpersimetri hem de ekstra boyutlar hiyerarşi sorununu ele alır,Hard
+3433,Science,Işıktan daha hızlı seyahati mümkün kılabilecek teorik sürecin adı nedir?,Alcubierre warp sürücüsü,Solucan deliği geçişi,Takyon itkisi,Kuantum ışınlanması,A,Alcubierre sürücüsü teorik olarak FTL seyahatine izin verir,Hard
+3434,Math,Kepler varsayımı ne hakkındadır?,Küreleri üç boyutlu olarak paketlemenin en verimli yolu,Gezegen yörüngeleri eliptiktir,Düzenli çokyüzlülerin özellikleri,Geometrik yapılar,A,Kepler varsayımı optimal küre paketlemesiyle ilgilidir,Hard
+3435,Science,Kuantum vakumunun enerji yoğunluğunun teorik sınırı nedir?,Planck enerji yoğunluğu,Kritik yoğunluk,Vakum enerji yoğunluğu,Sıfır noktası enerjisi,A,Planck enerji yoğunluğu teorik vakum sınırıdır,Hard
+3436,Art,'Bir ve Üç Sandalye' adlı eseri hangi kavramsal sanatçının eseridir?,Marcel Duchamp,Joseph Kosuth,Sol LeWitt,Lawrence Weiner,B,"Joseph Kosuth, One ve Three Chairs'ı yarattı",Hard
+3437,Math,Hales kanıtı neyle ilgilidir?,Küre paketlemesi hakkındaki Kepler varsayımı,Dört renk teoremi,Fermat'ın son teoremi,İkiz asal sayı varsayımı,A,"Hales, Kepler'in küre paketlemesi hakkındaki varsayımını kanıtladı",Hard
+3438,Science,Erken evrende gerçekleşmiş olabilecek teorik faz geçişinin adı nedir?,Elektrozayıf faz geçişi,QCD faz geçişi,Büyük birleşme geçişi,Yukarıdakilerin hepsi,D,Erken evrende çoklu faz geçişleri meydana geldi,Hard
+3439,Science,Kuantum mekaniğinde ölçüm problemini çözmeye çalışan teorik çerçeve nedir?,Çoklu dünyalar yorumu,Kopenhag tercümesi,Pilot dalga teorisi,Önerilen tüm çözümler,D,Ölçüm sorununu çözmeye yönelik birden fazla yorumlama girişimi,Hard
+3440,Math,Erdős tutarsızlığı problemi neyle ilgilidir?,Çarpımsal fonksiyonlar ve bunların kısmi toplamları,Grafik teorisi renklendirmeleri,Asal sayı dağılımları,Geometrik yapılar,A,Erdős tutarsızlığı çarpımsal fonksiyonlarla ilgilidir,Hard
+3441,Science,Kuantum sistemlerinde bilginin nasıl işlendiğini inceleyen bilim dalına ne ad verilir?,Kuantum bilgi bilimi,Kuantum hesaplama,Kuantum iletişimi,Yukarıdakilerin hepsi,D,Tüm terimler kuantum bilgi işlemeyle ilgilidir,Hard
+3442,Science,İnsan vücudundaki en uzun kemik hangisidir?,Uyluk kemiği,Kaval kemiği,Kol kemiği,Yarıçap,A,Uyluk kemiği (femur) en uzun kemiktir,Easy
+3443,Science,Hücrenin enerji santrali nedir?,Çekirdek,Mitokondri,Ribozom,Endoplazmik retikulum,B,Mitokondriler hücre için enerji üretir,Easy
+3444,Math,19 × 4 nedir?,74,76,78,80,B,19'un 4 ile çarpımı 76'ya eşittir,Easy
+3445,Science,Demirin kimyasal sembolü nedir?,BEN,İr,Fe,Fr,C,Demirin kimyasal sembolü Fe'dir,Easy
+3446,Animals,Siyah beyaz çizgileriyle bilinen hayvan hangisidir?,Kaplan,Leopar,Zebra,Çita,C,Zebraların belirgin siyah ve beyaz çizgileri vardır,Easy
+3447,Math,63 ÷ 7 kaçtır?,8,9,10,11,B,63 bölü 7 eşittir 9,Easy
+3448,Science,Soluduğumuz havada en çok hangi gaz bulunur?,Oksijen,Karbondioksit,Azot,Helyum,C,Azot havanın yaklaşık %78'ini oluşturur,Easy
+3449,Sports,Hangi spor dalında oyuncular raket ve tüy topu kullanırlar?,Tenis,Badminton,Kabak,Masa tenisi,B,Badmintonda raket ve tüy topu kullanılır,Easy
+3450,Science,Bitkileri inceleyen bilim dalına ne ad veriyoruz?,Zooloji,Botanik,Jeoloji,Biyoloji,B,Botanik bitkilerin incelenmesidir,Easy
+3451,Math,150'nin %20'si kaçtır?,25,30,35,40,B,150'nin %20'si 30'a eşittir,Easy
+3452,Science,Bitkiler hangi işlemle oksijen üretir?,Solunum,Fotosentez,Terleme,Çimlenme,B,Fotosentez oksijen üretir,Easy
+3453,Animals,Hangi kuş barışın simgesidir?,Kartal,Güvercin,Baykuş,Robin,B,Güvercin barışın sembolüdür,Easy
+3454,Math,Bir üçgenin açılarının toplamı kaçtır?,90°,180°,270°,360°,B,Bir üçgenin açılarının toplamı 180°'dir,Easy
+3455,Science,Hava durumunu inceleyen bilim dalına ne ad verilir?,Jeoloji,Meteoroloji,Astronomi,Sismoloji,B,Meteoroloji hava olaylarının incelenmesidir,Easy
+3456,Science,Maxwell-Boltzmann dağılımı neyi tanımlamak için kullanılır?,Gaz moleküllerinin enerji dağılımı,Kuantum enerji seviyeleri,Elektromanyetik dalgalar,Nükleer bozunma,A,Maxwell-Boltzmann moleküler enerji dağılımını açıklıyor,Medium
+3457,Math,x²y + xy²'nin kısmi türevi ∂/∂x nedir?,2xy + y²,x² + 2xy,2x + y,xy + y²,A,∂/∂x(x²y + xy²) = 2xy + y²,Medium
+3458,Science,Işığın bir yüzeyden elektronların yayılmasına neden olduğu sürecin adı nedir?,Fotoelektrik etki,Compton saçılması,Çift üretim,Fotoiyonizasyon,A,"Fotoelektrik etki, ışık kaynaklı elektron emisyonunu içerir",Medium
+3459,Science,Işık şiddetinin SI temel birimi nedir?,Şamdan,Lümen,Lüks,Watt,A,"Kandela, ışık yoğunluğunun SI birimidir",Medium
+3460,Math,e^(2x)'in ikinci türevi nedir?,2e^(2x),4e^(2x),e^(2x),e^(2x)/2,B,e^(2x)'in ikinci türevi 4e^(2x)'dir,Medium
+3461,Science,Bir maddeden elektron yaymak için gereken minimum ışık frekansına ne ad verilir?,Eşik frekansı,Rezonans frekansı,Kritik frekans,Doğal frekans,A,Eşik frekansı elektron emisyonu için minimumdur,Medium
+3462,Art,Hangi sanat tekniğinde boya kalın bir tabaka halinde sürülerek fırça darbeleri görünür hale getirilir?,Cam,Pasto,Karmakarışık,Sfumato,B,"Pasto, boyayı görünür darbelerle kalın bir şekilde uygular",Medium
+3463,Math,İlk terimi a ve oranı r olan sonsuz bir geometrik serinin toplamı kaçtır? (|r| < 1),a/(1-r),a/(1+r),ar/(1-r),a(1-r),A,Sonsuz geometrik serilerin toplamı a/(1-r)'dir,Medium
+3464,Science,Mantarları inceleyen bilim dalına ne ad verilir?,Mikoloji,Viroloji,Bakteriyoloji,Psikoloji,A,Mikoloji mantarların incelenmesidir,Medium
+3465,Science,Bir mol bağı koparmak için gereken enerjiye ne ad verilir?,Bağ entalpisi,Aktivasyon enerjisi,Kafes enerjisi,Hidrasyon enerjisi,A,"Bağ entalpisi, bir mol bağı koparmak için gereken enerjidir",Medium
+3466,Math,Kürenin hacim formülü nedir?,4πr³,4πr³/3,3πr³/4,πr³,B,Kürenin hacmi 4πr³/3'tür,Medium
+3467,Animals,İnsanın gebelik süresi ne kadardır?,8 ay,9 ay,10 ay,11 ay,B,İnsan gebeliği yaklaşık 9 aydır,Medium
+3468,Science,Daha basit maddelere ayrıştırılamayan maddelere ne ad verilir?,Bileşikler,Karışımlar,Elementler,Moleküller,C,Elementler daha fazla parçalanamaz,Medium
+3469,Science,Chandrasekhar limitinin astrofizikteki yeri nedir?,Beyaz cüce yıldızının maksimum kütlesi,Nükleer füzyon için minimum sıcaklık,Bir nötron yıldızının maksimum boyutu,Vakumda ışık hızı,A,"Chandrasekhar sınırı, maksimum beyaz cüce kütlesidir",Hard
+3470,Math,Aritmetiğin Temel Teoremi neyi anlatır?,1'den büyük her tam sayı asal sayılara benzersiz şekilde bölünebilir,Tüm çift sayılar bileşiktir,Asal sayılar sonsuzdur,Mükemmel sayılar nadirdir,A,"Temel Teorem, benzersiz asal çarpanlara ayırmayı belirtir",Hard
+3471,Science,Kuarkların ve gluonların davranışını açıklayan teorik çerçeve nedir?,Kuantum kromodinamiği,Kuantum elektrodinamiği,Elektrozayıf teori,Büyük birleşik teori,A,Kuantum kromodinamiği kuarkları ve gluonları tanımlar,Hard
+3472,Science,Parçacıkların klasik olarak aşamadıkları enerji bariyerlerini geçebilmelerini sağlayan etkinin adı nedir?,Kuantum tünelleme,Dalga-parçacık ikiliği,Kuantum dolanıklığı,Heisenberg belirsizliği,A,"Kuantum tünelleme, engellerden geçişe olanak tanır",Hard
+3473,Math,Riemann eğrilik tensörü neyi tanımlamak için kullanılır?,Manifoldların eğriliği,Asal sayı dağılımı,Fonksiyon sürekliliği,Matris özdeğerleri,A,Riemann tensörü manifold eğriliğini tanımlar,Hard
+3474,Science,Maddeyi %100 verimlilikle doğrudan enerjiye dönüştürebilen teorik süreç nedir?,Madde-antimadde imhası,Nükleer füzyon,Nükleer fisyon,Kimyasal yanma,A,Madde-antimadde imhası %100 verimlidir,Hard
+3475,Art,'Gürültülerin Sanatı' manifestosu hangi sanat akımına aittir?,Dadaizm,Fütürizm,Yapılandırmacılık,De Stijl,B,"Fütürizm, 'Gürültülerin Sanatı' manifestosunu da içeriyordu",Hard
+3476,Math,Hausdorff boyutu neyi ölçmek için kullanılır?,Fraktal karmaşıklık,Vektör uzayları,Fonksiyon alanları,Matris determinantları,A,Hausdorff boyutu fraktal karmaşıklığı ölçer,Hard
+3477,Science,Zayıf nükleer kuvveti aracılık eden teorik parçacık değişiminin adı nedir?,W ve Z bozonları,Fotonlar,Gluonlar,Gravitonlar,A,W ve Z bozonları zayıf nükleer kuvveti iletir,Hard
+3478,Science,Bilginin Planck uzunluğu boyunca seyahat etmesi için gereken teorik minimum zaman nedir?,Planck zamanı,Compton zamanı,Schwarzschild zamanı,de Broglie zamanı,A,"Planck zamanı, Planck uzunluğu geçişi için minimumdur",Hard
+3479,Math,Whitehead varsayımı neyle ilgilidir?,Basitçe bağlı sonlu CW kompleksleri,Asal sayı boşlukları,Sürekli fonksiyon özellikleri,Cebirsel denklem çözümleri,A,Whitehead varsayımı CW kompleksleriyle ilgilidir,Hard
+3480,Science,Genlerin davranışları nasıl etkilediğini inceleyen bilim dalına ne ad verilir?,Davranışsal genetik,Sosyobiyoloji,Evrimsel psikoloji,Etoloji,A,"Davranışsal genetik, gen-davranış ilişkilerini inceler",Hard
+3481,Science,Kalıtımın temel birimi nedir?,Gen,Kromozom,DNA,RNA,A,"Gen, kalıtımın temel birimidir",Easy
+3482,Math,14 × 8 nedir?,102,112,122,132,B,14'ün 8 ile çarpımı 112'ye eşittir,Easy
+3483,Science,Karbondioksitin kimyasal formülü nedir?,CO,CO2,C2O,C2O2,B,Karbondioksit CO2'dir,Easy
+3484,Animals,İnsanın en iyi dostu olarak bilinen hayvan hangisidir?,Kedi,Köpek,Atış,Kuş,B,Köpekler insanın en iyi dostu olarak bilinir,Easy
+3485,Math,144 ÷ 16 kaçtır?,8,9,10,11,B,144 bölü 16 eşittir 9,Easy
+3486,Science,Buzun doğrudan su buharına dönüşmesine ne ad verilir?,Erime,Buharlaşma,Süblimasyon,Yoğunlaşma,C,"Süblimleşme, buzun doğrudan buhara dönüşmesidir",Easy
+3487,Sports,Standart bir golf sahasında kaç delik vardır?,16,18,20,22,B,Standart bir golf sahasında 18 delik bulunur,Easy
+3488,Science,Gözün hangi kısmı ne kadar ışığın içeri gireceğini kontrol eder?,Mercek,Kornea,İris,Retina,C,"İris, göze giren ışığı kontrol eder",Easy
+3489,Math,200'ün %35'i kaçtır?,60,65,70,75,C,200'ün %35'i 70'e eşittir,Easy
+3490,Science,En sert doğal mineral hangisidir?,Kuvars,Elmas,Granit,Yakut,B,Elmas en sert doğal mineraldir,Easy
+3491,Animals,Dünyanın en uzun hayvanı hangisidir?,Fil,Zürafa,Atış,Deve,B,Zürafa en uzun hayvandır,Easy
+3492,Math,Kenar uzunluğu 8 olan karenin çevresi kaçtır?,24,32,40,64,B,Karenin çevresi = 4 × 8 = 32,Easy
+3493,Science,Doğal gazın ana bileşeni nedir?,Metan,Propan,Bütan,Etan,A,"Metan, doğal gazın ana bileşenidir",Easy
+3494,Science,Gibbs faz kuralı neyi belirlemek için kullanılır?,Termodinamik sistemlerde serbestlik derecesi sayısı,Kimyasal reaksiyon hızları,Moleküler bağ açıları,Atomik yörünge şekilleri,A,Gibbs faz kuralı termodinamik serbestlik derecelerini belirler,Medium
+3495,Math,F = [yz x+z xy] vektör alanının rotasyoneli nedir?,[y-1 z-1 x-y],[x-y y-z z-x],[z-x x-y y-z],[y-z z-x x-y],A,Curl bileşenleri (∂Fz/∂y - ∂Fy/∂z) vb. şeklindedir ve [y-1 z-1 x-y] değerini verir.,Medium
+3496,Science,Atom çekirdeğinin yapısını ve özelliklerini inceleyen bilim dalına ne ad verilir?,Nükleer fizik,Parçacık fiziği,Atom fiziği,Kuantum fiziği,A,Nükleer fizik atom çekirdeklerini inceler,Medium
+3497,Science,Gaz halindeki bir atomdan bir elektronu koparmak için gereken enerjiye ne ad verilir?,Elektron ilgisi,İyonlaşma enerjisi,Elektronegatiflik,Bağlayıcı enerji,B,İyonlaşma enerjisi bir elektronu uzaklaştırır,Medium
+3498,Math,Yarıçapı r ve yüksekliği h olan bir silindirin yüzey alanı nedir?,2πr(r + h),πr(r + h),4πr(r + h),πr(2r + h),A,Silindir yüzey alanı 2πr(r + h)'dir,Medium
+3499,Science,Bir çözeltinin birim hacminde çözünen madde miktarına ne ad verilir?,Molarite,Molalite,Normallik,Konsantrasyon,A,"Molarite, çözeltinin birim hacmi başına çözünen maddedir",Medium
+3500,Art,"Hangi boyama tekniği sert hatlar oluşturmadan, ince ton geçişleri yaratır?",Işık-gölge oyunu,Pasto,Sfumato,Karmakarışık,C,Sfumato ince ton geçişleri yaratır,Medium
+3501,Math,Cebirin Temel Teoremi neyi anlatır?,Sabit olmayan her polinomun en az bir karmaşık kökü vardır,Tüm polinomlar süreklidir,Cebirsel denklemlerin benzersiz çözümleri vardır,Karmaşık sayılar tamamdır,A,Temel Teorem karmaşık kökleri garanti eder,Medium
+3502,Science,Evrenin başlangıcını ve gelişimini inceleyen bilim dalına ne ad verilir?,Astronomi,Kozmoloji,Astrofizik,Kozmogoni,B,Kozmoloji evrenin kökenini ve gelişimini inceler,Medium
+3503,Science,Canlı organizmaların çevreleriyle nasıl etkileşim kurduğunu inceleyen bilim dalına ne ad verilir?,Ekoloji,Biyoloji,Botanik,Zooloji,A,"Ekoloji, organizma-çevre etkileşimlerini inceler",Medium
+3504,Math,Orijini merkez alan r yarıçaplı bir çemberin parametrik denklemi nedir?,x = r kost t y = r sin t,x = r sin t y = r cos t,x = r t y = r/t,x = r² maliyet t y = r² sin t,A,Dairesel parametrik denklemler x = r cos t y = r sin t'dir,Medium
+3505,Animals,Yaşamış en büyük memeli hayvan hangisidir?,Mavi balina,Afrika fili,Yünlü mamut,Megalodon,A,Mavi balina şimdiye kadarki en büyük memelidir,Medium
+3506,Science,Deprem ve sismik dalgaları inceleyen bilim dalına ne ad verilir?,Jeoloji,Sismoloji,Volkanoloji,Meteoroloji,B,Sismoloji depremleri ve sismik dalgaları inceler,Medium
+3507,Science,Genel görelilik ve kuantum mekaniğini birleştirebilecek teorik çerçeve nedir?,Sicim teorisi,Döngü kuantum yerçekimi,Nedensel küme teorisi,Yukarıdakilerin hepsi,D,Çoklu yaklaşımlar kuantum kütleçekim birleştirmeyi deniyor,Hard
+3508,Math,Yang-Mills teorisinin varlığına ilişkin Milenyum Ödül Problemi nedir?,Teorinin varlığını ve kütle boşluğuna sahip olduğunu kanıtlamak,Yang-Mills denklemlerinin çözümü,Kesin çözümlerin hesaplanması,Simetri gruplarını bulma,A,Yang-Mills problemi varoluş ve kütle boşluğu kanıtı gerektirir,Hard
+3509,Science,Karanlık maddeyi açıklayabilecek varsayımsal parçacığın adı nedir?,Axion,Korkak,Steril nötrino,Yukarıdakilerin hepsi,D,Karanlık madde için birden fazla parçacık öneriliyor,Hard
+3510,Science,Evrenin kendi üzerine çökebileceği teorik süreç nedir?,Büyük Çöküş,Isı ölümü,Büyük Yırtık,Sahte vakum çürümesi,A,Büyük Çöküş evrensel bir çöküş senaryosudur,Hard
+3511,Math,Birkhoff-von Neumann teoremi nedir?,"Çift stokastik matrisler, permütasyon matrislerinin dışbükey kombinasyonları olarak yazılabilir",Tüm matrisler köşegenleştirilebilir,Özdeğerler matris özelliklerini belirler,Doğrusal dönüşümler yapıyı korur,A,Birkhoff-von Neumann çift stokastik matrislerle ilgileniyor,Hard
+3512,Science,Tüm maddenin kara deliğe çökeceği teorik sıcaklık nedir?,Planck sıcaklığı,Hagedorn sıcaklığı,Kritik sıcaklık,Debye sıcaklığı,A,Planck sıcaklığı maddenin çöktüğü yerdir,Hard
+3513,Art,André Breton'un Sürrealist Manifesto ile temellerini attığı avangart akım hangisidir?,Dadaizm,Gerçeküstücülük,Fütürizm,Yapılandırmacılık,B,"Breton, manifestosuyla Sürrealizmi kurdu",Hard
+3514,Math,Busemann-Petty problemi nedir?,Dışbükey cisimlerin hacimlerini ve kesitlerini karşılaştırma,Asal çarpanlara ayırma algoritmaları,Sürekli fonksiyon özellikleri,Matris ters hesaplamaları,A,Busemann-Petty problemi dışbükey gövde hacimlerini karşılaştırır,Hard
+3515,Science,Maddenin aşırı yüksek sıcaklıklarda var olan teorik halinin adı nedir?,Kuark-gluon plazması,Bose-Einstein yoğunlaşması,Fermionik kondensat,Renkli cam yoğuşması,A,Kuark-gluon plazması aşırı sıcaklıklarda bulunur,Hard
+3516,Science,Kuantum durumlarının evrimini açıklayan teorik çerçeve nedir?,Schrödinger denklemi,Heisenberg belirsizlik ilkesi,Doğuştan kural,Kopenhag tercümesi,A,Schrödinger denklemi kuantum durum evrimini tanımlar,Hard
+3517,Math,Kakeya varsayımı ne hakkındadır?,Kakeya setlerinin daha yüksek boyutlardaki Hausdorff boyutu,Asal sayı dağılımları,Harmonik analiz,Geometrik ölçü teorisi,A,Kakeya varsayımı Kakeya kümelerinin boyutuyla ilgilidir,Hard
+3518,Science,Kuantum sistemlerinin hesaplama amacıyla nasıl kullanılabileceğini inceleyen bilim dalına ne ad verilir?,Kuantum hesaplama,Kuantum bilgi teorisi,Kuantum kriptografisi,Yukarıdakilerin hepsi,D,Tüm terimler kuantum hesaplama uygulamalarıyla ilgilidir,Hard
+3519,Science,Proteinlerin temel yapı taşı nedir?,Amino asit,Nükleotid,Lipid,Karbonhidrat,A,Amino asitler protein yapı taşlarıdır,Easy
+3520,Math,17 × 5 nedir?,75,80,85,90,C,17'nin 5 ile çarpımı 85'e eşittir,Easy
+3521,Science,Sodyumun kimyasal sembolü nedir?,S,Bu yüzden,Na,N,C,Sodyumun kimyasal sembolü Na'dır,Easy
+3522,Animals,En hızlı deniz memelisi hangisidir?,Yunus,Balina,Fok,Katil balina,A,Yunuslar en hızlı deniz memelileridir,Easy
+3523,Math,88 ÷ 8 kaçtır?,10,11,12,13,B,88 bölü 8 eşittir 11,Easy
+3524,Science,Yeşil bitkilerin güneş ışığını kullanarak besin üretme süreci nedir?,Solunum,Fotosentez,Terleme,Sindirim,B,"Fotosentez, yiyecek üretmek için güneş ışığını kullanır",Easy
+3525,Sports,Hangi sporda mümkün olduğunca az vuruşla topu deliğe sokmaya çalışırsınız?,Tenis,Beyzbol,Golf,Basketbol,C,"Golf, topu birkaç vuruşla deliğe sokmayı amaçlar",Easy
+3526,Science,İnsan vücudunda kanı hangi organ süzer?,Kalp,Karaciğer,Böbrek,Akciğer,C,Böbrekler kanı filtreler,Easy
+3527,Math,80'in %45'i kaçtır?,32,36,40,44,B,80'in %45'i 36'ya eşittir,Easy
+3528,Science,Bitkilerde suyun köklerden yapraklara doğru hareket etme süreci nedir?,Ozmoz,Terleme,Difüzyon,Kılcal etki,B,"Terleme, suyu köklerden yapraklara taşır",Easy
+3529,Animals,Hangi hayvan bal üretir?,Eşek arısı,Arı,Karınca,Uçmak,B,Arılar bal üretir,Easy
+3530,Math,12² nedir?,124,144,164,184,B,12'nin karesi 144'e eşittir,Easy
+3531,Science,Bizi yerde tutan görünmez güce ne ad veriyoruz?,Manyetizma,Elektrik,Yer çekimi,Sürtünme,C,Yer çekimi bizi yerde tutar,Easy
+3532,Science,Arrhenius denklemi neyi tanımlamak için kullanılır?,Reaksiyon hızlarının sıcaklığa bağımlılığı,Gaz basıncı ilişkileri,Elektron orbital enerjileri,Moleküler titreşim frekansları,A,Arrhenius denklemi sıcaklık-oran ilişkilerini açıklar,Medium
+3533,Science,Bir atomun çekirdeğindeki proton sayısının adı nedir?,kütle numarası,Atom numarası,Elektron sayısı,Nötron sayısı,B,Atom numarası proton sayısıdır,Medium
+3534,Science,Basıncın SI birimi nedir?,Newton,Pascal,Joule,Watt,B,"Pascal, basınç için kullanılan SI birimidir",Medium
+3535,Math,Bileşik faizin formülü nedir?,A = P(1 + r)^t,A = P + rt,A = Prt,A = P(1 + rt),A,Bileşik faiz formülü A = P(1 + r)^t'dir,Medium
+3536,Science,pH değişimlerine direnç gösteren çözeltiye ne ad verilir?,Tampon,Gösterge,Katalizör,İnhibitör,A,Bir tampon pH değişikliklerine karşı direnç gösterir,Medium
+3537,Art,Pablo Picasso'nun sonraki kariyerinde hangi sanat akımıyla ilişkilendirildiği söylenebilir?,İzlenimcilik,Ekspresyonizm,Kübizm,Gerçeküstücülük,C,Picasso Kübizmle ilişkilendirilmiştir,Medium
+3538,Math,1/x'in x'e göre integrali nedir?,ln|x| + C,x + C,x²/2 + C,1/x² + C,A,1/x'in integrali ln|x| + C'dir,Medium
+3539,Science,Kalıtım ve genetik çeşitliliği inceleyen bilim dalına ne ad verilir?,Genetik,Evrim,Ekoloji,Taksonomi,A,"Genetik, kalıtım ve çeşitliliği inceler",Medium
+3540,Science,Bir kimyasal reaksiyonun başlaması için gereken enerjiye ne ad verilir?,Aktivasyon enerjisi,Potansiyel enerji,Kinetik enerji,Termal enerji,A,Aktivasyon enerjisi kimyasal reaksiyonları başlatır,Medium
+3541,Animals,Uçamayan en büyük kuş hangisidir?,Penguen,Devekuşu,Emu,Kivi,B,Devekuşu uçamayan en büyük kuştur,Medium
+3542,Science,Mermilerin hareketini ve davranışını inceleyen bilim dalına ne ad verilir?,Balistik,Dinamikler,Kinematik,Statik,A,"Balistik, mermi hareketini inceler",Medium
+3543,Science,Dört temel kuvveti de tanımlamaya çalışan teorik çerçeve nedir?,Her Şeyin Teorisi,Büyük Birleşik Teori,Sicim Teorisi,M-Teorisi,A,Her Şeyin Teorisi tüm kuvvetleri tanımlamayı amaçlar,Hard
+3544,Math,Hodge varsayımı olarak bilinen Milenyum Ödül Problemi neyle ilgilidir?,Projektif cebirsel çeşitler üzerinde cebirsel döngüler,Asal sayı dağılımı,Diferansiyel denklem çözümleri,Topolojik değişmezler,A,Hodge varsayımı cebirsel döngülerle ilgilidir,Hard
+3545,Science,Kararlı bir solucan deliği yaratabilecek teorik sürecin adı nedir?,Negatif enerji yoğunluğuna sahip egzotik madde,Pozitif kütle enerjisi,Normal madde sıkıştırması,Elektromanyetik alan manipülasyonu,A,Egzotik madde teorik olarak solucan deliklerini stabilize edebilir,Hard
+3546,Science,Uzay ve zamanın en küçük ölçeklerde kuantumlaştığı etkinin adı nedir?,Planck ölçeği etkileri,Heisenberg belirsizliği,Kuantum köpüğü,Yukarıdakilerin hepsi,D,Hepsi kuantum uzay-zaman etkilerini tanımlıyor,Hard
+3547,Math,Novikov varsayımı ne hakkındadır?,Manifoldların daha yüksek mertebeden imzaları,Asal sayı boşlukları,Fonksiyon sürekliliği,Matris özdeğerleri,A,Novikov varsayımı çok katlı imzalarla ilgilidir,Hard
+3548,Science,Küresel bir bölgede depolanabilecek teorik maksimum bilgi içeriği nedir?,Bekenstein sınırı,Shannon sınırı,Landauer sınırı,Holografik bağ,A,Bekenstein sınırı küresel bölgelerdeki bilgileri sınırlar,Hard
+3549,Art,'Yaşayan Birinin Zihninde Ölümün Fiziksel İmkansızlığı' adlı eseri hangi kavramsal sanatçı yaratmıştır?,Jeff Koons,Damien Hirst,Tracy Emin,Banksy,B,Damien Hirst bu ünlü köpekbalığı sanat eserini yarattı,Hard
+3550,Math,Bombieri-Lang varsayımı ne hakkındadır?,Diophantine denklemleri ve cebirsel eğriler,Asal sayı dağılımı,Harmonik analiz,Geometrik topoloji,A,"Bombieri-Lang, Diophantine denklemleriyle ilgileniyor",Hard
+3551,Science,Kuantum alan teorisinde kütle çekimini aracılık edebilecek teorik parçacık nedir?,Graviton,Higgs bozonu,Axion,Dilaton,A,Graviton teorik olarak yerçekimini yönlendirir,Hard
+3552,Science,Evrenin yaşam için hassas bir şekilde ayarlanmış gibi görünmesinin nedenini açıklayabilecek teorik çerçeve nedir?,Antropik ilke,Çoklu evren teorisi,Dize manzarası,Yukarıdakilerin hepsi,D,Tüm adres ince ayar soruları,Hard
+3553,Math,Schanuel varsayımı neyle ilgilidir?,Aşkın sayılar teorisi,Cebirsel geometri,Diferansiyel denklemler,Olasılık teorisi,A,Schanuel varsayımı aşkın sayılarla ilgilidir,Hard
+3554,Science,Karmaşıklığın basit kurallardan nasıl ortaya çıktığını inceleyen bilime ne ad verilir?,Karmaşıklık teorisi,Sistem teorisi,Kaos teorisi,Yukarıdakilerin hepsi,D,Tüm çalışma karmaşıklığın ortaya çıkışını inceliyor,Hard
+3555,Science,Hangi vitamin kanın pıhtılaşmasına yardımcı olur?,A vitamini,C vitamini,D vitamini,K vitamini,D,K vitamini kanın pıhtılaşmasına yardımcı olur,Easy
+3556,Math,23 × 3 nedir?,66,69,72,75,B,23'ün 3 ile çarpımı 69'a eşittir,Easy
+3557,Science,Potasyumun kimyasal sembolü nedir?,P,Po,K,Pt,C,Potasyumun kimyasal sembolü K'dir,Easy
+3558,Animals,Çok uzun diliyle bilinen hayvan hangisidir?,Zürafa,Fil,Karıncayiyen,Hem A hem de C,D,Hem zürafaların hem de karıncayiyenlerin uzun dilleri vardır,Easy
+3559,Math,99 ÷ 9 kaçtır?,10,11,12,13,B,99 bölü 9 eşittir 11,Easy
+3560,Science,Dünyanın doğal uydusuna ne ad verilir?,Yıldız,Ay,Gezegen,Kuyrukluyıldız,B,"Ay, Dünya'nın doğal uydusudur",Easy
+3561,Sports,Hangi spor dalında oyuncular topu yere değdirmeden file üzerinden vurmaya çalışırlar?,Tenis,Voleybol,Badminton,Masa tenisi,B,Voleybol topu filenin üzerinden vuruyor,Easy
+3562,Science,İnsan vücudunda hastalıklarla savaşan sistem hangisidir?,Sindirim sistemi,Dolaşım sistemi,Bağışıklık sistemi,Sinir sistemi,C,Bağışıklık sistemi hastalıklarla savaşır,Easy
+3563,Math,120'nin %30'u kaçtır?,30,36,42,48,B,120'nin %30'u 36'ya eşittir,Easy
+3564,Science,Sıvı suyun su buharına dönüşme süreci nedir?,Yoğunlaşma,Buharlaşma,Süblimasyon,Donmak,B,"Buharlaşma, sıvı suyu buhara dönüştürür",Easy
+3565,Animals,Çevresine uyum sağlamak için renk değiştirebilme yeteneğiyle bilinen hayvan hangisidir?,Kaplan,Leopar,Bukalemun,Zebra,C,Bukalemunlar çevreye uyum sağlamak için renk değiştirirler,Easy
+3566,Math,15² nedir?,225,235,245,255,A,15'in karesi 225'e eşittir,Easy
+3567,Science,Dünya'yı çevreleyen gaz tabakasına ne ad veriyoruz?,Biyosfer,Atmosfer,Hidrosfer,Litosfer,B,Atmosfer gaz tabakasıdır,Easy
+3568,Science,Beer-Lambert yasası neyi tanımlamak için kullanılır?,Işık emilimi ve konsantrasyon arasındaki ilişki,Gaz basıncı ve sıcaklığı,Kimyasal reaksiyon dengesi,Moleküler bağ titreşimleri,A,Beer-Lambert yasası emilimi konsantrasyonla ilişkilendirir,Medium
+3569,Science,Herhangi bir sıcaklıkta bir sıvının gaz haline geçtiği noktaya ne ad verilir?,Kritik nokta,Üçlü nokta,Kaynama noktası,alevlenme noktası,A,Kritik nokta sıvının gaza dönüştüğü noktadır,Medium
+3570,Science,Manyetik alan şiddetinin SI birimi nedir?,Tesla,Weber,Henry,Gauss,A,"Tesla, manyetik alan için SI birimidir",Medium
+3571,Math,ln(x²)'nin türevi nedir?,(ln(x²))',2/x,2x,1/x²,B,d/dx[ln(x²)] = 2x/x² = 2/x,Medium
+3572,Science,Tüketildiği halde bir kimyasal reaksiyonun hızını artıran maddeye ne ad verilir?,Katalizör,İnhibitör,Reaktif,Çözücü,A,Bir katalizör tüketilmeden reaksiyon hızını artırır,Medium
+3573,Art,"Hangi sanat tekniği, bir yüzey katmanının çizilerek alttaki katmanın ortaya çıkarılmasını içerir?",Enkostik,Sgraffito,Fresk,Tempera,B,"Sgraffito, katmanlar arasında çizim yapmayı içerir",Medium
+3574,Math,"Yarıçapı r, yüksekliği h olan bir koninin hacmi nedir?",πr²h,πr²h/3,2πr²h/3,4πr²h/3,B,Koni hacmi πr²h/3'tür,Medium
+3575,Science,Madde ve enerjinin davranışlarını inceleyen bilim dalına ne ad verilir?,Fizik,Kimya,Biyoloji,Jeoloji,A,"Fizik, madde ve enerji davranışını inceler",Medium
+3576,Science,Atomlar arasındaki bağlarda depolanan enerjiye ne ad verilir?,Kimyasal enerji,Nükleer enerji,Elektrik enerjisi,Termal enerji,A,Kimyasal enerji atomik bağlarda depolanır,Medium
+3577,Animals,Penguenlerin doğal olarak vahşi doğada yaşadığı tek kıta hangisidir?,Afrika,Güney Amerika,Avustralya,Antarktika,D,Penguenler doğal olarak Antarktika'da yaşarlar,Medium
+3578,Science,Fosilleri inceleyen bilim dalına ne ad verilir?,Paleontoloji,Arkeoloji,Antropoloji,Jeoloji,A,Paleontoloji fosillerin incelenmesidir,Medium
+3579,Science,Yerçekimini uzay-zamanın eğriliği olarak tanımlayan teorik çerçeve nedir?,Genel Görelilik,Özel Görelilik,Kuantum Mekaniği,Sicim Teorisi,A,"Genel Görelilik, yerçekimini uzay-zaman eğriliği olarak tanımlar",Hard
+3580,Math,Riemann hipotezi ile ilgili Clay Enstitüsü Milenyum Ödül Problemi nedir?,Riemann zeta fonksiyonunun sıfırlarının konumu,Asal sayı dağılım kalıpları,Karmaşık analiz temelleri,Sayı teorisi uygulamaları,A,Riemann hipotezi zeta fonksiyonu sıfırlarıyla ilgilidir,Hard
+3581,Science,Bilginin ışıktan daha hızlı iletilmesini sağlayabilecek teorik sürecin adı nedir?,Kuantum dolanıklığı,Takyonik iletişim,Solucan deliği mesajlaşması,Hepsi teoriktir,D,Hepsi teorik olarak ışıktan daha hızlı iletişimdir,Hard
+3582,Science,Fiziksel bir sistemin işleyebileceği bilgi miktarının teorik sınırının adı nedir?,Landauer sınırı,Bekenstein sınırı,Shannon sınırı,Margolus-Levitin teoremi,D,Margolus-Levitin teoremi bilgi işlemeyi sınırlar,Hard
+3583,Math,Grothendieck-Riemann-Roch teoremi nedir?,Çeşitlerin topolojik ve cebirsel özellikleri arasındaki ilişki,Asal çarpanlara ayırma algoritmaları,Diferansiyel denklem çözümleri,Olasılık dağılımları,A,GRR teoremi topoloji ve cebiri ilişkilendirir,Hard
+3584,Science,Evrenin hızlanan genişlemesini açıklayabilecek teorik mekanizma nedir?,Karanlık enerji,Kozmolojik sabit,Öz,Yukarıdakilerin hepsi,D,Kozmik ivmeyi açıklayan birden fazla mekanizma var,Hard
+3585,Art,Kavramsal yapıtlarda metin ve imgenin bütünleştirilmesiyle karakterize edilen sanat akımı hangisidir?,Pop art,Kavramsal Sanat,Toprak Sanatı,Performans Sanatı,B,"Kavramsal Sanat, metin ve görseli bütünleştirdi",Hard
+3586,Math,Taniyama-Shimura varsayımı (şimdi teorem) ne hakkındadır?,Eliptik eğriler ile modüler formlar arasındaki bağlantı,Asal sayı dağılımı,Cebirsel geometri temelleri,Karmaşık analiz uygulamaları,A,Taniyama-Shimura eliptik eğrileri modüler formlara bağlıyor,Hard
+3587,Science,Güçlü CP problemini çözebilecek teorik parçacığın adı nedir?,Axion,Manyetik monopol,Süpersimetrik parçacık,Ekstra boyutlu parçacık,A,Axion güçlü CP sorununu çözebilir,Hard
+3588,Science,Kara deliklerde bilginin nasıl korunduğunu açıklayan teorik çerçeve nedir?,Kara delik bilgi paradoksu,Holografik prensip,AdS/CFT yazışmaları,Hepsi bu sorunu ele alıyor,D,Tüm çerçeveler kara delik bilgisini ele alır,Hard
+3589,Math,Langlands yazışmaları ne hakkında?,Sayı teorisi temsil teorisi ve geometri arasındaki bağlantı,Hesaplamanın temelleri,Doğrusal cebir uygulamaları,İstatistik ve olasılık,A,"Langlands, sayılar teorisini ve geometriyi birbirine bağlıyor",Hard
+3590,Science,Kuantum etkilerinin bilinci nasıl etkileyebileceğini inceleyen bilim dalına ne ad verilir?,Kuantum bilinci,Kuantum biyolojisi,Kuantum sinirbilimi,Yukarıdakilerin hepsi,D,Tüm çalışmalar bilinç üzerindeki kuantum etkilerini inceliyor,Hard
+3591,Science,Dünya atmosferinde en bol bulunan gaz hangisidir?,Oksijen,Karbondioksit,Azot,Argon,C,Azot atmosferin yaklaşık %78'ini oluşturur,Easy
+3592,Math,26 × 2 nedir?,50,52,54,56,B,26'nın 2 ile çarpımı 52'ye eşittir,Easy
+3593,Science,Helyumun kimyasal sembolü nedir?,H,O,Hl,Ho,B,Helyumun kimyasal sembolü He'dir,Easy
+3594,Animals,Hangi hayvan kesesiyle bilinir?,Kanguru,Koala,Vombat,Yukarıdakilerin hepsi,D,Tüm bu hayvanların keseleri var,Easy
+3595,Math,121 ÷ 11 kaçtır?,10,11,12,13,B,121'i 11'e bölersek 11 elde ederiz,Easy
+3596,Science,Güneş sistemimizin merkezi neresidir?,Toprak,Ay,Güneş,Mars,C,"Güneş, güneş sistemimizin merkezidir",Easy
+3597,Sports,Hangi spor dalında oyuncular küçük topları deliklere sokmak için sopalar kullanırlar?,Tenis,Beyzbol,Golf,Hokey,C,"Golf, topları deliklere sokmak için sopalar kullanır",Easy
+3598,Science,Bitkinin hangi kısmı topraktan su ve besinleri emer?,Kök,Yapraklar,Kökler,Çiçekler,C,Kökler su ve besinleri emer,Easy
+3599,Math,75'in %40'ı kaçtır?,25,30,35,40,B,75'in %40'ı 30'a eşittir,Easy
+3600,Science,Bitkiler yaprakları aracılığıyla su buharını dışarı atma süreci nasıldır?,Fotosentez,Terleme,Solunum,Çimlenme,B,Terleme su buharını serbest bırakır,Easy
+3601,Animals,Karada yaşayan en büyük memeli hayvan hangisidir?,Zürafa,Fil,Gergedan,Su aygırı,B,"Fil, karada yaşayan en büyük memeli hayvandır",Easy
+3602,Math,13² nedir?,159,169,179,189,B,13'ün karesi 169'a eşittir,Easy
+3603,Science,Dünya'nın Güneş etrafında izlediği yola ne ad veriyoruz?,Rotasyon,Yörünge,Devrim,Eksen,B,Dünya'nın Güneş etrafındaki yolu yörüngesidir,Easy
+3604,Science,Michaelis-Menten denklemi neyi tanımlamak için kullanılır?,Enzim kinetiği,Kimyasal denge,Gaz davranışı,Nükleer bozunma,A,Michaelis-Menten enzim kinetiğini açıklıyor,Medium
+3605,Math,F = [y -x] için birim çember etrafındaki ∮ F·dr çizgi integrali nedir?,0,π,2π,-2π,C,[y -x]'in birim çember etrafındaki çizgi integrali 2π'dir,Medium
+3606,Science,Bir yarı iletkende değerlik ve iletim bantları arasındaki minimum enerji farkının adı nedir?,Bant aralığı,Çalışma fonksiyonu,Fermi seviyesi,Bağlayıcı enerji,A,"Bant aralığı, yarı iletkenlerdeki enerji farkıdır",Medium
+3607,Science,Enerjinin SI birimi nedir?,Newton,Joule,Watt,Pascal,B,"Joule, enerjinin SI birimidir",Medium
+3608,Math,sin(x)'in x = 0 etrafındaki Taylor serisi açılımı nedir?,x - x³/3! + x⁵/5! - ...,1 - x²/2! + x⁴/4! - ...,x + x²/2! + x³/3! + ...,1 + x + x²/2! + ...,A,Sin(x)'in Taylor serisi x - x³/3! + x⁵/5! - ...,Medium
+3609,Science,1 gram suyun sıcaklığını 1°C artırmak için gereken ısı miktarına ne ad verilir?,Kalori,Joule,BTU,Watt-saat,A,Bir kalori 1 gram suyun sıcaklığını 1°C yükseltir,Medium
+3610,Art,Hangi Rönesans sanat tekniği ıslak kireç sıva üzerine resim yapmayı içerir?,Yağlıboya tablo,Tempera,Fresk,Suluboya,C,"Fresk, ıslak sıva üzerine resim yapmayı içerir",Medium
+3611,Math,Tepe noktası yukarı doğru açılan bir parabolün denklemi nedir?,y = x²,x = y²,y² = x,x² + y² = 1,A,Tepe noktası orijinde olan parabol y = x²'dir,Medium
+3612,Science,Gök cisimlerinin kimyasal yapılarını inceleyen bilim dalına ne ad verilir?,Kozmoloji,Astrofizik,Astrokimya,Astrobiyoloji,C,Astrokimya gök cisimlerinin bileşimini inceler,Medium
+3613,Science,İlaçların canlı organizmaları nasıl etkilediğini inceleyen bilim dalına ne ad verilir?,Farmakoloji,Toksikoloji,Fizyoloji,Patoloji,A,"Farmakoloji, ilaçların organizmalar üzerindeki etkilerini inceler",Medium
+3614,Math,Doğrusal bir denklemin eğim-kesişim formu nedir?,ax + by = c,y = mx + b,y - y₁ = m(x - x₁),x = benim + b,B,Eğim-kesişim formu y = mx + b'dir,Medium
+3615,Animals,Alacakaranlıkta aktif olan hayvanlara ne ad verilir?,Günlük,Geceleyin,Alacakaranlık,Aritmik,C,Alacakaranlık hayvanları alacakaranlıkta aktiftir,Medium
+3616,Science,Hücrelerin yapı ve işlevlerini inceleyen bilim dalına ne ad verilir?,Sitoloji,Histoloji,Embriyoloji,Fizyoloji,A,"Sitoloji, hücrelerin incelenmesidir",Medium
+3617,Science,Fizikte hiyerarşi problemini çözebilecek teorik çerçeve nedir?,Süpersimetri,Ekstra boyutlar,Renkli teknik,Yukarıdakilerin hepsi,D,Hiyerarşi sorununu ele alan birden fazla yaklaşım,Hard
+3618,Math,P ve NP sorusuna ilişkin Milenyum Ödül Problemi nedir?,Hızlıca doğrulanabilir çözümleri olan sorunların hızlı bir şekilde çözülüp çözülemeyeceği,Asal sayı dağılımı,Diferansiyel topoloji,Cebirsel geometri,A,"P vs NP, doğrulama ile çözüm karmaşıklığı arasındaki farkı soruyor",Hard
+3619,Science,Kapalı zamansal eğriler yaratabilecek teorik sürecin adı nedir?,Genel görelilik zaman yolculuğu,Kuantum tünelleme,Takyonik sinyalleme,Nedensel döngüler,A,Genel görelilik teorik zaman yolculuğuna izin verir,Hard
+3620,Science,Fiziksel bir sistemdeki bilgi yoğunluğunun teorik sınırı nedir?,Planck yoğunluğu,Bekenstein sınırı,Shannon entropisi,Landauer sınırı,B,Bekenstein sınırı bilgi yoğunluğunu sınırlar,Hard
+3621,Math,Geometrik Langlands varsayımı nedir?,D-modüller ve ters demetler arasındaki ikilik,Asal sayılar teorisi,Cebirsel topoloji,Karmaşık analiz,A,"Geometrik Langlands, D-modülleri ve kasnakları ilgilendirir",Hard
+3622,Science,Kütlenin kökenini açıklayabilecek teorik mekanizma nedir?,Higgs mekanizması,Kendiliğinden simetri kırılması,Elektrozayıf teori,Yukarıdakilerin hepsi,D,Tüm mekanizmalar kütle kökenini açıklar,Hard
+3623,Art,'The Gates' gibi büyük ölçekli çevresel enstalasyonlarıyla tanınan çağdaş sanatçı hangisidir?,Andy Goldsworthy,Christo ve Jeanne-Claude,Robert Smithson,Walter De Maria,B,Christo ve Jeanne-Claude The Gates'i yarattı,Hard
+3624,Math,Erdős-Straus sanısı neyle ilgilidir?,"Her kesir 4/n, üç birim kesrin toplamı olarak ifade edilebilir",Asal sayı boşlukları,Grafik boyama problemleri,Sayı teorisinin temelleri,A,Erdős-Straus birim kesir ayrıştırmasıyla ilgilidir,Hard
+3625,Science,Evrendeki madde-antimadde asimetrisini yaratmış olabilecek teorik faz geçişinin adı nedir?,Baryogenez,Büyük Patlama nükleosentezi,Kozmik enflasyon,Elektrozayıf baryogenez,A,Baryogenez madde-antimadde asimetrisini açıklıyor,Hard
+3626,Science,Kuantum mekaniğini gizli değişkenler aracılığıyla açıklamaya çalışan teorik çerçeve nedir?,Pilot dalga teorisi,Çoklu dünyalar yorumu,Kopenhag tercümesi,Tutarlı geçmişler,A,Pilot dalga teorisi gizli değişkenleri kullanır,Hard
+3627,Math,Beilinson varsayımı ne hakkındadır?,L-fonksiyonlarının ve motivik kohomolojinin özel değerleri,Cebirsel geometri temelleri,Sayı teorisi uygulamaları,Diferansiyel denklemler,A,Beilinson varsayımı L-fonksiyonları ve kohomoloji ile ilgilidir,Hard
+3628,Science,Fiziksel süreçlerden bilgi ve hesaplamanın nasıl ortaya çıkabileceğini inceleyen bilim dalına ne ad verilir?,Dijital fizik,Hesaplamalı fizik,Bilgi teorisi,Yukarıdakilerin hepsi,A,"Dijital fizik, fizikten hesaplamayı inceler",Hard
+3629,Science,İnsan vücudundaki en küçük kemik hangisidir?,Üzengi kemiği,Çekiç,Örs,Fibula,A,Kulaktaki üzengi kemiği en küçük kemiktir,Easy
+3630,Math,28 ÷ 4 kaçtır?,6,7,8,9,B,28 bölü 4 eşittir 7,Easy
+3631,Science,Bakırın kimyasal sembolü nedir?,Cu,Ortak,Çp,Ce,A,Bakırın kimyasal sembolü Cu'dur,Easy
+3632,Animals,Hangi hayvan baraj inşa etmesiyle bilinir?,Su samuru,Kunduz,Misk sıçanı,Ornitorenk,B,Kunduzlar baraj inşa etmeleriyle bilinirler,Easy
+3633,Math,18 × 6 nedir?,98,108,118,128,B,18'i 6 ile çarparsak 108'e eşit olur,Easy
+3634,Science,Vücudun yiyecekleri parçalayarak enerji açığa çıkardığı süreç nedir?,Sindirim,Metabolizma,Solunum,Dolaşım,A,"Sindirim, yiyecekleri enerjiye dönüştürür",Easy
+3635,Sports,Hangi sporda topu çemberden geçirerek gol atılır?,Futbol,Basketbol,Beyzbol,Tenis,B,Basketbol topu çemberden geçirerek sayı yapar,Easy
+3636,Science,İnsanların hayatta kalabilmesi için hangi gazı soluması gerekir?,Karbondioksit,Azot,Oksijen,Helyum,C,İnsanların hayatta kalabilmesi için oksijene ihtiyacı vardır,Easy
+3637,Math,60'ın %55'i kaçtır?,30,33,36,39,B,60'ın %55'i 33'e eşittir,Easy
+3638,Science,İki yüzey arasındaki harekete karşı koyan kuvvet nedir?,Yer çekimi,Sürtünme,Manyetizma,Elektrik,B,"Sürtünme, yüzeyler arasındaki harekete karşı koyar",Easy
+3639,Animals,Hangi hayvanın hortumu vardır?,Fil,Gergedan,Su aygırı,Zürafa,A,Fillerin hortumları vardır,Easy
+3640,Math,14² nedir?,186,196,206,216,B,14'ün karesi 196'ya eşittir,Easy
+3641,Science,"Yıldızları, gezegenleri ve galaksileri inceleyen bilim dalına ne ad verilir?",Jeoloji,Biyoloji,Astronomi,Meteoroloji,C,"Astronomi yıldızları, gezegenleri ve galaksileri inceler",Easy
+3642,Science,Nernst denklemi hangi hesaplamada kullanılır?,Standart dışı koşullar altında elektrot potansiyeli,Tepkime hızı sabitleri,Gaz çözünürlüğü,Moleküler ağırlık,A,Nernst denklemi elektrot potansiyelini hesaplar,Medium
+3643,Math,Birim küre üzerinde F = [x y z] için yüzey integrali ∬ F·dS nedir?,0,4π,8π,12π,B,[x y z]'nin birim küre üzerindeki yüzey integrali 4π'dir,Medium
+3644,Science,Bir yarı iletkenin içsel hale geldiği sıcaklığa ne ad verilir?,Curie sıcaklığı,Geçiş sıcaklığı,İçsel sıcaklık,Fermi sıcaklığı,C,"İçsel sıcaklık, yarı iletkenin içsel hale geldiği zamandır",Medium
+3645,Science,Elektrik yükünün SI birimi nedir?,Amper,Coulomb,Volt,Ohm,B,"Coulomb, elektrik yükü için SI birimidir",Medium
+3646,Math,e^x için Maclaurin serisi nedir?,1 + x + x²/2! + x³/3! + ...,x + x²/2 + x³/3 + ...,1 + x + x² + x³ + ...,x - x²/2! + x³/3! - ...,A,e^x için Maclaurin serisi 1 + x + x²/2! + x³/3! + ...,Medium
+3647,Science,Organizmaların döllenmiş yumurtadan yetişkine nasıl geliştiğini inceleyen bilim dalı hangisidir?,Embriyoloji,Genetik,Evrim,Taksonomi,A,Embriyoloji organizma gelişimini inceler,Medium
+3648,Art,Hangi boyama tekniği opak bir zemin üzerine yarı saydam boya katmanları uygulamayı içerir?,Pasto,Cam,Karmakarışık,Alla prima,B,"Sırlama, opak taban üzerine yarı saydam katmanlar uygular",Medium
+3649,Math,a ve b yarı eksenleri olan bir elipsin alan formülü nedir?,πab,2πab,πa²b,πab²,A,Elipsin alanı πab'dir,Medium
+3650,Science,Türlerin ve ekosistemlerin coğrafi uzaydaki dağılımını inceleyen bilim dalına ne ad verilir?,Ekoloji,Biyocoğrafya,Taksonomi,Sistematik,B,Biyocoğrafya türlerin dağılımını inceler,Medium
+3651,Science,Bir nükleer zincirleme reaksiyonun devam edebilmesi için gereken minimum madde miktarını ifade eden terim nedir?,Kritik kütle,Eşik kütlesi,Minimum kütle,Tepkime kütlesi,A,Kritik kütle nükleer zincirleme reaksiyonu sürdürür,Medium
+3652,Math,dy/dx = y diferansiyel denkleminin genel çözümü nedir?,y = Ce^x,y = Cx,y = C/x,y = Ce^(-x),A,dy/dx = y denkleminin çözümü y = Ce^x'tir.,Medium
+3653,Animals,Ayıların en büyük türü hangisidir?,Boz ayı,Kutup ayısı,Boz ayı,Kara ayı,B,Kutup ayıları en büyük ayı türüdür,Medium
+3654,Science,Popülasyonların zaman içinde nasıl değiştiğini inceleyen bilim dalına ne ad verilir?,Demografi,Nüfus dinamikleri,Ekoloji,Evrim,B,"Nüfus dinamikleri, nüfus değişimlerini inceler",Medium
+3655,Science,Kuantum alan teorisini genel görelilikle birleştirebilecek teorik çerçeve nedir?,Döngü kuantum yerçekimi,Sicim teorisi,Nedensel dinamik üçgenleme,Yukarıdakilerin hepsi,D,Kuantum yerçekimini deneyen birden fazla yaklaşım,Hard
+3656,Math,Navier-Stokes varlığı ve benzersizliği olarak bilinen Clay Millennium Ödül Problemi nedir?,Çözümlerin var olduğunu ve her zaman için benzersiz olduğunu kanıtlıyoruz,Denklemleri analitik olarak çözme,Kesin çözümler bulmak,Sayısal yaklaşımların hesaplanması,A,Navier-Stokes problemi varoluş ve benzersizliği sorgular,Hard
+3657,Science,Kara deliklerden enerji çıkarılmasını sağlayabilecek teorik sürecin adı nedir?,Penrose süreci,Hawking radyasyonu,Kara delik madenciliği,Ergosfer çıkarımı,A,Penrose işlemi kara delik enerjisini çıkarabilir,Hard
+3658,Science,Hesaplama için gereken teorik minimum enerji nedir?,Silinen bit başına kT ln(2),Sıfır enerji,Planck enerjisi,Kuantum enerjisi,A,Landauer ilkesi minimum enerjiyi belirler,Hard
+3659,Math,Baum-Connes varsayımı ne hakkındadır?,C*-cebirlerinin K-teorisi ve grup eylemleri,Cebirsel topolojinin temelleri,Sayı teorisi uygulamaları,Geometrik analiz,A,"Baum-Connes, C*-cebirlerinin K-teorisiyle ilgilidir",Hard
+3660,Science,Maddenin ulaşabileceği teorik maksimum sıcaklık nedir?,Planck sıcaklığı,Hagedorn sıcaklığı,GUT ölçeği sıcaklığı,Elektrozayıf ölçek,A,Planck sıcaklığı teorik maksimumdur,Hard
+3661,Art,Tate Modern'deki 'Hava Durumu Projesi' adlı enstalasyonu hangi sanatçı yarattı?,Anselm Kiefer,Olafur Eliasson,James Turrell,Dan Flavin,B,"Olafur Eliasson, Hava Durumu Projesi'ni yarattı",Hard
+3662,Math,Mumford varsayımı neyle ilgilidir?,Eğrilerin modül uzaylarının kararlı kohomolojisi,Cebirsel geometri temelleri,Sayı teorisi problemleri,Diferansiyel topoloji,A,Mumford varsayımı modül uzay kohomolojisini ilgilendiriyor,Hard
+3663,Science,Beşinci temel kuvveti aracılık edebilecek teorik parçacığın adı nedir?,Öz,Bukalemun,Axion,Hepsi aday,D,Beşinci kuvvet için önerilen çoklu parçacıklar,Hard
+3664,Science,Kuantum dolanıklığından uzay-zamanın ortaya çıkışını açıklayan teorik çerçeve nedir?,Holografik prensip,AdS/CFT yazışmaları,Ortaya çıkan yerçekimi,Yukarıdakilerin hepsi,D,Hepsi dolanıklıktan uzay-zamanın ortaya çıkışını anlatıyor,Hard
+3665,Math,Weil varsayımları (şimdi teoremler) ne hakkındadır?,Sonlu cisimler üzerinde cebirsel çeşitlerin Zeta fonksiyonları,Asal sayı dağılımı,Eliptik eğri teorisi,Modüler form teorisi,A,Weil varsayımları çeşitlilik zeta fonksiyonlarıyla ilgilidir,Hard
+3666,Science,Biyolojik veya kimyasal süreçler kullanılarak hesaplamaların nasıl yapılabileceğini inceleyen bilim dalına ne ad verilir?,Biyobilgisayar,Kimyasal hesaplama,Moleküler hesaplama,Yukarıdakilerin hepsi,D,Tüm çalışma alternatif hesaplama yöntemleri,Hard
+3667,Science,Dünya'ya en yakın gezegen hangisidir?,Venüs,Mars,Merkür,Jüpiter,A,Venüs ortalama olarak Dünya'ya en yakın konumdadır,Easy
+3668,Math,35 × 2 nedir?,60,65,70,75,C,35'in 2 ile çarpımı 70'e eşittir,Easy
+3669,Science,Çinkonun kimyasal sembolü nedir?,Z,Çinko,Zi,Zc,B,Çinkonun kimyasal sembolü Zn'dir,Easy
+3670,Animals,Tehdit edildiğinde kötü kokulu bir sıvı püskürtme yeteneğiyle bilinen hayvan hangisidir?,Rakun,Kokarca,Opossum,Kirpi,B,Kokarcalar tehdit edildiklerinde kötü kokulu sıvı püskürtürler,Easy
+3671,Math,156 ÷ 12 kaçtır?,12,13,14,15,B,156 bölü 12 eşittir 13,Easy
+3672,Science,Dişi koruyan sert dış tabakaya ne ad verilir?,Dentin,Emaye,Hamur,Çimento,B,"Mine, dişlerin sert dış tabakasıdır",Easy
+3673,Sports,Voleybol takımında oyun sırasında kaç oyuncu bulunur?,5,6,7,8,B,Voleybol takımlarının sahada 6 oyuncusu vardır,Easy
+3674,Science,Cildimiz güneş ışığına maruz kaldığında hangi vitamin üretilir?,A vitamini,C vitamini,D vitamini,E vitamini,C,D vitamini güneş ışığına maruz kalma sonucu oluşur,Easy
+3675,Math,80'in %65'i kaçtır?,48,52,56,60,B,80'in %65'i 52'ye eşittir,Easy
+3676,Science,"Kayaçların rüzgar, yağmur ve buz tarafından parçalanması süreci nedir?",Erozyon,Aşınma,İfade,Sedimentasyon,B,Aşınma kayaları parçalıyor,Easy
+3677,Animals,Hangi hayvanın vücut büyüklüğüne göre en uzun boynu vardır?,Zürafa,Kuğu,Flamingo,Devekuşu,A,Zürafalar vücut boyutlarına göre en uzun boyuna sahiptir,Easy
+3678,Math,16² nedir?,246,256,266,276,B,16'nın karesi 256'ya eşittir,Easy
+3679,Science,Dünyanın ortasından geçen hayali çizgiye ne ad veriyoruz?,Ekvator,Başlangıç ​​Meridyeni,Yengeç Dönencesi,Oğlak Dönencesi,A,"Ekvator, Dünya'nın ortasındaki hayali çizgidir",Easy
+3680,Science,Henderson-Hasselbalch denklemi neyi hesaplamak için kullanılır?,tampon çözeltilerin pH'ı,Tepkime denge sabitleri,Gaz çözünürlük katsayıları,Moleküler orbital enerjileri,A,Henderson-Hasselbalch tampon pH'ını hesaplıyor,Medium
+3681,Science,Bir atomun en dış kabuğundan bir elektronu koparmak için gereken enerjiye ne ad verilir?,Birinci iyonlaşma enerjisi,Elektron ilgisi,Elektronegatiflik,Çalışma fonksiyonu,A,Birinci iyonlaşma enerjisi en dıştaki elektronu uzaklaştırır,Medium
+3682,Science,Işık akısının SI birimi nedir?,Şamdan,Lümen,Lüks,Watt,B,"Lümen, ışık akısı için kullanılan SI birimidir",Medium
+3683,Math,(1+x)^n'nin |x| < 1 için kuvvet serisi açılımı nedir?,Σ(n k'yi seç)x^k,Σnx^k/k!,Σx^k/k!,Σx^k,A,Binom serisi Σ(n k'yi seç)x^k'dır,Medium
+3684,Science,Akışkanların hareketini inceleyen bilim dalına ne ad verilir?,Akışkan statiği,Akışkanlar dinamiği,Hidrostatik,Hidrodinamik,B,Akışkanlar dinamiği akışkan hareketini inceler,Medium
+3685,Art,Küçük fırça darbelerinin ve ışığın ön planda olduğu sanat akımı hangisidir?,Gerçekçilik,İzlenimcilik,Ekspresyonizm,Kübizm,B,Empresyonizmde görünür fırça darbeleri ve hafif vurgular vardı,Medium
+3686,Math,a'dan b'ye giden y = f(x) eğrisinin yay uzunluğu formülü nedir?,∫√(1 + (dy/dx)²) dx,∫√(1 + (dx/dy)²) dy,∫(dy/dx) dx,∫√((dx)² + (dy)²),A,Yay uzunluğu ∫√(1 + (dy/dx)²) dx'tir,Medium
+3687,Science,Organizmalar ile çevreleri arasındaki etkileşimi inceleyen bilim dalına ne ad verilir?,Taksonomi,Ekoloji,Evrim,Genetik,B,"Ekoloji, organizma-çevre etkileşimlerini inceler",Medium
+3688,Science,Katı bir maddenin doğrudan gaza dönüşmesi için gereken enerji miktarına ne ad verilir?,Füzyon ısısı,Buharlaşma ısısı,Süblimleşme ısısı,Özgül ısı,C,Süblimleşme ısısı katıyı doğrudan gaza dönüştürür,Medium
+3689,Math,Ayrık bir sistemin kütle merkezi formülü nedir?,Σmiri / Σmi,Σri / n,Σmi / Σri,Ri,A,Kütle merkezi Σmiri / Σmi'dir,Medium
+3690,Animals,En hızlı uçan kuş hangisidir?,Doğan,Altın kartal,Albatros,Sinek kuşu,A,Doğan en hızlı uçan kuştur,Medium
+3691,Science,Atom çekirdeklerinin özelliklerini ve davranışlarını inceleyen bilim dalına ne ad verilir?,Nükleer fizik,Parçacık fiziği,Atom fiziği,Kuantum fiziği,A,Nükleer fizik atom çekirdeklerini inceler,Medium
+3692,Science,Karanlık maddeyi açıklamak için önerilen teorik parçacık nedir?,Nötralino,Korkak,Axion,Yukarıdakilerin hepsi,D,Karanlık madde için önerilen çoklu parçacıklar,Hard
+3693,Math,Birch ve Swinnerton-Dyer sanısı ile ilgili Milenyum Ödül Problemi nedir?,Eliptik eğrilerin sıralaması ve L-fonksiyonları,Asal çarpanlara ayırma algoritmaları,Diferansiyel denklem çözümleri,Topolojik değişmezler,A,BSD varsayımı eliptik eğri rütbesini L-fonksiyonlarına bağlar,Hard
+3694,Science,Fiziksel sabitlerin gözlenen değerlere sahip olmalarını açıklayabilecek teorik çerçevenin adı nedir?,Antropik ilke,İnce ayar sorunu,Çoklu evren teorisi,Yukarıdakilerin hepsi,D,Sabitlerin neden gözlemlenen değerlere sahip olduğunu açıklayan tüm adresler,Hard
+3695,Science,Sanal parçacıkların kara deliklerin yakınında gerçek parçacıklara dönüşebileceği teorik süreç nedir?,Hawking radyasyonu,Unruh etkisi,Casimir etkisi,Çift üretim,A,Hawking radyasyonu sanal parçacık çiftlerini içerir,Hard
+3696,Math,Riemann-Roch teoremi nedir?,Cebirsel eğrilerin cebirsel ve topolojik özellikleri arasındaki ilişki,Asal sayı dağılımı,Diferansiyel denklemler teorisi,Karmaşık analiz temelleri,A,Riemann-Roch cebir ve eğrilerin topolojisini ilişkilendirir,Hard
+3697,Science,İki sıcaklık rezervuarı arasında çalışan bir ısı motorunun teorik maksimum verimi nedir?,Carnot verimliliği: 1 - Tc/Th,Otto verimliliği,Dizel verimliliği,Brayton verimliliği,A,Carnot verimliliği teorik olarak maksimumdur,Hard
+3698,Art,Hangi sanat akımı Wassily Kandinsky tarafından kurulmuş olup soyut formlar aracılığıyla ruhsal ifadeye odaklanmıştır?,Der Blaue Reiter,Die Brücke,Bauhaus,Dada,A,Der Blaue Reiter Kandinsky tarafından kuruldu.,Hard
+3699,Math,Atiyah-Singer indeks teoremi ne hakkındadır?,Eliptik operatörlerin analitik ve topolojik özellikleri arasındaki ilişki,Doğrusal cebir uygulamaları,Sayı teorisinin temelleri,Hesaplama varyasyonları,A,İndeks teoremi analitik ve topolojik özellikleri ilişkilendirir,Hard
+3700,Science,Nötron yıldızlarının çekirdeklerinde bulunabilecek maddenin teorik fazının adı nedir?,Garip madde,Kuark maddesi,Renk süperiletkeni,Yukarıdakilerin hepsi,D,Hepsi nötron yıldızlarındaki teorik evrelerdir,Hard
+3701,Science,Kuantum bilgisinden uzay-zamanın nasıl ortaya çıkabileceğini açıklayan teorik çerçeve nedir?,"Bu, bit hipotezinden",Holografik prensip,AdS/CFT yazışmaları,Yukarıdakilerin hepsi,D,Hepsi bilgiden uzay-zamanın ortaya çıkışını tanımlıyor,Hard
+3702,Math,Modülerlik teoremi (eski adıyla Taniyama-Shimura varsayımı) neyle ilgilidir?,Rasyonel sayılar üzerindeki her eliptik eğri modülerdir,Asal sayı dağılımı,Diferansiyel geometri temelleri,Cebirsel topoloji uygulamaları,A,Modülerlik teoremi eliptik eğrilerin modüler olduğunu belirtir,Hard
+3703,Science,Biyolojik süreçlerin kuantum hesaplamasında nasıl kullanılabileceğini inceleyen bilim dalına ne ad verilir?,Kuantum biyolojisi,Biyobilgisayar,Kuantum biyobilgisayar,Moleküler hesaplama,C,"Kuantum biyobilgisayarı, kuantum hesaplama için biyolojiyi kullanır",Hard
+3704,Science,Kanın sıvı kısmına ne ad verilir?,Plazma,Serum,Hemoglobin,Trombositler,A,Plazma kanın sıvı kısmıdır,Easy
+3705,Math,42 × 2 nedir?,82,84,86,88,B,42'yi 2 ile çarparsak 84'e eşit olur,Easy
+3706,Science,Kurşunun kimyasal sembolü nedir?,L,Le,Kurşun,Ld,C,Kurşunun kimyasal sembolü Pb'dir,Easy
+3707,Animals,Hangi hayvan mükemmel hafızasıyla bilinir?,Köpek,Fil,Kedi,Atış,B,Filler mükemmel hafızalarıyla bilinirler,Easy
+3708,Math,192 ÷ 16 kaçtır?,11,12,13,14,B,192 bölü 16 eşittir 12,Easy
+3709,Science,Beyni koruyan kemiğe ne ad verilir?,Kafatası,Kafatası,Hem A hem de B,Omurga,C,Hem kafatası hem de kafatası kemiği beyni korur,Easy
+3710,Sports,"Hangi sporda sopayla topa vurup, kale etrafında koşarsınız?",Tenis,Beyzbol,Kriket,Golf,B,"Beyzbol, topa vurmak ve üsleri koşmak için bir sopa kullanır",Easy
+3711,Science,Bitkinin hangi kısmı su ve besinleri köklerden yapraklara iletir?,Kök,Yapraklar,Çiçekler,Meyveler,A,Gövde su ve besinleri iletir,Easy
+3712,Math,120'nin %75'i kaçtır?,80,85,90,95,C,120'nin %75'i 90'a eşittir,Easy
+3713,Science,Omurgası olmayan hayvanların büyüdükçe dış kabuklarını dökmeleri süreci nasıldır?,Tüy dökme,Başkalaşım,Kış uykusu,Göç,A,"Tüy dökme, dış örtünün dökülmesidir",Easy
+3714,Animals,Karada en hızlı koşan hayvan hangisidir?,Çita,Aslan,Atış,Antilop,A,Çita en hızlı kara koşucusudur,Easy
+3715,Math,17² nedir?,279,289,299,309,B,17'nin karesi 289'a eşittir,Easy
+3716,Science,Bir gezegenin bir yıldızın etrafında izlediği yola ne ad veririz?,Rotasyon,Yörünge,Devrim,Eksen,B,Bir gezegenin bir yıldız etrafındaki yolu onun yörüngesidir,Easy
+3717,Science,Van 't Hoff denklemi neyi tanımlamak için kullanılır?,Denge sabitlerinin sıcaklığa bağımlılığı,Tepkime hızı kinetiği,Gaz fazı davranışı,Çözüm özellikleri,A,van 't Hoff denklemi sıcaklık-denge ilişkisini tanımlar,Medium
+3718,Math,F kuvvetinin C yolu boyunca yaptığı iş aşağıdaki gibi hesaplanır:,∮ F·dr,∮ F×dr,∮ |F|dr,∮ F/dr,A,İş çizgi integralidir ∮ F·dr,Medium
+3719,Science,Atomlardaki elektronların hareketiyle ilişkili enerjiye ne ad verilir?,Kinetik enerji,Elektronik enerji,Yörünge enerjisi,Bağlayıcı enerji,C,Yörünge enerjisi elektron hareketiyle ilişkilidir,Medium
+3720,Science,Manyetik akının SI birimi nedir?,Tesla,Weber,Henry,Gauss,B,"Weber, manyetik akı için SI birimidir",Medium
+3721,Math,Periyodik bir fonksiyon f(x)'in Fourier serisi gösterimi nedir?,a₀ + Σ[aₙcos(nx) + bₙsin(nx)],Σaₙe^(inx),Σaₙx^n,∫f(x)dx,A,Fourier serisi a₀ + Σ[aₙcos(nx) + bₙsin(nx)] şeklindedir,Medium
+3722,Science,Bir maddenin algılanabilir bir tepki üretebilecek minimum konsantrasyonuna ne ad verilir?,Eşik konsantrasyonu,Tespit sınırı,Hassasiyet sınırı,Tepki eşiği,B,"Tespit limiti, tespit edilebilir minimum konsantrasyondur",Medium
+3723,Art,Geleneksel perspektifin reddedilip kolaj kullanımının öne çıktığı sanat akımı hangisidir?,İzlenimcilik,Fovizm,Kübizm,Gerçeküstücülük,C,Kübizm geleneksel perspektifi reddetti ve kolaj kullandı,Medium
+3724,Math,Katı bir kürenin merkezine göre eylemsizlik momenti nedir?,⅖mr²,⅖mr²,½mr²,⅔mr²,A,Katı kürenin eylemsizlik momenti ⅖mr²'dir,Medium
+3725,Science,Canlı organizmalarda meydana gelen kimyasal olayları inceleyen bilim dalına ne ad verilir?,Biyokimya,Organik kimya,Fiziksel kimya,Analitik kimya,A,"Biyokimya, organizmalardaki kimyasal süreçleri inceler",Medium
+3726,Science,Bir atom veya iyondan bir elektronu tamamen uzaklaştırmak için gereken enerjiye ne ad verilir?,İyonlaşma enerjisi,Elektron ilgisi,Elektronegatiflik,Bağlayıcı enerji,A,İyonlaşma enerjisi elektronları tamamen uzaklaştırır,Medium
+3727,Math,İkinci dereceden bir denklemin standart biçimi nedir?,ax² + bx + c = 0,y = mx + b,ax + by = c,y = ax² + bx + c,A,Standart ikinci dereceden form ax² + bx + c = 0'dır,Medium
+3728,Animals,Kanat açıklığına göre yaşayan en büyük kuş hangisidir?,Albatros,Kondor,Kartal,Pelikan,A,Albatros en büyük kanat açıklığına sahiptir,Medium
+3729,Science,Gazların davranışlarını inceleyen bilim dalına ne ad verilir?,Gaz yasaları,Pnömatik,Akışkanlar mekaniği,Termodinamik,B,"Pnömatik, gaz davranışını inceler",Medium
+3730,Science,Kara deliklerin kuantum tanımını sağlayabilecek teorik çerçevenin adı nedir?,Kara delik termodinamiği,Holografik prensip,Sicim teorisi,Yukarıdakilerin hepsi,D,Hepsi kuantum kara delik açıklamaları sağlar,Hard
+3731,Math,Poincaré sanısı olarak da bilinen Milenyum Ödül Problemi neyle ilgilidir?,"Her basit bağlı kapalı 3-manifold, 3-küreye homeomorftur",4-manifoldların topolojisi,Cebirsel geometri temelleri,Diferansiyel denklemler teorisi,A,Poincaré varsayımı (şimdi teorem) 3-katlılarla ilgilidir,Hard
+3732,Science,Maddenin uzay-zaman manipülasyonu yoluyla ışıktan daha hızlı hareket etmesini sağlayabilecek teorik süreç nedir?,Alcubierre warp sürücüsü,Takiyonik seyahat,Solucan deliği geçişi,Kuantum tünelleme,A,"Alcubierre sürücüsü, FTL için uzay-zamanı manipüle ediyor",Hard
+3733,Science,Kuantum etkileri nedeniyle elektronik cihazların ne kadar küçük yapılabileceğinin teorik sınırı nedir?,Kuantum sınırı,Balistik sınır,Tünelleme sınırı,Yukarıdakilerin hepsi,D,Hepsi cihaz boyutunda kuantum sınırlarını temsil ediyor,Hard
+3734,Math,Selberg iz formülü nedir?,Hiperbolik yüzeylerin geometrik ve spektral özellikleri arasındaki ilişki,Asal sayılar teorisi,Cebirsel geometri uygulamaları,Karmaşık analiz temelleri,A,Selberg iz formülü geometri ve spektrumu ilişkilendirir,Hard
+3735,Science,Kuantum dalgalanmalarının daha fazla soğumayı engelleyeceği teorik sıcaklık nedir?,Mutlak sıfır,Planck sıcaklığı,Unruh sıcaklığı,Hawking sıcaklığı,A,"Mutlak sıfır, kuantum dalgalanmalarından kaynaklanan bir sınırdır",Hard
+3736,Art,Büyük ölçekli objeleri ve manzaraları ambalajlamasıyla ünlü çağdaş sanatçı hangisidir?,Andy Warhol,Christo ve Jeanne-Claude,Jeff Koons,Damien Hirst,B,Christo ve Jeanne-Claude büyük nesneleri sardılar,Hard
+3737,Math,Lafforgue teoremi nedir?,Langlands fonksiyon alanları için yazışmalar,Sayı teorisi uygulamaları,Cebirsel topolojinin temelleri,Diferansiyel geometri,A,"Lafforgue, Langlands'ı fonksiyon alanları için kanıtladı",Hard
+3738,Science,Kuantum kromodinamiğinde güçlü CP problemini çözebilecek teorik parçacığın adı nedir?,Axion,Manyetik monopol,Süpersimetrik parçacık,Ekstra boyutlu parçacık,A,Axion güçlü CP sorununu çözebilir,Hard
+3739,Science,Mikrotübüllerdeki kuantum süreçlerinden bilincin nasıl ortaya çıkabileceğini açıklayan teorik çerçeve nedir?,Orkestralı hedef azaltma,Kuantum bilgi teorisi,Çoklu dünyalar yorumu,Pilot dalga teorisi,A,Orkestralı VEYA teorisi kuantum bilincini tanımlar,Hard
+3740,Math,Kazhdan-Lusztig varsayımı ne hakkındadır?,Lie gruplarının indirgenemez gösterimlerinin karakterleri,Asal çarpanlara ayırma yöntemleri,Diferansiyel denklem çözümleri,Cebirsel geometri uygulamaları,A,"Kazhdan-Lusztig, Lie grubu temsilleriyle ilgili",Hard
+3741,Science,Kuantum bilgisinin karmaşık sistemleri simüle etmek için nasıl kullanılabileceğini inceleyen bilim dalına ne ad verilir?,Kuantum simülasyonu,Dijital fizik,Hesaplamalı fizik,Yukarıdakilerin hepsi,A,"Kuantum simülasyonu, sistem simülasyonu için kuantum bilgilerini kullanır",Hard
+3742,Science,Bir elementin özelliklerini koruyan en küçük madde birimi nedir?,Molekül,Atom,Proton,Elektron,B,"Atom, bir elementin en küçük birimidir",Easy
+3743,Math,48 ÷ 6 kaçtır?,6,7,8,9,C,48 bölü 6 eşittir 8,Easy
+3744,Science,Kalayın kimyasal sembolü nedir?,T,Ti,Sn,Tennessee,C,Kalayın kimyasal sembolü Sn'dir,Easy
+3745,Animals,Hem suda hem karada yaşayabilen hayvan hangisidir?,Balık,Kurbağa,Kuş,Memeli,B,Kurbağalar hem suda hem de karada yaşayabilirler,Easy
+3746,Math,25 × 4 nedir?,90,95,100,105,C,25'in 4 ile çarpımı 100'e eşittir,Easy
+3747,Science,Vücuda kan pompalayan organ hangisidir?,Akciğer,Kalp,Karaciğer,Böbrek,B,Kalp vücuda kan pompalar,Easy
+3748,Sports,Hangi sporda oyuncular buz üzerinde taşları hedefe doğru kaydırırlar?,Kıvrılma,Buz hokeyi,Artistik patinaj,Sürat pateni,A,Curling buz üzerindeki taşları hedefe doğru kaydırır,Easy
+3749,Science,Bitkiler güneş ışığını kullanarak karbondioksit ve suyu glikoza dönüştürmek için hangi işlemi kullanırlar?,Solunum,Fotosentez,Terleme,Fermantasyon,B,Fotosentez CO2 ve suyu glikoza dönüştürür,Easy
+3750,Math,125'in %80'i kaçtır?,90,95,100,105,C,125'in %80'i 100'e eşittir,Easy
+3751,Science,Canlıları inceleyen bilim dalına ne ad verilir?,Fizik,Kimya,Biyoloji,Jeoloji,C,Biyoloji canlıların incelenmesidir,Easy
+3752,Animals,Yavrusunu kesesinde taşımasıyla bilinen hayvan hangisidir?,Koala,Kanguru,Opossum,Yukarıdakilerin hepsi,D,Tüm bu hayvanlar yavrularını keselerde taşırlar,Easy
+3753,Math,18² nedir?,314,324,334,344,B,18'in karesi 324'e eşittir,Easy
+3754,Science,Kayaçları ve mineralleri inceleyen bilim insanlarına ne ad verilir?,Biyologlar,Jeologlar,Gökbilimciler,Meteorologlar,B,Jeologlar kayaları ve mineralleri inceler,Easy`;

@@ -24,6 +24,7 @@ import { NativeModules } from 'react-native';
 import BannerAdComponent from '../components/common/BannerAdComponent';
 import { useTranslation } from 'react-i18next';
 import { changeLanguage, getCurrentLanguage } from '../locales/i18n';
+import QuestionService from '../services/QuestionService';
 
 interface NotificationSettings {
   morningReminder: boolean;
@@ -129,6 +130,11 @@ const SettingsScreen: React.FC = () => {
     setCurrentLanguage(lang);
     // Trigger re-render
     i18n.changeLanguage(lang);
+
+    // Reinitialize questions with new language
+    console.log('🔄 [SettingsScreen] Reinitializing questions for language:', lang);
+    await QuestionService.reinitialize();
+    console.log('✅ [SettingsScreen] Questions reinitialized successfully');
   };
   
   const handleMorningReminderToggle = async (value: boolean) => {
