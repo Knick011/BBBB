@@ -124,7 +124,7 @@ class HybridTimerService {
           this.currentData = {
             remainingTime: this.timeLeft,
             todayScreenTime: existingScreenTime, // Preserve existing screen time data
-            overtime: this.overtimeSeconds, // Use our persistent overtime
+            overtime: this.overtime, // Use our persistent overtime
             isAppForeground: data.isAppForeground || false,
             isTracking: data.isTracking || false,
             notificationTitle: data.notificationTitle,
@@ -173,14 +173,14 @@ class HybridTimerService {
             ...this.currentData,
             remainingTime: this.timeLeft,
             todayScreenTime: this.screenTime,
-            overtime: this.overtimeSeconds, // Use our persistent overtime
+            overtime: this.overtime, // Use our persistent overtime
             notificationTitle: data.notificationTitle,
             notificationText: data.notificationText
           };
         } else {
           this.currentData = {
             ...data,
-            overtime: this.overtimeSeconds // Use our persistent overtime
+            overtime: this.overtime // Use our persistent overtime
           };
         }
         
@@ -216,7 +216,7 @@ class HybridTimerService {
       this.currentData = {
         remainingTime: remaining,
         todayScreenTime: screenTime,
-        overtime: this.overtimeSeconds, // Use persistent overtime
+        overtime: this.overtime, // Use persistent overtime
         isAppForeground: false,
         isTracking: false
       };

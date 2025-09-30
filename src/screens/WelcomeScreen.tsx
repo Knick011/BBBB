@@ -77,60 +77,12 @@ const WelcomeScreen: React.FC = () => {
       bulletIcons: slideIcons.mascot
     },
     {
-      title: "Quiz & Learn",
-      bullets: [
-        "Multiple categories to explore",
-        "Earn points with correct answers",
-        "Learn from detailed explanations",
-        "Track your knowledge growth"
-      ],
-      icon: "head-question",
-      gradient: ['#FFA726', '#FFCC80'],
-      bulletIcons: slideIcons.quiz
-    },
-    {
-      title: "Earn Screen Time",
-      bullets: [
-        "Correct answers = Screen time",
-        "Persistent notification tracking",
-        "Build healthier digital habits",
-        "Stay aware of your usage"
-      ],
-      icon: "timer",
-      gradient: ['#4ECDC4', '#A8E6CF'],
-      bulletIcons: slideIcons.screenTime
-    },
-    {
-      title: "Manage Overtime",
-      bullets: [
-        "Time runs out? Overtime begins",
-        "Extra usage = Negative scores",
-        "Affects overall performance",
-        "Stay mindful, use time wisely"
-      ],
-      icon: "warning",
-      gradient: ['#FF6B6B', '#FFB8B8'],
-      bulletIcons: slideIcons.overtime
-    },
-    {
-      title: "Daily Goals",
-      bullets: [
-        "Complete goals for big rewards",
-        "Limited but highly rewarding",
-        "Honor-based = Free time",
-        "Keep your daily streak alive"
-      ],
-      icon: "target",
-      gradient: ['#A8E6CF', '#7FCDCD'],
-      bulletIcons: slideIcons.goals
-    },
-    {
       title: "Ready to Begin?",
-      subtitle: "Start your journey to:",
+      subtitle: "Start your journey to smarter learning and better screen habits!",
       bullets: [
-        "Smarter learning",
-        "Better screen habits",
-        "Daily growth",
+        "Answer quizzes to earn time",
+        "Build daily streaks",
+        "Complete goals for rewards",
         "CaBBy is here to help!"
       ],
       icon: "rocket-launch",
