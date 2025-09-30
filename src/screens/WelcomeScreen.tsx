@@ -53,15 +53,27 @@ const WelcomeScreen: React.FC = () => {
   const logoAnim = useRef(new Animated.Value(0)).current;
   const buttonAnim = useRef(new Animated.Value(0)).current;
 
-  // Check if language has been selected
+  // Check if language has been selected and if onboarding is complete
   useEffect(() => {
-    const checkLanguageSelection = async () => {
+    const checkInitialState = async () => {
       const languageSelected = await AsyncStorage.getItem('@BrainBites:languageSelected');
+      const onboardingComplete = await AsyncStorage.getItem('brainbites_onboarding_complete');
+
+      // If onboarding is already complete, skip to home
+      if (onboardingComplete === 'true') {
+        navigation.replace('Home');
+        return;
+      }
+
+      // If language hasn't been selected, show language selector
       if (!languageSelected) {
         setShowLanguageSelector(true);
+      } else {
+        // Language selected but onboarding not complete, show welcome slides
+        setShowLanguageSelector(false);
       }
     };
-    checkLanguageSelection();
+    checkInitialState();
   }, []);
 
   const handleLanguageSelected = async () => {

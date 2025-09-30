@@ -9,7 +9,6 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { changeLanguage } from '../../locales/i18n';
 
@@ -21,7 +20,7 @@ interface LanguageSelectorProps {
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onLanguageSelected }) => {
   const [fadeAnim] = React.useState(new Animated.Value(0));
-  const [scaleAnim] = React.useState(new Animated.Value(0.8));
+  const [scaleAnim] = React.useState(new Animated.Value(0.9));
   const [buttonScale1] = React.useState(new Animated.Value(1));
   const [buttonScale2] = React.useState(new Animated.Value(1));
 
@@ -29,48 +28,16 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onLanguageSe
     Animated.parallel([
       Animated.timing(fadeAnim, {
         toValue: 1,
-        duration: 600,
+        duration: 500,
         useNativeDriver: true,
       }),
       Animated.spring(scaleAnim, {
         toValue: 1,
-        friction: 8,
-        tension: 40,
+        friction: 10,
+        tension: 50,
         useNativeDriver: true,
       }),
     ]).start();
-
-    // Playful floating animation
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(buttonScale1, {
-          toValue: 1.05,
-          duration: 2000,
-          useNativeDriver: true,
-        }),
-        Animated.timing(buttonScale1, {
-          toValue: 1,
-          duration: 2000,
-          useNativeDriver: true,
-        }),
-      ])
-    ).start();
-
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(buttonScale2, {
-          toValue: 1.05,
-          duration: 2000,
-          delay: 1000,
-          useNativeDriver: true,
-        }),
-        Animated.timing(buttonScale2, {
-          toValue: 1,
-          duration: 2000,
-          useNativeDriver: true,
-        }),
-      ])
-    ).start();
   }, []);
 
   const handleLanguageSelect = async (language: 'en' | 'tr') => {
@@ -80,7 +47,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onLanguageSe
 
   const handlePressIn = (scale: Animated.Value) => {
     Animated.spring(scale, {
-      toValue: 0.95,
+      toValue: 0.96,
       useNativeDriver: true,
     }).start();
   };
@@ -93,12 +60,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onLanguageSe
   };
 
   return (
-    <LinearGradient
-      colors={['#FFE5D9', '#FFD7C9', '#FFC9B9']}
-      style={styles.container}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-    >
+    <View style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <Animated.View
           style={[
@@ -111,14 +73,14 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onLanguageSe
         >
           {/* Logo/Icon */}
           <View style={styles.iconContainer}>
-            <View style={styles.iconBubble}>
-              <Icon name="earth" size={70} color="#FF9F1C" />
+            <View style={styles.iconCircle}>
+              <Icon name="web" size={40} color="#FF9F1C" />
             </View>
           </View>
 
           {/* Title */}
-          <Text style={styles.title}>Choose Your Language! 🌍</Text>
-          <Text style={styles.titleTR}>Dilinizi Seçin! 🌍</Text>
+          <Text style={styles.title}>Select Language</Text>
+          <Text style={styles.subtitle}>Choose your preferred language</Text>
 
           {/* Language Buttons */}
           <View style={styles.buttonsContainer}>
@@ -129,23 +91,13 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onLanguageSe
                 onPress={() => handleLanguageSelect('en')}
                 onPressIn={() => handlePressIn(buttonScale1)}
                 onPressOut={() => handlePressOut(buttonScale1)}
-                activeOpacity={1}
+                activeOpacity={0.9}
               >
-                <LinearGradient
-                  colors={['#81C784', '#66BB6A', '#4CAF50']}
-                  style={styles.buttonGradient}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                >
-                  <View style={styles.flagCircle}>
-                    <Text style={styles.flag}>🇬🇧</Text>
-                  </View>
-                  <View style={styles.textContainer}>
-                    <Text style={styles.languageName}>English</Text>
-                    <Text style={styles.languageSubtext}>Let's go!</Text>
-                  </View>
-                  <Icon name="arrow-right-circle" size={32} color="#FFFFFF" />
-                </LinearGradient>
+                <View style={styles.buttonContent}>
+                  <Icon name="check-circle-outline" size={28} color="#FF9F1C" />
+                  <Text style={styles.languageName}>English</Text>
+                  <Icon name="chevron-right" size={24} color="#CCC" />
+                </View>
               </TouchableOpacity>
             </Animated.View>
 
@@ -156,46 +108,34 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onLanguageSe
                 onPress={() => handleLanguageSelect('tr')}
                 onPressIn={() => handlePressIn(buttonScale2)}
                 onPressOut={() => handlePressOut(buttonScale2)}
-                activeOpacity={1}
+                activeOpacity={0.9}
               >
-                <LinearGradient
-                  colors={['#E57373', '#EF5350', '#F44336']}
-                  style={styles.buttonGradient}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                >
-                  <View style={styles.flagCircle}>
-                    <Text style={styles.flag}>🇹🇷</Text>
-                  </View>
-                  <View style={styles.textContainer}>
-                    <Text style={styles.languageName}>Türkçe</Text>
-                    <Text style={styles.languageSubtext}>Hadi başlayalım!</Text>
-                  </View>
-                  <Icon name="arrow-right-circle" size={32} color="#FFFFFF" />
-                </LinearGradient>
+                <View style={styles.buttonContent}>
+                  <Icon name="check-circle-outline" size={28} color="#FF9F1C" />
+                  <Text style={styles.languageName}>Türkçe</Text>
+                  <Icon name="chevron-right" size={24} color="#CCC" />
+                </View>
               </TouchableOpacity>
             </Animated.View>
           </View>
 
           {/* Footer Note */}
-          <View style={styles.footerContainer}>
-            <Icon name="information-outline" size={16} color="#FF9F1C" />
-            <Text style={styles.footerText}>
-              You can change this later in Settings
-            </Text>
-          </View>
-          <Text style={styles.footerTextTR}>
-            Bunu daha sonra Ayarlar'dan değiştirebilirsiniz
+          <Text style={styles.footerText}>
+            You can change this anytime in Settings
+          </Text>
+          <Text style={styles.footerTextSecondary}>
+            Bunu istediğiniz zaman Ayarlar'dan değiştirebilirsiniz
           </Text>
         </Animated.View>
       </SafeAreaView>
-    </LinearGradient>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#FAFAFA',
   },
   safeArea: {
     flex: 1,
@@ -204,115 +144,83 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 32,
+    paddingHorizontal: 40,
   },
   iconContainer: {
-    marginBottom: 24,
+    marginBottom: 32,
   },
-  iconBubble: {
-    width: 140,
-    height: 140,
-    borderRadius: 70,
+  iconCircle: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
     backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#FF9F1C',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.3,
-    shadowRadius: 20,
-    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    elevation: 5,
+    borderWidth: 1,
+    borderColor: '#F0F0F0',
   },
   title: {
-    fontSize: 32,
-    fontWeight: '800',
-    color: '#FF9F1C',
-    textAlign: 'center',
-    marginBottom: 4,
-    textShadowColor: 'rgba(0, 0, 0, 0.1)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 4,
-  },
-  titleTR: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: '700',
-    color: '#FF8C00',
+    color: '#333',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: '#666',
     textAlign: 'center',
     marginBottom: 48,
   },
   buttonsContainer: {
     width: '100%',
     maxWidth: 400,
-    gap: 20,
+    gap: 16,
   },
   languageButton: {
     width: '100%',
-    borderRadius: 25,
-    overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.25,
-    shadowRadius: 12,
-    elevation: 8,
-  },
-  buttonGradient: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 22,
-    paddingHorizontal: 20,
-    gap: 16,
-  },
-  flagCircle: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
     backgroundColor: '#FFFFFF',
-    justifyContent: 'center',
-    alignItems: 'center',
+    borderRadius: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
     elevation: 3,
+    borderWidth: 1,
+    borderColor: '#F0F0F0',
   },
-  flag: {
-    fontSize: 36,
-  },
-  textContainer: {
-    flex: 1,
-  },
-  languageName: {
-    fontSize: 26,
-    fontWeight: '800',
-    color: '#FFFFFF',
-    marginBottom: 2,
-  },
-  languageSubtext: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: 'rgba(255, 255, 255, 0.9)',
-  },
-  footerContainer: {
+  buttonContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
-    marginTop: 40,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    borderRadius: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 24,
+    gap: 16,
+  },
+  languageName: {
+    flex: 1,
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#333',
   },
   footerText: {
-    fontSize: 13,
-    color: '#666',
-    textAlign: 'center',
-    fontWeight: '600',
-  },
-  footerTextTR: {
-    marginTop: 8,
-    fontSize: 12,
+    marginTop: 40,
+    fontSize: 14,
     color: '#999',
     textAlign: 'center',
     fontWeight: '500',
+  },
+  footerTextSecondary: {
+    marginTop: 4,
+    fontSize: 13,
+    color: '#BBB',
+    textAlign: 'center',
+    fontWeight: '400',
   },
 });
 
