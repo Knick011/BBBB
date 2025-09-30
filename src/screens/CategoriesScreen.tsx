@@ -25,10 +25,12 @@ import PeekingMascot from '../components/Mascot/PeekingMascot';
 import { getAvailableCategories, CategoryInfo, getTotalQuestionsCount } from '../utils/categoryUtils';
 import LinearGradient from 'react-native-linear-gradient';
 import BannerAdComponent from '../components/common/BannerAdComponent';
+import { useTranslation } from 'react-i18next';
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'Categories'>;
 
 const CategoriesScreen: React.FC = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation<NavigationProp>();
   const insets = useSafeAreaInsets();
   const [categories, setCategories] = useState<CategoryInfo[]>([]);

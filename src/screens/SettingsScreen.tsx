@@ -22,6 +22,8 @@ import AudioManager from '../services/AudioManager';
 import { NotificationService } from '../services/NotificationService';
 import { NativeModules } from 'react-native';
 import BannerAdComponent from '../components/common/BannerAdComponent';
+import { useTranslation } from 'react-i18next';
+import { changeLanguage, getCurrentLanguage } from '../locales/i18n';
 
 interface NotificationSettings {
   morningReminder: boolean;
@@ -33,7 +35,11 @@ interface NotificationSettings {
 
 const SettingsScreen: React.FC = () => {
   const navigation = useNavigation();
-  
+  const { t, i18n } = useTranslation();
+
+  // Language setting
+  const [currentLanguage, setCurrentLanguage] = useState(getCurrentLanguage());
+
   // Sound settings
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [musicEnabled, setMusicEnabled] = useState(true);
@@ -117,6 +123,13 @@ const SettingsScreen: React.FC = () => {
       Vibration.vibrate(50);
     }
   };
+
+  const handleLanguageChange = async (lang: 'en' | 'tr') => {
+    await changeLanguage(lang);
+    setCurrentLanguage(lang);
+    // Trigger re-render
+    i18n.changeLanguage(lang);
+  };
   
   const handleMorningReminderToggle = async (value: boolean) => {
     const newSettings = { ...notificationSettings, morningReminder: value };
@@ -199,19 +212,48 @@ const SettingsScreen: React.FC = () => {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Icon name="arrow-left" size={24} color="#333" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Settings</Text>
+        <Text style={styles.headerTitle}>{t('settings.title')}</Text>
         <View style={{ width: 40 }} />
       </View>
-      
+
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+        {/* Language Settings */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('settings.language')}</Text>
+
+          {renderSettingItem(
+            'translate',
+            t('settings.selectLanguage'),
+            undefined,
+            <View style={styles.languageButtons}>
+              <TouchableOpacity
+                style={[styles.languageButton, currentLanguage === 'en' && styles.languageButtonActive]}
+                onPress={() => handleLanguageChange('en')}
+              >
+                <Text style={[styles.languageButtonText, currentLanguage === 'en' && styles.languageButtonTextActive]}>
+                  🇬🇧 English
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.languageButton, currentLanguage === 'tr' && styles.languageButtonActive]}
+                onPress={() => handleLanguageChange('tr')}
+              >
+                <Text style={[styles.languageButtonText, currentLanguage === 'tr' && styles.languageButtonTextActive]}>
+                  🇹🇷 Türkçe
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
+
         {/* Audio Settings */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Audio Settings</Text>
+          <Text style={styles.sectionTitle}>{t('settings.audio')}</Text>
           
           {/* Sound Effects Toggle */}
           {renderSettingItem(
             'volume-high',
-            'Sound Effects',
+            t('settings.soundEffects'),
             undefined,
             <Switch
               value={soundEnabled}
@@ -224,7 +266,7 @@ const SettingsScreen: React.FC = () => {
           {/* Music Toggle */}
           {renderSettingItem(
             'music',
-            'Background Music',
+            t('settings.music'),
             undefined,
             <Switch
               value={musicEnabled}
@@ -237,7 +279,7 @@ const SettingsScreen: React.FC = () => {
           {/* Haptic Feedback Toggle */}
           {renderSettingItem(
             'vibrate',
-            'Haptic Feedback',
+            t('settings.volume'),
             undefined,
             <Switch
               value={hapticEnabled}
@@ -539,6 +581,33 @@ const styles = StyleSheet.create({
   aboutText: {
     fontSize: 16,
     color: '#333',
+  },
+  languageButtons: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  languageButton: {
+    flex: 1,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  languageButtonActive: {
+    borderColor: theme.colors.primary,
+    backgroundColor: theme.colors.primaryLight,
+  },
+  languageButtonText: {
+    fontSize: 14,
+    color: '#666',
+    fontWeight: '500',
+  },
+  languageButtonTextActive: {
+    color: theme.colors.primary,
+    fontWeight: '700',
   },
 });
 

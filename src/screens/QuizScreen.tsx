@@ -35,8 +35,10 @@ import { useQuizStore } from '../store/useQuizStore';
 import { useUserStore } from '../store/useUserStore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DailyGoalsService from '../services/DailyGoalsService';
+import { useTranslation } from 'react-i18next';
 
 const QuizScreen = ({ navigation, route }: any) => {
+  const { t } = useTranslation();
   const [currentQuestion, setCurrentQuestion] = useState<any>(null);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -1117,7 +1119,7 @@ const QuizScreen = ({ navigation, route }: any) => {
             style={styles.continueButton}
             onPress={handleContinue}
           >
-            <Text style={styles.buttonText}>Next Question</Text>
+            <Text style={styles.buttonText}>{t('quiz.next')}</Text>
             <Icon name="arrow-right" size={20} color="white" />
           </TouchableOpacity>
         )}
