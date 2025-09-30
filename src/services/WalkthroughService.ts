@@ -3,6 +3,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { WalkthroughStep } from '../components/common/WalkthroughOverlay';
+import i18n from '../locales/i18n';
 
 class WalkthroughService {
   private static instance: WalkthroughService;
@@ -26,8 +27,8 @@ class WalkthroughService {
     return [
       {
         id: 'timer_widget',
-        title: 'Your Reward Timer ⏰',
-        description: 'This shows your available reward time! Complete quizzes to earn guilt-free screen time. Check your notifications where I keep track of your screen time and reward time with a persistent notification so you won\'t remove it by mistake.',
+        title: i18n.t('walkthrough.timerWidget.title'),
+        description: i18n.t('walkthrough.timerWidget.description'),
         targetPosition: { x: 32, y: 120, width: 350, height: 145 },
         tooltipPosition: 'bottom',
         mascotType: 'happy',
@@ -36,8 +37,8 @@ class WalkthroughService {
       },
       {
         id: 'bonus_penalty',
-        title: 'Tomorrow\'s Bonus/Penalty 📊',
-        description: 'This shows your bonus or penalty score for tomorrow based on how much screen time you used today. Use your reward time wisely!',
+        title: i18n.t('walkthrough.bonusPenalty.title'),
+        description: i18n.t('walkthrough.bonusPenalty.description'),
         targetPosition: { x: 53, y: 310, width: 308, height: 80 },
         tooltipPosition: 'bottom',
         mascotType: 'gamemode',
@@ -46,8 +47,8 @@ class WalkthroughService {
       },
       {
         id: 'daily_flow',
-        title: 'Daily Flow 🌊',
-        description: 'Complete goals daily to maintain your flow! Each day completed keeps it flowing, if you miss a day, the flow breaks.',
+        title: i18n.t('walkthrough.dailyFlow.title'),
+        description: i18n.t('walkthrough.dailyFlow.description'),
         targetPosition: { x: 32, y: 375, width: 350, height: 140 },
         tooltipPosition: 'top',
         mascotType: 'excited',
@@ -56,8 +57,8 @@ class WalkthroughService {
       },
       {
         id: 'difficulty_buttons',
-        title: 'Choose Your Challenge 🎯',
-        description: 'Pick your difficulty level! Easy gets you started, Medium tests your skills, and Hard pushes your limits.',
+        title: i18n.t('walkthrough.difficultyButtons.title'),
+        description: i18n.t('walkthrough.difficultyButtons.description'),
         targetPosition: { x: 32, y: 460, width: 350, height: 160 },
         tooltipPosition: 'top',
         mascotType: 'gamemode',
@@ -66,8 +67,8 @@ class WalkthroughService {
       },
       {
         id: 'categories_button',
-        title: 'Explore Topics 📚',
-        description: 'Browse different categories like Science, History, and Math. Find subjects that spark your curiosity!',
+        title: i18n.t('walkthrough.categoriesButton.title'),
+        description: i18n.t('walkthrough.categoriesButton.description'),
         targetPosition: { x: 32, y: 588, width: 350, height: 54 },
         tooltipPosition: 'top',
         mascotType: 'happy',
@@ -76,8 +77,8 @@ class WalkthroughService {
       },
       {
         id: 'daily_goals',
-        title: 'Daily Goals & Rewards 🎁',
-        description: 'Complete daily challenges to earn time bonuses and maintain your streak. Check here for your progress!',
+        title: i18n.t('walkthrough.dailyGoalsButton.title'),
+        description: i18n.t('walkthrough.dailyGoalsButton.description'),
         targetPosition: {x: 32, y: 635, width: 350, height: 54 },
         tooltipPosition: 'top',
         mascotType: 'excited',
@@ -86,8 +87,8 @@ class WalkthroughService {
       },
       {
         id: 'leaderboard',
-        title: 'Compete & Compare 🏆',
-        description: 'See how you rank against other learners. Climb the leaderboard by answering questions correctly!',
+        title: i18n.t('walkthrough.leaderboardButton.title'),
+        description: i18n.t('walkthrough.leaderboardButton.description'),
         targetPosition: { x: 32, y: 680, width: 350, height: 54 },
         tooltipPosition: 'top',
         mascotType: 'gamemode',
@@ -96,8 +97,8 @@ class WalkthroughService {
       },
       {
         id: 'ready_to_start',
-        title: 'You\'re All Set! 🚀',
-        description: 'Now you know the basics! Start with an Easy quiz to get comfortable, then challenge yourself as you improve.',
+        title: i18n.t('walkthrough.readyToStart.title'),
+        description: i18n.t('walkthrough.readyToStart.description'),
         tooltipPosition: 'center',
         mascotType: 'excited',
         icon: 'rocket',
